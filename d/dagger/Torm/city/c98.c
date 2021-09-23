@@ -16,7 +16,9 @@ void create()   {
   "pruned, and even the ivy on the walls seems to have been trimmed.  The "
   "carvings on the massive %^ORANGE%^walnut doors %^RESET%^and the %^YELLOW%^"
   "gleaming brass hardware %^RESET%^speak of both fine workmanship and a pride "
-  "in ownership."
+  "in ownership. %^BOLD%^%^CYAN%^You see signs of construction all around the"
+  "the property with laborers moving goods and supplies all around. Large boards "
+  "bar the door and no access seems possible."
   );
   set("night long",
   "%^BLUE%^"
