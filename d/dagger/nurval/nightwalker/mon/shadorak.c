@@ -180,7 +180,7 @@ die(object ob)
     }
               
     WORLD_EVENTS_D->kill_event("The Avatar of Nilith has been defeated");
-    WORLD_EVENTS_D->inject_event((["The Avatar of Nilith has been defeated" : (["start message" : "%^BOLD%^%^BLACK%^The Avatar of Nilith has been defeated!", "event type" : "exp bonus", "length" : 720, "notification" : "5% Bonus Exp", "event name" : "The Avatar of Nilith has been defeated (LG, LN, LE, NG, CG)", "modifier" : 5, "announce" : 1, "announce to" : "world", "alignments" : ({ 1, 2, 3, 4, 7 ]), ]));
+    WORLD_EVENTS_D->inject_event((["The Avatar of Nilith has been defeated" : (["start message" : "%^BOLD%^%^BLACK%^The Avatar of Nilith has been defeated!", "event type" : "exp bonus", "length" : 720, "notification" : "5% Bonus Exp", "event name" : "The Avatar of Nilith has been defeated (LG, LN, LE, NG, CG)", "modifier" : 5, "announce" : 1, "announce to" : "world", "alignments" : ({ 1, 2, 3, 4, 7 }), ]) ]));
     
     return ::die();
 }

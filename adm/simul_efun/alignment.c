@@ -7,6 +7,8 @@
 **
 */
 
+#define SHORT_ALIGN ({ "LG", "LN", "LE", "NG", "TN", "NE", "CG", "CN", "CE" })
+
 int is_good(object ob)
 {
     int align = ob->query_alignment();
@@ -82,3 +84,20 @@ int opposed_alignment(object me, object you)
     
     return 0;
 }
+
+string *short_alignment(int *align)
+{
+    string *short_align;
+    
+    if(!pointerp(align))
+        return ({  });
+    
+    if(!sizeof(align))
+        return ({  });
+    
+    foreach(int x in align)
+        short_align += ({ SHORT_ALIGN[x] });
+    
+    return short_align;
+}
+    

@@ -470,6 +470,24 @@ void establish_weekend_events()
     return;
 }
 
+int *query_event_alignments(string eventName)
+{
+    string *aligns;
+    
+    if(!strlen(eventName))
+        return ({  });
+    
+    if(!check_events())
+        return ({  });
+    
+    if(!WORLD_EVENTS[eventName])
+        return ({  });
+    
+    if(!pointerp(aligns = WORLD_EVENTS[eventName]["alignments"]))
+        return ({  });
+    
+    return aligns;
+}
 
 mixed query_event_notification(string eventName)
 {
