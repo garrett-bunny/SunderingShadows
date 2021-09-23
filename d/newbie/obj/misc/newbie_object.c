@@ -208,7 +208,7 @@ void introduce_task()
                         break;
                     }
                     tell_object(ETO, "\n"+WE+" There is a graveyard east of Offestry. Go there and before you enter it "+
-                    "you will find a curious man who you can interact with. He will require a task from you that requires "+
+                    "you will find a curious man who you can say 'hello' to. He will require a task from you that requires "+
                     "retrieval of an item from the graveyard. Retrieve this item and either complete the task as "+
                     "he demands or return to the Offestry town square then %^YELLOW%^feed%^RESET%^ the item to "+
                     "me. This will be your first introduction to the idea that completing one thing will forgo another. You "+
