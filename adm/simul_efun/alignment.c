@@ -8,6 +8,7 @@
 */
 
 #define SHORT_ALIGN ({ "LG", "LN", "LE", "NG", "TN", "NE", "CG", "CN", "CE" })
+#define LONG_ALIGN ({ "Lawful Good", "Lawful Neutral", "Lawful Evil", "Neutral Good", "True Neutral", "Neutral Evil", "Chaotic Good", "Chaotic Neutral", "Chaotic Evil" })
 
 int is_good(object ob)
 {
@@ -87,7 +88,7 @@ int opposed_alignment(object me, object you)
 
 string *short_alignment(int *align)
 {
-    string *short_align;
+    string *short_align = ({  });
     
     if(!pointerp(align))
         return ({  });
@@ -96,8 +97,23 @@ string *short_alignment(int *align)
         return ({  });
     
     foreach(int x in align)
-        short_align += ({ SHORT_ALIGN[x] });
+        short_align += ({ SHORT_ALIGN[x - 1] });
     
     return short_align;
 }
+
+string *long_alignment(int *align)
+{
+    string *long_align = ({  });
     
+    if(!pointerp(align))
+        return ({  });
+    
+    if(!sizeof(align))
+        return ({  });
+    
+    foreach(int x in align)
+        long_align += ({ LONG_ALIGN[x - 1] });
+    
+    return long_align;
+}
