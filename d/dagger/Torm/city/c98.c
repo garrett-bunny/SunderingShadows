@@ -50,7 +50,7 @@ void create()   {
   ]));
   set_exits(([
   "northeast":TCITY+"c10",
-  "southwest": "/d/guilds/fist/mansion/entry",
+  //"southwest": "/d/player_houses/lizabelle/entry",
   ]));
    set_door("door","/d/guilds/fist/mansion/entry","southwest");
   set_locked("door",0);
