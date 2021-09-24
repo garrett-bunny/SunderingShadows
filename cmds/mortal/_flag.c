@@ -49,7 +49,8 @@ varargs void do_flag_display(object who, object targ)
             j = 34 - strlen(eventName);
             if(!stringp(notification = WORLD_EVENTS_D->query_event_notification(eventName))) { notification = "Currently Active"; }
             if(!intp(remaining = WORLD_EVENTS_D->event_time_remaining(eventName))) { remaining = -1; }
-            eventMsg = "%^BOLD%^%^WHITE%^" + sprintf("%-42s", eventName) + arrange_string(" ", j);
+            //eventMsg = "%^BOLD%^%^WHITE%^" + sprintf("%-42s", eventName) + arrange_string(" ", j);
+            eventMsg = "%^BOLD%^%^WHITE%^" + eventName + arrange_string(" ", j);
             j = 18 - strlen(parse_time(remaining));//strlen(remaining + " mins");
             eventMsg += parse_time(remaining) + arrange_string(" ", j) + notification;
             if(sizeof(alignments = WORLD_EVENTS_D->query_event_alignments(eventName)))
