@@ -1,6 +1,7 @@
 #include <spell.h>
 #include <magic.h>
 #include <rooms.h>
+#include <daemons.h>
 inherit SPELL;
 
 void create() {
@@ -11,10 +12,10 @@ void create() {
     set_domains("sun");
     set_spell_sphere("invocation_evocation");
     set_syntax("cast CLASS sunbeam on TARGET");
-    set_damage_desc("radiant, 4/3 times more to undead");
+    set_damage_desc("radiant, 4/3 times more to undead, on ranged touch attack");
     set_description("This spell will create a beam of pure light aimed at the target.  A target who fails to avoid the "
         "sunbeam will take damage from the pure sunlight and may be momentarily blinded.  Undead hit by the spell will "
-        "suffer additional damage. Vampires hit with this spell will recieve more love than usual undead.");
+        "suffer additional damage.");
     set_verbal_comp();
     set_somatic_comp();
     set_target_required(1);
@@ -50,21 +51,21 @@ void spell_effect(int prof) {
         "in "+target->QCN+"'s direction, sending a beam of light right at "+target->QO+"!",({caster,target}));
 
 
-    if(!do_save(target)) {
+    if(BONUS_D->process_hit(caster, target, 1, 0, 0, 1))
+    {
         tell_object(caster,"%^BOLD%^Your beam of light hits "+target->QCN+" head on, burning "+target->QO+" with its intensity!");
         tell_object(target,"%^BOLD%^"+caster->QCN+"'s beam of light hits you head on, burning you with its intensity.");
         tell_room(place,"%^BOLD%^"+caster->QCN+"'s beam of light hits "+target->QCN+" head on, burning "+target->QO+" with its intensity!",({target, caster}));
         target->set_temporary_blinded(1);
+        target->cause_typed_damage(target, target_limb, sdamage, "radiant");
     }
     else {
         if(evade_splash(target)) { dest_effect(); return; }
-        tell_object(caster,"%^BLUE%^"+target->QCN+" dodges at the last instant, avoiding the worst of the damage from your beam of light!");
-        tell_object(target,"%^BLUE%^You dodge aside at the last instant, avoiding the worst of the damage from "+caster->QCN+"'s beam of light!");
-        tell_room(place,"%^BLUE%^"+target->QCN+" dodges aside at the last instant, avoiding the worst of the damage from "+caster->QCN+"'s beam of light!",({target, caster}));
-        sdamage/=2;
+        tell_object(caster,"%^BLUE%^"+target->QCN+" dodges at the last instant, avoiding your beam of light!");
+        tell_object(target,"%^BLUE%^You dodge aside at the last instant, avoiding the damage from "+caster->QCN+"'s beam of light!");
+        tell_room(place,"%^BLUE%^"+target->QCN+" dodges aside at the last instant, avoiding the damage from "+caster->QCN+"'s beam of light!",({target, caster}));
     }
     //damage_targ(target,target_limb,sdamage,"divine");
-    target->cause_typed_damage(target, target_limb, sdamage, "radiant");
     dest_effect();
 }
 

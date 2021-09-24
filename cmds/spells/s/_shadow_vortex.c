@@ -15,8 +15,8 @@ void create()
     set_spell_level(([ "innate" : 3 ]));
     set_spell_sphere("invocation_evocation");
     set_syntax("cast CLASS shadow vortex");
-    set_damage_desc("half cold, half electricity");
-    set_description("This spell snatches part of the great maelstorm from the seas on shadow plane. Summoned vortices will harm everything in the area with cold and lightning.");
+    set_damage_desc("void, half on reflex save");
+    set_description("This spell snatches part of the great maelstorm from the seas on shadow plane. Summoned vortices will harm everything in the area with void energy.");
     set_verbal_comp();
     set_somatic_comp();
     set_save("reflex");
@@ -61,20 +61,19 @@ void execute_attack()
     foes -= ({ caster });
 
     define_base_damage(0);
-    tell_room(place,"%^MAGENTA%^Cold shadow vortices rage lightning in the area!%^RESET%^");
+    tell_room(place,"%^MAGENTA%^Cold shadow vortices rage with undulating void energy!%^RESET%^");
     for(i=0;i<sizeof(foes);i++) {
         if(!objectp(targ = foes[i]))
             continue;
         if(do_save(targ,2))
         {
-            tell_object(targ,"%^MAGENTA%^Shadow vortices caress you, but you manage to dodge lightning bolts.");
-            damage_targ(targ,targ->return_target_limb(),sdamage/2,"cold");
+            tell_object(targ,"%^MAGENTA%^Shadow vortices caress you, but you avoid some of the damage!");
+            damage_targ(targ,targ->return_target_limb(),sdamage/2,"void");
         }
         else
         {
-            tell_object(targ,"%^MAGENTA%^Shadow vortices caress and zap you with lightning!");
-            damage_targ(targ,targ->return_target_limb(),sdamage/2,"cold");
-            damage_targ(targ,targ->return_target_limb(),sdamage/2,"electricity");
+            tell_object(targ,"%^MAGENTA%^Shadow vortices caress you with powerful void energy!");
+            damage_targ(targ,targ->return_target_limb(),sdamage,"void");
         }
     }
     counter--;
@@ -83,7 +82,7 @@ void execute_attack()
 
 
 void dest_effect() {
-    if(objectp(place)) tell_object(place,"%^MAGENTA%^Shadow storm recedes.%^RESET%^");
+    if(objectp(place)) tell_object(place,"%^MAGENTA%^The shadow storm recedes.%^RESET%^");
     ::dest_effect();
     if(objectp(TO)) TO->remove();
 }

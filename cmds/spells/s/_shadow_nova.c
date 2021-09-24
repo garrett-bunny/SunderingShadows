@@ -13,7 +13,7 @@ void create()
     set_spell_level(([ "innate" : 9 ]));
     set_spell_sphere("necromancy");
     set_syntax("cast CLASS shadow nova");
-    set_damage_desc("untyped");
+    set_damage_desc("void");
     set_description("This spell will send a burst of pure darkness out in a circle from the caster.  Any enemies "
         "caught in the area will suffer damage from the shadowy energy.  Those creatures who fail their save will find that "
         "the darkness also steals away their vision temporarily.
@@ -59,7 +59,7 @@ void spell_effect(int prof)
             attackers[i]->set_temporary_blinded(1);
         }
         tell_object(attackers[i],"%^BOLD%^%^CYAN%^The darkness burns with an unnatural chill as it passes over and through you!%^RESET%^");
-        damage_targ(attackers[i],attackers[i]->return_target_limb(),sdamage,"untyped");
+        damage_targ(attackers[i],attackers[i]->return_target_limb(),sdamage,"void");
     }
 
     spell_successful();
