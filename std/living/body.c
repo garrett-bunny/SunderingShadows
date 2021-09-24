@@ -849,7 +849,7 @@ int query_resistance_percent(string res)
                 mod -= max( ({ ((total_light(environment(this_object())) - 1) * 15), -50 }));           
         }
 
-        if(res == "fire" || res == "divine")
+        if(res == "radiant")
             mod -= 15;
     }
         
@@ -864,7 +864,7 @@ int query_resistance_percent(string res)
             if (res == "electricity") {
                 mod += 50;
             }
-            if (res == "divine") {
+            if (res == "radiant") {
                 mod += -25;
             }
             if (res == "silver") {

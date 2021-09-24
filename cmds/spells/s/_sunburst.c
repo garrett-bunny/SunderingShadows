@@ -14,7 +14,7 @@ void create(){
     set_spell_sphere("invocation_evocation");
     set_domains("sun");
     set_syntax("cast CLASS sunburst");
-    set_damage_desc("fire damage");
+    set_damage_desc("radiant damage");
     set_description("This spell will send the light of the sun radiating out in a circle from the caster.  Any enemies caught in the area will suffer damage from the pure light of the sun.  Undead creatures suffer more damage than normal ones, and those creatures who fail their save are blinded by the light.");
     set_verbal_comp();
     set_somatic_comp();
@@ -47,12 +47,11 @@ void spell_effect(int prof){
     for(i=0;i<sizeof(attackers);i++){
         if(!objectp(attackers[i])) continue;
 
-        /* Changed to fire damage. Fire already does bonus to undead
+        // Changed to radiant damage.
         if(attackers[i]->is_undead())
             dmg = sdamage * 4/3;
         else
             dmg = sdamage;
-        */
         
         dmg = sdamage;
 
@@ -66,7 +65,7 @@ void spell_effect(int prof){
         }
         tell_object(attackers[i],"%^YELLOW%^The sunlight burns as it strikes you, scorching your skin!%^RESET%^");
         //damage_targ(attackers[i],attackers[i]->return_target_limb(),dmg,"divine");
-        damage_targ(attackers[i], attackers[i]->return_target_limb(), dmg, "fire");
+        damage_targ(attackers[i], attackers[i]->return_target_limb(), dmg, "radiant");
     }
     spell_successful();
     dest_effect();
