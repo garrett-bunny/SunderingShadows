@@ -24,6 +24,7 @@
         "divine", \
         "untyped", \
         "mental", \
+        "void", \
     })
 
 #define PHYSICAL_DAMAGE_TYPES ({ \
