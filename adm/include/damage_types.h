@@ -25,6 +25,7 @@
         "untyped", \
         "mental", \
         "void", \
+        "radiant", \
     })
 
 #define PHYSICAL_DAMAGE_TYPES ({ \

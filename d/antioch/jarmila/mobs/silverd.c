@@ -195,7 +195,7 @@ void tail_swipe(object vic)
     }
     tell_room(ETO, "%^RESET%^%^RED%^The dragon turns and puts its "+
 	"entire weight into attacking with its tail.%^RESET%^");
-    if (!vic->will_save(35) {
+    if (!vic->will_save(35)) {
         tell_object(vic, "%^RESET%^%^RED%^With a grunt, you feel "+
 		"the tail slam against you and drop you to your knees!%^RESET%^");
         tell_room(ETO, "%^RESET%^%^RED%^" + vic->query_cap_name() + " "+
