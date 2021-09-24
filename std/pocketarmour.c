@@ -149,9 +149,10 @@ void unwear() {
      actualLimbs);
    if(objectp(environment(wornBy)))
    {
+       string short_desc = query_obvious_short() ? query_obvious_short() : query_short();
        message("other_action", (string)wornBy->query_cap_name()+
        " removes "+(string)wornBy->query_possessive()
-       +" "+query_name()+".", environment(wornBy),
+       +" "+short_desc+".", environment(wornBy),
        ({ wornBy }));
    }
    wornBy = 0;
