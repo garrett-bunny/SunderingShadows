@@ -812,7 +812,7 @@ int query_resistance(string res)
         }
     }
     if (TO->query_race() == "deva" || this_object()->is_deva()) {
-        if (res == "acid" || res == "fire") {
+        if (res == "acid" || res == "divine") {
             myres += 10;
         }
     }
