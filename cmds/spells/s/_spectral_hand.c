@@ -19,7 +19,7 @@ void create()
     set_mystery("reaper");
     set_spell_sphere("necromancy");
     set_syntax("cast CLASS spectral hand");
-    set_description("This spell will allow the caster to succeed making spell-based touch attack such as chill touch.");
+    set_description("This spell will gives a +1 attack bonus to touch attack and ranged touch attack spells.");
     set_verbal_comp();
     set_somatic_comp();
     set_components(([ "mage" : ([ "drop of blood" : 1, ]), ]));

@@ -481,7 +481,7 @@ varargs int process_hit(object who, object targ, int attack_num, mixed current, 
             bon = hit_bonus(who, targ, attack_num, current, flag);
         }
     }else {
-        bon = hit_bonus(who, targ, attack_num, current);
+        bon = hit_bonus(who, targ, attack_num, current, flag);
     }
 
     if (intp(current)) {
@@ -499,8 +499,12 @@ varargs int process_hit(object who, object targ, int attack_num, mixed current, 
     }
     
     //Point blank shot gives +1 to ranged touch attacks
+    //Spectral hand gives a further +1 bonus to touch attacks
     if(flag)
+    {
         mod += FEATS_D->usable_feat(who, "point blank shot");
+        mod += who->query_property("spectral_hand");
+    }
     
     attack_roll += mod;
     
