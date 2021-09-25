@@ -395,6 +395,18 @@ varargs int hit_bonus(object who, object targ, int attack_num, object current, i
         }
     }
     
+    //Point blank shot gives +1 to ranged touch attacks
+    //Spectral hand gives a further +1 bonus to touch attacks
+    if(touch == 1)
+    {
+        to_hit += FEATS_D->usable_feat(who, "point blank shot");
+        to_hit += who->query_property("spectral_hand");
+    }
+    if(touch == 2)
+    {
+        to_hit += who->query_property("spectral_hand");
+    }
+    
     //Paladin smite against opposed alignment adds cha mod to attack rolls
     if(who->query_guild_level("paladin") && targ->query_property("paladin smite") == who)
         to_hit += query_stat_bonus(who, "charisma");
@@ -496,14 +508,6 @@ varargs int process_hit(object who, object targ, int attack_num, mixed current, 
     }
     if (attack_roll == 20) {
         return 20;
-    }
-    
-    //Point blank shot gives +1 to ranged touch attacks
-    //Spectral hand gives a further +1 bonus to touch attacks
-    if(flag)
-    {
-        mod += FEATS_D->usable_feat(who, "point blank shot");
-        mod += who->query_property("spectral_hand");
     }
     
     attack_roll += mod;
