@@ -123,7 +123,8 @@ void hurl_effect(object room, object victim, int dam, int dur)
     }
     
     //Put some kind of check here for devil race -> won't be damaged
-    damage_targ(victim, victim->return_target_limb(), roll_dice(1, 10) + dam / DUR, "untyped");
+    if(victim->query_race() != "devil")
+        damage_targ(victim, victim->return_target_limb(), roll_dice(1, 10) + dam / DUR, "untyped");
     
     dur--;
     

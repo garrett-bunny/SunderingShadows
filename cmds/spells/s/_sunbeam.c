@@ -51,7 +51,7 @@ void spell_effect(int prof) {
         "in "+target->QCN+"'s direction, sending a beam of light right at "+target->QO+"!",({caster,target}));
 
 
-    if(BONUS_D->process_hit(caster, target, 1, 0, 0, 1))
+    if(BONUS_D->process_hit(caster, target, 1, 0, 0, 1) > 0)
     {
         tell_object(caster,"%^BOLD%^Your beam of light hits "+target->QCN+" head on, burning "+target->QO+" with its intensity!");
         tell_object(target,"%^BOLD%^"+caster->QCN+"'s beam of light hits you head on, burning you with its intensity.");

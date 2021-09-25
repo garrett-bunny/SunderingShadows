@@ -51,7 +51,7 @@ void spell_effect(int prof){
     tell_room(place,"%^BOLD%^%^BLACK%^"+ caster->QCN+" hurls "+caster->QP+" fist forth and a beam "
         "of darkness flows towards "+target->QCN+"!",({ caster, target}) );
         
-    if(BONUS_D->process_hit(caster, target, 1, 0, 0, 1))
+    if(BONUS_D->process_hit(caster, target, 1, 0, 0, 1) > 0)
     {
         tell_object(target, "%^BLUE%^The beam of darkness strikes you, ravaging your mind.");
         tell_room(environment(target), "%^BLUE%^The beam of darkness strikes " + target->QCN + ".", target);

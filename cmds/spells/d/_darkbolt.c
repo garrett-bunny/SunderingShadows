@@ -62,7 +62,7 @@ void spell_effect(int prof)
     foreach(object ob in targets)
     {
         if (objectp(ob) && environment(ob) == room) {
-            if(!BONUS_D->process_hit(caster, target, 1, 0, 0, 1))
+            if(BONUS_D->process_hit(caster, target, 1, 0, 0, 1) < 1)
                 tell_room(room, "%^BLUE%^" + sprintf("The beam of darkness misses %s.", ob->QCN));
             else {
                 tell_room(room, "%^BLUE%^" + sprintf("The beam of darkness strikes %s!", ob->QCN));

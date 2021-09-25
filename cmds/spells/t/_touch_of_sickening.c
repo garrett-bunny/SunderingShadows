@@ -54,7 +54,7 @@ spell_effect(int prof)
 
     roll = BONUS_D->process_hit(caster, target, 1, bonus, 0, 1);
 
-    if(!roll || roll == -1 && ! caster->query_property("spectral_hand"))
+    if(!roll)
     {
         tell_object(caster,""+mycolor+"You try and touch "+target->QCN+"'s "+target_limb+" with a "+myhue+" hand, but miss!");
         tell_object(target,""+mycolor+caster->QCN+"'s "+myhue+" hand gropes for your "+target_limb+" unsuccessfully.");

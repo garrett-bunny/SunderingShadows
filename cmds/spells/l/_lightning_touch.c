@@ -62,9 +62,8 @@ spell_effect(int prof)
         return;
     }
 
-    if(caster->Thaco(1,target,0) <= roll_dice(1,20) && ! caster->query_property("spectral_hand")) {
-//changed check to hit to above - it never seemed to hit before
-//~Circe~ 5/12/08
+    if(!BONUS_D->process_hit(caster, target, 1, 0, 0, 1))
+    {
 	    tell_object(caster,"%^YELLOW%^The crackling lightning around your hand"+
 		    " flashes and fades away as"+
 		    " you fail to touch "+target->QCN+".%^RESET%^");

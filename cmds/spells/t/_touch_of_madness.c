@@ -59,7 +59,7 @@ void spell_effect(int prof)
     
     roll = (int)BONUS_D->process_hit(caster, target, 1, 0, 0, 1);
     
-    if(roll < 1 && !caster->query_property("spectral_hand"))
+    if(roll < 1)
     {
         tell_object(caster, "You try to grasp " + target->QCN + " but miss!");
         return;
