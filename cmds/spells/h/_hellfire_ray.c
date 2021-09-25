@@ -1,4 +1,5 @@
 #include <spell.h>
+#include <daemons.h>
 inherit SPELL;
 
 void create()
