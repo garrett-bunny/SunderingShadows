@@ -20,9 +20,22 @@ Force damage is caused by raw concussive force, either delivered telekinetically
 %^CYAN%^MENTAL:%^RESET%^
 Use predominantly by wielders of psionic energy, mental damage is energy delivered directly to the victim's central nervous system and brain, causing raw damage to their psyche.
 
-%^MAGENTA%^SONIC:%^RESET%^
+%^MAGENTA%^BOLD%^SONIC:%^RESET%^
 A favorite of bards, sonic energy is raw sound that delivers incredible damage to the victim through pure, overpowering sonic overload.
 
+%^BOLD%^SILVER and COLD IRON:%^RESET%^
+Silver and cold iron are metals that serve a very specific purpose. Silver is deadly against were-creatures and vampires alike, causing them much more damage than other metals. Cold iron is specifically geared towards killing Fey creatures and causes extra damage to them.
 
+%^YELLOW%^RADIANT:%^RESET%^
+Radiant energy is the explosive light that renews, the energy of the stars, cleansing all darkness and taint. It is a ferocious, burning energy that leaves behind a fertile place with the possibility of new growth. Spells and effects that use the power of the sun do radiant damage.
+
+%^MAGENTA%^VOID:%^RESET%^
+Void is the pure destructive energy of unmaking. Between the stars lies the vast and cold utterdark of oblivion, the void itself. This energy is the pure energy of darkness. Spells that use darkness or shadows to do damage use void damage.
+
+%^BOLD%^DIVINE:%^RESET%^
+Divine energy is the energy of the gods themselves. Abilities and feats that channel the energy of the gods use divine damage.
+
+%^BOLD%^POSITIVE AND %^BLACK%^NEGATIVE%^RESET%^ ENERGY:
+Positive and Negative energies are diametrically opposed side of the same coin. Positive energy is the energy of life, renewal and growth and is completely anathema to undead, causing them great pain and harm. Negative energy is the necrotic energy of unlife and is completely anathema to life, causing great injury and harm to the living. 
 
 See Also : Magical Devices, Diminishing Returns
