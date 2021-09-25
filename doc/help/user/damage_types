@@ -1,0 +1,28 @@
+%^CYAN%^%^BOLD%^DAMAGE TYPES%^RESET%^
+
+Sundering Shadows has a number of different types of damage. This help file will explain the various types, their origins, and any considerations for using them.
+
+%^BOLD%^PIERCING:%^RESET%^
+Piercing damage is caused by weapons like rapiers, arrows or spears, and by natural attacks like bites. Piercing damage is reduced by normal physical damage resistance.
+
+%^BOLD%^SLASHING:%^RESET%^
+Slashing damage is caused by weapons like axes, swords or scythes, and by natural attacks like claws. Slashing damage is reduced by normal physical damage resistance.
+
+%^BOLD%^BLUDGEONING:%^RESET%^
+Bludgeoning damage is caused by weapons like maces, hammers, and staves, and by natural attacks like tail sweeps. Bludgeoning damage is reduced by normal physical damage resistance.
+
+%^BLUE%^COLD%^RESET%^, %^RED%^FIRE%^RESET%^, %^YELLOW%^ELECTRICITY%^RESET%^, %^GREEN%^ACID%^RESET%^:
+Cold, fire, electricity, and acid damage are all derived from the elemental planes they are associated with. Electricity is associated with the elemental plane of air, while acid is associated with the elemental plane of earth. These damage types are reduced by spell damage resistance, or resistance to their specific type.
+
+%^BOLD%^FORCE:%^RESET%^
+Force damage is caused by raw concussive force, either delivered telekinetically, or through a spell like bolt of force. Unlike bludgeoning damage, this is not delivered by a melee weapon, but by things like explosions or other bursts.
+
+%^CYAN%^MENTAL:%^RESET%^
+Use predominantly by wielders of psionic energy, mental damage is energy delivered directly to the victim's central nervous system and brain, causing raw damage to their psyche.
+
+%^MAGENTA%^SONIC:%^RESET%^
+A favorite of bards, sonic energy is raw sound that delivers incredible damage to the victim through pure, overpowering sonic overload.
+
+
+
+See Also : Magical Devices, Diminishing Returns
