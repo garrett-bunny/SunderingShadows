@@ -16,6 +16,7 @@ void create()
    set_gender("neuter");
    set_property("full attacks",1);
    set("aggressive","sicem");
+   set_alignment(1);
    set_race("foo creature");
    switch (random(18)) {
    case 0..11:
@@ -83,7 +84,9 @@ void create()
 
    set_new_exp(32,"very high");
    set_property("add kits",roll_dice(1, 4) * 5);
-   set_hp(20*query_hd());
+   set_max_hp(50 * query_hd());
+   set_hp(query_max_hp());
+   //set_hp(50*query_hd());
    set_property("swarm",1);
    set_mob_magic_resistance("average");
    set_property("spell damage resistance",20);
