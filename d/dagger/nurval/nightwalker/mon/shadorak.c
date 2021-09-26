@@ -1,5 +1,7 @@
 /*
-   nightwalker.c
+   shadorak.c
+   
+   Avatar of Nilith
 
    Boss monster for the Herald of Darkness.
    Refitted to become world boss.
@@ -30,7 +32,7 @@ void create()
     set_name("nightwalker");
     set_id(({ "nightwalker", "demigod", "shadow god", "night walker", "shadorak" }));
     set_short("%^BLACK%^BOLD%^Shadorak, Greater %^BOLD%^BLACK%^N%^RESET%^%^CYAN%^i%^BOLD%^g%^BLACK%^h%^RESET%^%^CYAN%^t%^BOLD%^w%^BLACK%^a%^RESET%^%^CYAN%^l%^BOLD%^k%^BLACK%^er of Nilith%^RESET%^");
-    set_long("%^BLACK%^BOLD%^This being is the stuff of nightmares. It is quite tall, towering over the nearby buildings with its lanky form. It is black and featureless, with a miasma of dark energies emanating from it. Upon its head are two shadow horns that sweep back and up away from its head, which is featureless save for two glowing azure eyes.%^RESET%^");
+    set_long("%^BLACK%^BOLD%^This being is the stuff of nightmares. It is quite tall, towering over the nearby buildings with its lanky form. It is pale and featureless, with a miasma of dark energies emanating from it. Upon its head are two shadow horns that sweep back and up away from its head, which is featureless save for two glowing azure eyes. It has a vaguely female shape, like that of a twisted and disgusting tiefling.%^RESET%^");
     set_body_type("humanoid");
     add_limb("tendril one", "torso", 0, 0, 0);
     add_limb("tendril two", "torso", 0, 0, 0);
