@@ -30,7 +30,10 @@ void create()
    set_gender("male");
    set_race("half-elf");
    set_body_type("humanoid");
-   set_hd(1,5);
+   set_alignment(1);
+   set_hd(50);
+   set_max_hp(5000);
+   set_hp(query_max_hp());
    set_exp(1);
    set_emotes(10,({
       "%^BOLD%^%^BLUE%^The banners snap in the wind.%^RESET%^",

@@ -41,7 +41,7 @@ void create() {
    set_exp(0);
    set_overall_ac(-40);
    set_hd(35,15);
-   set_max_hp(400);
+   set_max_hp(4000);
    set_hp(query_max_hp());
    set("aggressive",0);
    set_emotes(1, ({

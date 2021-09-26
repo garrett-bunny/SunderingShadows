@@ -109,8 +109,8 @@ void execute_attack()
     if(target != caster)
         tell_object(target,"%^BOLD%^%^CYAN%^"+caster->QCN+" touches you and concentrates for a moment.%^RESET%^");
     
-    amount = caster->query_guild_level("paladin") * 2;
-    amount = 30 + roll_dice(amount, 6) + BONUS_D->query_stat_bonus(caster, "charisma");
+    amount = (caster->query_guild_level("paladin") * 2) + BONUS_D->query_stat_bonus(caster, "charisma");
+    amount = 200 + roll_dice(amount, 6);
     dedication = caster->query_dedication();
     
     //If used offensively, has to pass touch attack test
@@ -127,7 +127,7 @@ void execute_attack()
     else
         caster->cause_typed_damage(target, target->return_target_limb(), amount, "positive energy");
     
-    if(dedication && target != caster->query_current_attacker())
+    if(dedication && member_array(target, caster->query_current_attackers()) < 0)
     {
         string ename;
         
@@ -145,7 +145,7 @@ void execute_attack()
             if(POISON_D->clear_poisons_by_dc(target, clevel, 0))
                 tell_object(caster, "You are able to cleanse the poison and it fades away.");
             else
-                tell_object(caster, "You were not able to cleanse the poison.");
+                tell_object(caster, "You were not able to cleanse any poison.");
             
             dest_effect();
             return;

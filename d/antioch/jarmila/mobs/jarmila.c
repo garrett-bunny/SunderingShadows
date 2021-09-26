@@ -49,7 +49,7 @@ void create()
     set_mlevel("fighter", 80);
     set_mlevel("mage", 80);
     set_mlevel("cleric", 80);
-   set_alignment(1);
+    set_alignment(4);
     set("aggressive",100);
     set_property("full attacks",1);
     set_true_seeing(1);

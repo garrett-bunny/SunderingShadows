@@ -84,7 +84,7 @@ void create()
 
    set_new_exp(32,"very high");
    set_property("add kits",roll_dice(1, 4) * 5);
-   set_max_hp(50 * query_hd());
+   set_max_hp(100 * query_hd());
    set_hp(query_max_hp());
    //set_hp(50*query_hd());
    set_property("swarm",1);
