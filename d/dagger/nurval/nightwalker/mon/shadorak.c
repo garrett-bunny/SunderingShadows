@@ -317,8 +317,3 @@ int tendril(object me, object ob)
     
     return roll_dice(6, 10) + 10;
 }
-    
-    
-    
-    
-    
