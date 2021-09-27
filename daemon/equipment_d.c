@@ -65,6 +65,8 @@ mapping BONUS_CATS = ([
              "spell damage resistance",         "spell damage resistance percent",
              "untyped resistance",              "untyped resistance percent",
              "cold iron resistance",            "cold iron resistance percent",
+             "radiant resistance",              "radiant resistance percent",
+             "void resistance",                 "void resistance percent",
              }),
  "stats" : ({
          "charisma",
@@ -437,6 +439,7 @@ mixed all_active_bonuses(object who, int flag)
             case "mental resistance": case "light resistance": case "darkness resistance": case "nature resistance":
             case "bludgeoning resistance": case "piercing resistance": case "slashing resistance":
             case "positive energy resistance": case "negative energy resistance": case "force resistance": case "divine resistance": case "untyped resistance":
+            case "radiant resistance": case "void resistance":
                 totalBon = who->query_resistance(replace_string(Bonus, " resistance", ""));
                 break;
             case "fire resistance percent": case "cold resistance percent": case "water resistance percent": case "air resistance percent":
@@ -446,6 +449,7 @@ mixed all_active_bonuses(object who, int flag)
             case "mental resistance percent": case "light resistance percent": case "darkness resistance percent": case "nature resistance percent":
             case "bludgeoning resistance percent": case "piercing resistance percent": case "slashing resistance percent":
             case "positive energy resistance percent": case "negative energy resistance percent": case "force resistance percent": case "divine resistance percent": case "untyped resistance percent":
+            case "radiant resistance percent": case "void resistance percent":
                 totalBon = who->query_resistance_percent(replace_string(Bonus, " resistance percent", ""));
                 break;
             case "temporary feats":
