@@ -11,6 +11,8 @@
 
 inherit SPELL;
 
+int bonus;
+
 void create()
 {
     ::create();
@@ -27,10 +29,13 @@ void create()
     set_helpful_spell(1);
 }
 
-void spell_effect(int prof)
+string query_cast_string()
 {
-    int bonus;
-    
+    return "%^CYAN%^" + caster->query_cap_name() + " begins to beckon the shadows.%^RESET%^";
+}
+
+void spell_effect(int prof)
+{   
     if(!objectp(caster) || !objectp(target))
         return;
     
@@ -48,7 +53,7 @@ void spell_effect(int prof)
 
 void dest_effect()
 {
-    if(object(caster))
+    if(objectp(caster))
     {
         tell_object(caster, "%^BLACK%^BOLD%^The cloak of shadows slips from around you.%^RESET%^");
         caster->add_ac_bonus(-bonus);

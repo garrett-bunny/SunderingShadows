@@ -564,6 +564,12 @@ mixed query_property(string prop)
         if(FEATS_D->usable_feat(this_object(), "metabolic healing") && this_object()->query("available focus"))
             num += 1;
         
+        if(this_object()->query_mystery() == "shadow" && this_object()->query_class_level("oracle") > 30)
+        {
+            if(total_light(environment(this_object())) < 2)
+                num += 1;
+        }
+        
         num += props[prop];
         return (num + EQ_D->gear_bonus(TO, "fast healing"));
     }

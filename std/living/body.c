@@ -871,6 +871,15 @@ int query_resistance_percent(string res)
             mod += 30;
     }
     
+    if(this_object()->query_mystery() == "shadow")
+    {
+        if(this_object()->query_class_level("oracle") >= 10 && res == "void")
+            mod += 10;
+        
+        if(this_object()->query_class_level("oracle") > 30 && res == "cold" && total_light(environment(this_object())) < 2)
+            mod += 10;
+    }
+    
     //Mage is invulnerable for duration of prismatic sphere
     if(TO->query_property("prismatic sphere"))
         mod = 100;
