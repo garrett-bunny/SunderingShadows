@@ -218,21 +218,7 @@ void set_missChance(int i)
 
 int query_missChance()
 {
-    int sub_chance = 0;
-    
-    /*
-    if(FEATS_D->usable_feat(this_object(), "inconstant position"))
-        sub_chance += 10;
-    
-    //Negative light yields balance, positive light yields penalty.
-    if(this_object()->is_shade())
-    {
-        if(total_light(environment(this_object())) < 1)
-            sub_chance += 5;
-        else
-            sub_chance -= 5;
-    }
-    */    
+    int sub_chance = 0;   
     
     return missChance + sub_chance;
 }
@@ -834,9 +820,9 @@ int query_resistance_percent(string res)
         if(res == "radiant")
             mod -= 25;
         if(res == "void")
-            mod += 25;
+            mod += 50;
         if(res == "cold")
-            mod += 25;
+            mod += 50;
     }
     
     if(this_object()->is_deva())

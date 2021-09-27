@@ -707,7 +707,7 @@ mixed query_property(string prop)
     }
 
     if (prop == "negative energy affinity") {
-        if (TO->is_undead() || this_object()->is_shade()) {
+        if (TO->is_undead()) {
             return 1;
         }
         if(FEATS_D->usable_feat(this_object(), "negative energy conduit"))
