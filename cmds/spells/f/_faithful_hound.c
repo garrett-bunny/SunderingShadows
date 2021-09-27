@@ -59,6 +59,9 @@ void dest_effect()
 {
     if(objectp(hound))
         hound->remove_hound();
+    if(objectp(caster))
+        tell_object(caster, "Your faithful hound vanishes!");
+    
     ::dest_effect();
     if(objectp(TO))
         TO->remove();
