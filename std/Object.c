@@ -594,7 +594,7 @@ mixed query_property(string prop)
         }
         if(this_object()->is_shade() || this_object()->query_race() == "nightwing")
         {
-            num -= (total_light(environment(this_object())) - 1);
+            num -= (total_light(environment(this_object())) - 2);
         }
         if (FEATS_D->usable_feat(TO, "damage resistance")) {
             num += 2;
@@ -769,7 +769,7 @@ mixed query_property(string prop)
         }
         if(this_object()->is_shade())
         {
-            num -= (2 * (total_light(environment(this_object())) - 1));
+            num -= (2 * (total_light(environment(this_object())) - 2));
         }
                      
         if ((string)TO->query_race() == "human") {
