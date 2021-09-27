@@ -19,6 +19,7 @@ void create(){
     set_verbal_comp();
     set_somatic_comp();
     set_save("reflex");
+    set_immunities( ({ "radiant" }) );
     splash_spell(3);
     set_components(([
       "mage" : ([ "sunstone" : 1, ]),
