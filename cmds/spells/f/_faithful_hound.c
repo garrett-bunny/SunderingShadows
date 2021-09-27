@@ -45,6 +45,8 @@ void spell_effect()
 
     hound->set_property("spell",TO);
     hound->set_property("spelled", ({TO}) );
+    caster->add_protector(hound);
+    
     spell_successful();
     caster->set_property("has_faithful_hound",1);
     addSpellToCaster();
