@@ -173,7 +173,7 @@ mapping query_innate_spells(object player)
 
 mapping query_cantrip_spells(object ob)
 {
-    return ([ "create water" : 1, "detect magic" : 1, "detect poison" : 1, "guidance" : 1, "resistance" : 1, "light" : 1, "mending" : 1 ]);
+    return ([ "create water" : 1, "detect magic" : 1, "detect poison" : 1, "guidance" : 1, "resistance" : 1, "light" : 1, "mending" : 1, "sacred flame" : 1, "toll the dead" : 1 ]);
 }
 
 int caster_level_calcs(object player, string the_class)

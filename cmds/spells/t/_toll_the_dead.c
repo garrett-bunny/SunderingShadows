@@ -20,8 +20,8 @@ void create()
     set_spell_level( ([ "cantrip" : 1 ]) );
     set_spell_sphere("necromancy");
     set_syntax("cast cantrip toll the dead on TARGET");
-    set_damage_desc("Negative energy damage on target on failed will save");
-    set_description("You point at one creature and the sound of dolorous bells fills the air around them. The target must make a will save or suffer negative energy damage.");
+    set_damage_desc("negative energy damage on target on failed will save");
+    set_description("You point at one creature and the sound of dolorous bells fills the air around them. They instantly feel the call of the grave, tugging at their soul. The target must make a will save or suffer negative energy damage.");
     set_target_required(1);
     set_save("will");
     set_immunities( ({ "negative energy" }) );
@@ -36,6 +36,12 @@ void spell_effect(int prof)
 {
     int roll;
     string t_name;
+    
+    if(!objectp(target))
+    {
+        tell_object(caster, "Your target is no longer here.");
+        return;
+    }
        
     spell_successful();
     

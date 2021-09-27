@@ -54,6 +54,12 @@ void spell_effect(int prof)
 {
     int roll;
        
+    if(!objectp(target))
+    {
+        tell_object(caster, "Your target is no longer here.");
+        return;
+    }
+    
     spell_successful();
     
     roll = (int)BONUS_D->process_hit(caster, target, 1, 0, 0, 1);
