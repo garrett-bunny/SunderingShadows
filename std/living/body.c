@@ -804,17 +804,6 @@ int query_resistance(string res)
             if(member_array("air", domains) >= 0)
                 myres += TO->query_class_level("cleric");
         }
-    }              
-    
-    if (TO->query_race() == "shade") {
-        if (res == "cold" || res == "electricity") {
-            myres += 10;
-        }
-    }
-    if (TO->query_race() == "deva" || this_object()->is_deva()) {
-        if (res == "acid" || res == "divine") {
-            myres += 10;
-        }
     }
     
     if (FEATS_D->usable_feat(TO, "no fear of the flame") && res == "fire") {
@@ -842,15 +831,22 @@ int query_resistance_percent(string res)
     }
     if(this_object()->is_shade())
     {
-        //Shades only get their benefits in darkness. They are weaker during the day.
-        if(total_light(environment(this_object())) < 1)
-        {
-            if(res == "electricity" || res == "cold")
-                mod -= max( ({ ((total_light(environment(this_object())) - 1) * 15), -50 }));           
-        }
-
         if(res == "radiant")
-            mod -= 15;
+            mod -= 25;
+        if(res == "void")
+            mod += 25;
+        if(res == "cold")
+            mod += 25;
+    }
+    
+    if(this_object()->is_deva())
+    {
+        if(res == "divine")
+            res += 25;
+        if(res == "acid")
+            res += 25;
+        if(res == "electricity")
+            res += 25;
     }
         
     if (TO->is_undead()) {
