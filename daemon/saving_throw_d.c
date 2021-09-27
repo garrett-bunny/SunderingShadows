@@ -359,6 +359,11 @@ int magic_save_throw_adjust(object targ, object caster)
     {
         caster_bonus -= 2;
     }
+    
+    if(targ->is_shade() && total_light(environment(targ)) < 2)
+    {
+        caster_bonus -= 1;
+    }
 
     return caster_bonus;
 }

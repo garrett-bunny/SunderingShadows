@@ -439,7 +439,7 @@ void heart_beat()
             
             switch(total_light(room))
             {
-                case 0:
+                case 0..1:
                 tell_object(this_object(), "%^BLACK%^BOLD%^Whisps of darkness coalesce from the shadows around you.%^RESET%^");
                 tell_room(room, "%^BOLD%^BLACK%^Whisps of darkness coalesce from the shadows around " + this_object()->query_cap_name(), this_object());
                 break;
