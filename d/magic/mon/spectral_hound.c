@@ -38,15 +38,33 @@ void setup(invoker,clevel)
     set_hp(clevel*30);
     set_damage(clevel,2);
     power = clevel;
-    call_out("be_doggy",ROUND_LENGTH);
+    //call_out("be_doggy",ROUND_LENGTH);
 }
 
+/*
 void bark()
 {
     if(objectp(caster))
         tell_room(caster,"%^CYAN%^Your hound conveys a telepathic bark to you.%^RESET%^");
 }
+*/
 
+void init()
+{
+    ::init();
+    
+    if(!userp(this_player()))
+        return;
+    
+    if(creatorp(this_player()) || avatarp(this_player()))
+        return;
+    
+    tell_object(caster, "%^CYAN%^BOLD%^Your hound conveys a telepathic bark to you.%^RESET%^");
+}   
+    
+
+/* A lot of code to do something really simple, see above
+//use set_protector in the spell code to make the hound defend the caster
 void be_doggy()
 {
     if(!objectp(caster))
@@ -85,6 +103,7 @@ void be_doggy()
     }
     call_out("be_doggy",ROUND_LENGTH);
 }
+*/
 
 int die()
 {
@@ -100,4 +119,5 @@ void remove_hound()
         tell_object(caster,"%^CYAN%^You concentration releases as your hound fades.%^RESET%^");
     }
     destruct(TO);
+    ::remove();
 }

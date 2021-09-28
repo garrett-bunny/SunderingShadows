@@ -556,13 +556,19 @@ mixed query_property(string prop)
             }
         }
         if (TO->query_race() == "shade" || this_object()->is_shade()) {
-            num -= min( ({ 0, (total_light(environment(this_object())) - 1) / 2 }) );
+            num -= min( ({ 0, (total_light(environment(this_object())) - 2) / 2 }) );
         } else if (TO->query_race() == "troll") {
             num += 2;
         }
         
         if(FEATS_D->usable_feat(this_object(), "metabolic healing") && this_object()->query("available focus"))
             num += 1;
+        
+        if(this_object()->query_mystery() == "shadow" && this_object()->query_class_level("oracle") > 30)
+        {
+            if(total_light(environment(this_object())) < 2)
+                num += 1;
+        }
         
         num += props[prop];
         return (num + EQ_D->gear_bonus(TO, "fast healing"));
@@ -594,19 +600,16 @@ mixed query_property(string prop)
         }
         if(this_object()->is_shade() || this_object()->query_race() == "nightwing")
         {
-            num -= (total_light(environment(this_object())) - 1);
+            num -= (total_light(environment(this_object())) - 2);
         }
         if (FEATS_D->usable_feat(TO, "damage resistance")) {
             num += 2;
         }
         if (FEATS_D->usable_feat(TO, "damage reduction")) {
-            worn = filter_array(distinct_array(TO->all_armour()), "light_armor_filter", TO);
-            if (!sizeof(worn)) {
-                num += (query_guild_level("barbarian") - 10) / 6 + 1;
+            num += (this_object()->query_guild_level("barbarian") - 10) / 6 + 1;
 
-                if(FEATS_D->usable_feat(this_object(), "unstoppable"))
-                    num += 3;
-            }
+            if(FEATS_D->usable_feat(this_object(), "unstoppable"))
+                num += 3;
         }
         if (FEATS_D->usable_feat(TO, "shadow master") && objectp(ETO) && ETO->query_light() < 2) {
             num += 10;
@@ -679,6 +682,18 @@ mixed query_property(string prop)
         num += props[prop];
         return (num + EQ_D->gear_bonus(TO, "magic resistance"));
     }
+    
+    if(prop == "darkvision")
+    {
+        if(this_object()->query_mystery() == "shadow")
+        {
+            if(this_object()->query_class_level("oracle") >= 15)
+                num += 1;
+        }
+        
+        num += props[prop];
+        return (num + EQ_D->gear_bonus(TO, "darkvision"));
+    }
 
     if (prop == "no death") {
         if (TO->is_undead()) {
@@ -710,7 +725,7 @@ mixed query_property(string prop)
     }
 
     if (prop == "negative energy affinity") {
-        if (TO->is_undead() || this_object()->is_shade()) {
+        if (TO->is_undead()) {
             return 1;
         }
         if(FEATS_D->usable_feat(this_object(), "negative energy conduit"))
@@ -772,7 +787,7 @@ mixed query_property(string prop)
         }
         if(this_object()->is_shade())
         {
-            num -= (2 * (total_light(environment(this_object())) - 1));
+            num -= (2 * (total_light(environment(this_object())) - 2));
         }
                      
         if ((string)TO->query_race() == "human") {
@@ -2362,7 +2377,7 @@ void add_the_bonus(object myplayer, string bonustype, int bonusvalue)
         break;
 
     case "sight bonus":
-        if (member_array((string)myplayer->query_race(), LIVING_D->night_races()) != -1) {
+        if (member_array((string)myplayer->query_race(), PLAYER_D->night_races()) != -1) {
             myplayer->add_sight_bonus(-bonusvalue);
         }else {
             myplayer->add_sight_bonus(bonusvalue);

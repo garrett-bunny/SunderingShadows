@@ -46,6 +46,10 @@ void spell_effect(int prof) {
 
     bonus = prof/10-10;
     affected = random(6) + 1+ bonus;
+    
+    if(caster->query_mystery() == "heavens" && caster->query_class_level("oracle") > 20)
+        affected += BONUS_D->query_stat_bonus(caster, "charisma");
+    
     prospective = target_selector();
     targets = ({});
 

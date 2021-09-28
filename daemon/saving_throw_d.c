@@ -122,9 +122,9 @@ varargs void do_save(object ob, int dc, string type, raw_save)
                 mod += 1;
             
             //Paladin Auras
-            if(LIVING_D->check_aura(ob, "courage") == 2)
+            if(PLAYER_D->check_aura(ob, "courage") == 2)
                 mod += 2;
-            if(LIVING_D->check_aura(ob, "resolve") == 2)
+            if(PLAYER_D->check_aura(ob, "resolve") == 2)
                 mod += 2;
 
             //Vampires
@@ -358,6 +358,11 @@ int magic_save_throw_adjust(object targ, object caster)
     if(FEATS_D->usable_feat(targ, "superstition") && targ->query_property("raged"))
     {
         caster_bonus -= 2;
+    }
+    
+    if(targ->is_shade() && total_light(environment(targ)) < 2)
+    {
+        caster_bonus -= 1;
     }
 
     return caster_bonus;

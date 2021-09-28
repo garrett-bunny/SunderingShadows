@@ -44,7 +44,8 @@ void spell_effect(int prof)
     my_name = caster->query_cap_name();
     your_name = target->query_cap_name();
 
-    if (!thaco(target, 0) && target && caster) {
+    if(!BONUS_D->process_hit(caster, target, 1, 0, 0, 1))
+    {
         tell_object(caster, sprintf("You reach out to touch %s but miss!", your_name));
         tell_object(target, sprintf("%s reaches out to touch you, but misses!", my_name));
         tell_room(place, sprintf("%s reaches out to touch %s, but misses!", my_name, your_name), ({ target, caster }));

@@ -6,8 +6,9 @@
 inherit DAEMON;
 
 
-#define INVIS_PENALTY 75
-#define INVIS_CHECK_DIE 20
+#define INVIS_PENALTY 10
+#define CAUGHT_PENALTY 15
+#define INVIS_CHECK_DIE 25
 
 void check_caught(int roll,object target, int sLevel);
 void do_caught(object victim);
@@ -15,7 +16,7 @@ void do_caught(object victim);
 int cmd_pp(string str) {
     object ob;
     string amt_string;
-    int steal, roll, sLevel,i, amt;
+    int steal, roll,i, amt;
     int platinum, gold, electrum, silver, copper;
 
     if (TP->query_ghost()) {
@@ -34,7 +35,7 @@ int cmd_pp(string str) {
 	    notify_fail("You can't do that while in combat!\n");
 	    return 0;
     }
-    
+
     ob = present(str, ETP);
 
     if (!ob) ob = parse_objects(ETP, str);
@@ -68,20 +69,25 @@ int cmd_pp(string str) {
         write("You cannot steal with a NoPK flag\n");
         return 1;
     }
+    if (TP->is_singleClass()) {
+        TP->set_disable(2,ob);
+    }
+    else {
+        TP->set_disable(2*sizeof(TP->query_classes()),ob);
+    }
 
-    if (!TP->is_ok_armour("mage")) steal -= 30; // Mages can wear clothing magic and nothing at all
-    else steal += 5;
-
-    if (ob->query_invis()) steal -= INVIS_PENALTY;
-    /* Display messages */
-
-    roll = random(100)+1;
-    //    tell_object(TP,"x = "+roll+" steal = "+steal); */
     steal = TP->query_skill("thievery") + roll_dice(1,20);
     if(sizeof(TP->query_armour("torso"))) steal += TP->skill_armor_mod(TP->query_armour("torso"));
-    roll = ob->query_skill("perception") + roll_dice(1,20);
+    if (ob->query_invis()) steal -= INVIS_PENALTY;
 
-    if (roll>steal || (TP->get_static("caught") &&  time() - (int)((mapping)TP->get_static("caught"))[ob] <= 150)) {
+    //going to try a penalty to stealing if caught, rather than a flat failure
+    if (TP->get_static("caught") && time() - (int)((mapping)TP->get_static("caught"))[ob] < 150) {
+        steal -= CAUGHT_PENALTY;
+    }
+
+    roll = ob->query_skill("perception") + roll_dice(1,20);
+    //    tell_object(TP,"x = "+roll+" steal = "+steal); */
+    if (roll > steal) {
 	    write("You utterly fail in your attempt to pick from "+ob->query_cap_name()+".");
 	    check_caught(roll,ob,steal);
 	    return 1;
@@ -106,7 +112,7 @@ int cmd_pp(string str) {
 
     if (!platinum && !gold && !silver && !electrum && !copper) {
 	    write("You fail to get anything from "+ob->query_cap_name()+"'s purse.");
-	} 
+	}
     else {
 	    ob->add_money("platinum", -platinum);
 	    ob->add_money("gold", -gold);
@@ -140,10 +146,10 @@ int cmd_pp(string str) {
 
 	//if (interactive(ob))
 	log_file("player/theft", TPQN+" stole "+gold+" gold from "+ob->query_name()+" on "+ctime(time())+"\n");
-	i = check_caught(roll,ob, sLevel);
+	i = check_caught(roll,ob,steal);
 	if(TP->query("stolen money")){
 	    TP->set("stolen money",(int)TP->query("stolen money")+amt);
-	} 
+	}
     else {
 	    TP->set("stolen money",amt);
 	}
@@ -206,12 +212,7 @@ void check_caught(int roll, object target, int sLevel){
 	    if (!interactive(target)) target->kill_ob(TP,0);
 	    else
 		    log_file("player/theft", TPQN+"("+sLevel+") was caught stealing from "+target->query_name()+"("+target->query_lowest_level()+") on "+ctime(time())+"\n");
-        if (TP->is_singleClass()) {
-            TP->set_disable(2,target);
-        } 
-        else {
-            TP->set_disable(2*sizeof(TP->query_classes()),target);
-        }
+        TP->set_paralyzed(2,"You have been caught!");
 	    if (interactive(TP)) {
 		    pkills = TP->query_pkilled();
 		    if (member_array(target->query_name(),pkills) == -1) {
@@ -229,4 +230,3 @@ void do_caught(object victim){
     TP->set_static("caught",([victim:time()]));
 
 }
-

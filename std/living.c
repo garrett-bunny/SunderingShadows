@@ -417,9 +417,11 @@ void heart_beat()
 
                 if(ob->query_mp() && !ob->query("no pk") && !wizardp(ob) && !avatarp(ob))
                 {
+                    /*
                     if(!random(5))
                         tell_object(ob, "%^MAGENTA%^You feel something pull on your mind.");
                     ob->add_mp(-1);
+                    */
                 }
             }
 
@@ -437,17 +439,17 @@ void heart_beat()
             
             switch(total_light(room))
             {
-                case 0:
+                case 0..1:
                 tell_object(this_object(), "%^BLACK%^BOLD%^Whisps of darkness coalesce from the shadows around you.%^RESET%^");
-                tell_room(room, "%^BOLD%^BLACK%^Whisps of darkness coalesce from the shadows around " + this_object()->QCN, this_object());
+                tell_room(room, "%^BOLD%^BLACK%^Whisps of darkness coalesce from the shadows around " + this_object()->query_cap_name(), this_object());
                 break;
                 case -5..-1:
                 tell_object(this_object(), "%^BOLD%^BLACK%^You feel your body meld with the darkness around you.");
-                tell_room(room, "%^BOLD%^BLACK%^" + this_object()->QCN + "'s body seems to meld with the darkness around them.", this_object());
+                tell_room(room, "%^BOLD%^BLACK%^" + this_object()->query_cap_name() + "'s body seems to meld with the darkness around " + this_object()->query_objective() + ".", this_object());
                 break;
                 case -10..-6:
                 tell_object(this_object(), "%^BOLD%^BLACK%^You are engulfed in a miasma of shadowy energy.");
-                tell_room(room, "%^BOLD%^BLACK%^" + this_object()->QCN + " is engulfed in a miasma of shadowy energy.", this_object());
+                tell_room(room, "%^BOLD%^BLACK%^" + this_object()->query_cap_name() + " is engulfed in a miasma of shadowy energy.", this_object());
                 break;
             }
         }

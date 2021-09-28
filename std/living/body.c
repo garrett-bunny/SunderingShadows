@@ -218,21 +218,7 @@ void set_missChance(int i)
 
 int query_missChance()
 {
-    int sub_chance = 0;
-    
-    /*
-    if(FEATS_D->usable_feat(this_object(), "inconstant position"))
-        sub_chance += 10;
-    
-    //Negative light yields balance, positive light yields penalty.
-    if(this_object()->is_shade())
-    {
-        if(total_light(environment(this_object())) < 1)
-            sub_chance += 5;
-        else
-            sub_chance -= 5;
-    }
-    */    
+    int sub_chance = 0;   
     
     return missChance + sub_chance;
 }
@@ -804,22 +790,21 @@ int query_resistance(string res)
             if(member_array("air", domains) >= 0)
                 myres += TO->query_class_level("cleric");
         }
-    }              
-    
-    if (TO->query_race() == "shade") {
-        if (res == "cold" || res == "electricity") {
-            myres += 10;
-        }
-    }
-    if (TO->query_race() == "deva" || this_object()->is_deva()) {
-        if (res == "acid" || res == "fire") {
-            myres += 10;
-        }
     }
     
     if (FEATS_D->usable_feat(TO, "no fear of the flame") && res == "fire") {
         myres += 30;
     }
+    
+    if(this_object()->is_class("barbarian"))
+    {
+        if(FEATS_D->usable_feat(this_object(), "unstoppable") && this_object()->query_property("raged"))
+        {
+            if(res != "positive energy")
+                myres += (this_object()->query_guild_level("barbarian") - 10) / 6 + 4;
+        }
+    }
+    
     return (myres + EQ_D->gear_bonus(TO, res));
 }
 
@@ -832,15 +817,22 @@ int query_resistance_percent(string res)
     }
     if(this_object()->is_shade())
     {
-        //Shades only get their benefits in darkness. They are weaker during the day.
-        if(total_light(environment(this_object())) < 1)
-        {
-            if(res == "electricity" || res == "cold")
-                mod -= max( ({ ((total_light(environment(this_object())) - 1) * 15), -50 }));           
-        }
-
-        if(res == "fire" || res == "divine")
+        if(res == "radiant")
             mod -= 25;
+        if(res == "void")
+            mod += 50;
+        if(res == "cold")
+            mod += 50;
+    }
+    
+    if(this_object()->is_deva())
+    {
+        if(res == "divine")
+            res += 25;
+        if(res == "acid")
+            res += 25;
+        if(res == "electricity")
+            res += 25;
     }
         
     if (TO->is_undead()) {
@@ -854,7 +846,7 @@ int query_resistance_percent(string res)
             if (res == "electricity") {
                 mod += 50;
             }
-            if (res == "divine") {
+            if (res == "radiant") {
                 mod += -25;
             }
             if (res == "silver") {
@@ -879,6 +871,27 @@ int query_resistance_percent(string res)
             mod += 30;
     }
     
+    if(this_object()->is_class("oracle"))
+    {
+        if(this_object()->query_mystery() == "shadow")
+        {
+            if(this_object()->query_class_level("oracle") >= 10 && res == "void")
+                mod += 10;
+        
+            if(this_object()->query_class_level("oracle") > 30 && res == "cold" && total_light(environment(this_object())) < 2)
+                mod += 10;
+        }
+
+        if(this_object()->query_mystery() == "heavens")
+        {
+            if(this_object()->query_class_level("oracle") >= 10 && res == "void")
+                mod += 10;
+        
+            if(this_object()->query_class_level("oracle") > 30 && res == "radiant")
+                mod += 10;
+        }
+    }
+  
     //Mage is invulnerable for duration of prismatic sphere
     if(TO->query_property("prismatic sphere"))
         mod = 100;

@@ -411,13 +411,11 @@ int query_skill(string skill)
     //Inquisitors use wisdom instead of cha for influence
     //Stern gaze feat in pathfinder
     //Save this for inquisition
-    /*
     if(skill == "influence")
     {
         if(this_object()->is_class("inquisitor"))
             mystat = "wisdom";
     }
-    */
 
     mymod = ((int)this_object()->query_stats(mystat) - 10) / 2;
     x += mymod;

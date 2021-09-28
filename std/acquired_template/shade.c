@@ -14,11 +14,11 @@ int is_rollable() { return 0; } // not rollable in creation
 
 mapping innate_spells()
 {
-    return ([ "shadow stride" : (["type" : "spell", "daily uses" : -1, "level required" : 0, ]),
-              "shadow travel" : (["type" : "spell", "daily uses" : -1, "level required" : 0, ]),
-              "invisibility"  : (["type" : "spell", "daily uses" : -1, "level required" : 0, ]),
-              "darkness"      : (["type" : "spell", "daily uses" : -1, "level required" : 0, ]),
-              "listening shadow"  : (["type" : "spell", "daily uses" : -1, "level required" : 0, ]),
+    return ([ "shadow stride"   : (["type" : "spell", "daily uses" : -1, "level required" : 0, ]),
+              "shadow travel"   : (["type" : "spell", "daily uses" : -1, "level required" : 0, ]),
+              "invisibility"    : (["type" : "spell", "daily uses" : -1, "level required" : 0, ]),
+              "deeper darkness" : (["type" : "spell", "daily uses" : -1, "level required" : 0, ]),
+              "listening shadow": (["type" : "spell", "daily uses" : -1, "level required" : 0, ]),
            ]);
 }
 

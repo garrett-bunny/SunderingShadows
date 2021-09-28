@@ -2500,7 +2500,13 @@ void define_clevel()
                 clevel += 1;
         }
     }
-
+    
+    if(caster->query_mystery() == "shadow" && spell_type == "oracle" && shadow_spell)
+    {
+        if(caster->query_class_level("oracle") >= 21)
+            clevel += 1;
+    }
+         
     if ((spell_type == "mage" || spell_type == "sorcerer") && !shadow_spell) {
         if (caster->query_school() && caster->query_opposing_school()) {
             if (spell_sphere == caster->query_school()) {
@@ -3350,8 +3356,7 @@ int combat_death_save(object foe, int casters_disadvantage)
         foe->query_property("no death") ||
         foe->query_level() > caster->query_level() ||
         foe->query_level() > clevel ||
-        (member_array("repose", foe->query_divine_domain()) + 1) ||
-        random(2);
+        (member_array("repose", foe->query_divine_domain()) + 1);
 }
 
 object* ob_party(object obj)
@@ -3705,7 +3710,7 @@ int race_immunity_check(object obj, string type)
     if (type = "fear silent") {
         type = "fear";
     }
-    return LIVING_D->immunity_check(obj, type);
+    return PLAYER_D->immunity_check(obj, type);
 }
 
 varargs int mind_immunity_check(object obj, string type)

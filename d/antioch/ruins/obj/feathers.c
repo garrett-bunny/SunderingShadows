@@ -1,5 +1,7 @@
 #include <std.h>
+
 inherit OBJECT;
+
 
 void create()
 {

@@ -55,7 +55,7 @@ spell_effect(int prof) {
     }
     
     roll = random(20)+1;
-    if (caster->Thaco(1,target,0) <= roll||caster->query_property("spectral_hand")) {
+    if (caster->Thaco(1,target,0) <= roll) {
 //        if(){
         if (target->query_race()=="undead"||(int)target->query_property("undead")) {
             tell_object(caster,"%^BOLD%^%^MAGENTA%^You touch "+target->QCN+", but "+target->QS+" is unaffected.");

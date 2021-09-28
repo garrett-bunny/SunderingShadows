@@ -175,7 +175,7 @@ int query_stance_bonus(object victim)
     int fnord = 0;
 
     fnord -= (int)victim->query_defensive_bonus();
-    fnord += (int)PO->query_offensive_bonus();
+    fnord += (int)previous_object()->query_offensive_bonus();
     return fnord;
 }
 
@@ -305,7 +305,7 @@ varargs ac_bonus(object who, object attacker)
     return MyBonus;
 }
 
-varargs int hit_bonus(object who, object targ, int attack_num, object current)
+varargs int hit_bonus(object who, object targ, int attack_num, object current, int touch)
 {
     int th, to_hit, tmp;
     int i, j, min, hold, mysize, fired, bab_scale, pen;
@@ -368,7 +368,8 @@ varargs int hit_bonus(object who, object targ, int attack_num, object current)
                 mysize++;           //run small creatures as normal size please.
             }
             mysize -= (int)current->query_size();
-            if (FEATS_D->usable_feat(who, "weapon finesse") && ((mysize >= 0) || current->query_property("finesse"))) { // if has-feat & weapon is smaller/same size as user - Odin 5/24/2020 or weapon has the property - Venger dec20
+            if (FEATS_D->usable_feat(who, "weapon finesse") && ((mysize >= 0) || current->query_property("finesse") || touch == 1)) { // if has-feat & weapon is smaller/same size as user - Odin 5/24/2020 or weapon has the property - Venger dec20
+            //Or it's a ranged touch attack (uses dex)
                 to_hit += (query_dex_bonus(who) * -1);
             }
             else if(FEATS_D->usable_feat(who, "cunning insight"))
@@ -392,6 +393,18 @@ varargs int hit_bonus(object who, object targ, int attack_num, object current)
         else {
             to_hit += query_stat_bonus(who, "strength");
         }
+    }
+    
+    //Point blank shot gives +1 to ranged touch attacks
+    //Spectral hand gives a further +1 bonus to touch attacks
+    if(touch == 1)
+    {
+        to_hit += FEATS_D->usable_feat(who, "point blank shot");
+        to_hit += who->query_property("spectral_hand");
+    }
+    if(touch == 2)
+    {
+        to_hit += who->query_property("spectral_hand");
     }
     
     //Paladin smite against opposed alignment adds cha mod to attack rolls
@@ -475,12 +488,12 @@ varargs int process_hit(object who, object targ, int attack_num, mixed current, 
         if (who->query_static_bab() && !pFlag) { // giving monsters a static base attack bonus to see if this helps armor classes vs monsters -Ares
             bon = (int)who->query_static_bab();
             bon += ((int)who->query_max_hp() / 250); // give some extra chance to hit based on monster health, so bosses don't miss as often
-            bon += ((int)hit_bonus(who, targ, attack_num, current) / 2);
+            bon += ((int)hit_bonus(who, targ, attack_num, current) / 2, flag);
         }else {
-            bon = hit_bonus(who, targ, attack_num, current);
+            bon = hit_bonus(who, targ, attack_num, current, flag);
         }
     }else {
-        bon = hit_bonus(who, targ, attack_num, current);
+        bon = hit_bonus(who, targ, attack_num, current, flag);
     }
 
     if (intp(current)) {
@@ -496,10 +509,6 @@ varargs int process_hit(object who, object targ, int attack_num, mixed current, 
     if (attack_roll == 20) {
         return 20;
     }
-    
-    //Point blank shot gives +1 to ranged touch attacks
-    if(flag)
-        mod += FEATS_D->usable_feat(who, "point blank shot");
     
     attack_roll += mod;
     

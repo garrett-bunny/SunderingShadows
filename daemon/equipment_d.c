@@ -1,3 +1,5 @@
+//ACTIVELY USED
+
 /*==============================================================================================================================================
 a daemon that handles calculating gear bonuses - in an attempt to make
 them easier to handle/degrade with gear damage
@@ -63,6 +65,8 @@ mapping BONUS_CATS = ([
              "spell damage resistance",         "spell damage resistance percent",
              "untyped resistance",              "untyped resistance percent",
              "cold iron resistance",            "cold iron resistance percent",
+             "radiant resistance",              "radiant resistance percent",
+             "void resistance",                 "void resistance percent",
              }),
  "stats" : ({
          "charisma",
@@ -269,7 +273,7 @@ mixed gear_bonus(object who, string bonus, int flag)
         if(!actual_amt) continue;
         if(actual_amt < 0 || (WORLD_EVENTS_D->stacking_bonus_active(who) && !WORLD_EVENTS_D->stacking_bonus_active(who, -1)))
         {
-            if(bonus == "sight bonus" && member_array((string)who->query_race(),LIVING_D->night_races()) != -1) actual_amt = -1 * actual_amt;
+            if(bonus == "sight bonus" && member_array((string)who->query_race(),PLAYER_D->night_races()) != -1) actual_amt = -1 * actual_amt;
             total += actual_amt;
             if(!my_gear[bonus]) my_gear += ([bonus : ([ item : actual_amt ]), ]);
             else my_gear[bonus] += ([item : actual_amt]);
@@ -282,7 +286,7 @@ mixed gear_bonus(object who, string bonus, int flag)
         if(cond <= 70) actual_amt = (actual_amt * cond) / 100;
         if(actual_amt > amt && !WORLD_EVENTS_D->stacking_bonus_active(who, -1))
         {
-            if(bonus == "sight bonus" && member_array((string)who->query_race(),LIVING_D->night_races()) != -1) tmp = ([item : ([bonus : (actual_amt * -1)]),]);
+            if(bonus == "sight bonus" && member_array((string)who->query_race(),PLAYER_D->night_races()) != -1) tmp = ([item : ([bonus : (actual_amt * -1)]),]);
             else tmp = ([bonus : ([ item : actual_amt ]), ]);
             amt = actual_amt;
         }
@@ -299,7 +303,7 @@ mixed gear_bonus(object who, string bonus, int flag)
         }
         return my_gear;
     }
-    if(bonus == "sight bonus" && member_array((string)who->query_race(),LIVING_D->night_races()) != -1) amt = amt * -1;
+    if(bonus == "sight bonus" && member_array((string)who->query_race(),PLAYER_D->night_races()) != -1) amt = amt * -1;
     if(!flag && bonus != "temporary feats") return (total + amt);
     if(!flag && bonus == "temporary feats")
     {
@@ -435,6 +439,7 @@ mixed all_active_bonuses(object who, int flag)
             case "mental resistance": case "light resistance": case "darkness resistance": case "nature resistance":
             case "bludgeoning resistance": case "piercing resistance": case "slashing resistance":
             case "positive energy resistance": case "negative energy resistance": case "force resistance": case "divine resistance": case "untyped resistance":
+            case "radiant resistance": case "void resistance":
                 totalBon = who->query_resistance(replace_string(Bonus, " resistance", ""));
                 break;
             case "fire resistance percent": case "cold resistance percent": case "water resistance percent": case "air resistance percent":
@@ -444,6 +449,7 @@ mixed all_active_bonuses(object who, int flag)
             case "mental resistance percent": case "light resistance percent": case "darkness resistance percent": case "nature resistance percent":
             case "bludgeoning resistance percent": case "piercing resistance percent": case "slashing resistance percent":
             case "positive energy resistance percent": case "negative energy resistance percent": case "force resistance percent": case "divine resistance percent": case "untyped resistance percent":
+            case "radiant resistance percent": case "void resistance percent":
                 totalBon = who->query_resistance_percent(replace_string(Bonus, " resistance percent", ""));
                 break;
             case "temporary feats":

@@ -34,6 +34,7 @@ void spell_effect(int prof)
 {
     object * foes,foe;
     int duration = clevel/12+1;
+    int heavens;
 
     tell_object(caster,"%^BOLD%^%^WHITE%^You wave your hand and send hypnotic patterns to dance in front of your enemies.");
     tell_room(place,"%^BOLD%^%^WHITE%^"+caster->QCN+" waves "+caster->QP+" hand and sends hypnotic pattern to dance in front of "+caster->QP+"enemies",caster);
@@ -41,13 +42,16 @@ void spell_effect(int prof)
     foes = target_selector();
     bonus = clevel/8+1;
 
+    if(caster->query_mystery() == "heavens" && caster->query_class_level("oracle") > 30)
+        heavens += BONUS_D->query_stat_bonus(caster, "charisma");
+
     foreach(foe in foes)
     {
         if(!objectp(foe))
             continue;
         if(foe->query_property("fascinated"))
             continue;
-        if(do_save(foe,0) || mind_immunity_damage(foe))
+        if(do_save(foe,heavens) || mind_immunity_damage(foe))
         {
             tell_object(foe,"%^BOLD%^%^WHITE%^%^You manage to avert your gaze of the hypnotic pattern.");
         }

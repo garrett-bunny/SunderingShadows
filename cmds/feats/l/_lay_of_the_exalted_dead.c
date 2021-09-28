@@ -34,7 +34,7 @@ int prerequisites(object ob)
     return ::prerequisites(ob);
 }
 
-int cmd_temporal_displacement(string str)
+int cmd_lay_of_the_exalted_dead(string str)
 {
     object feat;
     if (!objectp(TP)) {

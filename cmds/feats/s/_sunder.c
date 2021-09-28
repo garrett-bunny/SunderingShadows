@@ -156,7 +156,7 @@ void execute_attack() {
     mod = clevel/5 + sunder_bonus;
     //target->add_ac_bonus((-1)*mod);
     target->set_property("sundered", -mod);
-    call_out("refix",(ROUND_LENGTH*roll_dice(3,2)));
+    call_out("refix",(ROUND_LENGTH*(roll_dice(1,6) + 1)));
 }
 
 void refix() {

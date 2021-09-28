@@ -13,8 +13,8 @@ void create()
     set_spell_level(([ "innate" : 6]));
     set_spell_sphere("invocation_evocation");
     set_syntax("cast CLASS shadow blast");
-    set_damage_desc("half cold, half electricity");
-    set_description("This spell sends a waves of dark bolts snatched from the plane of shadow. A quick opponent might dodge bolts, but will still be damaged by the cold. This spell will aim at every living present.");
+    set_damage_desc("void, damage halved on reflex save");
+    set_description("This spell sends a waves of dark bolts snatched from the plane of shadow. A quick opponent might dodge bolts with a reflex save, but will still take half the damage. This spell will aim at every living present.");
     set_verbal_comp();
     set_somatic_comp();
     splash_spell(3);
@@ -48,10 +48,9 @@ void spell_effect(int prof)
         tell_object(attackers[i],"%^BLUE%^You are hit with bolts of darkness!%^RESET%^");
         tell_object(caster,"%^BOLD%^" + attackers[i]->QCN + " is hit with bolts of darkness!%^RESET%^");
         if(!do_save(attackers[i]))
-        {
-            damage_targ(attackers[i],attackers[i]->return_target_limb(),admg/2,"electricity");
-        }
-        damage_targ(attackers[i],attackers[i]->return_target_limb(),admg/2,"cold");
+            damage_targ(attackers[i],attackers[i]->return_target_limb(),sdamage,"void");
+        else
+            damage_targ(attackers[i],attackers[i]->return_target_limb(),sdamage/2,"void");
     }
     spell_successful();
     dest_effect();

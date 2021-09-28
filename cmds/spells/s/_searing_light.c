@@ -17,6 +17,7 @@ void create()
     set_spell_level(([ "cleric" : 3, "inquisitor" : 3, "innate" : 3 ]));
     set_spell_sphere("invocation_evocation");
     set_syntax("cast CLASS searing light on TARGET");
+    set_damage_desc("radiant");
     set_description("By using this spell you will accumulate sunlight in an open palm and then release it at the target"
                     ".  It will do slightly more damage to the undead.  In addition, nearby targets may be struck as well.");
     set_verbal_comp();
@@ -86,9 +87,9 @@ spell_effect(int prof)
                 spell_kill(attackers[i], caster);
                 if (!do_save(attackers[i], 0)) {
                     //if(!SAVING_D->saving_throw(attackers[i],"spell",0))
-                    damage_targ(attackers[i], attackers[i]->return_target_limb(), damage, "divine");
+                    damage_targ(attackers[i], attackers[i]->return_target_limb(), damage, "radiant");
                 }else {
-                    damage_targ(attackers[i], attackers[i]->return_target_limb(), damage / 2, "divine");
+                    damage_targ(attackers[i], attackers[i]->return_target_limb(), damage / 2, "radiant");
                 }
             }else {
                 if (!do_save(attackers[i], 0)) {
@@ -97,14 +98,14 @@ spell_effect(int prof)
                               "a ray of sunlight!%^RESET%^", attackers[i]);
                     tell_object(attackers[i], "%^YELLOW%^A ray of " +
                                 "sunlight sears into your flesh!%^RESET%^");
-                    damage_targ(attackers[i], attackers[i]->return_target_limb(), damage, "divine");
+                    damage_targ(attackers[i], attackers[i]->return_target_limb(), damage, "radiant");
                     spell_kill(attackers[i], caster);
                 }else {
                     tell_room(place, "%^YELLOW%^" + attackers[i]->QCN + " is " +
                               "grazed by the ray of sunlight!%^RESET%^", attackers[i]);
                     tell_object(attackers[i], "%^YELLOW%^The ray of " +
                                 "sunlight grazes you!%^RESET%^");
-                    damage_targ(attackers[i], attackers[i]->return_target_limb(), damage / 2, "divine");
+                    damage_targ(attackers[i], attackers[i]->return_target_limb(), damage / 2, "radiant");
                     spell_kill(attackers[i], caster);
                 }
             }

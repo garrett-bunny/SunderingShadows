@@ -50,6 +50,8 @@
     "divine resistance",           "divine resistance percent", \
     "untyped resistance",          "untyped resistance percent", \
     "mental resistance",           "mental resistance percent", \
+    "radiant resistance",          "radiant resistance percent", \
+    "void resistance",             "void resistance percent", \
     "strength", \
     "dexterity", \
     "constitution", \

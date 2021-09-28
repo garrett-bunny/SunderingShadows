@@ -24,8 +24,9 @@
  */
 
 #include <std.h>
-#define WEIGHT_PENALTY 2
-#define INVIS_PENALTY 2
+#define WEIGHT_PENALTY 10
+#define INVIS_PENALTY 10
+#define CAUGHT_PENALTY 15
 #define WIELD_PENALTY 50
 #define WORN_PENALTY 75
 #define INVIS_CHECK_DIE 25 // the actual max of a stat
@@ -40,7 +41,7 @@ void flag_stolen(object obj, int difficulty);
 int cmd_steal(string str) {
     object *inv, victim, ob;
     string what, whom;
-    int i, skip, which, steal, x, align_formula,sLevel;
+    int i, skip, which, steal, x, align_formula;
 
 /* Various checking */
     if (TP->query_ghost()) {
@@ -153,7 +154,7 @@ int cmd_steal(string str) {
     }
     if (TP->is_singleClass()) {
         TP->set_disable(2,victim);
-    } 
+    }
     else {
         TP->set_disable(2*sizeof(TP->query_classes()),victim);
     }
@@ -165,10 +166,15 @@ int cmd_steal(string str) {
     if (victim->query_invis()) steal -= INVIS_PENALTY;
     if ((int)ob->query_weight() > 50 ) steal -= WEIGHT_PENALTY;
 
+    //going to try a penalty to stealing if caught, rather than a flat failure
+    if (TP->get_static("caught") && time() - (int)((mapping)TP->get_static("caught"))[victim] < 150) {
+        steal -= CAUGHT_PENALTY;
+    }
+
 /* Display messages */
     x = victim->query_skill("perception") + roll_dice(1,20);
     //tell_object(TP,"x = "+x+" steal = "+steal);
-    if (x<steal && (!TP->get_static("caught") ||  time() - (int)((mapping)TP->get_static("caught"))[victim] > 150)) {
+    if (x < steal) {
         write("You successfully steal "+victim->query_cap_name()+"'s "+
             ob->query_name()+".\nYou are not sure if anyone noticed.");
         if (ob->move(TP)) {
@@ -186,11 +192,12 @@ int cmd_steal(string str) {
         flag_stolen(ob,i);//ob->set_property("stolen",([TPQN:(["difficulty":i,"max value":ob->query_value()])]));
         return 1;
 
-    } 
+    }
     else {
-        if (TP->get_static("caught") && (int)((mapping)TP->get_static("caught"))[victim] - time() < 150) {
-            x=0;
-        }
+        //this doesn't make any sense - why would the caught timer set the perception roll to 0 to notice the theft attempt?
+        // if (TP->get_static("caught") && (int)((mapping)TP->get_static("caught"))[victim] - time() < 150) {
+        //     x=0;
+        // }
         write("You fail to steal "+victim->query_cap_name()+"'s "+
             ob->query_name()+", but you are unsure if it went unnoticed.");
         check_caught(x,victim,ob,steal);
@@ -295,4 +302,3 @@ void do_caught(object victim){
     TP->set_static("caught",([victim:time()]));
 
 }
-

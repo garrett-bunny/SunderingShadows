@@ -49,6 +49,37 @@ mapping query_cantrip_spells(object ob)
     return ([ "create water" : 1, "detect magic" : 1, "detect poison" : 1, "guidance" : 1, "resistance" : 1, "light" : 1, "mending" : 1 ]);
 }
 
+mapping query_innate_spells(object player)
+{   
+    mapping innate_spells;
+    int olevel;
+    
+    if(!objectp(player))
+        return ([  ]);
+    
+    innate_spells = ([  ]);
+    olevel = player->query_class_level("oracle");
+    
+    switch(player->query_mystery())
+    {
+        case "shadow":
+        innate_spells += ([ "cloak of darkness" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), ]);
+        if(olevel >= 5)
+            innate_spells += ([ "wings of darkness" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), ]);
+        break;
+        
+        case "heavens":
+        innate_spells += ([ "coat of many stars" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), ]);
+        if(olevel >= 5)
+            innate_spells += ([ "lure of the cosmos" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), ]);
+        if(olevel >= 15)
+            innate_spells += ([ "interstellar void" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), ]);
+        break;
+    }
+    
+    return innate_spells;
+}
+
 string *class_skills()
 {
     return ({"spellcraft" });

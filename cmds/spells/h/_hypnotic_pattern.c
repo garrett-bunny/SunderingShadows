@@ -39,11 +39,18 @@ int preSpell()
 
 void spell_effect(int prof)
 {
+    int heavens;
     int duration = clevel / 12 + 1;
+    
+    if(!objectp(caster) || !objectp(target))
+        return;
+    
+    if(caster->query_mystery() == "heavens" && caster->query_class_level("oracle") > 20)
+        heavens = BONUS_D->query_stat_bonus(caster, "charisma");
 
     tell_object(caster,"%^MAGENTA%^You wave your hand and send hypnotic patterns to dance in front of "+target->QCN+"'s eyes");
     tell_room(place,"%^MAGENTA%^"+caster->QCN+" waves "+caster->QP+" hand and sends hypnotic pattern to dance in front of "+target->QCN+"'s eyes",caster);
-    if(do_save(target,0))
+    if(do_save(target,heavens))
     {
         tell_object(target,"%^MAGENTA%^You manage to avert your gaze of the hypnotic pattern.");
         tell_room(place,"%^MAGENTA%^"+target->QCN+" averts their gaze of the hypnotic pattern.",target);
@@ -56,6 +63,7 @@ void spell_effect(int prof)
         tell_room(place,"%^BOLD%^%^MAGENTA%^"+target->QCN+" seems to be fascinated by the pattern.",target);
         target->set_property("fascinated",1);
         bonus = clevel/8+1;
+        bonus += heavens;
         target->add_skill_bonus("perception",-bonus);
         spell_duration = duration * ROUND_LENGTH;
         set_end_time();

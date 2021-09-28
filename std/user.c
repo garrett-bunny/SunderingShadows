@@ -357,7 +357,7 @@ void redo_my_languages() {
       set_lang("common", 100);
       set_lang(LANGS[race][0], 100);
   }else {
-      if (member_array(race, LIVING_D->night_races()) == -1) {
+      if (member_array(race, PLAYER_D->night_races()) == -1) {
           set_lang("common", 100);
       }else {
           set_lang("undercommon", 100);
@@ -643,7 +643,7 @@ void describe_current_room(int verbose)
     if ((light = light_blind(0)) || TO->query_blind()) {
         if (TO->query_blind()) {
             borg += "You have been blinded and cannot see anything.";
-        }else if (member_array(query_race(), (string)LIVING_D->night_races()) != -1) {
+        }else if (member_array(query_race(), (string)PLAYER_D->night_races()) != -1) {
             if (light >= 1) {
                 borg += "It is too dark to see.";
             }else if (light >= -1) {
@@ -1978,6 +1978,18 @@ nomask void die()
         return;
     }
     
+    if(this_object()->query_mystery() == "heavens" && this_object()->query_class_level("oracle") > 30 && !this_object()->cooldown("star child"))
+    {
+        tell_object(this_object(), "%^BOLD%^%^RED%^With the last blow you feel the darkness beginning to flow inwards from the edge of your vision...Suddenly you're on your knees in a pool of your  own%^RESET%^%^RED%^blood %^BOLD%^%^RED%^with your extremities going numb.");
+        tell_room(ETO, "%^BOLD%^%^RED%^" + this_object()->query_cap_name() + " falls to the ground in a bloody mess.", this_object());
+        tell_object(this_object(), "%^BOLD%^A beam of starlight illuminates your fallen form, expanding as it engulfs your entire being.%^RESET%^");
+        tell_object(this_object(), "%^BOLD%^The energy fills your soul, and you feel yourself reborn.....a star child. You stand and continue to fight!%^RESET%^");
+        tell_room(environment(this_object()), "%^BOLD%^A beam of starlight illuminates " + this_object()->query_cap_name() + ". " + this_object()->query_pronoun() + " stands once more, reborn and ready to fight!", this_object());
+        this_object()->set_hp(query_max_hp());
+        this_object()->add_cooldown("star child", 7200);
+        return;
+    }
+   
     if(this_object()->query_property("raged"))
         command("rage");
 
@@ -2013,8 +2025,7 @@ nomask void die()
         find_object("/std/effect/status/exhausted")->dest_effect(this_object());
     if(this_object()->query_property("effect_sickened"))
         find_object("/std/effect/status/sickened")->dest_effect(this_object());
-    
-    
+       
     ghost = 1;
     ob = TO;
     add_stuffed(25);
@@ -2820,7 +2831,7 @@ void obey_command(string command, object commander){
     if (!objectp(commander)){
         return;
     }
-    command = (string)"/daemon/stripper_d"->stripcolors(command);
+    command = strip_colors(command);
     count = sscanf(command, "%s  %s, %s",lang, name, comm);
     if (count < 3){
       count = sscanf(command, " %s, %s", name, command);
@@ -4632,7 +4643,7 @@ int light_blind_remote(int actionbonus, object whichroom, int distance) {
       tell_object(this_object(), "calc = " + calc);
   }
 
-  if (member_array(query_race(), LIVING_D->night_races()) != -1) {
+  if (member_array(query_race(), PLAYER_D->night_races()) != -1) {
       calc *= -1;
       _total_light *= -1;
   }
@@ -4686,7 +4697,7 @@ string light_blind_fail_message(int blindlight)
     if (blindlight == 0) {
         return "";
     }
-    if (member_array(query_race(), (string)LIVING_D->night_races()) != -1) {
+    if (member_array(query_race(), (string)PLAYER_D->night_races()) != -1) {
         if (blindlight < 0) {
             return "The bright light burns your eyes too much to see!";
         }else {

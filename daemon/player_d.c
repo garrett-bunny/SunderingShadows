@@ -765,6 +765,12 @@ int immunity_check(object obj, string type)
         
         if(FEATS_D->usable_feat(obj, "fearless rage") && obj->query_property("raged"))
             return 1;
+        
+        if(obj->query_mystery() == "heavens")
+        {
+            if(obj->query_class_level("oracle") > 30)
+                return 1;
+        }
 
         switch (myrace) {
 
@@ -815,7 +821,7 @@ int immunity_check(object obj, string type)
             if(obj->query_property("raged") && FEATS_D->has_feat(obj, "unrestrained rage"))
             {
                 tell_object(obj, "%^YELLOW%^Your rage allows you to shake off the paralysis!%^RESET%^");
-                obj->add_coolown("unrestrained rage", 120);
+                obj->add_cooldown("unrestrained rage", 120);
                 obj->set_property("stun_immunity", 1);
                 call_out("remove_stun_immunity", 24, obj);
                 return 1;

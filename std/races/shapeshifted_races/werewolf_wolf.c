@@ -133,7 +133,7 @@ int shape_attack(object tp, object targ)
         tell_object(tp, "%^RESET%^" + clr + "You leap up and savagely tear at " + targ->QCN + "'s eyes, narrowly missing!");
         tell_object(targ, "%^RESET%^" + clr + tp->QCN + " leaps up and tears at your face, nearly ripping your eyes out!");
         tell_room(etp, "%^RESET%^" + clr + tp->QCN + " leaps up and tears at " + targ->QCN + "'s face, nearly ripping out " + targ->QP + " eyes!", ({ tp, targ }));
-        if (!targ->reflex_save(chance)) {
+        if (!targ->reflex_save(chance / 2)) {
             targ->set_temporary_blinded(dice / 2);
         }
         break;
@@ -150,7 +150,7 @@ int shape_attack(object tp, object targ)
         tell_object(tp, "%^RESET%^" + clr + "You dig your teeth into " + targ->QCN + "'s shoulder and drag " + targ->QO + " to the ground!");
         tell_object(targ, "%^RESET%^" + clr + tp->QCN + " digs " + tp->QP + " teeth into your shoulder and drags you to the ground!");
         tell_room(etp, "%^RESET%^" + clr + tp->QCN + " digs " + tp->QP + " teeth into " + targ->QCN + "'s shoulder and drags " + targ->QO + " to the ground!", ({ tp, targ }));
-        if (!targ->fort_save(chance)) {
+        if (!targ->fort_save(chance / 2)) {
             targ->set_tripped(roll_dice(1, 2), "%^RESET%^%^YELLOW%^You are struggling to get your feet back under you!");
         }
         break;
