@@ -3433,6 +3433,11 @@ void internal_execute_attack(object who)
                     critical_hit = 0;
                 }
             }
+            if(victim->query_mystery() == "shadow" && critical_hit)
+            {
+                if(victim->query_class_level("oracle") >= 31 && total_light(environment(victim)) < 2)
+                    critical_hit = 0;
+            }   
         }
         // end crit stuff
         if (roll && fumble == 0) {

@@ -4,8 +4,9 @@ void create()
 {
     ::create();
     set_spell_name("shadow alteration");
-    set_spell_level(([ "mage" : 6, "bard" : 6, "magus" : 6, "cleric" : 6 ]));
+    set_spell_level(([ "mage" : 6, "bard" : 6, "magus" : 6, "cleric" : 6, "oracle" : 6 ]));
     set_domains("darkness");
+    set_mystery("shadow");
     set_spell_sphere("illusion");
     set_syntax("cast CLASS shadow alteration on SPELL_NAME [on SPELL_ARGS]");
     set_description("You create an illusory version of an alteration spell of 5th level or lower. The source of the illusion can differ based on the caster.

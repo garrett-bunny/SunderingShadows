@@ -2500,7 +2500,13 @@ void define_clevel()
                 clevel += 1;
         }
     }
-
+    
+    if(caster->query_mystery() == "shadow" && spell_type == "oracle" && shadow_spell)
+    {
+        if(caster->query_class_level("oracle") >= 21)
+            clevel += 1;
+    }
+         
     if ((spell_type == "mage" || spell_type == "sorcerer") && !shadow_spell) {
         if (caster->query_school() && caster->query_opposing_school()) {
             if (spell_sphere == caster->query_school()) {

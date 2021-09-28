@@ -682,6 +682,18 @@ mixed query_property(string prop)
         num += props[prop];
         return (num + EQ_D->gear_bonus(TO, "magic resistance"));
     }
+    
+    if(prop == "darkvision")
+    {
+        if(this_object()->query_mystery() == "shadow")
+        {
+            if(this_object()->query_class_level("oracle") >= 15)
+                num += 1;
+        }
+        
+        num += props[prop];
+        return (num + EQ_D->gear_bonus(TO, "darkvision"));
+    }
 
     if (prop == "no death") {
         if (TO->is_undead()) {
