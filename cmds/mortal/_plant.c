@@ -24,12 +24,13 @@
  */
 
 #include <std.h>
-#define WEIGHT_PENALTY 20
-#define INVIS_PENALTY 75
+#define WEIGHT_PENALTY 10
+#define INVIS_PENALTY 10
+#define CAUGHT_PENALTY 15
 #define WIELD_PENALTY 50
 #define WORN_PENALTY 75
 
-#define INVIS_CHECK_DIE 20
+#define INVIS_CHECK_DIE 25
 inherit DAEMON;
 
 void check_caught(int roll, object target, object ob, int sLevel);
@@ -38,7 +39,7 @@ void do_caught(object victim);
 int cmd_plant(string str) {
     object *inv, victim, ob;
     string what, whom;
-    int i, skip, which, steal, x, align_formula,sLevel;
+    int i, skip, which, steal, x, align_formula;
 
 /* Various checking */
     if (TP->query_ghost()) {
@@ -131,6 +132,18 @@ int cmd_plant(string str) {
         return 1;
     }
 
+    if (ob->query_wielded() || ob->query_worn()) {
+        notify_fail("Remove the item before trying to plant it.\n");
+        return 0;
+    }
+
+    if (TP->is_singleClass()) {
+        TP->set_disable(2,victim);
+    }
+    else {
+        TP->set_disable(2*sizeof(TP->query_classes()),victim);
+    }
+
 /* Calculations */
     steal = TP->query_skill("thievery") + roll_dice(1,20);
     if(sizeof(TP->query_armour("torso"))) steal += TP->skill_armor_mod(TP->query_armour("torso"));
@@ -138,19 +151,15 @@ int cmd_plant(string str) {
     if (victim->query_invis()) steal -= INVIS_PENALTY;
     if ((int)ob->query_weight() > 50 ) steal -= WEIGHT_PENALTY;
 
-    if (ob->query_wielded() || ob->query_worn()) {
-        notify_fail("That would be impossible!\n");
-        return 0;
+    //going to try a penalty to stealing if caught, rather than a flat failure
+    if (TP->get_static("caught") && time() - (int)((mapping)TP->get_static("caught"))[victim] < 150) {
+        steal -= CAUGHT_PENALTY;
     }
 
-  if (!TP->is_singleClass()) {
-     TP->set_disable(15,victim);
-   } else {
-     TP->set_disable(5,victim);
-   }
 /* Display messages */
     x = victim->query_skill("perception") + roll_dice(1,20);
-    if (x<steal && (!TP->get_static("caught") ||  time() - (int)((mapping)TP->get_static("caught"))[victim] > 150)) {
+    //tell_object(TP,"x = "+x+" steal = "+steal);
+    if (x < steal) {
         write("You successfully plant "+ob->query_name()+" on "+victim->query_cap_name()+".\n You are not sure if anyone noticed.");
         if (ob->move(victim)) {
             write(victim->query_cap_name()+" cannot carry that!\nThe plant fails.");
@@ -161,9 +170,10 @@ int cmd_plant(string str) {
         return 1;
 
     } else {
-        if (TP->get_static("caught") && (int)((mapping)TP->get_static("caught"))[victim] - time() < 150) {
-            x=0;
-        }
+        //this doesn't make any sense - why would the caught timer set the perception roll to 0 to notice the theft attempt?
+        // if (TP->get_static("caught") && (int)((mapping)TP->get_static("caught"))[victim] - time() < 150) {
+        //     x=0;
+        // }
         write("You fail to plant the "+ob->query_name()+" on "+victim->query_cap_name()+", but you are unsure if it went unnoticed.");
         check_caught(x,victim,ob,steal);
         return 1;
