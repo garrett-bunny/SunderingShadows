@@ -67,6 +67,14 @@ mapping query_innate_spells(object player)
         if(olevel >= 5)
             innate_spells += ([ "wings of darkness" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), ]);
         break;
+        
+        case "heavens":
+        innate_spells += ([ "coat of many stars" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), ]);
+        if(olevel >= 5)
+            innate_spells += ([ "lure of the cosmos" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), ]);
+        if(olevel >= 15)
+            innate_spells += ([ "interstellar void" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), ]);
+        break;
     }
     
     return innate_spells;
