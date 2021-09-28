@@ -13,7 +13,7 @@ void create()
     set_mystery(({"dragon", "stone"}));
     set_syntax("cast CLASS obsidian flow");
     set_damage_desc("fire, trips targets");
-    set_description("You convert a thin layer of the ground below your enemiesto molten glass that cools quickly. Creatures on the glass that won't jump off in time will be burned and will trip as surface solidifies.");
+    set_description("You convert a thin layer of the ground below your enemies to molten glass that cools quickly. Creatures on the glass that won't jump off in time will be burned and will trip as surface solidifies.");
     set_verbal_comp();
     set_somatic_comp();
     set_save("reflex");
