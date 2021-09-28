@@ -60,6 +60,9 @@ void spell_effect(int prof)
 
     hits = clevel / 11;
 
+    if(caster->query_mystery() == "heavens" && caster->query_class_level("oracle") > 30)
+        hits += BONUS_D->query_stat_bonus(caster, "charisma");
+
     attackers = target_selector();
     attackers = distinct_array(attackers);
     attackers -= ({ target });
