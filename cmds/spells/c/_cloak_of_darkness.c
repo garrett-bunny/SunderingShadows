@@ -36,7 +36,7 @@ string query_cast_string()
 
 void spell_effect(int prof)
 {   
-    if(!objectp(caster) || !objectp(target))
+    if(!objectp(caster))
         return;
     
     spell_successful();
@@ -57,7 +57,7 @@ void dest_effect()
     {
         tell_object(caster, "%^BLACK%^BOLD%^The cloak of shadows slips from around you.%^RESET%^");
         caster->add_ac_bonus(-bonus);
-        caster->add_skill_bonus("stealth", bonus);
+        caster->add_skill_bonus("stealth", -bonus);
     }
     
     ::dest_effect();
