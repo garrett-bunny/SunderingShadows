@@ -765,6 +765,12 @@ int immunity_check(object obj, string type)
         
         if(FEATS_D->usable_feat(obj, "fearless rage") && obj->query_property("raged"))
             return 1;
+        
+        if(obj->query_mystery() == "heavens")
+        {
+            if(obj->query_class_level("oracle") > 30)
+                return 1;
+        }
 
         switch (myrace) {
 

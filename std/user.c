@@ -1978,6 +1978,18 @@ nomask void die()
         return;
     }
     
+    if(this_object()->query_mystery() == "heavens" && this_object()->query_class_level("oracle") > 30 && !this_object()->cooldown("star child"))
+    {
+        tell_object(this_object(), "%^BOLD%^%^RED%^With the last blow you feel the darkness beginning to flow inwards from the edge of your vision...Suddenly you're on your knees in a pool of your  own%^RESET%^%^RED%^blood %^BOLD%^%^RED%^with your extremities going numb.");
+        tell_room(ETO, "%^BOLD%^%^RED%^" + this_object()->query_cap_name() + " falls to the ground in a bloody mess.", this_object());
+        tell_object(this_object(), "%^BOLD%^A beam of starlight illuminates your fallen form, expanding as it engulfs your entire being.%^RESET%^");
+        tell_object(this_object(), "%^BOLD%^The energy fills your soul, and you feel yourself reborn.....a star child. You stand and continue to fight!%^RESET%^");
+        tell_room(environment(this_object()), "%^BOLD%^A beam of starlight illuminates " + this_object()->query_cap_name() + ". " + this_object()->query_pronoun() + " stands once more, reborn and ready to fight!", this_object());
+        this_object()->set_hp(query_max_hp());
+        this_object()->add_cooldown("star child", 7200);
+        return;
+    }
+   
     if(this_object()->query_property("raged"))
         command("rage");
 
@@ -2013,8 +2025,7 @@ nomask void die()
         find_object("/std/effect/status/exhausted")->dest_effect(this_object());
     if(this_object()->query_property("effect_sickened"))
         find_object("/std/effect/status/sickened")->dest_effect(this_object());
-    
-    
+       
     ghost = 1;
     ob = TO;
     add_stuffed(25);
