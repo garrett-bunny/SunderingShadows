@@ -11,10 +11,8 @@ Each oracle draws upon a divine mystery to grant her spells and powers. This mys
  * %^BOLD%^%^WHITE%^Life
  * %^GREEN%^Nature
  * %^MAGENTA%^Shadow
- * %^BOLD%^%^ORANGE%^Solar
  * %^BOLD%^%^MAGENTA%^Spellscar
- * %^WHITE%^Winter
 
-To see individual mystery file type, for example, %^ORANGE%^<help flame mystery>%^RESET%^.
+To see individual mystery file type, for example, %^ORANGE%^<help solar mystery>%^RESET%^.
 
 %^CYAN%^See also:%^RESET%^ oracle, *mysteries, individual mystery files
