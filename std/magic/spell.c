@@ -2550,6 +2550,15 @@ void define_clevel()
             clevel += 2;
         }
     }
+    
+    if(shadow_spell)
+    {
+        if(caster->query_mystery() == "shadow" && spell_type == "oracle")
+        {
+            if(caster->query_class_level("oracle") >= 21)
+                clevel += 1;
+        }
+    }
 
     if(caster->is_class("versatile_arcanist") && sizeof(immune))
     {
