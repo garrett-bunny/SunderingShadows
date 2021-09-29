@@ -18,14 +18,10 @@ class_spell_storage =
           "mass cure moderate wounds", "mass cause moderate wounds",
           "mass cure serious wounds", "mass cause serious wounds",
           "mass cure critical wounds", "mass cause critical wounds",}),
-    "darkness":
-        ({"shadow stream","dust of twilight","deeper darkness","shadow conjuration","vampiric shadow shield","shadow travel","greater shadow conjuration","greater shadow evocation","polar midnight"}),
     "dragon":
         ({"cause fear","levitate","resist energy","obsidian flow","fear","protection from spells","true seeing","shapechange","overwhelming presence"}),
     "godclaw":
         ({"cause fear","hold person","break curse","orders wrath","seeking sword","gale fist","dictum","shield of law","imprisonment"}),
-    "reaper":
-        ({"chill touch","spectral hand","sands of time","purge spirit","slay living","undeath is death","destruction","horrid wilting","wail of the banshee"}),
     "bones":
         ({"cause fear","false life","animate dead","boneshatter","slay living","circle of death","waves of exhaustion","horrid wilting","wail of the banshee"}),
     "battle":
@@ -46,12 +42,8 @@ class_spell_storage =
         ({"faerie fire", "flaming sphere", "daylight", "dimension door", "solar siege shot", "sirocco", "sunbeam", "sunburst", "hellball"}),
     "spellscar":
         ({"armor", "resist energy", "dispel magic", "true form", "siphon magic", "globe of invulnerability", "spell turning", "spellscar", "imprisonment"}),
-    "apocalypse":
-        ({"summon swarm", "fog cloud", "sleet storm", "ice storm", "insect plague", "circle of death", "fire storm", "incendiary cloud", "meteor swarm"}),
     "ancestor":
         ({"unseen servant", "spiritual weapon", "heroism", "spiritual ally", "telekinetic push", "greater heroism","vision", "timeless body", "astral projection"}),
-    "lore":
-        ({"magic missile","clairvoyance","tongues","modify memory","telepathic bond","legend lore","vision","screen","timestop"}),
     "nature":
         ({"entangle", "barkskin", "charm monster", "polymorph self", "wall of thorns", "summon natures ally vi", "animate plants", "shapechange", "shambler"}),
     "stone":
@@ -62,8 +54,6 @@ class_spell_storage =
         ({"sleep", "dust of twilight", "rage", "moonbeam", "aspect of the wolf", "litany of madness", "eclipse", "polar midnight"}),
     "waves":
         ({"endure elements", "fog cloud", "water breathing", "ice storm", "conjure elemental", "pass portal", "vortex", "seamantle", "tidal surge"}),
-    "wind":
-        ({"biting wind", "gust of wind", "cloak of winds", "air walk", "stormwinds", "sirocco", "repulsion", "windstorm", "storm of vengeance"}),
     "winter":
         ({"endure elements", "frostfield", "sleet storm", "ice storm", "cone of cold", "frost breath", "hypothermia", "ice mirror", "polar midnight"}),
 ]),
