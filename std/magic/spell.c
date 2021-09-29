@@ -2500,12 +2500,6 @@ void define_clevel()
                 clevel += 1;
         }
     }
-    
-    if(caster->query_mystery() == "shadow" && spell_type == "oracle" && shadow_spell)
-    {
-        if(caster->query_class_level("oracle") >= 21)
-            clevel += 1;
-    }
          
     if ((spell_type == "mage" || spell_type == "sorcerer") && !shadow_spell) {
         if (caster->query_school() && caster->query_opposing_school()) {
@@ -3294,6 +3288,13 @@ varargs int do_save(object targ, int mod)
 
     if (shadow_spell) {
         type = "will";
+        
+        if(caster->query_mystery() == "shadow" && spell_type == "oracle")
+        {
+            if(caster->query_class_level("oracle") >= 21)
+                shadow_spell += 1;
+        }
+        
         caster_bonus = shadow_spell * caster_bonus / 10;
     }
 
