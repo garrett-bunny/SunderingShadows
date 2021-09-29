@@ -35,7 +35,7 @@ string query_cast_string()
 
 void spell_effect(int prof)
 {   
-    if(!objectp(caster) || !objectp(target))
+    if(!objectp(caster))
         return;
     
     if(caster->query_property("flying"))
