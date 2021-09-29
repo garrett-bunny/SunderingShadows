@@ -570,6 +570,12 @@ mixed query_property(string prop)
                 num += 1;
         }
         
+        if(this_object()->query_mystery() == "nature" && this_object()->query_class_level("oracle") > 10)
+        {
+            if(USER_D->is_valid_terrain(environment(this_object())->query_terrain(), "forest"))
+                num += 2;
+        }
+        
         num += props[prop];
         return (num + EQ_D->gear_bonus(TO, "fast healing"));
     }

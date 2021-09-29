@@ -5628,7 +5628,7 @@ int is_favored_terrain(object room)
     foreach(string terrain in favored_terrain)
     {
         if (strlen(terrain) && terrain != "none") {
-            if (USER_D->is_valid_terrain(type, "caves")) {
+            if (USER_D->is_valid_terrain(type, terrain)) {
                 return 1;
             }
         }
