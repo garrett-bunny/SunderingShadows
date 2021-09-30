@@ -75,6 +75,13 @@ mapping query_innate_spells(object player)
         if(olevel >= 15)
             innate_spells += ([ "interstellar void" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), ]);
         break;
+        case "nature":
+        innate_spells += ([ "erosion touch" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), ]);
+        if(olevel >= 15)
+            innate_spells += ([ "natural divination" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), ]);
+        if(olevel >= 30)
+            innate_spells += ([ "cocoon" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), ]);
+        break;
     }
     
     return innate_spells;
