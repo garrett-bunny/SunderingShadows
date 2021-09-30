@@ -11,7 +11,7 @@ string *valid_forms()
 void create()
 {
     ::create();
-    set_spell_name("shapechange");
+    set_spell_name("animal shape");
     set_spell_level(([ "cleric" : 8, ]));
     set_domains("animal");
     set_mystery("nature");
