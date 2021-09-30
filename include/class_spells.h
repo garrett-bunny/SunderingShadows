@@ -32,16 +32,16 @@ class_spell_storage =
     //    ({"burning hands", "resist energy", "fireball", "wall of fire", "conjure elemental", "fire seeds", "fire storm", "incendiary cloud", "fiery body"}),
     //"elemental":
     //    ({"guidance", "resist energy", "elemental aura", "elemental body i", "elemental body ii", "elemental body iii", "elemental body iv", "create demiplane", "elemental swarm"}),
-    "whimsy":
-        ({"faerie fire", "hideous laughter", "phantom steed", "confusion", "false vision", "eyebite", "project image", "irresistible dance", "weird"}),
+    //"whimsy":
+    //    ({"faerie fire", "hideous laughter", "phantom steed", "confusion", "false vision", "eyebite", "project image", "irresistible dance", "weird"}),
     "heavens":
         ({"color spray", "hypnotic pattern", "daylight", "rainbow pattern", "angelic aspect", "spray of shooting stars", "prismatic spray", "sunburst", "meteor swarm"}),
     "life":
         ({"mending", "restoration", "remove blindness", "neutralize poison", "breath of life", "heal", "regeneration", "mass heal", "resurrection"}),
     "shadow":
         ({"blurred movement", "invisibility", "deeper darkness", "shadow necromancy", "vampiric shadow shield", "shadow alteration", "mass invisibility", "greater shadow evocation", "shades"}),
-    "solar":
-        ({"faerie fire", "flaming sphere", "daylight", "dimension door", "solar siege shot", "sirocco", "sunbeam", "sunburst", "hellball"}),
+    //"solar":
+    //    ({"faerie fire", "flaming sphere", "daylight", "dimension door", "solar siege shot", "sirocco", "sunbeam", "sunburst", "hellball"}),
     "spellscar":
         ({"armor", "resist energy", "dispel magic", "true form", "siphon magic", "globe of invulnerability", "spell turning", "spellscar", "imprisonment"}),
     "ancestor":
@@ -50,8 +50,8 @@ class_spell_storage =
         ({"entangle", "barkskin", "charm monster", "polymorph self", "wall of thorns", "creeping doom", "animate plants", "animal shape", "shambler", "summon natures ally i", "summon natures ally ii", "summon natures ally iii", "summon natures ally iv", "summon natures ally v", "summon natures ally vi", "summon natures ally vii", "summon natures ally iix", "summon natures ally ix"}),
     //"stone":
     //    ({"stone throw", "soften earth", "meld into stone", "obsidian flow", "earth reaver", "wall of stone", "statue", "stone body", "clashing rocks"}),
-    "metal":
-        ({"mending", "heat metal", "heart of metal", "keen edge", "greater magic weapon", "blade barrier", "statue", "silver sight", "iron body"}),
+    //"metal":
+    //    ({"mending", "heat metal", "heart of metal", "keen edge", "greater magic weapon", "blade barrier", "statue", "silver sight", "iron body"}),
     //"lunar":
     //    ({"sleep", "dust of twilight", "rage", "moonbeam", "aspect of the wolf", "litany of madness", "eclipse", "polar midnight"}),
     //"waves":

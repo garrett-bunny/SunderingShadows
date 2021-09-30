@@ -7,7 +7,7 @@ inherit SPELL;
 void create()
 {
     ::create();
-    set_spell_name("summon swarm");
+    set_spell_name("creeping doom");
     set_spell_level(([ "oracle" : 7, "druid" : 7 ]));
     set_mystery("nature");
     set_spell_sphere("conjuration_summoning");
