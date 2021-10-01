@@ -15,7 +15,6 @@ void create()
     set_damage_desc("Piercing damage over several rounds. Successful save per round reduces damage by half.");
     set_description("This spell will call a swarm of biting and stinging centipedes to torment the target for several rounds. Each round, a fortitude save will reduce the damage by half.");
     set_save("fortitude");
-    aoe_spell(1);
     set_target_required(1);
     set_verbal_comp();
     set_somatic_comp();
