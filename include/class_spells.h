@@ -44,8 +44,8 @@ class_spell_storage =
     //    ({"faerie fire", "flaming sphere", "daylight", "dimension door", "solar siege shot", "sirocco", "sunbeam", "sunburst", "hellball"}),
     "spellscar":
         ({"armor", "resist energy", "dispel magic", "true form", "siphon magic", "globe of invulnerability", "spell turning", "spellscar", "imprisonment"}),
-    "ancestor":
-        ({"unseen servant", "spiritual weapon", "heroism", "spiritual ally", "telekinetic push", "greater heroism","vision", "timeless body", "astral projection"}),
+    //"ancestor":
+    //    ({"unseen servant", "spiritual weapon", "heroism", "spiritual ally", "telekinetic push", "greater heroism","vision", "timeless body", "astral projection"}),
     "nature":
         ({"entangle", "barkskin", "charm monster", "polymorph self", "wall of thorns", "creeping doom", "animate plants", "animal shape", "shambler", "summon natures ally i", "summon natures ally ii", "summon natures ally iii", "summon natures ally iv", "summon natures ally v", "summon natures ally vi", "summon natures ally vii", "summon natures ally iix", "summon natures ally ix"}),
     //"stone":
