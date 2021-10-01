@@ -44,6 +44,13 @@ void spell_effect(int prof)
         return;
     }
     
+    if(target->query_property("creeping doom"))
+    {
+        tell_object(caster, "Your target is already affected by creeping doom.");
+        dest_effect();
+        return;
+    }
+    
     spell_successful();
     
     tell_room(place, color("A mass of creeping centipedes erupt from the ground, crawling up " + target->query_cap_name() + "'s legs and biting viciously!"), target);
@@ -53,6 +60,8 @@ void spell_effect(int prof)
         target->cause_typed_damage(target, "torso", sdamage / 2, "piercing");
     else
         target->cause_typed_damage(target, "torso", sdamage, "piercing");
+    
+    target->set_property("creeping doom", 1);
     
     call_out("keep_biting", ROUND_LENGTH, 4);
 }
@@ -87,6 +96,9 @@ void dest_effect()
 {
     if (find_call_out("keep_biting") != -1)
         remove_call_out("crawl");
+    
+    if(target)
+        target->remove_property("creeping doom");
     
     tell_room(place, "%^GREEN%^The centipedes fall to the ground, dead.");
     
