@@ -8,7 +8,7 @@ int clairvoyance_delay()
 void create()
 {
     ::create();
-    set_spell_name("vision");
+    set_spell_name("natural divination");
     set_spell_level(([ "innate" : 8 ]));
     set_discipline("divination");
     set_mystery("nature");
