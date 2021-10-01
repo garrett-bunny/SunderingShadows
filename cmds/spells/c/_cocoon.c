@@ -4,6 +4,8 @@
 #include <priest.h>
 #include <daemons.h>
 
+#define BAN ({ "soulforged", "deva", "shade", "alaghi", "ghost", "nightwing", "barrus", "illithid", "unborn", "dragon" })
+
 inherit SPELL;
 
 string *types = ({ "plant", "animal", "human" });
@@ -64,7 +66,7 @@ int preSpell()
     }
     
     valid_races = RACE_D->query_races();
-    valid_races -= ({ "soulforged", "deva", "shade", "alaghi", "ghost" });
+    valid_races -= BAN;
     
     if(member_array(arg, RACE_D->query_races()) < 0)
     {
