@@ -29,7 +29,7 @@ int status_effect()
 
 
     tell_object(target, "%^RED%^You are staggered and can barely move.%^RESET%^");
-    tell_room(ENV(target), "%^RED%^" + target->QCN + "'s face turns dull," + target->QS + " appears to be staggered.", target);
+    tell_room(ENV(target), "%^RED%^" + target->QCN + "'s face turns dull, " + target->QS + " appears to be staggered.", target);
 
 
     call_out("dest_effect", ROUND_LENGTH * duration, target);
