@@ -7,6 +7,8 @@
 inherit SPELL;
 
 string *types = ({ "plant", "animal", "human" });
+string *valid_races;
+int cocooned = 0;
 
 object cocoon, cocoon_inside;
 
@@ -37,6 +39,8 @@ int color(string str)
 
 int preSpell()
 {
+    int size;
+    
     if(caster->cooldown("cocoon"))
     {
         tell_object(caster, "You can't use cocoon yet. Type <cooldowns> to see your wait time.");
@@ -46,10 +50,26 @@ int preSpell()
     {
         tell_object(caster, "You need to choose a race to change into.");
         return 0;
-    }   
+    }
+    if(arg == caster->query_race())
+    {
+        tell_object(caster, "You are already that race!");
+        return 0;
+    }
+    if(caster->query_current_attacker())
+    {
+        tell_object(caster, "You can't spin a cocoon during combat!");
+        dest_effect();
+        return;
+    }
+    
+    valid_races = RACE_D->query_races();
+    valid_races -= ({ "soulforged", "deva", "shade", "alaghi", "ghost" });
+    
     if(member_array(arg, RACE_D->query_races()) < 0)
     {
-        tell_object(caster, capitalize(arg) + " is not a valid race.");
+        tell_object(caster, capitalize(arg) + " is not a valid race. Valid races are :");
+        tell_object(caster, "%^GREEN%^" + implode(valid_races, ", "));
         return 0;
     }
     if(!USER_D->is_valid_terrain(place->query_terrain(), "forest"))
@@ -75,7 +95,7 @@ void spell_effect(int prof)
         return;
     }
     
-    tell_object(caster, "%^GREEN%^You begin to spin a cocoon of silky threads around yourself.%^RESET%^");
+    tell_object(caster, color("You begin to spin a cocoon of silky threads around yourself."));
     tell_room(place, "%^GREEN%^" + caster->query_cap_name() + " begins to spin silky threads around " + caster->query_objective() + ".", caster);
        
     spell_successful();
@@ -101,26 +121,27 @@ void finish_cocoon()
         dest_effect();
         return;
     }
-    
+
+    cocoon->move(place);    
     caster->move_player(cocoon_inside);
-    cocoon->move(environment(caster));
     
     tell_object(caster, color("You spin the silky threads around you and finish your cocoon."));
-    tell_room(place, "%^GREEN%^BOLD%^" + caster->query_cap_name() + " finishes spinning the threads into a complete cocoon!");
-    call_out("dest_effect", 8 * ROUND_LENGTH);
+    tell_room(place, "%^GREEN%^BOLD%^" + caster->query_cap_name() + " finishes spinning the threads into a complete cocoon!", caster);
+    cocooned = 1;
+    call_out("dest_effect", 15 * ROUND_LENGTH);
 }
     
 void dest_effect()
 {
-    if(objectp(caster))
+    if(objectp(caster) && cocooned)
     {
         tell_object(caster, color("You wriggle and push your way out. You burst into open, fresh air, a brand new " + arg + "."));
         tell_room(place, "%^GREEN%^The cocoon begins to wriggle then bursts open, revealing a " + arg + ".", caster);
         caster->move_player(place);
         caster->set_race(arg);
     }
-    cocoon_inside->dest_effect();
-    cocoon->dest_effect();
+    cocoon_inside->remove();
+    cocoon->remove();
     
     ::dest_effect();
 }
