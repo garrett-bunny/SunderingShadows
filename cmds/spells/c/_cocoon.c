@@ -52,7 +52,7 @@ int preSpell()
         tell_object(caster, capitalize(arg) + " is not a valid race.");
         return 0;
     }
-    if(!USER_D->is_valid_terrain(environment(this_object())->query_terrain(), "forest"))
+    if(!USER_D->is_valid_terrain(place->query_terrain(), "forest"))
     {
         tell_object(caster, "You need to be in the forest to use this ability.");
         return 0;
