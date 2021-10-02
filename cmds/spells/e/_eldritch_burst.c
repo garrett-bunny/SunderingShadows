@@ -105,7 +105,7 @@ void spell_effect(int prof) {
         damage += agonize;
     }
     
-    hellfire = FEATS_D->useable_feat(caster, "hellfire blast");
+    hellfire = FEATS_D->usable_feat(caster, "hellfire blast");
     
     if(hellfire)
     {
