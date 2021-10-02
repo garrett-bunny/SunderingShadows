@@ -1,3 +1,4 @@
+//Supposed to be AOE phantasmal killer. Noted for future changes.
 #include <std.h>
 #include <daemons.h>
 #include <spell.h>
@@ -10,8 +11,7 @@ void create()
 {
     ::create();
     set_spell_name("weird");
-    set_spell_level(([ "mage" : 9, "oracle" : 9 ]));
-    set_mystery("whimsy");
+    set_spell_level(([ "mage" : 9 ]));
     set_spell_sphere("illusion");
     set_syntax("cast CLASS weird");
     set_damage_desc("mental, cowering");
