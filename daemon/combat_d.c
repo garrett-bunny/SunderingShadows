@@ -647,7 +647,7 @@ void check_extra_abilities(object attacker, object target, object weapon, int cr
             {
                 tell_object(attacker, "%^MAGENTA%^BOLD%^Your weapon strikes with magical force!%^RESET%^");
                 tell_object(target, "MAGENTA%^BOLD%^" + pname + "'s weapon strikes you with magical force!%^RESET%^");
-                target->cause_typed_damage(target, target->return_target_limb(), 5 + roll_rice(1 + attacker->query_class_level("oracle") / 15, 8), "force");
+                target->cause_typed_damage(target, target->return_target_limb(), 5 + roll_dice(1 + attacker->query_class_level("oracle") / 15, 8), "force");
             }
         }
 
