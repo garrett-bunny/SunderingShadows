@@ -249,6 +249,7 @@ void my_special(object target)
         tell_room(ETO, "%^BOLD%^%^YELLOW%^The archon lifts its %^WHITE%^s%^RESET%^i%^BOLD%^%^BLACK%^lve%^RESET%^r%^BOLD%^"
                   "%^WHITE%^y %^YELLOW%^trumpet to its lips, and lets forth a blast of %^CYAN%^piercing%^YELLOW%^, soul-wrenching music "
                   "directed at " + target->QCN + ", who shudders in pain!%^RESET%^", target);
+                  target->cause_typed_damage(target, "torso", roll_dice(mylevel/2, 4) + 20, "sonic");
         break;
 
     case 2:   // LN: zelekhut, inevitable (attack with spiked chain)
@@ -257,6 +258,7 @@ void my_special(object target)
         tell_room(ETO, "%^BOLD%^%^YELLOW%^The zelekhut flares its %^RESET%^%^ORANGE%^metal%^RESET%^l%^ORANGE%^ic "
                   "%^YELLOW%^wings and lashes out with its chain whips, scoring painful blows upon " + target->QCN + " from both sides"
                   "!%^RESET%^", target);
+                  target->cause_typed_damage(target, "torso", roll_dice(mylevel/2, 4) + 20, "slashing");
         break;
 
     case 3:   // LE: bone devil, baatezu (tail poison for damage)
@@ -265,6 +267,7 @@ void my_special(object target)
                     "in searing pain!%^RESET%^");
         tell_room(ETO, "%^BOLD%^%^WHITE%^With lightning speed, the bone devil lashes out with its scorpion-like tail "
                   "and jabs " + target->QCN + ", who writhes in pain!%^RESET%^", target);
+                  target->cause_typed_damage(target, "torso", roll_dice(mylevel/2, 4) + 20, "piercing");
         break;
 
     case 4:   // NG: leonal, guardinal (roar as holy word spell for dmg)
@@ -274,6 +277,7 @@ void my_special(object target)
         tell_room(ETO, "%^BOLD%^%^WHITE%^The leonal braces its feet and spreads its arms as it unleashes a mighty "
                   "%^YELLOW%^r%^WHITE%^o%^RED%^a%^YELLOW%^r %^WHITE%^that hits " + target->QCN + " like a physical blow, nearly knocking "
                   + target->QO + " from " + target->QP + " feet!%^RESET%^", target);
+                  target->cause_typed_damage(target, "torso", roll_dice(mylevel/2, 4) + 20, "sonic");
         break;
 
     case 5:   // TN: aurumach, rilmani (conjures golden huge +3 halberd swing - fiend folio)
@@ -283,6 +287,7 @@ void my_special(object target)
         tell_room(ETO, "%^BOLD%^%^GREEN%^The aurumach raises its hands above its head, and the air around them "
                   "shimmers as a shining %^RESET%^%^ORANGE%^go%^YELLOW%^ld%^RESET%^%^ORANGE%^en %^BOLD%^%^GREEN%^halberd suddenly appears "
                   "in its grip, which it swings at " + target->QCN + " in a vicious overhead slash!%^RESET%^", target);
+                  target->cause_typed_damage(target, "torso", roll_dice(mylevel/2, 4) + 20, "slashing");
         break;
 
     case 6:   // NE: nycaloth, yugoloth (rake with claws - mm3)
@@ -291,6 +296,7 @@ void my_special(object target)
         tell_room(ETO, "%^BOLD%^%^GREEN%^The nycaloth swings its greataxe at you and nearly takes off " + target->QCN + "'s "
                   "head, still managing to scoring a %^RED%^bl%^RESET%^%^RED%^oo%^BOLD%^dy %^GREEN%^wound in " + target->QP + " flesh"
                   "!%^RESET%^", target);
+                  target->cause_typed_damage(target, "torso", roll_dice(mylevel/2, 4) + 20, "slashing");
         break;
 
     case 7:   // CG: bralani, eladrin (whirlwind blast)
@@ -300,6 +306,7 @@ void my_special(object target)
         tell_room(ETO, "%^BOLD%^%^CYAN%^Dust and debris is picked up around the bralani as it shifts suddenly into a "
                   "%^RESET%^wh%^ORANGE%^i%^RESET%^rli%^BOLD%^%^BLACK%^n%^RESET%^g ma%^YELLOW%^e%^WHITE%^l%^RESET%^str%^CYAN%^o%^RESET%^m"
                   "%^BOLD%^%^CYAN%^, gusts buffeting " + target->QCN + " from side to side!%^RESET%^", target);
+                  target->cause_typed_damage(target, "torso", roll_dice(mylevel/2, 4) + 20, "force");
         break;
 
     case 8:   // CN: gray slaad (chaos hammer/lightning bolt, or claws)
@@ -309,6 +316,7 @@ void my_special(object target)
         tell_room(ETO, "%^BOLD%^%^BLUE%^A sweep of the slaad's clawed hand casts forth a %^WHITE%^m%^YELLOW%^u%^WHITE%^lti"
                   "%^MAGENTA%^c%^WHITE%^ol%^CYAN%^o%^GREEN%^r%^WHITE%^ed %^BLUE%^explosion of leaping, ricocheting energy that strikes "
                   + target->QCN + " with full force!%^RESET%^", target);
+                  target->cause_typed_damage(target, "torso", roll_dice(mylevel/2, 4) + 20, "electricity");
         break;
 
     case 9:   // CE: vrock, tanarri (wings up and pounce for dmg)
@@ -317,15 +325,18 @@ void my_special(object target)
         tell_room(ETO, "%^BOLD%^%^RED%^The vrock leaps into the air with a powerful thrust of its %^BLACK%^win"
                   "%^RESET%^g%^BOLD%^%^BLACK%^s%^RED%^, and then dives down upon " + target->QCN + " to rend " + target->QP + " flesh with both "
                   "claws!%^RESET%^", target);
+                  target->cause_typed_damage(target, "torso", roll_dice(mylevel/2, 4) + 20, "slashing");
         break;
 
     default:   // error prompt
         tell_room(ETO, "%^BOLD%^%^RED%^Your beastie is broken, contact a wiz!%^RESET%^");
         break;
     }
+    /*
     TO->set_property("magic", 1);
-    target->do_damage("torso", random(40) + (mylevel * 2));
+    //target->do_damage("torso", random(40) + (mylevel * 2));
     TO->remove_property("magic");
+    */
 }
 
 void die(object obj)
@@ -357,14 +368,14 @@ void set_mylevel(int x)
     mylevel = x;
     set_hd(mylevel, 10);
     set_mlevel("fighter", mylevel);
-    set_max_hp(mylevel * 20);
+    set_max_hp(mylevel * 50);
     set_hp((int)TO->query_max_hp());
     set_attacks_num((mylevel / 13) + 1);
     set_damage(1, mylevel);
-    set_overall_ac(10 - mylevel);
-    set_stats("strength", 20);
-    set_stats("constitution", 20);
-    set_stats("dexterity", 20);
+    set_overall_ac(-mylevel);
+    set_stats("strength", 30);
+    set_stats("constitution", 30);
+    set_stats("dexterity", 30);
     set_property("effective_enchantment", (mylevel / 7) + 1);
     set_property("extra encumbrance", -205); //override to drop them to 100 carrying capacity, not meant to be pack mules
 }
