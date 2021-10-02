@@ -821,7 +821,7 @@ void wizard_interface(object user, string type, string targ)
 {
     string* msg, whatsit, whatdo, improv, old_spell_type, featneeded, altclass, way;
     object* weaps, wildspell, shapeob;
-    int nodo, i, casting_level;
+    int nodo, i, casting_level, valid_domain;
     int preserve_in_memory = 0;
 
     if (!type) {
@@ -1252,7 +1252,8 @@ void wizard_interface(object user, string type, string targ)
     improv = replace_string(improv, "_", " ");
 
     if ((FEATS_D->usable_feat(caster, "spellmastery") && (caster->query("spellmastery_spell") == spell_name)) ||
-  (FEATS_D->usable_feat(caster, "natures gift") && (member_array(spell_name, MAGIC_SS_D->query_class_special_spells("archdruid", "all")) != -1)) ||
+  //(FEATS_D->usable_feat(caster, "natures gift") && (member_array(spell_name, MAGIC_SS_D->query_class_special_spells("archdruid", "all")) != -1)) ||
+  (FEATS_D->usable_feat(caster, "apotheosis") && spell_type == "cleric" && member_array(divine_domains, caster->query_divine_domain()) >= 0) ||
   (FEATS_D->usable_feat(caster, "timeweaver") && (member_array(spell_name, MAGIC_SS_D->query_class_special_spells("chronicler", "all")) != -1)) ||
   (FEATS_D->usable_feat(caster, "greater spell mastery") && casting_level < 5 && spell_sphere == caster->query_school()))
     {
