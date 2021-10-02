@@ -35,7 +35,19 @@ string *class_feats(string myspec)
               "simple weapon proficiency" });
 }
 
-mapping class_featmap(string myspec) {
+mapping class_featmap(string myspec, object player) {
+    
+    if(player->query_mystery() == "battle")
+    {
+        return ([
+                 1: ({ "light armor proficiency", "medium armor proficiency", "heavy armor proficiency", "simple weapon proficiency", "martial weapon proficiency", "shield proficiency", "spell focus" }),
+                 5 : ({ "indomitable" }),
+                 10: ({ "force of personality" }),
+                 15: ({ "leadership" }),
+                 21: ({ "weapon focus", "weapon specialization" }),
+               ]);
+    }
+    
     return ([
         1: ({ "light armor proficiency", "medium armor proficiency", "simple weapon proficiency", "shield proficiency", "spell focus" }),
         5 : ({ "indomitable" }),
@@ -81,6 +93,11 @@ mapping query_innate_spells(object player)
             innate_spells += ([ "natural divination" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), ]);
         if(olevel >= 30)
             innate_spells += ([ "cocoon" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), ]);
+        break;
+        
+        case "battle":
+        if(olevel >= 5)
+            innate_spells += ([ "battlecry" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), ]);
         break;
     }
     

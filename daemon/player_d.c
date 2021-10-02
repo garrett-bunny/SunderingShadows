@@ -741,6 +741,13 @@ int immunity_check(object obj, string type)
         }
     }
     break;
+    
+    case "confusion":
+    {
+        if(obj->query_mystery() == "battle" && obj->query_class_level("oracle") >= 10)
+            return 1;
+    }
+    break;
 
     case "fear":
     {

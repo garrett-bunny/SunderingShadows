@@ -631,6 +631,8 @@ mixed query_property(string prop)
         }
         if(FEATS_D->usable_feat(this_object(), "infused form"))
             num += 5;
+        if(this_object()->query_mystery() == "battle" && this_object()->query_class_level("oracle") >= 15)
+            num += 5;
         
         num += props[prop];
         return (num + EQ_D->gear_bonus(TO, "damage resistance"));

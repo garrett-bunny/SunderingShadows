@@ -1,6 +1,7 @@
 #include <std.h>
 #include <magic.h>
 #include <skills.h>
+#include <daemons.h>
 
 #pragma strict_types
 
@@ -26,6 +27,11 @@ void status_effect()
 {
     int i;
     if (target && target->query_property("effect_confused")) {
+        TO->remove();
+        return;
+    }
+    
+    if (PLAYER_D->immunity_check(target, "confusion")) {
         TO->remove();
         return;
     }
