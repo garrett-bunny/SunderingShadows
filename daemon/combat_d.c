@@ -419,7 +419,6 @@ varargs int typed_damage_modification(object attacker, object targ, string limb,
         }
     }
 
-
     if ((type == "negative energy" ||
         type == "positive energy") &&
         member_array(targ->query_race(), ({"soulforged", "golem", "construct"})) != -1) {
@@ -639,6 +638,16 @@ void check_extra_abilities(object attacker, object target, object weapon, int cr
                 tell_object(attacker, "%^BOLD%^CYAN%^Your weapon flashes as it assaults your opponent's mind!%^RESET%^");
                 tell_object(target, "%^BOLD%^CYAN%^" + pname + "'s weapon flashes as it assaults your mind!");
                 target->cause_typed_damage(target, target->return_target_limb(), 5 + roll_dice(1 + (attacker->query_class_level("psion") + attacker->query_prestige_level("psywarrior")) / 15, 8), "mental");
+            }
+        }
+        //Battle Mystery Oracle
+        if(attacker->query_mystery() == "battle")
+        {
+            if(attacker->query_class_level("oracle") >= 31)
+            {
+                tell_object(attacker, "%^MAGENTA%^BOLD%^Your weapon strikes with magical force!%^RESET%^");
+                tell_object(target, "MAGENTA%^BOLD%^" + pname + "'s weapon strikes you with magical force!%^RESET%^");
+                target->cause_typed_damage(target, target->return_target_limb(), 5 + roll_rice(1 + attacker->query_class_level("oracle") / 15, 8), "force");
             }
         }
 

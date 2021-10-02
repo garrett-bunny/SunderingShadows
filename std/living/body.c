@@ -890,6 +890,13 @@ int query_resistance_percent(string res)
             if(this_object()->query_class_level("oracle") > 30 && res == "radiant")
                 mod += 10;
         }
+
+        if(this_object()->query_mystery() == "battle")
+        {
+            if(this_object()->query_class_level("oracle") >= 21 && res == "force")
+                mod += 20;
+        } 
+        
     }
   
     //Mage is invulnerable for duration of prismatic sphere

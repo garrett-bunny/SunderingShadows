@@ -27,7 +27,7 @@ class_spell_storage =
     "bones":
         ({"cause fear","false life","animate dead","boneshatter","slay living","circle of death","waves of exhaustion","horrid wilting","wail of the banshee"}),
     "battle":
-        ({"enlarge person", "fog cloud", "magic vestments", "wall of fire", "righteous might", "transformation", "foresight", "earthquake", "storm of vengeance"}),
+        ({"enlarge person", "divine weapon", "rage", "divine power", "righteous might", "greater magic weapon", "foresight", "earthquake", "storm of vengeance"}),
     //"flame":
     //    ({"burning hands", "resist energy", "fireball", "wall of fire", "conjure elemental", "fire seeds", "fire storm", "incendiary cloud", "fiery body"}),
     //"elemental":
