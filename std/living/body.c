@@ -865,6 +865,12 @@ int query_resistance_percent(string res)
             mod = 100;
     }
     
+    if(FEATS_D->usable_feat(this_object(), "apotheosis"))
+    {
+        if(res == "divine")
+            mod += 20;
+    }
+    
     if(FEATS_D->usable_feat(this_object(), "master of elements"))
     {
         if(this_object()->query("elementalist") == res)
