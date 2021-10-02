@@ -1253,7 +1253,6 @@ void wizard_interface(object user, string type, string targ)
 
     if ((FEATS_D->usable_feat(caster, "spellmastery") && (caster->query("spellmastery_spell") == spell_name)) ||
   //(FEATS_D->usable_feat(caster, "natures gift") && (member_array(spell_name, MAGIC_SS_D->query_class_special_spells("archdruid", "all")) != -1)) ||
-  (FEATS_D->usable_feat(caster, "apotheosis") && spell_type == "cleric" && member_array(divine_domains, caster->query_divine_domain()) >= 0) ||
   (FEATS_D->usable_feat(caster, "timeweaver") && (member_array(spell_name, MAGIC_SS_D->query_class_special_spells("chronicler", "all")) != -1)) ||
   (FEATS_D->usable_feat(caster, "greater spell mastery") && casting_level < 5 && spell_sphere == caster->query_school()))
     {
@@ -1273,6 +1272,25 @@ void wizard_interface(object user, string type, string targ)
         {
             preserve_in_memory = 1;
             tell_object(caster, "%^BOLD%^BLACK%^Your necromantic affinity preserves the spell.");
+        }
+    }
+    
+    if(spell_type == "cleric")
+    {
+        int x = 0;
+        
+        if(FEATS_D->usable_feat(caster, "apotheosis"))
+        {
+            foreach(string str in divine_domains)
+            {
+                if(member_array(str, caster->query_divine_domain()) >= 0)
+                    x++;
+            }
+            if(x)
+            {
+                tell_object(caster, "%^BOLD%^WHITE%^Your divine attunement preserves the domain spell.");
+                preserve_in_memory = 1;
+            }
         }
     }
 
@@ -2500,6 +2518,20 @@ void define_clevel()
             if(member_array("evil", domains) >= 0)
                 clevel += 1;
         }
+        
+        if(FEATS_D->usable_feat(caster, "apotheosis"))
+        {
+            int succ = 0;
+            
+            foreach(string str in divine_domains)
+            {
+                if(member_array(str, domains) >= 0)
+                    succ ++;
+            }
+            
+            if(succ)
+                clevel += 1;
+        }           
     }
          
     if ((spell_type == "mage" || spell_type == "sorcerer") && !shadow_spell) {
