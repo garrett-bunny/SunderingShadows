@@ -142,10 +142,14 @@ void execute_attack()
     energy_type = "divine";
 
     if(BONUS_D->process_hit(caster, attacker, 1, 0, 0, 0) <= 0)
-        tell_room(ENV(caster), caster->QCN + " tries to strike + " + attacker->QCN + " with their divine-infused weapon but misses!");
+    {
+        tell_room(ENV(caster), caster->QCN + " tries to strike + " + attacker->QCN + " with their divine-infused weapon but misses!", caster);
+        tell_object(caster, "You try to strike with your divine-infused weapon but miss!");
+    }
     else
     {        
-        tell_room(ENV(caster), "%^BOLD%^" + color + caster->QCN + " channels divine energy through " + caster->QP + " weapon and strikes " + attacker->QCN + "!", ({ attacker }));
+        tell_room(ENV(caster), "%^BOLD%^" + color + caster->QCN + " channels divine energy through " + caster->QP + " weapon and strikes " + attacker->QCN + "!", ({ caster }));
+        tell_object(caster, "%^BOLD%^" + color + "You channel divine energy through your weapon and strike " + attacker->query_cap_name() + "!");
         caster->execute_attack();
         attacker->cause_typed_damage(attacker, attacker->return_target_limb(), dam, energy_type);
         attacker && tell_object(attacker, "%^BOLD%^" + color + "You are struck with divine energy!");
