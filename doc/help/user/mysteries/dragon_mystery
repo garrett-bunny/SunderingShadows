@@ -3,11 +3,11 @@
 A draconic patron has picked you out for some great accomplishment.
 
 %^RED%^BOLD%^Revelations:%^RESET%^
-( 1) Dragon Affinity     : Feat to select dragon type, gives automatic claw attack
+( 1) Dragon Affinity     : Gain automatic claw attack
 ( 5) Breath Weapon       : Automatic breath during melee combat based on selected type
 (10) Draconic Resistance : Scaling AC + resistance to energy type chosen
-(15) Tail Swipe          : Automatic Tail attack
-(21) Dragon Senses       : Passive darkvision and blindfight
+(15) Dragon Senses       : Passive darkvision and blindfight
+(21) Tail Swipe          : Automatic Tail attack
 (31) Final Revelation    : Immunity to paralysis, sleep and damage of chosen type
 
 %^RESET%^%^RED%^Class Skills%^RESET%^: influence, perception, academics
