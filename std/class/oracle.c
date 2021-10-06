@@ -58,6 +58,17 @@ mapping class_featmap(string myspec, object player) {
                ]);
     }
     
+    if(player->query_mystery() == "life")
+    {
+        return ([
+                 1: ({ "light armor proficiency", "medium armor proficiency", "simple weapon proficiency", "shield proficiency", "spell focus", "blindfight" }),
+                 5 : ({ "indomitable" }),
+                 10: ({ "force of personality" }),
+                 15: ({ "leadership" }),
+                 31: ({ "deathward" }),
+               ]);
+    }
+    
     return ([
         1: ({ "light armor proficiency", "medium armor proficiency", "simple weapon proficiency", "shield proficiency", "spell focus" }),
         5 : ({ "indomitable" }),
