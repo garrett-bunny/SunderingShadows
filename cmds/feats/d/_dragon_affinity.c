@@ -97,12 +97,16 @@ void execute_attack()
 {
     object attacker, *attackers;
     string my_name, att_name, my_poss, att_poss;
-
-    if (caster->query_ghost() || caster->query_unconscious())
+    int level;
+    
+    if(!objectp(caster))
     {
         dest_effect();
         return;
     }
+
+    if (caster->query_ghost() || caster->query_unconscious())
+        return;
 
     if(caster->query_bound() || caster->query_paralyzed())
         return;
@@ -110,10 +114,15 @@ void execute_attack()
     attacker = caster->query_current_attacker();
     
     if(!attacker)
-    {
-        dest_effect();
         return;
-    }
+    
+    my_name = caster->query_cap_name();
+    att_name = attacker->query_cap_name();
+    my_poss = caster->query_possessive();
+    att_poss = attacker->query_possessive();
+    level = caster->query_class_level("oracle");
+    
+    
     
     attackers = caster->query_attackers();
 }
