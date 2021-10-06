@@ -157,6 +157,9 @@ void execute_attack()
     if(level < 5)
         return;
     
+    if(!objectp(caster))
+        return;
+    
     if(!caster->query("dragon_affinity"))
         return;
     
@@ -215,7 +218,8 @@ void execute_attack()
         {
             if(SAVING_THROW_D->reflex_save(ob, flevel + bonus))
             {
-                tell_room(place, "%^BOLD%^" + ob->query_cap_name() + " scrambles out of the way of the breath!");
+                tell_room(place, "%^BOLD%^" + ob->query_cap_name() + " scrambles out of the way of the breath!", ob);
+                tell_object(ob, "%^BOLD%^You scramble out of the way of the breath!");
                 ob->cause_typed_damage(ob, ob->return_target_limb(), dam / 2, dam_type);
             }
             else
@@ -225,16 +229,47 @@ void execute_attack()
         }
     }
     
+    if(!objectp(caster))
+        return;
+    
     if(level < 21)
         return;
     
-    attackers = caster->query_attackers();
+    attacker = caster->query_current_attacker();
+    att_name = attacker->query_cap_name();
     
-    if(!sizeof(attackers))
+    if(objectp(attacker))
         return;
     
     //TAIL ATTACK
+    switch(random(3))
+    {
+        case 0:
+        tell_object(caster, "%^RESET%^%^CRST%^%^C202%^Darting %^C130%^to the %^C208%^side%^C130%^, you bring your tail about to %^C196%^slam %^C130%^into %^CRST%^%^RESET%^%^CRST%^%^C130%^" + att_name + "!%^CRST%^");
+        tell_object(attacker, "%^RESET%^%^CRST%^%^C202%^Darting %^C130%^to the %^C208%^side%^C130%^, %^CRST%^" + my_name + "%^RESET%^%CRST%^%^C130%^ brings their tail about to %^C196%^slam %^C130%^into you!%^CRST%^");
+        tell_room(place, "%^RESET%^%^CRST%^%^C202%^Darting %^C130%^to the %^C208%^side%^C130%^, %^CRST%^" + my_name + "%^RESET%^%CRST%^%^C130%^ brings their tail about to %^C196%^slam %^C130%^into %^CRST%^" + att_name + "%^RESET%^%^CRST%^%^C130%^!%^CRST%^", ({ caster, attacker }));
+        break;
+        
+        default:
+        tell_object(caster, "%^RESET%^%^CRST%^%^C130%^You swing your body %^C202%^low %^C130%^and %^C208%^fast%^C130%^, your tail coming about like a whip at %^CRST%^" + att_name + "%^RESET%^%^CRST%^%^C130%^!%^CRST%^");
+        tell_object(attacker, "%^RESET%^%^CRST%^%^C130%^" + my_name + "%^RESET%^%^CRST%^%^C130%^ swings their body %^C202%^low %^C130%^and %^C208%^fast%^C130%^, their tail coming about like a whip at you!%^CRST%^");
+        tell_room(place, "%^RESET%^%^CRST%^%^C130%^" + my_name + "%^RESET%^%^CRST%^%^C130%^ swings their body %^C202%^low %^C130%^and %^C208%^fast%^C130%^, their tail coming about like a whip at %^CRST%^" + att_name + "%^RESET%^%^CRST%^%^C130%^!%^CRST%^", ({ attacker, caster }));
+    }
     
+    dam = (roll_dice(1, 10) * (1 + flevel /  10)) + bonus;
+    
+    if(SAVING_THROW_D->reflex_save(attacker, flevel + bonus))
+    {
+        tell_room(place, "%^BOLD%^" + att_name + " avoids the tail swing!", attacker);
+        tell_object(attacker, "You avoid the tail swing!");
+    }
+    else
+    {
+        attacker->set_tripped(roll_dice(1, 4) * 6, "%^BOLD%^You are struggling to get up!%^RESET%^");
+        attacker->cause_typed_damage(attacker, "torso", dam, "bludgeoning");
+    }
+    
+    return;
     
 }
 
