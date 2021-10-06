@@ -2,9 +2,6 @@
 #include <daemons.h>
 #include <magic.h>
 inherit SHAPESHIFT;
-
-string color(string str)
-{
     
 
 // all of the functions set in create below need to be there so it doesn't bug when trying to shapeshift -Ares
@@ -65,12 +62,11 @@ int default_descriptions(object obj)
 int change_into_message(object obj)
 {
     if(!objectp(obj)) { return 0; }
-    tell_object(obj,"%^RESET%^%^GREEN%^You turn your mind out to the wilds as you focus on the core of your spirit.");
+    tell_object(obj,"%^RESET%^%^YELLOW%^You turn your mind out to the wilds as you focus on the core of your spirit.");
     tell_object(obj,"%^RESET%^%^BOLD%^You can feel your body beginning to change!");
-    tell_object(obj,"%^RESET%^%^BLUE%^You reach out to the planes beyond the material, harnessing the very essence of the "
-        "elements. Your bond with the wild grows stronger, attuned as you are now with the magical energies of the "
+    tell_object(obj,"%^RESET%^%^BLUE%^You reach out to the planes beyond the material, harnessing the very essence of "
+        "life Your bond with positive energy grows stronger, attuned as you are now with the magical energies of the "
         "world around you.  You are ELEMENTAL!");
-    tell_object(obj,"%^RESET%^%^BOLD%^You realise that you can <surge> with energy!");
 
     tell_room(environment(obj),"%^RESET%^%^BOLD%^"+obj->QCN+" grows very still and appears to concentrate deeply.",obj);
     tell_room(environment(obj),"%^RESET%^%^YELLOW%^"+obj->QCN+" begins to change in front of your very eyes!",obj);
@@ -85,7 +81,7 @@ int change_outof_message(object obj)
 {
     if(!objectp(obj)) { return 0; }
 
-    tell_object(obj,"%^RESET%^%^BOLD%^You relax your focus on the natural world.");
+    tell_object(obj,"%^RESET%^%^BOLD%^You relax your focus on the nature of life.");
     tell_object(obj,"%^RESET%^%^BLUE%^You can feel a tinge of remose as you feel your elemental form slipping away.");
     tell_object(obj,"%^RESET%^%^GREEN%^You inhale a breath and stretch as you grow accustomed to the foreign sensation of your own body once again.");
 
