@@ -71,6 +71,13 @@ spell_effect(int prof)
     }
 
     rnd = sdamage * 7/6;
+    
+    if(spell_type == "oracle")
+    {
+        if(caster->query_mystery() == "life" && caster->query_class_level("oracle") >= 15)
+            rnd += caster->query_class_level("oracle");
+    }
+    
     damage_targ(target, target->return_target_limb(), rnd, "positive energy");
 
     if(query_spell_name()=="heal" || query_spell_name() == "greater heal")

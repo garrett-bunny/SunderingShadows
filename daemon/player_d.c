@@ -812,6 +812,9 @@ int immunity_check(object obj, string type)
         if (member_array(obj->query_race(),({"golem", "construct", "soulforged"})) >= 0) {
             return 1;
         }
+        
+        if(obj->query_mystery() == "life" && obj->query_class_level("oracle") >= 31)
+            return 1;
 
         return 0;
     }
@@ -863,6 +866,20 @@ int immunity_check(object obj, string type)
             
         return 0;
     }
+    
+    case "rend":
+    {
+        if(obj->query_mystery() == "life" && obj->query_class_level("oracle") >= 31)
+            return 1;
+    }
+    break;
+    
+    case "sickened":
+    {
+        if(obj->query_mystery() == "life" && obj->query_class_level("oracle") >= 31)
+            return 1;
+    }
+    break;    
     
 
     default:
