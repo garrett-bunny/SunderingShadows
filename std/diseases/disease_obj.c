@@ -167,6 +167,9 @@ object infect(object victim, int dc)
  */
 int is_immune(object victim)
 {
+    if(PLAYER_D->immunity_check(victim, "disease"))
+        return 1;
+    
     if (victim->is_undead()) {
         return 1;
     }

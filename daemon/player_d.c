@@ -838,6 +838,32 @@ int immunity_check(object obj, string type)
         return 0;
     }
     break;
+    
+    case "poison":
+    {
+        if (obj->query_property("poison immunity"))
+            return 1;
+            
+        if (FEATS_D->usable_feat(obj, "venom immunity"))
+            return 1;
+        
+        if (FEATS_D->usable_feat(obj, "undead graft"))
+            return 1;
+    
+        if (FEATS_D->usable_feat(obj, "purity of body"))
+            return 1;
+    
+        if (FEATS_D->usable_feat(obj, "earthen blood"))
+            return 1;
+
+        if (obj->is_undead())
+            return 1;
+        
+        if(obj->query_mystery() == "life")
+            
+        return 0;
+    }
+    
 
     default:
         return 0;
