@@ -821,6 +821,15 @@ int immunity_check(object obj, string type)
     
     break;
     
+    case "negative_level":
+    {
+        if(obj->query_mystery() == "life" && obj->query_class_level("oracle") >= 31)
+            return 1;
+        
+        return 0;
+    }
+    break;
+    
     case "paralysis":
     {
         if(obj->query_property("stun_immunity"))

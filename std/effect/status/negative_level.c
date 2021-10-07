@@ -1,6 +1,7 @@
 #include <std.h>
 #include <magic.h>
 #include <skills.h>
+#include <daemons.h>
 
 inherit STATUS;
 
@@ -15,6 +16,12 @@ void create()
 int status_effect()
 {
     int i;
+    
+    if(PLAYER_D->immunity_check(target, "negative_level"))
+    {
+        this_object()->remove();
+        return;
+    }
 
     if (target->query_property("effect_negative_level") > 4) {
         TO->remove();

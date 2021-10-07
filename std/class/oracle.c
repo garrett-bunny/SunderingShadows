@@ -1,5 +1,7 @@
 #include <std.h>
 #include <mysteries.h>
+#include <daemons.h>
+
 inherit DAEMON;
 
 void create() { ::create(); }

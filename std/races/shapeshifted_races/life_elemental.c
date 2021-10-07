@@ -41,12 +41,9 @@ int default_descriptions(object obj)
 {
     if(!objectp(obj)) { return 0; }
 
-    obj->set_description("rises before you, a creature of pure elemental force. Vaguely humanoid, it "
-        "has a head with depthless orbs for eyes, descending to the outline of a body with arms at "
-        "either side. The torso trails down to a formless mass that moves over the ground somehow. "
-        "The being is unsettling at best, its intimidating bulk being something not of this plane.");
+    obj->set_description("%^RESET%^%^CRST%^%^C064%^Vibrant %^C221%^g%^C228%^o%^C223%^l%^C230%^d%^C221%^e%^C228%^n %^C223%^f%^C230%^l%^C221%^a%^C228%^m%^C223%^e%^C230%^s %^C064%^make up this elemental creature, radiating a feeling of %^C214%^ye%^C208%^a%^C202%^rn%^C208%^i%^C214%^ng %^C064%^and %^C028%^po%^C034%^te%^C040%^n%^C034%^ti%^C028%^al%^RESET%^%^C064%^. Images of %^C229%^l%^C231%^i%^C229%^f%^C227%^e%^C064%^, animals and insects and all living things flicker and form among the writhing tongues of %^C221%^f%^C228%^i%^C223%^r%^C230%^e%^C064%^, granting brief glimpses of a %^C130%^lion %^C144%^stalking among the savanna %^C064%^or a %^C033%^great heron %^C045%^in flight%^C064%^. The embers and sparks rising from this being shift into other shapes, appearing as beetles or other winged insects as they trail off into obscurity. Its visage appears to transition fluidly between all manner of beasts, but the eyes always remain the same... %^C220%^two piercing %^C228%^o%^C230%^r%^C228%^b%^C226%^s %^C220%^of absolute %^C226%^br%^C228%^il%^C230%^li%^C228%^an%^C226%^ce%^C064%^.%^CRST%^");
 
-    obj->setDescriptivePhrase("shifting $R");
+    obj->setDescriptivePhrase("%^RESET%^%^CRST%^%^C214%^w%^C208%^r%^C202%^i%^C214%^t%^C208%^h%^C202%^i%^C214%^n%^C208%^g %^C220%^$R of %^C221%^g%^C228%^o%^C223%^l%^C230%^d%^C221%^e%^C228%^n %^C223%^f%^C230%^l%^C221%^a%^C228%^m%^C223%^e%^CRST%^");
 
     obj->set("speech string","voice");
     obj->set("describe string","eerily");
