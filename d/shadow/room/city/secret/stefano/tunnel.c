@@ -54,7 +54,7 @@ int pull(string str) {
      tell_object(TP,"%^ORANGE%^The chime of the bell echoes through the tunnel as you pull its rope, and the wall swings open, revealing a staircase leading up.%^RESET%^%^RESET%^");
      tell_room(ETP,"%^ORANGE%^The chime of the bell echoes through the tunnel as "+TPQCN+" tugs on the rope, and the wall swings open, revealing a staircase leading up.%^RESET%^",TP);
      add_exit("/d/guilds/consortium/hall/help.c","up");
-     "/d/guilds/consortium/hall/help.c"->add_exit("/realms/titania/shadowcity/secret/stefano/tunnel.c","down");
+     "/d/guilds/consortium/hall/help.c"->add_exit("/d/shadow/room/city/secret/stefano/tunnel.c","down");
      tell_room("/d/guilds/consortium/hall/help.c","%^ORANGE%^You hear a muffled chime of a bell and suddenly the bookcase swings open.%^RESET%^");
      return 1;
    }
