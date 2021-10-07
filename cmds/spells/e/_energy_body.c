@@ -6,6 +6,7 @@ void create() {
     ::create();     
     set_spell_name("energy body");
     set_spell_level(([ "innate" : 9 ]));
+    set_mystery("life");
     set_spell_sphere("alteration");
     set_syntax("cast innate energy body");
     set_description("This innate ability allows a Life oracle to transform into a Life Elemental.");

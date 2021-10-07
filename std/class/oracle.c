@@ -114,13 +114,20 @@ mapping query_innate_spells(object player)
         innate_spells += ([ "erosion touch" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), ]);
         if(olevel >= 15)
             innate_spells += ([ "natural divination" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), ]);
-        if(olevel >= 30)
+        if(olevel >= 31)
             innate_spells += ([ "cocoon" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), ]);
         break;
         
         case "battle":
         if(olevel >= 5)
             innate_spells += ([ "battlecry" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), ]);
+        break;
+        
+        case "life":
+        if(olevel >= 5)
+            innate_spells += ([ "life link" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), ]);
+        if(olevel >= 21)
+            innate_spells += ([ "energy body" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), ]);
         break;
     }
     
