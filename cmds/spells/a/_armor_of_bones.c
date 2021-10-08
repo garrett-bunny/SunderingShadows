@@ -48,6 +48,8 @@ void spell_effect(int prof)
 {   
     object corpse;
     
+    ::spell_effect();
+    
     if(!objectp(caster))
         return;
     
