@@ -1441,6 +1441,12 @@ int query_stats(string stat)
         if(stat == "strength" && member_array("strength", TO->query_divine_domain()) >= 0)
             res += 2;
     }
+    
+    if(this_object()->query_class_level("oracle") >= 10)
+    {
+        if(stat == "strength" && this_object()->query_mystery() == "dragon")
+            res += 2;
+    }
 
     if(stat == "charisma" && FEATS_D->usable_feat(TO, "spiritual body"))
         res += 2;
