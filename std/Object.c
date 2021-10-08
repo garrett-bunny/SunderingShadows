@@ -745,7 +745,7 @@ mixed query_property(string prop)
         {
             return 1;
         }
-        if(this_object()->query_class_level("oracle") >= 21)
+        if(this_object()->query_class_level("oracle") >= 15)
         {
             if(this_object()->query_mystery() == "bones")
                 return 1;
