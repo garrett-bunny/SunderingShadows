@@ -597,7 +597,7 @@ varargs int typed_damage_modification(object attacker, object targ, string limb,
     }
     
     //Bones Mystery bleed effect on negative energy
-    if(damage > 0 && type == "negative energy")
+    if(damage > 0 && type == "negative energy" && !targ->query_property("negative energy affinity"))
     {
         if(attacker->query_mystery() == "bones" && attacker->query_class_level("oracle") >= 31)
             targ && targ->set_property("rend", attacker->query_prestige_level("oracle") / 8 + 1);
