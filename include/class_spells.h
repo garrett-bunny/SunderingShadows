@@ -37,7 +37,7 @@ class_spell_storage =
     "heavens":
         ({"color spray", "hypnotic pattern", "daylight", "rainbow pattern", "angelic aspect", "spray of shooting stars", "prismatic spray", "sunburst", "meteor swarm"}),
     "life":
-        ({"mending", "restoration", "remove blindness", "neutralize poison", "breath of life", "heal", "regeneration", "mass heal", "resurrection"}),
+        ({"mending", "restoration", "remove blindness", "neutralize poison", "breath of life", "heal", "regenerate", "mass heal", "resurrection"}),
     "shadow":
         ({"blurred movement", "invisibility", "deeper darkness", "shadow necromancy", "vampiric shadow shield", "shadow alteration", "mass invisibility", "greater shadow evocation", "shades"}),
     //"solar":
