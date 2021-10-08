@@ -3279,6 +3279,9 @@ varargs int do_save(object targ, int mod)
     if(mental_spell && FEATS_D->usable_feat(targ, "guarded thoughts") && targ->query("available focus"))
         caster_bonus -= 10;
     
+    if(mental_spell && targ->query_mystery() == "bones" && targ->query_class_level("oracle") >= 10)
+        caster_bonus -= 2;
+    
     if(evil_spell && FEATS_D->usable_feat(targ, "celestial totem"))
         caster_bonus -= 2;
 

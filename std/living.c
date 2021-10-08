@@ -477,7 +477,7 @@ void heart_beat()
         {
             tell_room(environment(this_object()), "%^RED%^BOLD%^" + this_object()->QCN + "'s wounds bleed profusely!%^RESET%^", ({ this_object() }));
             tell_object(this_object(), "%^RED%^BOLD%^Your wounds bleed profusely!%^RESET%^");
-            this_object()->cause_typed_damage(this_object(), "torso", query_property("rend") * roll_dice(this_object()->query_level() / 2 + 1), "untyped");
+            this_object()->cause_typed_damage(this_object(), "torso", roll_dice(query_property("rend"), this_object()->query_level() / 5 + 1), "untyped");
             set_property("rend", -1);
             if(query_property("rend") <= 0)
             {

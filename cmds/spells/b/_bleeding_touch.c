@@ -79,7 +79,10 @@ void spell_effect(int prof)
     
     num = clevel / 8 + 1;
     
-    call_out("touch_bleed", ROUND_LENGTH - 1);
+    if(!target->query_property("rend"))
+        target->set_property("rend", num); 
+    
+    //call_out("touch_bleed", ROUND_LENGTH - 1);
 }
 
 void touch_bleed()

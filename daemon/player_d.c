@@ -878,8 +878,15 @@ int immunity_check(object obj, string type)
     
     case "rend":
     {
+        if(obj->is_undead())
+            return 1;
+        
         if(obj->query_mystery() == "life" && obj->query_class_level("oracle") >= 31)
             return 1;
+        
+        if(obj->query_mystery() == "bones" && obj->query_class_level("oracle") >= 21)
+            return 1;
+        
     }
     break;
     

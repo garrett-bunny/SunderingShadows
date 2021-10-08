@@ -789,10 +789,25 @@ mixed query_property(string prop)
         if(PLAYER_D->check_familiar(this_object()))
             return 1;
         
-        return 0;
+        return props[prop];
     }
-
-
+    
+    if(prop == "rend")
+    {
+        int rend_max;
+        
+        if(this_object()->is_undead())
+            return 0;
+        
+        if(PLAYER_D->immunity_check(this_object(), "rend"))
+            return 0;
+        
+        rend_max = this_object()->query_character_level() / 5 + 1;
+        props["rend"] = min( ({ props["rend"], rend_max }) );
+        
+        return props[prop];
+    }
+        
     if (prop == "spell damage resistance") {
         if (TO->is_vampire()) {
             if (!TO->is_in_sunlight()) {
