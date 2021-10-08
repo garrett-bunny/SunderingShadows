@@ -2106,7 +2106,20 @@ void check_fizzle(object ob)
         TO->remove();
         return;
     }
-
+    
+    if(caster && caster->query_property("countered"))
+    {
+        caster->remove_property("countered");
+        caster->remove_property("empower spell");
+        caster->remove_property("quicken spell");
+        caster->remove_property("maximize spell");
+        caster->remove_property("enlarge spell");
+        tell_object(caster, "%^CYAN%^Your spell is countered and fails to materialize!");
+        tell_room(place, "%^CYAN%^" + caster->query_cap_name() + " gasps as " + caster->query_possessive() + " spell fails to materialize!", caster);
+        this_object()->remove();
+        return;
+    }
+    
     if (objectp(target)) {
         if (!(spell_type == "warlock" ||
               spell_type == "monk")) {
