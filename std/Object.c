@@ -745,6 +745,11 @@ mixed query_property(string prop)
         {
             return 1;
         }
+        if(this_object()->query_class_level("oracle") >= 21)
+        {
+            if(this_object()->query_mystery() == "bones")
+                return 1;
+        }
         //Unlike other racial bonuses this one must be valid for all
         //half-races as well.
         if (TO->query("subrace") == "dhampir") {
