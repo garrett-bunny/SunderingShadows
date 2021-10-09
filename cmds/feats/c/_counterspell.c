@@ -79,7 +79,7 @@ void execute_feat()
     object obj, spell;
     string type, my_class, spell_to_use;
     mapping available;
-    int DC, level;
+    int DC, level, base;
     
     ::execute_feat();
 
@@ -112,9 +112,10 @@ void execute_feat()
         return;
     }
     
-    DC = spell->query_clevel() + 15;
+    DC = spell->query_clevel() + 10;
+    base = max( ({ caster->query_skill("spellcraft"), flevel }) );
     
-    if(DC > caster->query_skill("spellcraft") + roll_dice(1, 20))
+    if(DC > base + roll_dice(1, 20))
     {
         tell_object(caster, "%^CYAN%^The spell resists your attempt to counter it!");
         dest_effect();
@@ -153,7 +154,7 @@ void execute_feat()
     
     tell_object(caster, "%^BOLD%^You use your meta magic knowledge to counter " + target->query_cap_name() + "'s spell.");
     target->set_property("counterspell", 1);
-    caster->add_cooldown("counterspell", 600);
+    caster->add_cooldown("counterspell", 300);
 
     dest_effect();
     return;
