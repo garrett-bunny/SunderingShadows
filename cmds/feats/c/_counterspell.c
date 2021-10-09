@@ -109,6 +109,7 @@ void execute_feat()
         return;
     }
     
+    //Should work most of the time unless target is a clearly better spellcaster
     //DC = guild_level + spell level + stat bonus + spell dcs + 10
     //50 + 9 + 10 + 9 + 10 = 88
     //ROLL = guild_level + spellcraft / 5 + stat bonus + spell dcs + d20
