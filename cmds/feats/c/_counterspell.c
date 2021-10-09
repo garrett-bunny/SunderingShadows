@@ -28,15 +28,13 @@ void create()
     feat_category("MetaMagic");
     feat_name("counterspell");
     feat_prereq("Mage or Sorcerer L31");
-    feat_syntax("counterspell [TARGET]");
+    feat_syntax("counterspell TARGET");
     feat_desc("This Meta Magic feat will attempt to cause your target's spell to fail. The target must be in the process of casting a spell for this to work. First a spellcraft check against DC 15 +  opponent caster level must be made. Then the feat will consume a random prepared spell, for mages, or a prepared spell slot, for sorcerers, equal to the level of the spell being countered.");
     set_target_required(1);
     set_required_for(({ }));
 }
 
-
 int allow_shifted() { return 0; }
-
 
 int prerequisites(object ob)
 {
@@ -72,7 +70,6 @@ int cmd_counterspell(string str)
     feat->setup_feat(this_player(), str);
     return 1;
 }
-
 
 void execute_feat()
 {
@@ -112,8 +109,16 @@ void execute_feat()
         return;
     }
     
+    //DC = guild_level + spell level + stat bonus + spell dcs + 10
+    //50 + 9 + 10 + 9 + 10 = 88
+    //ROLL = guild_level + spellcraft / 5 + stat bonus + spell dcs + d20
+    //50 + 10 + 10 + 9 + d20 = 79 + d20
     DC = spell->query_clevel() + 10;
-    base = max( ({ caster->query_skill("spellcraft"), flevel }) );
+    base = flevel + caster->query_skill("spellcraft") / 5;
+    //Probably 9-10 for spell dcs
+    base += caster->query_property("spell dcs");
+    //Flevel/Clevel in feat.c doesn't take stat bonus into account
+    base += max( ({ BONUS_D->query_stat_bonus(caster, "charisma"), BONUS_D->query_stat_bonus(caster, "intelligence") }) );
     
     if(DC > base + roll_dice(1, 20))
     {
@@ -152,7 +157,7 @@ void execute_feat()
         return;
     }
     
-    tell_object(caster, "%^BOLD%^You use your meta magic knowledge to counter " + target->query_cap_name() + "'s spell.");
+    tell_object(caster, "%^BOLD%^%^CYAN%^You use your meta magic knowledge to counter " + target->query_cap_name() + "'s spell.");
     target->set_property("counterspell", 1);
     caster->add_cooldown("counterspell", 300);
 
