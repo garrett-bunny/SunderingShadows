@@ -2107,9 +2107,9 @@ void check_fizzle(object ob)
         return;
     }
     
-    if(caster && caster->query_property("countered"))
+    if(caster && caster->query_property("counterspell"))
     {
-        caster->remove_property("countered");
+        caster->remove_property("counterspell");
         caster->remove_property("empower spell");
         caster->remove_property("quicken spell");
         caster->remove_property("maximize spell");
