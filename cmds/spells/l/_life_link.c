@@ -48,6 +48,8 @@ int preSpell()
 
 void spell_effect(int prof){
     int duration = clevel * ROUND_LENGTH * 10;
+    
+    ::spell_effect();
 
     if(!objectp(target))
     {
@@ -63,7 +65,6 @@ void spell_effect(int prof){
     tell_room(place,"%^BOLD%^%^ORANGE%^A radiant light bathes "+target->QCN+" briefly.");
     target->set_property("spelled",({TO}));
     target->set_property("life link",1);
-    spell_successful();
     addSpellToCaster();
     spell_duration = duration;
     set_end_time();

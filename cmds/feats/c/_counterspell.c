@@ -1,3 +1,18 @@
+/*
+  _counterspell.c
+  
+  Metamagic feat for Sorcerer and Mage L31.
+  
+  This is just one of a group of metamagic feats to help give
+  Mages and Sorcerers the edge in terms of raw spellcasting.
+  
+  Counterspell will first need to overcome a spellcraft skill check,
+  then will consume a same-level spell to counter the spell the
+  target is currently casting.
+  
+  -- Tlaloc --
+*/
+
 #include <std.h>
 #include <daemons.h>
 
@@ -146,10 +161,6 @@ void execute_feat()
 
 void dest_effect()
 {
-    if(objectp(caster))
-    {
-        caster->remove_property("quicken spell");
-    }
     ::dest_effect();
     remove_feat(TO);
     return;

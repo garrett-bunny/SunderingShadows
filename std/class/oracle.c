@@ -60,6 +60,16 @@ mapping class_featmap(string myspec, object player) {
                ]);
     }
     
+    if(player->query_mystery() == "bones")
+    {
+        return ([
+                 1: ({ "light armor proficiency", "medium armor proficiency", "simple weapon proficiency", "shield proficiency", "spell focus" }),
+                 5 : ({ "indomitable", "raise the dead" }),
+                 10: ({ "force of personality" }),
+                 15: ({ "leadership" }),
+               ]);
+    }
+    
     if(player->query_mystery() == "life")
     {
         return ([
@@ -128,6 +138,11 @@ mapping query_innate_spells(object player)
             innate_spells += ([ "life link" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), ]);
         if(olevel >= 21)
             innate_spells += ([ "energy body" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), ]);
+        break;
+
+        case "bones":
+        if(olevel >= 1)
+            innate_spells += ([ "armor of bones" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), ]);
         break;
     }
     

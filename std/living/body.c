@@ -901,6 +901,32 @@ int query_resistance_percent(string res)
         {
             if(this_object()->query_class_level("oracle") >= 21 && res == "force")
                 mod += 20;
+        }
+        
+        if(this_object()->query_mystery() == "dragon")
+        {
+            if(this_object()->query_class_level("oracle") >= 31)
+            {
+                switch(this_object()->query("dragon_affinity"))
+                {
+                    case "black": case "copper":
+                    if(res == "acid")
+                        mod = 100;
+                    break;
+                    case "red": case "brass": case "gold":
+                    if(res == "fire")
+                        mod = 100;
+                    break;
+                    case "blue": case "bronze":
+                    if(res == "electricity")
+                        mod = 100;
+                    break;
+                    case "silver": case "white":
+                    if(res == "cold")
+                        mod = 100;
+                    break;
+                }
+            }
         } 
         
     }

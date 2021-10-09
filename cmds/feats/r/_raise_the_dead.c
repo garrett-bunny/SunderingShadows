@@ -28,22 +28,22 @@ void create()
     feat_prereq("Bones Oracle L5");
     feat_classes(({"druid", "ranger"}));
     feat_syntax("raise_the_dead to summon or raise_the_dead to dismiss");
-    feat_desc("Summons or dismisses your faithful animal companion. This companion will follow you through thick and thin, will level up with you, and gains several perks as it grows. The TYPE of animal will determine its base stats and natural armor.  The animal companion gains its own feats as follows:
+    feat_desc("Summons or dismisses a skeleton to do your bidding. This skeleton will follow you through thick and thin, will level up with you, and gains several perks as it grows. The skeleton gains its own feats as follows:
 
   LEVEL  3 - Evasion
   LEVEL  6 - Resistance
   LEVEL  9 - Precise Strikes
   LEVEL 15 - Stalwart
 
-The Animal Companion will hide if you use the 'hide_in_shadows' command, allowing you to effectively sneak about with your faithful friend.
+The Skeleton will hide if you use the 'hide_in_shadows' command, allowing you to effectively sneak about with your faithful friend.
 
-The Animal Companion can also be customized through several commands, which will allow you to change its description:
+The Skeleton can also be customized through several commands, which will allow you to change its description:
 
-  'animal short [DESCRIPTION]' - Changes the short description of the companion.
-  'animal long  [DESCRIPTION]' - Changes the long description of the companion.
+  'skeleton short [DESCRIPTION]' - Changes the short description of the companion.
+  'skeleton long  [DESCRIPTION]' - Changes the long description of the companion.
 
-  To have the animal companion follow you, use 'animal follow'.
-  To command the animal companion, use %^ORANGE%^<animal command %^ULINE%^ACTION%^RESET%^ORANGE%^>.%^RESET%^");
+  To have the animal companion follow you, use 'skeleton follow'.
+  To command the animal companion, use %^ORANGE%^<skeleton command %^ULINE%^ACTION%^RESET%^ORANGE%^>.%^RESET%^");
 
     set_target_required(0);
 }
