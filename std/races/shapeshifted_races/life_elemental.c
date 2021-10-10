@@ -114,8 +114,8 @@ int shape_attack(object tp, object targ)
         return 0;
     
     //Elemental does positive energy to friendly living and enemy undead
-    attackers = filter_array(attackers, (: $1->is_undead() :));
-    allies = filter_array(allies, (: !($1->is_undead()) :));
+    sizeof(attackers) && attackers = filter_array(attackers, (: $1->is_undead() :));
+    sizeof(allies) && allies = filter_array(allies, (: !($1->is_undead()) :));
     
     if(!sizeof(attackers) && !sizeof(allies))
         return 0;
