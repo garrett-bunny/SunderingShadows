@@ -29,7 +29,7 @@ void create()
     feat_name("counterspell");
     feat_prereq("Mage or Sorcerer L31");
     feat_syntax("counterspell TARGET");
-    feat_desc("This Meta Magic feat will attempt to cause your target's spell to fail. The target must be in the process of casting a spell for this to work. First a spellcraft check against DC 15 +  opponent caster level must be made. Then the feat will consume a random prepared spell, for mages, or a prepared spell slot, for sorcerers, equal to the level of the spell being countered.");
+    feat_desc("This Meta Magic feat will attempt to cause your target's spell to fail. The target must be in the process of casting a spell for this to work. First a spellcraft check against the clevel of the spell must be made. Then the feat will consume a random prepared spell, for mages, or a prepared spell slot, for sorcerers, equal to the level of the spell being countered.");
     set_target_required(1);
     set_required_for(({ }));
 }
@@ -112,10 +112,10 @@ void execute_feat()
     //Should work most of the time unless target is a clearly better spellcaster
     //DC = guild_level + spell level + stat bonus + spell dcs + 10
     //50 + 9 + 10 + 9 + 10 = 88
-    //ROLL = guild_level + spellcraft / 5 + stat bonus + spell dcs + d20
-    //50 + 10 + 10 + 9 + d20 = 79 + d20
+    //ROLL = spellcraft + stat bonus + spell dcs + d20
+    //65 + 10 + 9 + d20 = 84 + d20
     DC = spell->query_clevel() + 10;
-    base = flevel + caster->query_skill("spellcraft") / 5;
+    base = caster->query_skill("spellcraft");
     //Probably 9-10 for spell dcs
     base += caster->query_property("spell dcs");
     //Flevel/Clevel in feat.c doesn't take stat bonus into account
