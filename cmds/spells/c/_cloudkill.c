@@ -7,7 +7,7 @@ inherit SPELL;
 
 int timer, flag, stage, toggle, counter;
 
-
+//This spell is way more powerful in SRD. Rewrite this.
 void create()
 {
     ::create();

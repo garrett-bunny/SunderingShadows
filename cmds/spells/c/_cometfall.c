@@ -9,7 +9,7 @@ void create(){
     ::create();
     set_author("circe");
     set_spell_name("cometfall");
-    set_spell_level(([ "cleric" : 7 ]));
+    set_spell_level(([ "cleric" : 7, "druid" : 7 ]));
     set_spell_sphere("combat");
     set_syntax("cast CLASS cometfall");
     set_description("By chanting this spell, the priest calls into being a horde of comets, blanketing a small area.  "

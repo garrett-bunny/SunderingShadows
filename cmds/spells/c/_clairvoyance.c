@@ -16,6 +16,7 @@ void create()
 {
     ::create();
     set_spell_name("clairvoyance");
+    //On way fewer spell lists in SRD...
     set_spell_level(([ "mage" : 2, "bard" : 3, "assassin" : 4, "inquisitor" : 3, "warlock" : 1, "magus" : 3 ]));
     set_spell_sphere("divination");
     set_syntax("cast CLASS clairvoyance on TARGET");
