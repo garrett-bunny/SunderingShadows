@@ -18,7 +18,7 @@
 
 inherit FEAT;
 
-string *allowed = ({ "mage", "sorcerer" });
+string *allowed = ({ "oracle" });
 
 void create()
 {
@@ -26,10 +26,10 @@ void create()
     set_author("tlaloc");
     feat_type("instant");
     feat_category("MetaMagic");
-    feat_name("counterspell");
-    feat_prereq("Mage or Sorcerer L31");
-    feat_syntax("counterspell TARGET");
-    feat_desc("This Meta Magic feat will attempt to cause your target's spell to fail. The target must be in the process of casting a spell for this to work. First a spellcraft check against the clevel of the spell must be made. Then the feat will consume a random prepared spell, for mages, or a prepared spell slot, for sorcerers, equal to the level of the spell being countered.");
+    feat_name("primal scar");
+    feat_prereq("Spellscar Oracle L31");
+    feat_syntax("primal scar TARGET");
+    feat_desc("This Meta Magic feat will attempt to scar your target with primal wild magic, causing the next spell they cast to go wild with a random spell effect instead. This feat will first attempt a spellcraft roll against the target's spellcraft. If succeeded, a level 9 spell slot will be consumed to scar the target. You must have a level 9 slot prepared to use this feat. This feat has a cooldown.");
     set_target_required(1);
     set_required_for(({ }));
 }
@@ -58,10 +58,14 @@ int prerequisites(object ob)
     {
         return 0;
     }
+    
+    if(ob->query_mystery() != "spellscar")
+        return 0;
+    
     return ::prerequisites(ob);
 }
 
-int cmd_counterspell(string str)
+int cmd_primal_scar(string str)
 {
     object feat;
     if(!objectp(this_player())) { return 0; }
@@ -86,9 +90,9 @@ void execute_feat()
         return;
     }
 
-    if(caster->cooldown("counterspell"))
+    if(caster->cooldown("primal scar"))
     {
-        tell_object(caster, "You can't use counterspell yet.");
+        tell_object(caster, "You can't use primal scar yet.");
         dest_effect();
         return;
     }
@@ -100,31 +104,21 @@ void execute_feat()
         return;
     }
     
-    spell = target->query_property("spell_casting");
-    
-    if(!objectp(spell))
+    if(target->query_property("spellscarred"))
     {
-        tell_object(caster, "Your target is not casting a spell.");
+        tell_object(caster, "That target is already scarred by wild magic.");
         dest_effect();
         return;
     }
     
     //Should work most of the time unless target is a clearly better spellcaster
-    //DC = guild_level + spell level + stat bonus + spell dcs + 10
-    //50 + 9 + 10 + 9 + 10 = 88
-    //ROLL = spellcraft + stat bonus + spell dcs + d20
-    //65 + 10 + 9 + d20 = 84 + d20
-    DC = spell->query_clevel() + 10;
-    base = caster->query_skill("spellcraft");
-    //Probably 9-10 for spell dcs
-    base += caster->query_property("spell dcs");
-    //Flevel/Clevel in feat.c doesn't take stat bonus into account
-    base += max( ({ BONUS_D->query_stat_bonus(caster, "charisma"), BONUS_D->query_stat_bonus(caster, "intelligence") }) );
+    DC = 10 + target->query_skill("spellcraft");
+    base = caster->query_skill("spellcraft") + BONUS_D->query_stat_bonus(caster, "charisma");
     
     if(DC > base + roll_dice(1, 20))
     {
-        tell_object(caster, "%^CYAN%^The spell resists your attempt to counter it!");
-        caster->add_cooldown("counterspell", 300);
+        tell_object(caster, "%^CYAN%^Your target resists your attempt to scar them with wild magic!");
+        caster->add_cooldown("primal scar", 300);
         dest_effect();
         return;
     }
@@ -138,30 +132,27 @@ void execute_feat()
     }
     
     level = spell->query_spell_level(type);
-    available = keys(caster->query_all_memorized(my_class)[level]);
+    available = keys(caster->query_all_memorized(my_class)[9]);
     
     if(!pointerp(available) || !sizeof(available))
     {
-        tell_object(caster, "You don't have any spells prepared of the proper level.");
+        tell_object(caster, "You don't have any level 9 spells prepared.");
         dest_effect();
         return;
     }
     
-    spell_to_use = available[random(sizeof(available))];
-    
-    if(spell_to_use == "generic")
-        spell_to_use = "level " + level + "";
+    spell_to_use = "level 9";
     
     if(!this_player()->forget_memorized(my_class, spell_to_use, 1))
     {
-        tell_object(caster, "The spell you are using to counter failed.");
+        tell_object(caster, "The spell you are using to scar your opponent failed.");
         dest_effect();
         return;
     }
     
-    tell_object(caster, "%^BOLD%^%^CYAN%^You use your meta magic knowledge to counter " + target->query_cap_name() + "'s spell.");
-    target->set_property("counterspell", 1);
-    caster->add_cooldown("counterspell", 300);
+    tell_object(caster, "%^BOLD%^%^CYAN%^You use your primal knowledge to scar " + target->query_cap_name() + " with wild magic.");
+    target->set_property("spellscarred", 1);
+    caster->add_cooldown("primal scar", 300);
 
     dest_effect();
     return;
