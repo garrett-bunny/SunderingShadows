@@ -364,6 +364,11 @@ int magic_save_throw_adjust(object targ, object caster)
     {
         caster_bonus -= 1;
     }
+    
+    if(targ->query_mystery() == "spellscar" && targ->query_class_level("oracle") >= 15)
+    {
+        caster_bonus -= 2;
+    }
 
     return caster_bonus;
 }

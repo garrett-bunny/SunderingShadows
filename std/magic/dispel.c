@@ -48,6 +48,11 @@ int checkDispel(object ob, int clevel, object caster)
     if (yourcast->query_property("dispelling_buffer") > 0) {
         DC += yourcast->query_property("dispelling_buffer");
     }
+    
+    if(caster->query_mystery() == "spellscar" && caster->query_class_level("oracle") >= 21)
+    {
+        DC -= 4;
+    }
 
     if (roll >= DC ) {
         return 1;

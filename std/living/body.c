@@ -792,6 +792,15 @@ int query_resistance(string res)
         }
     }
     
+    if(this_object()->query_mystery() == "spellscar")
+    {
+        if(this_object()->query_class_level("oracle") >= 10)
+        {
+            if(res == "fire" || res == "electricity" || res == "acid" || res == "cold")
+                myres += this_object()->query_prestige_level("oracle") / 2;
+        }
+    }
+    
     if (FEATS_D->usable_feat(TO, "no fear of the flame") && res == "fire") {
         myres += 30;
     }
