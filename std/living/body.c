@@ -794,7 +794,7 @@ int query_resistance(string res)
     
     if(this_object()->query_mystery() == "spellscar")
     {
-        if(this_object()->query_class_level("oracle") >= 10)
+        if(this_object()->query_class_level("oracle") >= 5)
         {
             if(res == "fire" || res == "electricity" || res == "acid" || res == "cold")
                 myres += this_object()->query_prestige_level("oracle") / 2;

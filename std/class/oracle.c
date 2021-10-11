@@ -144,6 +144,13 @@ mapping query_innate_spells(object player)
         if(olevel >= 1)
             innate_spells += ([ "armor of bones" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), ]);
         break;
+        
+        case "spellscar":
+        if(olevel >= 1)
+            innate_spells += ([ "mystic bolt" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), ]);
+        if(olevel >= 10)
+            innate_spells += ([ "conjure elemental" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), ]);
+        break;
     }
     
     return innate_spells;
