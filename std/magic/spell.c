@@ -1265,7 +1265,7 @@ void wizard_interface(object user, string type, string targ)
         tell_object(caster, "%^CYAN%^Arcana preserves the spell in your memory.");
         preserve_in_memory = 1;
     }
-    
+
     if(FEATS_D->usable_feat(caster, "inspired necromancy") && spell_sphere == "necromancy")
     {
         if(roll_dice(1, 20) <= 12)
@@ -1274,11 +1274,11 @@ void wizard_interface(object user, string type, string targ)
             tell_object(caster, "%^BOLD%^BLACK%^Your necromantic affinity preserves the spell.");
         }
     }
-    
+
     if(spell_type == "cleric")
     {
         int x = 0;
-        
+
         if(FEATS_D->usable_feat(caster, "apotheosis"))
         {
             foreach(string str in divine_domains)
@@ -2106,7 +2106,7 @@ void check_fizzle(object ob)
         TO->remove();
         return;
     }
-    
+
     if(caster && caster->query_property("counterspell"))
     {
         caster->remove_property("counterspell");
@@ -2119,7 +2119,7 @@ void check_fizzle(object ob)
         this_object()->remove();
         return;
     }
-    
+
     if (objectp(target)) {
         if (!(spell_type == "warlock" ||
               spell_type == "monk")) {
@@ -2531,22 +2531,22 @@ void define_clevel()
             if(member_array("evil", domains) >= 0)
                 clevel += 1;
         }
-        
+
         if(FEATS_D->usable_feat(caster, "apotheosis"))
         {
             int succ = 0;
-            
+
             foreach(string str in divine_domains)
             {
                 if(member_array(str, domains) >= 0)
                     succ ++;
             }
-            
+
             if(succ)
                 clevel += 1;
-        }           
+        }
     }
-         
+
     if ((spell_type == "mage" || spell_type == "sorcerer") && !shadow_spell) {
         if (caster->query_school() && caster->query_opposing_school()) {
             if (spell_sphere == caster->query_school()) {
@@ -2596,7 +2596,7 @@ void define_clevel()
             clevel += 2;
         }
     }
-    
+
     if(shadow_spell)
     {
         if(caster->query_mystery() == "shadow" && spell_type == "oracle")
@@ -2711,7 +2711,7 @@ void define_base_damage(int adjust)
             if(FEATS_D->usable_feat(caster, "power specialization"))
                 sdamage += (BONUS_D->query_stat_bonus(caster, "intelligence") * (1 + clevel / 12));
         }
-        
+
         if(target && evil_spell)
         {
             if(target->is_class("barbarian"))
@@ -3291,10 +3291,10 @@ varargs int do_save(object targ, int mod)
     //Likewise, telepaths with the guarded thoughts feat have a bonus against mental spells
     if(mental_spell && FEATS_D->usable_feat(targ, "guarded thoughts") && targ->query("available focus"))
         caster_bonus -= 10;
-    
+
     if(mental_spell && targ->query_mystery() == "bones" && targ->query_class_level("oracle") >= 10)
         caster_bonus -= 2;
-    
+
     if(evil_spell && FEATS_D->usable_feat(targ, "celestial totem"))
         caster_bonus -= 2;
 
@@ -3345,13 +3345,13 @@ varargs int do_save(object targ, int mod)
 
     if (shadow_spell) {
         type = "will";
-        
+
         if(caster->query_mystery() == "shadow" && spell_type == "oracle")
         {
             if(caster->query_class_level("oracle") >= 21)
                 shadow_spell += 1;
         }
-        
+
         caster_bonus = shadow_spell * caster_bonus / 10;
     }
 
@@ -3448,6 +3448,7 @@ object* target_filter(object* targets)
 
     if (sizeof(targets)) {
         targets = filter_array(targets, (:!(avatarp($1) && $1->query_true_invis()):));
+        targets = filter_array(targets, (:!$1->query_property("no detect"):));
     }
 
     if (!query_helpful()) {
@@ -3597,19 +3598,19 @@ int perfect_filter(object obj)
     if (member_array(obj, followers) != -1) {
         return 0;
     }                                                   // 0 to filter if it's following ANYONE in the party
-    
+
     if(owner = caster->query_property("minion"))
     {
         party = ob_party(owner);
         party = distinct_array(party);
-        
+
         if(sizeof(party))
         {
             if(member_array(obj->query_property("minion"), party) >= 0)
                 return 0;
         }
     }
-    
+
     return 1;
 }
 
