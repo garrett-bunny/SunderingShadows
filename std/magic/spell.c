@@ -1499,8 +1499,9 @@ mixed WildMagicArea(object where)
         return 0;
     }
 
-    if (where->query_property("wild magic") > roll_dice(1, 100)) {
+    if (where->query_property("wild magic") > roll_dice(1, 100) || caster->query_property("spellscarred")) {
         wm_affect = where->query_property("wild magic affect");
+        caster->remove_property("spellscarred");
         if (!stringp(wm_notify = where->query_property("wild magic warning"))) {
             wm_notify = "%^BOLD%^%^RED%^You sense an unseen force " +
                         "manipulating your incantation!%^RESET%^";
