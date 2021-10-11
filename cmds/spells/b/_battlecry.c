@@ -20,7 +20,7 @@ void create()
     set_mystery("battle");
     set_bonus_type("morale");
     set_spell_sphere("enchantment_charm");
-    set_syntax("cast CLASS burst of glory");
+    set_syntax("cast CLASS battlecry");
     set_damage_desc("clevel / 22 + 1 to attack, damage bonus, clevel to hp bonus to allies");
     set_description("You raise a shout, encouraging your allies to fight harder, granting a morale bonus to attack, damage, and max hp to all of those allies.");
     set_verbal_comp();
