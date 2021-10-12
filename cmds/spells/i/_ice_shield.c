@@ -83,10 +83,10 @@ void execute_attack(){
         if(do_save(attackers[i],0)) { continue; }
         //if(SAVING_D->saving_throw(attackers[i],"spell",0)) { continue; }
         tell_room(room,"%^BOLD%^"+attackers[i]->QCN+" is chilled by the bitter cold as "
-            ""+attackers[i]->QS+" strikes "+caster->QCN+"'s ice shield!",({caster,target}));
+            ""+attackers[i]->QS+" strikes "+caster->QCN+"'s ice shield!",({caster,attackers[i]}));
         tell_object(caster,"%^BOLD%^"+attackers[i]->QCN+" is chilled by the bitter "
             "cold of the ice shield as "+attackers[i]->QS+" attacks you!");
-        tell_object(target,"%^BOLD%^You are chilled by the bitter cold of the ice "
+        tell_object(attackers[i],"%^BOLD%^You are chilled by the bitter cold of the ice "
             "shield as you attack "+caster->QCN+"!");
         define_base_damage(0);
         damage_targ(attackers[i],attackers[i]->return_target_limb(),sdamage,"cold");
