@@ -1281,10 +1281,12 @@ void wizard_interface(object user, string type, string targ)
 
         if(FEATS_D->usable_feat(caster, "apotheosis"))
         {
-            foreach(string str in divine_domains)
-            {
-                if(member_array(str, caster->query_divine_domain()) >= 0)
-                    x++;
+            if(sizeof(divine_domains)) {
+                foreach(string str in divine_domains)
+                {
+                    if(member_array(str, caster->query_divine_domain()) >= 0)
+                        x++;
+                }
             }
             if(x)
             {
@@ -2537,10 +2539,12 @@ void define_clevel()
         {
             int succ = 0;
 
-            foreach(string str in divine_domains)
-            {
-                if(member_array(str, domains) >= 0)
-                    succ ++;
+            if(sizeof(divine_domains)) {
+                foreach(string str in divine_domains)
+                {
+                    if(member_array(str, domains) >= 0)
+                        succ ++;
+                }
             }
 
             if(succ)
