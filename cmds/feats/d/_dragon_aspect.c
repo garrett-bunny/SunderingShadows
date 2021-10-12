@@ -190,7 +190,7 @@ void execute_attack()
     }
     
     //BREATH ATTACK
-    if(!random(5) && sizeof(attackers))
+    if(!random(3) && sizeof(attackers))
     {    
         switch(caster->query("dragon_affinity"))
         {
@@ -230,7 +230,7 @@ void execute_attack()
             break;
         }
     
-        dam = (roll_dice(1, 6) * (1 + flevel /  10));
+        dam = (roll_dice(1, 8) * (1 + flevel /  10) + BONUS_D->query_stat_bonus(caster, "charisma"));
     
         if(sizeof(attackers) > 6)
             attackers = attackers[0..6];
