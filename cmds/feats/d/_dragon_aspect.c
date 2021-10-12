@@ -112,6 +112,16 @@ void execute_attack()
         dest_effect();
         return;
     }
+    
+    if (objectp(place))
+    {
+        place->addObjectToCombatCycle(this_object(), 1);
+    }
+    else
+    {
+        dest_effect();
+        return;
+    }
 
     if (caster->query_ghost() || caster->query_unconscious())
         return;
@@ -275,15 +285,6 @@ void execute_attack()
     {
         attacker->set_tripped(roll_dice(1, 4) * 6, "%^BOLD%^You are struggling to get up!%^RESET%^");
         attacker->cause_typed_damage(attacker, "torso", dam, "bludgeoning");
-    }
-    
-    if (objectp(place))
-    {
-        place->addObjectToCombatCycle(this_object(), 1);
-    }
-    else
-    {
-        dest_effect();
     }
     
     return;
