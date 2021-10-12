@@ -26,7 +26,7 @@ int allow_shifted()
 }
 
 int cmd_dragon_affinity(string args)
-{
+{   
     if(this_player()->query("dragon_affinity"))
     {
         tell_object(TP,"%^BOLD%^%^WHITE%^You already have your dragon affinity set.");
@@ -73,9 +73,12 @@ int prerequisites(object ob)
         
     if (!ob->is_class("oracle"))
     {
-        dest_effect();
         return 0;
     }
+    
+    if(ob->query_mystery() != "dragon")
+        return 0;
+    
     return ::prerequisites(ob);
 }
 
@@ -104,6 +107,8 @@ void execute_attack()
         dest_effect();
         return;
     }
+    
+    tell_object(caster, "TEST");
 
     if (caster->query_ghost() || caster->query_unconscious())
         return;
