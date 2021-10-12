@@ -9,7 +9,6 @@ void create()
     set_spell_name("mending");
     set_spell_level(([ "cantrip" : 1, "mage" : 1, "warlock" : 1, "magus" : 1 ]));
     set_affixed_spell_level(3);
-    set_mystery(({ "life", "metal" }));
     set_spell_sphere("alteration");
     set_syntax(
         "cast CLASS mending on OBJECT
