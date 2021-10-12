@@ -88,7 +88,8 @@ int spell_level,
     mental_spell,
     diminish_returns,
     blood_magic,
-    end_time;
+    end_time,
+    spell_DC;
 
 
 object* attackers,
@@ -176,7 +177,7 @@ void set_spell_domain(string domain);
 string get_spell_domain();
 
 // New saving throw
-varargs int do_save(object targ, int mod);
+varargs int do_save(object targ, int mod, int get_dc);
 
 // Interface for the permanent spell daemon to use to reactivate
 // persistent spells upon startup.
@@ -3199,7 +3200,7 @@ void debug_saves(int num)
 }
 
 // can display a LOT of debug info.  Use <debug_saves(1)> in the spell's create() to enable
-varargs int do_save(object targ, int mod)
+varargs int do_save(object targ, int mod, int get_dc)
 {
     string type, stat, * myclasses;
     int caster_bonus, target_level, num, casting_level, i, classlvl, stat_bonus;
@@ -3364,6 +3365,9 @@ varargs int do_save(object targ, int mod)
 
         caster_bonus = shadow_spell * caster_bonus / 10;
     }
+    
+    if(get_dc)
+        return caster_bonus;
 
     // this is directly copied below for the shadowdancer reroll - if
     // anything changed here, change there too plz!

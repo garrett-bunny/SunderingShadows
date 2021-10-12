@@ -245,6 +245,8 @@ void execute_attack()
             }
             else
             {
+                tell_room(place, "%^BOLD%^" + ob->query_cap_name() + " is caught in the breath!", ob);
+                tell_object(ob, "%^BOLD%^You are caught in the breath!");
                 ob->cause_typed_damage(ob, ob->return_target_limb(), dam, dam_type);
             }
         }
