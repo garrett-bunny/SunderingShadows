@@ -56,6 +56,8 @@ void execute_feat()
 {
     object obj;
 
+    ::execute_feat();
+
     if (!objectp(caster)) {
         dest_effect();
         return;
@@ -83,10 +85,17 @@ void execute_feat()
         return;
     }
     
-    tell_object(caster, "%^YELLOW%^You call on your draconic blood, and feel your body taking on the form of your dragon aspect.");
+    tell_object(caster, "%^YELLOW%^You call on your draconic blood, and feel your body taking on the atrributes of your dragon aspect.");
+    tell_object(caster, "%^RED%^BOLD%^Your fingers extend into razor-sharp claws!");
+    if(caster->query_class_level("oracle") >= 5)
+        tell_object(caster, "%^GREEN%^BOLD%^You feel energy well up in your lungs!");
+    if(caster->query_class_level("oracle") >= 21)
+        tell_object(caster, "%^BLUE%^BOLD%^You feel a tail form and grow, extending beind you!");
+    if(caster->query_class_level("oracle") >= 31)
+        tell_object(caster, "%^YELLOW%^You feel your mind and body harden with a dragon's resilience!");
+        
     
     caster->set_property("active_feats", ({ TO }));
-    ::execute_feat();
     return;
 }
 
@@ -95,6 +104,8 @@ void execute_attack()
     object attacker, *attackers;
     string my_name, att_name, my_poss, att_poss, dam_type;
     int level, bonus, dam;
+    
+    ::execute_attack();
     
     if(!objectp(caster))
     {
