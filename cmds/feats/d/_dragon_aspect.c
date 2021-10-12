@@ -113,27 +113,32 @@ void execute_attack()
         return;
     }
     
-    if (objectp(place))
-    {
-        place->addObjectToCombatCycle(this_object(), 1);
-    }
-    else
+    if(!objectp(place))
     {
         dest_effect();
         return;
     }
 
     if (caster->query_ghost() || caster->query_unconscious())
+    {
+        place->addObjectToCombatCycle(this_object(), 1);
         return;
+    }
 
     if(caster->query_bound() || caster->query_paralyzed())
+    {
+        place->addObjectToCombatCycle(this_object(), 1);
         return;
+    }
     
     attacker = caster->query_current_attacker();
     
-    if(!attacker)
+    if(!objectp(attacker))
+    {
+        place->addObjectToCombatCycle(this_object(), 1);
         return;
-    
+    }
+         
     my_name = caster->query_cap_name();
     att_name = attacker->query_cap_name();
     my_poss = caster->query_possessive();
@@ -145,7 +150,7 @@ void execute_attack()
     
     
     //CLAW ATTACK
-    if(attacker && thaco(target, bonus))
+    if(attacker && thaco(attacker, bonus))
     {
         switch(random(3))
         {
@@ -169,39 +174,37 @@ void execute_attack()
         }
         
         dam = (roll_dice(1, 6) * (1 + flevel /  10)) + bonus;
-        caster->cause_typed_damage(target,target->return_target_limb(),dam ,"piercing");    
+        caster->cause_typed_damage(attacker,attacker->return_target_limb(),dam ,"piercing");    
     }
     
     if(level < 5)
+    {
+        place && place->addObjectToCombatCycle(this_object(), 1);
         return;
-    
-    if(!objectp(caster))
-        return;
+    }
     
     if(!caster->query("dragon_affinity"))
+    {
+        place && place->addObjectToCombatCycle(this_object(), 1);
         return;
-    
-    attackers = caster->query_attackers();
-    
-    if(!sizeof(attackers))
-        return;
+    }
     
     //BREATH ATTACK
-    if(!random(5))
+    if(!random(5) && sizeof(attackers))
     {    
         switch(caster->query("dragon_affinity"))
         {
             case "black":
             case "copper":
             tell_object(caster, "%^GREEN%^BOLD%^You breath a gout of steaming acid at your enemies!%^RESET%^");
-            tell_room(place, "%^GREEN%^BOLD%^" + my_name + " breathes a gout of steaming acid at their enemies!%^RESET%^");
+            tell_room(place, "%^GREEN%^BOLD%^" + my_name + " breathes a gout of steaming acid at their enemies!%^RESET%^", caster);
             dam_type = "acid";
             break;
         
             case "blue":
             case "bronze":
             tell_object(caster, "%^YELLOW%^BOLD%^You breath great arcs of electricity at your enemies!%^RESET%^");
-            tell_room(place, "%^YELLOW%^BOLD%^" + my_name + " breathes great arcs of electricity at their enemies!%^RESET%^");
+            tell_room(place, "%^YELLOW%^BOLD%^" + my_name + " breathes great arcs of electricity at their enemies!%^RESET%^", caster);
             dam_type = "electricity";
             break;
         
@@ -209,20 +212,20 @@ void execute_attack()
             case "red":
             case "gold":
             tell_object(caster, "%^RED%^BOLD%^You breath great gouts of flame at your enemies!%^RESET%^");
-            tell_room(place, "%^YELLOW%^BOLD%^" + my_name + " breathes great gouts of flame at their enemies!%^RESET%^");
+            tell_room(place, "%^YELLOW%^BOLD%^" + my_name + " breathes great gouts of flame at their enemies!%^RESET%^", caster);
             dam_type = "fire";
             break;
 
             case "green":
             tell_object(caster, "%^GREEN%^You breath a cloud of poison at your enemies!%^RESET%^");
-            tell_room(place, "%^GREEN%^" + my_name + " breathes a cloud of poison at their enemies!%^RESET%^");
+            tell_room(place, "%^GREEN%^" + my_name + " breathes a cloud of poison at their enemies!%^RESET%^", caster);
             dam_type = "untyped";
             break;
 
             case "white":
             case "silver":
             tell_object(caster, "%^BLUE%^BOLD%^You breath sheets of ice and snow at your enemies!%^RESET%^");
-            tell_room(place, "%^BLUE%^BOLD%^" + my_name + " breathes sheets of ice and snow at their enemies!%^RESET%^");
+            tell_room(place, "%^BLUE%^BOLD%^" + my_name + " breathes sheets of ice and snow at their enemies!%^RESET%^", caster);
             dam_type = "cold";
             break;
         }
@@ -247,20 +250,17 @@ void execute_attack()
         }
     }
     
-    if(!objectp(caster))
-        return;
-    
     if(level < 21)
+    {
+        place && place->addObjectToCombatCycle(this_object(), 1);
         return;
+    }
     
     attacker = caster->query_current_attacker();
     att_name = attacker->query_cap_name();
     
-    if(objectp(attacker))
-        return;
-    
     //TAIL ATTACK
-    switch(random(3))
+    switch(random(3) && objectp(attacker))
     {
         case 0:
         tell_object(caster, "%^RESET%^%^CRST%^%^C202%^Darting %^C130%^to the %^C208%^side%^C130%^, you bring your tail about to %^C196%^slam %^C130%^into %^CRST%^%^RESET%^%^CRST%^%^C130%^" + att_name + "!%^CRST%^");
@@ -286,6 +286,11 @@ void execute_attack()
         attacker->set_tripped(roll_dice(1, 4) * 6, "%^BOLD%^You are struggling to get up!%^RESET%^");
         attacker->cause_typed_damage(attacker, "torso", dam, "bludgeoning");
     }
+    
+    if(place)
+        place->addObjectToCombatCycle(this_object(), 1);
+    else
+        dest_effect();
     
     return;
     

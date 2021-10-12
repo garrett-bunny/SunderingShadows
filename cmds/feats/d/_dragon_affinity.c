@@ -6,6 +6,8 @@
 
 inherit FEAT;
 
+string affinity;
+
 void create()
 {
     ::create();
@@ -47,8 +49,10 @@ void select_affinity(string args)
         tell_object(TP,"%^BOLD%^%^WHITE%^Aborting...");
         return;
     }
+    
+    affinity = args;
 
-    tell_object(TP,"%^BOLD%^%^WHITE%^You have selected %^CYAN%^" + args + "%^WHITE%^ as your dragon affinity.");
+    tell_object(TP,"%^BOLD%^%^WHITE%^You have selected %^CYAN%^" + affinity + "%^WHITE%^ as your dragon affinity.");
     tell_object(TP,"%^BOLD%^%^WHITE%^Is this a correct choice? Type %^GREEN%^yes%^WHITE%^ to confirm, anything else to abort.");
     input_to("confirm_selection", 0);
     return;
@@ -61,7 +65,7 @@ void confirm_selection(string args)
         return;
     }
 
-    this_player()->set("dragon_affinity", args);
+    this_player()->set("dragon_affinity", affinity);
     tell_object(TP,"%^BOLD%^%^WHITE%^Your dragon affinity has been set.");
     return;
 }
