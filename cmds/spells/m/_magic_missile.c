@@ -18,12 +18,12 @@ create()
     set_spell_name("magic missile");
     set_spell_level( ([ "mage" : 1 ]) );
     set_spell_sphere("invocation_evocation");
-    set_syntax("cast CLASS magic missile on TARGET");
+    set_syntax("cast CLASS magic missile on [TARGET]");
     set_damage_desc("force damage per missile. 1 missile + clevel / 6 additional missiles.");
-    set_description("A signature spell of any would-be mage, magic missile forms glowing magical darts which cause force damage to the target. Every six caster levels, the mage can fire an additional missile which can hit additional targets. This spell gains damage with each additional missile and so scales far more than other level 1 spells. This spell always hits its target and does not require any ranged attack rolls or saving throws. This spell, however, is completely thwarted if the target has a shield spell active.");
+    set_description("A signature spell of any would-be mage, magic missile forms glowing magical darts which cause force damage to the target. Every six caster levels, the mage can fire an additional missile which can hit additional targets. This spell gains damage with each additional missile and so scales far more than other level 1 spells. This spell always hits its target and does not require any ranged attack rolls or saving throws. This spell, however, is completely thwarted if the target has a shield spell active. If the caster specifies a target, then the target will get with with all of the missiles, otherwise, the missiles will hit different targets.");
     set_verbal_comp();
     set_somatic_comp();
-    set_target_required(1);
+    //set_target_required(1);
 }
 
 string query_cast_string()
@@ -37,10 +37,13 @@ void spell_effect(int prof)
     int num, multi;
     string t_name, c_name, t_obj, miss_str, verb_str;
     
-    if(!objectp(caster) || !objectp(target))
+    if(!objectp(caster))
         return;
     
-    victims = caster->query_attackers();
+    if(!target)
+        victims = caster->query_attackers();
+    else
+        victims = ({ target });
     
     if(!sizeof(victims))
     {
@@ -60,16 +63,20 @@ void spell_effect(int prof)
     
     miss_str = multi ? "missiles" : "missile";
     verb_str = multi ? "slam" : "slams";
+
+    c_name = caster->query_cap_name();
     
-    c_name = target->query_cap_name();
     //Adjusts spell damage formula to scale for number of darts.
-    define_base_damage((num-1));
+    if(num > 1)
+        define_base_damage(num - 1);
     
-    tell_object(caster, "%^YELLOW%^" + sprintf("You motion with your hands and %smagical %s %s towards your %s.", miss_str, num > 1 ? "" : "a ", num > 1 ? "speed" : "speeds", sizeof(victims) > 1 ? "targets" : "target"));
+    tell_object(caster, "%^YELLOW%^" + sprintf("You motion with your hands and %smagical %s %s towards your %s.", num > 1 ? "" : "a ", num > 1 ? "missiles" : "missile", num > 1 ? "speed" : "speeds", sizeof(victims) > 1 ? "targets" : "target"));
     tell_room(caster, "%^YELLOW%^" + sprintf("%s motions with %s hands and %smagical %s %s towards %s %s.", c_name, caster->query_possessive(), num > 1 ? "" : "a ", miss_str, multi ? "speed" : "speeds", caster->query_possessive(), multi ? "targets" : "target"), ({ caster }));
     
     foreach(object ob in victims)
     {
+        spell_kill(ob, caster);
+        
         if(ob->query_property("spell shield"))
         {
             tell_object(caster, "%^BOLD%^Your missile is absorbed by " + ob->query_cap_name() + "'s magical shield!");
