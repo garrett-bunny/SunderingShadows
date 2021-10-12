@@ -10,7 +10,7 @@ void create()
 {
     ::create();
     feat_type("permanent");
-    feat_category("SavageCombat");
+    feat_category("Presence");
     feat_name("dragon affinity");
     feat_syntax("dragon_affinity");
     feat_desc("This feat allows an oracle with the dragon mystery to choose their chosen dragon affinity. This will determine things like resistance granted and damage types for breath weapons.
