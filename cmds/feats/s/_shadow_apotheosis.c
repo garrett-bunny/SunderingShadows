@@ -15,6 +15,7 @@ void create()
     feat_prereq("Shadow adept L7");
     feat_syntax("shadow_apotheosis");
     feat_desc("A shadow adept with shadow apotheosis is able to project an aura of shadows about himself that will lash out at nearby enemies. The shadows will sometimes inflict damage on his enemies and sometimes harm them in other ways.");
+    allow_blind(1);
 }
 
 int allow_shifted()
