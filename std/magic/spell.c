@@ -1274,6 +1274,9 @@ void wizard_interface(object user, string type, string targ)
             tell_object(caster, "%^BOLD%^BLACK%^Your necromantic affinity preserves the spell.");
         }
     }
+    
+    if(!pointerp(divine_domains))
+        divine_domains = ({  });
 
     if(spell_type == "cleric")
     {
@@ -1281,13 +1284,12 @@ void wizard_interface(object user, string type, string targ)
 
         if(FEATS_D->usable_feat(caster, "apotheosis"))
         {
-            if(sizeof(divine_domains)) {
-                foreach(string str in divine_domains)
-                {
-                    if(member_array(str, caster->query_divine_domain()) >= 0)
-                        x++;
-                }
+            foreach(string str in divine_domains)
+            {
+                if(member_array(str, caster->query_divine_domain()) >= 0)
+                    x++;
             }
+
             if(x)
             {
                 tell_object(caster, "%^BOLD%^WHITE%^Your divine attunement preserves the domain spell.");
@@ -2535,6 +2537,9 @@ void define_clevel()
                 clevel += 1;
         }
 
+        if(!pointerp(divine_domains))
+            divine_domains = ({  });
+        
         if(FEATS_D->usable_feat(caster, "apotheosis"))
         {
             int succ = 0;
