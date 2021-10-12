@@ -19,12 +19,16 @@ create()
     set_spell_level( ([ "mage" : 1 ]) );
     set_spell_sphere("invocation_evocation");
     set_syntax("cast CLASS magic missile on TARGET");
-    set_damage_desc("force damage per missile");
-    set_description("");
+    set_damage_desc("force damage per missile. 1 missile + clevel / 6 additional missiles.");
+    set_description("A signature spell of any would-be mage, magic missile forms glowing magical darts which cause force damage to the target. Every six caster levels, the mage can fire an additional missile which can hit additional targets. This spell gains damage with each additional missile and so scales far more than other level 1 spells. This spell always hits its target and does not require any ranged attack rolls or saving throws. This spell, however, is completely thwarted if the target has a shield spell active.");
     set_verbal_comp();
     set_somatic_comp();
     set_target_required(1);
-    splash_spell(2);
+}
+
+string query_cast_string()
+{
+    return "%^CYAN%^" + caster->query_cap_name() + " draws an arcane symbol in the air and a glowing dart begins to form.";
 }
 
 void spell_effect(int prof)
@@ -36,7 +40,7 @@ void spell_effect(int prof)
     if(!objectp(caster) || !objectp(target))
         return;
     
-    victims = target_selector();
+    victims = caster->query_attackers();
     
     if(!sizeof(victims))
     {
@@ -61,8 +65,8 @@ void spell_effect(int prof)
     //Adjusts spell damage formula to scale for number of darts.
     define_base_damage((num-1));
     
-    tell_object(caster, "%^YELLOW%^" + sprintf("You motion with your hands and magical %s %s towards your %s.", miss_str, num > 1 ? "speed" : "speeds", num > 1 ? "targets" : "target"));
-    tell_room(caster, "%^YELLOW%^" + sprintf("%s motions with %s hands and magical %s %s towards %s %s.", c_name, caster->query_possessive(), miss_str, num > 1 ? "speed" : "speeds", num > 1 ? "targets" : "target"), ({ caster }));
+    tell_object(caster, "%^YELLOW%^" + sprintf("You motion with your hands and %smagical %s %s towards your %s.", miss_str, num > 1 ? "" : "a ", num > 1 ? "speed" : "speeds", sizeof(victims) > 1 ? "targets" : "target"));
+    tell_room(caster, "%^YELLOW%^" + sprintf("%s motions with %s hands and %smagical %s %s towards %s %s.", c_name, caster->query_possessive(), num > 1 ? "" : "a ", miss_str, multi ? "speed" : "speeds", caster->query_possessive(), multi ? "targets" : "target"), ({ caster }));
     
     foreach(object ob in victims)
     {
@@ -76,8 +80,8 @@ void spell_effect(int prof)
         
         tell_object(caster, "%^BOLD%^%^CYAN%^" + sprintf("Your %s %s into %s with arcane force!", miss_str, verb_str, ob->query_cap_name()));
         tell_object(ob, "%^BOLD%^%^CYAN%^" + sprintf("The %s %s into you with arcane force!", miss_str, verb_str));
-        tell_room(place, "%^BOLD%^%^CYAN%^" + sprintf("The %s %s into %s arcane force!", miss_str, verb_str, ob->query_cap_name()));
-        ob->cause_type_damage(ob, "torso", sdamage, "force");
+        tell_room(place, "%^BOLD%^%^CYAN%^" + sprintf("The %s %s into %s arcane force!", miss_str, verb_str, ob->query_cap_name()), ({ ob, caster }));
+        ob->cause_type_damage(ob, "torso", (sdamage * num) / sizeof(victims), "force");
     }
     
     dest_effect();
