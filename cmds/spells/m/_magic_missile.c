@@ -1,3 +1,93 @@
+/*
+  _magic_missile.c
+  
+  Completely rewritten to scale with number of darts, like
+  SRD. Should be a signature mage spell.
+  
+  -- Tlaloc --
+*/
+
+#include <spell.h>
+#include <daemons.h>
+
+inherit SPELL;
+
+create()
+{
+    ::create();
+    set_spell_name("magic missile");
+    set_spell_level( ([ "mage" : 1 ]) );
+    set_spell_sphere("invocation_evocation");
+    set_syntax("cast CLASS magic missile on TARGET");
+    set_damage_desc("force damage per missile");
+    set_description("");
+    set_verbal_comp();
+    set_somatic_comp();
+    set_target_required(1);
+    splash_spell(2);
+}
+
+void spell_effect(int prof)
+{
+    object *victims;
+    int num, multi;
+    string t_name, c_name, t_obj, miss_str, verb_str;
+    
+    if(!objectp(caster) || !objectp(target))
+        return;
+    
+    victims = target_selector();
+    
+    if(!sizeof(victims))
+    {
+        tell_object(caster, "Your target is not here.");
+        dest_effect();
+        return;
+    }
+    
+    ::spell_effect();
+    
+    num = 1 + clevel / 6;
+    
+    if(sizeof(victims) > num)
+        victims = victims[0..(num - 1)];
+    else if(num > sizeof(victims))
+        multi = 1;
+    
+    miss_str = multi ? "missiles" : "missile";
+    verb_str = multi ? "slam" : "slams";
+    
+    c_name = target->query_cap_name();
+    //Adjusts spell damage formula to scale for number of darts.
+    define_base_damage((num-1));
+    
+    tell_object(caster, "%^YELLOW%^" + sprintf("You motion with your hands and magical %s %s towards your %s.", miss_str, num > 1 ? "speed" : "speeds", num > 1 ? "targets" : "target"));
+    tell_room(caster, "%^YELLOW%^" + sprintf("%s motions with %s hands and magical %s %s towards %s %s.", c_name, caster->query_possessive(), miss_str, num > 1 ? "speed" : "speeds", num > 1 ? "targets" : "target"), ({ caster }));
+    
+    foreach(object ob in victims)
+    {
+        if(ob->query_property("spell shield"))
+        {
+            tell_object(caster, "%^BOLD%^Your missile is absorbed by " + ob->query_cap_name() + "'s magical shield!");
+            tell_object(ob, "%^BOLD%^The missile is absorbed by your nagical shield!");
+            tell_room(place, "%^BOLD%^The missile is absorbed by " + ob->query_cap_name() + "'s magical shield!");
+            continue;
+        }
+        
+        tell_object(caster, "%^BOLD%^%^CYAN%^" + sprintf("Your %s %s into %s with arcane force!", miss_str, verb_str, ob->query_cap_name()));
+        tell_object(ob, "%^BOLD%^%^CYAN%^" + sprintf("The %s %s into you with arcane force!", miss_str, verb_str));
+        tell_room(place, "%^BOLD%^%^CYAN%^" + sprintf("The %s %s into %s arcane force!", miss_str, verb_str, ob->query_cap_name()));
+        ob->cause_type_damage(ob, "torso", sdamage, "force");
+    }
+    
+    dest_effect();
+    return;
+}
+        
+/*  
+
+//Previous version below
+
 // Magic Missile
 // Updated 11/23/07 by Circe to not show number of missiles
 // based on a suggestion by a player, Catherine
@@ -42,7 +132,7 @@ spell_effect(int prof) {
     }
     if (CLEVEL)
         numdarts=to_int((CLEVEL+1)/2);
-    else
+    else 
         numdarts=to_int(((int)caster->query_guild_level("mage")+1)/2);
 
     switch (1+to_int(sdamage/numdarts)) {
@@ -86,7 +176,11 @@ spell_effect(int prof) {
     return;
 }
 
-void dest_effect() {
+*/
+
+void dest_effect()
+{
     ::dest_effect();
-    if(objectp(TO)) TO->remove();
+    if(objectp(this_object()))
+        this_object()->remove();
 }
