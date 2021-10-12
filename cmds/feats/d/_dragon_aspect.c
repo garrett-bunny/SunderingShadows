@@ -29,11 +29,11 @@ int allow_shifted()
 int cmd_dragon_aspect(string str)
 {
     object feat;
-    if (!objectp(TP)) {
+    if (!objectp(this_player())) {
         return 0;
     }
-    feat = new(base_name(TO));
-    feat->setup_feat(TP, str);
+    feat = new(base_name(this_object()));
+    feat->setup_feat(this_player(), str);
 
     return 1;
 }
@@ -94,8 +94,8 @@ void execute_feat()
     if(caster->query_class_level("oracle") >= 31)
         tell_object(caster, "%^YELLOW%^You feel your mind and body harden with a dragon's resilience!");
         
-    
-    caster->set_property("active_feats", ({ TO }));
+    set_active(this_object());
+    //caster->set_property("active_feats", ({ TO }));
     return;
 }
 
@@ -275,6 +275,15 @@ void execute_attack()
     {
         attacker->set_tripped(roll_dice(1, 4) * 6, "%^BOLD%^You are struggling to get up!%^RESET%^");
         attacker->cause_typed_damage(attacker, "torso", dam, "bludgeoning");
+    }
+    
+    if (objectp(place))
+    {
+        place->addObjectToCombatCycle(this_object(), 1);
+    }
+    else
+    {
+        dest_effect();
     }
     
     return;
