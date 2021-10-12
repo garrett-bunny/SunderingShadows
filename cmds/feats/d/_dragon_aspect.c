@@ -44,9 +44,7 @@ int prerequisites(object ob)
         return 0;
         
     if (!ob->is_class("oracle"))
-    {
         return 0;
-    }
     
     if(ob->query_mystery() != "dragon")
         return 0;
