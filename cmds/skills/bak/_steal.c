@@ -23,10 +23,20 @@ int cmd_steal(string str) {
         notify_fail("You cannot do that in your immaterial state.\n");
          return 0;
     }
-    if(environment(this_player())->query_property("no steal")) {
+    //if(environment(this_player())->query_property("no steal")) {
+    //   notify_fail("A magic force prevents you from doing that!\n");
+    //   return 0;
+    //}
+	
+	if(environment(this_player())->query_property("no steal")) {
+	   set_save("will");
+	   if(do_save(tp)) {
+	   notify_fail("You feel as if magical forces are attempting to prevent you from stealing, however, you push through it!\n");
+       return 1;}
+	else{
        notify_fail("A magic force prevents you from doing that!\n");
-       return 0;
-    }
+       return 0;}
+	}
     if(!str) {
        notify_fail("Steal what from whom?\n");
        return 0;
