@@ -71,9 +71,9 @@ void spell_effect(int prof) {
         TO->remove();
         return;
     }
-	if(temp = target->query_property("no steal")) {
+	if(temp = target->query_property("protect_steal")) {
 		if(!objectp(temp)) {
-			target->remove_property("no steal");
+			target->remove_property("protect_steal");
 		} else {
 	        tell_object(caster,"%^BOLD%^RED%^There is already blocking "
     	    	"magic working for that target!");
@@ -89,13 +89,8 @@ void spell_effect(int prof) {
             target->query_short()+" shimmers with motes of magical energy.");
 
     target->set_property("spelled",({TO}));
-    blocker = target->add_property("no steal");
-    if(!objectp(blocker)) {
-        tell_object(caster,"%^BOLD%^RED%^Something is wrong that "
-            "a wiz might want to look at!");
-        dest_effect();
-        return;
-    }
+    blocker =   target->set_property("protect_steal",({TO}));
+
 
     wis_bonus = calculate_bonus(caster->query_stats(get_casting_stat()));
     power = CLEVEL + wis_bonus + random(6);
