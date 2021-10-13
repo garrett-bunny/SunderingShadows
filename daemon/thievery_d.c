@@ -15,20 +15,20 @@ mapping initiate_thievery(object thief, object victim, object item) {
 	mapping results = ([]);
 	int thief_roll, victim_roll, disable_time;
 
-    thief_roll = thief->query_skill("thievery") + roll_dice(1,20);
-    if(sizeof(thief->query_armour("torso"))) thief_roll += thief->skill_armor_mod(thief->query_armour("torso"));
+	thief_roll = thief->query_skill("thievery") + roll_dice(1,20);
+	if(sizeof(thief->query_armour("torso"))) thief_roll += thief->skill_armor_mod(thief->query_armour("torso"));
 
-    if(victim->query_invis() && !thief->detecting_invis()) thief_roll -= INVIS_PENALTY;
-    if(objectp(item) && item->query_weight() >= WEIGHT_PENALTY) thief_roll -= (item->query_weight() / WEIGHT_PENALTY);
+	if(victim->query_invis() && !thief->detecting_invis()) thief_roll -= INVIS_PENALTY;
+	if(objectp(item) && item->query_weight() >= WEIGHT_PENALTY) thief_roll -= (item->query_weight() / WEIGHT_PENALTY);
 
-    //going to try a penalty to stealing if caught rather than a flat failure
-    if(thief->get_static("caught") && time() - (int)((mapping)thief->get_static("caught"))[victim] < CAUGHT_DELAY) {
+	//going to try a penalty to stealing if caught rather than a flat failure
+	if(thief->get_static("caught") && time() - (int)((mapping)thief->get_static("caught"))[victim] < CAUGHT_DELAY) {
 		if(DEBUG) tell_object(thief,"caught pentalty: "+CAUGHT_PENALTY);
-        thief_roll -= CAUGHT_PENALTY;
+		thief_roll -= CAUGHT_PENALTY;
     }
 
 	victim_roll = victim->query_skill("perception") + roll_dice(1,20);
-    if(DEBUG) {
+	if(DEBUG) {
 		tell_object(thief, "victim_roll: "+victim_roll);
 		tell_object(thief, "thief_roll: "+thief_roll);
 	}
@@ -49,64 +49,64 @@ mapping initiate_thievery(object thief, object victim, object item) {
 
 //int check_caught(int roll, object target, int sLevel, object player, object ob){
 int check_caught(int victim_roll, object victim, int thief_roll, object thief, object ob) {
-    int test;
-    int i;
-    object * inven;
-    int weight;
-    int intox,condition,busy,bonus;
-    string *pkills;
+	int test;
+	int i;
+	object * inven;
+	int weight;
+	int intox,condition,busy,bonus;
+	string *pkills;
 
-    intox = (((int)victim->query_intox())/35) - ((int)thief->query_intox())/35;
+	intox = (((int)victim->query_intox())/35) - ((int)thief->query_intox())/35;
 	if(DEBUG) tell_object(thief, "intox: "+intox);
-    condition = (100 - (int)victim->query_condition_percent()) - (100 - (int)thief->query_condition_percent());
+	condition = (100 - (int)victim->query_condition_percent()) - (100 - (int)thief->query_condition_percent());
 	if(DEBUG) tell_object(thief, "condition: "+condition);
-    busy = (5 * ( sizeof(all_living(environment(thief))) -2) ) - 10;
+	busy = (5 * ( sizeof(all_living(environment(thief))) -2) ) - 10;
 	if(DEBUG) tell_object(thief, "busy: "+busy);
-    bonus = intox + condition + busy + thief_roll;
-    if(DEBUG) tell_object(thief, "bonus: "+bonus);
-    test = 50 + ((int)victim->query_highest_level() - bonus);
-    if(DEBUG) tell_object(thief, "test: "+test);
+	bonus = intox + condition + busy + thief_roll;
+	if(DEBUG) tell_object(thief, "bonus: "+bonus);
+	test = 50 + ((int)victim->query_highest_level() - bonus);
+	if(DEBUG) tell_object(thief, "test: "+test);
 
 	if ((100 - victim_roll) < test) {
-        thief->set_hidden(0);
-        if(thief->query_magic_hidden()) {
-            if (thief->is_thief()) bonus = 5;
-            else bonus = 0;
-            if ((int)victim->query_stats("wisdom") > (random(INVIS_CHECK_DIE) + bonus)) {
-                thief->force_me("appear");
-                thief->set_magic_hidden(0);
-            }
-        }
+		thief->set_hidden(0);
+		if(thief->query_magic_hidden()) {
+			if(thief->is_thief()) bonus = 5;
+			else bonus = 0;
+			if((int)victim->query_stats("wisdom") > (random(INVIS_CHECK_DIE) + bonus)) {
+				thief->force_me("appear");
+				thief->set_magic_hidden(0);
+			}
+		}
 
-        tell_object(victim,"You catch "+thief->query_cap_name()+" with "+thief->query_possessive()+" hand in your pocket.\n");
-        tell_object(thief,"You get caught.");
-        tell_room(environment(thief),"You see "+victim->query_cap_name()+" catch "+thief->query_cap_name()+" with a hand in "+victim->query_possessive()+" pocket.",({thief,victim}));
+		tell_object(victim,"You catch "+thief->query_cap_name()+" with "+thief->query_possessive()+" hand in your pocket.\n");
+		tell_object(thief,"You get caught.");
+		tell_room(environment(thief),"You see "+victim->query_cap_name()+" catch "+thief->query_cap_name()+" with a hand in "+victim->query_possessive()+" pocket.",({thief,victim}));
 		inven = all_living(environment(thief));
-        for(i=0;i<sizeof(inven);i++){
-            if(objectp(inven[i])) inven[i]->check_caught(thief,victim,victim_roll);
-        }
+		for(i=0;i<sizeof(inven);i++){
+			if(objectp(inven[i])) inven[i]->check_caught(thief,victim,victim_roll);
+		}
 
-        if (!interactive(victim)) victim->kill_ob(thief,0);
-        else log_file("player/theft", thief->query_name()+"("+thief->query_level()+") was caught stealing"+(objectp(ob) ? " "+ob->query_name() : "")+" from "+victim->query_name()+"("+victim->query_lowest_level()+") on "+ctime(time())+"\n");
+		if (!interactive(victim)) victim->kill_ob(thief,0);
+		else log_file("player/theft", thief->query_name()+"("+thief->query_level()+") was caught stealing"+(objectp(ob) ? " "+ob->query_name() : "")+" from "+victim->query_name()+"("+victim->query_lowest_level()+") on "+ctime(time())+"\n");
 
 		if(objectp(ob)) {
-			if (ob->query_weight() < 1) weight = 1;
-	        else weight = ob->query_weight();
-	        if (environment(ob) == thief && (int)thief->query_stats("dexterity") < (random(20) + weight/10)) {
-	            thief->force_me("drop "+((string *)ob->query_id())[0]);
-	        }
+			if(ob->query_weight() < 1) weight = 1;
+			else weight = ob->query_weight();
+			if(environment(ob) == thief && (int)thief->query_stats("dexterity") < (random(20) + weight/10)) {
+				thief->force_me("drop "+((string *)ob->query_id())[0]);
+			}
 		}
 
 		thief->set_static("caught",([victim:time()]));
-        thief->set_paralyzed(2,"You have been caught!");
-        if (interactive(thief)) {
-            pkills = thief->query_pkilled();
-            if (member_array(victim->query_name(),pkills) == -1) {
-                pkills += ({victim->query_name()});
+		thief->set_paralyzed(2,"You have been caught!");
+		if(interactive(thief)) {
+			pkills = thief->query_pkilled();
+			if(member_array(victim->query_name(),pkills) == -1) {
+				pkills += ({victim->query_name()});
 				tell_object(thief, pkills);
-                thief->set_pkilled(pkills);
-            }
-        }
-    }
-    return test;
+				thief->set_pkilled(pkills);
+			}
+		}
+	}
+	return test;
 }
