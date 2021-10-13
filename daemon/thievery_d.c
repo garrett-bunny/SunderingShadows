@@ -6,9 +6,6 @@
 #define CAUGHT_DELAY 150
 #define INVIS_CHECK_DIE 25 //this should be changed to a stealth check
 
-#define WIELD_PENALTY 50 //unused - potential in combination with disarm
-#define WORN_PENALTY 75 //unused - potential for stealing pouches, sheaths, etc (non-armor)
-
 inherit DAEMON;
 
 mapping initiate_thievery(object thief, object victim, object item) {
@@ -25,7 +22,7 @@ mapping initiate_thievery(object thief, object victim, object item) {
 	if(thief->get_static("caught") && time() - (int)((mapping)thief->get_static("caught"))[victim] < CAUGHT_DELAY) {
 		if(DEBUG) tell_object(thief,"caught pentalty: "+CAUGHT_PENALTY);
 		thief_roll -= CAUGHT_PENALTY;
-    }
+	}
 
 	victim_roll = victim->query_skill("perception") + roll_dice(1,20);
 	if(DEBUG) {
@@ -53,10 +50,14 @@ int check_caught(int victim_roll, object victim, int thief_roll, object thief, o
 	int i;
 	object * inven;
 	int weight;
-	int intox,condition,busy,bonus;
+	int intox,vic_perc,thief_perc,condition,busy,bonus;
 	string *pkills;
 
-	intox = (((int)victim->query_intox())/35) - ((int)thief->query_intox())/35;
+	vic_perc = (victim->query_intox()*100) / victim->query_formula();
+	if(DEBUG) tell_object(thief, "vic_perc: "+vic_perc);
+	thief_perc = (thief->query_intox()*100) / thief->query_formula();
+	if(DEBUG) tell_object(thief, "thief_perc: "+thief_perc);
+	intox = (vic_perc/10) - (thief_perc/10);
 	if(DEBUG) tell_object(thief, "intox: "+intox);
 	condition = (100 - (int)victim->query_condition_percent()) - (100 - (int)thief->query_condition_percent());
 	if(DEBUG) tell_object(thief, "condition: "+condition);
