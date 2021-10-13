@@ -12,7 +12,7 @@ mapping initiate_thievery(object thief, object victim, object item) {
 	mapping results = ([]);
 	int thief_roll, victim_roll, disable_time;
 
-	thief_roll = thief->query_skill("thievery") + roll_dice(1,20);
+	thief_roll = (thief->query_skill("thievery") * 4/5) + roll_dice(1,20);
 	if(sizeof(thief->query_armour("torso"))) thief_roll += thief->skill_armor_mod(thief->query_armour("torso"));
 
 	if(victim->query_invis() && !thief->detecting_invis()) thief_roll -= INVIS_PENALTY;
@@ -24,7 +24,7 @@ mapping initiate_thievery(object thief, object victim, object item) {
 		thief_roll -= CAUGHT_PENALTY;
 	}
 
-	victim_roll = victim->query_skill("perception") + roll_dice(1,20);
+	victim_roll = (victim->query_skill("perception") * 4/5) + roll_dice(1,20);
 	if(DEBUG) {
 		tell_object(thief, "victim_roll: "+victim_roll);
 		tell_object(thief, "thief_roll: "+thief_roll);
