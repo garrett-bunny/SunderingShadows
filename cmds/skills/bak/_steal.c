@@ -60,8 +60,12 @@ int cmd_steal(string str) {
         notify_fail(victim->query_cap_name()+" glares at you hard.\n");
         return 0;
     }
-    if((int)victim->query_level() == 1) {
+    if(victim->query_level() == 1) {
         notify_fail("Let the newbie alone!\n");
+        return 0;
+    }
+	if((int)victim->query_property("protect_steal")) {
+        notify_fail("A magic force prevents you from doing that!\n");
         return 0;
     }
     ob = present(what, victim);
