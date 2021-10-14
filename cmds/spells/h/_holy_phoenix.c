@@ -89,13 +89,13 @@ void second_hit()
             continue;
         }
 
-        tell_object(peep, "%^C195%^Another surge of light bursts from" +caster->QCN+ "%^C195%^striking you with greater intensity!");
+        tell_object(peep, "%^C195%^Another surge of light bursts from" +caster->QCN+ "%^C195%^striking you with greater intensity!%^RESET%^");
         tell_object(environment(peep), "%^C195%^" + peep->QCN + " trembles as the light continues to blast into " + peep->QP + " frame.", peep);
         if (!do_save(peep)) {
-            damage_targ(peep, peep->return_peep_limb(), sdamage / 2, "acid");
+            damage_targ(peep, peep->return_peep_limb(), sdamage, "divine");
         } else {
-            tell_object(peep, "%^GREEN%^You steel yourself and shrug off the worst of the pain.%^RESET%^");
-            damage_targ(peep, peep->return_target_limb(), sdamage / 4, "acid");
+            tell_object(peep, "%%^C195%^You steel yourself and shrug off the worst of the pain.%^RESET%^");
+            damage_targ(peep, peep->return_target_limb(), sdamage, "divine");
         }
     }
 
@@ -105,7 +105,34 @@ void second_hit()
 
     call_out("last_hit", ROUND_LENGTH);
 }
-	
+
+void last_hit()
+{
+    object peep;
+
+    define_base_damage(0);
+
+    foreach(peep in victims)
+    {
+        if (!objectp(peep)) {
+            victims -= ({ peep });
+            continue;
+        }
+        if (peep->query_hp() < 0) {
+            victims -= ({ peep });
+            continue;
+        }
+        tell_object(peep, "%^C195%^" +caster->QCN+ "%^C195%^explodes in a massive burst of divine energy!%^RESET%^");
+        tell_object(environment(peep), "%^C195%^^" + peep->QCN + " shudders violently as the explosion blasts into them");
+        if (!do_save(peep)) {
+            damage_targ(peep, peep->return_peep_limb(), sdamage * 2 "divine");
+        } else {
+            tell_object(peep, "%^GREEN%^You steel yourself and shrug off the worst of the pain.%^RESET%^");
+            damage_targ(peep, peep->return_target_limb(), sdamage, "divine");
+        }
+    }
+    dest_effect();
+}
 	
 	
 	
