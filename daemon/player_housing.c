@@ -58,7 +58,7 @@ int get_phouse_tp_proof(string tpprooflevel)
 int get_phouse_scry_proof(string scryprooflevel)
 {
     int scry_proof_dc, base_scry_proof_dc;
-    base_scry_proof_dc = 35;
+    base_scry_proof_dc = 25;
     scry_proof_dc = base_scry_proof_dc;
     if (!stringp(scryprooflevel) || scryprooflevel == "" || scryprooflevel == " ") {
         scryprooflevel = "common";
@@ -99,7 +99,7 @@ int get_phouse_scry_proof(string scryprooflevel)
 int get_phouse_lock_dc(string locklevel) //function to standardize lock levels across player houses, six levels available
 {
     int lockdc, baselockdc;
-    baselockdc = 35; //this is a poor quality lock
+    baselockdc = 25; //this is a poor quality lock
     lockdc = baselockdc; //probably redundant, but I'm paranoid
     if (!stringp(locklevel) || locklevel == "" || locklevel == " ") {
         locklevel = "average";
