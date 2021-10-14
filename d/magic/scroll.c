@@ -326,7 +326,8 @@ int use_scroll(string str)
             lev = rogue_clevel;
         }
         //Other users have to pass a check to try to cast off-class. Kind of difficult, for a reason.
-        else if(highest_mental_stat < lowest_spell_level)
+        //else if(highest_mental_stat < lowest_spell_level)
+        else
         {
             int DC = 20 + lowest_spell_level;
             int roll = roll_dice(1, 20) + (highest_mental_stat / 2) + (this_player()->query_skill("spellcraft") / 10);
