@@ -45,20 +45,89 @@ int preSpell()
     }
 
 }
-    
+
+void spell_effect(int prof)
+{
+    object peep;
+    victims = target_selector();
+
+    if (!sizeof(victims)) {
+        tell_object(caster,"%^BOLD%^%^GREEN%^Your spell fails to connect to anyone.");
+        dest_effect();
+    }
+
+    foreach(peep in victims)
+    {
+        tell_object(peep, "%^C195%^Bright light hits you, starting to burn your skin!%^RESET%^");
+        tell_room(place, "%^C195%^" + peep->QCN + "'s eyes flinch as " + peep->QS + " bright light begins to cover them!%^RESET%^", peep);
+
+        if (!do_save(peep)) {
+            damage_targ(peep, peep->return_peep_limb(), sdamage, "divine");
+        } else {
+            tell_object(peep, "%^GREEN%^You steel yourself and shrug off the worst of the pain.%^RESET%^");
+            damage_targ(peep, peep->return_peep_limb(), sdamage / 2, "divine");
+        }
+
+    }
+    spell_successful();
+    call_out("second_hit", ROUND_LENGTH);
+}
+
+void second_hit()
+{
+    object peep;
+    define_base_damage(0);
+
+    foreach(peep in victims)
+    {
+        if (!objectp(peep)) {
+            victims -= ({ peep });
+            continue;
+        }
+        if (peep->query_hp() < 0) {
+            victims -= ({ peep });
+            continue;
+        }
+
+        tell_object(peep, "%^C195%^Another surge of light bursts from" +caster->QCN+ "%^C195%^striking you with greater intensity!");
+        tell_object(environment(peep), "%^C195%^" + peep->QCN + " trembles as the light continues to blast into " + peep->QP + " frame.", peep);
+        if (!do_save(peep)) {
+            damage_targ(peep, peep->return_peep_limb(), sdamage / 2, "acid");
+        } else {
+            tell_object(peep, "%^GREEN%^You steel yourself and shrug off the worst of the pain.%^RESET%^");
+            damage_targ(peep, peep->return_target_limb(), sdamage / 4, "acid");
+        }
+    }
+
+    if (!sizeof(victims)) {
+        dest_effect();
+    }
+
+    call_out("last_hit", ROUND_LENGTH);
+}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 void spell_effect(int prof)
 {
     
     if(!objectp(caster))
         return;
  
-    if(catch(cocoon = new("/d/magic/room/cocoon.c")) ||
-    catch(cocoon_inside = new("/d/magic/room/cocoon_inside.c")))
-    {
-        tell_object(caster, "Something went wrong. Contact a creator.");
-        dest_effect();
-        return;
-    }
     
     tell_object(caster, color("You begin to spin a cocoon of silky threads around yourself."));
     tell_room(place, "%^GREEN%^" + caster->query_cap_name() + " begins to spin silky threads around " + caster->query_objective() + ".", caster);
@@ -67,6 +136,10 @@ void spell_effect(int prof)
     caster->add_cooldown("cocoon", 86400);
     call_out("finish_cocoon", ROUND_LENGTH);
 }
+
+
+
+
 
 void finish_cocoon()
 {
