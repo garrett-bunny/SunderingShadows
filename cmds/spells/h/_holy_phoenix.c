@@ -4,29 +4,37 @@
 #include <priest.h>
 #include <daemons.h>
 
-#define BAN ({ "soulforged", "deva", "shade", "alaghi", "ghost", "nightwing", "barrus", "illithid", "unborn", "dragon" })
+//#define BAN ({ "soulforged", "deva", "shade", "alaghi", "ghost", "nightwing", "barrus", "illithid", "unborn", "dragon" })
 
 inherit SPELL;
 
-string *types = ({ "plant", "animal", "human" });
-string *valid_races;
-int cocooned = 0;
+void second_hit();
+void last_hit();
 
-object cocoon, cocoon_inside;
+object* victims;
+
+//string *types = ({ "plant", "animal", "human" });
+//string *valid_races;
+//int cocooned = 0;
+
+//object cocoon, cocoon_inside;
 
 void create()
 {
     ::create();
     set_spell_name("holy phoenix");
     set_spell_level(([ "cleric" : 9 ]));
-    set_spell_sphere("evocation");
+    set_spell_sphere("conjuration_summoning");
     set_syntax("cast CLASS holy phoenix");
     set_description("With this ability, the cleric sends a fervent prayer to their deity "
 					"sacrificing themselves for the lives of their friends and to the bane of "
 					"there enemies. Such a sacrifice always looks favorable by the gods.");
     set_arg_needed();
+	set_damage_desc("divine");
     set_verbal_comp();
     set_somatic_comp();
+	splash_spell(3);
+	set_save("reflex");
 }
 
 string query_cast_string()
@@ -34,17 +42,17 @@ string query_cast_string()
     return "%^C154%^"+caster->QCN+" clenches "+caster->QP+" fists and chants a fervent prayer to their deity!";
 }
 
-int preSpell()
-{
-    int size;
+//int preSpell()
+//{
+//    int size;
     
-    if(caster->cooldown("phoenix"))
-    {
-        tell_object(caster, "You can't use holy phoenix yet. Type <cooldowns> to see your wait time.");
-        return 0;
-    }
+ //   if(caster->cooldown("phoenix"))
+ //   {
+ //       tell_object(caster, "You can't use holy phoenix yet. Type <cooldowns> to see your wait time.");
+ //       return 0;
+  //  }
 
-}
+//}
 
 void spell_effect(int prof)
 {
@@ -125,88 +133,32 @@ void last_hit()
         tell_object(peep, "%^C195%^" +caster->QCN+ "%^C195%^explodes in a massive burst of divine energy!%^RESET%^");
         tell_object(environment(peep), "%^C195%^^" + peep->QCN + " shudders violently as the explosion blasts into them");
         if (!do_save(peep)) {
-            damage_targ(peep, peep->return_peep_limb(), sdamage * 2 "divine");
+            damage_targ(peep, peep->return_peep_limb(), sdamage * 2, "divine");
         } else {
             tell_object(peep, "%^GREEN%^You steel yourself and shrug off the worst of the pain.%^RESET%^");
             damage_targ(peep, peep->return_target_limb(), sdamage, "divine");
         }
     }
+	caster->add_cooldown("cocoon", 86400);
     dest_effect();
 }
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-void spell_effect(int prof)
-{
-    
-    if(!objectp(caster))
-        return;
- 
-    
-    tell_object(caster, color("You begin to spin a cocoon of silky threads around yourself."));
-    tell_room(place, "%^GREEN%^" + caster->query_cap_name() + " begins to spin silky threads around " + caster->query_objective() + ".", caster);
-       
-    spell_successful();
-    caster->add_cooldown("cocoon", 86400);
-    call_out("finish_cocoon", ROUND_LENGTH);
-}
-
-
-
-
-
-void finish_cocoon()
-{
-    if(!objectp(caster))
-        return;
-    
-    if(caster->query_current_attacker())
-    {
-        tell_object(caster, "Your cocoon spinning was interrupted!");
-        dest_effect();
-        return;
-    }
-    
-    if(!cocoon_inside->setup_cocoon(types[random(sizeof(types))]))
-    {
-        tell_object(caster, "Something went wrong with the cocoon.");
-        dest_effect();
-        return;
-    }
-
-    cocoon->move(place);    
-    caster->move_player(cocoon_inside);
-    
-    tell_object(caster, color("You spin the silky threads around you and finish your cocoon."));
-    tell_room(place, "%^GREEN%^BOLD%^" + caster->query_cap_name() + " finishes spinning the threads into a complete cocoon!", caster);
-    cocooned = 1;
-    call_out("dest_effect", 15 * ROUND_LENGTH);
-}
-    
 void dest_effect()
 {
-    if(objectp(caster) && cocooned)
-    {
-        tell_object(caster, color("You wriggle and push your way out. You burst into open, fresh air, a brand new " + arg + "."));
-        tell_room(place, "%^GREEN%^The cocoon begins to wriggle then bursts open, revealing a " + arg + ".", caster);
-        caster->move_player(place);
-        caster->set_race(arg);
+    if (find_call_out("second_hit") != -1) {
+        remove_call_out("second_hit");
     }
-    cocoon_inside->remove();
-    cocoon->remove();
-    
+    if (find_call_out("last_hit") != -1) {
+        remove_call_out("last_hit");
+    }
     ::dest_effect();
+    if (objectp(TO)) {
+        TO->remove();
+    }
 }
+	
+	
+	
+	
+	
+	
