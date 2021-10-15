@@ -47,15 +47,7 @@ string query_cast_string(){
    return "display";
 }
 
-int preSpell()
-{
-   if(caster->cooldown("holy phoenix"))
-    {
-       tell_object(caster, "You can't use holy phoenix yet. Type <cooldowns> to see your wait time.");
-       return 0;
-   }
 
-}
 
 void spell_effect(int prof)
 {
@@ -70,7 +62,7 @@ void spell_effect(int prof)
     foreach(peep in victims)
     {
         tell_object(peep, "%^C195%^Bright light hits you, starting to burn your skin!%^RESET%^");
-        tell_room(place, "%^C195%^" + peep->QCN + "'s eyes flinch as " + peep->QS + " bright light begins to cover them!%^RESET%^", peep);
+        tell_room(place, "%^C195%^" + peep->QCN + "'s eyes flinches as " + peep->QS + " bright light begins to cover them!%^RESET%^", peep);
 
         if (!do_save(peep)) {
             damage_targ(peep, peep->return_peep_limb(), sdamage, "divine");
@@ -119,6 +111,7 @@ void last_hit()
     {
         tell_object(peep, "%^C195%^" +caster->QCN+ "%^C195%^explodes in a massive burst of divine energy!%^RESET%^");
         tell_object(environment(peep), "%^C195%^" + peep->QCN + " shudders violently as the explosion blasts into them!");
+		tell_room(place,"%^C195%^" +caster->QCN+ "explodes in a burst of light, energy ripping through the room.%^RESET%^",caster);
         if (!do_save(peep)) {
             damage_targ(peep, peep->return_peep_limb(), sdamage * 2, "divine");
         } else {
