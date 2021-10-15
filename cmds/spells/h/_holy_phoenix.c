@@ -24,6 +24,7 @@ void create()
     ::create();
     set_spell_name("holy phoenix");
     set_spell_level(([ "cleric" : 9 ]));
+    set_domains( ({ "good" }) );
     set_spell_sphere("conjuration_summoning");
     set_syntax("cast CLASS holy phoenix");
     set_description("With this ability, the cleric sends a fervent prayer to their deity "
@@ -34,6 +35,7 @@ void create()
     set_verbal_comp();
     set_somatic_comp();
 	splash_spell(3);
+    set_immunities( ({ "divine" }) );
 	set_save("reflex");
 }
 
@@ -68,10 +70,10 @@ void spell_effect(int prof)
         tell_room(place, "%^C195%^" + peep->QCN + "'s eyes flinch as " + peep->QS + " bright light begins to cover them!%^RESET%^", peep);
 
         if (!do_save(peep)) {
-            damage_targ(peep, peep->return_peep_limb(), sdamage, "divine");
+            damage_targ(peep, peep->return_target_limb(), sdamage, "divine");
         } else {
             tell_object(peep, "%^GREEN%^You steel yourself and shrug off the worst of the pain.%^RESET%^");
-            damage_targ(peep, peep->return_peep_limb(), sdamage / 2, "divine");
+            damage_targ(peep, peep->return_target_limb(), sdamage / 2, "divine");
         }
 
     }
@@ -90,7 +92,7 @@ void second_hit()
         tell_object(peep, "%^C195%^Another surge of light bursts from" +caster->QCN+ "%^C195%^striking you with greater intensity!%^RESET%^");
         tell_object(environment(peep), "%^C195%^" + peep->QCN + " trembles as the light continues to blast into " + peep->QP + " frame.", peep);
         if (!do_save(peep)) {
-            damage_targ(peep, peep->return_peep_limb(), sdamage, "divine");
+            damage_targ(peep, peep->return_target_limb(), sdamage, "divine");
         } else {
             tell_object(peep, "%%^C195%^You steel yourself and shrug off the worst of the pain.%^RESET%^");
             damage_targ(peep, peep->return_target_limb(), sdamage, "divine");
@@ -115,7 +117,7 @@ void last_hit()
         tell_object(peep, "%^C195%^" +caster->QCN+ "%^C195%^explodes in a massive burst of divine energy!%^RESET%^");
         tell_object(environment(peep), "%^C195%^" + peep->QCN + " shudders violently as the explosion blasts into them!");
         if (!do_save(peep)) {
-            damage_targ(peep, peep->return_peep_limb(), sdamage * 2, "divine");
+            damage_targ(peep, peep->return_target_limb(), sdamage * 2, "divine");
         } else {
             tell_object(peep, "%^C195%^You steel yourself and shrug off the worst of the pain.%^RESET%^");
             damage_targ(peep, peep->return_target_limb(), sdamage, "divine");
