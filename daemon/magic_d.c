@@ -352,7 +352,7 @@ string *query_domain_spells(string str)
     {
         foreach(string what in requested)
         {
-            if(member_array(what, spellIndex[str]["divine_domain"]) < 0)
+            if(pointerp(spellIndex[what]["divine_domain"]) && member_array(str, spellIndex[what]["divine_domain"]) < 0)
                 requested -= ({ what });
         }
     }
