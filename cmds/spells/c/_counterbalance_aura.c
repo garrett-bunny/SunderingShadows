@@ -43,13 +43,13 @@ void spell_effect(int prof)
     int duration;
     duration = (ROUND_LENGTH * 10) * clevel;
 
-    tell_object(caster,"%^BOLD%^%^MAGENTA%^You feel powers of light warding you from the those unbalanced!");
+    tell_object(caster,"%^BOLD%^%^MAGENTA%^You feel powers warding you from the those unbalanced!");
     tell_room(place,"%^BOLD%^%^MAGENTA%^"+caster->QCN+" is suddenly surrounded by halo of light!",caster);
 
     caster->set_property("spelled", ({TO}));
     caster->set_property("nimbus",1);
     caster->set_property("protection from spells", 1);
-    caster->set_property("added short",({"%^BOLD%^%^WHITE%^ (in a blue halo)%^RESET%^"}));
+    caster->set_property("added short",({"%^BOLD%^%^WHITE%^ (in a grey halo)%^RESET%^"}));
     addSpellToCaster();
     spell_successful();
     caster->add_saving_bonus("all",4);
@@ -99,11 +99,11 @@ void execute_attack(){
     if(sizeof(attackers))
     {
         define_base_damage(0);
-        tell_room(place,"%^BOLD%^%^WHITE%^The holy light around "+caster->QCN+" falls upon "+caster->QP+" enemies!",({caster,target}));
-        tell_object(caster,"%^BOLD%^%^WHITE%^The holy light around you falls upon your enemies!");
+        tell_room(place,"%^BOLD%^%^CYAN%^The grey aura around "+caster->QCN+" falls upon "+caster->QP+" enemies!",({caster,target}));
+        tell_object(caster,"%^BOLD%^%^CYAN%^The grey aura around you falls upon your enemies!");
         for(i=0;i<sizeof(attackers);i++){
             if(SAVING_D->saving_throw(attackers[i],"spell",0)) { continue; }
-            tell_object(attackers[i],"%^BOLD%^%^WHITE%^You are scorched by the holy light as you strike "
+            tell_object(attackers[i],"%^BOLD%^%^CYAN%^You are scorched by the magical energy as you strike "
                         ""+caster->QCN+"!");
             damage_targ(attackers[i],attackers[i]->return_target_limb(),sdamage,"divine");
         }
@@ -121,7 +121,7 @@ void dest_effect()
         caster->remove_property("protection from spells");
         caster->add_ac_bonus(-4);
         caster->add_saving_bonus("all",-4);
-	    caster->remove_property_value("added short",({"%^BOLD%^%^WHITE%^ (in a light halo)%^RESET%^"}));
+	    caster->remove_property_value("added short",({"%^BOLD%^%^WHITE%^ (in a grey halo)%^RESET%^"}));
     }
     ::dest_effect();
     if(objectp(TO)) { TO->remove(); }
