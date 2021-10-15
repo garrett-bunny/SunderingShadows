@@ -19,12 +19,6 @@ int waittime;
 void dest_effect();
 void waiter(int num);
 
-//string *types = ({ "plant", "animal", "human" });
-//string *valid_races;
-//int cocooned = 0;
-
-//object cocoon, cocoon_inside;
-
 void create()
 {
     ::create();
@@ -48,17 +42,15 @@ string query_cast_string()
     return "%^C154%^"+caster->QCN+" clenches "+caster->QP+" fists and chants a fervent prayer to their deity!";
 }
 
-//int preSpell()
-//{
-//    int size;
-    
- //   if(caster->cooldown("phoenix"))
- //   {
- //       tell_object(caster, "You can't use holy phoenix yet. Type <cooldowns> to see your wait time.");
- //       return 0;
-  //  }
+int preSpell()
+{
+   if(caster->cooldown("holy phoenix"))
+    {
+        tell_object(caster, "You can't use holy phoenix yet. Type <cooldowns> to see your wait time.");
+       return 0;
+    }
 
-//}
+}
 
 void spell_effect(int prof)
 {
@@ -129,7 +121,7 @@ void last_hit()
             damage_targ(peep, peep->return_target_limb(), sdamage, "divine");
         }
     }
-	waittime= 30;
+	waittime= 5;
 	oldenv=environment(caster);
 	caster->add_cooldown("holy phoenix", 10000);
 	web=new("/d/magic/room/judgement.c");

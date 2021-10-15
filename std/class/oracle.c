@@ -56,7 +56,7 @@ mapping class_featmap(string myspec, object player) {
                  1: ({ "light armor proficiency", "medium armor proficiency", "simple weapon proficiency", "shield proficiency", "spell focus", "dragon affinity", "dragon aspect" }),
                  5 : ({ "indomitable" }),
                  10: ({ "force of personality" }),
-                 15: ({ "leadership" }),
+                 15: ({ "leadership", "blindfight" }),
                ]);
     }
     
