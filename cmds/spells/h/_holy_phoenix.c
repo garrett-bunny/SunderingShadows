@@ -78,7 +78,8 @@ void spell_effect(int prof)
 
     }
     spell_successful();
-    call_out("second_hit", ROUND_LENGTH);
+	caster->set_paralyzed(30, "%^C195%^You feel overwhelmed by divine power, you are losing control and unable to think or act!");
+    call_out("second_hit", 15);
 }
 
 void second_hit()
@@ -110,8 +111,8 @@ void second_hit()
     if (!sizeof(victims)) {
         dest_effect();
     }
-
-    call_out("last_hit", ROUND_LENGTH);
+    caster->set_paralyzed(30, "%^C195%^Your body feels burning hot as if the energy is trying to escape! You are about to explode!");
+    call_out("last_hit", 15);
 }
 
 void last_hit()
@@ -131,15 +132,15 @@ void last_hit()
             continue;
         }
         tell_object(peep, "%^C195%^" +caster->QCN+ "%^C195%^explodes in a massive burst of divine energy!%^RESET%^");
-        tell_object(environment(peep), "%^C195%^^" + peep->QCN + " shudders violently as the explosion blasts into them");
+        tell_object(environment(peep), "%^C195%^" + peep->QCN + " shudders violently as the explosion blasts into them!");
         if (!do_save(peep)) {
             damage_targ(peep, peep->return_peep_limb(), sdamage * 2, "divine");
         } else {
-            tell_object(peep, "%^GREEN%^You steel yourself and shrug off the worst of the pain.%^RESET%^");
+            tell_object(peep, "%^C195%^You steel yourself and shrug off the worst of the pain.%^RESET%^");
             damage_targ(peep, peep->return_target_limb(), sdamage, "divine");
         }
     }
-	caster->add_cooldown("cocoon", 86400);
+	caster->add_cooldown("holy phoenix", 10000);
     dest_effect();
 }
 	
