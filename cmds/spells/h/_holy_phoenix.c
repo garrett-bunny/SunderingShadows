@@ -45,7 +45,16 @@ string query_cast_string(){
    return "display";
 }
 
-
+int preSpell()
+{
+    if(caster->cooldown("holy phoenix"))
+    {
+        tell_object(caster, "You can't use Holy Phoenix yet. Type <cooldowns> to see your wait time.");
+        return 0;
+	}else;{
+	return 1;
+    }
+}
 
 void spell_effect(int prof)
 {
@@ -60,7 +69,7 @@ void spell_effect(int prof)
     foreach(peep in victims)
     {
         tell_object(peep, "%^C195%^Bright %^C190%^light %^C195%^hits you, starting to %^C088%^burn %^C195%^your skin!%^RESET%^");
-        tell_room(place, "%^C195%^" + peep->QCN + "'s eyes flinches as " + peep->QS + " %^C190%^bright light %^C195%^begins to cover them!%^RESET%^", peep);
+        tell_room(place, "%^C195%^" + peep->QCN + "'s eyes flinches as the %^C190%^bright light %^C195%^begins to cover them!%^RESET%^", peep);
 
         if (!do_save(peep)) {
             damage_targ(peep, peep->return_peep_limb(), sdamage, "divine");
@@ -95,7 +104,7 @@ void second_hit()
     if (!sizeof(victims)) {
         dest_effect();
     }
-    caster->set_paralyzed(30, "%^C195%^Your body feels burning hot as if the energy is trying to escape! You are about to explode!");
+    caster->set_paralyzed(30, "%^C195%^Your body feels %^C088%^burning hot %^C195%^as if the %^C142%^energy %^C195%^is trying to escape! You are about to %^C124%^explode%^C195%^!");
     call_out("last_hit", 15);
 }
 
@@ -107,8 +116,8 @@ void last_hit()
 
     foreach(peep in victims)
     {
-        tell_object(peep, "%^C195%^" +caster->QCN+ "%^C195%^explodes in a massive burst of divine energy!%^RESET%^");
-        tell_object(environment(peep), "%^C195%^" + peep->QCN + " shudders violently as the explosion blasts into them!");
+        tell_object(peep, "%^C195%^" +caster->QCN+ "%^C195%^explodes in a %^C197%^massive burst %^C195%^of %^C226%^divine energy%^C195%^!%^RESET%^");
+        tell_object(environment(peep), "%^C195%^" + peep->QCN + " shudders %^C196%^violently %^C195%^as the %^C166%^explosion %^C195%^blasts into them!");
 		tell_room(place,"%^C195%^" +caster->QCN+ "explodes in a burst of light, energy ripping through the room.%^RESET%^",caster);
         if (!do_save(peep)) {
             damage_targ(peep, peep->return_peep_limb(), sdamage * 2, "divine");
@@ -152,8 +161,8 @@ void dest_effect() {
 
     if (objectp(caster) && objectp(web))
         if (present(caster,web)) {
-            tell_object(caster,"%^BOLD%^%^YELLOW%^You feel warmth throughout your body as you step out of a ball of light!%^RESET%^");
-            tell_room(place,"%^BOLD%^%^YELLOW%^"+caster->QCN+" suddenly steps out of the glowing orb.%^RESET%^",caster );
+            tell_object(caster,"%^C156%^You feel %^C202%^warmth %^C195%^throughout your body as you step out of a %^C220%^ball of light%^C195%^!%^RESET%^");
+            tell_room(place,"%^C195%^"+caster->QCN+" suddenly steps out of the %^C220%^glowing orb%^C195%^.%^RESET%^",caster );
             caster->move(oldenv);
             tempinv=all_inventory(web);
             for (i=0;i++;i<sizeof(tempinv)) {
