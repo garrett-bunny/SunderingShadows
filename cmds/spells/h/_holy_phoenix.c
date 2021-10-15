@@ -37,20 +37,25 @@ void create()
 	set_save("reflex");
 }
 
-string query_cast_string()
-{
-    return "%^C154%^"+caster->QCN+" clenches "+caster->QP+" fists and chants a fervent prayer to their deity!";
+string query_cast_string(){
+   tell_object(caster,"%^BOLD%^Grabbing your holy symbol tightly "+
+      "in your hand, shouting out a desperate please to your deity. "+
+      "in the air with your right forefinger.%^RESET%^");
+   tell_room(place,"%^BOLD%^"+caster->QCN+" holds a holy symbol "+
+      "tightly in "+caster->QP+" left hand as "+caster->QS+" they "+
+      "shout out a desperate prayer to their deity.%^RESET%^",caster);
+   return "display";
 }
 
-//int preSpell()
-//{
-//   if(caster->cooldown("holy phoenix"))
-//    {
-//        tell_object(caster, "You can't use holy phoenix yet. Type <cooldowns> to see your wait time.");
-//       return 0;
-//    }
+int preSpell()
+{
+   if(caster->cooldown("holy phoenix"))
+    {
+       tell_object(caster, "You can't use holy phoenix yet. Type <cooldowns> to see your wait time.");
+       return 0;
+   }
 
-//}
+}
 
 void spell_effect(int prof)
 {
@@ -123,7 +128,7 @@ void last_hit()
     }
 	waittime= 5;
 	oldenv=environment(caster);
-	caster->add_cooldown("holy phoenix", 10000);
+	caster->add_cooldown("holy phoenix", 50);
 	web=new("/d/magic/room/judgement.c");
     caster->move(web);
     addSpellToCaster();
@@ -157,7 +162,7 @@ void dest_effect() {
     if (objectp(caster) && objectp(web))
         if (present(caster,web)) {
             tell_object(caster,"%^BOLD%^%^YELLOW%^You feel warmth throughout your body as you step out of a ball of light!%^RESET%^");
-            tell_room(place,"%^BOLD%^%^YELLOW%^"+target->QCN+" suddenly steps out of the glowing orb.%^RESET%^",target );
+            tell_room(place,"%^BOLD%^%^YELLOW%^"+caster->QCN+" suddenly steps out of the glowing orb.%^RESET%^",caster );
             caster->move(oldenv);
             tempinv=all_inventory(web);
             for (i=0;i++;i<sizeof(tempinv)) {
@@ -170,8 +175,8 @@ void dest_effect() {
     if (find_call_out("last_hit") != -1) {
         remove_call_out("last_hit");
     }
-    if (objectp(target) && objectp(web)) {
-        if (!present(target,web)) {
+    if (objectp(caster) && objectp(web)) {
+        if (!present(caster,web)) {
             tempinv=all_inventory(web);
             for (i=0;i++;i<sizeof(tempinv)) {
                 if (objectp(tempinv[i])) tempinv[i]->move(oldenv);
