@@ -26,7 +26,7 @@ void create()   {
     "northeast":TCITY+"c10",
     "southwest": "/d/player_houses/lizabelle/entry",
     ]));
-    set_door("door","/d/guilds/fist/mansion/entry","southwest");
+    set_door("door","/d/player_houses/lizabelle/entry","southwest");
     set_locked("door",0);
     set_door_description("door", "%^RESET%^%^CRST%^%^C101%^These massive doors are solid walnut and have been intricately carved with scenes of sea dragons, nymphs, and other creatures of lore and legend. Heavy brass hinges, knobs, and hardware are burnished to a soft luster.%^CRST%^");
     set_string("door","open","%^RESET%^%^CRST%^%^C254%^The massive walnut doors swing open soundlessly.%^CRST%^");

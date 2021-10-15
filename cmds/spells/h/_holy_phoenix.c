@@ -97,7 +97,7 @@ void second_hit()
             damage_targ(peep, peep->return_peep_limb(), sdamage *1.5, "divine");
         } else {
             tell_object(peep, "%^C109%^You steel yourself and shrug off the worst of the pain.%^RESET%^");
-            damage_targ(peep, peep->return_target_limb(), sdamage, "divine");
+            damage_targ(peep, peep->return_target_limb(), sdamage *.75, "divine");
         }
     }
 
