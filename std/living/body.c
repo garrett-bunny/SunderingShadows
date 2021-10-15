@@ -837,11 +837,11 @@ int query_resistance_percent(string res)
     if(this_object()->is_deva())
     {
         if(res == "divine")
-            res += 25;
+            mod += 25;
         if(res == "acid")
-            res += 25;
+            mod += 25;
         if(res == "electricity")
-            res += 25;
+            mod += 25;
     }
         
     if (TO->is_undead()) {
