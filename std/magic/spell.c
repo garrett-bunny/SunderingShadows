@@ -934,6 +934,17 @@ void wizard_interface(object user, string type, string targ)
             return;
         }
     }
+    
+    if(this_player()->is_deva() && target && !query_helpful())
+    {
+        //Cannot initiate combat against a non-evil enemy unless they are attacking a non-evil character themselves
+        if(target->query_true_align() % 3 &&
+          (target->query_current_attacker())->query_true_align() % 3)
+        {
+            tell_object(this_player(), "Your very nature resists causing harm to that being.");
+            return;
+        }
+    }
 
     cname = caster->query_name();
     //If we get an argument string from the cast command
