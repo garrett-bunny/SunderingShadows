@@ -18,7 +18,7 @@ void create()
     set_description("With this spell, the caster extends fears and horrors from their own mind into the material plane, causing pain and suffering to everything in sight. The phantasmal killer spell is cast on all enemies and their minds assaulted with visions of horror. Only a strong will can withstand this power, and even then will only avoid some of the suffering.");
     set_verbal_comp();
     set_somatic_comp();
-    splash_spell(2);
+    splash_spell(3);
     set_save("will");
 }
 
@@ -31,7 +31,7 @@ int preSpell()
 {
     object nspell, *enemies;
     
-    enemies = caster->query_attackers();
+    enemies = target_selector();
     
     if(!sizeof(enemies))
     {
