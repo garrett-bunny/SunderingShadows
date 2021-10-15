@@ -342,6 +342,24 @@ mapping query_index_row(string spell)
     return spellIndex[spell];
 }
 
+string *query_domain_spells(string str)
+{
+    string *requested;
+    
+    requested = keys(domain_spells);
+    
+    if(strlen(str))
+    {
+        foreach(string what in requested)
+        {
+            if(member_array(what, spellIndex[str]["divine_domain"]) < 0)
+                requested -= ({ what });
+        }
+    }
+    
+    return requested;
+}
+
 /**
  * Filters spellist based on player class and feats and returns it.
  */
