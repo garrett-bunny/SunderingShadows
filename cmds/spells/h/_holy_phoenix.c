@@ -4,7 +4,6 @@
 #include <priest.h>
 #include <daemons.h>
 
-//#define BAN ({ "soulforged", "deva", "shade", "alaghi", "ghost", "nightwing", "barrus", "illithid", "unborn", "dragon" })
 
 inherit SPELL;
 
@@ -38,12 +37,11 @@ void create()
 }
 
 string query_cast_string(){
-   tell_object(caster,"%^BOLD%^Grabbing your holy symbol tightly "+
-      "in your hand, shouting out a desperate please to your deity. "+
-      "in the air with your right forefinger.%^RESET%^");
-   tell_room(place,"%^BOLD%^"+caster->QCN+" holds a holy symbol "+
-      "tightly in "+caster->QP+" left hand as "+caster->QS+" they "+
-      "shout out a desperate prayer to their deity.%^RESET%^",caster);
+   tell_object(caster,"%^C167%^Grabbing your holy symbol tightly "+
+      "in your hand, shouting out a %^C111%^desperate prayer %^C167%^to your deity.");
+   tell_room(place,"%^C167%^"+caster->QCN+" %^C167%^holds a holy symbol "+
+      "tightly in "+caster->QP+" %^C167%^left hand as "+caster->QS+" %^C167%^they "+
+      "shout out a %^C111%^desperate %^C167%^prayer to their deity.%^RESET%^",caster);
    return "display";
 }
 
@@ -61,19 +59,19 @@ void spell_effect(int prof)
 
     foreach(peep in victims)
     {
-        tell_object(peep, "%^C195%^Bright light hits you, starting to burn your skin!%^RESET%^");
-        tell_room(place, "%^C195%^" + peep->QCN + "'s eyes flinches as " + peep->QS + " bright light begins to cover them!%^RESET%^", peep);
+        tell_object(peep, "%^C195%^Bright %^C190%^light %^C195%^hits you, starting to %^C088%^burn %^C195%^your skin!%^RESET%^");
+        tell_room(place, "%^C195%^" + peep->QCN + "'s eyes flinches as " + peep->QS + " %^C190%^bright light %^C195%^begins to cover them!%^RESET%^", peep);
 
         if (!do_save(peep)) {
             damage_targ(peep, peep->return_peep_limb(), sdamage, "divine");
         } else {
-            tell_object(peep, "%^GREEN%^You steel yourself and shrug off the worst of the pain.%^RESET%^");
+            tell_object(peep, "%^C109%^You steel yourself and shrug off the worst of the pain.%^RESET%^");
             damage_targ(peep, peep->return_peep_limb(), sdamage / 2, "divine");
         }
 
     }
     spell_successful();
-	caster->set_paralyzed(30, "%^C195%^You feel overwhelmed by divine power, you are losing control and unable to think or act!");
+	caster->set_paralyzed(30, "%^C195%^You feel overwhelmed by %^C190%^divine power%^C195%^, you are losing control and unable to think or act!");
     call_out("second_hit", 15);
 }
 
@@ -84,12 +82,12 @@ void second_hit()
 
     foreach(peep in victims)
     {
-        tell_object(peep, "%^C195%^Another surge of light bursts from" +caster->QCN+ "%^C195%^striking you with greater intensity!%^RESET%^");
-        tell_object(environment(peep), "%^C195%^" + peep->QCN + " trembles as the light continues to blast into " + peep->QP + " frame.", peep);
+        tell_object(peep, "%^C195%^Another surge of %^C190%^light %^C195%^bursts from" +caster->QCN+ "%^C202%^striking %^C195%^you with greater intensity!%^RESET%^");
+        tell_object(environment(peep), "%^C195%^" + peep->QCN + " trembles violently as the %^C190%^light continues to blast into " + peep->QP + " body.", peep);
         if (!do_save(peep)) {
-            damage_targ(peep, peep->return_peep_limb(), sdamage, "divine");
+            damage_targ(peep, peep->return_peep_limb(), sdamage *1.5, "divine");
         } else {
-            tell_object(peep, "%%^C195%^You steel yourself and shrug off the worst of the pain.%^RESET%^");
+            tell_object(peep, "%^C109%^You steel yourself and shrug off the worst of the pain.%^RESET%^");
             damage_targ(peep, peep->return_target_limb(), sdamage, "divine");
         }
     }
