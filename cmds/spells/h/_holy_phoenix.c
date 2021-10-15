@@ -13,6 +13,12 @@ void last_hit();
 
 object* victims;
 
+object oldenv, web, mass;
+int waittime;
+
+void dest_effect();
+void waiter(int num);
+
 //string *types = ({ "plant", "animal", "human" });
 //string *valid_races;
 //int cocooned = 0;
@@ -89,15 +95,6 @@ void second_hit()
 
     foreach(peep in victims)
     {
-        if (!objectp(peep)) {
-            victims -= ({ peep });
-            continue;
-        }
-        if (peep->query_hp() < 0) {
-            victims -= ({ peep });
-            continue;
-        }
-
         tell_object(peep, "%^C195%^Another surge of light bursts from" +caster->QCN+ "%^C195%^striking you with greater intensity!%^RESET%^");
         tell_object(environment(peep), "%^C195%^" + peep->QCN + " trembles as the light continues to blast into " + peep->QP + " frame.", peep);
         if (!do_save(peep)) {
@@ -123,14 +120,6 @@ void last_hit()
 
     foreach(peep in victims)
     {
-        if (!objectp(peep)) {
-            victims -= ({ peep });
-            continue;
-        }
-        if (peep->query_hp() < 0) {
-            victims -= ({ peep });
-            continue;
-        }
         tell_object(peep, "%^C195%^" +caster->QCN+ "%^C195%^explodes in a massive burst of divine energy!%^RESET%^");
         tell_object(environment(peep), "%^C195%^" + peep->QCN + " shudders violently as the explosion blasts into them!");
         if (!do_save(peep)) {
@@ -140,25 +129,79 @@ void last_hit()
             damage_targ(peep, peep->return_target_limb(), sdamage, "divine");
         }
     }
+	waittime= 30;
+	oldenv=environment(caster);
 	caster->add_cooldown("holy phoenix", 10000);
-    dest_effect();
+	web=new("/d/magic/room/judgement.c");
+    caster->move(web);
+    addSpellToCaster();
+    call_out("waiter",ROUND_LENGTH,1);
 }
-	
-void dest_effect()
-{
-    if (find_call_out("second_hit") != -1) {
+
+void waiter(int num) {
+    object *tempinv;
+    if(!caster || !objectp(web)){
+        dest_effect();
+        return;
+    }
+    if (!present(caster,web)) {
+        mass->remove();
+        web->move("/d/shadowgate/void.c");
+        while ( tempinv=(object *)web->all_inventory() ) {
+            tempinv[0]->move(oldenv);
+            return;
+        }
+    }
+    if (num < waittime)
+        call_out("waiter",ROUND_LENGTH,num+1);
+    else
+        dest_effect();
+    return;
+}
+void dest_effect() {
+    int i;
+    object *tempinv;
+
+    if (objectp(caster) && objectp(web))
+        if (present(caster,web)) {
+            tell_object(caster,"%^BOLD%^%^YELLOW%^You feel warmth throughout your body as you step out of a ball of light!%^RESET%^");
+            tell_room(place,"%^BOLD%^%^YELLOW%^"+target->QCN+" suddenly steps out of the glowing orb.%^RESET%^",target );
+            caster->move(oldenv);
+            tempinv=all_inventory(web);
+            for (i=0;i++;i<sizeof(tempinv)) {
+                if (objectp(tempinv[i])) tempinv[i]->move(oldenv);
+            }
+        }
+	if (find_call_out("second_hit") != -1) {
         remove_call_out("second_hit");
     }
     if (find_call_out("last_hit") != -1) {
         remove_call_out("last_hit");
     }
-    ::dest_effect();
-    if (objectp(TO)) {
+    if (objectp(target) && objectp(web)) {
+        if (!present(target,web)) {
+            tempinv=all_inventory(web);
+            for (i=0;i++;i<sizeof(tempinv)) {
+                if (objectp(tempinv[i])) tempinv[i]->move(oldenv);
+            }
+            TO->remove();
+        }
+    } else if(objectp(web)) {
+        tempinv=all_inventory(web);
+        for (i=0;i++;i<sizeof(tempinv)) {
+            if (objectp(tempinv[i])) tempinv[i]->move(oldenv);
+        }
+        TO->remove();
+        web->remove();
+    } else {
         TO->remove();
     }
+    ::dest_effect();
+    if(objectp(TO)) TO->remove();
+    return;
 }
-	
-	
+
+
 	
 	
 	
