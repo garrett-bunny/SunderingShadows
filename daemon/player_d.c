@@ -713,6 +713,10 @@ int immunity_check(object obj, string type)
         if (obj->is_undead()) {
             return 1;
         }
+        
+        if(obj->query_mystery() == "dragon" && obj->query_class_level("oracle") >= 31)
+            return 1;
+        
         switch (myrace) {
         case "elf":
         case "drow":
@@ -843,6 +847,16 @@ int immunity_check(object obj, string type)
                 obj->add_cooldown("unrestrained rage", 120);
                 obj->set_property("stun_immunity", 1);
                 call_out("remove_stun_immunity", 24, obj);
+                return 1;
+            }
+        }
+        
+        if(obj->query_mystery() == "dragon" && obj->query_class_level("oracle") >= 31)
+        {
+            if(!obj->cooldown("dragon resistance"))
+            {
+                tell_object(obj, "%^YELLOW%^Your draconic resistance helps you shrug off the paralysis!");
+                obj->add_cooldown("dragon resistance", 120);
                 return 1;
             }
         }
