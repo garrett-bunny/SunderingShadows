@@ -42,7 +42,7 @@ int preSpell()
         return 0;
     }
     
-    if(caster->cooldown("limited wish"))
+    if(caster->cooldown("wish"))
     {
         tell_object(caster, "You need to wait to use limited wish again.");
         return 0;
@@ -90,7 +90,7 @@ int preSpell()
     spell_successful();
 
     spell_to_cast->use_spell(this_player(),sargs,clevel);
-    caster->add_cooldown("limited wish", 86400);
+    caster->add_cooldown("wish", 86400);
     
     return 1;
 

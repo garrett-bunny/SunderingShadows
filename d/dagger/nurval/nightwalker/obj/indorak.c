@@ -42,8 +42,8 @@ void create()
     
     set_item_bonus("attack bonus", 7);
     set_item_bonus("damage bonus", 7);
-    set_item_bonus("negative energy resistance", -25);
-    set_item_bonus("cold resistance", 25);
+    set_item_bonus("negative energy resistance percent", -25);
+    set_item_bonus("cold resistance percent", 25);
     
     set_wield( (: this_object(), "wield_func" :) );
     set_unwield( (: this_object(), "unwield_func" :) );
