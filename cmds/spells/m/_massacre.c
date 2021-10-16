@@ -13,6 +13,7 @@ inherit SPELL;
 
 int current;
 string target_limb;
+object *targets;
 
 void create()
 {
@@ -25,7 +26,7 @@ void create()
     set_syntax("cast CLASS massacre on TARGET");
     set_damage_desc("Death or Divine Damage to target with splash");
     set_save("fortitude");
-    set_description("You unleash a wave of necromantic energy that snuffs out the life force of those in its path. This wave pulses out from you, visibly ripping the souls from the bodies of those it passes through. Targets lower level than you (by 5 levels) are automatically killed by the wave. All other must make a combat death save or die. Those who make the save will take full normalized divine damage. This spell hits fewer targets than spells like Wail of the Banshee.");
+    set_description("You unleash a wave of necromantic energy that snuffs out the life force of those in its path. This wave pulses out from you, visibly ripping the souls from the bodies of those it passes through. All other must make a combat death save or die. Those who make the save will take full normalized divine damage, and have their healing diminished for a short time. This spell hits fewer targets than spells like Wail of the Banshee.");
     evil_spell(1);
     set_verbal_comp();
     set_target_required(1);
@@ -40,7 +41,6 @@ string query_cast_string()
 void spell_effect(int prof)
 {
     int difflevel, myoutput, mydmg;
-    object *targets;
 
     if (!target || !present(target,environment(caster)))
     {
@@ -74,14 +74,25 @@ void spell_effect(int prof)
             tell_object(target,"%^BOLD%^The wave of death passes through you, and you barely retain your soul!");
             tell_room(place,"%^BOLD%^The wave of death passes through "+target->QCN+", and they barely retain their soul!",({target}));
             target && target->cause_typed_damage(target, target->return_target_limb(), sdamage,"divine");
+            target && target->set_property("fester", sdamage / 2);
             continue;
         }
     }
  
-    dest_effect();
+    call_out("dest_effect", 1 + (6 * clevel) / 10); 
 }
 
-void dest_effect() {
+void dest_effect()
+{
+    foreach(object ob in targets)
+    {
+        if(!objectp(ob))
+            continue;
+        
+        tell_object(ob, "You feel your wounds stop festering.");
+        ob->remove_property("fester");
+    }
+    
     ::dest_effect();
     if(objectp(TO)) TO->remove();
 }
