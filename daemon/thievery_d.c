@@ -48,24 +48,31 @@ mapping initiate_thievery(object thief, object victim, object item) {
 int check_caught(int victim_roll, object victim, int thief_roll, object thief, object ob) {
 	int test;
 	int i;
-	object * inven;
+	object *witnesses;
 	int weight;
 	int intox,vic_perc,thief_perc,condition,busy,bonus;
 	string *pkills;
 
 	vic_perc = (victim->query_intox()*100) / victim->query_formula();
-	if(DEBUG) tell_object(thief, "vic_perc: "+vic_perc);
 	thief_perc = (thief->query_intox()*100) / thief->query_formula();
+	if(DEBUG) tell_object(thief, "vic_perc: "+vic_perc);
 	if(DEBUG) tell_object(thief, "thief_perc: "+thief_perc);
+
 	intox = (vic_perc/10) - (thief_perc/10);
 	if(DEBUG) tell_object(thief, "intox: "+intox);
+
 	condition = (100 - (int)victim->query_condition_percent()) - (100 - (int)thief->query_condition_percent());
 	if(DEBUG) tell_object(thief, "condition: "+condition);
-	busy = (5 * ( sizeof(all_living(environment(thief))) -2) ) - 10;
+
+	witnesses = all_living(environment(thief));
+	witnesses = filter_array(witnesses, (:!(avatarp($1) && $1->query_true_invis()):));
+	witnesses = filter_array(witnesses, (:!$1->query_property("spell_creature"):));
+	busy = (5 * ( sizeof(witnesses) -2) ) - 10;
 	if(DEBUG) tell_object(thief, "busy: "+busy);
+
 	bonus = intox + condition + busy + thief_roll;
-	if(DEBUG) tell_object(thief, "bonus: "+bonus);
 	test = 50 + ((int)victim->query_highest_level() - bonus);
+	if(DEBUG) tell_object(thief, "bonus: "+bonus);
 	if(DEBUG) tell_object(thief, "test: "+test);
 
 	if ((100 - victim_roll) < test) {
@@ -82,9 +89,8 @@ int check_caught(int victim_roll, object victim, int thief_roll, object thief, o
 		tell_object(victim,"You catch "+thief->query_cap_name()+" with "+thief->query_possessive()+" hand in your pocket.\n");
 		tell_object(thief,"You get caught.");
 		tell_room(environment(thief),"You see "+victim->query_cap_name()+" catch "+thief->query_cap_name()+" with a hand in "+victim->query_possessive()+" pocket.",({thief,victim}));
-		inven = all_living(environment(thief));
-		for(i=0;i<sizeof(inven);i++){
-			if(objectp(inven[i])) inven[i]->check_caught(thief,victim,victim_roll);
+		for(i=0;i<sizeof(witnesses);i++){
+			if(objectp(witnesses[i])) witnesses[i]->check_caught(thief,victim,victim_roll);
 		}
 
 		if (!interactive(victim)) victim->kill_ob(thief,0);
