@@ -66,7 +66,6 @@ void spell_effect(int prof)
         if (!objectp(attackers[i])) {
             continue;
         }
-        define_base_damage(0);
         admg = sdamage;
         if (do_save(attackers[i])) {
             admg = admg / 2;
