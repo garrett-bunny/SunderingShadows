@@ -24,6 +24,7 @@ void create() {
     set_verbal_comp();
     //set_silent_casting(1);
     set_target_required(1);
+    splash_spell(3);
      // school specific mage spell
 }
 
