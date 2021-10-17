@@ -14,7 +14,7 @@ void create() {
     feat_category("MeleeDamage");
     feat_syntax("rush [TARGET]");
     feat_prereq("Strength 13");
-    feat_desc("The character can attempt to rush at a foe with their weapon, throwing as much force as they can behind it in the hope of dealing damage and knocking them over. Missing, however, will send the character sprawling. This will only work while shapeshifted, or using a standard melee weapon, unless the character has an aptitude in unarmed combat.
+    feat_desc("The character can attempt to rush at a foe with their weapon, throwing as much force as they can behind it in the hope of dealing damage and knocking them over. Missing, however, will send the character sprawling. This will only work while shapeshifted, or using a standard melee weapon, unless the character has an aptitude in unarmed combat. Note: Monks cannot take the unarmed combat feat and so cannot take use this feat.
 
 If used without an argument this feat will pick up a random attacker.
 
@@ -32,6 +32,12 @@ int prerequisites(object ob)
         dest_effect();
         return 0;
     }
+    
+    if(!FEATS_D->usable_feat(ob, "unarmed combat"))
+    {
+        return 0;
+    }
+    
     return ::prerequisites(ob);
 }
 
