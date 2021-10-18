@@ -921,7 +921,7 @@ void spell_usage_data(string spell_name)
         
         foreach(string str in top_ten)
         {
-            printf("%-22s : %4d\n", capitalize(str), tracked_spells[str][0]);
+            printf("%-22s : %6d\n", capitalize(str), tracked_spells[str][0]);
         }
         
         return 1;
