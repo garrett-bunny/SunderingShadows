@@ -914,14 +914,14 @@ void spell_usage_data(string spell_name)
     if(!strlen(spell_name))
     {
         top_ten = keys(tracked_spells);
-        top_ten = sort_array(top_ten, (: $1 > $2 :));
+        top_ten = sort_array(top_ten, (: tracked_spells[$1][0] > tracked_spells[$2][0] :));
         top_ten = top_ten[0..9];
         
         write("%^RED%^BOLD%^Top Ten Used Spells:%^RESET%^");
         
         foreach(string str in top_ten)
         {
-            printf("%-12s : %d\n", capitalize(str), tracked_spells[str][0]);
+            printf("%-22s : %4d\n", capitalize(str), tracked_spells[str][0]);
         }
         
         return 1;
