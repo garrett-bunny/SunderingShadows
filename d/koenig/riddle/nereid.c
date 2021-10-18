@@ -947,7 +947,7 @@ int reward_me(){
                call_out("interim",1);
                return 1;
       }
-      if(TP->is_class("cleric")){
+      if(TP->is_class("cleric") || TP->is_class("oracle")){
                obj = new("/d/koenig/riddle/rewards/cleric_default.c");
                obj->move(ETO);
                call_out("interim",1);

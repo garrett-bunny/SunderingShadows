@@ -15,7 +15,7 @@ void create()
     set_bonus_type(({ "resistance", "deflection" }));
     set_syntax("cast CLASS counterbalance aura");
     set_damage_desc("divine damage, 4 AC, 4 to all saves");
-    set_description("You are surrounded by an aura of counterbalancing that will harm all your opponents and will slightly protect you. This is nimbus-family spell that won't work with other nimbuses.");
+    set_description("You are surrounded by an aura of counterbalancing, an aura focused on true neutrality (True Neutral), that will harm all your opponents and will slightly protect you. This is nimbus-family spell that won't work with other nimbuses.");
     set_property("magic",1);
     traveling_aoe_spell(1);
 }
