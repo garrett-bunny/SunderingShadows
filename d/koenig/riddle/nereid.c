@@ -941,7 +941,7 @@ int reward_me(){
                call_out("interim",1);
                return 1;
       }
-      if((TP->is_class("thief") && (!TP->is_class("fighter") && !TP->is_class("cleric")))){
+      if(TP->is_class("thief") && (!TP->is_class("fighter") && !TP->is_class("cleric"))){
                obj = new("/d/koenig/riddle/rewards/thief_default.c");
                obj->move(ETO);
                call_out("interim",1);
@@ -959,7 +959,7 @@ int reward_me(){
                call_out("interim",1);
                return 1;
       }
-      if(TP->is_class("ranger") || TP->is_class("inquisitor") || TP->is_class("inquisitor")){
+      if(TP->is_class("ranger") || TP->is_class("inquisitor") || TP->is_class("warlock")){
                obj = new("/d/koenig/riddle/rewards/ranger_default.c");
                obj->move(ETO);
                call_out("interim",1);
