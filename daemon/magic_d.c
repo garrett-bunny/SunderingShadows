@@ -871,13 +871,14 @@ int track_spell(string spell_name, int clevel)
     
     if(!strlen(spell_name) || !clevel)
         return 0;
-    
+/*   
     if(!pointerp(tracked_spells))
         tracked_spells = ([  ]);
-    
+*/    
     if(member_array(spell_name, keys(tracked_spells)) < 0)
     {
-        tracked_spells += ([ spell_name : ({ 1, clevel, clevel }) ]);
+        tracked_spells += ([ spell_name : ({ 1, clevel, clevel }), ]);
+        save_object(MAGIC_D_SAVE);
         return 1;
     }
     
@@ -895,31 +896,59 @@ int track_spell(string spell_name, int clevel)
     tracked_spells[spell_name][1] = max_clevel;
     tracked_spells[spell_name][2] = average;
     
+    save_object(MAGIC_D_SAVE);
+    
     return 1;
 }
 
 void spell_usage_data(string spell_name)
 {
+    string *top_ten;
+    
     if(!sizeof(tracked_spells))
     {
-        write("No spells have been tracked.\n");
+        write("No spells have been tracked.");
         return;
+    }
+    
+    if(!strlen(spell_name))
+    {
+        top_ten = keys(tracked_spells);
+        top_ten = sort_array(top_ten, (: $1 > $2 :));
+        top_ten = top_ten[0..9];
+        
+        write("%^RED%^BOLD%^Top Ten Used Spells:%^RESET%^");
+        
+        foreach(string str in top_ten)
+        {
+            printf("%-12s : %d\n", capitalize(str), tracked_spells[str][0]);
+        }
+        
+        return 1;
     }
     
     if(member_array(spell_name, keys(tracked_spells)) < 0)
     {
-        write("No data for that spell.\n");
+        write("No data for that spell.");
         return;
     }
     
     if(!pointerp(tracked_spells[spell_name]))
     {
-        write("Invalid spell data.\n");
+        write("Invalid spell data.");
         return;
     }
     
-    write("%^RED%^BOLD%^" + capitalize(spell_name) + "%^RESET%^\n");
+    write("%^RED%^BOLD%^" + capitalize(spell_name) + "%^RESET%^");
     printf("Total number of casts : %d\n", tracked_spells[spell_name][0]);
     printf("Maximum caster level  : %d\n", tracked_spells[spell_name][1]);
     printf("Average caster level  : %d\n", tracked_spells[spell_name][2]);
+}
+
+int clear_tracking_data()
+{
+    write("Clearing tracking data...");
+    tracked_spells = ([  ]);
+    
+    return 1;
 }
