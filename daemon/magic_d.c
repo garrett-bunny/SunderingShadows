@@ -867,7 +867,7 @@ mapping tracked_spells()
 //tracked_spells ([ spell_name : ({ num casts, max clevel, average clevel }) ])
 int track_spell(string spell_name, int clevel)
 {
-    int max_clevel, num, average;
+    int max_clevel, num, avg;
     
     if(!strlen(spell_name) || !clevel)
         return 0;
@@ -890,11 +890,14 @@ int track_spell(string spell_name, int clevel)
     
     max_clevel = max( ({ clevel, tracked_spells[spell_name][1] }) );
     num = tracked_spells[spell_name][0] + 1;
-    average = (tracked_spells[spell_name][2] + clevel) / num;
+    avg = (tracked_spells[spell_name][2] + clevel) / num;
     
+    tracked_spells[spell_name] = ({ num, max_clevel, avg });
+    /*
     tracked_spells[spell_name][0] = num;
     tracked_spells[spell_name][1] = max_clevel;
-    tracked_spells[spell_name][2] = average;
+    tracked_spells[spell_name][2] = avg;
+    */
     
     save_object(MAGIC_D_SAVE);
     
@@ -914,7 +917,7 @@ void spell_usage_data(string spell_name)
     if(!strlen(spell_name))
     {
         top_ten = keys(tracked_spells);
-        top_ten = sort_array(top_ten, (: tracked_spells[$1][0] > tracked_spells[$2][0] :));
+        top_ten = sort_array(top_ten, "compare_spells", this_object());
         top_ten = top_ten[0..9];
         
         write("%^RED%^BOLD%^Top Ten Used Spells:%^RESET%^");
@@ -925,7 +928,7 @@ void spell_usage_data(string spell_name)
         }
         
         return 1;
-    }
+    } 
     
     if(member_array(spell_name, keys(tracked_spells)) < 0)
     {
@@ -945,10 +948,19 @@ void spell_usage_data(string spell_name)
     printf("Average caster level  : %d\n", tracked_spells[spell_name][2]);
 }
 
+int compare_spells(string one, string two)
+{
+    if(tracked_spells[one][0] > tracked_spells[two][0]) return -1;
+    if(tracked_spells[one][0] < tracked_spells[two][0]) return 1;
+    
+    return 0;
+}
+
 int clear_tracking_data()
 {
     write("Clearing tracking data...");
     tracked_spells = ([  ]);
+    save_object(MAGIC_D_SAVE);
     
     return 1;
 }
