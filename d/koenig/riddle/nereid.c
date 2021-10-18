@@ -929,7 +929,7 @@ int reward_me(){
         SAVE_D->remove_name_from_array("riddle_quest_riddle2", TPQN);
    if(member_array(TPQN, riddle3) != -1)
         SAVE_D->remove_name_from_array("riddle_quest_riddle3", TPQN);
-      if(TP->is_class("mage") || TP->is_class("psion") || TP->is_class("sorcerer")){
+      if(TP->is_class("mage") || TP->is_class("psion") || TP->is_class("sorcerer") || TP->is_class("monk")){
                obj = new("/d/koenig/riddle/rewards/mage_default.c");
                obj->move(ETO);
                call_out("interim",1);
@@ -941,7 +941,7 @@ int reward_me(){
                call_out("interim",1);
                return 1;
       }
-      if((TP->is_class("thief") && (!TP->is_class("fighter") && !TP->is_class("cleric"))) || TP->is_class("warlock") || TP->is_class("monk")){
+      if((TP->is_class("thief") && (!TP->is_class("fighter") && !TP->is_class("cleric")))){
                obj = new("/d/koenig/riddle/rewards/thief_default.c");
                obj->move(ETO);
                call_out("interim",1);
@@ -953,13 +953,13 @@ int reward_me(){
                call_out("interim",1);
                return 1;
       }
-      if(TP->is_class("fighter") || TP->is_class("barbarian") || TP->is_class("psywarrior")){
+      if(TP->is_class("fighter") || TP->is_class("barbarian") || TP->is_class("psywarrior") || TP->is_class("magus")){
                obj = new("/d/koenig/riddle/rewards/fighter_default.c");
                obj->move(ETO);
                call_out("interim",1);
                return 1;
       }
-      if(TP->is_class("ranger")){
+      if(TP->is_class("ranger") || TP->is_class("inquisitor") || TP->is_class("inquisitor")){
                obj = new("/d/koenig/riddle/rewards/ranger_default.c");
                obj->move(ETO);
                call_out("interim",1);
