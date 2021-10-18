@@ -7,6 +7,8 @@
 #include <mysteries.h>
 
 #define NO_EFFECT -100
+#define TRACK_SPELLS 1
+
 inherit DAEMON;
 
 #include <spellcomponents.h>
@@ -1861,6 +1863,10 @@ varargs void use_spell(object ob, mixed targ, int ob_level, int prof, string cla
     }else {
         TO->spell_effect(prof);
     }
+    
+    if(TRACK_SPELLS)
+        MAGIC_D->track_spell(spell_name, clevel);
+    
     return 1;
 }
 

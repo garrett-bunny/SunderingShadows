@@ -30,6 +30,7 @@ void index_spells();
 mapping allSpells;
 mapping domain_spells;
 mapping spellIndex;
+mapping tracked_spells = ([   ]);
 
 mapping quick_names;
 
@@ -854,4 +855,71 @@ string get_spell_file_name(string spell)
 	spell = DIR_SPELLS + "/"+ explode(spell, "")[0] + "/_" + replace_string(spell, " ", "_") + ".c";
 	if(!file_exists(spell)) return "";
 	return spell;
+}
+
+//This section tracks cast spells.
+//Tied into spell.c
+mapping tracked_spells()
+{
+    return tracked_spells;
+}
+
+//tracked_spells ([ spell_name : ({ num casts, max clevel, average clevel }) ])
+int track_spell(string spell_name, int clevel)
+{
+    int max_clevel, num, average;
+    
+    if(!strlen(spell_name) || !clevel)
+        return 0;
+    
+    if(!pointerp(tracked_spells))
+        tracked_spells = ([  ]);
+    
+    if(member_array(spell_name, keys(tracked_spells)) < 0)
+    {
+        tracked_spells += ([ spell_name : ({ 1, clevel, clevel }) ]);
+        return 1;
+    }
+    
+    if(!pointerp(tracked_spells[spell_name]))
+    {
+        tracked_spells[spell_name] = ({ 1, clevel, clevel });
+        return 1;
+    }
+    
+    max_clevel = max( ({ clevel, tracked_spells[spell_name][1] }) );
+    num = tracked_spells[spell_name][0] + 1;
+    average = (tracked_spells[spell_name][2] + clevel) / num;
+    
+    tracked_spells[spell_name][0] = num;
+    tracked_spells[spell_name][1] = max_clevel;
+    tracked_spells[spell_name][2] = average;
+    
+    return 1;
+}
+
+void spell_usage_data(string spell_name)
+{
+    if(!sizeof(tracked_spells))
+    {
+        write("No spells have been tracked.\n");
+        return;
+    }
+    
+    if(member_array(spell_name, keys(tracked_spells)) < 0)
+    {
+        write("No data for that spell.\n");
+        return;
+    }
+    
+    if(!pointerp(tracked_spells[spell_name]))
+    {
+        write("Invalid spell data.\n");
+        return;
+    }
+    
+    write("%^RED%^BOLD%^" + capitalize(spell_name) + "%^RESET%^\n");
+    printf("Total number of casts : %d\n", tracked_spells[spell_name][0]);
+    printf("Maximum caster level  : %d\n", tracked_spells[spell_name][1]);
+    printf("Average caster level  : %d\n", tracked_spells[spell_name][2]);
 }
