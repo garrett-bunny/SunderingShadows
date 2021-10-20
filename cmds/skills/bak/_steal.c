@@ -27,6 +27,10 @@ int cmd_steal(string str) {
        notify_fail("A magic force prevents you from doing that!\n");
        return 0;
     }
+	if(victim->query_property("protect_steal")) {
+        notify_fail("A magic force prevents you from doing that!\n");
+        return 0;
+    }
     if(!str) {
        notify_fail("Steal what from whom?\n");
        return 0;
