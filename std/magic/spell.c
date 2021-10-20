@@ -1909,7 +1909,10 @@ int query_spell_level(string classtype)
         return spell_levels["psion"];
     }
     if (classtype == "sorcerer") {
-        return spell_levels["mage"];
+        if(!spell_levels["sorcerer"])
+        {
+            return spell_levels["mage"];
+        }
     }
     if (classtype == "oracle") {
         if (!spell_levels["oracle"]) {
