@@ -168,10 +168,10 @@ void execute_attack()
     tell_object(caster, "%^BLUE%^The deadly melody coils and collapses at " + target->QCN + "!");
     tell_room(place, "%^BLUE%^The deadly melody coils and collapses at " + target->QCN + "!", caster);
 
-    bonusdc = clevel;
-    bonusdc += BONUS_D->query_stat_bonus(caster, "charisma");
+    //bonusdc = clevel;
+    bonusdc = BONUS_D->query_stat_bonus(caster, "charisma");
     spell_kill(target, caster);
-    if ((string)target->query_property("no death") || do_save(target, -bonusdc)) {
+    if ((string)target->query_property("no death") || do_save(target, bonusdc)) {
         tell_room(place, "%^BOLD%^%^BLUE%^" + target->QCN + " is utterly unaffected by the melody!", target);
         tell_object(target, "%^BOLD%^%^BLUE%^You are utterly unaffected by the melody!");
     } else {
