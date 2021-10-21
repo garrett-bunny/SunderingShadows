@@ -80,8 +80,8 @@ void spell_effect(int prof)
         if(ob->query_property("spell shield"))
         {
             tell_object(caster, "%^BOLD%^Your missile is absorbed by " + ob->query_cap_name() + "'s magical shield!");
-            tell_object(ob, "%^BOLD%^The missile is absorbed by your nagical shield!");
-            tell_room(place, "%^BOLD%^The missile is absorbed by " + ob->query_cap_name() + "'s magical shield!");
+            tell_object(ob, "%^BOLD%^The missile is absorbed by your magical shield!");
+            tell_room(place, "%^BOLD%^The missile is absorbed by " + ob->query_cap_name() + "'s magical shield!", ob);
             continue;
         }
         
