@@ -12,8 +12,8 @@ string master;
 void create()
 {
   ::create();
-  set_obvious_short("%^RESET%^dull gray circlet");
-  set_name("gray circlet");
+  set_obvious_short("%^RESET%^boots");
+  set_name("hobnail boots");
   set_short("%^BOLD%^%^BLACK%^c%^RESET%^i%^BOLD%^%^BLACK%^rcl%^RESET%^e"
            +"%^BOLD%^%^BLACK%^t %^RESET%^of %^CYAN%^c%^RESET%^o%^CYAN%^"
            +"ntr%^RESET%^o%^CYAN%^l%^RESET%^");
