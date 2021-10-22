@@ -5438,9 +5438,6 @@ int test_passive_perception()
     if (!player || !room)
         return;
 
-    if (player->query_watched() < 1)
-        return;
-
     if (FEATS_D->usable_feat(player, "spot"))
         perception = (int)player->query_skill("perception");
     else
