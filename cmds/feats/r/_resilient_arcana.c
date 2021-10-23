@@ -1,27 +1,30 @@
 #include <std.h>
 #include <daemons.h>
+#include <magic.h>
 
 inherit FEAT;
 
-void create() 
+void create()
 {
     ::create();
     feat_type("permanent");
-    feat_category("ShadowAdept");
-    feat_name("elusive spellcraft");
-    feat_prereq("Shadow Adept L4, Gift of The Shadows");
-    feat_desc("Shadow adept gains insights into schools touched by shadoweave, and gains ability to cast enchantment, illusion and necromancy spells at greater potency, albeit far from powers that of an archmage for specific school. In addition, the shadow adept's spells gain silent casting.");
+    feat_category("Archmage");
+    feat_name("resilient arcana");
+    feat_prereq("Archmage L4");
+    feat_desc("With this feat, the archmage's magic becomes more resilient than that of others. He gains a bonus to checks against dispel magic effects, making his spells much harder to dispel. In addition, the Archmage's spells become harder to identify by others while being cast.");
     permanent(1);
+    set_required_for(({"arcane perfection"}));
 }
 
 int allow_shifted() { return 1; }
 
 int prerequisites(object ob)
 {
-    if(!objectp(ob)) { return 0; }
+    if (!objectp(ob)) {
+        return 0;
+    }
 
-    if((int)ob->query_class_level("shadow_adept") < 4 || !FEATS_D->usable_feat(ob,"gift of the shadows"))
-    {
+    if ((int)ob->query_class_level("archmage") < 4) {
         dest_effect();
         return 0;
     }
@@ -53,4 +56,9 @@ void dest_effect()
     ::dest_effect();
     remove_feat(TO);
     return;
+}
+
+void remove()
+{
+    return ::remove();
 }

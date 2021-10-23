@@ -592,10 +592,10 @@ void startCasting()
 
     inven = all_living(ETP);
     roll = TP->query_skill("spellcraft") + roll_dice(1, 20);
-    if (TP->usable_feat("elusive spellcraft")) {
+    
+    if(FEATS_D->usable_feat(this_player(), "resilient arcana"))
         roll += roll_dice(2, 8);
-    }
-
+    
     displaystring = TO->query_cast_string() + "\n";
 
     if (displaystring == "display\n") {
@@ -1266,9 +1266,7 @@ void wizard_interface(object user, string type, string targ)
     improv = replace_string(improv, "_", " ");
 
     if ((FEATS_D->usable_feat(caster, "spellmastery") && (caster->query("spellmastery_spell") == spell_name)) ||
-  //(FEATS_D->usable_feat(caster, "natures gift") && (member_array(spell_name, MAGIC_SS_D->query_class_special_spells("archdruid", "all")) != -1)) ||
-  (FEATS_D->usable_feat(caster, "timeweaver") && (member_array(spell_name, MAGIC_SS_D->query_class_special_spells("chronicler", "all")) != -1)) ||
-  (FEATS_D->usable_feat(caster, "greater spell mastery") && casting_level < 5 && spell_sphere == caster->query_school()))
+    (FEATS_D->usable_feat(caster, "greater spell mastery") && casting_level < 5 && spell_sphere == caster->query_school()))
     {
         preserve_in_memory = 1;
         tell_object(caster, "%^CYAN%^The spell preserves in your memory.");
