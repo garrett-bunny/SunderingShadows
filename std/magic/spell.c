@@ -1861,7 +1861,7 @@ varargs void use_spell(object ob, mixed targ, int ob_level, int prof, string cla
         TO->spell_effect(prof);
     }
     
-    if(TRACK_SPELLS)
+    if(TRACK_SPELLS && userp(caster))
         MAGIC_D->track_spell(spell_name, clevel);
     
     return 1;

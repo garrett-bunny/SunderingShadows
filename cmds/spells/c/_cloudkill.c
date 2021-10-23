@@ -78,7 +78,7 @@ void execute_attack()
         tell_room(place, "%^GREEN%^BOLD%^" + ob->query_cap_name() + " retches on the poison gas.");
         
         poison = new("/d/common/obj/poisons/base/arsenic");
-        poison->set_poison_dc(clevel / 2);
+        poison->set_poison_dc(query_spell_dc(ob, 0));
         POISON_D->apply_poison(ob, poison, caster, "inhaled");
         spell_kill(ob, caster);
     }
