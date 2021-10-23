@@ -66,7 +66,7 @@ void execute_attack()
             continue;
         
         if((ob->query_character_level() < clevel / 4) ||
-        (ob->query_character_level() < clevel - 20 && !combat_death_save(ob, 0)))
+        (ob->query_character_level() < clevel / 2 && !combat_death_save(ob, 0)))
         {
             tell_room(place, "%^GREEN%^BOLD%^" + ob->query_cap_name() + " is instantly slain by the poisonous cloud!", ob);
             tell_object(ob, "%^GREEN%^BOLD%^You are instantly slain by the poisonous cloud!");
@@ -78,7 +78,7 @@ void execute_attack()
         tell_room(place, "%^GREEN%^BOLD%^" + ob->query_cap_name() + " retches on the poison gas.");
         
         poison = new("/d/common/obj/poisons/base/arsenic");
-        poison->set_poison_dc(10 + clevel);
+        poison->set_poison_dc(clevel / 2);
         POISON_D->apply_poison(ob, poison, caster, "inhaled");
         spell_kill(ob, caster);
     }
