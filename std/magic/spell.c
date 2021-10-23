@@ -1265,8 +1265,7 @@ void wizard_interface(object user, string type, string targ)
     spell_name = replace_string(spell_name, "_", " ");
     improv = replace_string(improv, "_", " ");
 
-    if ((FEATS_D->usable_feat(caster, "spellmastery") && (caster->query("spellmastery_spell") == spell_name)) ||
-    (FEATS_D->usable_feat(caster, "greater spell mastery") && casting_level < 5 && spell_sphere == caster->query_school()))
+    if ((FEATS_D->usable_feat(caster, "spellmastery") && (caster->query("spellmastery_spell") == spell_name)))
     {
         preserve_in_memory = 1;
         tell_object(caster, "%^CYAN%^The spell preserves in your memory.");
