@@ -14,56 +14,68 @@ void create()
     set_spell_sphere("conjuration_summoning");
     set_syntax("cast CLASS clashing rocks on TARGET");
     set_damage_desc("bludgeoning");
-    set_description("You create colossal-sized rocks and propel them forcefully at your enemy. You have a chance to miss your opponent entirely, and if they sidestep in time they'll survive the attack.");
+    set_description("You conjure two colossal rocks and smash them together around your target, rolling a ranged touch attack to cause bludgeoning damage to the target. When the rocks smash together, they cause an avalanche of stone which threatens anyone nearby with splash damage. Each must roll a reflex save to avoid half of the damage. Each victim who fails the save is tripped.");
     set_save("reflex");
     set_verbal_comp();
     set_somatic_comp();
     set_target_required(1);
+    splash_spell(1);
 }
 
 string query_cast_string()
 {
-    return "%^ORANGE%^" + caster->QCN + " closes " + caster->QP + " eyes and tosses a few rocks upon the ground!";
+    return "%^ORANGE%^" + caster->QCN + " closes " + caster->QP + " eyes clenches " + caster->QP + " fists!";
 }
 
 void spell_effect(int prof)
 {
     int roll;
+    object *targets;
+    
     ::spell_effect();
-
-    if (!caster->ok_to_kill(target)) {
-        dest_effect();
-        return;
-    }
+    
     spell_kill(target, caster);
-    roll = BONUS_D->process_hit(caster, target, 1, 0, 0, 1);
-
-    spell_kill(target, caster);
-    tell_object(caster, "%^BOLD%^As the rocks grow large and float in the air, you propel them forcefully at " + target->QCN);
-    tell_room(place, "%^BOLD%^As the rocks grow large and float in the air, " + caster->QCN + " propels them forcefully at " + target->QCN, caster);
-
-    if (!roll || roll == -1 && !caster->query_property("spectral_hand")) {
+    targets = target_selector();
+    
+    tell_object(caster, "%^BOLD%^You raise your clenched fists and two enormous rocks rise from the ground and smash together around " + target->QCN);
+    tell_room(place, "%^BOLD%^Two enormous rocks rise from the ground and smash together around " + target->QCN, caster);
+    
+    if(BONUS_D->process_hit(caster, target, 1, 0, 0, 1) < 1)
+    {
         tell_object(target, "%^ORANGE%^You barely make an escape from the clashing rocks!.");
-        tell_room(place, "%^ORANGE%^" + target->QCN + " barely makes an escape from the clashing rocks!", ({ caster, target }));
-        tell_object(caster, "%^ORANGE%^The propelled rocks miss " + target->QCN + "!");
-
-        TO->remove();
-    } else {
-        spell_successful();
-        tell_object(target, "%^ORANGE%^%^BOLD%^You are hit by the giant rocks!\n");
-        tell_room(place, "%^ORANGE%^%^BOLD%^" + target->QCN + " is hit by the giant rocks!", ({ caster, target }));
-        tell_object(caster, "%^BOLD%^%^BLACK%^The rocks clash together and crush " + target->QCN + "!\n");
-
-        // Ray of ending, WOK and this one should share disadvantage value
-        if (combat_death_save(target, 0)) {
-            tell_object(target, "%^BOLD%^%^BLACK%^You barely make an escape from being crushed to dust!");
-            damage_targ(target, target->return_target_limb(), sdamage, "bludgeoning");
-        } else {
-            tell_object(target, "%^BOLD%^%^BLACK%^You are crushed by the rocks, and die.");
-            tell_room(place, "%^BOLD%^%^BLACK%^" + target->QCN + " dies being crushed by the rocks.", target);
-            damage_targ(target, target->return_target_limb(), target->query_max_hp() * 2, "bludgeoning");
-            target->die();
+        tell_room(place, "%^ORANGE%^" + target->QCN + " avoids the clashing rocks!", ({ target }));
+    }   
+    else
+    {
+        tell_object(target, "%^ORANGE%^The giant rocks SMASH you between then!");
+        tell_room(place, target->query_cap_name() + " is SMASHED between the rocks!", target);
+        targets -= ({ target });
+        target->cause_typed_damage(target, "torso", sdamage, "bludgeoning");
+    }
+    
+    tell_room(place, "%^ORANGE%^Fragments of the rocks fall, threatening to crush anyone nearby beneath them!");
+        
+    foreach(object ob in targets)
+    {
+        if(!objectp(ob))
+            continue;
+        
+        if(do_save(ob, 0))
+        {
+            tell_room(place, ob->query_cap_name() + " avoids most of the falling rocks.", ob);
+            tell_object(ob, "You avoid most of the falling rocks.");
+            ob->cause_typed_damage(ob, "torso", sdamage / 4, "bludgeoning");
+        }
+        else
+        {
+            tell_room(place, ob->query_cap_name() + " is crushed under the falling rocks!", ob);
+            tell_object(ob, "%^ORANGE%^You are crushed under the falling rocks!");
+            ob->set_tripped(roll_dice(1, 4) * 6, "You are trapped under the fallen rocks!");
+            ob->cause_typed_damage(ob, "torso", sdamage / 2, "bludgeoning");
         }
     }
+            
+    this_object()->remove();
+    
     return 1;
 }
