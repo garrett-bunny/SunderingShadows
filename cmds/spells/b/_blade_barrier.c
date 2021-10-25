@@ -113,7 +113,7 @@ void execute_attack(){
             if (!objectp(foes[i])) {
                 continue;
             }
-            damage_targ(foes[i], foes[i]->return_target_limb(), sdamage, "fire");
+            damage_targ(foes[i], foes[i]->return_target_limb(), sdamage, "slashing");
         }
     }
     prepend_to_combat_cycle(place);
