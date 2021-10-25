@@ -4,6 +4,7 @@
 //      created by Descartes of Borg 03 july 1993
 
 #include <std.h>
+#include <security.h>
 
 inherit DAEMON;
 
@@ -51,9 +52,23 @@ int cmd_dest(string str) {
     else msg = replace_string(msg, "$O", (string)ob->query_name());
      msg = replace_string(msg, "$N", this_player()->query_cap_name());
      if(!TP->query_invis()) tell_room(ETP,msg+"\n",TP);
+     
+    seteuid(UID_SYSTEM);
+     
+    foreach(object spell in ob->query_property("spelled"))
+    {
+        if(!objectp(spell))
+            continue;
+        
+        if(catch(spell->dest_effect()))
+            continue;
+        
+        destruct(spell);
+    }
     remove_interactive(ob);
     ob->remove();
     if(ob) destruct(ob);
+    seteuid(geteuid());
     return 1;
 }
 
