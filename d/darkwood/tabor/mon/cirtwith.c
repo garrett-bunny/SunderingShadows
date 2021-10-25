@@ -7,7 +7,7 @@
 #include <std.h>
 #include "../include/tabor.h"
 
-inherit "/std/comp_vend.c";
+inherit VENDOR;
 
 void create()
 {
@@ -66,4 +66,5 @@ TABOR
     set_spells(({"fireball","lightning bolt","acid arrow",
         "powerword stun", "incendiary cloud", "magic missile"}));
     set_property("strength","spells");
+    set_storage_room("/d/darkwood/tabor/mon/cirtwith_storage.c");
 }

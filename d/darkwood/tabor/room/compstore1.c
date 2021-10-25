@@ -28,7 +28,7 @@ void create()
 "veined in %^YELLOW%^gold %^WHITE%^hang suspended in mid-air along "+
 "the walls.  No sign of support can be seen, but the %^BLUE%^shelves "+
 "%^WHITE%^seem solid and sturdy enough.  Piled upon the shelves are "+
-"a jumble of odds and ends, the %^GREEN%^components %^WHITE%^of "+
+"a jumble of odds and ends, the %^GREEN%^magical accessories %^WHITE%^of "+
 "%^CYAN%^arcane spells%^WHITE%^.  A %^BOLD%^%^BLACK%^gra%^WHITE%^"+
 "n%^BLACK%^it%^WHITE%^e %^BLACK%^counter %^WHITE%^stands near the "+
 "northern wall, covered in components in various stages of "+
