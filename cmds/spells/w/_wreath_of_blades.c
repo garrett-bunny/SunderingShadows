@@ -74,6 +74,8 @@ void spell_effect(int prof)
     caster->set_property("added short",({"%^CYAN%^ (wreathed by daggers)%^RESET%^"}));
     addSpellToCaster();
     counter = 8 * clevel;
+    spell_duration = counter * ROUND_LENGTH;
+    set_end_time();
     execute_attack();
     call_out("room_check",ROUND_LENGTH);
 }

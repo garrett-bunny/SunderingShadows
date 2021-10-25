@@ -28,7 +28,9 @@ void spell_effect(int prof)
     caster->set_property("added short", ({ "%^BOLD%^%^BLACK%^(%^RESET%^%^RED%^e%^BOLD%^n%^RESET%^%^RED%^cir%^BOLD%^c%^RESET%^%^RED%^led by f%^BOLD%^l%^ORANGE%^a%^RED%^m%^RESET%^%^RED%^e%^BOLD%^s%^BLACK%^)%^RESET%^" }));
     addSpellToCaster();
     spell_successful();
-    counter = 2 * clevel;
+    counter = (2 * clevel) + 10;
+    spell_duration - counter * ROUND_LENGTH;
+    set_end_time();
     execute_attack();
     call_out("room_check", ROUND_LENGTH);
 }
