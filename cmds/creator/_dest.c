@@ -66,10 +66,9 @@ int cmd_dest(string str) {
         destruct(spell);
     }
     remove_interactive(ob);
-    ob->remove();
-    if(ob) destruct(ob);
-    if(objectp(ob))
-        ob->clean_net_dead();
+    ob->clean_net_dead();
+    objectp(ob) && ob->remove();
+    objectp(ob) && destruct(ob);
     
     seteuid(geteuid());
     return 1;
