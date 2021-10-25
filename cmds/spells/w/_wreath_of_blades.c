@@ -143,7 +143,7 @@ void execute_attack(){
             dam += enchant;
         }
         
-        tell_object(caster, "%^BOLD%^Your wreath of blades slices your enemies as they get close!");
+        tell_object(caster, "%^BOLD%^Your wreath of blades %^RED%^slices%^WHITE%^ your enemies as they get close!");
         tell_room(place, "%^BOLD%^" + caster->query_cap_name() + "'s wreath of blades tears into " + caster->query_possessive() + " enemies as they get too close!", caster);
         
         foreach(object foe in foes)
