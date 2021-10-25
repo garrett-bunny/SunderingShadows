@@ -68,7 +68,7 @@ void spell_effect(int prof)
     tell_object(caster, "%^BOLD%^You wave a hand and a wreath of spinning daggers appears around you!");
    
     foreach(object dagger in daggers)
-        dagger->move("/d/shadowgate/void");
+        dagger->move("/d/magic/room/space");
         
     caster->set_property("spelled", ({TO}));
     caster->set_property("added short",({"%^CYAN%^ (wreathed by daggers)%^RESET%^"}));
@@ -160,7 +160,7 @@ void dest_effect()
     if (objectp(caster))
     {
         foreach(object dagger in daggers)
-            dagger->move(caster);
+            objectp(dagger) && dagger->move(caster);
             
         tell_room(environment(caster), "%^CYAN%^The spinning wreath of blades around " + caster->query_cap_name() + " slows down and disappears.", caster);
         tell_object(caster, "%^CYAN%^The spinning wreath of blades around you slows down and disappears.");

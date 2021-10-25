@@ -51,6 +51,7 @@ int cmd_dest(string str) {
     else msg = replace_string(msg, "$O", (string)ob->query_name());
      msg = replace_string(msg, "$N", this_player()->query_cap_name());
      if(!TP->query_invis()) tell_room(ETP,msg+"\n",TP);
+    remove_interactive(ob);
     ob->remove();
     if(ob) destruct(ob);
     return 1;
