@@ -61,7 +61,6 @@ TABOR
 		"drop of blood supply comes from!",
 		"%^MAGENTA%^Cirtwith says%^RESET%^: What was the incantation for "+
 		"meteor swarm again?  Hmm...."}), 1);
-    set_components(100);
     set_spell_chance(100);
     set_spells(({"fireball","lightning bolt","acid arrow",
         "powerword stun", "incendiary cloud", "magic missile"}));
