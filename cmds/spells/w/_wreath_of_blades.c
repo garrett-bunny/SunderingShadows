@@ -23,7 +23,7 @@ void create()
     set_spell_sphere("abjuration");
     set_syntax("cast CLASS wreath of blades");
     set_damage_desc("silver damage to attackers");
-    set_description("With this arcane incantation, the caster animates mithral daggers in their inventory, causing them to spin around the caster in a protective barrier, striking all enemies who venture too close with silver damage. The damage amount scales with the number of daggers in the caster's inventory, up to four. The damage also scales with the enchantment on those daggers. The amount of enchantment used is based on the casters level. This spell does not utilize things like poison or spell enchantments on the daggers. A dagger can be occasionally lost under certain conditions (like if you die while the spell is active). Mithral daggers can be purchased in a magic shop.");
+    set_description("With this arcane incantation, the caster animates mithral daggers in their inventory, causing them to spin around the caster in a protective barrier, striking all enemies who venture too close with silver damage. The damage amount scales with the number of daggers in the caster's inventory, up to four. The damage also scales with the enchantment on those daggers. The amount of enchantment used is based on the casters level. This spell does not utilize things like poison or spell enchantments on the daggers. Mithral daggers can be purchased in a magic shop.");
     set_property("magic",1);
     set_casting_time(1);
     set_helpful_spell(1);
@@ -67,8 +67,10 @@ void spell_effect(int prof)
     tell_room(place, "%^BOLD%^" + caster->query_cap_name() + " waves " + caster->query_possessive() + " hand and a wreath of spinning daggers appears around " + caster->query_objective() + "!", caster);
     tell_object(caster, "%^BOLD%^You wave a hand and a wreath of spinning daggers appears around you!");
    
+    /*
     foreach(object dagger in daggers)
         dagger->move("/d/magic/room/space");
+    */
         
     caster->set_property("spelled", ({TO}));
     caster->set_property("added short",({"%^CYAN%^ (wreathed by daggers)%^RESET%^"}));
@@ -159,8 +161,10 @@ void dest_effect()
     remove_call_out("room_check");
     if (objectp(caster))
     {
+        /*
         foreach(object dagger in daggers)
             objectp(dagger) && dagger->move(caster);
+        */
             
         tell_room(environment(caster), "%^CYAN%^The spinning wreath of blades around " + caster->query_cap_name() + " slows down and disappears.", caster);
         tell_object(caster, "%^CYAN%^The spinning wreath of blades around you slows down and disappears.");
