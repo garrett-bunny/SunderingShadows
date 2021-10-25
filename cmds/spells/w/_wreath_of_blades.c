@@ -132,7 +132,7 @@ void execute_attack(){
         define_base_damage(0);    //reroll each turn
             
         dam = sdamage / 4;        
-        dam *= sizeof(daggers);
+        dam *= (sizeof(daggers) + 1);
         
         foreach(object ob in daggers)
         {
