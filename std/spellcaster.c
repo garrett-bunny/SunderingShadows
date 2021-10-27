@@ -990,7 +990,7 @@ void prepare(string str, int temp, string myclass, int num, int flag)
                 }
                 focus = 0;
             }           
-            prepare2();
+            prepare2(myclass);
             return 1;
         }
     }
@@ -1013,18 +1013,22 @@ void prepare(string str, int temp, string myclass, int num, int flag)
                 set_memorized(myclass, str, 1);
             }
         }
-        prepare2();
+        prepare2(myclass);
         return 1;
     }
 }
 
-void prepare2()
+void prepare2(string myclass)
 {
     if (TO->query_property("memorizing")) {
         TO->remove_property("memorizing");
     }
     
-    tell_room(ETO, TO->QCN + " completes " + TO->QP + " preparations.", TO);
+    if(myclass == "mage")
+        tell_room(environment(this_object()), this_object()->query_cap_name() + " finishes studying and closes " + this_object()->query_possessive() + " spell book.", this_object());
+    else
+        tell_room(ETO, TO->QCN + " completes " + TO->QP + " preparations.", TO);
+    
     tell_object(TO, "%^BOLD%^%^GREEN%^You have finished preparing your spells.");
 }
 

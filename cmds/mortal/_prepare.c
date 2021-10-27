@@ -297,8 +297,8 @@ int cmd_prepare(string str)
         
     case "mage":
     
-        tell_object(TP, "%^BOLD%^%^GREEN%^You open your spell book and begin memorizing "+str+".  ("+times+" attempt(s) - Any action you take will interrupt your memorizing...");
-        tell_room(environment(this_player()), this_player()->query_cap_name() + " open up " + this_player()->query_possessive() + " spell book and begins studying intensely.", this_player());
+        tell_object(TP, "%^BOLD%^%^GREEN%^You open your spell book and begin memorizing "+spellname+".  ("+times+" attempt(s) - Any action you take will interrupt your memorizing...");
+        tell_room(environment(this_player()), this_player()->query_cap_name() + " opens up " + this_player()->query_possessive() + " spell book and begins studying intensely.", this_player());
         break;
         
     default:
