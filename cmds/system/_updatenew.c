@@ -4,6 +4,11 @@
   Tlaloc's attempt at rewriting the update command with
   new functionality.
   
+  FLAGS as FOLLOWS
+  -r - ignore inherited files
+  -R - update all inherited files
+  -z - update only inherited files "older" than the target
+  
   -- Tlaloc --
 */
 
@@ -14,25 +19,41 @@ inherit DAEMON;
 
 int cmd_updatenew(string str)
 {
-    string file, tmp, *flags;
-    int deep;
+    string file, *files, tmp, *flags, *input;
+    int deep, dirupdate;
     object ob, *obs;
     
-    sscanf(str, "%s %s", file, tmp);
+    input = explode(str, " ");
     
+    if(str == "*")
+    {
+        file = resolv_path(this_player()->get_path(), str);
+        files = get_dir(file + "/*.c");
+        
+        foreach(string temp in files)
+            do_update(file + "/" + temp, 0);
+        
+        return 1;
+    }
+                
+    file = resolv_path(this_player()->get_path(), input[0]);
     tell_object(this_player(), "file = " + file);
     
-    if(strlen(tmp))
-        flags = explode(tmp, " ");
+    if(sizeof(input) > 1)
+        input = input[1..];
+    else
+        input = ({  });
     
-    if(sizeof(flags))
+    if(sizeof(input))
     {
-        if(member_array("r", flags) >= 0)
+        if(member_array("-r", input) >= 0)
             deep = 1;
-        if(member_array("R", flags) >= 0)
+        if(member_array("-R", input) >= 0)
             deep = 2;
-        if(member_array("z", flags) >= 0)
+        if(member_array("-z", input) >= 0)
             deep = 3;
+        if(member_array("*", input) >= 0)
+            dirupdate = 1;           
     }
     
     if(!file || file == "here")
@@ -44,15 +65,6 @@ int cmd_updatenew(string str)
         return 1;
     }
     
-    obs = ({  });
-    
-    if(ob = find_object(file))
-    {
-        obs = filter_array(all_inventory(ob), (: objectp($1) :));
-        foreach(object obj in obs)
-            obj->move("/d/shadowgate/void");
-    }
-    
     if(file[<2..<1] != ".c")
         file += ".c";
     
@@ -62,18 +74,24 @@ int cmd_updatenew(string str)
         write(file + " : No update necessary.");
     
     seteuid(UID_SYSTEM);
-    
-    foreach(object obj in obs)
-        obj->move(ob);
+        
+    return 1;
 }
 
 int do_update(string file, int deep)
 {
     mixed *info;
-    object ob;
+    object ob, *obs;
     int tmp, last_inherit;
     
     last_inherit = 0;
+
+    if(ob = find_object(file))
+    {
+        obs = filter_array(all_inventory(ob), (: objectp($1) :));
+        foreach(object obj in obs)
+            obj->move("/d/shadowgate/void");
+    }
     
     if(deep == 3)
     {
@@ -113,11 +131,16 @@ int do_update(string file, int deep)
         }
     }
     
-    load_object(file);
+    if(!catch(load_object(file)))
+        write(file + " : updated and loaded.");
+    else
+        write(file + " : ERROR in loading file.");
+        
     if(file[0] != '/')
         file = "/" + file;
     
-    write(file + " : updated and loaded.");
+    foreach(object obj in obs)
+        obj->move(ob);
     
     return time();
 }
