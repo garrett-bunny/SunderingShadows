@@ -53,7 +53,7 @@ int cmd_dest(string str) {
      msg = replace_string(msg, "$N", this_player()->query_cap_name());
      if(!TP->query_invis()) tell_room(ETP,msg+"\n",TP);
      
-    seteuid(UID_ROOT);
+    seteuid(geteuid(previous_object()));
      
     foreach(object spell in ob->query_property("spelled"))
     {
@@ -63,14 +63,12 @@ int cmd_dest(string str) {
         if(catch(spell->dest_effect()))
             continue;
         
-        destruct(spell);
+        spell->remove();
     }
-    remove_interactive(ob);
-    ob->clean_net_dead();
-    objectp(ob) && ob->remove();
-    objectp(ob) && destruct(ob);
     
-    seteuid(geteuid());
+    objectp(ob) && ob->remove();
+    
+    seteuid(UID_SYSTEM);
     return 1;
 }
 
