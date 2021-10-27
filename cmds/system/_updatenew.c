@@ -1,16 +1,19 @@
-/*
-  _update.c
-  
-  Tlaloc's attempt at rewriting the update command with
-  new functionality.
-  
-  FLAGS as FOLLOWS
-  -r - ignore inherited files
-  -R - update all inherited files
-  -z - update only inherited files "older" than the target
-  
-  -- Tlaloc --
-*/
+//
+//  _update.c
+//  
+//  Tlaloc's attempt at rewriting the update command with
+//  new functionality.
+//  
+//  Combines updtae and dirupdate into one file.
+//  "update *" reloads all files in current directory
+//  
+//  FLAGS as FOLLOWS
+//  -r - ignore inherited files
+//  -R - update all inherited files
+//  -z - update only inherited files "older" than the target
+//  
+//  -- Tlaloc -- 10/27/21
+//
 
 #include <std.h>
 #include <security.h>
@@ -27,8 +30,14 @@ int cmd_updatenew(string str)
     
     if(str == "*")
     {
-        file = resolv_path(this_player()->get_path(), str);
+        file = resolv_path(this_player()->get_path(), "");
         files = get_dir(file + "/*.c");
+        
+        if(!sizeof(files))
+        {
+            write("No files in current directory.");
+            return 1;
+        }
         
         foreach(string temp in files)
             do_update(file + "/" + temp, 0);
@@ -37,7 +46,7 @@ int cmd_updatenew(string str)
     }
                 
     file = resolv_path(this_player()->get_path(), input[0]);
-    tell_object(this_player(), "file = " + file);
+    //tell_object(this_player(), "file = " + file);
     
     if(sizeof(input) > 1)
         input = input[1..];
@@ -51,9 +60,7 @@ int cmd_updatenew(string str)
         if(member_array("-R", input) >= 0)
             deep = 2;
         if(member_array("-z", input) >= 0)
-            deep = 3;
-        if(member_array("*", input) >= 0)
-            dirupdate = 1;           
+            deep = 3;          
     }
     
     if(!file || file == "here")
@@ -85,6 +92,8 @@ int do_update(string file, int deep)
     int tmp, last_inherit;
     
     last_inherit = 0;
+    
+    obs = ({  });
 
     if(ob = find_object(file))
     {
