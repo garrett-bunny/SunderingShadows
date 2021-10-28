@@ -16,8 +16,8 @@ void create()
     set_spell_sphere("illusion");
     set_discipline("telepath");
     set_syntax("cast CLASS visions from within");
-    set_damage_desc("mental");
-    set_description("With this spell the caster shares own nightmares with everyone in the area.");
+    set_damage_desc("mental damage and paralysis on failed save");
+    set_description("With this spell the caster shares own nightmares with everyone in the area. All affected targets take mental damage and are paralyzed if they fail a saving throw. A successful save will negate the paralysis and reduce mental damage taken by half.");
     set_verbal_comp();
     set_somatic_comp();
     set_save("will");
