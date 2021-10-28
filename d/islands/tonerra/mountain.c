@@ -129,7 +129,7 @@ int ankheg(){
 
 	verb = query_verb();
     
-    if(!objectp(TP) || !objectp(TO)) return 0;
+    if(!userp(TP)) return 0;
 
 	tell_room(TO,"As "+TPQCN+" wanders "+verb+" the ground below "+TP->query_objective()+" shudders and opens.",TP);
 	tell_object(TP,"As you walk "+verb+" the ground shudders and opens under you.");
@@ -155,7 +155,7 @@ int native(){
 
 	verb = query_verb();
     
-    if(!objectp(TP) || !objectp(TO)) return 0;
+    if(!userp(TP)) return 0;
     
 	if(TP->query_invis()) return 0;
 	tell_room(TO,"%^BOLD%^As "+TPQCN+" wanders "+verb+" the bushes around "+TP->query_objective()+" come alive and spears fly through the air.",TP);
