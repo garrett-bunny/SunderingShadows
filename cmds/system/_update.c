@@ -143,7 +143,10 @@ int do_update(string file, int deep)
     if(!catch(ob = load_object(file)))
         write(file + " : updated and loaded.");
     else
+    {
         write(file + " : ERROR in loading file.");
+        write("%^YELLOW%^BOLD%^" + catch(load_object(file)) + "%^RESET%^");
+    }
         
     if(file[0] != '/')
         file = "/" + file;
