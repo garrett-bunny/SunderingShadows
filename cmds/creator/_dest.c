@@ -54,7 +54,8 @@ int cmd_dest(string str) {
      if(!TP->query_invis()) tell_room(ETP,msg+"\n",TP);
      
     seteuid(geteuid(previous_object()));
-     
+    
+    /*
     foreach(object spell in ob->query_property("spelled"))
     {
         if(!objectp(spell))
@@ -65,7 +66,8 @@ int cmd_dest(string str) {
         
         spell->remove();
     }
-    
+    */
+    destruct(ob, 1);
     objectp(ob) && ob->remove();
     
     seteuid(UID_SYSTEM);
