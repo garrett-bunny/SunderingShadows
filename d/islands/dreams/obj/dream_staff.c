@@ -25,6 +25,7 @@ void create()
     }
     set_item_bonus("spell penetration", 1);
     set_item_bonus("magic resistance", 1);
+    set_property("able to cast", 1);
     set_value(3000);
     set_wield((: TO, "wieldme" :));
     set_unwield((: TO, "unwieldme" :));
