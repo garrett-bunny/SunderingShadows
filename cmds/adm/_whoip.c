@@ -16,6 +16,8 @@
 #include <security.h>
 #include <daemons.h>
 
+inherit DAEMON;
+
 #define DIVIDER "=======================================================================\n"
 
 int cmd_whoip(string str)
