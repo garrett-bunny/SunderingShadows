@@ -140,7 +140,7 @@ int do_update(string file, int deep)
         }
     }
     
-    if(!catch(load_object(file)))
+    if(!catch(ob = load_object(file)))
         write(file + " : updated and loaded.");
     else
         write(file + " : ERROR in loading file.");
