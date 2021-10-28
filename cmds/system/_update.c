@@ -152,7 +152,7 @@ int do_update(string file, int deep)
         file = "/" + file;
     
     foreach(object obj in obs)
-        obj->move(ob);
+        ob && obj->move(ob);
     
     return time();
 }
