@@ -75,11 +75,12 @@ void reset(){
 	}
 }
 
-clean_up()
-{
-    if (member_array("up", query_exits()) != -1) {
+clean_up(){
+    if (member_array("up", query_exits()) != -1){
         (query_exit("up"))->remove_exit("down");
     }
-
+    ::clean_up();
+    destruct(this_object());
     return 1;
 }
+

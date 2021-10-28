@@ -87,5 +87,13 @@ int cmd_whoip(string str)
     }
 
     return 1;
-}    
-        
+}
+
+int help()
+{
+    write("Command : whoip");
+    write("Syntax  : whoip, whoip <username>, whoip <ip number>\n");
+    write("This command will either show all users and their IP info, or give the IP info of a designated player, OR will give a list of all players logged in from the designated IP.");
+    
+    return 1;
+}       
