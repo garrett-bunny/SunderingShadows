@@ -16,6 +16,7 @@ mapping envs = ([  ]);
 int cmd_destall(string str)
 {
     object *obs;
+    string obshort;
     
     obs = objects( (: base_name($1) == $(str) :) );
     map_array(obs, (: envs[$1] = environment($1) :));
@@ -24,9 +25,27 @@ int cmd_destall(string str)
     
     foreach(object ob in obs)
     {
+        if(!objectp(ob))
+            continue;
+        
+        obshort = ob->query_short();
+        
         if(!catch(destruct(ob, 1)))
         {
-            write("You dest "+ob->query_short()+".");
+            if(objectp(ob))
+                ob->remove();
+            if(objectp(ob))
+                ob->dest_effect();
+            
+            if(objectp(ob))
+                write("Failed to destruct " + obshort + ".");
+            else
+                write("You dest " + obshort + ".");
+        }
+        else
+        {
+            write("Failed to destruct object.");
+            continue;
         }
     }
     
