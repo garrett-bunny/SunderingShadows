@@ -13,7 +13,7 @@ inherit DAEMON;
 
 mapping envs = ([  ]);
 
-int cmd_destall(string str)
+int cmd_objpurge(string str)
 {
     object *obs;
     string obshort;
