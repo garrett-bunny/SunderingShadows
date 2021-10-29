@@ -159,6 +159,7 @@ int no_rush(string str){
       "%^YELLOW%^wing %^WHITE%^particles radiate out from Intruder "+
       "and slam into "+TP->QCN+"!%^RESET%^",TP);
    TP->do_damage(TP->return_target_limb(),random(50)+100);
+   TP->cause_typed_damage(TP, TP->return_target_limb(), random(50)+100, "untyped");
    return 1;
 }
 
@@ -167,7 +168,7 @@ int pwnit(object targ){
    if(!objectp(targ)) return 0;
    if(!objectp(TO)) return 0;
    if((weapon == ({}))) command("wield bonestripper");
-   if(!"/daemon/saving_throw_d.c"->fort_save(targ,-25)){
+   if(!SAVING_THROW_D->fort_save(targ, 25)){
       if(targ->query_property("no death")){
          tell_object(targ,"%^BOLD%^Intruder kicks you in the chest, "+
             "knocking you down to the ground, and then %^RESET%^%^RED%^"+
@@ -176,7 +177,7 @@ int pwnit(object targ){
             "knocking "+targ->QO+" down to the ground, and then %^RESET%^"+
             "%^RED%^skewers %^BOLD%^%^WHITE%^"+targ->QCN+" in the chest "+
             "with his sword!",targ);
-         targ->do_damage(targ->return_target_limb(),random(100)+150);
+         targ->cause_typed_damage(targ, targ->return_target_limb(), random(100)+150, "piercing");
          targ->set_tripped(1,"%^YELLOW%^You are trying to recover from being "+
             "skewered!");
          return(random(3)+1);
@@ -188,7 +189,7 @@ int pwnit(object targ){
          "knocking "+targ->QO+" down to the ground, and then %^RESET%^"+
          "%^RED%^skewers %^BOLD%^%^WHITE%^"+targ->QCN+" in the chest "+
          "with his sword!",targ);
-      targ->do_damage(targ->return_target_limb(),random(500)+1500);
+      targ->cause_typed_damage(targ, "torso", random(500)+1500, "piercing");
       tell_object(targ,"%^BOLD%^Intruder's sword destroys your %^RESET%^"+
          "%^RED%^heart%^BOLD%^%^WHITE%^, killing you instantly!");
       return 1;
