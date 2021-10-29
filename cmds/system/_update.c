@@ -26,8 +26,6 @@ int cmd_update(string str)
     int deep, dirupdate;
     object ob, *obs;
     
-    input = explode(str, " ");
-    
     if(str == "*")
     {
         file = resolv_path(this_player()->get_path(), "");
@@ -44,8 +42,14 @@ int cmd_update(string str)
         
         return 1;
     }
-                
-    file = resolv_path(this_player()->get_path(), input[0]);
+
+    if(!strlen(str) || str == "here")
+        file = "/" + file_name(environment(this_player()));
+    else
+    {
+        input = explode(str, " ");         
+        file = resolv_path(this_player()->get_path(), input[0]);
+    }
     //tell_object(this_player(), "file = " + file);
     
     if(sizeof(input) > 1)
@@ -63,8 +67,10 @@ int cmd_update(string str)
             deep = 3;          
     }
     
+    /*
     if(!file || file == "here")
         file = "/" + file_name(environment(this_player()));
+    */
     
     if(file_size(file) == -2 && file_size(file + ".c") < 0)
     {
@@ -97,7 +103,7 @@ int do_update(string file, int deep)
 
     if(ob = find_object(file))
     {
-        obs = filter_array(all_inventory(ob), (: objectp($1) :));
+        obs = filter_array(all_inventory(ob), (: userp($1) :));
         foreach(object obj in obs)
             obj->move("/d/shadowgate/void");
     }
@@ -150,6 +156,8 @@ int do_update(string file, int deep)
         
     if(file[0] != '/')
         file = "/" + file;
+    
+    ob->reset();
     
     foreach(object obj in obs)
         ob && obj->move(ob);

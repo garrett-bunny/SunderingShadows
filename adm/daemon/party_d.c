@@ -209,8 +209,8 @@ mapping query_parties_full(){
 }
 
 object *query_party_members(string group) {
-    if(!party) return 0;
-    if(!party[group]) return 0;
+    if(!party) return ({  });
+    if(!party[group]) return ({  });
     manage_party(group);
     return party[group];
 }

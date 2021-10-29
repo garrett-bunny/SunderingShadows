@@ -51,7 +51,12 @@ int preSpell()
         return 0;
     }
     
-    allies = PARTY_D->query_party_members(caster->query_party());
+    allies = ({  });
+    allies += PARTY_D->query_party_members(caster->query_party());
+    
+    if(!sizeof(allies))
+        allies += ({ caster });
+    
     allies += caster->query_protectors();
     
     if(member_array(target, allies) < 0)
@@ -105,8 +110,11 @@ void spell_effect(int prof)
 
     caster->set_property("greater polymorph", target);
     target->set_property("spelled", ({TO}) );
-    //addSpellToCaster();
-    addSpellToTarget();
+    
+    if(!userp(target))
+        addSpellToCaster();
+    else
+        addSpellToTarget();
 }
 
 void dest_effect()
