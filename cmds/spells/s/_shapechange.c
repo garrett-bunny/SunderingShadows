@@ -12,7 +12,7 @@ void create()
 {
     ::create();
     set_spell_name("shapechange");
-    set_spell_level(([ "mage" : 9, "oracle" : 8, "innate" : 9, "druid" : 9 ]));
+    set_spell_level(([ "oracle" : 8, "innate" : 9, "druid" : 9, "sorcerer" : 9 ]));
     set_spell_sphere("alteration");
     set_mystery(({"dragon"}));
     set_syntax("cast CLASS shapechange on demon|golem|dragon");

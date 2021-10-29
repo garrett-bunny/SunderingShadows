@@ -15,8 +15,8 @@ void create()
     set_spell_name("greater polymorph");
     set_spell_level(([ "mage" : 9 ]));
     set_spell_sphere("alteration");
-    set_syntax("cast CLASS greater polymorph on TARGET | SHAPE");
-    set_description("With this spell you transform yourself, a party member, or minion into one of several fearsome creatures. In the new form you won't be able to access your inventory, but you will posses mighty melee abilities. The potency of the form will grow with your power, but it won't benefit from transformation spell. In addition winged forms can use <wing> command to travel. You may only maintain one greater polymorph at any given time.
+    set_syntax("cast CLASS greater polymorph on TARGET | dragon/demon/golem");
+    set_description("With this spell you transform yourself, a party member, or minion into one of several fearsome creatures. In the new form you won't be able to access your inventory, but you will posses mighty melee abilities. The potency of the form will grow with your power, but it won't benefit from transformation spell. In addition winged forms can use <wing> command to travel. You may only maintain one polymorph at any given time.
 
 %^BOLD%^%^RED%^N.B.%^RESET%^ You can set alternative description, speech string and adjective for these forms.");
     set_verbal_comp();
