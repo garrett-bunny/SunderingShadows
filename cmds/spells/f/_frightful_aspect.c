@@ -101,7 +101,7 @@ void dest_effect()
 {
     if (objectp(caster)) {
         caster->set_size_bonus(0);
-        caster->remove_property("added short", ({ "%^RED%^ (giant)%^RESET%^" }));
+        caster->remove_property_value("added short", ({ "%^RED%^ (giant)%^RESET%^" }));
         caster->remove_property("iron body");
         caster->add_stat_bonus("strength", -6);
         caster->add_stat_bonus("constitution", -4);
