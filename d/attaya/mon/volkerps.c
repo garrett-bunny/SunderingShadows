@@ -63,7 +63,7 @@ void die(object ob) {
 }
 void desoul(object targ) {
     string dam;
-    if("daemon/saving_d"->saving_throw(targ,"paralyzation_poison_death")) {
+    if(SAVING_THROW_D->fort_save(targ, 25)){
 	dam="hurts";
     } else {
 	dam="poisons";
@@ -79,7 +79,7 @@ void desoul(object targ) {
       "%^MAGENTA%^several phantasmic daggers drop from the vortex and pierce "+targ->query_cap_name()+"!"
       ,targ);
     if(dam=="poisons") {
-	targ->do_damage("torso",roll_dice(4,10));
+    targ->cause_typed_damage(targ, "torso", roll_dice(4,10), "piercing");
 	targ->add_poisoning(30);
 	tell_object(targ,
 	  "%^BOLD%^%^BLACK%^The living shadows wrap wround your internal organs and try to squeeze the life from them."
@@ -88,7 +88,7 @@ void desoul(object targ) {
 	  "%^BOLD%^%^RED%^Your very spirit wages a battle inside your body!"
 	);
     } else {
-	targ->do_damage("torso",roll_dice(6,10));
+    targ->cause_typed_damage(targ, "torso", roll_dice(6,10), "piercing");
     }
     return 1;
 }

@@ -87,7 +87,7 @@ void fire(object targ) {
     string dam;
 
     if(!objectp(targ)) return;
-if("daemon/saving_d"->saving_throw(targ,"paralyzation_poison_death")) {
+    if(SAVING_THROW_D->fort_save(targ, 25)){
 	dam="hurts";
     } else {
 	dam="singes";
@@ -101,7 +101,7 @@ if("daemon/saving_d"->saving_throw(targ,"paralyzation_poison_death")) {
       ,targ);
     set_property("magic",1);
     if(dam=="singes") {
-	targ->do_damage("torso",roll_dice(3,6));
+    targ->cause_typed_damage(targ, "torso", roll_dice(3,6), "fire");
 	remove_property("magic");
 	tell_object(targ,
 	  "%^BOLD%^You are blinded by a brilliant light and intense heat!"
@@ -111,7 +111,7 @@ if("daemon/saving_d"->saving_throw(targ,"paralyzation_poison_death")) {
 	);
     } else {
 	if(!objectp(targ)) return;
-	targ->do_damage("torso",roll_dice(1,6));
+	targ->cause_typed_damage(targ, "torso", roll_dice(1,6), "fire");
     }
     return 1;
 }
