@@ -144,6 +144,7 @@ void do_summons_2()
     device->set_elemental(beastie);
     device->set_caster(caster);
     caster->add_follower(beastie);
+    caster->add_protector(beastie);
     device->move(caster);
     beastie->set_property("spell_creature", TO);
     beastie->set_property("spell", TO);

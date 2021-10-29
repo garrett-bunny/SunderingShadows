@@ -16,7 +16,7 @@ void create()
     set_spell_level(([ "mage" : 9 ]));
     set_spell_sphere("alteration");
     set_syntax("cast CLASS greater polymorph on TARGET | dragon/demon/golem");
-    set_description("With this spell you transform yourself, a party member, or minion into one of several fearsome creatures. In the new form you won't be able to access your inventory, but you will posses mighty melee abilities. The potency of the form will grow with your power, but it won't benefit from transformation spell. In addition winged forms can use <wing> command to travel. You may only maintain one polymorph at any given time.
+    set_description("With this spell you transform yourself, a party member, or minion into one of several fearsome creatures. In the new form you won't be able to access your inventory, but you will posses mighty melee abilities. The potency of the form will grow with your power, but it won't benefit from transformation spell. In addition winged forms can use <wing> command to travel. You may only maintain one polymorph at any given time. You cannot polymorph constructs or golems).
 
 %^BOLD%^%^RED%^N.B.%^RESET%^ You can set alternative description, speech string and adjective for these forms.");
     set_verbal_comp();
@@ -48,6 +48,12 @@ int preSpell()
     if(!objectp(target))
     {
         tell_object(caster, "Your target is not here.");
+        return 0;
+    }
+    
+    if(target->query_race() == "construct" || target->query_race() == "golem")
+    {
+        tell_object(caster, "You cannot polymorph constructs or golems.");
         return 0;
     }
     
@@ -104,7 +110,8 @@ void spell_effect(int prof)
     new("/std/races/shapeshifted_races/mage_" + target_shape + ".c")->init_shape(target,target_shape);
 
     shape = target->query_property("shapeshifted");
-    shape->set_clevel(clevel);
+    //Can't completely boost up a person
+    shape->set_clevel(min( ({ clevel, target->query_character_level() + 10 }) ));
     bonus = clevel/4+1;
     spell_successful();
 
