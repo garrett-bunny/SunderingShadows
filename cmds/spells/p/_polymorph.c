@@ -8,7 +8,7 @@ string *valid_forms()
 void create()
 {
     ::create();
-    set_spell_name("polymorph self");
+    set_spell_name("polymorph");
     set_spell_level(([ "mage" : 4 ]));
     set_spell_sphere("alteration");
     set_syntax("cast CLASS polymorph on TARGET | spider/pixie/troll");
