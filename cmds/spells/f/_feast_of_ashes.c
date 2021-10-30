@@ -4,7 +4,7 @@ inherit SPELL;
 void create() {
     ::create();
     set_spell_name("feast of ashes");
-    set_spell_level(([ "druid" : 2,  ]));
+    set_spell_level(([ "druid" : 2 ]));
     set_spell_sphere("alteration");
     set_syntax("cast CLASS feast of ashes on TARGET");
     set_description("You curse the target with a hunger no food can assuage. They become immediately hungry.");
@@ -23,7 +23,7 @@ spell_effect(int prof)
         tell_room(place,"%^BOLD%^%^BLACK%^"+caster->QCN+" extends "+caster->QP+" hand in direction of "+target->QCN+" and proclaims the curse!", ({caster}) );
     }
 
-    if(do_save(target, -10))
+    if(do_save(target, -5))
     {
         tell_object(caster,"%^BOLD%^%^BLACK%^You feel your curse is forcefully endured.");
         tell_object(target,"%^BOLD%^%^BLACK%^You endure the curse and shrug it off.");

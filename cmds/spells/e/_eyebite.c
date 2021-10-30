@@ -42,7 +42,7 @@ void spell_effect(int prof) {
         TO->remove();
         return;
     }
-    if(do_save(target)){
+    if(do_save(target) || PLAYER_D->immunity_check(target, "fear")){
         tell_object(target,"%^CYAN%^You manage to endure the dark aura that starts to grow around you, and it fades "
 "away to nothing!%^RESET%^");
         tell_room(place,"%^CYAN%^A mirroring aura starts to grow around "+target->QCN+", but then it fades away to "
