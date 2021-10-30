@@ -731,6 +731,14 @@ int immunity_check(object obj, string type)
         return 0;
     }
     break;
+    
+    case "blindness":
+    {
+        if(obj->true_seeing())
+            return 1;
+        
+        return 0;
+    }
 
     case "charm":
     {

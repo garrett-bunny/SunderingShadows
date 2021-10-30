@@ -17,7 +17,7 @@ void create() {
     set_discipline("telepath");
     set_syntax("cast CLASS overwhelming presence");
     set_damage_desc("AOE paralysis");
-    set_description("Your presence inspires incredible awe in your enemies. Those who fail to make a will save are struck with awe and fall to their knees, paralyzed, in worship. Each round, they attempt another will save. If they succeed the will save and end the paralysis early, they are staggered for 1d4 rounds and take 1d6 wisdom damage until the overwhelming presence ends.");
+    set_description("Your presence inspires incredible awe in your enemies. Those who fail to make a will save are struck with awe and fall to their knees, paralyzed, in worship. Each round, they attempt another will save. If they succeed the will save and end the paralysis early, they are staggered for 1d4 rounds and take 1d6 wisdom damage until the overwhelming presence ends. Targets with immunity to charm effects will not be affected by this spell.");
     mental_spell();
     splash_spell(3);
     set_verbal_comp();
@@ -37,6 +37,7 @@ void spell_effect(int prof)
     
     targets = target_selector();
     c_name = caster->query_cap_name();
+    recovered = ({  });
     
     tell_room(place, "%^BOLD%^" + c_name + " lets loose a wave of unspeakable splendor!", caster);
     tell_object(caster, "%^BOLD%^You let loose a wave of unspeakable splendor on your foes.");
@@ -57,17 +58,17 @@ void spell_effect(int prof)
         if(ob->query_property("overwhelming presence"))
             continue;
         
-        if(!do_save(ob))
+        if(!do_save(ob) && !PLAYER_D->immunity_check("charm"))
         {
             ob->set_paralyzed(count * ROUND_LENGTH, "%^YELLOW%^You are completely stunned with awe!%^RESET%^");
             tell_object(ob, "%^YELLOW%^You are struck with unspeakable awe and drop your knees to worship " + c_name + "!%^RESET%^");
-            tell_room(place, "%^BOLD%^" + ob->query_cap_name() + " falls to " + ob->query_possessive() + " knees and worships!", ob);
+            tell_room(place, "%^BOLD%^" + ob->query_cap_name() + " falls to " + ob->query_possessive() + " knees in worship!", ob);
             ob->set_property("overwhelming presence", 1);
         }
         else
         {
             tell_object(ob, "%^MAGENTA%^You manage to shrug off the feeling of overwhelming awe!%^RESET%^");
-            tell_room(place, "%^MAGENTA%^" + c_name->query_cap_name() + " manages to shrug off the feeling of overwhelming awe!%^RESET%^", ob);
+            tell_room(place, "%^MAGENTA%^" + c_name + " manages to shrug off the feeling of overwhelming awe!%^RESET%^", ob);
             targets -= ({ ob });
         }
     }
@@ -100,6 +101,11 @@ void check_awe(int count)
             recovered += ({ ob }); //If they recover before spell wears off
             targets -= ({ ob });
         }
+        else
+        {
+            tell_object(ob, "%^CYAN%^You push yourself lower to the ground in worship of " + caster->query_cap_name() + ".%^RESET%^");
+            tell_room(place, "%^CYAN%^" + ob->query_cap_name() + " bows lower in worship.%^RESET%^", ob);
+        }
     }
     
     if(!sizeof(targets))
@@ -127,6 +133,14 @@ dest_effect()
             continue;
         
         ob->add_stat_bonus("wisdom", wisdamage);
+    }
+    
+    foreach(object ob in targets)
+    {
+        if(!objectp(ob))
+            continue;
+        
+        ob->remove_property("overwhelming presence");
     }
     
     ::dest_effect();
