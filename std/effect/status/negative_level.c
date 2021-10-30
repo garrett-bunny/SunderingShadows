@@ -19,6 +19,7 @@ int status_effect()
     
     if(PLAYER_D->immunity_check(target, "negative_level"))
     {
+        tell_object(target, "%^YELLOW%^You are immune to negative levels.%^RESET%^");
         this_object()->remove();
         return;
     }

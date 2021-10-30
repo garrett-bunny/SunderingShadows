@@ -916,6 +916,9 @@ int immunity_check(object obj, string type)
     {
         if(obj->query_mystery() == "life" && obj->query_class_level("oracle") >= 31)
             return 1;
+        
+        if(FEATS_D->has_feat(target, "internal fortitude") && target->query_property("raged"))
+            return 1;
     }
     break;    
     

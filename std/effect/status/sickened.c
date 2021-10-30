@@ -21,9 +21,9 @@ int status_effect()
         return;
     }
     
-    if(FEATS_D->has_feat(target, "internal fortitude") && target->query_property("raged"))
+    if(PLAYER_D->immunity_check(target, "sickened"))
     {
-        tell_object(target, "You are immune to being sickened.");
+        tell_object(target, "%^YELLOW%^You are immune to being sickened.%^RESET%^");
         this_object()->remove();
         return;
     }
