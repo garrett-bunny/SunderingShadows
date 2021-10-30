@@ -59,7 +59,7 @@ void spell_effect(int prof)
         if(ob->query_property("overwhelming presence"))
             continue;
         
-        if(!do_save(ob) && !PLAYER_D->immunity_check("charm"))
+        if(!do_save(ob) && !PLAYER_D->immunity_check("charm") && !mind_immunity_check(ob))
         {
             ob->set_paralyzed(count * ROUND_LENGTH, "%^YELLOW%^You are completely stunned with awe!%^RESET%^");
             tell_object(ob, "%^YELLOW%^You are struck with unspeakable awe and drop your knees to worship " + c_name + "!%^RESET%^");

@@ -70,7 +70,7 @@ int change_into_message(object obj)
     tell_object(obj,"%^RESET%^%^BLUE%^Your stomp, sending a waves of rolling thunder. You are a GOLEM!");
     tell_room(environment(obj),"%^RESET%^%^BOLD%^"+obj->QCN+" grows very still and appears to concentrate deeply.",obj);
     tell_room(environment(obj),"%^RESET%^%^YELLOW%^"+obj->QCN+" begins to change in front of your very eyes!",obj);
-    tell_room(environment(obj),"%^RED%^Where "+obj->QCN+" once stood, now stands a DEMON!",obj);
+    tell_room(environment(obj),"%^RED%^Where "+obj->QCN+" once stood, now stands a GOLEM!",obj);
     return 1;
 }
 
