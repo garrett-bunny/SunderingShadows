@@ -704,6 +704,10 @@ int immunity_check(object obj, string type)
     if (!objectp(obj)) {
         return 0;
     }
+    
+    if(archp(obj))
+        return 1;
+    
     myrace = obj->query_race();
     mysubrace = obj->query("subrace");
 
@@ -735,6 +739,9 @@ int immunity_check(object obj, string type)
     case "blindness":
     {
         if(obj->true_seeing())
+            return 1;
+        
+        if(obj->query_property("no blind"))
             return 1;
         
         return 0;
@@ -844,7 +851,7 @@ int immunity_check(object obj, string type)
     
     case "paralysis":
     {
-        if(obj->query_property("stun_immunity"))
+        if(obj->query_property("stun_immunity") || obj->query_property("no paralyze"))
             return 1;
         
         if(obj->is_class("barbarian") && !obj->cooldown("unrestrained rage"))
@@ -917,7 +924,7 @@ int immunity_check(object obj, string type)
         if(obj->query_mystery() == "life" && obj->query_class_level("oracle") >= 31)
             return 1;
         
-        if(FEATS_D->has_feat(target, "internal fortitude") && target->query_property("raged"))
+        if(FEATS_D->has_feat(obj, "internal fortitude") && obj->query_property("raged"))
             return 1;
     }
     break;    

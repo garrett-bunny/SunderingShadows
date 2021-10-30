@@ -54,7 +54,7 @@ void spell_effect(int prof){
     tell_room(place,"%^BOLD%^%^CYAN%^"+caster->QCN+" gazes at "+target->QCN+" intently "
         "as "+caster->QS+" begins to chant!",({caster,target}));
 
-    if(do_save(mytarg,bonus))
+    if(do_save(mytarg, 0))
     //if(do_saving_throw(mytarg,"spell",bonus))
     {
         tell_object(caster,"%^BOLD%^%^GREEN%^"+target->QCN+" is able to resist the pull "
