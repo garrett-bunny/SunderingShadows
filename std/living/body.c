@@ -2339,7 +2339,7 @@ void set_blind(int i)
 {
     if(PLAYER_D->immunity_check(this_object(), "blindness"))
     {
-        tell_object(this_object(), "You are immune to blindness.");
+        tell_object(this_object(), "%^YELLOW%^You are immune to blindness.%^YELLOW%^");
         return;
     }
     

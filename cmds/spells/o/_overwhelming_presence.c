@@ -36,6 +36,7 @@ void spell_effect(int prof)
     int count;
     
     targets = target_selector();
+    targets -= ({ caster });
     c_name = caster->query_cap_name();
     recovered = ({  });
     
