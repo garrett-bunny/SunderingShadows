@@ -56,7 +56,7 @@ void spell_effect(int prof)
         TO->remove();
         return;
     }
-    if (do_save(target, -2)) {
+    if (do_save(target, -2) || PLAYER_D->immunity_check(target, "charm")) {
         tell_object(caster, "%^ORANGE%^You feel your spell take a grasp on " + target->QCN + " but then disperse as its power is rendered useless!\n");
         tell_object(target, "%^ORANGE%^You feel a spell attempt to dance your mind, but the grip slips and you the thought to dance passes.\n");
         spell_kill(target, caster);
