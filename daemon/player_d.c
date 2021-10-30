@@ -749,6 +749,9 @@ int immunity_check(object obj, string type)
 
     case "charm":
     {
+        if(obj->query_property("no charm"))
+            return 1;
+        
         switch (myrace) {
             case "barrus":
                 return 1;

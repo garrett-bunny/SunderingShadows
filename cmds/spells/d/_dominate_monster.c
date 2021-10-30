@@ -40,7 +40,8 @@ int query_domination_duration(object targ)
 
 int cant_be_dominated(targ)
 {
-    return do_save(target, -2) ||
+    return do_save(target, 2) ||
+           PLAYER_D->immunity_check(targ, "charm") ||
            mind_immunity_damage(targ, "default");
 }
 
