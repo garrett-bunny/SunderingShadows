@@ -29,6 +29,7 @@ void status_effect()
     }
 
     if (PLAYER_D->immunity_check(target, "fatigue")) {
+        tell_object(target, "%^YELLOW%^You are immune to fatigue.%^RESET%^");
         TO->remove();
         return;
     }

@@ -1,6 +1,7 @@
 #include <std.h>
 #include <magic.h>
 #include <skills.h>
+#include <daemons.h>
 
 #pragma strict_types
 
@@ -19,6 +20,13 @@ void status_effect()
 
     if (target->query_property("effect_dazzled")) {
         TO->remove();
+        return;
+    }
+    
+    if(PLAYER_D->immunity_check(target, "dazzled"))
+    {
+        tell_object(target, "%^YELLOW%^You are immune to being dazzled.%^RESET%^");
+        this_object()->remove();
         return;
     }
 

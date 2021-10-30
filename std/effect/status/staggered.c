@@ -1,6 +1,7 @@
 #include <std.h>
 #include <magic.h>
 #include <skills.h>
+#include <daemons.h>
 
 inherit STATUS;
 
@@ -17,6 +18,13 @@ int status_effect()
 
     if (target->query_property("effect_staggered") > 1) {
         TO->remove();
+        return;
+    }
+    
+    if(PLAYER_D->immmunity_check(target, "staggered"))
+    {
+        tell_object(target, "%^YELLOW%^You are immune to being staggered.%^RESET%^");
+        this_object()->remove();
         return;
     }
 
