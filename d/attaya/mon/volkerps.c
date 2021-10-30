@@ -1,4 +1,5 @@
 #include <std.h>
+#include <daemons.h>
 inherit MONSTER;
 void create() {
 object ob;
