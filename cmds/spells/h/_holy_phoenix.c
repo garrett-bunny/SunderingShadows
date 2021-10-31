@@ -24,6 +24,7 @@ void create()
     set_spell_name("holy phoenix");
     set_spell_level(([ "cleric" : 9 ]));
     set_spell_sphere("conjuration_summoning");
+    set_domains(({ "good" }));
     set_syntax("cast CLASS holy phoenix");
     set_description("With this ability, the cleric sends a fervent prayer to their deity "
 					"sacrificing themselves for the lives of their friends and to the bane of "
@@ -94,10 +95,12 @@ void second_hit()
         tell_object(peep, "%^C195%^Another surge of %^C190%^light %^C195%^bursts from" +caster->QCN+ "%^C202%^striking %^C195%^you with greater intensity!%^RESET%^");
         tell_object(environment(peep), "%^C195%^" + peep->QCN + " trembles violently as the %^C190%^light continues to blast into " + peep->QP + " body.", peep);
         if (!do_save(peep)) {
-            damage_targ(peep, peep->return_peep_limb(), sdamage *1.5, "divine");
+            //damage_targ(peep, peep->return_peep_limb(), sdamage *1.5, "divine");
+            peep->cause_typed_damage(peep, "torso", sdamage, "divine");
         } else {
             tell_object(peep, "%^C109%^You steel yourself and shrug off the worst of the pain.%^RESET%^");
-            damage_targ(peep, peep->return_target_limb(), sdamage *.75, "divine");
+            //damage_targ(peep, peep->return_target_limb(), sdamage *.75, "divine");
+            peep->cause_typed_damage(peep, "torso", sdamage / 2, "divine");
         }
     }
 
@@ -120,10 +123,12 @@ void last_hit()
         tell_object(environment(peep), "%^C195%^" + peep->QCN + " shudders %^C196%^violently %^C195%^as the %^C166%^explosion %^C195%^blasts into them!");
 		tell_room(place,"%^C195%^" +caster->QCN+ "explodes in a burst of light, energy ripping through the room.%^RESET%^",caster);
         if (!do_save(peep)) {
-            damage_targ(peep, peep->return_peep_limb(), sdamage * 2, "divine");
+            //damage_targ(peep, peep->return_peep_limb(), sdamage * 2, "divine");
+            peep->cause_typed_damage(peep, "torso", sdamage, "divine");
         } else {
             tell_object(peep, "%^C195%^You steel yourself and shrug off the worst of the pain.%^RESET%^");
-            damage_targ(peep, peep->return_target_limb(), sdamage, "divine");
+            //damage_targ(peep, peep->return_target_limb(), sdamage, "divine");
+            peep->cause_typed_damage(peep, "torso", sdamage / 2, "divine");
         }
     }
 	waittime= 5;
@@ -144,7 +149,8 @@ void waiter(int num) {
     if (!present(caster,web)) {
         mass->remove();
         web->move("/d/shadowgate/void.c");
-        while ( tempinv=(object *)web->all_inventory() ) {
+        while ( tempinv=(object *)web->all_inventory() )
+        {
             tempinv[0]->move(oldenv);
             return;
         }
