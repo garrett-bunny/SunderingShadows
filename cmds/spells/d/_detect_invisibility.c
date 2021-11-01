@@ -52,7 +52,7 @@ void spell_effect(int prof) {
     tell_object(caster,"%^BOLD%^%^GREEN%^Your eyes snap open and flash bright green for an instant.");
     caster->set_detecting_invis(1);
     caster->set_property("spelled", ({TO}) );
-    spell_duration = (clevel + roll_dice(1, 20)) * ROUND_LENGTH * 2;
+    spell_duration = (10 + clevel / 2 + roll_dice(1, 4)) * ROUND_LENGTH;
     set_end_time();
     call_out("dest_effect",spell_duration);
     addSpellToCaster();

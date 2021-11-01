@@ -31,6 +31,8 @@ varargs void do_save(object ob, int dc, string type, raw_save)
     level = ob->query_level() / 5;
     
     classes = ob->query_classes();
+    if(!pointerp(classes))
+        classes = ({  });
     
     foreach(string cls in classes)
     {
