@@ -151,6 +151,13 @@ int try_to_pass(object who)
         return 1;
 }
 
+void dest_effect()
+{
+    environment(this_object())->remove_blocker(exit);
+    
+    destruct(this_object());
+}
+
 /*
     roll1 = roll_dice(1, 20);
     my_name = who->query_cap_name();
