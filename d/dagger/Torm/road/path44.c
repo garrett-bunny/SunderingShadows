@@ -23,7 +23,11 @@ void create() {
   "southeast":ROAD+"path45",
   "west":ROAD+"path43",
       ]));
+	set_climb_exits(([
+     "descend":({"/d/player_houses/swus/cliff_face.c",35,roll_dice(4,10),100}),
+   ]));
 
   set_listen("default","Seabirds chirp in the air over the boardwalks.");
     set_smell("default","Salt sea air mixes with the smells of many types of cooking.");
 }
+
