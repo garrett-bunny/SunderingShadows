@@ -19,17 +19,14 @@
 
 inherit OBJECT;
 
-int DC,            //Difficulty in getting past the wall (or damaging it)
-    blocking,      //Is it currently blocking?
-    damage,        //Spell strength of wall
+int damage,        //Spell strength of wall
     difficulty,    //DC of getting past the wall
     durability;    //The health of the wall
 
 object owner;      //The original caster
 
-string type,       //Which type/element is the wall?
-       exit,       //Which exit is it blocking
-       stat;       //What stat is used to determine if we make it past?
+string exit,       //Which exit is it blocking
+       type;       //What type of wall is it?
        
 /*
   These walls will block a specific exit, much like the previous ones. However, the
@@ -46,21 +43,19 @@ string type,       //Which type/element is the wall?
 */
 
 //Variable Functions
-int set_difficulty(int x)   { DC = x; return DC;             }
+int set_difficulty(int x)   { difficulty = x; return difficulty; }
 int set_durability(int x)   { durability = x; return durability; }
-int set_damage(int x)       { damage = x; return damage;     }
-object set_owner(object ob) { owner = ob; return owner;      }
-string set_type(string str) { type = str; return type;       }
-string set_exit(string str) { exit = str; return exit;       }
-string set_stat(string str) { stat = str; return stat;       }
+int set_damage(int x)       { damage = x; return damage;         }
+object set_owner(object ob) { owner = ob; return owner;          }
+string set_exit(string str) { exit = str; return exit;           }
+string set_type(string str) { type = str; return type;           }
 
-int query_difficulty() { return DC;         }
+int query_difficulty() { return difficulty; }
 int query_durability() { return durability; }
 int query_damage()     { return damage;     }
 object query_owner()   { return owner;      }
-string query_type()    { return type;       }
 string query_exit()    { return exit;       }
-string query_stat()    { return stat;       }
+string query_type()    { return type;       }
 
 int add_durability(int x)
 {
@@ -113,19 +108,14 @@ int block(string exitn)
     add_id("wallname");
     
     if(room->set_blocked(exitn, this_object()))
-    {
-        blocking = 1;
         return 1;
-    }
     
     return 0;
 }
 
 //Returns 1 if they can pass, 0 if not
-int try_to_pass(object who)
+int can_we_pass(object who)
 {
-    int roll1, dam;
-    string stat, my_name;
     object room, room2;
     
     if(!objectp(who))
@@ -136,8 +126,10 @@ int try_to_pass(object who)
     if(!objectp(room))
         return 0;
     
-    if(!strlen(type))
-        return 1;
+    room2 = room->query_exit(exit);
+    
+    if(!objectp(room2))
+        return 0;
     
     if(!strlen(exit))
         return 1;
@@ -148,11 +140,18 @@ int try_to_pass(object who)
     if(durability <= 0)
         return 1;
     
-    if(!blocking)
+    return 0;    
+}
+
+int try_to_pass(object who)
+{
+    int roll1, dam;
+    
+    if(can_we_pass())
         return 1;
-    
-    room2 = room->query_exit(exit);
-    
+}
+
+/*
     roll1 = roll_dice(1, 20);
     my_name = who->query_cap_name();
     
@@ -213,6 +212,8 @@ int try_to_pass(object who)
     
     return 0;
 }
+
+*/
     
     
         
