@@ -30,6 +30,20 @@ object owner;      //The original caster
 string type,       //Which type/element is the wall?
        exit,       //Which exit is it blocking
        stat;       //What stat is used to determine if we make it past?
+       
+/*
+  These walls will block a specific exit, much like the previous ones. However, the
+  room code itself (/std/room/exits.c) will check if there is a wall blocking the
+  exit before allowing the player through (try_to_pass()).
+  
+  If you want to add additional effects for passing the wall, simply use this as
+  an inherit and use try_to_pass() in your object for customization.
+  
+  From the spell, you must clone this object and move it into the room. Then within
+  the spell, set the descriptions, difficulty (player rolls d20 + stat), damage
+  (sdamage from the spell), the owner/caster object, the stat (used to bypass/break
+  the wall), and then block(exit) last.
+*/
 
 //Variable Functions
 int set_difficulty(int x)   { DC = x; return DC;             }
@@ -55,6 +69,9 @@ int add_durability(int x)
 }
 //End Variable Functions
 
+int is_invincible() { return 1; }
+int is_wall()       { return 1; }
+
 void create()
 {
     ::create();
@@ -70,9 +87,6 @@ void init()
     ::init();
     add_action("end_walls", "remove");
 }
-
-int is_invincible() { return 1; }
-int is_wall()       { return 1; }
 
 int block(string exitn)
 {
@@ -158,6 +172,12 @@ int try_to_pass(object who)
             tell_room(room2, "%^RED%^BOLD%^Someone is burned by flames as they try to enter!");
             who->cause_typed_damage(who, "torso", damage, "fire");
         }
+        else
+        {
+            tell_object(who, "%^BOLD%^You skip past the flames, unharmed.%^RESET%^");
+            tell_room(room, "%^BOLD%^" + my_name + " skips past the flames, unharmed.%^RESET%^", who);
+            tell_room(room2, "%^BOLD%^Someone skips past the flames, unharmed.");
+        }
         return 1;
         break;
         
@@ -182,6 +202,7 @@ int try_to_pass(object who)
             tell_object(who, "%^BOLD%^You break through the wall and pass to the other side!%^RESET%^");
             tell_room(room, "%^BOLD%^" + my_name + " breaks through the wall and passes to the other side!%^RESET%^", who);
             tell_room(room2, "%^BOLD%^Someone breaks through the wall and into the area!%^RESET%^");
+            blocking = 0;
             return 1;
         }
         
