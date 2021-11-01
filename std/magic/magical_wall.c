@@ -12,16 +12,17 @@
 //
 
 #include <std.h>
-#include <dameons.h>
+#include <daemons.h>
 
 #define MAX_DUR    10000
-#define DEF_DUR      50
+#define DEF_DUR       50
 
 inherit OBJECT;
 
 int DC,            //Difficulty in getting past the wall (or damaging it)
     blocking,      //Is it currently blocking?
     damage,        //Spell strength of wall
+    difficulty,    //DC of getting past the wall
     durability;    //The health of the wall
 
 object owner;      //The original caster
@@ -32,7 +33,7 @@ string type,       //Which type/element is the wall?
 
 //Variable Functions
 int set_difficulty(int x)   { DC = x; return DC;             }
-int set_durability(int x)   { durability = x; return health; }
+int set_durability(int x)   { durability = x; return durability; }
 int set_damage(int x)       { damage = x; return damage;     }
 object set_owner(object ob) { owner = ob; return owner;      }
 string set_type(string str) { type = str; return type;       }
@@ -71,6 +72,7 @@ void init()
 }
 
 int is_invincible() { return 1; }
+int is_wall()       { return 1; }
 
 int block(string exitn)
 {
@@ -85,7 +87,7 @@ int block(string exitn)
     
     room = environment(this_object());
     
-    if(!object(room))
+    if(!objectp(room))
         return 0;
     
     set_exit(exitn);
@@ -132,6 +134,9 @@ int try_to_pass(object who)
     if(durability <= 0)
         return 1;
     
+    if(!blocking)
+        return 1;
+    
     room2 = room->query_exit(exit);
     
     roll1 = roll_dice(1, 20);
@@ -157,7 +162,7 @@ int try_to_pass(object who)
         break;
         
         default:
-        if(roll < difficulty)
+        if(roll1 < difficulty)
         {
             tell_object(who, "%^MAGENTA%^You try to bash through the wall, to no avail.%^RESET%^");
             tell_room(room, "%^MAGENTA%^" + my_name + " tries to bash through the wall, to no avail.%^RESET%^", who);

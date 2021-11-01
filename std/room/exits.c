@@ -195,6 +195,7 @@ int blocked(string exit) {
         return 0;
     }
     if (ob->query_paralyzed()) return 0;
+    
     out = TP->query_highest_level();
     out += (int)TP->query_size()*5;
     out += (int)TP->query_stats("strength");
@@ -214,6 +215,13 @@ int blocked(string exit) {
         TP->set_paralyzed(4,"You are getting up.");
         return 1;
     }
+    
+    if(ob->is_wall())
+    {
+        if(!ob->try_to_pass(this_player()))
+            return 1;
+    }
+    
     return 0;
 }
 
@@ -252,9 +260,9 @@ int use_exit()
         }
     }
 
-    if (blocked(verb)) {
+    if (blocked(verb))
         return 1;
-    }
+    
     if (sizeof(TP->query_attackers()) && verb != (string)TP->query_property("true moving")) {
         flee_delay = random(2) + 2;
         effect = new("/std/room/exiteffect");
