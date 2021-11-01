@@ -19,22 +19,33 @@
 
 inherit OBJECT;
 
-int DC, blocking, health;
-object owner;
-string type, exit;
+int DC,            //Difficulty in getting past the wall (or damaging it)
+    blocking,      //Is it currently blocking?
+    damage,        //Spell strength of wall
+    durability;    //The health of the wall
+
+object owner;      //The original caster
+
+string type,       //Which type/element is the wall?
+       exit,       //Which exit is it blocking
+       stat;       //What stat is used to determine if we make it past?
 
 //Variable Functions
 int set_difficulty(int x)   { DC = x; return DC;             }
 int set_durability(int x)   { durability = x; return health; }
+int set_clevel(int x)       { clevel = x; return clevel;     }
 object set_owner(object ob) { owner = ob; return owner;      }
 string set_type(string str) { type = str; return type;       }
 string set_exit(string str) { exit = str; return exit;       }
+string set_stat(string str) { stat = str; return stat;       }
 
 int query_difficulty() { return DC;         }
 int query_durability() { return durability; }
+int query_clevel()     { return clevel;     }
 object query_owner()   { return owner;      }
 string query_type()    { return type;       }
 string query_exit()    { return exit;       }
+string query_stat()    { return stat;       }
 
 int add_durability(int x)
 {
@@ -85,5 +96,41 @@ int block(string exitn)
     
     add_id("wallname");
     
-    return room->set_blocked(exitn, this_object());
-}   
+    if(room->set_blocked(exitn, this_object()))
+    {
+        blocking = 1;
+        return 1;
+    }
+    
+    return 0;
+}
+
+int try_to_pass(object who)
+{
+    int roll1;
+    string stat;
+    
+    if(!objectp(who))
+        return 0;
+    
+    if(!strlen(type))
+        return 1;
+    
+    if(!difficulty)
+        return 1;
+    
+    roll1 = roll_dice(1, 20);
+    
+    if(!strlen(stat))
+        stat = "strength";
+    
+    roll1 += BONUS_D->stat_bonus(who, stat);
+    
+    switch(type)
+    {
+        case "fire":
+        
+    
+    
+    
+    
