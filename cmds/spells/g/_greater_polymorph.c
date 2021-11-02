@@ -120,7 +120,7 @@ void spell_effect(int prof)
     
     addSpellToCaster();
     
-    if(userp(target))
+    if(userp(target) && target != caster)
         addSpellToTarget();
     
     /*
