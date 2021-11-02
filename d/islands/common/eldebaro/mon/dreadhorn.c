@@ -139,7 +139,7 @@ void pound(object targ)
     if(environment(targ) != ETO) return;
     me = TO->query_short();
 
-    tell_object(targ, me+"%^BOLD%^%^RED% pounds you in the head with its large "+
+    tell_object(targ, me+"%^BOLD%^%^RED%^ pounds you in the head with its large "+
     "meaty fist!%^RESET%^");
 
     tell_room(ETO, me+"%^BOLD%^%^RED%^ pounds "+targ->QCN+" in the head with its "+
