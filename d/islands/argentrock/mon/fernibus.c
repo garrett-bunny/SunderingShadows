@@ -1,4 +1,5 @@
 #include <std.h>
+#include <daemons.h>
 #include "/d/islands/argentrock/argabbr.h"
 
 inherit MONSTER;
@@ -97,7 +98,7 @@ void flame_of_hell(object *vic) {
    for(i = 0;i < all;i++) {
        tell_room(ETO,"%^RED%^Two enormous chains of flame strike out "+
          "from his eyes and dashes at everyone in the room!");
-      vic[i]->do_damage( "torso",roll_dice(10,20) );
+      vic[i]->cause_typed_damage(vic[i], "torso", roll_dice(10,20), "fire");
       tell_object(vic[i],"%^BOLD%^RED%^The flame burns you badly!");
    }
 }
