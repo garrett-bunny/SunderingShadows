@@ -31,7 +31,7 @@ int status_effect()
     target->set_property("effect_sickened", 1);
 
     tell_object(target, "%^BLUE%^You feel sickened and disgusted.%^RESET%^");
-    tell_room(ENV(target), "%^BLUE%^" + target->QCN + "'s face turns green," + target->QS + " look sickened.", target);
+    tell_room(ENV(target), "%^BLUE%^" + target->QCN + "'s face turns green, and " + target->QS + " look sickened.", target);
 
     power = target->query_level() / 12 + 1;
 
