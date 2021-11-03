@@ -30,7 +30,7 @@ void create(){
    set_listen("default","The distant sound of the ocean is obscured by the clash of weapons and the murmur of voices.");
    set_exits(([
       "out" : "/d/dagger/road/road15",
-	 // "east" : "/d/magic/temples/cevahir/cevahir_training",
+	  "east" : "/d/magic/temples/cevahir/cevahir_training",
    ]));
 }
 
