@@ -2,7 +2,6 @@
 //maybe replace /d/magic/temples/selune - connect to /d/dagger/road/road15
 //or go south of Torm along the coast
 #include <std.h>
-inherit "/std/temple";
 
 void create(){
    ::create();
@@ -11,7 +10,7 @@ void create(){
    set_light(2);
    set_indoors(1);
    set_temple("cevahir");
-   set_name("Cevahir Training Grounds");
+   set_name("Cevahir Archery Range");
    set_short("%^RESET%^%^MAGENTA%^Training Grounds%^RESET%^");
    set_long("%^C167%^A huge training ground unfolds before you. %^CRST%^%^C027%^Individuals and small organized groups run and take part in calisthenics to improve their strength and endurance. %^CRST%^%^C091%^You can see as you scan the area that soldiers, adventurers, and mercenaries alike are making good use of the facilities and trainers that are available. %^CRST%^%^C088%^There are individual areas where professional highly skilled trainers work to improve participants skills in various close combat weapons and what combinations work and don't work well against different types of armor and how to disarm most any opponent. %^CRST%^%^C117%^Another area includes a shooting range for perfecting ranged weapon skills including archery, crossbow, and javelin.%^CRST%^%^C094%^ Opposite the weapons training areas are stations to improve one's skills with a shield both defensively and offensively. %^CRST%^%^C222%^Next to it is an area that teaches unarmed combat. %^CRST%^%^C064%^Beyond this is a large field with walls nd terrain features for small group training in both offensive and defensive maneuvers in how to best use terrain to one's advantage or make it an oppenent's disadvantage and taking or defending a wall. %^CRST%^%^C052%^Small group tactical situations can be worked and reworked here. %^CRST%^%^C243%^A small group makes it's way around the complex and field areas taking particular interest in places that might give good cover and advantageous view pos. Glancing away then back, you no longer see them around. %^CRST%^%^RESET%^\n");
    set_items(([
