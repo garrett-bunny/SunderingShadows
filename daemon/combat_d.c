@@ -2459,7 +2459,7 @@ void set_temporary_blinded(object who, int difficulty, string message)
         return;
     }
     
-    if(PLAYER_D->immunity_check(who, "blindness"))
+    if(PLAYER_D->immunity_check(who, "blindness") && difficulty > 0)
     {
         tell_object(who, "%^YELLOW%^You are immune to blindness.%^RESET%^");
         return;
