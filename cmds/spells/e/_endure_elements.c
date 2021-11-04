@@ -17,15 +17,15 @@ void effect(int direction)
 {
     if(direction > 0)
     {
-        caster->set_property("castspellresist",1);
+        target->set_property("castspellresist",1);
     }
     else
     {
-        caster->remove_property("castspellresist");
+        target->remove_property("castspellresist");
     }
     
-    caster->set_resistance("fire", 10 * direction);
-    caster->set_resistance("cold", 10 * direction);
+    target->set_resistance("fire", 10 * direction);
+    target->set_resistance("cold", 10 * direction);
 
     return;
 }
@@ -37,19 +37,19 @@ void create()
     set_author("tlaloc");
     set_spell_name("endure elements");
     set_spell_level( ([ "ranger" : 1, "druid" : 1, "cleric" : 1, "paladin" : 1, "mage" : 1, "oracle" : 1, ]) );
-    set_mystery( ({ "waves", "winter" }) );
     set_spell_sphere("alteration");
-    set_syntax("cast CLASS endure elements");
+    set_syntax("cast CLASS endure elements on TARGET");
     set_damage_desc("+10 to fire and cold resistance.");
-    set_description("With this spell, the caster gains enhanced protection from extreme heat and cold.");
+    set_description("With this spell, the caster gives enhanced protection from extreme heat and cold to the target.");
+    set_target_required(1);
     set_helpful_spell(1);
 }
 
 int preSpell()
 {
-   if(caster->query_property("castspellresist") || caster->query_property("fiery body"))
+   if(target->query_property("castspellresist") || target->query_property("fiery body"))
    {
-      tell_object(caster,"You already have protection of this nature!");
+      tell_object(caster,"They already have protection of this nature!");
       return 0;
    }
    
@@ -67,10 +67,19 @@ void spell_effect(int prof)
     string myname, yourname;
     int mylevel;
     
-    myname = caster->QCN;
+    myname = target->query_cap_name();
   
-    tell_object(caster, "%^GREEN%^You place a hand upon yourself, enhancing your body with enhanced protection against heat and cold.");
-    tell_room(place, "%^GREEN%^" + sprintf("%s focuses on enhancing %s body with enhanced protection!", myname, caster->query_possessive()), ({ caster }));
+    if(target == caster)
+    {
+        tell_object(caster, "%^GREEN%^You place a hand upon yourself, enhancing your body with enhanced protection against heat and cold.");
+        tell_room(place, "%^GREEN%^" + sprintf("%s focuses on enhancing %s body with enhanced protection!", myname, caster->query_possessive()), ({ caster }));
+    }
+    else
+    {
+        tell_object(caster, "%^GREEN%^" + sprintf("You place a hand on %s, enhancing %s body with enhanced protection against heat and cold.", target->query_cap_name(), target->query_possessive()));
+        tell_object(target, "%^GREEN%^" + myname + " places a hand on you, enhancing your body protection against heat and cold.");
+        tell_room(place, "%^GREEN%^" + sprintf("%s places a hand on %s, enhancing %s body with enhanced protection against heat and cold.", myname, target->query_cap_name(), target->query_possessive()), ({ caster, target }));
+    }
 
     effect(1);
     spell_successful();
