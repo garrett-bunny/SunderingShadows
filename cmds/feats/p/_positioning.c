@@ -16,7 +16,7 @@ void create()
     feat_syntax("positioning offensive|defensive|min|max|check");
     feat_desc("This feat will allow characters to slightly shift between defensive and offensive combat, increasing or decreasing their accuracy and resistance."
         + "\n"
-        + "\nThis feat shift values between AC and attack bonuses."
+        + "\nThis feat shift values between AC and attack bonuses. This feat is the offensive version of expertise.\n"
         + "\nYou can use this feat once in any direction and one aditional time for every 4 character levels to a max bonus of 5.");
     set_target_required(0);
     allow_blind(1);
@@ -91,9 +91,9 @@ void execute_feat()
     {
 
     case "defensive":
-        if (bonus == maxbonus)
+        if (!bonus)
         {
-            tell_object(caster, "%^RESET%^%^MAGENTA%^Your can't fight any more defensive!%^RESET%^");
+            tell_object(caster, "%^RESET%^%^MAGENTA%^You can't fight any more defensively!%^RESET%^");
             break;
         }
         caster->set_property("tactical_positioning", 1);
