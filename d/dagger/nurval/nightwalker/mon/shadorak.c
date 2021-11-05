@@ -80,8 +80,8 @@ void create()
     set_hp(query_max_hp());
     set_property("add kits", 40);
     set_new_exp(75, "boss");
-    set_property("add quest", "%^BOLD%^%^BLACK%^Defeated the Nightwalker!%^RESET%^");
-    set_property("quest exp", 12000000);
+    //set_property("add quest", "%^BOLD%^%^BLACK%^Defeated the Nightwalker!%^RESET%^");
+    //set_property("quest exp", 12000000);
     add_money("gold", random(100000) + (80000));
     add_money("platinum", random(20000) + (40000));
     set_emotes(30, ({ "%^BLACK%^BOLD%^Nightwalker whispers : THE TIME OF THE LIVING IS OVER....%^RESET%^",
