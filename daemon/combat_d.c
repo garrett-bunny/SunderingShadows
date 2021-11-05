@@ -1186,8 +1186,26 @@ varargs void calculate_damage(object attacker, object targ, object weapon, strin
 
     sneak = 0;
 
-    if(damage)
+    if(damage && targ->is_vulnerable_to(attacker))
     {
+        //Duelist tree has chance to do an extra attack on vulnerable opponent
+        if(FEATS_D->usable_feat(attacker, "positioning"))
+        {
+            //Here to prevent chain procs
+            if(attacker->query_property("positioning"))
+            {
+                attacker->remove_property("positioning");
+            }
+            else
+            {
+                if((10 + attacker->query_character_level() / 2) > random(100))
+                {
+                    attacker->execute_attack();
+                    attacker->set_property("positioning", 1);
+                }
+            }
+        }
+        
         if(attacker->is_class("thief"))
         {
             //Sneak attack dice section
@@ -1230,7 +1248,7 @@ varargs void calculate_damage(object attacker, object targ, object weapon, strin
     }
 
     //target is blind, bound or paralyzed or is attacking another target
-    if(sneak && targ->is_vulnerable_to(attacker))
+    if(sneak)
         damage += roll_dice(sneak, 6);
     else
         sneak = 0;

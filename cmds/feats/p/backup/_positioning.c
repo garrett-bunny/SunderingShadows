@@ -9,12 +9,15 @@ int MAX;
 void create()
 {
     ::create();
-    feat_type("permanent");
+    feat_type("instant");
     feat_category("Duelist");
     feat_name("positioning");
     feat_prereq("Swipe");
-    //feat_syntax("positioning offensive|defensive|min|max|check");
-    feat_desc("With this feat, you learn to make use of perfect timing and space to be ready to take advantage of any disruption in your foe's attention. When an opponent is vulnerable to you (paralyzed, blind, or fighting someone else), you have a chance to get an extra attack on that target.");
+    feat_syntax("positioning offensive|defensive|min|max|check");
+    feat_desc("This feat will allow characters to slightly shift between defensive and offensive combat, increasing or decreasing their accuracy and resistance."
+        + "\n"
+        + "\nThis feat shift values between AC and attack bonuses. This feat is the offensive version of expertise.\n"
+        + "\nYou can use this feat once in any direction and one aditional time for every 4 character levels to a max bonus of 5.");
     set_target_required(0);
     allow_blind(1);
 }
@@ -32,7 +35,6 @@ int prerequisites(object ob)
     return ::prerequisites(ob);
 }
 
-/*
 int cmd_positioning(string str)
 {
     object feat;
@@ -132,7 +134,6 @@ void execute_feat()
     dest_effect();
     return;
 }
-*/
 
 void dest_effect()
 {
