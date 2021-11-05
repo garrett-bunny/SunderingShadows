@@ -13,10 +13,9 @@ void create(){
 			"%^C082%^vegetation %^C202%^covers the ceiling above you. The light from the volcano outside %^C190%^illuminates %^C202%^the area around you, "
 			"however as you proceed it seems to get %^C052%^darker%^C202%^.\n");
    set_smell("default","Fumes from the still raging fires outside singe your nose.");
-   set_exits((["out":MOUNTAIN+"crevice.c"]));
 }
 
-void init(){
-   ::init();
-   add_action("crawl","crawl");
-}
+int GoThroughDoor(){
+	if(TP->query_size() > 1 && TP->query_size() < 3){
+	write("That is much to steep for you.");
+return 0;}}
