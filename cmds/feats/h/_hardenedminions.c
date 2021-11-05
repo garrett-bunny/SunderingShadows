@@ -189,10 +189,8 @@ void execute_me()
         x = adjust_minion(minions_to_impact[i], rb, rhpb);
         if(rb > 0 && x)
         {
-            tell_object(caster,"%^BOLD%^%^YELLOW%^Your "+minions[i]->QCN+" grows to double "
-            ""+minions_to_impact[i]->QP+" normal size and begins to glow!%^RESET%^");
-            tell_room(environment(caster),"%^BOLD%^%^YELLOW%^"+minions[i]->QCN+" grows to "
-            "double "+minions_to_impact[i]->QP+" size and begins to glow!%^RESET%^",caster);
+            tell_object(caster,"%^BOLD%^%^YELLOW%^Your "+minions_to_impact[i]->QCN+" grows to double "
+            ""+minions_to_impact[i]->QP+" normal size!%^RESET%^");
         }
     }
 
