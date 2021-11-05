@@ -23,7 +23,7 @@ void create()
     set_syntax("cast CLASS prescience");
     set_description("This power will allow the psion foreknowledge, granting him additional prowess in battle.  The power "
         "gives the psion a bonus to hit and damage his opponents for a time, as well as a chance for an extra attack. "
-        "This power grants +1/per 5 levels. It grants +4 minimum and +8 maximum. This bonus applies "
+        "This power grants +1/per 5 levels, with a +2 minimum and +7 maximum (+10 maximum for mindblades with improved prescience). This bonus applies "
         "to both attack and damage rolls.");
     set_verbal_comp();
     set_property("keywords", ({ "targeted", "personal" }));
