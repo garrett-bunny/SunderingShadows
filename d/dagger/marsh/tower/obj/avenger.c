@@ -21,7 +21,6 @@ void init() {
     if(interactive(ETO) && !owned) owned = ETOQN;
     add_action("heal_em","aid");
     add_action("dispel_em","disrupt");
-    add_action("summon_em","call");
 }
 
 void create() {
@@ -104,7 +103,7 @@ int paladin() {
         tell_object(ETO,"You may not wield this weapon!");
         return 0;
     }
-    if((int)ETO->query_true_align() != 1 && (int)ETO->query_true_align() != 2) {
+    if((int)ETO->query_true_align() != 1 && (int)ETO->query_true_align() != 2 && (int)ETO->query_true_align() != 4 && (int)ETO->query_true_align() != 5){
         tell_object(ETO,"You may not wield this weapon!");
         return 0;
     }
