@@ -18,6 +18,7 @@
 inherit WEAPONLESS;
 
 int coreparty = 4;
+int buffed = 0;
 
 string color(string str)
 {
@@ -163,10 +164,14 @@ void init()
         coreparty = psize;
     }
     
-    new("/cmds/spells/v/_vampiric_shadow_shield.c")->use_spell(this_object(), 0, 70, 100, "mage");
-    new("/cmds/spells/s/_shadow_body.c")->use_spell(this_object(), 0, 70, 100, "mage");
-    new("/cmds/spells/s/_shadowform.c")->use_spell(this_object(), 0, 70, 100, "mage");
-    new("/cmds/spells/f/_frightful_aspect.c")->use_spell(this_object(), 0, 70, 100, "mage");
+    if(!buffed)
+    {
+        new("/cmds/spells/v/_vampiric_shadow_shield.c")->use_spell(this_object(), 0, 70, 100, "mage");
+        new("/cmds/spells/s/_shadow_body.c")->use_spell(this_object(), 0, 70, 100, "mage");
+        new("/cmds/spells/s/_shadowform.c")->use_spell(this_object(), 0, 70, 100, "mage");
+        new("/cmds/spells/f/_frightful_aspect.c")->use_spell(this_object(), 0, 70, 100, "mage");
+        buffed = 1;
+    }
 }
 
 die(object ob)

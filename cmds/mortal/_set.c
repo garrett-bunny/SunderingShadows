@@ -448,8 +448,9 @@ int set_no_reward(string val)
         tp->set("no_reward", 1);
     }
     if (val == "off") {
-        write("%^BOLD%^%^RED%^Nope. You keep suffering.");
-        return 0;
+        //write("%^BOLD%^%^RED%^Nope. You keep suffering.");
+        tp->set("no_reward", 0);
+        //return 0;
     }
     return 1;
 }
