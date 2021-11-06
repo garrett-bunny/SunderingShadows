@@ -103,7 +103,6 @@ void create()
                   "eyebite",
                   "epidemic",
                   "mass fester",
-                  "greater dispel magic",
                   "animus blizzard",
                   "nightmare maw",
                   "exhume corpses", }));
@@ -229,11 +228,11 @@ void heart_beat()
             tell_room(room, "%^BOLD%^BLACK%^Waves of necrotic energy pour off of the Nightwalker, tearing life energy from its enemies!");
             
             foreach(object ob in attackers)
-                ob->cause_typed_damage(ob, ob->return_target_limb(), roll_dice(20, 20) + 300, "negative energy");
+                ob->cause_typed_damage(ob, ob->return_target_limb(), roll_dice(5, 20) + 300, "negative energy");
         }
         
         if(!present("corpse", room) && !random(5))
-            new("/cmds/spells/e/_exhume_corpses.c")->use_spell(this_object(), 0, 70, 100, "mage");
+            new("/cmds/spells/e/_exhume_corpses.c")->use_spell(this_object(), 0, 70, 300, "mage");
 
         if(!present("banshee", room) && !random(5))
         {
