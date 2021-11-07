@@ -208,7 +208,7 @@ void execute_attack() {
     
     //+2 dice to damage for improved rush
     clevel += (FEATS_D->usable_feat(caster, "improved rush") * 2);
-    damage = roll_dice(clevel,8); // up to d8 on a trial basis
+    damage = roll_dice(clevel,6); // up to d8 on a trial basis
 
     if(sizeof(myweapon))
     {
@@ -224,7 +224,7 @@ void execute_attack() {
     {
       damtype = "bludgeoning";
     }
-    damage += "/daemon/bonus_d"->damage_bonus(caster->query_stats("strength"));
+    damage += "/daemon/bonus_d"->query_stat_bonus(caster, "strength");
     damage += (int)caster->query_damage_bonus();
 
     if(target->query_property("weapon resistance"))

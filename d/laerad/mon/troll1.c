@@ -22,7 +22,7 @@ void create()
     set_resistance_percent("fire", -50);
     set_resistance_percent("acid", -50);
     set_exp(0);
-    set_language("undercommon");
+    set_spoken("undercommon");
     set_stats("strength", 19);
     set_stats("constitution", 24);
     set_property("swarm", 1);

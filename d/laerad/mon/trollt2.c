@@ -36,7 +36,7 @@ void create()
     set_base_damage_type("slashing");
     set_attack_limbs(({ "right hand", "left hand", "head" }));
     set_attacks_num(3);
-    set_language("undercommon");
+    set_spoken("undercommon");
     set_damage(1, 6);
     move_me();
     num = random(5) + 2;

@@ -20,6 +20,7 @@ void create(){
     set_exp(2000);
     set_alignment(9);
     set("aggressive",0);
+    set_spoken("undercommon");
    set_nwp("healing",15);
 }
 void init(){

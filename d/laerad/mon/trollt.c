@@ -19,7 +19,7 @@ void create()
     set_size(2);
     set_hd(15, 5);
     set_hp(125);
-    set_language("undercommon");
+    set_spoken("undercommon");
     set_overall_ac(-4);
     set_resistance_percent("fire", -50);
     set_resistance_percent("acid", -50);

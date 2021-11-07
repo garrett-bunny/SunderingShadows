@@ -65,7 +65,7 @@ void create()
                  "unholy orb",
                  "horrid wilting"}));
                  
-    set_spell_chance(90);
+    set_spell_chance(50);
 
     set_property("spellturning", 10);
     set_property("fast healing", 5);

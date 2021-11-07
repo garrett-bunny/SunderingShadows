@@ -50,7 +50,7 @@ void create()
         "powerword stun",
         "prismatic spray",
     }));
-    set_language("undercommon");
+    set_spoken("undercommon");
     set_spell_chance(75);
     move_me();
     num = random(5) + 2;
