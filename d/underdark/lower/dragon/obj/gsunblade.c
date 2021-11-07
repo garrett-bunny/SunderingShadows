@@ -106,6 +106,7 @@ int wield_func(){
      tell_object(ETO,"You are not experienced enough to use this weapon.");
      return 0;
    }
+   /*
    if(ETO->query_property("master weapon")) { //preventing stack up with other "top" weapons
      tell_object(ETO,"%^BOLD%^%^WHITE%^You reach out to grasp the blade, and the weapon already in your hand "
 "seems to radiate with denial.  You find yourself unwilling even to lift the second weapon!");
@@ -113,6 +114,7 @@ int wield_func(){
 "stops.",ETO);
      return 0;
    }
+   */
    tell_object(ETO,"%^BOLD%^%^WHITE%^A gentle %^RESET%^%^RED%^war%^MAGENTA%^mt%^RED%^h %^BOLD%^%^WHITE%^runs through your "
 "veins as you lift the surprisingly light blade.%^RESET%^");
    tell_room(EETO,"%^BOLD%^%^WHITE%^Light glints off the edge of the %^YELLOW%^go%^RESET%^%^ORANGE%^ld%^YELLOW%^en "
