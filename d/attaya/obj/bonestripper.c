@@ -63,11 +63,13 @@ int wieldme()
             return 0;
         }
     }
+    /*
     if (ETO->query_property("master weapon")) {
         tell_object(ETO, "You find it impossible to lift two such mighty " +
                     "weapons!", ETO);
         return 0;
     }
+    */
     tell_room(EETO, "%^BOLD%^As " + ETOQCN + " wields the sword, a stream " +
               "of %^RESET%^%^RED%^blood %^BOLD%^%^WHITE%^begins to stream down " +
               "the blade from its tip.%^RESET%^", ETO);
