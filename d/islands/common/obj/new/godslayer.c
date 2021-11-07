@@ -28,6 +28,7 @@ void create()
     set_wield((: TO, "extra_wield" :));
     set_unwield((: TO, "extra_unwield" :));
     set_hit((: TO, "extra_hit" :));
+    set_property("master weapon", 1);
 }
 
 int extra_wield()
