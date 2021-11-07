@@ -18,6 +18,7 @@ void create()
     set_size(2);
     set_hd(11, 12);
     set_hp(55);
+    set_language("undercommon");
     set_overall_ac(-2);
     set_resistance_percent("fire", -50);
     set_resistance_percent("acid", -50);
