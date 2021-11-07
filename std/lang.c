@@ -188,7 +188,10 @@ int set_spoken(string str)
 string query_spoken()
 {
     if (choice == 0) {
-        choice = "common";
+        if(catch(choice = load_object("/std/races/" + this_object()->query_race())->query_default_language()))
+            choice = "common";
+        if(!choice)
+            choice = "common";
     }
     return choice;
 }

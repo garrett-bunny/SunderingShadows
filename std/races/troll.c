@@ -157,3 +157,9 @@ string *query_languages(string subrace)
 {
     return (["required":({"giant","undercommon"}),"optional":({"orcish","goblin","sylvan"})]);
 }
+
+//Should overwrite common as the default for monster races
+string query_default_language()
+{
+    return "undercommon";
+}
