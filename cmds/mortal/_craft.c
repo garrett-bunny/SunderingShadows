@@ -492,11 +492,11 @@ craft enchant
 
 %^CYAN%^DESCRIPTION%^RESET%^
 
-This command allows player to craft items and manage their crafting.
+This command allows a player to craft items and manage their past crafted files.
 
 %^ORANGE%^<craft %^ORANGE%^%^ULINE%^ITEM%^RESET%^%^ORANGE%^ [with %^ORANGE%^%^ULINE%^SKILL%^RESET%^%^ORANGE%^]>%^RESET%^
 
-    Will allow player to craft %^ORANGE%^%^ULINE%^ITEM%^RESET%^. If there are several %^ORANGE%^%^ULINE%^SKILL%^RESET%^s that could be used for the same item, player may specify which skill they want to use to craft an %^ORANGE%^%^ULINE%^ITEM%^RESET%^.
+    Will allow a player to craft %^ORANGE%^%^ULINE%^ITEM%^RESET%^. If there are several %^ORANGE%^%^ULINE%^SKILL%^RESET%^s that could be used for the same item, the player may specify which skill they want to use to craft an %^ORANGE%^%^ULINE%^ITEM%^RESET%^.
 
 %^ORANGE%^<craft items %^ORANGE%^%^ULINE%^SKILL%^RESET%^%^ORANGE%^>%^RESET%^
 
@@ -504,18 +504,18 @@ This command allows player to craft items and manage their crafting.
 
 %^ORANGE%^<craft crafted>%^RESET%^
 
-    Will list all files player crafted.
+    Will list all files the player has crafted.
 
 %^ORANGE%^<craft preview|delete|remake %^ORANGE%^%^ULINE%^FILE%^RESET%^%^ORANGE%^>%^RESET%^
 
-    Will allow player to preview, delete or remake an item with filename %^ORANGE%^%^ULINE%^FILE%^RESET%^
+    Will allow the player to preview, delete, or remake an item with the filename %^ORANGE%^%^ULINE%^FILE%^RESET%^
 
 %^ORANGE%^<craft enchant>%^RESET%^
 
-    Will put player player into enchanting menu if they have required feat. Players can enchant only player-crafted items, and only if they are profficient with corresponding crafting skill. I.e. to enchant jewwelry, player must be profficient jeweller. To enchant items they must have the 'craft magical equipment' feat as well, and that item must be mastercrafted.
+    Will put the player into the enchanting menu if they have the required feat. Players can only enchant player-crafted items that are masterwork quality, and only if they are profficient with the corresponding crafting skill. I.E. to enchant jewelry, the player must be proficient jeweler. To enchant items they must have the 'craft magical equipment' feat and various amounts of materials gained from disenchanting magical equipment. This will incur an experience point tax as well.
 
 %^CYAN%^SEE ALSO%^RESET%^
 
-skills, repair, alterobj
+skills, repair, alterobj, disenchant
 ");
 }
