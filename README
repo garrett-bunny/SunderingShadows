@@ -1,8 +1,9 @@
 # Sundering Shadows MUD lib #
 
-This is LPC code repository. You'll need fluffos (https://www.fluffos.info/) and world files to utilize it.
+This repository is synced with the mud every 30 minutes, so any changes made in game will be reflected here.
+Changes can be pushed from this repository into the mud as well, pending approval by leondal/Tlaloc.
 
-As of 11.07.2019 this repository serves as a backup and tracking system only. The development happens from within metaprogramming environment of the game.
+This is LPC code repository. You'll need fluffos (https://www.fluffos.info/) and world files to utilize it.
 
 ## Running the game ##
 
