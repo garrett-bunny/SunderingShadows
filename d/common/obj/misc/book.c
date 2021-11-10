@@ -117,7 +117,7 @@ int stuff(string str)
        str != "title") { return 0; }
     write("Enter the "+str+" for the book");
     write("Enter ** to abort");
-    input_to("set_stuff",str);
+    input_to("set_stuff", str);
     return 1;
 }
 
@@ -133,8 +133,7 @@ void set_stuff(string str,string stuff)
         write("%^BOLD%^%^WHITE%^Please enter the author's alias for this book%^RESET%^");
         write("%^BOLD%^%^WHITE%^Enter <none> without the <>'s for no alias%^RESET%^");
         write("%^BOLD%^%^WHITE%^Enter ** to abort%^RESET%^");
-        input_to("set_author",str);
-        return;
+        input_to("set_author");
     }
 
     switch(stuff)
@@ -162,7 +161,7 @@ void set_stuff(string str,string stuff)
                 }
             }
         }
-        if(!invalid_character_check(str,TP)) { return 1; }
+        if(!invalid_character_check(str,this_player())) { return 1; }
         __Title = str;
         set_title(__Title);
         tell_object(TP,"%^BOLD%^Title changed to:\n %^RESET%^"+__Title+"");
@@ -177,7 +176,7 @@ void set_author(string alias)
     if(alias == "")     { return; }
     if(!check_status()) { return; }
 
-    if(!invalid_character_check(alias,TP)) { return 1; }
+    //if(!invalid_character_check(alias,this_player())) { return; }
     if(strlen(alias) > 25)
     {
         tell_object(TP,"The author alias may not be more than 25 characters long.");
@@ -197,7 +196,7 @@ void set_author(string alias)
         tell_object(TP,"%^RESET%^%^BOLD%^Author's alias set to:\n %^RESET%^"+__AuthorAlias+"");
         break;
     }
-    return 1;
+    return;
 }
 
 int remove_page(string str)
@@ -538,6 +537,28 @@ void set_title(string title)
     return;
 }
 
+int invalid_character_check(string str, object player)
+{
+    string *invalid = ({ "*", "-", "=", "_", "'", "~", "^", "&", "%", "$", "#", ".", ",", "/", "\\" });
+    
+    if(!objectp(player) || stringp(str))
+        return 0;
+    
+    str = strip_colors(str);
+    
+    foreach(string tmp in invalid)
+    {
+        if(strsrch(str, tmp) >= 0)
+        {
+            tell_object(player, "The characters " + implode(invalid, " ") + " are not valid in the titles or author aliases of books.");
+            return 0;
+        }
+    }
+    
+    return 1;
+}
+
+/*   
 int invalid_character_check(string str,object player)
 {
     string *bad_chars,chars;
@@ -558,6 +579,7 @@ int invalid_character_check(string str,object player)
     }
     return 1;
 }
+*/
 
 int help(string str)
 {
