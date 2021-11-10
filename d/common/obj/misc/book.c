@@ -215,6 +215,7 @@ int remove_page(string str)
 
     chapters = query_chapters();
     chap_keys = keys(chapters);
+    chap_keys = sort_array(chap_keys, 1);
     for(i=0;i<sizeof(chap_keys);i++)
     {
         pages = chapters[chap_keys[i]];
@@ -380,6 +381,7 @@ mapping get_page(int page)
 
     chapters = query_chapters();
     chap_keys = keys(chapters);
+    chap_keys = sort_array(chap_keys, 1);
     for(i=0;i<sizeof(chap_keys);i++)
     {
         pages = chapters[chap_keys[i]];
@@ -443,7 +445,7 @@ void read_page(int page)
 
 void add_page(string chapter,object page)
 {
-    mapping chapters=([]),page_data=([]);
+    mapping chapters=([]),page_data=([]), new_chapters=([]);
     string *languages=({}),*writings=({});
     int i;
 
@@ -468,6 +470,7 @@ void add_page(string chapter,object page)
     }
 
     chapters += ([ set_chapter_page_number(chapter) : page_data ]);
+    
     tell_object(this_player(), "Adding to page number " + set_chapter_page_number(chapter));
     set_page_numbers();
 
@@ -491,6 +494,7 @@ void set_page_numbers()
 
     chapters = query_chapters();
     chap_keys = keys(chapters);
+    chap_keys = sort_array(chap_keys, 1);
     for(i=0;i<sizeof(chap_keys);i++)
     {
         pages = chapters[chap_keys[i]];
