@@ -473,6 +473,7 @@ void add_page(string chapter,object page)
     }
 
     chapters += ([ set_chapter_page_number(chapter) : page_data ]);
+    __BookData[chapter] = chapters;
     
     set_page_numbers();
 
@@ -507,9 +508,13 @@ void set_page_numbers()
             count++;
             numbers = pages[page_keys[j]];
             numbers["page"] = ({ count });
+            chapters[chap_keys[i]][page_keys[j]]["page"] = ({ count });
         }
         set_last_page(count);
     }
+    
+    __BookData = chapters;
+    
     return;
 }
 
