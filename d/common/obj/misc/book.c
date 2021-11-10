@@ -446,7 +446,7 @@ void read_page(int page)
 void add_page(string chapter,object page)
 {
     mapping chapters=([]),page_data=([]), new_chapters=([]);
-    string *languages=({}),*writings=({});
+    string *languages=({}),*writings=({}), *chap_keys;
     int i;
 
     if(!page->query("language list")) { return notify_fail("No blank pages allowed.\n"); }
@@ -470,6 +470,17 @@ void add_page(string chapter,object page)
     }
 
     chapters += ([ set_chapter_page_number(chapter) : page_data ]);
+    
+    //Trying to get this shit in the right order...-Tlaloc
+    chap_keys = keys(chapters);
+    chap_keys = sort_array(chap_keys, 1);
+    
+    foreach(int x in chap_keys)
+    {
+        new_chapters += ([ x : chapters[x] ]);
+    }
+        
+    chapters = new_chapters;
     
     tell_object(this_player(), "Adding to page number " + set_chapter_page_number(chapter));
     set_page_numbers();
