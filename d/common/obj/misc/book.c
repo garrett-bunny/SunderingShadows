@@ -468,6 +468,7 @@ void add_page(string chapter,object page)
     }
 
     chapters += ([ set_chapter_page_number(chapter) : page_data ]);
+    tell_object(this_player(), "Adding to page number " + set_chapter_page_number(chapter));
     set_page_numbers();
 
     tell_room(ETP,"%^BOLD%^"+TP->QCN+" adds a page to "+__Title+".%^RESET%^",TP);
