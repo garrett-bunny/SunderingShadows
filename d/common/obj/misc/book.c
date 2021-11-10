@@ -220,6 +220,7 @@ int remove_page(string str)
     {
         pages = chapters[chap_keys[i]];
         page_keys = keys(pages);
+        page_keys = sort_array(page_keys, 1);
         for(j=0;j<sizeof(pages);j++)
         {
             numbers = pages[page_keys[j]];
@@ -386,6 +387,7 @@ mapping get_page(int page)
     {
         pages = chapters[chap_keys[i]];
         page_keys = keys(pages);
+        page_keys = sort_array(page_keys, 1);
         for(j=0;j<sizeof(pages);j++)
         {
             numbers = pages[page_keys[j]];
@@ -404,6 +406,7 @@ int chapter_start_page(string chapter)
     chapters = query_chapters();
     pages = chapters[chapter];
     page_keys = keys(pages);
+    page_keys = sort_array(page_keys, 1);
     if(!sizeof(page_keys)) { return -1; }
     numbers = pages[page_keys[0]];
     return numbers["page"][0];
@@ -471,18 +474,6 @@ void add_page(string chapter,object page)
 
     chapters += ([ set_chapter_page_number(chapter) : page_data ]);
     
-    //Trying to get this shit in the right order...-Tlaloc
-    chap_keys = keys(chapters);
-    chap_keys = sort_array(chap_keys, 1);
-    
-    foreach(int x in chap_keys)
-    {
-        new_chapters += ([ x : chapters[x] ]);
-    }
-        
-    chapters = new_chapters;
-    
-    tell_object(this_player(), "Adding to page number " + set_chapter_page_number(chapter));
     set_page_numbers();
 
     tell_room(ETP,"%^BOLD%^"+TP->QCN+" adds a page to "+__Title+".%^RESET%^",TP);
@@ -510,6 +501,7 @@ void set_page_numbers()
     {
         pages = chapters[chap_keys[i]];
         page_keys = keys(pages);
+        page_keys = sort_array(page_keys, 1);
         for(j=0;j<sizeof(page_keys);j++)
         {
             count++;
