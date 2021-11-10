@@ -56,6 +56,8 @@ void spell_effect(int prof)
     
     num = 1 + clevel / 6;
     
+    tell_object(caster, "Number of darts : " + num);
+    
     if(sizeof(victims) > num)
         victims = victims[0..(num - 1)];
     else if(num > sizeof(victims))
