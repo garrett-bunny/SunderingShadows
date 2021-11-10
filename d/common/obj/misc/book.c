@@ -134,6 +134,7 @@ void set_stuff(string str,string stuff)
         write("%^BOLD%^%^WHITE%^Enter <none> without the <>'s for no alias%^RESET%^");
         write("%^BOLD%^%^WHITE%^Enter ** to abort%^RESET%^");
         input_to("set_author",str);
+        return;
     }
 
     switch(stuff)
@@ -545,7 +546,7 @@ int invalid_character_check(string str,object player)
     if(!objectp(player))    { return 0; }
     chars = "* / \ , . # $ % ^ & ~ ' _ = -";
     bad_chars = explode(chars," ");
-    str = FILTERS_D->filter_colors(str);
+    str = strip_colors(str);
     for(i=0;i<sizeof(bad_chars);i++)
     {
         if(strsrch(str,bad_chars[i]) != -1)
