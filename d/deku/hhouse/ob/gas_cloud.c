@@ -159,7 +159,7 @@ void do_my_effect()
                         " and %^BOLD%^%^YELLOW%^E%^BOLD%^%^RED%^X%^BOLD%^%^YELLOW%^P%^BOLD%^%^RED%^L%^BOLD%^%^YELLOW%^"+
                         "O%^BOLD%^%^RED%^D%^BOLD%^%^YELLOW%^E%^BOLD%^%^RED%^S!%^RESET%^", vics[x]);
                         tmp = potency;
-                        while(tmp--) dam += roll_dice(3, 6);
+                        while(tmp--) dam = roll_dice(8, 6);
                         vics[x]->cause_typed_damage(vics[x], 0, dam, "electricity");
                         continue;
                     case 1:
@@ -187,7 +187,7 @@ void do_my_effect()
                         "%^BOLD%^%^YELLOW%^'s chest with a %^BOLD%^%^WHITE%^BRILLIANT%^BOLD%^%^YELLOW%^ flash of "+
                         "%^BOLD%^%^WHITE%^LIGHT%^BOLD%^%^YELLOW%^!%^RESET%^", vics[x]);
                         tmp = potency;
-                        while(tmp--) dam += roll_dice(3, 8);
+                        while(tmp--) dam = roll_dice(8, 8);
                         vics[x]->cause_typed_damage(vics[x], 0, dam, "electricity");
                         continue;
                 }
