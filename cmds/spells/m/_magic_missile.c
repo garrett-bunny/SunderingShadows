@@ -34,7 +34,7 @@ string query_cast_string()
 void spell_effect(int prof)
 {
     object *victims;
-    int num, multi;
+    int num, multi, scale;
     string t_name, c_name, t_obj, miss_str, verb_str;
     
     if(!objectp(caster))
@@ -56,7 +56,8 @@ void spell_effect(int prof)
     
     num = 1 + clevel / 6;
     
-    tell_object(caster, "Number of darts : " + num);
+    //tell_object(caster, "Number of darts : " + num);
+    //tell_object(caster, "Number of opponents : " + sizeof(victims));
     
     if(sizeof(victims) > num)
         victims = victims[0..(num - 1)];
@@ -69,8 +70,9 @@ void spell_effect(int prof)
     c_name = caster->query_cap_name();
     
     //Adjusts spell damage formula to scale for number of darts.
-    if(num > 1)
-        define_base_damage(num - 1);
+    define_base_damage(max( ({ 1, min( ({ num, 9 }) ) })));
+    
+    //tell_object(caster, "Damage per dart : " + sdamage);
     
     tell_object(caster, "%^YELLOW%^" + sprintf("You motion with your hands and %smagical %s %s towards your %s.", num > 1 ? "" : "a ", num > 1 ? "missiles" : "missile", num > 1 ? "speed" : "speeds", sizeof(victims) > 1 ? "targets" : "target"));
     tell_room(caster, "%^YELLOW%^" + sprintf("%s motions with %s hands and %smagical %s %s towards %s %s.", c_name, caster->query_possessive(), num > 1 ? "" : "a ", miss_str, multi ? "speed" : "speeds", caster->query_possessive(), multi ? "targets" : "target"), ({ caster }));
@@ -90,7 +92,8 @@ void spell_effect(int prof)
         tell_object(caster, "%^BOLD%^%^CYAN%^" + sprintf("Your %s %s into %s with arcane force!", miss_str, verb_str, ob->query_cap_name()));
         tell_object(ob, "%^BOLD%^%^CYAN%^" + sprintf("The %s %s into you with arcane force!", miss_str, verb_str));
         tell_room(place, "%^BOLD%^%^CYAN%^" + sprintf("The %s %s into %s arcane force!", miss_str, verb_str, ob->query_cap_name()), ({ ob, caster }));
-        ob->cause_type_damage(ob, "torso", (sdamage * num) / sizeof(victims), "force");
+        //tell_object(caster, "Total damage : " + ((sdamage * num) / sizeof(victims)));
+        ob->cause_typed_damage(ob, "torso", sdamage / sizeof(victims), "force");
     }
     
     dest_effect();
