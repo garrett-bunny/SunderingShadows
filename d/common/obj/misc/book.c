@@ -131,9 +131,11 @@ void set_stuff(string str,string stuff)
     {
         write("%^BOLD%^%^WHITE%^This is the first time this book has been altered.%^RESET%^");
         write("%^BOLD%^%^WHITE%^Please enter the author's alias for this book%^RESET%^");
+        write("%^BOLD%^%^WHITE%^NOTE : You will need to <set title> again after this.%^RESET%^");
         write("%^BOLD%^%^WHITE%^Enter <none> without the <>'s for no alias%^RESET%^");
         write("%^BOLD%^%^WHITE%^Enter ** to abort%^RESET%^");
         input_to("set_author");
+        return;
     }
 
     switch(stuff)
@@ -176,7 +178,7 @@ void set_author(string alias)
     if(alias == "")     { return; }
     if(!check_status()) { return; }
 
-    //if(!invalid_character_check(alias,this_player())) { return; }
+    if(!invalid_character_check(alias,this_player())) { return; }
     if(strlen(alias) > 25)
     {
         tell_object(TP,"The author alias may not be more than 25 characters long.");
@@ -541,7 +543,7 @@ int invalid_character_check(string str, object player)
 {
     string *invalid = ({ "*", "-", "=", "_", "'", "~", "^", "&", "%", "$", "#", ".", ",", "/", "\\" });
     
-    if(!objectp(player) || stringp(str))
+    if(!objectp(player) || !stringp(str))
         return 0;
     
     str = strip_colors(str);
