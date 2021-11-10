@@ -495,6 +495,7 @@ void set_page_numbers()
     string *chap_keys=({}),*page_keys=({});
     int i,j,count;
 
+    count = 0;
     chapters = query_chapters();
     chap_keys = keys(chapters);
     chap_keys = sort_array(chap_keys, 1);
