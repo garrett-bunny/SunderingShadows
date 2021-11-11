@@ -3248,7 +3248,7 @@ varargs int do_save(object targ, int mod, int get_dc)
     
     bonus = 0;
     DC = classlvl + 10;
-    DC += ((get_casting_stat() - 10) / 2);
+    DC += ((caster->query_stats(get_casting_stat()) - 10) / 2);
     DC += ((query_spell_level(spell_type) + 1) / 2);
     DC += min( ({ caster->query_property("spell dcs"), 10 }) );
     type = get_save();
@@ -3273,10 +3273,10 @@ varargs int do_save(object targ, int mod, int get_dc)
         if (spell_sphere == caster->query_school())
         {
             if (caster->is_class("mage"))
-                bonus += (1 + classlvl / 31);
+                DC += (1 + classlvl / 31);
 
             if (FEATS_D->usable_feat(caster, "school familiarity"))
-                bonus = (1 + classlvl / 31);
+                DC += (1 + classlvl / 31);
         }
         else if (spell_sphere == caster->query_opposing_school())
         {
@@ -3332,7 +3332,7 @@ varargs int do_save(object targ, int mod, int get_dc)
             DC -= 2;
         }
     }
-
+    
     if (intp(mod)) {
         DC += mod;
     }

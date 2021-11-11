@@ -28,7 +28,7 @@ varargs void do_save(object ob, int dc, string type, raw_save)
     saves = ({ 0, 0, 0 });
     save = 0;
     mod = 0;
-    level = ob->query_level() / 5;
+    level = ob->query_level();
     
     classes = ob->query_classes();
     if(!pointerp(classes))
@@ -62,7 +62,7 @@ varargs void do_save(object ob, int dc, string type, raw_save)
                 statbonus = BONUS_D->query_stat_bonus(ob, "constitution");
             
             if(FEATS_D->usable_feat(ob, "divine grace"))
-                statbonus += 5;
+                mod += 5;
             
             mod += ob->query_saving_bonus("fortitude");
             level += saves[0];
@@ -81,7 +81,7 @@ varargs void do_save(object ob, int dc, string type, raw_save)
             statbonus = BONUS_D->query_stat_bonus(ob, "dexterity");
             
             if(FEATS_D->usable_feat(ob, "divine grace"))
-                statbonus += 5;
+                mod += 5;
             
             if(FEATS_D->usable_feat(ob, "danger sense"))
             {
@@ -115,7 +115,7 @@ varargs void do_save(object ob, int dc, string type, raw_save)
                 statbonus = 10;
             
             if(FEATS_D->usable_feat(ob, "divine grace"))
-                statbonus += 5;
+                mod += 5;
             
             mod += ob->query_saving_bonus("will");
             level += saves[2];
@@ -138,11 +138,9 @@ varargs void do_save(object ob, int dc, string type, raw_save)
         break;
     }
     
+    //50
     save = level;
-
-    save_info["base_class_save"] = save;         // this is without any modifiers
-    save_info["base_stat_bonus"] = statbonus;
-    
+    //+10 (15 paladin)
     save += statbonus;
 
     //SAVE ROLL MODIFIERS
@@ -166,8 +164,7 @@ varargs void do_save(object ob, int dc, string type, raw_save)
     if (FEATS_D->usable_feat(ob, "shadow master") && objectp(ENV(ob)) && ENV(ob)->query_light() < 2)
         mod += 2;
 
-    save_info["misc_modifiers"] = mod;
-
+    mod = min( ({ mod, 10 }) );
     save += mod;
 
     if (raw_save) {
