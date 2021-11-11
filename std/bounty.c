@@ -54,7 +54,6 @@ int read(string str){
                 write(tmp);
                 //tmp = arrange_string(tmp, 15);
         }
-        if (!avatarp(TP) && !TP->query("is_assassin")) return 1;
         write("\n");
         write("%^BOLD%^%^CYAN%^\tThe following rewards are offered by private citizens:\n");
         j = sizeof(pbounties);
@@ -62,6 +61,7 @@ int read(string str){
             sort(pbounties);
         for (i=0;i<j;i++)
             write("%^BOLD%^%^YELLOW%^\t   A reward of "+mbounties[pbounties[i]]["money"]+" is offered for "+capitalize(pbounties[i])+"!");
+        write("%^BOLD%^%^CYAN%^\nBounties will only be paid out to assassins officially registered with the guild.%^RESET%^");
         tell_room(TO,TPQCN+" reads over the bounty board!",TP);
         return 1;
     }
