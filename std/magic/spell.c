@@ -3219,7 +3219,7 @@ void debug_saves(int num)
 varargs int do_save(object targ, int mod, int get_dc)
 {
     string type, stat, * myclasses;
-    int DC, bonus, classlvl, num;
+    int DC, classlvl, num;
     object daemon;
 
     if (!objectp(caster)) {
@@ -3237,16 +3237,15 @@ varargs int do_save(object targ, int mod, int get_dc)
     if (FEATS_D->usable_feat(caster, "eldritch conditioning"))
     {
         if (spell_type == caster->query("base_class"))
-            DC = caster->query_base_character_level();
+            classlvl = caster->query_base_character_level();
     }
 
     if (FEATS_D->usable_feat(caster, "tricky spells"))
     {
         if(spell_sphere == "enchantment_charm" || spell_sphere == "illusion" || spell_sphere == "alteration")
-            DC = caster->query_base_character_level();
+            classlvl = caster->query_base_character_level();
     }
     
-    bonus = 0;
     DC = classlvl + 10;
     DC += ((caster->query_stats(get_casting_stat()) - 10) / 2);
     DC += ((query_spell_level(spell_type) + 1) / 2);
@@ -3257,13 +3256,13 @@ varargs int do_save(object targ, int mod, int get_dc)
     if (FEATS_D->usable_feat(caster, "surprise spells") &&
         (caster->query_invis() || caster->query_hidden()) &&
         environment(caster) == environment(targ)) {
-        bonus += 5;
+        DC += 5;
     }
 
     //Telepath can power up a mental spell to higher DC
     if(mental_spell && caster->query_property("mental intrusion"))
     {
-        bonus += 5;
+        DC += 5;
         tell_object(caster, "%^BOLD%^Your power is bolstered to be more intrusive.%^RESET%^");
         caster->remove_property("mental intrusion");
     }
