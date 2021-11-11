@@ -3214,14 +3214,13 @@ void debug_saves(int num)
         save_debug = num;
     }
     return;
-}
+}   
 
-// can display a LOT of debug info.  Use <debug_saves(1)> in the spell's create() to enable
 varargs int do_save(object targ, int mod, int get_dc)
 {
     string type, stat, * myclasses;
-    int caster_bonus, target_level, num, casting_level, i, classlvl, stat_bonus;
-    mapping debug_map = ([]);
+    int DC, bonus, classlvl, num;
+    object daemon;
 
     if (!objectp(caster)) {
         return 1;
@@ -3232,54 +3231,39 @@ varargs int do_save(object targ, int mod, int get_dc)
     if (!intp(mod)) {
         mod = 0;
     }
+    
+    classlvl = max( ({ caster->query_guild_level(spell_type), caster->query_character_level() - 10 }) );
 
+    if (FEATS_D->usable_feat(caster, "eldritch conditioning"))
+    {
+        if (spell_type == caster->query("base_class"))
+            DC = caster->query_base_character_level();
+    }
+
+    if (FEATS_D->usable_feat(caster, "tricky spells"))
+    {
+        if(spell_sphere == "enchantment_charm" || spell_sphere == "illusion" || spell_sphere == "alteration")
+            DC = caster->query_base_character_level();
+    }
+    
+    bonus = 0;
+    DC = classlvl + 10;
+    DC += ((get_casting_stat() - 10) / 2);
+    DC += ((query_spell_level(spell_type) + 1) / 2);
+    DC += min( ({ caster->query_property("spell dcs"), 10 }) );
     type = get_save();
-    target_level = (int)targ->query_level();
-    classlvl = caster->query_prestige_level(spell_type);
-    classlvl = max( ({ caster->query_level() - 10, classlvl }) );
-    caster_bonus = (int)caster->query_property("spell dcs");
-
-    if (save_debug) {
-        tell_object(caster, "Presenting saving throw debug info:\n");
-        tell_object(caster, "Save type: " + type + "");
-        tell_object(caster, "Caster name: " + caster->query_true_name() + "");
-        tell_object(caster, "Target name: " + targ->query_true_name() + "");
-        tell_object(caster, "Target's level: " + target_level + "");
-        tell_object(caster, "Bonus from spell dcs property: " + caster_bonus + "");
-    }
-
-    caster_bonus += 10; // initial DC of 10 for opposed spells, all the other caster mods gets added to this
-    caster_bonus += classlvl / 5;
-
-    if (save_debug) {
-        tell_object(caster, "%^BOLD%^%^RED%^Bonus per 3.xx rules for d20 roll: 10");
-    }
-
-    stat = get_casting_stat();
-    stat_bonus = calculate_bonus((int)caster->query_stats(stat));
-    if (save_debug) {
-        tell_object(caster, "Bonus from caster's casting stat: " + stat_bonus + "");
-    }
-    caster_bonus += stat_bonus;
-
-    if (save_debug) {
-        tell_object(caster, "Bonus from level of spell: " + casting_level + "");
-    }
-
-    caster_bonus += casting_level;
-    //caster_bonus += (casting_level > 5 ? casting_level - 5 : 0);
 
     // Class and feat specific stuff here
     if (FEATS_D->usable_feat(caster, "surprise spells") &&
         (caster->query_invis() || caster->query_hidden()) &&
         environment(caster) == environment(targ)) {
-        caster_bonus += 5;
+        bonus += 5;
     }
 
     //Telepath can power up a mental spell to higher DC
     if(mental_spell && caster->query_property("mental intrusion"))
     {
-        caster_bonus += 5;
+        bonus += 5;
         tell_object(caster, "%^BOLD%^Your power is bolstered to be more intrusive.%^RESET%^");
         caster->remove_property("mental intrusion");
     }
@@ -3289,15 +3273,15 @@ varargs int do_save(object targ, int mod, int get_dc)
         if (spell_sphere == caster->query_school())
         {
             if (caster->is_class("mage"))
-                caster_bonus += (1 + classlvl / 31);
+                bonus += (1 + classlvl / 31);
 
             if (FEATS_D->usable_feat(caster, "school familiarity"))
-                clevel += (1 + classlvl / 31);
+                bonus = (1 + classlvl / 31);
         }
         else if (spell_sphere == caster->query_opposing_school())
         {
             if (caster->is_class("mage"))
-                    caster_bonus -= (1 + classlvl / 31);
+                    DC -= (1 + classlvl / 31);
         }
     }
 
@@ -3308,30 +3292,26 @@ varargs int do_save(object targ, int mod, int get_dc)
             spell_sphere == "illusion" ||
             spell_sphere == "enchantment_charm")
             {
-                caster_bonus += 1;
+                DC += 1;
             }
         }
     }
 
     if(diminish_returns)
-        caster_bonus -= (5 * targ->is_diminish_return(spell_name, caster));
+        DC -= (5 * targ->is_diminish_return(spell_name, caster));
 
     //Likewise, telepaths with the guarded thoughts feat have a bonus against mental spells
     if(mental_spell && FEATS_D->usable_feat(targ, "guarded thoughts") && targ->query("available focus"))
-        caster_bonus -= 10;
+        DC -= 10;
 
     if(mental_spell && targ->query_mystery() == "bones" && targ->query_class_level("oracle") >= 10)
-        caster_bonus -= 2;
+        DC -= 2;
 
     if(evil_spell && FEATS_D->usable_feat(targ, "celestial totem"))
-        caster_bonus -= 2;
-
-    if (save_debug) {
-        tell_object(caster, "%^RESET%^%^BOLD%^Total after caster bonuses: " + caster_bonus + "%^RESET%^");
-    }
+        DC -= 2;
 
     // racial saves from magic here
-    caster_bonus += SAVING_THROW_D->magic_save_throw_adjust(targ, caster, );
+    DC += SAVING_THROW_D->magic_save_throw_adjust(targ, caster, );
 
 
     // racial saves from spells here
@@ -3339,7 +3319,7 @@ varargs int do_save(object targ, int mod, int get_dc)
         string targrace = targ->query_race();
 
         if (targrace == "gnome" && spell_sphere == "illusion") {
-            caster_bonus -= 2;
+            DC -= 2;
         }
 
         if (spell_sphere == "enchantment_charm" && (
@@ -3349,26 +3329,12 @@ varargs int do_save(object targ, int mod, int get_dc)
                 targrace == "half-drow" ||
                 targrace == "barrus"
                 )) {
-            caster_bonus -= 2;
+            DC -= 2;
         }
     }
 
-    if (save_debug) {
-        tell_object(caster, "%^RESET%^%^BOLD%^Total after racial save bonuses: " + caster_bonus + "%^RESET%^");
-    }
-
-    caster_bonus = -caster_bonus;
-    if (save_debug) {
-        tell_object(caster, "Flip the sign for save calculations: " + caster_bonus + "");
-    }
-
     if (intp(mod)) {
-        caster_bonus += mod;
-    }
-
-    if (save_debug) {
-        tell_object(caster, "Final modifier to do_save (mod): " + mod + "");
-        tell_object(caster, "%^RESET%^%^BOLD%^Total modifiers BEFORE d20 roll: " + caster_bonus + "%^RESET%^");
+        DC += mod;
     }
 
     if (shadow_spell) {
@@ -3380,63 +3346,23 @@ varargs int do_save(object targ, int mod, int get_dc)
                 shadow_spell += 1;
         }
 
-        caster_bonus = shadow_spell * caster_bonus / 10;
+        DC = shadow_spell * DC / 10;
     }
     
+    spell_DC = DC;
+    
     if(get_dc)
-        return caster_bonus;
-
-    // this is directly copied below for the shadowdancer reroll - if
-    // anything changed here, change there too plz!
-    switch (lower_case(type)) {
-    case "fortitude":
-    case "fort":
-        if (save_debug) {
-            debug_map = "/daemon/saving_throw_d"->debug_fort_save(targ, caster_bonus);
-        }else {
-            num = "/daemon/saving_throw_d"->fort_save(targ, caster_bonus);
-        }
-        break;
-
-    case "reflex":
-        if (save_debug) {
-            debug_map = "/daemon/saving_throw_d"->debug_reflex_save(targ, caster_bonus);
-        }else {
-            num = "/daemon/saving_throw_d"->reflex_save(targ, caster_bonus);
-        }
-        break;
-
-    case "willpower":
-    case "will":
-        if (save_debug) {
-            debug_map = "/daemon/saving_throw_d"->debug_will_save(targ, caster_bonus);
-        }else {
-            num = "/daemon/saving_throw_d"->will_save(targ, caster_bonus);
-        }
-        break;
-
-    default:
-        num = 0;
-        break;
-    }
-
-    if (save_debug) {
-        tell_object(caster, "Type of save actually used in daemon: " + debug_map["save_type"] + "");
-        tell_object(caster, "Saving throw number before any rolls: " + debug_map["final_saving_throw"] + "");
-        tell_object(caster, "DC of saving throw: " + debug_map["dc"] + "");
-        tell_object(caster, "Roll: " + debug_map["saving_throw_roll"] + "");
-        tell_object(caster, "Save result (1 pass, 0 fail): " + debug_map["save_result"] + "");
-        tell_object(caster, "Throw passed or failed by: " + debug_map["pass_or_fail_by"] + "");
-    }
-
-    if(diminish_returns && debug_map["save_result"])
+        return DC;
+    
+    if(catch(daemon = load_object("/daemon/saving_throw_d")))
+        return 0;
+    
+    num = daemon->do_save(targ, DC, type, 0);
+    
+    if(num && diminish_returns)
         targ->add_diminish_return(spell_name, caster);
 
-    if (save_debug) {
-        return debug_map["save_result"];
-    }else {
-        return num;
-    }
+    return num;
 }
 
 int query_spell_DC(object ob, int mod)
