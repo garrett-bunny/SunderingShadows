@@ -12,7 +12,7 @@ void create() {
     ::create();
     set_spell_name("seamantle");
     set_spell_level(([ "mage" : 8, "druid" : 8 ]));
-    set_bonus_type("cover");
+    set_bonus_type(({ "deflection" }));
     set_spell_sphere("conjuration_summoning");
     set_syntax("cast CLASS seamantle");
     set_damage_desc("8 to AC, 4 to reflex save");
