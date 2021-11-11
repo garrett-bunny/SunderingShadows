@@ -35,7 +35,7 @@ class_spell_storage =
     //"whimsy":
     //    ({"faerie fire", "hideous laughter", "phantom steed", "confusion", "false vision", "eyebite", "project image", "irresistible dance", "weird"}),
     "heavens":
-        ({"color spray", "hypnotic pattern", "daylight", "rainbow pattern", "angelic aspect", "spray of shooting stars", "prismatic spray", "sunburst", "meteor swarm"}),
+        ({"color spray", "hypnotic pattern", "daylight", "rainbow pattern", "umbral strike", "spray of shooting stars", "prismatic spray", "sunburst", "meteor swarm"}),
     "life":
         ({"celestial healing", "restoration", "remove blindness", "neutralize poison", "breath of life", "heal", "regenerate", "mass heal", "resurrection"}),
     "shadow":
