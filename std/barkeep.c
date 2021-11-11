@@ -20,6 +20,7 @@ void set_empty_container(string *empty);
 void set_menu_short(string *str);
 void set_menu_long(string *str);
 void set_currency(string str);
+void gossipmsg(object targ);
 int price(object tp, string strength);
 int convert(int cost);
 string *query_menu();
@@ -33,7 +34,8 @@ void create(){
 void init() {
     ::init();
     add_action("buy", "buy");
-   add_action("buy","order");
+    add_action("buy","order");
+    call_out("gossipmsg",2,TP);
 }
 
 void set_menu(string *item_names, string *types, int *strengths) {
@@ -248,3 +250,10 @@ int get_price(string str) {
 }
 
 string *query_menu() { return menu_items; }
+
+void gossipmsg(object targ){
+   if(!present(targ))    return;
+   tell_object(TP, "%^MAGENTA%^You may want to listen for gossip. See %^BOLD%^<help gossip>.%^RESET%^\n");
+   return 1;
+}
+
