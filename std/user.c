@@ -957,7 +957,7 @@ void remove()
     log_file("player/player_object_removal","removed: "+TO->query_name()+
 	" "+file_name(previous_object())+".\n");
   }
-  else if (query_verb() != "quit" && TP != TO) return;
+  //else if (query_verb() != "quit" && TP != TO) return;
   quit_time = time();
   destroy_autoload_obj();
   CHAT_D->remove_user();

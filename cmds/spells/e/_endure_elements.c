@@ -15,6 +15,11 @@ inherit SPELL;
 
 void effect(int direction)
 {
+    if(!objectp(target))
+    {
+        dest_effect();
+        return;
+    }
     if(direction > 0)
     {
         target->set_property("castspellresist",1);
