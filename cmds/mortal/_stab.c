@@ -501,6 +501,14 @@ int cmd_stab(string str)
 
 int help()
 {
-    write("Usage: stab <monster id>");
+    write("
+%^BOLD%^%^CYAN%^STAB%^RESET%^
+
+%^CYAN%^Usage: stab <target>
+
+%^ORANGE%^A thief can initiate combat with a stab into a vulnerable spot against a target. This is a contested check between the stealth of the thief and the perception of their target. The damage of the stab is affected by the weapon wielded, and also increases with thief levels. It can only be used from outside combat, will lock the thief in combat with their target for a few rounds.%^RESET%^
+
+%^CYAN%^See also: %^RESET%^thief, sneak attack, sneak, hide in shadows
+");
     return 1;
 }
