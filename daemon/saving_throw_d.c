@@ -210,9 +210,11 @@ varargs int do_save(object ob, int dc, string type, raw_save)
     save_info["saving_throw_roll"] = roll1;
     save_info["pass_or_fail_by"] = roll1 + save + dc;
 
-    if (roll1 == 1) {
+    //Tlaloc changed this to try to reign in the eclipsing problem with saves vs DC.
+    //This makes the minimum succes chance 10% and the maximum 90%
+    if (roll1 <= 2) {
         save_info["save_result"] = 0;
-    } else if (roll1 == 20) {
+    } else if (roll1 >= 19) {
         save_info["save_result"] = 1;
     } else if (roll1 + save + dc >= 0) {
         save_info["save_result"] = 1;
