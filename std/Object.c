@@ -693,6 +693,9 @@ mixed query_property(string prop)
     
     if(prop == "darkvision")
     {
+        if(avatarp(this_object()) || creatorp(this_object()))
+            return 1;
+        
         if(this_object()->query_mystery() == "shadow")
         {
             if(this_object()->query_class_level("oracle") >= 15)
