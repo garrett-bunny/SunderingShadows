@@ -21,7 +21,7 @@ void create() { ::create(); }
 
 varargs int do_save(object ob, int dc, string type, raw_save)
 {
-    int *saves,num,save,roll1,i,level,statbonus,mod, *cls_save;
+    int *saves,num,save,roll1,i,level,statbonus,mod, *cls_save, max_mod;
     string *classes,file;
     object rider;
     
@@ -65,7 +65,8 @@ varargs int do_save(object ob, int dc, string type, raw_save)
                 mod += 5;
             
             mod += ob->query_saving_bonus("fortitude");
-            level += saves[0];
+            mod += (saves[0] * 2);
+            max_mod = saves[0] * 2;
         
             if(ob->query("subrace") == "aesatri")
                 mod += 1;
@@ -90,7 +91,8 @@ varargs int do_save(object ob, int dc, string type, raw_save)
             }
             
             mod += ob->query_saving_bonus("reflex");
-            level += saves[1];
+            mod += (saves[1] * 2);
+            max_mod = saves[1] * 2;
             
             if(ob->query("subrace") == "senzokuan")
                 mod += 1;
@@ -118,7 +120,8 @@ varargs int do_save(object ob, int dc, string type, raw_save)
                 mod += 5;
             
             mod += ob->query_saving_bonus("will");
-            level += saves[2];
+            mod += (saves[2] * 2);
+            max_mod = saves[2] * 2;
         
             if(ob->query("subrace") == "maalish")
                 mod += 1;
@@ -138,9 +141,7 @@ varargs int do_save(object ob, int dc, string type, raw_save)
         break;
     }
     
-    //50
     save = level;
-    //+10 (15 paladin)
     save += statbonus;
 
     //SAVE ROLL MODIFIERS
@@ -164,8 +165,8 @@ varargs int do_save(object ob, int dc, string type, raw_save)
     if (FEATS_D->usable_feat(ob, "shadow master") && objectp(ENV(ob)) && ENV(ob)->query_light() < 2)
         mod += 2;
 
-    mod = min( ({ mod, 10 }) );
     save += mod;
+    save = save > level + 20 + max_mod ? level + 20 + max_mod : save;
 
     if (raw_save) {
         return save;

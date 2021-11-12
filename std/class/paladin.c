@@ -33,7 +33,7 @@ mapping stat_requirements() {
 }
 
 // strong & weak saving throws. Fort, Ref, Will
-int *saving_throws() { return ({ 1,0,0 }); }
+int *saving_throws() { return ({ 1,-1,1 }); }
 
 int skill_points() { return 4; }
 

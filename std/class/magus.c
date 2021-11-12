@@ -26,7 +26,7 @@ mapping stat_requirements() {
     return ([ "intelligence" : 14, ]);
 }
 
-int *saving_throws() { return ({ 1,0,1 }); }
+int *saving_throws() { return ({ 1,-1,1 }); }
 
 string *combat_styles() {
     return ({});

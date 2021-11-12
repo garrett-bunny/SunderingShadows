@@ -24,7 +24,7 @@ mapping stat_requirements() {
 }
 
 // strong & weak saving throws. Fort, Ref, Will
-int *saving_throws() { return ({ 0,0,1 }); }
+int *saving_throws() { return ({ -1,-1,1 }); }
 
 string *combat_styles() {
     return ({});
