@@ -137,7 +137,7 @@ void fire(object targ){
    string dam;
    if(!objectp(TO)) return;
    if(!objectp(targ)) return;
-   if(!"/daemon/saving_throw_d.c"->fort_save(targ, 26)){
+   if(!"/daemon/saving_throw_d.c"->fort_save(targ, 55)){
       dam="hurt";
    }
    else{

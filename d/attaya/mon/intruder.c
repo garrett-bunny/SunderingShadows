@@ -168,7 +168,7 @@ int pwnit(object targ){
    if(!objectp(targ)) return 0;
    if(!objectp(TO)) return 0;
    if((weapon == ({}))) command("wield bonestripper");
-   if(!SAVING_THROW_D->fort_save(targ, 25)){
+   if(!SAVING_THROW_D->fort_save(targ, 55)){
       if(targ->query_property("no death")){
          tell_object(targ,"%^BOLD%^Intruder kicks you in the chest, "+
             "knocking you down to the ground, and then %^RESET%^%^RED%^"+

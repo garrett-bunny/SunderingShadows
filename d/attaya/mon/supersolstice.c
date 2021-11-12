@@ -88,7 +88,7 @@ void fire(object targ) {
     string dam;
 
     if(!objectp(targ)) return;
-    if(SAVING_THROW_D->fort_save(targ, 25)){
+    if(SAVING_THROW_D->fort_save(targ, 55)){
 	dam="hurts";
     } else {
 	dam="singes";

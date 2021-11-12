@@ -64,7 +64,7 @@ void die(object ob) {
 }
 void desoul(object targ) {
     string dam;
-    if(SAVING_THROW_D->fort_save(targ, 25)){
+    if(SAVING_THROW_D->fort_save(targ, 55)){
 	dam="hurts";
     } else {
 	dam="poisons";

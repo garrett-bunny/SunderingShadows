@@ -194,7 +194,7 @@ void impaler(object targ){
    string dam;
    if(!objectp(targ)) return;
    if(!objectp(TO)) return;
-   if(SAVING_THROW_D->fort_save(targ, 25)){
+   if(SAVING_THROW_D->fort_save(targ, 55)){
       dam="hurts";
    }
    else{
@@ -236,7 +236,7 @@ void fire(object targ){
    string dam;
    if(!objectp(targ)) return;
    if(!objectp(TO)) return;
-   if(SAVING_THROW_D->reflex_save(targ, 25)){
+   if(SAVING_THROW_D->reflex_save(targ, 55)){
       dam="hurts";
    }
    else {
