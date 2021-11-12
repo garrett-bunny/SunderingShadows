@@ -276,7 +276,7 @@ void daemonic_surprise(object vic)
               "a short phase.");
     tell_room(ETO, "%^RED%^As he finishes the chant, a red shadowy thing " +
               "flashes across your eyes.");
-    if (!vic->will_save(20 + roll_dice(1, 25))) {
+    if (!vic->will_save(60 + roll_dice(1, 25))) {
         tell_object(vic, "%^RED%^You suddenly feel tremedous pain and " +
                     "scream! An image of a demon appears and vanishes.");
         tell_room(ETO, "%^RED%^" + vic->query_cap_name() + " suddenly screams " +
@@ -300,7 +300,7 @@ void energy_strike(object vic)
               "a short phase.");
     tell_room(ETO, "%^BLUE%^As he finishes the chant, you sense tremedous " +
               "flow of energy in the room.");
-    if (!vic->will_save(20 + roll_dice(1, 20))) {
+    if (!vic->will_save(60 + roll_dice(1, 20))) {
         tell_object(vic, "%^BLUE%^A bundle of energy strikes you like a " +
                     "sword. You scream in pain!");
         tell_room(ETO, "%^BLUE%^" + vic->query_cap_name() + " suddenly screams " +
@@ -323,7 +323,7 @@ void mind_blast(object vic)
     tell_room(ETO, "%^BOLD%^CYAN%^Batlin gathers some reagents and chants " +
               "a short phase.");
     tell_room(ETO, "%^CYAN%^Batlin concentrates for a moment.");
-    if (!vic->will_save(20 + roll_dice(1, 20))) {
+    if (!vic->will_save(60 + roll_dice(1, 20))) {
         tell_object(vic, "%^CYAN%^You feel a strange assult on your brain, " +
                     "an awfully strong power grows in your head, you start to lose " +
                     "control of your mind and your body!");

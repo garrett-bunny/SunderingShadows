@@ -797,7 +797,7 @@ void do_inferno(int count)
         targ = attackers[i];
         damage = (MULT + roll_dice(1, MULT)); // fire resistance is very high so I'm dramatically increasing the damage of this
 
-        if (targ->reflex_save(80)) {
+        if (targ->reflex_save(75)) {
             if (FEATS_D->usable_feat(targ, "evasion")) {
                 tell_object(targ, cm("You dive and twist, dodge and evade for everything you're worth, and you manage to avoid the flames!"));
                 continue;
@@ -878,7 +878,7 @@ void earthquake()
         targ = attackers[i];
         damage = roll_dice(MULT, 5);
 
-        if (targ->reflex_save(80)) {
+        if (targ->reflex_save(75)) {
             if (FEATS_D->usable_feat(targ, "evasion")) {
                 tell_object(targ, "%^RESET%^%^ORANGE%^You jump and spin in the air, managing to avoid the worst of the tumbling rubble and shaking ground!");
                 continue;
@@ -1056,7 +1056,7 @@ void sweep() // tail
         targ = attackers[i];
         damage = roll_dice(3, 40) + 40 + MULT;
 
-        if (targ->reflex_save(80)) {
+        if (targ->reflex_save(75)) {
             if (FEATS_D->usable_feat(targ, "evasion")) {
                 tell_object(targ, "You dive out of the way, avoiding the dragon's dangerous tail!");
                 continue;

@@ -129,7 +129,7 @@ void control_mind(object targ)
     tell_room(ETO, me+"%^BOLD%^%^BLACK%^ points a finger at "+targ->QCN+"%^BOLD%^%^BLACK%^ and screams : %^RESET%^"+
     targ->QCN+"%^RESET%^ SHOULD DIE!%^RESET%^", targ);
 
-    if(targ->will_save(28))
+    if(targ->will_save(50))
     {
         tell_object(targ, "%^BOLD%^%^CYAN%^You feel a sudden %^BOLD%^%^WHITE%^PULL%^BOLD%^%^CYAN%^"+
         " at your mind, but are able to resist it!%^RESET%^");
@@ -187,7 +187,7 @@ void dark_bolts(object targ)
     tell_room(ETO, capitalize(bolt_string) +"%^BOLD%^%^BLACK%^ bolts of %^BOLD%^%^WHITE%^PURE DARKNESS"+
     "%^BOLD%^%^BLACK%^ speed toward "+targ->QCN+"%^BOLD%^%^BLACK%^!%^RESET%^", targ);
 
-    if(targ->reflex_save(28))
+    if(targ->reflex_save(50))
     {
         tell_object(targ, "%^BOLD%^%^RED%^You are able to move out of the way just in the nick of "+
         "time and the bolts whiz harmlessly past you!%^RESET%^");

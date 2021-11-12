@@ -310,7 +310,7 @@ int tendril(object me, object ob)
     if(random(5))
         return roll_dice(1, 8);
     
-    if(SAVING_THROW_D->reflex_save(ob, 0))
+    if(SAVING_THROW_D->do_save(ob, 75, "reflex"))
     {
         tell_object(ob, "%^BOLD%^You slip away from the tendril's grasp!%^RESET%^");
         return 0;
