@@ -25,7 +25,7 @@ varargs int do_save(object ob, int dc, string type, raw_save)
     string *classes,file;
     object rider;
     
-    saves = ({ -1, -1, -1 });
+    saves = ({ 0, 0, 0 });
     save = 0;
     mod = 0;
     max_mod = 0;
@@ -50,10 +50,14 @@ varargs int do_save(object ob, int dc, string type, raw_save)
         if(!sizeof(cls_save))
             continue;
         
-        saves[0] = cls_save[0] > saves[0] ? cls_save[0] : saves[0];
-        saves[1] = cls_save[1] > saves[1] ? cls_save[1] : saves[1];
-        saves[2] = cls_save[2] > saves[2] ? cls_save[2] : saves[2];
+        saves[0] += cls_save[0];
+        saves[1] += cls_save[1];
+        saves[2] += cls_save[2];
     }
+    
+    saves[0] = max( ({ min( ({ saves[0], 2 }) ), -2 }) );
+    saves[1] = max( ({ min( ({ saves[1], 2 }) ), -2 }) );
+    saves[2] = max( ({ min( ({ saves[2], 2 }) ), -2 }) );
     
     switch(type)
     {
