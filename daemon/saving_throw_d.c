@@ -19,7 +19,7 @@ mapping save_info=([]);
 
 void create() { ::create(); }
 
-varargs void do_save(object ob, int dc, string type, raw_save)
+varargs int do_save(object ob, int dc, string type, raw_save)
 {
     int *saves,num,save,roll1,i,level,statbonus,mod, *cls_save;
     string *classes,file;
@@ -240,6 +240,8 @@ varargs void do_save(object ob, int dc, string type, raw_save)
             }
         }
     }
+    
+    return save_info["save_result"];
 }
 
 int get_save(object who, string type)
