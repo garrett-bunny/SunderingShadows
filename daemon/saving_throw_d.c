@@ -25,10 +25,11 @@ varargs int do_save(object ob, int dc, string type, raw_save)
     string *classes,file;
     object rider;
     
-    saves = ({ 0, 0, 0 });
+    saves = ({ -1, -1, -1 });
     save = 0;
     mod = 0;
-    level = ob->query_level();
+    max_mod = 0;
+    level = ob->query_base_character_level();
     
     classes = ob->query_classes();
     if(!pointerp(classes))
@@ -39,6 +40,9 @@ varargs int do_save(object ob, int dc, string type, raw_save)
         file = DIR_CLASSES + "/" + cls + ".c";
         
         if(!load_object(file))
+            continue;
+        
+        if(file->is_prestige_class())
             continue;
         
         cls_save = file->saving_throws(ob);
@@ -166,7 +170,7 @@ varargs int do_save(object ob, int dc, string type, raw_save)
         mod += 2;
 
     save += mod;
-    save = save > level + 20 + max_mod ? level + 20 + max_mod : save;
+    save = save > (level + 20 + max_mod) ? (level + 20 + max_mod) : save;
 
     if (raw_save) {
         return save;
