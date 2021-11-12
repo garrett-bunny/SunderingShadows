@@ -37,7 +37,7 @@ spell_effect()
     tell_object(caster, "%^BLUE%^You turn into shadow.%^RESET%^");
 
     target->set_property("spelled", ({ TO }));
-    target->set_property("shadowform", clevel);
+    target->set_property("shadowform", query_spell_DC(target));
     target->set_property("added short", ({ "%^RESET%^%^BLUE%^ (a shadow)%^RESET%^" }));
     addSpellToCaster();
     spell_duration = (clevel / 5 + roll_dice(1, 20)) * ROUND_LENGTH;
