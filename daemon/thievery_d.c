@@ -30,13 +30,15 @@ mapping initiate_thievery(object thief, object victim, object item) {
 		tell_object(thief, "thief_roll: "+thief_roll);
 	}
 
-	//disable is used to prevent instantly fleeing and from spamming the victim with success
-	//there should be a check in all movement commands and pocket dimension entering
-	disable_time = 1 + ((100 - thief_roll) / 10);
-	disable_time = disable_time < 2 ? 2 : disable_time;
-	disable_time = disable_time > 12 ? 12 : disable_time;
-	thief->set_disable(disable_time, victim);
-	if(DEBUG) tell_object(thief,"disable_time: "+disable_time);
+	if(userp(victim)) {
+		//disable is used to prevent instantly fleeing and from spamming the victim with success
+		//there should be a check in all movement commands and pocket dimension entering
+		disable_time = 1 + ((100 - thief_roll) / 10);
+		disable_time = disable_time < 2 ? 2 : disable_time;
+		disable_time = disable_time > 12 ? 12 : disable_time;
+		thief->set_disable(disable_time, victim);
+		if(DEBUG) tell_object(thief,"disable_time: "+disable_time);
+	}
 
 	results["thief_roll"] = thief_roll;
 	results["victim_roll"] = victim_roll;
