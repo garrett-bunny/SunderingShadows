@@ -13,9 +13,8 @@ object clothes, remote;
 void create() {
     ::create();
     set_spell_name("domination");
-    set_spell_level(([ "classless" : 5 ]));
+    set_spell_level(([ "mage" : 5, "cleric" : 5 ]));
     set_domains("charm");
-    set_discipline("telepath");
     set_spell_sphere("enchantment_charm");
     set_syntax("cast CLASS domination on TARGET");
     set_description("By casting domination successfully, you will gain control over a chosen sapient race target. Appropriate targets include only races from <help races> list. You then can use the next commands to force the dominated to serve:
@@ -24,11 +23,11 @@ void create() {
   Will force the dominated to perform an %^ORANGE%^%^ULINE%^ACTION%^RESET%^.
 
 %^ORANGE%^<freedominated>%^RESET%^
-  Will free the dominated undead.
+  Will free the dominated target.
 
 If the will save suceeds or the target is has a form of mind immunity they will be outraged at your attempt and will attack immediately.
 
-%^BOLD%^%^RED%^N.B.%^RESET%^ If used on players this spell provide you with a limited subset of allowed commands.
+%^BOLD%^%^RED%^N.B.%^RESET%^ This spell is not useable on players.
 
 %^BOLD%^%^RED%^See also:%^RESET%^ help races");
     mental_spell();
@@ -102,6 +101,13 @@ void spell_effect(int prof) {
 
     if (!is_proper_target(target)) {
         tell_object(caster,"%^BOLD%^The spell fizzles as it can't grab upon the target's mind.");
+        return;
+    }
+    
+    if(userp(target))
+    {
+        tell_object(caster, "This spell is only useable on non-player characters.");
+        dest_effect();
         return;
     }
 
