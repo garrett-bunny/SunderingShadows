@@ -69,6 +69,9 @@ spell_effect()
     target->set_property("block scrying", 1);
     target->set_property("chameleoned",clevel / 2);
     target->set_property("untrackable", 1);
+    spell_duration = 5 * clevel * ROUND_LENGTH;
+    set_end_time();
+    call_out("dest_effect",spell_duration);
     addSpellToCaster();
 }
 

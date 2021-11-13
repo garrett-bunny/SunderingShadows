@@ -16,6 +16,8 @@ void create()
     set_spell_level(([  "mage" : 8 ]));
     set_spell_sphere("abjuration");
     set_syntax("cast CLASS mind blank on TARGET");
+    set_damage_desc("protection from mental spells, scry protection");
+    set_bonus_type("resistance");
     set_description("This power shields the character's mind. The mental fortress provides the same benefits as the Escape Detection or Protection from scrying power as well as offering additional protection against mind-affecting spells and powers.");
     set_helpful_spell(1);
     set_target_required(1);

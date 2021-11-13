@@ -3299,12 +3299,18 @@ varargs int do_save(object targ, int mod, int get_dc)
     if(diminish_returns)
         DC -= (5 * targ->is_diminish_return(spell_name, caster));
 
-    //Likewise, telepaths with the guarded thoughts feat have a bonus against mental spells
-    if(mental_spell && FEATS_D->usable_feat(targ, "guarded thoughts") && targ->query("available focus"))
-        DC -= 10;
+    if(mental_spell)
+    {
+        //Likewise, telepaths with the guarded thoughts feat have a bonus against mental spells
+        if(FEATS_D->usable_feat(targ, "guarded thoughts") && targ->query("available focus"))
+            DC -= 5;
 
-    if(mental_spell && targ->query_mystery() == "bones" && targ->query_class_level("oracle") >= 10)
-        DC -= 2;
+        if(targ->query_mystery() == "bones" && targ->query_class_level("oracle") >= 10)
+            DC -= 2;
+        
+        if(targ->query_property("mind blank"))
+            DC -= 5;
+    }
 
     if(evil_spell && FEATS_D->usable_feat(targ, "celestial totem"))
         DC -= 2;
