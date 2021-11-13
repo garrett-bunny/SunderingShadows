@@ -121,7 +121,7 @@ class_spell_storage =
     "nomad":
         ({"dimension slide","phantom steed","trace psychoport","dimensional anchor","psionic teleport","planar portal","astral projection","planar sending"}),
     "telepath":
-        ({"command","charm monster","hostile empathic transfer","modify memory","domination","visions from within","mindnet","overwhelming presence","psychic scream"}),
+        ({"suggestion","charm monster","hostile empathic transfer","modify memory","domination","visions from within","mindnet","overwhelming presence","psychic scream"}),
 ]),
 
 "warlock":
