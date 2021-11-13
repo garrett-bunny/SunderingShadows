@@ -3316,7 +3316,7 @@ varargs int do_save(object targ, int mod, int get_dc)
         DC -= 2;
 
     // racial saves from magic here
-    DC += SAVING_THROW_D->magic_save_throw_adjust(targ, caster, );
+    DC += SAVING_THROW_D->magic_save_throw_adjust(targ, caster, this_object());
 
 
     // racial saves from spells here

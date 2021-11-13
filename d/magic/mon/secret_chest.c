@@ -23,7 +23,7 @@ void create(){
     remove_limb("left hand");
     remove_limb("right hand");
     remove_limb("left foot");
-    remove_limb("right foot");
+    remove_limb("right foot");
     remove_limb("left leg");
     remove_limb("right leg");
     add_limb("chest",0,0,0,0);

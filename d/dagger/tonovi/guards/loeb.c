@@ -298,4 +298,5 @@ void die(object ob)
                                                              "event type" : "exp bonus", "length" : 120, "notification" : power + "% Bonus Exp",
                                                              "event name" : "Gates of Tonovi", "modifier" : power, "announce" : 1, "announce to" : "world" ]), ])
                                  );
+    ::die();
 }
