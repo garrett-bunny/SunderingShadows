@@ -51,7 +51,7 @@ void reset() {
 }
 
 int get_key(string str) {
-   if( (string)TPQN != "girruuth" && (string)TPQN != "gwenhwyfar" && (string)TPQN != "godzilla" && !avatarp(TP) ) return 1;
+   if( (string)TPQN != "girruuth" && (string)TPQN != "gwenhwyfar" && (string)TPQN != "godzilla" && (string)TPQN != "uriah" &&  !avatarp(TP) ) return 1;
    if(str != "key")   
 	return notify_fail("Try <retrieve key>");
    if(searched == 1) {
@@ -69,11 +69,11 @@ void search_it(string str) {
    if(searched) {
      write("You notice some scratches and find an empty ledge behind the sign "
 	"but don't find anything else.");
-     return;
-   }
-   write("You search the sign and find a key on a ledge behind it.");
-   tell_room(ETP,TPQCN+" reaches behind the sign and pulls out a key.", TP);
-   new("/d/player_houses/obj/gir_key")->move(TP);
-   searched = 1;
-   return;
+     return;}
 } 
+
+//write("You search the sign and find a key on a ledge behind it.");
+   //tell_room(ETP,TPQCN+" reaches behind the sign and pulls out a key.", TP);
+   //new("/d/player_houses/obj/gir_key")->move(TP);
+   //searched = 1;
+   //return; - removed the easy way to get a free key - Klieth

@@ -37,7 +37,7 @@ void spell_effect(int prof) {
     int power, prob;
 
     power = clevel>50?50:clevel;
-    prob = to_int(25.0 + 65.0*(power/50.0));
+    prob = to_int(25.0 + 65.0*(power/40.0));
 
     if (roll_dice(1, 100) > prob) {
         if (!objectp(endplace = TELEPORT->scatter_destination(caster->query_rem_room(arg)))) {

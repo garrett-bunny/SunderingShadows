@@ -19,18 +19,21 @@ mapping save_info=([]);
 
 void create() { ::create(); }
 
-varargs void do_save(object ob, int dc, string type, raw_save)
+varargs int do_save(object ob, int dc, string type, raw_save)
 {
-    int *saves,num,save,roll1,i,level,statbonus,mod, *cls_save;
+    int *saves,num,save,roll1,i,level,statbonus,mod, *cls_save, max_mod;
     string *classes,file;
     object rider;
     
     saves = ({ 0, 0, 0 });
     save = 0;
     mod = 0;
-    level = ob->query_level() / 5;
+    max_mod = 0;
+    level = ob->query_base_character_level();
     
     classes = ob->query_classes();
+    if(!pointerp(classes))
+        classes = ({  });
     
     foreach(string cls in classes)
     {
@@ -39,15 +42,22 @@ varargs void do_save(object ob, int dc, string type, raw_save)
         if(!load_object(file))
             continue;
         
+        if(file->is_prestige_class())
+            continue;
+        
         cls_save = file->saving_throws(ob);
         
         if(!sizeof(cls_save))
             continue;
         
-        saves[0] = cls_save[0] > saves[0] ? cls_save[0] : saves[0];
-        saves[1] = cls_save[1] > saves[1] ? cls_save[1] : saves[1];
-        saves[2] = cls_save[2] > saves[2] ? cls_save[2] : saves[2];
+        saves[0] += cls_save[0];
+        saves[1] += cls_save[1];
+        saves[2] += cls_save[2];
     }
+    
+    saves[0] = max( ({ min( ({ saves[0], 2 }) ), -2 }) );
+    saves[1] = max( ({ min( ({ saves[1], 2 }) ), -2 }) );
+    saves[2] = max( ({ min( ({ saves[2], 2 }) ), -2 }) );
     
     switch(type)
     {
@@ -60,10 +70,11 @@ varargs void do_save(object ob, int dc, string type, raw_save)
                 statbonus = BONUS_D->query_stat_bonus(ob, "constitution");
             
             if(FEATS_D->usable_feat(ob, "divine grace"))
-                statbonus += 5;
+                mod += 5;
             
             mod += ob->query_saving_bonus("fortitude");
-            level += saves[0];
+            mod += (saves[0] * 2);
+            max_mod = saves[0] * 2;
         
             if(ob->query("subrace") == "aesatri")
                 mod += 1;
@@ -79,7 +90,7 @@ varargs void do_save(object ob, int dc, string type, raw_save)
             statbonus = BONUS_D->query_stat_bonus(ob, "dexterity");
             
             if(FEATS_D->usable_feat(ob, "divine grace"))
-                statbonus += 5;
+                mod += 5;
             
             if(FEATS_D->usable_feat(ob, "danger sense"))
             {
@@ -88,7 +99,8 @@ varargs void do_save(object ob, int dc, string type, raw_save)
             }
             
             mod += ob->query_saving_bonus("reflex");
-            level += saves[1];
+            mod += (saves[1] * 2);
+            max_mod = saves[1] * 2;
             
             if(ob->query("subrace") == "senzokuan")
                 mod += 1;
@@ -113,10 +125,11 @@ varargs void do_save(object ob, int dc, string type, raw_save)
                 statbonus = 10;
             
             if(FEATS_D->usable_feat(ob, "divine grace"))
-                statbonus += 5;
+                mod += 5;
             
             mod += ob->query_saving_bonus("will");
-            level += saves[2];
+            mod += (saves[2] * 2);
+            max_mod = saves[2] * 2;
         
             if(ob->query("subrace") == "maalish")
                 mod += 1;
@@ -137,10 +150,6 @@ varargs void do_save(object ob, int dc, string type, raw_save)
     }
     
     save = level;
-
-    save_info["base_class_save"] = save;         // this is without any modifiers
-    save_info["base_stat_bonus"] = statbonus;
-    
     save += statbonus;
 
     //SAVE ROLL MODIFIERS
@@ -164,9 +173,8 @@ varargs void do_save(object ob, int dc, string type, raw_save)
     if (FEATS_D->usable_feat(ob, "shadow master") && objectp(ENV(ob)) && ENV(ob)->query_light() < 2)
         mod += 2;
 
-    save_info["misc_modifiers"] = mod;
-
     save += mod;
+    save = save > (level + 20 + max_mod) ? (level + 20 + max_mod) : save;
 
     if (raw_save) {
         return save;
@@ -202,9 +210,11 @@ varargs void do_save(object ob, int dc, string type, raw_save)
     save_info["saving_throw_roll"] = roll1;
     save_info["pass_or_fail_by"] = roll1 + save + dc;
 
-    if (roll1 == 1) {
+    //Tlaloc changed this to try to reign in the eclipsing problem with saves vs DC.
+    //This makes the minimum succes chance 10% and the maximum 90%
+    if (roll1 <= 2) {
         save_info["save_result"] = 0;
-    } else if (roll1 == 20) {
+    } else if (roll1 >= 19) {
         save_info["save_result"] = 1;
     } else if (roll1 + save + dc >= 0) {
         save_info["save_result"] = 1;
@@ -241,6 +251,8 @@ varargs void do_save(object ob, int dc, string type, raw_save)
             }
         }
     }
+    
+    return save_info["save_result"];
 }
 
 int get_save(object who, string type)
@@ -363,6 +375,11 @@ int magic_save_throw_adjust(object targ, object caster)
     if(targ->is_shade() && total_light(environment(targ)) < 2)
     {
         caster_bonus -= 1;
+    }
+    
+    if(targ->query_mystery() == "spellscar" && targ->query_class_level("oracle") >= 15)
+    {
+        caster_bonus -= 2;
     }
 
     return caster_bonus;

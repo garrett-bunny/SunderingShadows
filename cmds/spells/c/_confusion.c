@@ -13,8 +13,7 @@ int rnds,total;
 void create(){
     ::create();
     set_spell_name("confusion");
-    set_spell_level(([ "oracle" : 4, "bard" : 3, "mage" : 4, "cleric" : 4 ]));
-    set_mystery("whimsy");
+    set_spell_level(([ "bard" : 3, "mage" : 4, "cleric" : 4 ]));
     set_domains(({ "chaos" }));
     set_spell_sphere("enchantment_charm");
     set_syntax("cast CLASS confusion on TARGET");
@@ -55,7 +54,7 @@ void spell_effect(int prof){
     tell_room(place,"%^BOLD%^%^CYAN%^"+caster->QCN+" gazes at "+target->QCN+" intently "
         "as "+caster->QS+" begins to chant!",({caster,target}));
 
-    if(do_save(mytarg,bonus))
+    if(do_save(mytarg, 0))
     //if(do_saving_throw(mytarg,"spell",bonus))
     {
         tell_object(caster,"%^BOLD%^%^GREEN%^"+target->QCN+" is able to resist the pull "

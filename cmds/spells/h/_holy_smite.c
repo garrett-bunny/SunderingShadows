@@ -39,9 +39,11 @@ void spell_effect(int prof){
 
     for(i=0;i<sizeof(attackers);i++)
     {
-        int align = attackers[i]->query_alignment();
+        int align;
         if(!objectp(attackers[i]))
             continue;
+        
+        align = attackers[i]->query_alignment();
         if(align == 1 || align == 4 || align == 7)
             continue;
         admg=sdamage;

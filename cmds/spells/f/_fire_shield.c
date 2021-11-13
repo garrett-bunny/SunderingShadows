@@ -11,9 +11,8 @@ void create(){
     ::create();
     set_author("nienne");
     set_spell_name("fire shield");
-    set_spell_level(([ "mage" : 4, "magus" : 4, "cleric" : 4 ]));
+    set_spell_level(([ "mage" : 4, "magus" : 4 ]));
     set_spell_sphere("invocation_evocation");
-    set_domains("fire");
     set_syntax("cast CLASS fire shield [on chill|warm]");
     set_damage_desc("fire or cold");
     set_description("This spell will surround the caster's body in a roaring shield of flames. Any opponent striking the caster will take damage from the blistering heat. You can manipulate base element of the spell, casting it either on chill or warm.");

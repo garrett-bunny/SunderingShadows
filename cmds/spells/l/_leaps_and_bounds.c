@@ -32,6 +32,8 @@ string query_cast_string() {
 }
 
 void spell_effect(int prof) {
+    ::spell_effect();
+    
     if (!objectp(caster)) {
       dest_effect();
       return;

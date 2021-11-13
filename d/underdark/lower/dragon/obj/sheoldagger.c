@@ -64,6 +64,7 @@ int wield_func(){
      tell_object(ETO,"You are not experienced enough to use this weapon.");
      return 0;
    }
+   /*
    if(ETO->query_property("master weapon")) { //preventing stack up with other "top" weapons
      tell_object(ETO,"%^MAGENTA%^Your hand passes straight through the dagger's hilt, as if it were made from "
 "nothing but %^CYAN%^air %^MAGENTA%^and %^BOLD%^%^BLACK%^shadows%^RESET%^%^MAGENTA%^. You feel a conflict with another weapon in hand.%^RESET%^");
@@ -72,6 +73,7 @@ int wield_func(){
 "%^RESET%^%^MAGENTA%^.%^RESET%^",ETO);
      return 0;
    }
+   */
    tell_object(ETO,"%^MAGENTA%^You grasp the hilt of the blade, and watch as your skin becomes of the same "
 "%^CYAN%^misty substance %^MAGENTA%^as the dagger itself.%^RESET%^");
    tell_room(EETO,"%^MAGENTA%^"+ETO->QCN+" grasps the hilt of the blade, and you watch as "+ETO->QP+" skin "

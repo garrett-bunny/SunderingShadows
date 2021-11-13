@@ -199,23 +199,23 @@ void impaler(object targ){
    string dam;
    if(!objectp(targ)) return;
    if(!objectp(TO)) return;
-   if(!"/daemon/saving_throw_d.c"->fort_save(targ,-25)){
-      dam="impales";
+   if(SAVING_THROW_D->fort_save(targ, 55)){
+      dam="hurts";
    }
    else{
-      dam="hurts";
+      dam="impales";
    }
    tell_object(targ,"%^BOLD%^%^MAGENTA%^ Callista charges towards "+
       "you and "+dam+" you with her sword!");
    tell_room(ETO,"%^MAGENTA%^Callista charges with her "+
       "sword and impales "+targ->QCN+"!%^RESET%^",targ);
    if(dam=="impales"){
-      targ->do_damage("torso",roll_dice(10,20));
+      targ->cause_typed_damage(targ, "torso", roll_dice(10,20), "piercing");
 	tell_object(targ,"%^RED%^You feel intense pain and your ability to "+
 	   "fight has been compromised!\n");
    }
    else{
-      targ->do_damage("torso",roll_dice(8,20));
+      targ->cause_typed_damage(targ, "torso", roll_dice(8,20), "piercing");
    }
    return;
 }
@@ -224,27 +224,28 @@ void fire(object targ){
    string dam;
    if(!objectp(targ)) return;
    if(!objectp(TO)) return;
-   if(!"/daemon/saving_throw_d.c"->will_save(targ,-25)){
-      dam="singes";
+   if(SAVING_THROW_D->will_save(targ, 55)){
+      dam="hurts";
    }
    else{
-      dam="hurts";
+      dam="singes";
    }
    tell_object(targ,"%^BOLD%^%^RED%^Callista begins to glow.  Phantom "+
       "fire flashes about you and "+dam+" you!%^RESET%^");
    tell_room(environment(targ),"Callista casts %^RED%^phantom fire at "+
       ""+targ->QCN+"!%^RESET%^",targ);
     if(dam=="singes") {
-        targ->do_damage("torso",roll_dice(5,10));
+       targ->cause_typed_damage(targ, "torso", roll_dice(5,10), "fire");
 	tell_object(targ,"%^BOLD%^You are blinded by a brilliant light and intense heat!");
 	targ->set_tripped(random(10)+15,"%^MAGENTA%^You cannot see your "+
 	   "opponent and stumble around blindly!%^RESET%^");
     }
 	else{
-       targ->do_damage("torso",roll_dice(5,10));
+       targ->cause_typed_damage(targ, "torso", roll_dice(5,10), "fire");
     }
     return;
 }
+
 void healing(object ob){
    if(!objectp(TO)) return;
    tell_room(ETO,"%^GREEN%^Callista touches her fingers to her "+
@@ -256,9 +257,9 @@ void healing(object ob){
 void circle(object targ){
    if(!objectp(targ)) return;
    if(!objectp(TO)) return;
-   if(!"/daemon/saving_throw_d.c"->reflex_save(targ,-25)){
+   if(SAVING_THROW_D->reflex_save(targ, 55)){
       tell_object(targ,"%^BOLD%^%^BLACK%^Callista stabs you in the back!");
-      targ->do_damage("torso", random(150)+50);
+      targ->cause_typed_damage(targ, "torso", random(150)+50, "piercing");
 	  if(!random(2)){
 	     TO->force_me("crit "+targ->query_name());
 	  }
@@ -271,7 +272,7 @@ void circle(object targ){
 void freeze(object targ){
    if(!objectp(targ)) return;
    if(!objectp(TO)) return;
-    if(!"/daemon/saving_throw_d.c"->fort_save(targ,-25)){
+    if(SAVING_THROW_D->fort_save(targ, 55)){
 	   tell_room(ETO,"%^CYAN%^Callista draws in the energy around "+
 	      "her and congeals it into a dagger of %^BOLD%^%^WHITE%^ic"+
 		  "%^RESET%^%^CYAN%^e.");
@@ -280,7 +281,7 @@ void freeze(object targ){
 	   tell_object(targ, "%^CYAN%^Callista's dagger of compressed "+
 	      "%^BOLD%^%^WHITE%^ic%^RESET%^%^CYAN%^e rips into you and "+
 		  "the surrounding blood freezes!");
-       targ->do_damage("torso",random(50)+50);
+       targ->cause_typed_damage(targ, "torso", random(50)+50, "piercing");
 	   targ->set_paralyzed(random(30)+30,"%^BOLD%^You are frozen solid!");
 	   return;
     }
@@ -293,10 +294,10 @@ void freeze(object targ){
 void fireball(object targ){
    if(!objectp(targ)) return;
    if(!objectp(TO)) return;
-   if(!"/daemon/saving_throw_d.c"->reflex_save(targ,-25)){
+   if(SAVING_THROW_D->reflex_save(targ, 55)){
       tell_room(ETO,"%^BOLD%^%^RED%^Callista hurls a fireball at "+targ->QCN+"!",targ);
 	  tell_object(targ,"%^BOLD%^%^RED%^Callista hurls a fireball at you!");
-      targ->do_damage("torso",random(75)+75);
+      targ->cause_typed_damage(targ, "torso", random(75)+75, "fire");
 	  return;
    }
    else{
@@ -310,12 +311,12 @@ void fireball(object targ){
 void bolt(object targ){
    if(!objectp(targ)) return;
    if(!objectp(TO)) return;
-   if(!"/daemon/saving_throw_d.c"->will_save(targ,-25)){
+   if(SAVING_THROW_D->will_save(targ, 55)){
       tell_room(environment(targ),"%^YELLOW%^Callista shoots lightning "+
 	     "from her fingertips and blasts "+targ->QCN+"!",targ);
 	  tell_object(targ,"%^YELLOW%^Callista shoots lightning from her "+
 	     "fingertips and blasts you!");
-      targ->do_damage("torso",random(50)+80);
+      targ->cause_typed_damage(targ, "torso", random(50)+80, "electricity");
 	  return;
    }
    else{
@@ -323,27 +324,23 @@ void bolt(object targ){
 	     "fingertips and it strikes all around you!");
 	  tell_room(environment(targ),"%^YELLOW%^Callista shoots lightning "+
 	     "from her fingertips and it strikes all around "+targ->QCN+"!",targ);
-      targ->do_damage("torso",random(35)+80);
+      targ->cause_typed_damage(targ, "torso", random(35)+80, "electricity");
    }
 }
 
 void tornado(object targ){
    if(!objectp(targ)) return;
    if(!objectp(TO)) return;
-   if("/daemon/saving_throw_d.c"->reflex_save(targ,-25)){
-      tell_room(ETO,"Callista kneels and touches her palms against "+
-	     "the floor.");
+   if(SAVING_THROW_D->reflex_save(targ, 55)){
+      tell_room(ETO,"Callista kneels and touches her palms against the floor.");
 	  tell_room(ETO,"%^BOLD%^A tornado rises beneath "+targ->QCN+"!",targ);
-	  tell_object(targ,"%^BOLD%^A tornado rises beneath you and thrusts "+
-	     "you upwards against the ceiling!");
-      targ->do_damage("torso", random(80)+80);
+	  tell_object(targ,"%^BOLD%^A tornado rises beneath you and thrusts you upwards against the ceiling!");
+      targ->cause_typed_damage(targ, "torso", random(80)+80, "bludgeoning");
 	  return;
    }
    else{
-      tell_room(ETO,"Callista kneels and touches her palms against "+
-	     "the floor.");
-	  tell_room(environment(targ),"%^CYAN%^The ground beneath your "+
-	     "feet shakes violently");
+      tell_room(ETO,"Callista kneels and touches her palms against the floor.");
+	  tell_room(environment(targ),"%^CYAN%^The ground beneath your feet shakes violently");
 	  targ->force_me("drop all");
    }
 }
@@ -351,33 +348,27 @@ void tornado(object targ){
 void light(object targ){
    if(!objectp(targ)) return;
    if(!objectp(TO)) return;
-   if(!"/daemon/saving_throw_d.c"->will_save(targ,-25)){
+   if(SAVING_THROW_D->will_save(targ, 55)){
       tell_room(ETO,"%^BOLD%^Callista thrusts her hands foreward, then upwards.");
-	  tell_room(ETO,"%^BOLD%^%^BLACK%^The shadows compress to form a "+
-	     "ball of energy in her hands.");
-	  tell_room(ETO,"%^MAGENTA%^Her body trembles as dark lightning "+
-	     "tears down her arms and her eyes begin to glow.");
-	  tell_room(ETO,"%^BOLD%^%^BLACK%^Callista lowers her hands and "+
-	     "blasts a horrible beam of black light at "+targ->QCN+"!",targ);
-	  tell_object(targ,"%^BOLD%^%^BLACK%^Callista lowers her hands "+
-	     "and blasts you with a horrible beam of black light!");
+	  tell_room(ETO,"%^BOLD%^%^BLACK%^The shadows compress to form a ball of energy in her hands.");
+	  tell_room(ETO,"%^MAGENTA%^Her body trembles as dark lightning tears down her arms and her eyes begin to glow.");
+	  tell_room(ETO,"%^BOLD%^%^BLACK%^Callista lowers her hands and blasts a horrible beam of black light at "+targ->QCN+"!",targ);
+	  tell_object(targ,"%^BOLD%^%^BLACK%^Callista lowers her hands and blasts you with a horrible beam of black light!");
 	  tell_object(targ,"%^RED%^It utterly destroys you!");
-      targ->do_damage("torso",random(400)+100);
+      targ->cause_typed_damage(targ, "torso", random(400)+100, "void");
 	  return;
    }
    else{
-      tell_object(targ,"%^YELLOW%^Callista grabs you by the throat "+
-	     "and slams you against the wall!");
-      targ->do_damage("torso",random(170)+50);
-	  tell_room(ETO,"%^YELLOW%^Callista grabs "+targ->QCN+" and slams "+
-	     ""+targ->QP+" head against the wall.",targ);
+      tell_object(targ,"%^YELLOW%^Callista grabs you by the throat and slams you against the wall!");
+      targ->cause_typed_damage(targ, "torso", random(170)+50, "bludgeoning");
+	  tell_room(ETO,"%^YELLOW%^Callista grabs "+targ->QCN+" and slams "+targ->QP+" head against the wall.",targ);
    }
 }
 
 void kiss(object targ){
    if(!objectp(targ)) return;
    if(!objectp(TO)) return;
-   if(!"/daemon/saving_throw_d.c"->fort_save(targ,-25)){
+   if(SAVING_THROW_D->fort_save(targ, 55)){
 	  tell_room(ETO,"Callista kisses "+targ->QCN+" on the cheek.",targ);
 	  tell_object(targ,"%^BLUE%^Callista kisses you on the cheek while muttering an ancient chant!");
 	  tell_object(targ,"%^BOLD%^%^RED%^You have been poisoned severely!");
@@ -387,7 +378,7 @@ void kiss(object targ){
    }
    else{
       tell_object(targ,"%^RED%^Callista cleaves you with her sword!");
-      targ->do_damage("torso",random(100)+20);
+      targ->cause_typed_damage(targ, "torso", random(100)+20, "slashing");
 	  tell_room(ETO,"Callista cleaves "+targ->QCN+" with her sword.",targ);
     }
 }
@@ -397,7 +388,7 @@ void kiss(object targ){
 void desoul(object targ){
    if(!objectp(targ)) return;
    if(!objectp(TO)) return;
-   if(!"/daemon/saving_throw_d.c"->will_save(targ,-15)){
+   if(!SAVING_THROW_D->will_save(targ, 40)){
       if(targ->query_property("no death")){
          tell_room(ETO,"%^BOLD%^%^BLUE%^Callista calls to powers greater "+
 	        "than any you have ever known.");
@@ -441,11 +432,11 @@ void desoul(object targ){
 	     "upwards and hooks it around your neck.");
 	  tell_object(targ,"%^MAGENTA%^Callista drops, slamming your face "+
 	     "against the floor beneath her weight.");
-      targ->do_damage("torso", random(70)+80);
+      targ->cause_typed_damage(targ, "torso", random(70)+80, "bludgeoning");
 	  tell_room(ETO,"%^MAGENTA%^Callista thrusts her right leg upward "+
 	     "and hooks it around  "+targ->QCN+".  She then drops, slamming "+
          ""+targ->QP+" face into the floor.",targ);
-   }
+    }
 }
 
 void kdit(object targ){
@@ -483,3 +474,4 @@ void shatterit(object targ){
    if(!objectp(TO)) return;
    TO->force_me("shatter "+targ->query_name());
 }
+

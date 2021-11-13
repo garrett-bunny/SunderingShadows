@@ -107,7 +107,7 @@ void dest_effect()
     remove_call_out("room_check");
     if(objectp(caster))
     {
-        tell_object(caster,"%^RESET%^%^BOLD%^The thorns covering you fall to the grown and wilt away.");
+        tell_object(caster,"%^RESET%^%^BOLD%^The thorns covering you fall to the ground and wilt away.");
         caster->remove_property("nimbus");
         caster->remove_property_value("added short",({"%^GREEN%^BOLD%^ (covered with thorns)%^RESET%^"}));
     }

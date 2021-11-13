@@ -47,6 +47,7 @@ void create() {
    set_unwield((:TO,"unwield_func":));
    set_hit((:TO,"hit_func":));
    set_special_material_type("silver");
+   set_property("master weapon",1);
 }
 
 void init() {

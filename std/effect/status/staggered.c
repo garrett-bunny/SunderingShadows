@@ -1,6 +1,7 @@
 #include <std.h>
 #include <magic.h>
 #include <skills.h>
+#include <daemons.h>
 
 inherit STATUS;
 
@@ -19,6 +20,13 @@ int status_effect()
         TO->remove();
         return;
     }
+    
+    if(PLAYER_D->immmunity_check(target, "staggered"))
+    {
+        tell_object(target, "%^YELLOW%^You are immune to being staggered.%^RESET%^");
+        this_object()->remove();
+        return;
+    }
 
     target->set_property("effect_staggered", 1);
     if (userp(target)) {
@@ -29,7 +37,7 @@ int status_effect()
 
 
     tell_object(target, "%^RED%^You are staggered and can barely move.%^RESET%^");
-    tell_room(ENV(target), "%^RED%^" + target->QCN + "'s face turns dull," + target->QS + " appears to be staggered.", target);
+    tell_room(ENV(target), "%^RED%^" + target->QCN + "'s face turns dull, " + target->QS + " appears to be staggered.", target);
 
 
     call_out("dest_effect", ROUND_LENGTH * duration, target);

@@ -14,7 +14,7 @@ void create()
     set_spell_level(([ "mage" : 3, "bard" : 4, "inquisitor" : 3, "oracle" : 3, "magus" : 3, "cleric" : 3 ]));
     set_domains(({"charm"}));
     set_mystery("ancestor");
-    set_bonus_type("morale");
+    set_bonus_type(({"morale", "resistance" }));
     set_spell_sphere("enchantment_charm");
     set_syntax("cast CLASS heroism [on TARGET]");
     set_damage_desc("+2 to attack bonus, saving throws, skills");

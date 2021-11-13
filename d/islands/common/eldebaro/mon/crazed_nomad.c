@@ -128,7 +128,7 @@ void insane_blows(object targ)
     tell_room(ETO, me +"%^BOLD%^%^BLACK%^ CHARGES%^YELLOW%^ at "+targ->QCN+", screaming in some bizarre "+
     "language, both of his weapons swinging wildly!%^RESET%^", targ);
     hits = 2 + random(5);
-    if(targ->reflex_save(25))
+    if(targ->reflex_save(60))
     {
         tell_object(targ, "%^BOLD%^%^GREEN%^You are able to move just in time and are only nicked by "+
         me+"%^BOLD%^%^GREEN%^'s weapons!");
@@ -165,7 +165,7 @@ void push_em(object targ)
     tell_room(ETO, me +"%^BOLD%^%^BLACK%^ CHARGES%^YELLOW%^ at "+targ->QCN+", screaming in some bizarre "+
     "language, a look of %^BOLD%^%^RED%^RAGE%^BOLD%^%^YELLOW%^ on his face!%^RESET%^", targ);
     
-    if(targ->reflex_save(30))
+    if(targ->reflex_save(60))
     {
         tell_object(targ, "%^RESET%^%^MAGENTA%^You step out of the way just in time and "+me+
         " charges past you!%^RESET%^");

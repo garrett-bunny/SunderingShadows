@@ -792,6 +792,15 @@ int query_resistance(string res)
         }
     }
     
+    if(this_object()->query_mystery() == "spellscar")
+    {
+        if(this_object()->query_class_level("oracle") >= 5)
+        {
+            if(res == "fire" || res == "electricity" || res == "acid" || res == "cold")
+                myres += this_object()->query_prestige_level("oracle") / 2;
+        }
+    }
+    
     if (FEATS_D->usable_feat(TO, "no fear of the flame") && res == "fire") {
         myres += 30;
     }
@@ -828,11 +837,11 @@ int query_resistance_percent(string res)
     if(this_object()->is_deva())
     {
         if(res == "divine")
-            res += 25;
+            mod += 25;
         if(res == "acid")
-            res += 25;
+            mod += 25;
         if(res == "electricity")
-            res += 25;
+            mod += 25;
     }
         
     if (TO->is_undead()) {
@@ -865,6 +874,12 @@ int query_resistance_percent(string res)
             mod = 100;
     }
     
+    if(FEATS_D->usable_feat(this_object(), "apotheosis"))
+    {
+        if(res == "divine")
+            mod += 20;
+    }
+    
     if(FEATS_D->usable_feat(this_object(), "master of elements"))
     {
         if(this_object()->query("elementalist") == res)
@@ -890,6 +905,39 @@ int query_resistance_percent(string res)
             if(this_object()->query_class_level("oracle") > 30 && res == "radiant")
                 mod += 10;
         }
+
+        if(this_object()->query_mystery() == "battle")
+        {
+            if(this_object()->query_class_level("oracle") >= 21 && res == "force")
+                mod += 20;
+        }
+        
+        if(this_object()->query_mystery() == "dragon")
+        {
+            if(this_object()->query_class_level("oracle") >= 31)
+            {
+                switch(this_object()->query("dragon_affinity"))
+                {
+                    case "black": case "copper":
+                    if(res == "acid")
+                        mod = 100;
+                    break;
+                    case "red": case "brass": case "gold":
+                    if(res == "fire")
+                        mod = 100;
+                    break;
+                    case "blue": case "bronze":
+                    if(res == "electricity")
+                        mod = 100;
+                    break;
+                    case "silver": case "white":
+                    if(res == "cold")
+                        mod = 100;
+                    break;
+                }
+            }
+        } 
+        
     }
   
     //Mage is invulnerable for duration of prismatic sphere
@@ -2289,6 +2337,12 @@ int query_blind()
 
 void set_blind(int i)
 {
+    if(PLAYER_D->immunity_check(this_object(), "blindness"))
+    {
+        tell_object(this_object(), "%^YELLOW%^You are immune to blindness.%^YELLOW%^");
+        return;
+    }
+    
     if (i) {
         blindness += i;
     }else {

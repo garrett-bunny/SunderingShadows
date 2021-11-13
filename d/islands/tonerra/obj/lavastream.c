@@ -1,5 +1,6 @@
 //lavasteam.c
 #include <std.h>
+#include <daemons.h>
 #include "/d/islands/tonerra/areadefs.h"
 
 inherit OBJECT;
@@ -90,7 +91,7 @@ void heart_beat(){
 
         tell_object(inven[i],"%^RED%^You are scorched by the heat.");
 
-        inven[i]->do_damage("torso",roll_dice(2,4));
+        inven[i]->cause_typed_damage(inven[i], "torso", roll_dice(2,4), "fire");
         inven[i]->add_attacker(TO);
         inven[i]->continue_attack();
         // adding another objectp check due to consistent bugs *Styx*  11/22/03, last change 7/20/98

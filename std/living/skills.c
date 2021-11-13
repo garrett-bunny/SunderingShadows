@@ -523,7 +523,7 @@ string query_old_class()
 
 string* query_classes()
 {
-    if (!classes) {
+    if (!classes || !pointerp(classes)) {
         classes = ({});
     }
     if (!classes || classes == ({}) && myclass) {

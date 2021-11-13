@@ -45,7 +45,8 @@ void heart_beat(){
   if(!objectp(heat[i])) { continue; }
   if(heat[i]->query_true_invis())  continue;
   tell_object(heat[i],"%^BOLD%^%^RED%^The heat sears you!");
-  heat[i]->do_damage(heat[i]->return_target_limb(),20);
+  heat[i]->cause_typed_damage(heat[i], "torso", 20, "fire");
+  //heat[i]->do_damage(heat[i]->return_target_limb(),20);
   heat[i]->add_attacker(TO);
   heat[i]->continue_attack();
   if(objectp(heat[i])) { heat[i]->remove_attacker(TO); }

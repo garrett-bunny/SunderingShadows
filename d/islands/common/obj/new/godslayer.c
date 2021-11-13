@@ -28,6 +28,7 @@ void create()
     set_wield((: TO, "extra_wield" :));
     set_unwield((: TO, "extra_unwield" :));
     set_hit((: TO, "extra_hit" :));
+    set_property("master weapon", 1);
 }
 
 int extra_wield()
@@ -46,10 +47,12 @@ int extra_wield()
         return 0;
     }
 
+    /*
     if (ETO->query_property("master weapon")) { //preventing stack up with other "top" weapons
         tell_object(ETO, "You find it impossible to lift two such mighty weapons!", ETO);
         return 0;
     }
+    */
 
     if (member_array(quest, ETO->query_mini_quests()) == -1 && member_array("Achieved: " + quest, ETO->query_mini_quests()) == -1) {
         write("%^MAGENTA%^You have not yet earned the right to wield such a weapon.");

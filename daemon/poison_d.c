@@ -312,6 +312,9 @@ int can_be_poisoned(object targ)
     if (!objectp(targ)) {
         return 0;
     }
+    if(PLAYER_D->immunity_check(targ, "poison"))
+        return 0;
+    
     if (targ->query_property("poison immunity")) {
         return 0;
     }

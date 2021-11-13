@@ -957,7 +957,7 @@ void remove()
     log_file("player/player_object_removal","removed: "+TO->query_name()+
 	" "+file_name(previous_object())+".\n");
   }
-  else if (query_verb() != "quit" && TP != TO) return;
+  //else if (query_verb() != "quit" && TP != TO) return;
   quit_time = time();
   destroy_autoload_obj();
   CHAT_D->remove_user();
@@ -5438,9 +5438,6 @@ int test_passive_perception()
     if (!player || !room)
         return;
 
-    if (player->query_watched() < 1)
-        return;
-
     if (FEATS_D->usable_feat(player, "spot"))
         perception = (int)player->query_skill("perception");
     else
@@ -5628,7 +5625,7 @@ int is_favored_terrain(object room)
     foreach(string terrain in favored_terrain)
     {
         if (strlen(terrain) && terrain != "none") {
-            if (USER_D->is_valid_terrain(type, "caves")) {
+            if (USER_D->is_valid_terrain(type, terrain)) {
                 return 1;
             }
         }

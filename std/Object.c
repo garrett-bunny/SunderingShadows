@@ -570,6 +570,12 @@ mixed query_property(string prop)
                 num += 1;
         }
         
+        if(this_object()->query_mystery() == "nature" && this_object()->query_class_level("oracle") > 10)
+        {
+            if(USER_D->is_valid_terrain(environment(this_object())->query_terrain(), "forest"))
+                num += 2;
+        }
+        
         num += props[prop];
         return (num + EQ_D->gear_bonus(TO, "fast healing"));
     }
@@ -624,6 +630,8 @@ mixed query_property(string prop)
             num += 2;
         }
         if(FEATS_D->usable_feat(this_object(), "infused form"))
+            num += 5;
+        if(this_object()->query_mystery() == "battle" && this_object()->query_class_level("oracle") >= 15)
             num += 5;
         
         num += props[prop];
@@ -685,7 +693,15 @@ mixed query_property(string prop)
     
     if(prop == "darkvision")
     {
+        if(avatarp(this_object()) || creatorp(this_object()))
+            return 1;
+        
         if(this_object()->query_mystery() == "shadow")
+        {
+            if(this_object()->query_class_level("oracle") >= 15)
+                num += 1;
+        }
+        if(this_object()->query_mystery() == "dragon")
         {
             if(this_object()->query_class_level("oracle") >= 15)
                 num += 1;
@@ -732,6 +748,11 @@ mixed query_property(string prop)
         {
             return 1;
         }
+        if(this_object()->query_class_level("oracle") >= 15)
+        {
+            if(this_object()->query_mystery() == "bones")
+                return 1;
+        }
         //Unlike other racial bonuses this one must be valid for all
         //half-races as well.
         if (TO->query("subrace") == "dhampir") {
@@ -771,10 +792,25 @@ mixed query_property(string prop)
         if(PLAYER_D->check_familiar(this_object()))
             return 1;
         
-        return 0;
+        return props[prop];
     }
-
-
+    
+    if(prop == "rend")
+    {
+        int rend_max;
+        
+        if(this_object()->is_undead())
+            return 0;
+        
+        if(PLAYER_D->immunity_check(this_object(), "rend"))
+            return 0;
+        
+        rend_max = this_object()->query_character_level() / 5 + 1;
+        props["rend"] = min( ({ props["rend"], rend_max }) );
+        
+        return props[prop];
+    }
+        
     if (prop == "spell damage resistance") {
         if (TO->is_vampire()) {
             if (!TO->is_in_sunlight()) {

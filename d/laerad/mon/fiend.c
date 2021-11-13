@@ -156,6 +156,7 @@ void heart_beat(){
     object targ;
     ::heart_beat();
     if(!objectp(TO)) return;
+    if(!objectp(ETO)) return;
     if((att = (object *)TO->query_attackers()) != ({})){
 	j = sizeof(att);
     TO->set_tripped(0);

@@ -116,8 +116,8 @@ void execute_attack()
 
     targets = shuffle(targets);
 
-    bonusdc = flevel;
-    bonusdc += BONUS_D->query_stat_bonus(caster, "charisma");
+    //bonusdc = flevel;
+    bonusdc = BONUS_D->query_stat_bonus(caster, "charisma");
 
     for (i = 0; i < sizeof(targets) && i < 8; i++) {
         if (targets[i] == caster) {
@@ -128,7 +128,7 @@ void execute_attack()
             continue;
         }
 
-        if (do_save(target, -bonusdc)) {
+        if (do_save(target, bonusdc)) {
             continue;
         }
 

@@ -174,7 +174,7 @@ void execute_feat()
     companion = new("/d/magic/mon/acompanion");
     companion->set_race(arg);
     companion->set_name(arg);
-    companion->set_id( ({ arg, "companion", "animal companion", "greater summon", "animal", caster->query_name() + "'s ally" }) );
+    companion->set_id( ({ arg, "companion", "animal companion", "greater summon", "animal" }) );
     companion->set_short(sprintf("%s's faithful %s companion.",capitalize(caster->query_name()),arg));
     companion->set_level(class_level);
     companion->set_hd(comp_hd, 14);

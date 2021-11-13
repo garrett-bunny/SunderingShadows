@@ -704,6 +704,10 @@ int immunity_check(object obj, string type)
     if (!objectp(obj)) {
         return 0;
     }
+    
+    if(archp(obj))
+        return 1;
+    
     myrace = obj->query_race();
     mysubrace = obj->query("subrace");
 
@@ -713,6 +717,10 @@ int immunity_check(object obj, string type)
         if (obj->is_undead()) {
             return 1;
         }
+        
+        if(obj->query_mystery() == "dragon" && obj->query_class_level("oracle") >= 31)
+            return 1;
+        
         switch (myrace) {
         case "elf":
         case "drow":
@@ -727,9 +735,23 @@ int immunity_check(object obj, string type)
         return 0;
     }
     break;
+    
+    case "blindness":
+    {
+        if(obj->true_seeing())
+            return 1;
+        
+        if(obj->query_property("no blind"))
+            return 1;
+        
+        return 0;
+    }
 
     case "charm":
     {
+        if(obj->query_property("no charm"))
+            return 1;
+        
         switch (myrace) {
             case "barrus":
                 return 1;
@@ -739,6 +761,13 @@ int immunity_check(object obj, string type)
         if (check_aura(obj, "resolve") == 1) {
             return 1;
         }
+    }
+    break;
+    
+    case "confusion":
+    {
+        if(obj->query_mystery() == "battle" && obj->query_class_level("oracle") >= 10)
+            return 1;
     }
     break;
 
@@ -805,15 +834,27 @@ int immunity_check(object obj, string type)
         if (member_array(obj->query_race(),({"golem", "construct", "soulforged"})) >= 0) {
             return 1;
         }
+        
+        if(obj->query_mystery() == "life" && obj->query_class_level("oracle") >= 31)
+            return 1;
 
         return 0;
     }
     
     break;
     
+    case "negative_level":
+    {
+        if(obj->query_mystery() == "life" && obj->query_class_level("oracle") >= 31)
+            return 1;
+        
+        return 0;
+    }
+    break;
+    
     case "paralysis":
     {
-        if(obj->query_property("stun_immunity"))
+        if(obj->query_property("stun_immunity") || obj->query_property("no paralyze"))
             return 1;
         
         if(obj->is_class("barbarian") && !obj->cooldown("unrestrained rage"))
@@ -827,10 +868,70 @@ int immunity_check(object obj, string type)
                 return 1;
             }
         }
+        
+        if(obj->query_mystery() == "dragon" && obj->query_class_level("oracle") >= 31)
+        {
+            if(!obj->cooldown("dragon resistance"))
+            {
+                tell_object(obj, "%^YELLOW%^Your draconic resistance helps you shrug off the paralysis!");
+                obj->add_cooldown("dragon resistance", 120);
+                return 1;
+            }
+        }
     
         return 0;
     }
     break;
+    
+    case "poison":
+    {
+        if (obj->query_property("poison immunity"))
+            return 1;
+            
+        if (FEATS_D->usable_feat(obj, "venom immunity"))
+            return 1;
+        
+        if (FEATS_D->usable_feat(obj, "undead graft"))
+            return 1;
+    
+        if (FEATS_D->usable_feat(obj, "purity of body"))
+            return 1;
+    
+        if (FEATS_D->usable_feat(obj, "earthen blood"))
+            return 1;
+
+        if (obj->is_undead())
+            return 1;
+        
+        if(obj->query_mystery() == "life")
+            
+        return 0;
+    }
+    
+    case "rend":
+    {
+        if(obj->is_undead())
+            return 1;
+        
+        if(obj->query_mystery() == "life" && obj->query_class_level("oracle") >= 31)
+            return 1;
+        
+        if(obj->query_mystery() == "bones" && obj->query_class_level("oracle") >= 21)
+            return 1;
+        
+    }
+    break;
+    
+    case "sickened":
+    {
+        if(obj->query_mystery() == "life" && obj->query_class_level("oracle") >= 31)
+            return 1;
+        
+        if(FEATS_D->has_feat(obj, "internal fortitude") && obj->query_property("raged"))
+            return 1;
+    }
+    break;    
+    
 
     default:
         return 0;

@@ -49,6 +49,9 @@ void create()
 void bite(object targ) 
 {
 	string *ids;
+    
+    if(!targ || !objectp(targ))
+        return;
 
     if(targ->query_true_invis()) { return; }
 
@@ -63,9 +66,9 @@ void bite(object targ)
         targ->do_damage("torso",roll_dice(3,6));
         TO->remove_property("magic");
     }
-	TO->force_me("kill "+ids[0]+"");
+	sizeof(ids) && TO->force_me("kill "+ids[0]+"");
     kill_ob(targ,1);
-    return 1;
+    return;
 }
 
 void aggfunc() 

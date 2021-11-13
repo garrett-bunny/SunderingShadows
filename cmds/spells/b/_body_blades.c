@@ -11,7 +11,7 @@ void create()
 {
     ::create();
     set_spell_name("body blades");
-    set_spell_level(([ "cleric" : 2, "inquisitor" : 2]));
+    set_spell_level(([ "unused" : 1 ]));
     set_spell_sphere("combat");
     set_syntax("cast CLASS body blades");
     set_description("This spell will cause razor sharp blades to sprout from the caster's skin, protecting them from harm "

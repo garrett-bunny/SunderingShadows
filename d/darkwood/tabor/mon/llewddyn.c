@@ -8,7 +8,7 @@
 #include <std.h>
 #include "../include/tabor.h"
 
-inherit "/std/comp_vend.c";
+inherit VENDOR;
 
 void create()
 {
@@ -59,9 +59,9 @@ void create()
 		"you!  Come here and open wide!",
 		"%^MAGENTA%^Llewddyn says%^RESET%^: You're lucky I can't remember "+
 		"half my spells."}), 1);
-    set_components(100);
     set_spell_chance(100);
     set_spells(({"fireball","lightning bolt","acid arrow",
         "powerword stun", "incendiary cloud", "magic missile"}));
     set_property("strength","spells");
+    set_storage_room("/d/darkwood/tabor/mon/llewddyn_storage.c");
 }

@@ -105,7 +105,7 @@ void spell_effect(int prof) {
         damage += agonize;
     }
     
-    hellfire = FEATS_D->useable_feat(caster, "hellfire blast");
+    hellfire = FEATS_D->usable_feat(caster, "hellfire blast");
     
     if(hellfire)
     {
@@ -145,12 +145,7 @@ void do_secondary(object victim) {
           tell_object(victim,"%^BOLD%^%^WHITE%^The impact of the blast leaves you shaking and fearful!%^RESET%^");
           tell_room(environment(victim),"%^BOLD%^%^WHITE%^The impact of the blast leaves "+victim->QCN+" shaking!%^RESET%^",victim);
           duration = 60/ROUND_LENGTH; // shaken, 1min
-          secondary = present("eldritch_frightful_xxx",victim);
-          if(!objectp(secondary)) {
-            secondary = new(SECONDARYOBS"eldritch_frightful");
-            secondary->move(victim);
-          }
-          secondary->activate(duration);
+          "/std/effect/status/shaken"->apply_effect(victim, duration);
         }
       break;
       case "glacial":

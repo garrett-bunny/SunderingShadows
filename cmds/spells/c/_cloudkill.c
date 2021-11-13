@@ -7,7 +7,7 @@ inherit SPELL;
 
 int timer, flag, stage, toggle, counter;
 
-
+//This spell is way more powerful in SRD. Rewrite this.
 void create()
 {
     ::create();
@@ -16,7 +16,7 @@ void create()
     set_spell_sphere("conjuration_summoning");
     set_syntax("cast CLASS cloudkill");
     set_damage_desc("acid");
-    set_description("This spell generates a bank of fog, similar to a fog cloud, except that its vapors are yellowish green and poisonous. For the duration of the spell's effect, the area will be filled with greenish acid fumes. The mage can then direct them to attack her enemies.");
+    set_description("This spell generates a bank of fog, similar to a fog cloud, except that its vapors are yellowish green and poisonous. For the duration of the spell's effect, the area will be filled with greenish poisonous arsine gas. This gas will instantly kill any enemies that are 1/4 of the casters clevel. Enemies that are less than half the caster's clevel must make a combat death save or die. Any enemies who are not killed inhale the gas, becoming poisoned with arsenic, which causes constitution damage. The longer the vicitms remain in the area, the more stacks of this poison that will be applied.");
     set_verbal_comp();
     set_somatic_comp();
     aoe_spell(1);
@@ -43,6 +43,7 @@ void spell_effect(int prof)
 void execute_attack()
 {
     object* foes = ({}), targ;
+    object poison;
     int i, dam;
 
     if (!flag) {
@@ -58,7 +59,32 @@ void execute_attack()
 
     foes = target_selector();
     foes -= ({ caster });
+    
+    foreach(object ob in foes)
+    {
+        if(ob->is_undead())
+            continue;
+        
+        if((ob->query_character_level() < clevel / 4) ||
+        (ob->query_character_level() < clevel / 2 && !combat_death_save(ob, 0)))
+        {
+            tell_room(place, "%^GREEN%^BOLD%^" + ob->query_cap_name() + " is instantly slain by the poisonous cloud!", ob);
+            tell_object(ob, "%^GREEN%^BOLD%^You are instantly slain by the poisonous cloud!");
+            ob->set_hp(-100);
+            continue;
+        }
+        
+        tell_object(ob, "%^GREEN%^You inhale the poisonous gas, feeling your lungs bubbling and foaming as you gag and retch.");
+        tell_room(place, "%^GREEN%^BOLD%^" + ob->query_cap_name() + " retches on the poison gas.");
+        
+        poison = new("/d/common/obj/poisons/base/arsenic");
+        poison->set_poison_dc(query_spell_DC(ob, 0));
+        POISON_D->apply_poison(ob, poison, caster, "inhaled");
+        spell_kill(ob, caster);
+    }
+        
 
+    /*
     for (i = 0; i < sizeof(foes); i++) {
         if (!objectp(targ = foes[i])) {
             continue;
@@ -73,6 +99,7 @@ void execute_attack()
         tell_room(place, "%^GREEN%^" + targ->QCN + " %^RESET%^%^GREEN%^chokes on %^ORANGE%^a%^GREEN%^cid%^ORANGE%^i%^GREEN%^c %^ORANGE%^f%^GREEN%^umes%^ORANGE%^!%^RESET%^%^RESET%^", ({ targ }));
         damage_targ(targ, targ->return_target_limb(), sdamage, "acid");
     }
+    */
     counter--;
     place->addObjectToCombatCycle(TO, 1);
 }

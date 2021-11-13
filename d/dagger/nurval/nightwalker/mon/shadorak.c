@@ -18,6 +18,7 @@
 inherit WEAPONLESS;
 
 int coreparty = 4;
+int buffed = 0;
 
 string color(string str)
 {
@@ -80,8 +81,8 @@ void create()
     set_hp(query_max_hp());
     set_property("add kits", 40);
     set_new_exp(75, "boss");
-    set_property("add quest", "%^BOLD%^%^BLACK%^Defeated the Nightwalker!%^RESET%^");
-    set_property("quest exp", 12000000);
+    //set_property("add quest", "%^BOLD%^%^BLACK%^Defeated the Nightwalker!%^RESET%^");
+    //set_property("quest exp", 12000000);
     add_money("gold", random(100000) + (80000));
     add_money("platinum", random(20000) + (40000));
     set_emotes(30, ({ "%^BLACK%^BOLD%^Nightwalker whispers : THE TIME OF THE LIVING IS OVER....%^RESET%^",
@@ -102,7 +103,6 @@ void create()
                   "eyebite",
                   "epidemic",
                   "mass fester",
-                  "greater dispel magic",
                   "animus blizzard",
                   "nightmare maw",
                   "exhume corpses", }));
@@ -163,10 +163,14 @@ void init()
         coreparty = psize;
     }
     
-    new("/cmds/spells/v/_vampiric_shadow_shield.c")->use_spell(this_object(), 0, 70, 100, "mage");
-    new("/cmds/spells/s/_shadow_body.c")->use_spell(this_object(), 0, 70, 100, "mage");
-    new("/cmds/spells/s/_shadowform.c")->use_spell(this_object(), 0, 70, 100, "mage");
-    new("/cmds/spells/f/_frightful_aspect.c")->use_spell(this_object(), 0, 70, 100, "mage");
+    if(!buffed)
+    {
+        new("/cmds/spells/v/_vampiric_shadow_shield.c")->use_spell(this_object(), 0, 70, 100, "mage");
+        new("/cmds/spells/s/_shadow_body.c")->use_spell(this_object(), 0, 70, 100, "mage");
+        new("/cmds/spells/s/_shadowform.c")->use_spell(this_object(), 0, 70, 100, "mage");
+        new("/cmds/spells/f/_frightful_aspect.c")->use_spell(this_object(), 0, 70, 100, "mage");
+        buffed = 1;
+    }
 }
 
 die(object ob)
@@ -224,11 +228,11 @@ void heart_beat()
             tell_room(room, "%^BOLD%^BLACK%^Waves of necrotic energy pour off of the Nightwalker, tearing life energy from its enemies!");
             
             foreach(object ob in attackers)
-                ob->cause_typed_damage(ob, ob->return_target_limb(), roll_dice(20, 20) + 300, "negative energy");
+                ob->cause_typed_damage(ob, ob->return_target_limb(), roll_dice(5, 20) + 300, "negative energy");
         }
         
         if(!present("corpse", room) && !random(5))
-            new("/cmds/spells/e/_exhume_corpses.c")->use_spell(this_object(), 0, 70, 100, "mage");
+            new("/cmds/spells/e/_exhume_corpses.c")->use_spell(this_object(), 0, 70, 300, "mage");
 
         if(!present("banshee", room) && !random(5))
         {
@@ -306,7 +310,7 @@ int tendril(object me, object ob)
     if(random(5))
         return roll_dice(1, 8);
     
-    if(SAVING_THROW_D->reflex_save(ob, 0))
+    if(SAVING_THROW_D->do_save(ob, 75, "reflex"))
     {
         tell_object(ob, "%^BOLD%^You slip away from the tendril's grasp!%^RESET%^");
         return 0;

@@ -48,7 +48,7 @@ void spell_effect(int prof)
     if(!userp(target))
         spell_kill(target, caster);
 
-    if(target->query_property("no hold") || target->query_property("no paralyze"))
+    if(target->query_property("no hold") || target->query_property("no paralyze") || PLAYER_D->immunity_check(target, "paralysis"))
     {
         tell_object(target,"%^YELLOW%^The spell disperses futilely around you.");
         tell_room(place,"%^YELLOW%^The spell disperses futilely around "+

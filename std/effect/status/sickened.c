@@ -21,9 +21,9 @@ int status_effect()
         return;
     }
     
-    if(FEATS_D->has_feat(target, "internal fortitude") && target->query_property("raged"))
+    if(PLAYER_D->immunity_check(target, "sickened"))
     {
-        tell_object(target, "You are immune to being sickened.");
+        tell_object(target, "%^YELLOW%^You are immune to being sickened.%^RESET%^");
         this_object()->remove();
         return;
     }
@@ -31,7 +31,7 @@ int status_effect()
     target->set_property("effect_sickened", 1);
 
     tell_object(target, "%^BLUE%^You feel sickened and disgusted.%^RESET%^");
-    tell_room(ENV(target), "%^BLUE%^" + target->QCN + "'s face turns green," + target->QS + " look sickened.", target);
+    tell_room(ENV(target), "%^BLUE%^" + target->QCN + "'s face turns green, and " + target->QS + " look sickened.", target);
 
     power = target->query_level() / 12 + 1;
 

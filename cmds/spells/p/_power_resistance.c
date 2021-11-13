@@ -13,6 +13,7 @@ void create() {
     set_description("Using this power will allow a psion to temporarily raise the power resistance of "
 "the target.  After a time, the power will reverse, restoring the creature to its original resistance.");
     set_verbal_comp();
+    set_bonus_type("resistance");
     set_somatic_comp();
     set_target_required(1);
     set_helpful_spell(1);
@@ -61,7 +62,7 @@ void spell_effect(int prof) {
     }
     lower = clevel / 3;
     target->set_property("spell damage resistance",lower);
-    target->set_property("raised spell damage resistance",1);
+    target->set_property("protection from spells",1);
     addSpellToCaster();
     spell_successful();
     spell_duration = (clevel + roll_dice(1, 20)) * ROUND_LENGTH * 2;
@@ -73,7 +74,7 @@ void dest_effect(){
     if(objectp(target))
     {
         target->set_property("spell damage resistance",(-1*lower));
-        target->remove_property("raised spell damage resistance");
+        target->remove_property("protection from spells");
         tell_room(environment(target),"%^GREEN%^A wave of energy suddenly "+
         "rushes out from "+target->QCN+".",target);
         tell_object(target,"%^GREEN%^A wave of power suddenly leaves you!");

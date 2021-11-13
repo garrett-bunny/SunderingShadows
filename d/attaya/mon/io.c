@@ -61,14 +61,14 @@ void fireball(object targ)
     if(random(30) > targ->query_stats("dexterity")){
 	tell_room(environment(targ), "%^BLUE%^An unseen force lifts "+targ->query_cap_name()+" into the air and slams them down against the floor!",targ);
 	tell_object(targ, "%^BOLD%^%^BLUE%^An unseen force lifts you into the air and smashes you against the ground!");
-         targ->do_damage("torso", random(120)+80);
+         targ->cause_typed_damage(targ, "torso", random(120)+80, "bludgeoning");
 	return 1;
 
     } else {
 
 	tell_object(targ, "%^BOLD%^%^BLUE%^An unseen force grabs you by the neck and smashes you against the wall!");
 	tell_room(environment(targ), "%^BLUE%^An unseen force grabs "+targ->query_cap_name()+" by the neck and slams them against the wall.");
-
-         targ->do_damage("head", random(60)+40);
+         targ->cause_typed_damage(targ, "head", random(60)+40, "bludgeoning");
     }
 }
+

@@ -69,12 +69,7 @@ void spell_effect(int prof) {
         dest_effect();
         return;
     }
-    if(target->query_property("no death")) {
-        tell_object(caster,"That one is too strong to charm!");
-        dest_effect();
-        return;
-    }
-    if(target->query_property("no charm")) {
+    if(PLAYER_D->immunity_check(target, "charm")) {
         tell_object(caster,"That target can't be charmed!");
         dest_effect();
         return;
@@ -160,6 +155,13 @@ void charm(object targ,object cast) {
 }
 
 void still_charmed(object targ,object cast) {
+    
+    if(PLAYER_D->immunity_check(targ, "charm"))
+    {
+        dest_effect();
+        return;
+    }
+    
     if(do_save(targ,modifier)) {
         dest_effect();
         return; 

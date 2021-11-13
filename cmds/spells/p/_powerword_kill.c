@@ -24,6 +24,7 @@ void create() {
     set_verbal_comp();
     //set_silent_casting(1);
     set_target_required(1);
+    splash_spell(3);
      // school specific mage spell
 }
 
@@ -59,7 +60,6 @@ void spell_effect(int prof)
         tell_object(target,"%^BOLD%^You reel backward in utter agony, and the world around you goes black!");
         tell_room(place,"%^BOLD%^"+target->QCN+" screams in agony and then falls to the ground, dead!",({target}));
         target->set_hp(-100);
-        dest_effect();
     }
     else
     {

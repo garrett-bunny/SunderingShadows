@@ -64,9 +64,11 @@ void remove_were()
 
 void dest_effect()
 {
-    tell_room(place, "The dispelling magics seem to dissapate and the darkness subsides.");
-    
-    place->set_light(olight);
+    if(objectp(place))
+    {
+        tell_room(place, "The dispelling magics seem to dissapate and the darkness subsides.");
+        place->set_light(olight);
+    }
     
     if(find_call_out("remove_were") >= 0)
         remove_call_out("remove_were");

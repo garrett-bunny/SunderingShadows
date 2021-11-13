@@ -14,7 +14,7 @@ void create() {
     ::create();
     set_spell_name("biting cold");
     set_spell_level(([ "psywarrior" : 5, "psion" : 5 ]));
-    set_spell_sphere("invocation_evocation");
+    set_spell_sphere("psychokinesis");
     set_syntax("cast CLASS biting cold on TARGET");
     set_description("Upon manifesting this power, the psywarrior manipulates "
        "the elemental planes, summoning cold to himself. Concentrating the "

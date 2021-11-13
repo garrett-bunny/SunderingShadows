@@ -5,7 +5,7 @@
 
 #include <std.h>
 #include "../defs.h"
-inherit "/std/comp_vend.c";
+inherit VENDOR;
 
 void buff_up(object myself, object target, int stage);
 void summon_familiar(object myself, object familiar);
@@ -43,7 +43,6 @@ void create()
    set_guild_level("mage",40);
    set_body_type("human");
    set_property("no bump",1);
-   set_components(100);
    set_spell_chance(100);
    set_spells(({
       "fireball","lightning bolt","acid arrow","powerword stun","incendiary cloud","magic missile"
@@ -53,6 +52,7 @@ void create()
    ob->set_property("my_master",TO);
    TO->set_property("my_familiar",ob);
    call_out("summon_familiar",1,TO,ob);
+   set_storage_room("/d/shadow/city/mon/delilah_storage.c");
 }
 
 void summon_familiar(object myself, object familiar)

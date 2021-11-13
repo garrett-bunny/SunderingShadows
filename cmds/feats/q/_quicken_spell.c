@@ -14,12 +14,12 @@ void create()
     feat_name("quicken spell");
     feat_prereq("31 levels in any single spellcaster class");
     feat_syntax("quicken_spell");
-    feat_desc("This Meta Magic feat will cause your next spell to cast immediately, without the usual casting delay. This feat has a long cooldown.");
+    feat_desc("This Meta Magic feat will cause your next spell to cast immediately, without the usual casting delay. This feat is not available to psionic classes. This feat has a long cooldown.");
     set_required_for(({ }));
 }
 
 
-int allow_shifted() { return 1; }
+int allow_shifted() { return 0; }
 
 
 int prerequisites(object ob)

@@ -7,7 +7,7 @@
 #include <std.h>
 #include "../include/tabor.h"
 
-inherit "/std/comp_vend.c";
+inherit VENDOR;
 
 void create()
 {
@@ -61,9 +61,9 @@ TABOR
 		"drop of blood supply comes from!",
 		"%^MAGENTA%^Cirtwith says%^RESET%^: What was the incantation for "+
 		"meteor swarm again?  Hmm...."}), 1);
-    set_components(100);
     set_spell_chance(100);
     set_spells(({"fireball","lightning bolt","acid arrow",
         "powerword stun", "incendiary cloud", "magic missile"}));
     set_property("strength","spells");
+    set_storage_room("/d/darkwood/tabor/mon/cirtwith_storage.c");
 }

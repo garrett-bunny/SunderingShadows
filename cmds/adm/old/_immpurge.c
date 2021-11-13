@@ -1,5 +1,7 @@
 // Command to rid inactive players
 
+// No, too easy to screw up.... Tlaloc
+
 #include <std.h>
 #include <security.h>
 #include "/adm/include/dontrid.h" // contains the EXCLUDE array of player names to be skipped

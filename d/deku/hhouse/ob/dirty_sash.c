@@ -132,7 +132,7 @@ void adjust_sash(object who)
         set_item_bonus("wisdom", 2);
         set_item_bonus("caster level", 1);
         break;
-    case "mage": case "psion": case "psywarrior":
+    case "mage": case "psion": case "psywarrior": case "magus":
         set_item_bonus("intelligence", 2);
         set_item_bonus("caster level", 1);
         break;

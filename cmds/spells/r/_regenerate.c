@@ -9,8 +9,7 @@ void create() {
     set_spell_name("regenerate");
     set_spell_level(([ "cleric" : 7, "oracle":7, "druid" : 7 ]));
     set_mystery("life");
-    set_domains("renewal");
-    set_spell_sphere("healing");
+    set_spell_sphere("conjuration_summoning");
     set_damage_desc("positive energy over clevel / 6 rounds");
     set_syntax("cast CLASS regenerate on TARGET");
     set_description("This spell cures substantial amount of damage over several rounds and removes all exhaustion, fatigue or confusion from the target, and all other cleansing effects that heal clears. Targets with negative energy affinity, such as undead, can't be affected by this spell.");

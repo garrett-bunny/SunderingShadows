@@ -123,14 +123,19 @@ string *combat_styles(object ob) { return base_class_ob(ob)->combat_styles(ob); 
 
 string *class_feats(string myspec) { return base_class_ob(0)->class_feats(myspec); }
 
-int caster_level_calcs(object player, string the_class) {
+int caster_level_calcs(object player, string the_class)
+{
     int level;
     string base;
     if(!objectp(player)) { return 0; }
     base = player->query("base_class");
 
-    level = player->query_class_level(base);
-    level += player->query_class_level("stonelord");
+    //level = player->query_class_level(base);
+    level = player->query_class_level(the_class);
+    
+    if(base == the_class)
+        level += player->query_class_level("stonelord");
+    
     return level;
 }
 

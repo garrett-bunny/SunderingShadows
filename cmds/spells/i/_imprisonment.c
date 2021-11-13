@@ -13,8 +13,7 @@ void waiter(int num);
 void create() {
     ::create();
     set_spell_name("imprisonment");
-    set_spell_level(([ "oracle" : 9, "mage" : 9, "cleric" : 9 ]));
-    set_mystery("godclaw");
+    set_spell_level(([ "mage" : 9, "cleric" : 9 ]));
     set_domains("law");
     set_syntax("cast CLASS imprisonment on TARGET");
     set_spell_sphere("abjuration");

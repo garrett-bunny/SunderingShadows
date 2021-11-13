@@ -419,7 +419,6 @@ varargs int typed_damage_modification(object attacker, object targ, string limb,
         }
     }
 
-
     if ((type == "negative energy" ||
         type == "positive energy") &&
         member_array(targ->query_race(), ({"soulforged", "golem", "construct"})) != -1) {
@@ -596,6 +595,14 @@ varargs int typed_damage_modification(object attacker, object targ, string limb,
             }
         }
     }
+    
+    //Bones Mystery bleed effect on negative energy
+    if(damage > 0 && type == "negative energy" && !targ->query_property("negative energy affinity"))
+    {
+        if(attacker->query_mystery() == "bones" && attacker->query_class_level("oracle") >= 31)
+            targ && targ->set_property("rend", attacker->query_prestige_level("oracle") / 8 + 1);
+    }
+    
     return damage;
 }
 
@@ -639,6 +646,16 @@ void check_extra_abilities(object attacker, object target, object weapon, int cr
                 tell_object(attacker, "%^BOLD%^CYAN%^Your weapon flashes as it assaults your opponent's mind!%^RESET%^");
                 tell_object(target, "%^BOLD%^CYAN%^" + pname + "'s weapon flashes as it assaults your mind!");
                 target->cause_typed_damage(target, target->return_target_limb(), 5 + roll_dice(1 + (attacker->query_class_level("psion") + attacker->query_prestige_level("psywarrior")) / 15, 8), "mental");
+            }
+        }
+        //Battle Mystery Oracle
+        if(attacker->query_mystery() == "battle")
+        {
+            if(attacker->query_class_level("oracle") >= 31)
+            {
+                tell_object(attacker, "%^MAGENTA%^BOLD%^Your weapon strikes with magical force!%^RESET%^");
+                tell_object(target, "MAGENTA%^BOLD%^" + pname + "'s weapon strikes you with magical force!%^RESET%^");
+                target->cause_typed_damage(target, target->return_target_limb(), 5 + roll_dice(1 + attacker->query_class_level("oracle") / 15, 8), "force");
             }
         }
 
@@ -1169,8 +1186,26 @@ varargs void calculate_damage(object attacker, object targ, object weapon, strin
 
     sneak = 0;
 
-    if(damage)
+    if(damage && targ->is_vulnerable_to(attacker))
     {
+        //Duelist tree has chance to do an extra attack on vulnerable opponent
+        if(FEATS_D->usable_feat(attacker, "positioning"))
+        {
+            //Here to prevent chain procs
+            if(attacker->query_property("positioning"))
+            {
+                attacker->remove_property("positioning");
+            }
+            else
+            {
+                if((10 + attacker->query_character_level() / 2) > random(100))
+                {
+                    attacker->execute_attack();
+                    attacker->set_property("positioning", 1);
+                }
+            }
+        }
+        
         if(attacker->is_class("thief"))
         {
             //Sneak attack dice section
@@ -1213,7 +1248,7 @@ varargs void calculate_damage(object attacker, object targ, object weapon, strin
     }
 
     //target is blind, bound or paralyzed or is attacking another target
-    if(sneak && targ->is_vulnerable_to(attacker))
+    if(sneak)
         damage += roll_dice(sneak, 6);
     else
         sneak = 0;
@@ -2441,6 +2476,13 @@ void set_temporary_blinded(object who, int difficulty, string message)
     if (!objectp(who)) {
         return;
     }
+    
+    if(PLAYER_D->immunity_check(who, "blindness") && difficulty > 0)
+    {
+        tell_object(who, "%^YELLOW%^You are immune to blindness.%^RESET%^");
+        return;
+    }
+    
     if (who->query_property("no blind")) {
         tell_object(who, "You are immune to blindness!");
         if (objectp(environment(who))) {

@@ -1,4 +1,5 @@
 #include <std.h>
+#include <daemons.h>
 inherit MONSTER;
 
 void create() {
@@ -59,7 +60,7 @@ int aggfunc() {
 
 void fire(object targ) {
     string dam;
-    if("daemon/saving_d"->saving_throw(targ,"paralyzation_poison_death")) {
+    if(SAVING_THROW_D->fort_save(targ, 55)){
 	dam="hurts";
     } else {
 	dam="blasts";
@@ -68,10 +69,10 @@ void fire(object targ) {
     tell_room(environment(targ),"%^BOLD%^A sphere of fire appears around Judatac for a moment before he gathers the energies into his hands and blasts them at "+targ->query_cap_name()+"!%^RESET%^",targ);
     set_property("magic",1);
     if(dam=="blasts") {
-	targ->do_damage("torso",roll_dice(6,6));
+    targ->cause_typed_damage(targ, "torso", roll_dice(6,6), "fire");
 	tell_object(targ,"%^RED%^A bone-shattering wave of energy tears through you!\n");
     } else {
-	targ->do_damage("torso",roll_dice(3,6));
+	targ->cause_typed_damage(targ, "torso", roll_dice(3,6), "fire");
     }
     remove_property("magic");
     return 1;

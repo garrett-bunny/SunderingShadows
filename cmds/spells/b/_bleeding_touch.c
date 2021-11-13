@@ -67,9 +67,7 @@ void spell_effect(int prof)
         tell_object(caster, "You try to reach out and touch " + target->QCN + " but miss!");
         return;
     }
-    
-    spell_successful();
-    
+   
     tell_object(caster, "%^BLACK%^BOLD%^Your hand becomes enveloped in darkness as you grab " + target->QCN + " with your wounding grasp!%^RESET%^");
     tell_room(place, "%^BLACK%^BOLD%^" + caster->QCN + " reaches out with " + caster->QP + " hand, striking " + target->QCN + " with a wounding grasp!%^RESET%^", ({ caster })); 
     if(!target->is_undead())
@@ -79,7 +77,10 @@ void spell_effect(int prof)
     
     num = clevel / 8 + 1;
     
-    call_out("touch_bleed", ROUND_LENGTH - 1);
+    if(!target->query_property("rend"))
+        target->set_property("rend", num); 
+    
+    //call_out("touch_bleed", ROUND_LENGTH - 1);
 }
 
 void touch_bleed()

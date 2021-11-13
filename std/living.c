@@ -469,12 +469,15 @@ void heart_beat()
 
         if(is_undead())
             remove_property("rend");
+        
+        if(PLAYER_D->immunity_check(this_object(), "rend"))
+            remove_property("rend");
 
         if(query_property("rend"))
         {
             tell_room(environment(this_object()), "%^RED%^BOLD%^" + this_object()->QCN + "'s wounds bleed profusely!%^RESET%^", ({ this_object() }));
             tell_object(this_object(), "%^RED%^BOLD%^Your wounds bleed profusely!%^RESET%^");
-            this_object()->cause_typed_damage(this_object(), "torso", query_property("rend") * roll_dice(this_object()->query_level() / 2 + 1), "untyped");
+            this_object()->cause_typed_damage(this_object(), "torso", roll_dice(query_property("rend"), this_object()->query_level() / 5 + 1), "untyped");
             set_property("rend", -1);
             if(query_property("rend") <= 0)
             {
@@ -1436,6 +1439,12 @@ int query_stats(string stat)
     if(TO->is_class("cleric"))
     {
         if(stat == "strength" && member_array("strength", TO->query_divine_domain()) >= 0)
+            res += 2;
+    }
+    
+    if(this_object()->query_class_level("oracle") >= 10)
+    {
+        if(stat == "strength" && this_object()->query_mystery() == "dragon")
             res += 2;
     }
 

@@ -11,6 +11,7 @@ void create()
     ::create();
     set_spell_name("celestial healing");
     set_spell_level(([ "mage" : 1, "cleric" : 1, "magus" : 1 ]));
+    set_mystery("life");
     set_spell_sphere("conjuration_summoning");
     set_syntax("cast CLASS celestial healing [on TARGET]");
     set_damage_desc("fast healing 1");
