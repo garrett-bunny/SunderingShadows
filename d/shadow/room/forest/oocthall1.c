@@ -40,7 +40,7 @@ int retrieve_em(string str)
         new("/d/shadow/mon/testdummy")->move(TO);
         return 1;
     }
-    if(str == "undead dummy")
+    if(str == "undead dummy"){
         if (present("testdummy")) {
             tell_object(TP, "There is already a testdummy present!");
             return 1;
@@ -49,6 +49,7 @@ int retrieve_em(string str)
         tell_room(TO, "" + TPQCN + " whistles and a test dummy shimmers into being.", TP);
         new("/d/common/mons/testdummy_undead")->move(TO);
         return 1;
+    }
     return 0;
 }
 
