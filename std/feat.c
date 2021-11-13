@@ -518,7 +518,7 @@ varargs int do_save(object ob,int mod)
 
     mylvl = max( ({ flevel, caster->query_level() - 10 }) );
 
-    DC = mylvl + 10;
+    DC = mylvl + 19;
     //MOD should include whatever stat mod you're using for the feat
     DC += mod;
     

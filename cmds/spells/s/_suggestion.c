@@ -10,7 +10,7 @@ void create()
     set_spell_sphere("telepathy");
     set_discipline("telepath");
     set_syntax("cast CLASS suggestion on TAGET to COMMAND");
-    set_description("You manifest a suggestion that the target has no choice but to obey. If the target succeeds the save or is immune, they will attack the caster.");
+    set_description("You manifest a suggestion that the target has no choice but to obey, unless they make a will save or otherwise protected from mind-affecting spells.");
     set_save("will");
     mental_spell(1);
     set_verbal_comp();
@@ -44,10 +44,10 @@ void spell_effect()
        target->query_property("no dominate",1)||
        mind_immunity_damage(target, "default"))
     {
-        tell_room(environment(target),"Outraged at "+caster->QCN+" for "+caster->QP+" attempt at mind control, "+target->QCN+" attacks "+caster->QO+"!", ({target, caster}) );
-        tell_object(target,"Outraged at "+caster->QCN+" for "+caster->QP+" attempt at mind control, you attack "+caster->QO+"!");
-        tell_object(caster,""+target->QCN+" attacks you, outraged at you for your attempt at mind control!" );
-        spell_kill(target, caster);
+        tell_object(target,"You shrug off the attempt at suggestion!");
+        tell_object(caster,""+target->QCN+" shrugs off your attempt at suggestion!" );
+        if(!userp(target))
+            spell_kill(target, caster);
         return;
     }
 
