@@ -69,7 +69,7 @@ void create(){
 
 int go_up(){
       tell_object(TP,"You climb to the roof through a trapdoor.");
-      say(TPQCN+ "climbs through a trapdoor.",TP);
+      say(TPQCN+ " climbs through a trapdoor.",TP);
       return 1;
 }
 
