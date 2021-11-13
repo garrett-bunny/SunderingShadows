@@ -1,6 +1,7 @@
 #include <std.h>
 #include <priest.h>
 #include <party.h>
+#include <daemons.h>
 
 inherit SPELL;
 
@@ -85,7 +86,7 @@ void execute_attack()
         foreach(ppl in inven)
         {
             if (!ppl->query_property("effect_shaken")) {
-                if (!mind_immunity_check(ppl)) {
+                if (!mind_immunity_check(ppl) && !PLAYER_D->immunity_check(ppl, "fear")) {
                     "/std/effect/status/shaken"->apply_effect(ppl, clevel / 6 + 1);
                     tell_object(ppl, "%^RED%^You shake in fear in sight of " + caster->QCN);
                     tell_room(room, "%^RED%^" + ppl->QCN + " shakes in fear in sight of " + caster->QCN, ({ ppl }));
@@ -101,7 +102,7 @@ void dest_effect()
 {
     if (objectp(caster)) {
         caster->set_size_bonus(0);
-        caster->remove_property("added short", ({ "%^RED%^ (giant)%^RESET%^" }));
+        caster->remove_property_value("added short", ({ "%^RED%^ (giant)%^RESET%^" }));
         caster->remove_property("iron body");
         caster->add_stat_bonus("strength", -6);
         caster->add_stat_bonus("constitution", -4);

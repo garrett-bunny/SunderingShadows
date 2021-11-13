@@ -102,7 +102,7 @@ int cmd_wield(string str)
         for(i=0;sizeof(obs),i<sizeof(obs);i++)
         {
             if(!objectp(obs[i])) { continue; }
-            if(!obs[i]->query_property("master weapon")) { continue; }
+            if(!obs[i]->query_property("master weapon") || obs[i]->query_name() != ob->query_name()) { continue; }
             tell_object(TP,"You find it impossible to wield two such mighty weapons at the same time.");
             return 1;
         }

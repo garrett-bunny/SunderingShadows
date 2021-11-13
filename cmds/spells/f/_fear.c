@@ -79,7 +79,7 @@ void spell_effect(int prof)
         if(bonus < 0) bonus = 0;
         bonus = bonus*(-1);
 
-        if(race_immunity_check(inven[i], "fear"))
+        if(race_immunity_check(inven[i], "fear") || PLAYER_D->immunity_check(inven[i], "fear"))
         {
             spell_kill(target, caster);
             continue;

@@ -152,6 +152,10 @@ int drink_water(string str){
      && str !="water from fountain" && str != "from the fountain"){
     return notify_fail ("Did you want to drink from the fountain?");
   }
+  if (member_array("Fettered the %^MAGENTA%^U%^BLUE%^nf%^MAGENTA%^e%^BLUE%^tt%^MAGENTA%^e%^BLUE%^red", TP->query_quests()) == -1 && member_array("Drove %^MAGENTA%^The %^BLUE%^U%^MAGENTA%^nf%^BLUE%^e%^MAGENTA%^tt%^BLUE%^e%^MAGENTA%^r%^BLUE%^e%^MAGENTA%^d %^RESET%^back into the %^BOLD%^%^BLACK%^vo%^RESET%^i%^BOLD%^%^BLACK%^d%^RESET%^!", TP->query_quests()) == -1 && member_array("%^RED%^Defeated %^RESET%^%^BLUE%^The%^MAGENTA%^ U%^BLUE%^n%^MAGENTA%^f%^BLUE%^e%^MAGENTA%^tt%^BLUE%^e%^MAGENTA%^r%^BLUE%^e%^MAGENTA%^d", TP->query_quests()) == -1) {
+    tell_object(TP, "The spirits of the jungle still run strong and you cannot seem to get past the magic barring you from drinking the fabled waters.");
+    return 1;
+  }
   tell_object(TP, "%^BOLD%^%^MAGENTA%^You dip your hands into the %^BOLD%^%^BLUE%^pool"
                  +" %^BOLD%^%^MAGENTA%^and drink deeply from the %^BOLD%^%^WHITE%^"
                  +"fr%^BOLD%^%^BLUE%^o%^BOLD%^%^WHITE%^th%^BOLD%^%^CYAN%^i%^BOLD%^"

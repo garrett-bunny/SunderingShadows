@@ -1,5 +1,6 @@
 #include <spell.h>
 #include <magic.h>
+#include <daemons.h>
 
 inherit SPELL;
 

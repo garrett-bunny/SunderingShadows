@@ -61,8 +61,8 @@ void spell_effect(int prof)
     switch (typearg) {
     case "silver":
         ashort = " %^BOLD%^%^WHITE%^{{s%^RESET%^%^WHITE%^i%^BOLD%^%^WHITE%^lv%^RESET%^%^WHITE%^e%^BOLD%^%^WHITE%^ry%^BOLD%^%^WHITE%^}}%^RESET%^";
-        //mywpn->set_special_material_type("silver");
-        mywpn->set_damage_type("silver");
+        mywpn->set_special_material_type("silver");
+        //mywpn->set_damage_type("silver");
         mywpn->remove_property("added short string");
         mywpn->set_property("added short string", ({ ashort }));
         mywpn->set_property("added short", ({ ashort }));
@@ -82,8 +82,8 @@ void spell_effect(int prof)
 
     case "cold iron":
         ashort = " %^RESET%^%^RED%^{{cold iron}}%^RESET%^";
-        //mywpn->set_special_material_type("cold iron");
-        mywpn->set_damage_type("cold iron");
+        mywpn->set_special_material_type("cold iron");
+        //mywpn->set_damage_type("cold iron");
         mywpn->remove_property("added short string");
         mywpn->set_property("added short string", ({ ashort }));
         mywpn->set_property("added short", ({ ashort }));

@@ -24,6 +24,7 @@ void create()
     set_verbal_comp();
     set_somatic_comp();
     aoe_spell(1);
+    mental_spell();
     set_save("will");
     set_aoe_message("%^BOLD%^MAGENTA%^(bathed in a cloud of chaos)%^RESET%^");
     set_feats_required(([ "warlock" : "tome of ancient secrets"]));

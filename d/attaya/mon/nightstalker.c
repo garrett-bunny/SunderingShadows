@@ -137,7 +137,7 @@ void fire(object targ){
    string dam;
    if(!objectp(TO)) return;
    if(!objectp(targ)) return;
-   if(!"/daemon/saving_throw_d.c"->fort_save(targ,-26)){
+   if(!"/daemon/saving_throw_d.c"->fort_save(targ, 55)){
       dam="hurt";
    }
    else{
@@ -184,6 +184,7 @@ void heart_beat() {
    if(!objectp(ETO)) return;
 
    here = ETO;
+   /*
    for(i=0, max = sizeof(inv=all_inventory(here)); i<max; i++){
       if(living(inv[i]) && !userp(inv[i]) &&(string)inv[i]->query_race()== "snake"){
          tell_room(ETO,"%^BOLD%^Your "+inv[i]->QCN+" explodes for no "+
@@ -191,6 +192,7 @@ void heart_beat() {
 		 inv[i]->remove();
 	  }
    }
+   */
    if((int)TO->query_hp() < 275) {
       TO->add_hp(random(10)+1);
 	  return;

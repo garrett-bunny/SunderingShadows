@@ -115,6 +115,10 @@ int do_save(int disease_bonus)
     if (!disease_bonus) {
         disease_bonus = 0;
     }
+    
+    if(ETO->query_mystery() == "bones" && ETO->query_class_level("oracle") >= 10)
+        disease_bonus -= 2;
+    
     if ("/daemon/saving_throw_d"->fort_save(ETO, -(clevel + disease_bonus))) {
         return 1;
     }
@@ -167,6 +171,9 @@ object infect(object victim, int dc)
  */
 int is_immune(object victim)
 {
+    if(PLAYER_D->immunity_check(victim, "disease"))
+        return 1;
+    
     if (victim->is_undead()) {
         return 1;
     }

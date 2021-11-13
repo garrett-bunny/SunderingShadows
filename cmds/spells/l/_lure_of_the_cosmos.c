@@ -35,7 +35,7 @@ string query_cast_string()
 
 void spell_effect(int prof)
 {   
-    if(!objectp(caster) || !objectp(target))
+    if(!objectp(caster))
         return;
     
     if(caster->query_property("flying"))
@@ -48,6 +48,7 @@ void spell_effect(int prof)
     spell_successful();
      
     caster->set_property("flying", 1);
+    caster->set_property("endurance",(clevel/10));
     
     tell_object(caster, CRAYON_D->color_string("You reach for the stars, and will yourself towards them, lifting off of the ground.", "very black"));
     tell_room(place, CRAYON_D->color_string(caster->query_cap_name() + " reaches for the stars above " + caster->query_objective() + " and lifts off the ground.", "very black"), caster);
@@ -61,6 +62,7 @@ void dest_effect()
     {
         tell_object(caster, "%^BLACK%^BOLD%^The wings of darkness fade.%^RESET%^");
         caster->remove_property("flying");
+        caster->set_property("endurance",(-1*(clevel/10)));
     }
     
     ::dest_effect();

@@ -12,11 +12,10 @@ int amount;
 void create() {
     ::create();
     set_spell_name("astral projection");
-    set_spell_level((["oracle":9, "mage":9,"cleric":9, "psion":8 ]));
+    set_spell_level((["mage":9,"cleric":9, "psion":8 ]));
     set_discipline("nomad");
     set_spell_sphere("necromancy");
     set_syntax("cast CLASS astral projection");
-    set_mystery("ancestor");
     set_description("By freeing your spirit from your physical body, this spell allows you to project an astral body. The new body will look mostly like you, but will be invisible to others. Your new body will obey your commands and will convey everything that is happening around it into your mind. The death of your second body will send you into a brief shock and will slightly harm you.
 
 This is a greater summons, and cannot be used simultaneously with other greater summons.

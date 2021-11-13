@@ -51,7 +51,7 @@ void reset(){
     }
     
     // Assortment of scrolls from 1st to 4th level
-    for (i = 0; i < 11; i++){
+    for (i = 0; i < 6; i++){
         if (!present("scroll " + i)){
             rclass = SCRL_CLASSES[random(sizeof(SCRL_CLASSES))];
             rspell = MAGIC_D->query_random_spell(rclass, (roll_dice(1, 4)));
@@ -79,5 +79,11 @@ void reset(){
         }
     }
 
+    // Spell focus for Wreath of Blades
+    for (i = 0; i <3; i++){
+        if (!present("mithral dagger " + i)){
+            new("/d/magic/spell_foci/mithral_dagger")->move(TO);
+        }
+    }
 }
 

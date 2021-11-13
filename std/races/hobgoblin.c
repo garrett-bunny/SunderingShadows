@@ -150,3 +150,5 @@ string *query_languages(string subrace)
 {
     return (["required":({"goblin","undercommon"}),"optional":({"orcish","kobold","giant",})]);
 }
+
+string query_default_language() { return "undercommon"; }

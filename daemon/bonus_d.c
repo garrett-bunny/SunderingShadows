@@ -285,6 +285,13 @@ varargs ac_bonus(object who, object attacker)
 
     dexb = query_dex_bonus(who);
     dexb = -dexb;
+    
+    //Nature oracle feature
+    if(who->query_mystery() == "nature")
+    {
+        if(who->query_class_level("oracle") > 20)
+            dexb = query_stat_bonus(who, "charisma");
+    }
 
     if (who->query_temporary_blinded() || who->query_blind()) {
         if (!FEATS_D->usable_feat(who, "blindfight")) {

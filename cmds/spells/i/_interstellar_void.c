@@ -61,7 +61,7 @@ void spell_effect(int prof){
     else
     {
         tell_object(target, "%^BLUE%^The void energy strikes you, causing serious pain, but you are able to shrug some of it off.");
-        tell_room(environment(caster), "%^BLUE%^The void energy strikes " + target->QCN + ", but " + target->query_pronoun() + " is able to shrug some of it off.", target);
+        tell_room(environment(caster), "%^BLUE%^The void energy strikes " + target->QCN + ", but " + target->query_subjective() + " is able to shrug some of it off.", target);
         target->cause_typed_damage(target, "torso", damage / 2, "void");
     }
     spell_kill(target, caster);

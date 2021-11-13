@@ -55,7 +55,8 @@ void heart_beat(){
     if(!objectp(TO)) { continue; }
 
     tell_object(heat[i],"%^BOLD%^%^RED%^The heat sears you!");
-    heat[i]->do_damage(heat[i]->return_target_limb(),roll_dice(3,10));
+    //heat[i]->do_damage(heat[i]->return_target_limb(),roll_dice(3,10));
+    heat[i]->cause_typed_damage(heat[i], "torso", roll_dice(3, 10), "fire");
     heat[i]->add_attacker(TO);
     heat[i]->continue_attack();
     if(!objectp(heat[i])) { continue; }

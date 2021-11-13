@@ -12,10 +12,9 @@ void create()
 {
     ::create();
     set_spell_name("shapechange");
-    set_spell_level(([ "mage" : 9,"oracle":8, "innate" : 9, "druid" : 9, "cleric" : 9 ]));
-    set_domains("animal");
+    set_spell_level(([ "oracle" : 8, "innate" : 9, "druid" : 9, "sorcerer" : 9 ]));
     set_spell_sphere("alteration");
-    set_mystery(({"dragon", "nature"}));
+    set_mystery(({"dragon"}));
     set_syntax("cast CLASS shapechange on demon|golem|dragon");
     set_description("With this spell you transform into one of several fearsome creatures. In the new form you won't be able to access your inventory, but you will posses mighty melee abilities. The potency of the form will grow with your power, but it won't benefit from transformation spell. In addition winged forms can use <wing> command to travel.
 
@@ -29,6 +28,7 @@ void create()
 int preSpell()
 {
     object shape;
+    string *forms;
     if(objectp(shape = caster->query_property("shapeshifted")) ||
        objectp(shape = caster->query_property("transformed")) ||
        objectp(shape = caster->query_property("dance-of-cuts")) ||
@@ -37,15 +37,23 @@ int preSpell()
         tell_object(caster,"You are already in an alternative form!");
         return 0;
     }
-    if(member_array(arg,valid_forms())==-1)
+    
+    forms = valid_forms();
+    
+    if(spell_type == "oracle")
+    {
+        forms = ({ "dragon" });
+    }
+    if(spell_type == "innate" && FEATS_D->usable_feat(caster,"command the stone"))
+    {
+        forms = ({ "golem" });
+    }    
+    if(member_array(arg,forms)==-1)
     {
         tell_object(caster,"Invalid form, valid forms are: "+implode(valid_forms(),", "));
         return 0;
     }
-    if(spell_type == "innate" && FEATS_D->usable_feat(caster,"command the stone") && arg != "golem") {
-        tell_object(caster,"You can only take on the form of a GOLEM!");
-        return 0;
-    }
+
     return 1;
 }
 

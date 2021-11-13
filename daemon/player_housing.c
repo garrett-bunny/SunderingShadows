@@ -9,11 +9,12 @@
 
 /**
  * function to standardize tp proof levels across player houses, six levels available
+ * intention is for there to be a 25% chance to bypass at max skill levels
  */
 int get_phouse_tp_proof(string tpprooflevel)
 {
     int tp_proof_dc, base_tp_proof_dc;
-    base_tp_proof_dc = 23; //this base tp proof/poor DC
+    base_tp_proof_dc = 35; //this base tp proof/poor DC
     tp_proof_dc = base_tp_proof_dc;
     if (!stringp(tpprooflevel) || tpprooflevel == "" || tpprooflevel == " ") {
         tpprooflevel = "common";
@@ -57,7 +58,7 @@ int get_phouse_tp_proof(string tpprooflevel)
 int get_phouse_scry_proof(string scryprooflevel)
 {
     int scry_proof_dc, base_scry_proof_dc;
-    base_scry_proof_dc = 23;
+    base_scry_proof_dc = 25;
     scry_proof_dc = base_scry_proof_dc;
     if (!stringp(scryprooflevel) || scryprooflevel == "" || scryprooflevel == " ") {
         scryprooflevel = "common";

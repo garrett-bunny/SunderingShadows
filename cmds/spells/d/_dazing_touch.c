@@ -67,7 +67,7 @@ void spell_effect(int prof)
     
     target->cause_typed_damage(target, target->return_target_limb(), sdamage / 2, "untyped");
 
-    if(do_save(target) || target->query_property("no paralyze"))
+    if(do_save(target) || PLAYER_D->immunity_check(target, "paralysis"))
     {
         tell_object(caster, "%^YELLOW%^You fail to paralyze your opponent.%^RESET%^");
         tell_object(target, "%^YELLOW%^You resist the paralysis!%^RESET%^");

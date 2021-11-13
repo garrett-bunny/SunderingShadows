@@ -13,7 +13,7 @@ void create() {
     set_spell_name("chameleon");
     set_spell_level(([ "psion" : 3 ]));
     set_discipline("egoist");
-    set_spell_sphere("illusion");
+    set_spell_sphere("psychometabolism");
     set_syntax("cast CLASS chameleon");
     set_description("Chameleon allows an egoist to cover himself with a thin sheen of ectoplasm that he then wills to "
 "blend in perfectly with his surroundings.  This renders the egoist invisible to all eyes (except those enchanted to see "

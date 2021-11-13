@@ -50,7 +50,7 @@ void fireball(object targ)
     if(random(35) > targ->query_stats("intelligence")){
 	tell_room(environment(targ), "%^RED%^Firedemon hurls a fireball at "+targ->query_cap_name()+" and a wave of heat rushes past you!",targ);
 	tell_object(targ, "%^BOLD%^%^RED%^Firedemon hurls a fireball at your head!");
-	targ->do_damage("head", random(2)+25);
+    targ->cause_typed_damage(targ, "head", random(2)+25, "fire");
 	return 1;
 
     } else {

@@ -1,96 +1,184 @@
-//      /bin/system/_update.c
-//      from the Nightmare Mudlib
-//      destructs an old version of a file and loads a new one
-//      created by Sulam 911219
-//      security changes by Descartes of Borg 930810
+//
+//  _update.c
+//  
+//  Tlaloc's attempt at rewriting the update command with
+//  new functionality.
+//  
+//  Combines update and dirupdate into one file.
+//  "update *" reloads all files in current directory
+//  
+//  FLAGS as FOLLOWS
+//  -r - ignore inherited files
+//  -R - update all inherited files
+//  -z - update only inherited files "older" than the target
+//  
+//  -- Tlaloc -- 10/27/21
+//
 
 #include <std.h>
-#include <rooms.h>
 #include <security.h>
-#include <move.h>
 
 inherit DAEMON;
 
-int cmd_update(string str) {
-    object *ob;
-    object obb, ob2;
-    string file, res;
-    int n, master_flag;
-
-    if(ambassadorp(previous_object())) return 0;
-
-    if(!str) {
-        if(!environment(this_player())) {
-            write("No environment!");
+int cmd_update(string str)
+{
+    string file, *files, tmp, *flags, *input;
+    int deep, dirupdate;
+    object ob, *obs;
+    
+    if(str == "*")
+    {
+        file = resolv_path(this_player()->get_path(), "");
+        files = get_dir(file + "/*.c");
+        
+        if(!sizeof(files))
+        {
+            write("No files in current directory.");
             return 1;
         }
-        obb = environment(this_player());
-        file = file_name(obb);
-        if(!obb->query_property("silent update")){
-           message("Nsystem", "Update environment ("+file+"): ", this_player());
-        }
-        ob = all_inventory(obb);
-        for (n = 0; n < sizeof(ob); n++)
-        {
-            if (ob[n]->is_player()) ob[n]->move(ROOM_VOID);
-        }
-        seteuid(getuid(previous_object()));
-        destruct(obb);
-        seteuid(UID_SYSTEM);
-        if(this_player()->move(file) != MOVE_OK)
-          message("system", "Error in loading file.", this_player());
-        for (n = 0; n < sizeof(ob); n++)
-        {
-
-            if( ob[n] ) /* something may have happened during the update */
-                ob[n]->move(environment(this_player()));
-        }
-        message("system", "Ok.", this_player());
+        
+        foreach(string temp in files)
+            do_update(file + "/" + temp, 0);
+        
         return 1;
     }
-    str = resolv_path((string)this_player()->get_path(), str);
-/* Have to do special things for the master object */
-    if((ob2 = find_object(str)) == master()) master_flag = 1;
-    if(ob2) {
-        res = catch(ob2->remove());
-        if(res)
-          message("system", str+": error in remove()", this_player());
-        if(ob2) {
-            seteuid(getuid(previous_object()));
-            destruct(ob2);
-            if(!master_flag) seteuid(UID_SYSTEM);
-        }
-    }
-    if(!find_object(str)) 
-    {
-        if(!file_exists(str))
-        {
-            if(strsrch(str,"/adm") == -1)
-            {
-                if(!file_exists(str+".c"))
-                {
-                    tell_object(TP, str+" doesn't seem to exist");
-                    return 1;
-                }
-            }
-        }
 
-        file_size(str);
-        message("system", str+": "+((res=catch(call_other(str,"???"))) ? res : "updated and loaded."), this_player());
-        if(master_flag) seteuid(UID_SYSTEM);
+    if(!strlen(str) || str == "here")
+        file = "/" + file_name(environment(this_player()));
+    else
+    {
+        input = explode(str, " ");         
+        file = resolv_path(this_player()->get_path(), input[0]);
     }
-    else {
-        notify_fail(str+": couldn't destruct\n");
-        return 0;
+    //tell_object(this_player(), "file = " + file);
+    
+    if(sizeof(input) > 1)
+        input = input[1..];
+    else
+        input = ({  });
+    
+    if(sizeof(input))
+    {
+        if(member_array("-r", input) >= 0)
+            deep = 1;
+        if(member_array("-R", input) >= 0)
+            deep = 2;
+        if(member_array("-z", input) >= 0)
+            deep = 3;          
     }
+    
+    /*
+    if(!file || file == "here")
+        file = "/" + file_name(environment(this_player()));
+    */
+    
+    if(file_size(file) == -2 && file_size(file + ".c") < 0)
+    {
+        write("Update : file is a directory.\n");
+        return 1;
+    }
+    
+    if(file[<2..<1] != ".c")
+        file += ".c";
+    
+    seteuid(getuid(this_player()));
+    
+    if(do_update(file, deep) < time())
+        write(file + " : No update necessary.");
+    
+    seteuid(UID_SYSTEM);
+        
     return 1;
 }
 
-void help() {
-    message("help",
-      "Syntax: <update [file]>\n\n"
-      "Destructs the master object of the file named and then attempts "
-      "to reload a new version of it.\n\n"
-      "See also: call, clone, cref, dest, dref, load, renew", this_player()
-    );
+int do_update(string file, int deep)
+{
+    mixed *info;
+    object ob, *obs;
+    int tmp, last_inherit;
+    
+    last_inherit = 0;
+    
+    obs = ({  });
+
+    if(ob = find_object(file))
+    {
+        obs = filter_array(all_inventory(ob), (: userp($1) :));
+        foreach(object obj in obs)
+            obj->move("/d/shadowgate/void");
+    }
+    
+    if(deep == 3)
+    {
+        info = stat(file);
+        ob = load_object(file);
+    
+        foreach(string fn in inherit_list(ob))
+        {
+            tmp = do_update(fn, deep > 1 ? deep : 0);
+            last_inherit = tmp > last_inherit ? tmp : last_inherit;
+        }
+    
+        if(sizeof(info))
+        {
+            last_inherit = info[1] > last_inherit ? info[1] : last_inherit;
+            //If object is not out of date
+            if(info[2] > last_inherit)
+                return info[2];
+        }
+        
+        destruct(ob, 1);
+    }
+    
+    else
+    {
+        ob = find_object(file);
+        
+        if(ob)
+        {
+            if(deep)
+            {
+                foreach(string fn in inherit_list(ob))
+                    do_update(fn, deep > 1 ? deep : 0);
+            }
+                
+            destruct(ob, 1);
+        }
+    }
+    
+    if(!catch(ob = load_object(file)))
+        write(file + " : updated and loaded.");
+    else
+    {
+        write(file + " : ERROR in loading file.");
+        write("%^YELLOW%^BOLD%^" + catch(load_object(file)) + "%^RESET%^");
+    }
+        
+    if(file[0] != '/')
+        file = "/" + file;
+    
+    ob->reset();
+    
+    foreach(object obj in obs)
+        ob && obj->move(ob);
+    
+    return time();
 }
+
+int help()
+{
+    write("Command : update");
+    write("Syntax  : update <filename> <flags> OR update *\n");
+    write("Updates the designated file or all files in the current directory (using *).");
+    write("Several flags can be used with this command, as follows: \n" +
+          " '-r' ignores all inherited files\n" +
+          " '-R' reloads all inherited files before loading the designated file\n" +
+          " '-z' reloads ONLY inherited files that are 'older' than the designated file\n");
+    write("Note : flags do not work in conjunction with the wildcard (*).");
+    
+    return 1;
+}
+          
+    
+
+   

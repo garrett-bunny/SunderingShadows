@@ -32,6 +32,7 @@ spell_effect(int prof)
 {
     string mycolor, myhue, myhue2, myfeeling;
     int bonus, roll;
+    object stagger;
 
     if (!objectp(caster) || !objectp(target)) {
         target = 0;
@@ -73,8 +74,10 @@ spell_effect(int prof)
     spell_successful();
 
     damage_targ(target, target->return_target_limb(), sdamage, "cold");
-    target->set_tripped(roll_dice(1, 6), "%^BOLD%^%^CYAN%^You are staggered by the cold!%^RESET%^");
-    target->use_stamina(sdamage / 6);
-
-    dest_effect();
+    
+    if(catch(stagger = load_object("/std/effect/status/staggered")))
+        return;
+    
+    stagger->apply_effect(target, roll_dice(1, 6));
+    ::dest_effect();
 }

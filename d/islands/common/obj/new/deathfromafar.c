@@ -54,10 +54,12 @@ string query_ammo_type()
 
 int wieldme()
 {
+    /*
     if (ETO->query_property("master weapon")) {
         tell_object(ETO, "You find it impossible to lift two such mighty weapons!", ETO);
         return 0;
     }
+    */
     tell_room(EETO, ETOQCN + " %^RESET%^%^ORANGE%^wields the longbow and seems filled with a %^BOLD%^%^RED%^hunter's instinct%^RESET%^%^ORANGE%^.%^RESET%^", ETO);
     tell_object(ETO, "%^RESET%^%^ORANGE%^As you wield the longbow, you are filled with a %^BOLD%^%^%^RED%^hunter's instinct%^RESET%^%^ORANGE%^.%^RESET%^");
     ETO->set_property("master weapon", 1);

@@ -16,6 +16,7 @@ void create()
     set_damage_desc("Area of effect mental damage or death on failed save");
     set_description("The telepath manifests a wave of overpowering psychic energy and releases it on all around them. The unfortunate souls caught in this wave suffer intense mental damage, or death on a failed will save.");
     mental_spell();
+    set_immunities( ({ "mental" }) );
     set_save("will");
     splash_spell(3);
 }

@@ -36,8 +36,8 @@ int checkDispel(object ob, int clevel, object caster)
         return 0;
     }
 
-    if (FEATS_D->usable_feat(yourcast, "elusive spellcraft") &&
-        !FEATS_D->usable_feat(caster, "elusive spellcraft")) {
+    if (FEATS_D->usable_feat(yourcast, "resilient arcana")) 
+    {
         DC += 8;
     }
 
@@ -47,6 +47,11 @@ int checkDispel(object ob, int clevel, object caster)
 
     if (yourcast->query_property("dispelling_buffer") > 0) {
         DC += yourcast->query_property("dispelling_buffer");
+    }
+    
+    if(caster->query_mystery() == "spellscar" && caster->query_class_level("oracle") >= 21)
+    {
+        DC -= 4;
     }
 
     if (roll >= DC ) {

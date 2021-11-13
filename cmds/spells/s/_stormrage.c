@@ -63,7 +63,7 @@ void do_storm()
         dest_effect();
         return;
     }
-    if (caster->query_ghost() || caster->query_unconscious()) {
+    if (caster->query_ghost() || caster->query_unconscious() || place != environment(caster)) {
         tell_room(place, "%^BOLD%^%^BLACK%^The swirling mass of clouds dies down and dissipates.%^RESET%^", caster);
         dest_effect();
         return;

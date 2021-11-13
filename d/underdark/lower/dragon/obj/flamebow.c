@@ -61,6 +61,7 @@ int wield_func(){
      tell_object(ETO,"You are not experienced enough to use this weapon.");
      return 0;
    }
+   /*
    if(ETO->query_property("master weapon")) { //preventing stack up with other "top" weapons
      tell_object(ETO,"%^BOLD%^%^WHITE%^You reach out to grasp the bow, and the weapon already in your hand "
 "seems to radiate with denial.  You find yourself unwilling even to lift the second weapon!");
@@ -68,6 +69,7 @@ int wield_func(){
 "stops.",ETO);
      return 0;
    }
+   */
    tell_object(ETO,"%^YELLOW%^You string the longbow and take a firm grasp, and the wood in your hands bursts "
 "into %^BOLD%^%^WHITE%^br%^RESET%^i%^BOLD%^%^WHITE%^ll%^YELLOW%^i%^BOLD%^%^WHITE%^ant %^YELLOW%^white flame!\n"
 "%^BOLD%^%^WHITE%^You feel it may be effective to %^YELLOW%^shoot skywards%^BOLD%^%^WHITE%^.%^RESET%^");

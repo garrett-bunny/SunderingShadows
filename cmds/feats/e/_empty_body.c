@@ -36,11 +36,16 @@ int cmd_empty_body(string str)
    if(!objectp(TP)) { return 0; }
    if((int)TP->query_class_level("monk") < 18) return 0;
    if((int)TP->query_alignment() > 3) return 0;
+   if(this_player()->cooldown("empty body"))
+   {
+       tell_object(this_player(), "You can't use empty body yet.");
+       return 0;
+   }  
    if(!(int)USER_D->can_spend_ki(TP, 4))
    {
        tell_object(TP, "%^BOLD%^%^CYAN%^Your empty body attempt fails, you lack the needed ki.%^RESET%^");
        dest_effect();
-       return 1;
+       return 0;
    }
    feat = new(base_name(TO));
    feat->setup_feat(TP,str);
@@ -75,12 +80,14 @@ void execute_feat()
         dest_effect();
         return;
     }
+    /*
     if((int)caster->query_property("using empty body") > time())
     {
         tell_object(caster, "%^BOLD%^%^CYAN%^Your empty body attempt fails, you must wait longer.%^RESET%^");
         dest_effect();
         return;
     }
+    */
     if((int)caster->query_property("using instant feat"))
     {
         tell_object(caster,"%^BOLD%^You are already in the middle of using a feat.%^RESET%^");
@@ -134,7 +141,8 @@ void execute_feat()
     {
         if(!caster->query_invis()) tell_room(environment(caster), caster->QCN+"%^BOLD%^%^WHITE%^ fades from view!%^RESET%^", caster);
     }
-    caster->set_property("using empty body", time() + 180);
+    //caster->set_property("using empty body", time() + 180);
+    caster->add_cooldown("empty body", 180);
     caster->set_property("empty body", TO);
     if(!caster->query_invis())
     {

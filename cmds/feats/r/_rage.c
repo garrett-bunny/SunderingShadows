@@ -257,12 +257,10 @@ void execute_attack()
     }
 
     if (caster->query_ghost() || caster->query_unconscious())
-    {
-        dest_effect();
         return;
-    }
 
-    if (!caster->query_property("raged")) {
+    if (!caster->query_property("raged"))
+    {
         dest_effect();
         return;
     }

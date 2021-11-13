@@ -1,6 +1,7 @@
 //harginn.c
 
 #include <std.h>
+#include <daemons.h>
 
 inherit WEAPONLESS;
 
@@ -75,6 +76,7 @@ void burst(object targ)
         }
 
         inven[i]->do_damage("torso", roll_dice(2, 20));
+        inven[i]->cause_typed_damage(inven[i], "torso", roll_dice(2,20), "fire");
     }
     set_func_chance(10);
 }

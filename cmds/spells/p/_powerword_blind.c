@@ -42,21 +42,23 @@ void spell_effect(int prof) {
    current = target->query_hp();
    hpmax = target->query_max_hp();
    x = (current*100)/hpmax;
+   
+   //set_temporary_blinded(int x, string mess), where x is the DC of the blind, NOT the duration
    if(x>90){
       tell_object(caster,"%^BOLD%^"+target->QCN+" reels backward, slightly blinded by the power of your spell!");
       tell_object(target,"%^BOLD%^You reel backward, slightly blinded by the power of "+caster->QCN+"'s spell!");
       tell_room(place,"%^BOLD%^"+target->QCN+" reels backward, slightly blinded by the power of "+caster->QCN+"'s spell!",({caster, target}));
-      target->set_temporary_blinded(roll_dice(2,4),"The force of the spell has left you blinded.");
+      target->set_temporary_blinded(query_spell_DC() - 10,"The force of the spell has left you blinded.");
    }else if(x>50){
       tell_object(caster,"%^BOLD%^"+target->QCN+" reels backward, blinded by the power of your spell!");
       tell_object(target,"%^BOLD%^You reel backward, blinded by the power of "+caster->QCN+"'s spell!");
       tell_room(place,"%^BOLD%^"+target->QCN+" reels backward, blinded by the power of "+caster->QCN+"'s spell!",({caster, target}));
-      target->set_temporary_blinded(roll_dice(2,8),"The force of the spell has left you blinded.");
+      target->set_temporary_blinded(query_spell_DC(),"The force of the spell has left you blinded.");
    }else{
       tell_object(caster,"%^BOLD%^"+target->QCN+" reels backward, completely blinded by the power of your spell!");
       tell_object(target,"%^BOLD%^You reel backward, completely blinded by the power of "+caster->QCN+"'s spell!");
       tell_room(place,"%^BOLD%^"+target->QCN+" reels backward, completely blinded by the power of "+caster->QCN+"'s spell!",({caster, target}));
-      target->set_temporary_blinded(roll_dice(2,16),"The force of the spell has left you blinded.");
+      target->set_temporary_blinded(query_spell_DC() + 10,"The force of the spell has left you blinded.");
    }
 
    spell_successful();

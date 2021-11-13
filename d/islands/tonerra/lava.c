@@ -85,14 +85,14 @@ void create()
     set_terrain(NAT_TUNNEL);
     set_travel(FOOT_PATH);
     set_short("%^BOLD%^%^RED%^L%^RESET%^%^RED%^a%^BOLD%^%^BLACK%^v%^RED%^a T%^BLACK%^u%^RED%^b%^RESET%^%^RED%^e%^BOLD%^s%^RESET%^");
-    set_long(query_short() + "\n%^BOLD%^%^BLACK%^Cyclindrical walls formed by the "+
+    set_long(query_short() + "\n%^BOLD%^%^BLACK%^Cylindrical walls formed by the "+
 "explosion of angry of lava rise up around you, "+
 "%^RESET%^%^ORANGE%^s%^WHITE%^t%^ORANGE%^r%^BOLD%^%^BLACK%^ia%^RESET%^%^ORANGE%^t%^WHITE%^e%^ORANGE%^d "+
 "%^BOLD%^%^BLACK%^and dark. Lava drips, now no more potent than a "+
 "%^RESET%^memory%^BOLD%^%^BLACK%^, hang from the ceiling, and jagged rocks "+
 "rise up from the ground making your passage precarious. Pools of "+
 "%^RED%^l%^RESET%^%^RED%^a%^BOLD%^va %^BLACK%^bubble up from somewhere below, "+
-"filling the air with the choking scent of %^RESET%^sulfer %^BOLD%^%^BLACK%^and "+
+"filling the air with the choking scent of %^RESET%^sulfur %^BOLD%^%^BLACK%^and "+
 "%^RESET%^smoke%^BOLD%^%^BLACK%^. Your eyes burn. The heat is so oppressive, and "+
 "you long for a breath of fresh air.%^RESET%^\n");
     set_listen("default","%^RED%^The lava flowing under your feet makes a strange buzzing sound.");

@@ -130,6 +130,7 @@ areas = ([
              "/d/azha/town/" : "Azha",
              "/d/darkwood/camps/rooms/town/" : "Synoria",
              "/d/tharis/newtharis/rooms" : "Tharis",
+             "/d/tharis/newtharis/hotel_tharis" : "Tharis",
              "/d/antioch/antioch2/rooms" : "Antioch",
              "/d/dagger/tonovi/town" : "Tonovi",
              "/d/dagger/Torm/city" : "Torm",
@@ -140,6 +141,11 @@ areas = ([
              "/d/darkwood/room/rhapsody" : "the Rhapsody inn",
              "/d/dagger/exchange" : "the Exchange",
              "/d/player_houses/innaeli/rooms/bsb1" : "the Bloody Scourge inn",
+             "/d/player_houses/lizabelle/ghall" : "The Pearl Necklace",
+             "/d/player_houses/lizabelle/dining" : "The Pearl Necklace",
+             "/d/player_houses/lizabelle/pearlbar" : "The Pearl Necklace",
+             "/d/player_houses/lizabelle/library" : "The Pearl Necklace",
+             "/d/player_houses/lizabelle/patio" : "The Pearl Necklace",
              ]);
 
 

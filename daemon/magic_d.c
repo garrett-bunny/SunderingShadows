@@ -30,6 +30,7 @@ void index_spells();
 mapping allSpells;
 mapping domain_spells;
 mapping spellIndex;
+mapping tracked_spells = ([   ]);
 
 mapping quick_names;
 
@@ -340,6 +341,24 @@ void build_index()
 mapping query_index_row(string spell)
 {
     return spellIndex[spell];
+}
+
+string *query_domain_spells(string str)
+{
+    string *requested;
+    
+    requested = keys(domain_spells);
+    
+    if(strlen(str))
+    {
+        foreach(string what in requested)
+        {
+            if(pointerp(spellIndex[what]["divine_domain"]) && member_array(str, spellIndex[what]["divine_domain"]) < 0)
+                requested -= ({ what });
+        }
+    }
+    
+    return requested;
 }
 
 /**
@@ -836,4 +855,112 @@ string get_spell_file_name(string spell)
 	spell = DIR_SPELLS + "/"+ explode(spell, "")[0] + "/_" + replace_string(spell, " ", "_") + ".c";
 	if(!file_exists(spell)) return "";
 	return spell;
+}
+
+//This section tracks cast spells.
+//Tied into spell.c
+mapping tracked_spells()
+{
+    return tracked_spells;
+}
+
+//tracked_spells ([ spell_name : ({ num casts, max clevel, average clevel }) ])
+int track_spell(string spell_name, int clevel)
+{
+    int max_clevel, num, avg;
+    
+    if(!strlen(spell_name) || !clevel)
+        return 0;
+/*   
+    if(!pointerp(tracked_spells))
+        tracked_spells = ([  ]);
+*/    
+    if(member_array(spell_name, keys(tracked_spells)) < 0)
+    {
+        tracked_spells += ([ spell_name : ({ 1, clevel, clevel }), ]);
+        save_object(MAGIC_D_SAVE);
+        return 1;
+    }
+    
+    if(!pointerp(tracked_spells[spell_name]))
+    {
+        tracked_spells[spell_name] = ({ 1, clevel, clevel });
+        return 1;
+    }
+    
+    max_clevel = max( ({ clevel, tracked_spells[spell_name][1] }) );
+    num = tracked_spells[spell_name][0] + 1;
+    avg = (tracked_spells[spell_name][2] + clevel) / num;
+    
+    tracked_spells[spell_name] = ({ num, max_clevel, avg });
+    /*
+    tracked_spells[spell_name][0] = num;
+    tracked_spells[spell_name][1] = max_clevel;
+    tracked_spells[spell_name][2] = avg;
+    */
+    
+    save_object(MAGIC_D_SAVE);
+    
+    return 1;
+}
+
+void spell_usage_data(string spell_name)
+{
+    string *top_ten;
+    
+    if(!sizeof(tracked_spells))
+    {
+        write("No spells have been tracked.");
+        return;
+    }
+    
+    if(!strlen(spell_name))
+    {
+        top_ten = keys(tracked_spells);
+        top_ten = sort_array(top_ten, "compare_spells", this_object());
+        top_ten = top_ten[0..9];
+        
+        write("%^RED%^BOLD%^Top Ten Used Spells:%^RESET%^");
+        
+        foreach(string str in top_ten)
+        {
+            printf("%-22s : %6d\n", capitalize(str), tracked_spells[str][0]);
+        }
+        
+        return 1;
+    } 
+    
+    if(member_array(spell_name, keys(tracked_spells)) < 0)
+    {
+        write("No data for that spell.");
+        return;
+    }
+    
+    if(!pointerp(tracked_spells[spell_name]))
+    {
+        write("Invalid spell data.");
+        return;
+    }
+    
+    write("%^RED%^BOLD%^" + capitalize(spell_name) + "%^RESET%^");
+    printf("Total number of casts : %d\n", tracked_spells[spell_name][0]);
+    printf("Maximum caster level  : %d\n", tracked_spells[spell_name][1]);
+    printf("Average caster level  : %d\n", tracked_spells[spell_name][2]);
+}
+
+int compare_spells(string one, string two)
+{
+    if(tracked_spells[one][0] > tracked_spells[two][0]) return -1;
+    if(tracked_spells[one][0] < tracked_spells[two][0]) return 1;
+    
+    return 0;
+}
+
+int clear_tracking_data()
+{
+    write("Clearing tracking data...");
+    tracked_spells = ([  ]);
+    save_object(MAGIC_D_SAVE);
+    
+    return 1;
 }

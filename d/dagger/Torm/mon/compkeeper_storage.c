@@ -1,1 +1,1 @@
-inherit "/d/common/inherit/scroll_storage.c";
+inherit "/d/common/inherit/magic_storage.c";

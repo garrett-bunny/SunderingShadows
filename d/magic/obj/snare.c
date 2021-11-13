@@ -45,15 +45,16 @@ void failure(){
    tell_object(find_player(mycaster),"%^BOLD%^%^GREEN%^You feel a brief "+
       "jerk on your senses as "+TPQCN+" trips your snare!%^RESET%^");
    tell_room(ETO,"%^BOLD%^%^GREEN%^"+TPQCN+" trips a hidden snare, and "+
-      "stumbles in pain as short spikes drive into "+TP->QP+
+      "gets flipped upside down and they dangle helplessly by their"+
       " feet!%^RESET%^",({TP,find_player(mycaster)}));
    tell_object(TP,"%^BOLD%^%^GREEN%^As you walk forward you trigger a "+
-      "hidden snare, and short spikes drive into the undersides of your "+
-      "feet!%^RESET%^");
+      "hidden snare, and get caught in the snare and flipped completely "+
+      "upside down!%^RESET%^");
    dam = glyph_power/3;
    if(dam < 1) dam = 1;
    if(dam > 12) dam = 12;
    dam = roll_dice(dam,6);
+   TP->set_paralyzed(roll_dice(2,4)*6,"You are immobile and disoriented!.");
    TP->do_damage(TP->return_target_limb(),dam);
    TP->add_attacker(TO);
    TP->continue_attack();

@@ -1,3 +1,5 @@
+//This should really blind as well
+
 #include <std.h>
 
 inherit SPELL;

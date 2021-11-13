@@ -892,9 +892,10 @@ void reset_mastered()
     mastered = ([]);
 }
 
-void prepare(string str, int temp, string myclass, int num)
+void prepare(string str, int temp, string myclass, int num, int flag)
 {
     object obt;
+
     if (!objectp(obt = TO->query_property("memorizing")) && (obt != TO)) {
         return;
     }
@@ -926,6 +927,12 @@ void prepare(string str, int temp, string myclass, int num)
         case "sorcerer":
             tell_object(TO, "The arcane power hums through your body.");
             tell_room(ETO, TO->QCN + " focusses intently.", TO);
+            break;
+        
+        case "mage":
+            tell_object(this_object(), "You flip to the next page in your book and study the arcane script.");
+            tell_room(environment(this_object()), this_object()->query_cap_name() + " flips to the next page in " + this_object()->query_possessive() + " book and studies the arcane script.", this_object());
+            
             break;
 
         default:
@@ -983,7 +990,7 @@ void prepare(string str, int temp, string myclass, int num)
                 }
                 focus = 0;
             }           
-            prepare2();
+            prepare2(myclass);
             return 1;
         }
     }
@@ -993,7 +1000,7 @@ void prepare(string str, int temp, string myclass, int num)
             set_memorized(myclass, str, 1);
             num--;
         }
-        call_out("prepare", 2, str, temp, myclass, num);
+        call_out("prepare", 2, str, temp, myclass, num, 1);
     }else {
         if (num > 1) {
             while (num--) {
@@ -1006,18 +1013,22 @@ void prepare(string str, int temp, string myclass, int num)
                 set_memorized(myclass, str, 1);
             }
         }
-        prepare2();
+        prepare2(myclass);
         return 1;
     }
 }
 
-void prepare2()
+void prepare2(string myclass)
 {
     if (TO->query_property("memorizing")) {
         TO->remove_property("memorizing");
     }
     
-    tell_room(ETO, TO->QCN + " completes " + TO->QP + " preparations.", TO);
+    if(myclass == "mage")
+        tell_room(environment(this_object()), this_object()->query_cap_name() + " finishes studying and closes " + this_object()->query_possessive() + " spell book.", this_object());
+    else
+        tell_room(ETO, TO->QCN + " completes " + TO->QP + " preparations.", TO);
+    
     tell_object(TO, "%^BOLD%^%^GREEN%^You have finished preparing your spells.");
 }
 

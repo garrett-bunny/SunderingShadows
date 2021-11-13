@@ -24,7 +24,7 @@ mapping stat_requirements() {
     return ([ "wisdom" : 14, ]);
 }
 
-int *saving_throws() { return ({ 1,0,1 }); }
+int *saving_throws() { return ({ 1,-1,1 }); }
 
 string *combat_styles() {
     return ({});
@@ -42,7 +42,7 @@ string *class_feats(string myspec)
 
 mapping query_cantrip_spells(object ob)
 {
-    return ([ "create water" : 1, "detect magic" : 1, "detect poison" : 1, "guidance" : 1, "resistance" : 1, "light" : 1, "mending" : 1, "disrupt undead" : 1 ]);
+    return ([ "create water" : 1, "detect magic" : 1, "detect poison" : 1, "guidance" : 1, "resistance" : 1, "light" : 1, "mending" : 1, "disrupt undead" : 1, "acid splash" : 1 ]);
 }
 
 mapping class_featmap(string myspec) {

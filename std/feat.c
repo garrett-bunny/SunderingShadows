@@ -511,30 +511,22 @@ varargs int do_save(object ob,int mod)
 {
     string save;
     int num, DC, mylvl;
+    object daemon;
 
     if(!objectp(ob)) { return 0; }
     save = query_save_type();
 
     mylvl = max( ({ flevel, caster->query_level() - 10 }) );
-    //Base 10 plus a modifier to coincide with spell level boost on spells
-    DC = 19 + mylvl / 5;
+
+    DC = mylvl + 19;
     //MOD should include whatever stat mod you're using for the feat
     DC += mod;
+    
+    if(catch(daemon = load_object("/daemon/saving_throw_d")))
+        return 0;
+    
+    num = daemon->do_save(ob, DC, save, mod);
 
-    switch(save)
-    {
-    case "fort":
-    case "fortitude":
-        num = (int)"/daemon/saving_throw_d"->fort_save(ob,DC);
-        break;
-    case "will":
-    case "willpower":
-        num = (int)"/daemon/saving_throw_d"->will_save(ob,DC);
-        break;
-    case "reflex":
-        num = (int)"/daemon/saving_throw_d"->reflex_save(ob,DC);
-        break;
-    }
     return num;
 }
 

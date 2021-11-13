@@ -10,7 +10,6 @@ void create() {
     ::create();
     set_spell_name("waves of fatigue");
     set_spell_level(([ "mage" : 5,"cleric":5,"warlock" : 3 ]));
-    set_domains("renewal");
     set_spell_sphere("necromancy");
     set_syntax("cast CLASS waves of fatigue");
     set_damage_desc("living creatures become fatigued");

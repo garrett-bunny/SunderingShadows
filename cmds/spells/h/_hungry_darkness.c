@@ -9,12 +9,12 @@ void create() {
     ::create();
     set_author("nienne");
     set_spell_name("hungry darkness");
-    set_spell_level(([ "warlock" : 2 ]));
-    set_spell_sphere("necromancy");
+    set_spell_level(([ "mage" : 7, "warlock" : 4 ]));
+    set_spell_sphere("invocation_evocation");
     set_syntax("cast CLASS hungry darkness");
     set_description("This invocation calls a supernatural darkness down within the area, blurring the line between the "
 "prime material plane and the planes beyond. What lies beyond will ignore the warlock, but will reach out, biting and "
-"clawing at anything close enough...");
+"clawing at anything close enough...Enemies that fail a save will suffer bleeding wounds.");
     set_verbal_comp();
     set_somatic_comp();
     set_save("reflex");
@@ -105,6 +105,8 @@ void execute_attack() {
                     damage_targ(foes[i], target_limb, damage,"sonic");
                     break;
                 }
+                
+                foes[i]->set_property("rend", 2);
             }
         }
         time++;;

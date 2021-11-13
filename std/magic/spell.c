@@ -7,6 +7,8 @@
 #include <mysteries.h>
 
 #define NO_EFFECT -100
+#define TRACK_SPELLS 1
+
 inherit DAEMON;
 
 #include <spellcomponents.h>
@@ -88,7 +90,8 @@ int spell_level,
     mental_spell,
     diminish_returns,
     blood_magic,
-    end_time;
+    end_time,
+    spell_DC;
 
 
 object* attackers,
@@ -176,7 +179,7 @@ void set_spell_domain(string domain);
 string get_spell_domain();
 
 // New saving throw
-varargs int do_save(object targ, int mod);
+varargs int do_save(object targ, int mod, int get_dc);
 
 // Interface for the permanent spell daemon to use to reactivate
 // persistent spells upon startup.
@@ -589,10 +592,10 @@ void startCasting()
 
     inven = all_living(ETP);
     roll = TP->query_skill("spellcraft") + roll_dice(1, 20);
-    if (TP->usable_feat("elusive spellcraft")) {
+    
+    if(FEATS_D->usable_feat(this_player(), "resilient arcana"))
         roll += roll_dice(2, 8);
-    }
-
+    
     displaystring = TO->query_cast_string() + "\n";
 
     if (displaystring == "display\n") {
@@ -821,7 +824,7 @@ void wizard_interface(object user, string type, string targ)
 {
     string* msg, whatsit, whatdo, improv, old_spell_type, featneeded, altclass, way;
     object* weaps, wildspell, shapeob;
-    int nodo, i, casting_level;
+    int nodo, i, casting_level, valid_domain;
     int preserve_in_memory = 0;
 
     if (!type) {
@@ -930,6 +933,17 @@ void wizard_interface(object user, string type, string targ)
         if (caster->query_property("travaoe")) {
             tell_object(caster, "You can't concentrate on that many travaoe effects!");
             ::remove();
+            return;
+        }
+    }
+    
+    if(this_player()->is_deva() && target && !query_helpful())
+    {
+        //Cannot initiate combat against a non-evil enemy unless they are attacking a non-evil character themselves
+        if(target->query_true_align() % 3 &&
+          (target->query_current_attacker())->query_true_align() % 3)
+        {
+            tell_object(this_player(), "Your very nature resists causing harm to that being.");
             return;
         }
     }
@@ -1251,10 +1265,7 @@ void wizard_interface(object user, string type, string targ)
     spell_name = replace_string(spell_name, "_", " ");
     improv = replace_string(improv, "_", " ");
 
-    if ((FEATS_D->usable_feat(caster, "spellmastery") && (caster->query("spellmastery_spell") == spell_name)) ||
-  (FEATS_D->usable_feat(caster, "natures gift") && (member_array(spell_name, MAGIC_SS_D->query_class_special_spells("archdruid", "all")) != -1)) ||
-  (FEATS_D->usable_feat(caster, "timeweaver") && (member_array(spell_name, MAGIC_SS_D->query_class_special_spells("chronicler", "all")) != -1)) ||
-  (FEATS_D->usable_feat(caster, "greater spell mastery") && casting_level < 5 && spell_sphere == caster->query_school()))
+    if ((FEATS_D->usable_feat(caster, "spellmastery") && (caster->query("spellmastery_spell") == spell_name)))
     {
         preserve_in_memory = 1;
         tell_object(caster, "%^CYAN%^The spell preserves in your memory.");
@@ -1265,13 +1276,36 @@ void wizard_interface(object user, string type, string targ)
         tell_object(caster, "%^CYAN%^Arcana preserves the spell in your memory.");
         preserve_in_memory = 1;
     }
-    
+
     if(FEATS_D->usable_feat(caster, "inspired necromancy") && spell_sphere == "necromancy")
     {
         if(roll_dice(1, 20) <= 12)
         {
             preserve_in_memory = 1;
             tell_object(caster, "%^BOLD%^BLACK%^Your necromantic affinity preserves the spell.");
+        }
+    }
+    
+    if(!pointerp(divine_domains))
+        divine_domains = ({  });
+
+    if(spell_type == "cleric")
+    {
+        int x = 0;
+
+        if(FEATS_D->usable_feat(caster, "apotheosis"))
+        {
+            foreach(string str in divine_domains)
+            {
+                if(member_array(str, caster->query_divine_domain()) >= 0)
+                    x++;
+            }
+
+            if(x)
+            {
+                tell_object(caster, "%^BOLD%^WHITE%^Your divine attunement preserves the domain spell.");
+                preserve_in_memory = 1;
+            }
         }
     }
 
@@ -1480,8 +1514,9 @@ mixed WildMagicArea(object where)
         return 0;
     }
 
-    if (where->query_property("wild magic") > roll_dice(1, 100)) {
+    if (where->query_property("wild magic") > roll_dice(1, 100) || caster->query_property("spellscarred")) {
         wm_affect = where->query_property("wild magic affect");
+        caster->remove_property("spellscarred");
         if (!stringp(wm_notify = where->query_property("wild magic warning"))) {
             wm_notify = "%^BOLD%^%^RED%^You sense an unseen force " +
                         "manipulating your incantation!%^RESET%^";
@@ -1825,6 +1860,10 @@ varargs void use_spell(object ob, mixed targ, int ob_level, int prof, string cla
     }else {
         TO->spell_effect(prof);
     }
+    
+    if(TRACK_SPELLS && userp(caster))
+        MAGIC_D->track_spell(spell_name, clevel);
+    
     return 1;
 }
 
@@ -1867,7 +1906,10 @@ int query_spell_level(string classtype)
         return spell_levels["psion"];
     }
     if (classtype == "sorcerer") {
-        return spell_levels["mage"];
+        if(!spell_levels["sorcerer"])
+        {
+            return spell_levels["mage"];
+        }
     }
     if (classtype == "oracle") {
         if (!spell_levels["oracle"]) {
@@ -2085,6 +2127,19 @@ void check_fizzle(object ob)
     if (target_required && !target) {
         caster->removeAdminBlock();
         TO->remove();
+        return;
+    }
+
+    if(caster && caster->query_property("counterspell"))
+    {
+        caster->remove_property("counterspell");
+        caster->remove_property("empower spell");
+        caster->remove_property("quicken spell");
+        caster->remove_property("maximize spell");
+        caster->remove_property("enlarge spell");
+        tell_object(caster, "%^CYAN%^Your spell is countered and fails to materialize!");
+        tell_room(place, "%^CYAN%^" + caster->query_cap_name() + " gasps as " + caster->query_possessive() + " spell fails to materialize!", caster);
+        this_object()->remove();
         return;
     }
 
@@ -2499,14 +2554,27 @@ void define_clevel()
             if(member_array("evil", domains) >= 0)
                 clevel += 1;
         }
+
+        if(!pointerp(divine_domains))
+            divine_domains = ({  });
+        
+        if(FEATS_D->usable_feat(caster, "apotheosis"))
+        {
+            int succ = 0;
+
+            if(sizeof(divine_domains)) {
+                foreach(string str in divine_domains)
+                {
+                    if(member_array(str, domains) >= 0)
+                        succ ++;
+                }
+            }
+
+            if(succ)
+                clevel += 1;
+        }
     }
-    
-    if(caster->query_mystery() == "shadow" && spell_type == "oracle" && shadow_spell)
-    {
-        if(caster->query_class_level("oracle") >= 21)
-            clevel += 1;
-    }
-         
+
     if ((spell_type == "mage" || spell_type == "sorcerer") && !shadow_spell) {
         if (caster->query_school() && caster->query_opposing_school()) {
             if (spell_sphere == caster->query_school()) {
@@ -2557,6 +2625,15 @@ void define_clevel()
         }
     }
 
+    if(shadow_spell)
+    {
+        if(caster->query_mystery() == "shadow" && spell_type == "oracle")
+        {
+            if(caster->query_class_level("oracle") >= 21)
+                clevel += 1;
+        }
+    }
+
     if(caster->is_class("versatile_arcanist") && sizeof(immune))
     {
         if(member_array(caster->query("elementalist"), immune) >= 0)
@@ -2584,8 +2661,7 @@ void define_base_spell_level_bonus()
         sdamage_adjustment -= 4;
     }
 
-    if ((spell_type == "mage" || spell_type == "sorcerer" || spell_type == "psion")
-        && FEATS_D->usable_feat(caster, "apoapsis of power")) {
+    if (FEATS_D->usable_feat(caster, "apoapsis of power")) {
         sdamage_adjustment += 2;
     }
     sdamage_adjustment = sdamage_adjustment < 0 ? 0 : sdamage_adjustment;
@@ -2663,7 +2739,7 @@ void define_base_damage(int adjust)
             if(FEATS_D->usable_feat(caster, "power specialization"))
                 sdamage += (BONUS_D->query_stat_bonus(caster, "intelligence") * (1 + clevel / 12));
         }
-        
+
         if(target && evil_spell)
         {
             if(target->is_class("barbarian"))
@@ -3138,14 +3214,13 @@ void debug_saves(int num)
         save_debug = num;
     }
     return;
-}
+}   
 
-// can display a LOT of debug info.  Use <debug_saves(1)> in the spell's create() to enable
-varargs int do_save(object targ, int mod)
+varargs int do_save(object targ, int mod, int get_dc)
 {
     string type, stat, * myclasses;
-    int caster_bonus, target_level, num, casting_level, i, classlvl, stat_bonus;
-    mapping debug_map = ([]);
+    int DC, classlvl, num;
+    object daemon;
 
     if (!objectp(caster)) {
         return 1;
@@ -3156,54 +3231,38 @@ varargs int do_save(object targ, int mod)
     if (!intp(mod)) {
         mod = 0;
     }
+    
+    classlvl = max( ({ caster->query_guild_level(spell_type), caster->query_character_level() - 10 }) );
 
+    if (FEATS_D->usable_feat(caster, "eldritch conditioning"))
+    {
+        if (spell_type == caster->query("base_class"))
+            classlvl = caster->query_base_character_level();
+    }
+
+    if (FEATS_D->usable_feat(caster, "tricky spells"))
+    {
+        if(spell_sphere == "enchantment_charm" || spell_sphere == "illusion" || spell_sphere == "alteration")
+            classlvl = caster->query_base_character_level();
+    }
+    
+    DC = classlvl + 10;
+    DC += ((caster->query_stats(get_casting_stat()) - 10) / 2);
+    DC += ((query_spell_level(spell_type) + 1) / 2);
+    DC += min( ({ caster->query_property("spell dcs"), 10 }) );
     type = get_save();
-    target_level = (int)targ->query_level();
-    classlvl = caster->query_prestige_level(spell_type);
-    classlvl = max( ({ caster->query_level() - 10, classlvl }) );
-    caster_bonus = (int)caster->query_property("spell dcs");
-
-    if (save_debug) {
-        tell_object(caster, "Presenting saving throw debug info:\n");
-        tell_object(caster, "Save type: " + type + "");
-        tell_object(caster, "Caster name: " + caster->query_true_name() + "");
-        tell_object(caster, "Target name: " + targ->query_true_name() + "");
-        tell_object(caster, "Target's level: " + target_level + "");
-        tell_object(caster, "Bonus from spell dcs property: " + caster_bonus + "");
-    }
-
-    caster_bonus += 10; // initial DC of 10 for opposed spells, all the other caster mods gets added to this
-    caster_bonus += classlvl / 5;
-
-    if (save_debug) {
-        tell_object(caster, "%^BOLD%^%^RED%^Bonus per 3.xx rules for d20 roll: 10");
-    }
-
-    stat = get_casting_stat();
-    stat_bonus = calculate_bonus((int)caster->query_stats(stat));
-    if (save_debug) {
-        tell_object(caster, "Bonus from caster's casting stat: " + stat_bonus + "");
-    }
-    caster_bonus += stat_bonus;
-
-    if (save_debug) {
-        tell_object(caster, "Bonus from level of spell: " + casting_level + "");
-    }
-
-    caster_bonus += casting_level;
-    //caster_bonus += (casting_level > 5 ? casting_level - 5 : 0);
 
     // Class and feat specific stuff here
     if (FEATS_D->usable_feat(caster, "surprise spells") &&
         (caster->query_invis() || caster->query_hidden()) &&
         environment(caster) == environment(targ)) {
-        caster_bonus += 5;
+        DC += 5;
     }
 
     //Telepath can power up a mental spell to higher DC
     if(mental_spell && caster->query_property("mental intrusion"))
     {
-        caster_bonus += 5;
+        DC += 5;
         tell_object(caster, "%^BOLD%^Your power is bolstered to be more intrusive.%^RESET%^");
         caster->remove_property("mental intrusion");
     }
@@ -3213,15 +3272,15 @@ varargs int do_save(object targ, int mod)
         if (spell_sphere == caster->query_school())
         {
             if (caster->is_class("mage"))
-                caster_bonus += (1 + classlvl / 31);
+                DC += (1 + classlvl / 31);
 
             if (FEATS_D->usable_feat(caster, "school familiarity"))
-                clevel += (1 + classlvl / 31);
+                DC += (1 + classlvl / 31);
         }
         else if (spell_sphere == caster->query_opposing_school())
         {
             if (caster->is_class("mage"))
-                    caster_bonus -= (1 + classlvl / 31);
+                    DC -= (1 + classlvl / 31);
         }
     }
 
@@ -3232,27 +3291,26 @@ varargs int do_save(object targ, int mod)
             spell_sphere == "illusion" ||
             spell_sphere == "enchantment_charm")
             {
-                caster_bonus += 1;
+                DC += 1;
             }
         }
     }
 
     if(diminish_returns)
-        caster_bonus -= (5 * targ->is_diminish_return(spell_name, caster));
+        DC -= (5 * targ->is_diminish_return(spell_name, caster));
 
     //Likewise, telepaths with the guarded thoughts feat have a bonus against mental spells
     if(mental_spell && FEATS_D->usable_feat(targ, "guarded thoughts") && targ->query("available focus"))
-        caster_bonus -= 10;
-    
-    if(evil_spell && FEATS_D->usable_feat(targ, "celestial totem"))
-        caster_bonus -= 2;
+        DC -= 10;
 
-    if (save_debug) {
-        tell_object(caster, "%^RESET%^%^BOLD%^Total after caster bonuses: " + caster_bonus + "%^RESET%^");
-    }
+    if(mental_spell && targ->query_mystery() == "bones" && targ->query_class_level("oracle") >= 10)
+        DC -= 2;
+
+    if(evil_spell && FEATS_D->usable_feat(targ, "celestial totem"))
+        DC -= 2;
 
     // racial saves from magic here
-    caster_bonus += SAVING_THROW_D->magic_save_throw_adjust(targ, caster, );
+    DC += SAVING_THROW_D->magic_save_throw_adjust(targ, caster, );
 
 
     // racial saves from spells here
@@ -3260,7 +3318,7 @@ varargs int do_save(object targ, int mod)
         string targrace = targ->query_race();
 
         if (targrace == "gnome" && spell_sphere == "illusion") {
-            caster_bonus -= 2;
+            DC -= 2;
         }
 
         if (spell_sphere == "enchantment_charm" && (
@@ -3270,85 +3328,46 @@ varargs int do_save(object targ, int mod)
                 targrace == "half-drow" ||
                 targrace == "barrus"
                 )) {
-            caster_bonus -= 2;
+            DC -= 2;
         }
     }
-
-    if (save_debug) {
-        tell_object(caster, "%^RESET%^%^BOLD%^Total after racial save bonuses: " + caster_bonus + "%^RESET%^");
-    }
-
-    caster_bonus = -caster_bonus;
-    if (save_debug) {
-        tell_object(caster, "Flip the sign for save calculations: " + caster_bonus + "");
-    }
-
+    
     if (intp(mod)) {
-        caster_bonus += mod;
-    }
-
-    if (save_debug) {
-        tell_object(caster, "Final modifier to do_save (mod): " + mod + "");
-        tell_object(caster, "%^RESET%^%^BOLD%^Total modifiers BEFORE d20 roll: " + caster_bonus + "%^RESET%^");
+        DC += mod;
     }
 
     if (shadow_spell) {
         type = "will";
-        caster_bonus = shadow_spell * caster_bonus / 10;
-    }
 
-    // this is directly copied below for the shadowdancer reroll - if
-    // anything changed here, change there too plz!
-    switch (lower_case(type)) {
-    case "fortitude":
-    case "fort":
-        if (save_debug) {
-            debug_map = "/daemon/saving_throw_d"->debug_fort_save(targ, caster_bonus);
-        }else {
-            num = "/daemon/saving_throw_d"->fort_save(targ, caster_bonus);
+        if(caster->query_mystery() == "shadow" && spell_type == "oracle")
+        {
+            if(caster->query_class_level("oracle") >= 21)
+                shadow_spell += 1;
         }
-        break;
 
-    case "reflex":
-        if (save_debug) {
-            debug_map = "/daemon/saving_throw_d"->debug_reflex_save(targ, caster_bonus);
-        }else {
-            num = "/daemon/saving_throw_d"->reflex_save(targ, caster_bonus);
-        }
-        break;
-
-    case "willpower":
-    case "will":
-        if (save_debug) {
-            debug_map = "/daemon/saving_throw_d"->debug_will_save(targ, caster_bonus);
-        }else {
-            num = "/daemon/saving_throw_d"->will_save(targ, caster_bonus);
-        }
-        break;
-
-    default:
-        num = 0;
-        break;
+        DC = shadow_spell * DC / 10;
     }
-
-    if (save_debug) {
-        tell_object(caster, "Type of save actually used in daemon: " + debug_map["save_type"] + "");
-        tell_object(caster, "Saving throw number before any rolls: " + debug_map["final_saving_throw"] + "");
-        tell_object(caster, "DC of saving throw: " + debug_map["dc"] + "");
-        tell_object(caster, "Roll: " + debug_map["saving_throw_roll"] + "");
-        tell_object(caster, "Save result (1 pass, 0 fail): " + debug_map["save_result"] + "");
-        tell_object(caster, "Throw passed or failed by: " + debug_map["pass_or_fail_by"] + "");
-    }
-
-    if(diminish_returns && debug_map["save_result"])
+    
+    spell_DC = DC;
+    
+    if(get_dc)
+        return DC;
+    
+    if(catch(daemon = load_object("/daemon/saving_throw_d")))
+        return 0;
+    
+    num = daemon->do_save(targ, DC, type, 0);
+    
+    if(num && diminish_returns)
         targ->add_diminish_return(spell_name, caster);
 
-    if (save_debug) {
-        return debug_map["save_result"];
-    }else {
-        return num;
-    }
+    return num;
 }
+
+int query_spell_DC(object ob, int mod)
+{
+    return spell_DC ? spell_DC : do_save(ob, mod, 1);
+}   
 
 int combat_death_save(object foe, int casters_disadvantage)
 {
@@ -3390,6 +3409,7 @@ object* target_filter(object* targets)
 
     if (sizeof(targets)) {
         targets = filter_array(targets, (:!(avatarp($1) && $1->query_true_invis()):));
+        targets = filter_array(targets, (:!$1->query_property("no detect"):));
     }
 
     if (!query_helpful()) {
@@ -3539,19 +3559,19 @@ int perfect_filter(object obj)
     if (member_array(obj, followers) != -1) {
         return 0;
     }                                                   // 0 to filter if it's following ANYONE in the party
-    
+
     if(owner = caster->query_property("minion"))
     {
         party = ob_party(owner);
         party = distinct_array(party);
-        
+
         if(sizeof(party))
         {
             if(member_array(obj->query_property("minion"), party) >= 0)
                 return 0;
         }
     }
-    
+
     return 1;
 }
 

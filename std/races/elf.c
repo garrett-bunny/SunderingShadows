@@ -321,7 +321,7 @@ mapping weight_values(string gender, int height)
 string* query_hair_colors(string subrace)
 {
     string* choices = ({});
-    if (!stringp(subrace) || subrace == "moon elf" || subrace = "aquatic elf") {
+    if (!stringp(subrace) || subrace == "moon elf" || subrace == "aquatic elf") {
         choices += ({ "silver", "platinum", "ebony" });
         choices += ({ "blue" });
         choices += ({ "black" });
@@ -348,7 +348,7 @@ string* query_hair_colors(string subrace)
 string* query_eye_colors(string subrace, int cha)
 {
     string* choices = ({});
-    if (!stringp(subrace) || subrace == "moon elf" || subrace = "aquatic elf") {
+    if (!stringp(subrace) || subrace == "moon elf" || subrace == "aquatic elf") {
         choices += ({ "sapphire", "azure", "cyan" });
         choices += ({ "emerald" });
         choices += ({ "green", "blue" });

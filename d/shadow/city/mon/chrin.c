@@ -68,8 +68,20 @@ void create() {
 }
 
 void aggfunc() {
-    tell_room(ETO, "%^RESET%^%^MAGENTA%^Chrin snarls: %^BOLD%^You will not get past me.\n%^RESET%^");
+    string racestr;
+    
     if(wizardp(TP)) return 1;
+    racestr = TP->query_race();
+    if((racestr == "ratkin") || (racestr == "wererat") || (racestr == "rat")){
+        tell_object(TP, "%^RESET%^%^MAGENTA%^Chrin watches you carefully.%^RESET%^");
+        return 1;
+    }
+    racestr = TP->query_subraces();
+    if((racestr == "ratkin") || (racestr == "wererat") || (racestr == "rat")){
+        tell_object(TP, "%^RESET%^%^MAGENTA%^Chrin watches you carefully.%^RESET%^");
+        return 1;
+    }
+    tell_room(ETO, "%^RESET%^%^MAGENTA%^Chrin snarls: %^BOLD%^You will not get past me.\n%^RESET%^");
     call_out("force_me",1,"swipe "+TPQN+ "");
 }
 

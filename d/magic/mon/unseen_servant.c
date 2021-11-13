@@ -24,6 +24,7 @@ void create(){
     set_base_damage_type("bludgeoning");
     set_gender("other");
     set_invis();
+    set_property("no_random_treasure",1);
     set_overall_ac(4);
 
     set_alignment(5);

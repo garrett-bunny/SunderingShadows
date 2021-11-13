@@ -294,7 +294,13 @@ int cmd_prepare(string str)
         tell_object(TP, "%^BOLD%^%^GREEN%^You turn your focus inwards, harnessing the power to invoke spells of " + str + ".  (" + times + " attempt(s) - Any action you take will interrupt your focusing.)%^RESET%^");
         tell_room(ETP, TPQCN + " turns " + TP->QP + " focus inwards.", TP);
         break;
-
+        
+    case "mage":
+    
+        tell_object(TP, "%^BOLD%^%^GREEN%^You open your spell book and begin memorizing "+spellname+".  ("+times+" attempt(s) - Any action you take will interrupt your memorizing...");
+        tell_room(environment(this_player()), this_player()->query_cap_name() + " opens up " + this_player()->query_possessive() + " spell book and begins studying intensely.", this_player());
+        break;
+        
     default:
 
         tell_object(TP, "%^BOLD%^%^GREEN%^You focus your thoughts upon preparing the spell of " + spellname + "  (" + times + " attempt(s) - Any action you take will interrupt your preparations....");

@@ -148,8 +148,12 @@ int caster_level_calcs(object player, string the_class)
     if(!objectp(player)) { return 0; }
     base = player->query("base_class");
 
-    level = player->query_class_level(base);
-    level += player->query_class_level("eldritch_knight");
+    //level = player->query_class_level(base);
+    level = player->query_class_level(the_class);
+    
+    if(base == the_class)
+        level += player->query_class_level("eldritch_knight");
+    
     return level;
 }
 

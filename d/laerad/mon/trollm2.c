@@ -31,6 +31,7 @@ void create()
     set_base_damage_type("slashing");
     set_attack_limbs(({ "right hand", "left hand", "head" }));
     set_attacks_num(3);
+    set_spoken("undercommon");
     set_damage(1, 4);
     set_guild_level("mage", 18);
     set_hd(18, 14);

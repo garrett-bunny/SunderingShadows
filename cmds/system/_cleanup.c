@@ -5,6 +5,8 @@
 // Help added by Brian (1/28/92)
 */
 
+//This is mkdir -- Tlaloc
+
 #include <std.h>
 inherit DAEMON;
 

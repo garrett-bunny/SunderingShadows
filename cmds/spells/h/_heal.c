@@ -9,7 +9,7 @@ void create()
 {
     ::create();
     set_spell_name("heal");
-    set_spell_level(([ "cleric" : 6,"inquisitor":6,"oracle":6 ]));
+    set_spell_level(([ "cleric" : 6, "inquisitor" : 6, "oracle" : 6, "druid" : 6 ]));
     set_mystery("life");
     set_spell_sphere("conjuration_summoning");
     set_syntax("cast CLASS heal on TARGET");
@@ -71,6 +71,13 @@ spell_effect(int prof)
     }
 
     rnd = sdamage * 7/6;
+    
+    if(spell_type == "oracle")
+    {
+        if(caster->query_mystery() == "life" && caster->query_class_level("oracle") >= 15)
+            rnd += caster->query_class_level("oracle");
+    }
+    
     damage_targ(target, target->return_target_limb(), rnd, "positive energy");
 
     if(query_spell_name()=="heal" || query_spell_name() == "greater heal")

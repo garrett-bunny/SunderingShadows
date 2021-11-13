@@ -26,6 +26,7 @@ void create()
     set_syntax("cast CLASS ego whip on TARGET");
     set_damage_desc("1d8 damage to CHA for 3 rounds. Daze on failed save");
     set_description("Your rapid mental lashings assault the ego of your enemy, debilitating its confidence. The target takes 1d8 points of Charisma damage. A target that fails its save is also dazed for 3 rounds.");
+    mental_spell();
     set_target_required(1);
     set_save("will");
 }
@@ -63,7 +64,7 @@ void spell_effect(int prof)
     amount = roll_dice(1, 8);
 
     target->set_property("idiocied", 1);
-    target->set_stat_bonus(-amount);
+    target->set_stat_bonus("charisma", -amount);
     spell_kill(target, caster);
 
     if(!do_save(target, 0))

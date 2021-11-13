@@ -106,13 +106,13 @@ int hit_func(object target)
     
     tell_object(owner, color("Your blade seems to explode as it tears into " + target->QCN + "!"));
     tell_object(target, color(owner->QCN + "'s blade seems to explode as it tears into you!"));
-    tell_room(environment(owner), color(owner->QCN + "'s blade seems to explode as it tears into " + target->QCN + "!"));
+    tell_room(environment(owner), color(owner->QCN + "'s blade seems to explode as it tears into " + target->QCN + "!"), ({ owner, target }));
     target->cause_typed_damage(target, target->return_target_limb(), dam, "force");
     
     if(target && !random(5))
     {
         tell_object(owner, color("You disengage and follow up with a stunning coupe!"));
-        tell_room(environment(owner), color(owner->QCN + " disengages and follows up with a stunning coupe!"));
+        tell_room(environment(owner), color(owner->QCN + " disengages and follows up with a stunning coupe!"), owner);
         owner->execute_attack();
         return roll_dice(3, 6);
     }
