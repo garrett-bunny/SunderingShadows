@@ -3233,6 +3233,7 @@ varargs int do_save(object targ, int mod, int get_dc)
     }
     
     classlvl = max( ({ caster->query_guild_level(spell_type), caster->query_character_level() - 10 }) );
+    classlvl = min( ({ classlvl, 60 }) );
 
     if (FEATS_D->usable_feat(caster, "eldritch conditioning"))
     {
@@ -3247,7 +3248,7 @@ varargs int do_save(object targ, int mod, int get_dc)
     }
     
     DC = classlvl + 10;
-    DC += ((caster->query_stats(get_casting_stat()) - 10) / 2);
+    DC += min( ({ BONUS_D->query_stat_bonus(targ, get_casting_stat()), 10 }) );
     DC += ((query_spell_level(spell_type) + 1) / 2);
     DC += min( ({ caster->query_property("spell dcs"), 10 }) );
     type = get_save();

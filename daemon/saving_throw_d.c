@@ -29,7 +29,7 @@ varargs int do_save(object ob, int dc, string type, raw_save)
     save = 0;
     mod = 0;
     max_mod = 0;
-    level = ob->query_base_character_level();
+    level = min( ({ ob->query_base_character_level(), 60 }) );
     
     classes = ob->query_classes();
     if(!pointerp(classes))
@@ -150,6 +150,7 @@ varargs int do_save(object ob, int dc, string type, raw_save)
     }
     
     save = level;
+    statbonus = statbonus > 10 ? 10 : statbonus;
     save += statbonus;
 
     //SAVE ROLL MODIFIERS
@@ -335,7 +336,7 @@ mapping debug_will_save(object ob, int dc)
     return save_info;
 }
 
-int magic_save_throw_adjust(object targ, object caster)
+int magic_save_throw_adjust(object targ, object caster, object spell)
 {
     int caster_bonus = 0;
 
