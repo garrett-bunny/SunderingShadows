@@ -10,16 +10,16 @@
 
 /*
   9.17.21
-  
+
   Tlaloc went through entire file in an attempt to streamline the efficiency (in terms of cycles)
   of this daemon.
-  
+
   Removed as many macros as possible (TO,ETO,TP,QCN) and replaced with variables to avoid repeated
   object calls for the same values. Also this is in an effort to return this daemon to LPC language
   and away from shorthand. For future coders looking at this file.
 */
-  
-  
+
+
 
 #include <std.h>
 #include <dirs.h>
@@ -68,21 +68,21 @@ varargs int extra_hit_calcs(object attacker, object victim, object weapon, strin
     object env, rider, defender;
     int ShieldMissChance, MissChance, AttackerMissChance, mount;
     string v_name, a_name, v_obj, v_poss, a_poss;
-    
+
     if (!objectp(attacker)) {
         return 1;
     }
     if (!objectp(victim)) {
         return 1;
     }
-    
+
     a_name = attacker->query_cap_name();
     a_poss = attacker->query_possessive();
     v_name = victim->query_cap_name();
     v_obj = victim->query_objective();
     v_poss = victim->query_possessive();
-    
-    
+
+
     if (victim->query_paralyzed()) {
         return 1;
     }
@@ -124,7 +124,7 @@ varargs int extra_hit_calcs(object attacker, object victim, object weapon, strin
     //True seeing negates misschance
     if(attacker->true_seeing())
         MissChance = 0;
-    
+
     //Can't block with shield if paralyzed
     if(victim->query_paralyzed())
         ShieldMissChance = 0;
@@ -132,8 +132,8 @@ varargs int extra_hit_calcs(object attacker, object victim, object weapon, strin
     if(victim->light_blind())
         ShieldMissChance /= 2;
     */
-    
-    
+
+
     //Ranger with wild hunter active sees through quarry's concealment
     if(attacker->query_property("quarry") == victim && FEATS_D->is_active(attacker, "wild hunter"))
         MissChance = 0;
@@ -178,10 +178,10 @@ varargs int extra_hit_calcs(object attacker, object victim, object weapon, strin
             }else {
                 defender = victim;
             }
-            
+
             v_name = defender->query_cap_name();
             v_poss = defender->query_possessive();
-            
+
             if (living(attacker)) {
                 tell_object(attacker, "%^RESET%^%^BOLD%^Your attack is deflected off of " + v_name + "'s "
                             "shield!%^RESET%^");
@@ -196,7 +196,7 @@ varargs int extra_hit_calcs(object attacker, object victim, object weapon, strin
                 }
             }else {
                 tell_object(victim, "%^RESET%^%^BOLD%^You deflect the attack with your shield!%^RESET%^");
-                if (objectp(env)) { 
+                if (objectp(env)) {
                     tell_room(env, "%^RESET%^%^BOLD%^" + v_name + " deflects the attack with " + v_poss + " shield!%^RESET%^", ({ defender }));
                 }
             }
@@ -343,18 +343,18 @@ varargs int typed_damage_modification(object attacker, object targ, string limb,
     if (!damage) {
         return 0;
     }
-    
+
     if(!strlen(type))
         type = "untyped";
-    
+
     targ->set_magic_attack(0);
     targ->spell_attack(0);
     limb = targ->adjust_targeted_limb(attacker, limb);
     damage = targ->do_typed_damage_effects(attacker, limb, damage, type);
-    
+
     if(!objectp(targ) || !objectp(attacker))
         return 0;
-    
+
     if (!targ->initialized_resistances()) {
         targ->init_limb_data();
     }
@@ -453,8 +453,7 @@ varargs int typed_damage_modification(object attacker, object targ, string limb,
     if (damage > 0) {
         if (attacker->is_living()) {
             if (targ->query_property("shadowform")) {
-                int sf_pwr = targ->query_property("shadowform");
-                if (!"/daemon/saving_throw_d"->will_save(attacker, -sf_pwr)) {
+                if(!(targ->query_property("shadowform")->do_save(attacker))) {
                     damage /= 5;
                 }
             }
@@ -595,14 +594,14 @@ varargs int typed_damage_modification(object attacker, object targ, string limb,
             }
         }
     }
-    
+
     //Bones Mystery bleed effect on negative energy
     if(damage > 0 && type == "negative energy" && !targ->query_property("negative energy affinity"))
     {
         if(attacker->query_mystery() == "bones" && attacker->query_class_level("oracle") >= 31)
             targ && targ->set_property("rend", attacker->query_prestige_level("oracle") / 8 + 1);
     }
-    
+
     return damage;
 }
 
@@ -934,15 +933,15 @@ int crit_damage(object attacker, object targ, object weapon, int size, int damag
     if (damage <= 0) {
         return 0;
     }
-    
+
     if(!objectp(targ) || !objectp(attacker))
         return 0;
-    
+
     a_name = attacker->query_cap_name();
     a_poss = attacker->query_possessive();
     t_name = targ->query_cap_name();
     t_poss = targ->query_possessive();
-    
+
     mult = 2;
     if (objectp(weapon) && !attacker->query_property("shapeshifted") && weapon != attacker) {
         if(!cant_shot){ //Venger: swinging a ranged weapon with no ammo has x2 multiplier.
@@ -1205,7 +1204,7 @@ varargs void calculate_damage(object attacker, object targ, object weapon, strin
                 }
             }
         }
-        
+
         if(attacker->is_class("thief"))
         {
             //Sneak attack dice section
@@ -1467,14 +1466,14 @@ int get_hand_damage(object attacker, string limb1, int damage, object attacked)
         seteuid(geteuid());
         return damage;
     }
-    
+
     if(functionp(attack_funcs[limb1]))
     {
         file = load_object("/std/races/" + attacker->query_race() + ".c");
-        
+
         if(objectp(file))
             damage += file->unarmed_damage_bonus(attacker, attacked);
-    }   
+    }
 
     if (functionp(attack_funcs[limb1])) {
         damage += call_other(attacker, (*attack_funcs[limb1])(1), attacked);
@@ -1775,7 +1774,7 @@ void new_struck(int damage, object weapon, object attacker, string limb, object 
     if (objectp(shape = attacker->query_property("shapeshifted"))) {
         damage_type = (string)shape->get_new_damage_type();
     }
-    
+
     if(!damage_type)
         damage_type = "untyped";
 
@@ -1888,7 +1887,7 @@ void miss(object attacker, int magic, object target, string type, string target_
     readers = filter_array(all_inventory(room), (: $1->query("reader") :));
     if(!pointerp(readers) || !sizeof(readers))
         readers = ({  });
-    
+
     a_name = attacker->query_cap_name();
     a_poss = attacker->query_possessive();
 
@@ -1896,7 +1895,7 @@ void miss(object attacker, int magic, object target, string type, string target_
         if (interactive(target)) {
             verbose = target->query_verbose_combat();
         }
-        
+
         t_name = target->query_cap_name();
 
         if (verbose) {
@@ -2207,14 +2206,14 @@ void iterate_combat(object who)
     object EWHO;
     int vars, counters, static_vars;
     string who_name, who_poss;
-    
+
     if (!objectp(who)) {
         return;
     }
     EWHO = environment(who);
     who_name = who->query_cap_name();
     who_poss = who->query_possessive();
-    
+
     //if (!who->ok_combat_vars()) who->initialize_combat_vars(); // there's a recursion error, not sure if it's caused here or not
     who->ok_combat_vars();
     combat_static_vars = who->query_combat_static_vars();
@@ -2476,13 +2475,13 @@ void set_temporary_blinded(object who, int difficulty, string message)
     if (!objectp(who)) {
         return;
     }
-    
+
     if(PLAYER_D->immunity_check(who, "blindness") && difficulty > 0)
     {
         tell_object(who, "%^YELLOW%^You are immune to blindness.%^RESET%^");
         return;
     }
-    
+
     if (who->query_property("no blind")) {
         tell_object(who, "You are immune to blindness!");
         if (objectp(environment(who))) {
@@ -2654,11 +2653,11 @@ void send_dodge(object who, object att)
 {
     int i, j;
     string* verb, * adverb, v, a, a_name, who_name;
-    
+
     if (!objectp(att) || !objectp(who)) {
         return;
     }
-    
+
     a_name = att->query_cap_name();
     who_name = who->query_cap_name();
 
@@ -2725,7 +2724,7 @@ int ok_to_kill(object who, object targ)
     if (who == targ) {
         return 1;
     }
-    
+
     t_name = targ->query_cap_name();
 
     if (interactive(who) && interactive(targ)) {
@@ -2990,7 +2989,7 @@ int check_avoidance(object who, object victim)
         {
         return 0;
     }
-    
+
     who_name = who->query_cap_name();
     v_name = victim->query_cap_name();
     v_poss = victim->query_possessive();
@@ -3215,13 +3214,13 @@ void combined_attack(object who, object victim)
     if (!objectp(who) || !objectp(victim)) {
         return;
     }
-    
+
     v_name = victim->query_cap_name();
     v_poss = victim->query_possessive();
     who_name = who->query_cap_name();
     who_poss = who->query_possessive();
     who_obj = who->query_objective();
-    
+
     attackers = victim->query_attackers();
     attackers -= ({ 0 });
     if (!sizeof(attackers)) {
@@ -3289,7 +3288,7 @@ void internal_execute_attack(object who)
     who_name = who->query_cap_name();
     who_poss = who->query_possessive();
     who_obj = who->query_objective();
-    
+
     if (!objectp(EWHO)) {
         return;
     }
@@ -3342,7 +3341,7 @@ void internal_execute_attack(object who)
         }
         return;
     }
-    
+
     v_name = victim->query_cap_name();
     v_obj = victim->query_objective();
     v_poss = victim->query_possessive();
@@ -3429,7 +3428,7 @@ void internal_execute_attack(object who)
         if (FEATS_D->usable_feat(who, "lethal strikes")) {
             temp1 *= 2;
         }
-        
+
         if(surprise_accuracy)
         {
             if(FEATS_D->usable_feat(who, "deadly accuracy"))
@@ -3479,7 +3478,7 @@ void internal_execute_attack(object who)
             {
                 if(victim->query_class_level("oracle") >= 31 && total_light(environment(victim)) < 2)
                     critical_hit = 0;
-            }   
+            }
         }
         // end crit stuff
         if (roll && fumble == 0) {
@@ -4203,10 +4202,10 @@ int kill_ob(object who, object victim, int which)
         victim->add_attacker(who);
         EWHO->add_combatant(victim);
     }
-    
+
     if (i > -1)
         return 1;
-    
+
     who->add_attacker(victim);
     EWHO->add_combatant(who);
     who->adjust_combat_mapps("vars", "any attack", 1);
