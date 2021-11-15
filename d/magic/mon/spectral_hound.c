@@ -56,7 +56,7 @@ void init()
     if(!userp(this_player()))
         return;
     
-    if(creatorp(this_player()) || avatarp(this_player()))
+    if(wizardp(this_player()) || avatarp(this_player()))
         return;
     
     tell_object(caster, "%^CYAN%^BOLD%^Your hound conveys a telepathic bark to you.%^RESET%^");

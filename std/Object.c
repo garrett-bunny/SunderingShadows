@@ -693,7 +693,7 @@ mixed query_property(string prop)
     
     if(prop == "darkvision")
     {
-        if(avatarp(this_object()) || creatorp(this_object()))
+        if(avatarp(this_object()) || wizardp(this_object()))
             return 1;
         
         if(this_object()->query_mystery() == "shadow")
