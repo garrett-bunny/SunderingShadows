@@ -95,8 +95,8 @@ void create()
 
     set_skill("perception", 50);
 
-    set_resistance("divine", 80);
-    set_resistance("radiant", 80);
+    set_resistance_percent("radiant", 50);
+    set_resistance_percent("fire", 50);
     set_mob_magic_resistance("high");
     set_property("cast and attack", 1);
     set_property("function and attack", 1);

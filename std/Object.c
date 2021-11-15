@@ -2464,6 +2464,8 @@ void add_the_bonus(object myplayer, string bonustype, int bonusvalue)
     case "light resistance":
     case "darkness resistance":
     case "nature resistance":
+    case "void resistance":
+    case "radiant resistance":
         myplayer->set_resistance(replace_string(bonustype, " resistance", ""), bonusvalue);
         break;
 
@@ -2489,6 +2491,8 @@ void add_the_bonus(object myplayer, string bonustype, int bonusvalue)
     case "mental resistance percent":
     case "light resistance percent":
     case "darkness resistance percent":
+    case "void resistance percent":
+    case "radiant resistance percent":
         myplayer->set_resistance_percent(replace_string(bonustype, " resistance percent", ""), bonusvalue);
         break;
 
