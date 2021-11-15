@@ -112,7 +112,7 @@ kill [%^ORANGE%^%^ULINE%^TARGET%^RESET%^]
 
 %^CYAN%^DESCRIPTION%^RESET%^
 
-This sommand turns combat on for you and %^ORANGE%^%^ULINE%^TARGET%^RESET%^.
+This command turns combat on for you and %^ORANGE%^%^ULINE%^TARGET%^RESET%^.
 
 To kill yourself just use %^ORANGE%^<kill %^ORANGE%^%^ULINE%^YOURNAME%^RESET%^%^ORANGE%^>%^RESET%^.
 
