@@ -467,7 +467,7 @@ void heart_beat()
                 tell_object(person, this_object()->QCN + " is fighting " + attacker->QCN + ".");
         }   
 
-        if(is_undead())
+        if(this_object()->is_undead())
             remove_property("rend");
         
         if(PLAYER_D->immunity_check(this_object(), "rend"))
@@ -2377,9 +2377,9 @@ int is_undead()
             query_property("undead") ||
             query_race() == "undead" ||
             query_race() == "nightwing" ||
-            member_array("undead", query_id()) != -1 ||
+            member_array("undead", this_object()->query_id()) != -1 ||
             query_acquired_template() == "undead" ||
-            query_acquired_template() == "vampire") || 0;
+            query_acquired_template() == "vampire");
 }
 
 /**
