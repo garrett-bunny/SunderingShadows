@@ -26,7 +26,7 @@ void create()
     "%^YELLOW%^e%^WHITE%^l%^YELLOW%^e%^WHITE%^c%^YELLOW%^"+
     "t%^WHITE%^r%^YELLOW%^u%^WHITE%^m%^RESET%^.  The jagged angular"+
     " shape of the metal head bears an uncanny resemblance to a"+
-    " %^BOLD%^%^CYAN%^li%^YELLOW%^g%^CYAN%^ht%^YELLOW%^i%^CYAN%^ng"+
+    " %^BOLD%^%^CYAN%^li%^YELLOW%^g%^CYAN%^ht%^YELLOW%^ni%^CYAN%^ng"+
     " bolt%^RESET%^.  The outer edges 'bolts' have been sharpened "+
     "to create a deadly serrated edge, which could easily rip "+
     "through flesh and muscle.  The butt of the spear has been "+

@@ -48,11 +48,16 @@ int cmd_void_stalker(string str)
         TP->send_paralyzed_message("info",ETO);
     }
 
-    if(TP->query_property("void_stalker_used")>time())
+    /*if(TP->query_property("void_stalker_used")>time())
     {
         tell_object(TP,"You can not touch the void beyond yet.");
         return 1;
-    }
+    }*/
+
+    if(this_player()->cooldown("void stalker")){
+        tell_object(TP, "%^BOLD%^%^RED%^You can not touch the void beyond, yet.");
+        return 1;
+	}
 
     target = TP->realNameVsProfile(str);
     ob = find_player(target);
@@ -76,7 +81,8 @@ int cmd_void_stalker(string str)
     {
         TP->move_player(location);
         tell_object(TP,"%^BOLD%^%^WHITE%^You have arrived.");
-        TP->set_property("void_stalker_used",time()+DELAY);
+        this_player()->add_cooldown("void stalker", DELAY);
+        /*TP->set_property("void_stalker_used",time()+DELAY);*/
         return 1;
     }
 
