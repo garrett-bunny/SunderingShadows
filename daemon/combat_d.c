@@ -635,7 +635,7 @@ void check_extra_abilities(object attacker, object target, object weapon, int cr
             tell_object(attacker, "%^CYAN%^You unleash wave of %^YELLOW%^w%^MAGENTA%^i%^WHITE%^l%^RED%^d %^GREEN%^m%^BLUE%^a%^WHITE%^g%^ORANGE%^i%^RED%^c%^RESET%^%^CYAN%^ at " + ename + "!%^RESET%^");
             tell_object(target, "%^CYAN%^" + pname + " unleashes a wave of %^YELLOW%^w%^MAGENTA%^i%^WHITE%^l%^RED%^d %^GREEN%^m%^BLUE%^a%^WHITE%^g%^ORANGE%^i%^RED%^c%^RESET%^%^CYAN%^ to burn through you!%^RESET%^");
             tell_room(environment(attacker), "%^CYAN%^" + pname + " unleashes a wave of %^YELLOW%^w%^MAGENTA%^i%^WHITE%^l%^RED%^d %^GREEN%^m%^BLUE%^a%^WHITE%^g%^ORANGE%^i%^RED%^c%^RESET%^%^CYAN%^ at " + ename + "!%^RESET%^", ({ target, attacker }));
-            target->cause_typed_damage(target, target->return_target_limb(), 5 + roll_dice(attacker->query_character_level() / 15, 6), "untyped");
+            target->cause_typed_damage(target, target->return_target_limb(), 10 + roll_dice(1 + attacker->query_character_level() / 15, 8), "untyped");
         }
         //Psionic Critical Feat
         if (FEATS_D->usable_feat(attacker, "psionic critical"))
@@ -654,7 +654,7 @@ void check_extra_abilities(object attacker, object target, object weapon, int cr
             {
                 tell_object(attacker, "%^MAGENTA%^BOLD%^Your weapon strikes with magical force!%^RESET%^");
                 tell_object(target, "MAGENTA%^BOLD%^" + pname + "'s weapon strikes you with magical force!%^RESET%^");
-                target->cause_typed_damage(target, target->return_target_limb(), 5 + roll_dice(1 + attacker->query_class_level("oracle") / 15, 8), "force");
+                target->cause_typed_damage(target, target->return_target_limb(), 10 + roll_dice(1 + attacker->query_class_level("oracle") / 15, 8), "force");
             }
         }
 
@@ -676,7 +676,7 @@ void check_extra_abilities(object attacker, object target, object weapon, int cr
                     tell_object(attacker, "%^BOLD%^You unleash a flash of searing energy that burns " + ename + "'s very essence!%^RESET%^");
                     tell_object(target, "%^BOLD%^" + pname + " unleashes a flash of searing white light burns your very essence!RESET%^");
                     tell_room(environment(attacker), "%^BOLD%^" + pname + " unleashes a flash of searing energy that burns " + ename + "'s undead essence!%^RESET%^", ({ target, attacker }));
-                    target->cause_typed_damage(target, target->return_target_limb(), 5 + roll_dice(attacker->query_guild_level("ranger") / 5, 6), "divine");
+                    target->cause_typed_damage(target, target->return_target_limb(), 5 + roll_dice(1 + attacker->query_guild_level("ranger") / 5, 6), "divine");
                 }
             }
         }
@@ -705,7 +705,7 @@ void check_extra_abilities(object attacker, object target, object weapon, int cr
             }
             //target->cause_typed_damage(target, target->return_target_limb(), roll_dice(attacker->query_character_level(), 8), element);
             //Above damage is way too insane. Tlaloc changed this 4.23.2021....probably is still too insane below
-            target->cause_typed_damage(target, target->return_target_limb(), 10 + roll_dice(attacker->query_character_level() / 5, 6), element);
+            target->cause_typed_damage(target, target->return_target_limb(), 10 + roll_dice(1 + attacker->query_character_level() / 15, 8), element);
         }
     }
 
