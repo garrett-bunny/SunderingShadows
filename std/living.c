@@ -433,6 +433,7 @@ void heart_beat()
         !avatarp(this_object()) &&
         !wizardp(this_object()) &&
         !this_object()->query_hidden() &&
+        !this_object()->query_property("altered") &&
         !this_object()->query_invis())
         {
             object room = environment(this_object());
