@@ -328,7 +328,7 @@ varargs int damage_adjustment(object attacker, object victim, int damage)
 
 varargs int typed_damage_modification(object attacker, object targ, string limb, int damage, string type)
 {
-    object myEB;
+    object myEB, chained;
     int resist_perc, resist, reduction, mod, amt, i;
     float percentage;
     string* alignments, * enemy_alignments;
@@ -383,6 +383,17 @@ varargs int typed_damage_modification(object attacker, object targ, string limb,
             targ->add_mp(amt);
         }
     }
+    
+    if(chained = targ->query_property("chains of justice"))
+    {
+        if(objectp(chained) && environment(chained) == environment(targ))
+        {
+            chained->cause_typed_damage(chained, "torso", damage / 5, "divine");
+            tell_room(environment(targ), (is_evil(targ) ? "%^BOLD%^CYAN%^" : "%^BOLD%^YELLOW%^") + "The chains of justice pulse as they enact divine retribution.%^RESET%^");
+            damage = (damage * 8) / 10;
+        }
+    }
+                 
 
     if (objectp(targ) && FEATS_D->usable_feat(targ, "way of the learned pupil")) {
         USER_D->regenerate_ki(targ, 1);
