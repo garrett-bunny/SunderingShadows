@@ -10,10 +10,9 @@ int amount;
 void create() {
     ::create();
     set_spell_name("spiritual ally");
-    set_spell_level(([ "oracle":4,"cleric":4,"bard":3 ]));
+    set_spell_level(([ "cleric" : 4, "bard" : 3, "inquisitor" : 4 ]));
     set_spell_sphere("invocation_evocation");
     set_syntax("cast CLASS spiritual ally");
-    set_mystery("ancestor");
     set_description("Call to one of your ancestors to aid you in combat. This spirit will have a chosen weapon of your deity and will obey all your commands.
 
 This is a greater summons, and cannot be used simultaneously with other greater summons.
