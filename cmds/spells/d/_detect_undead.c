@@ -9,8 +9,10 @@ void create()
     set_spell_level(([ "innate" : 1, "paladin" : 1, ]));
     set_spell_sphere("divination");
     set_syntax("cast CLASS detect undead");
-    set_description("Detect undead will detect the presence of greater and lesser undead, including vampires and other intelligent undead.");
+    set_description("Detect undead will detect the presence of greater and lesser undead, including vampires and other intelligent undead. The subjects of this spell are able to make a will save (with diminishing returns) to fool the effects.");
     set_verbal_comp();
+    set_save("will");
+    diminish_returns();
     set_somatic_comp();
     set_arg_needed();
     set_non_living_ok(1);
@@ -36,7 +38,10 @@ void spell_effect(int prof)
     }
     
     foreach(object ob in targets)
-        tell_object(caster, "%^BOLD%^RED%^You sense undead in %^CYAN%^" + ob->QCN + "%^RESET%^!");       
+    {
+        if(!do_save(ob, 0))
+            tell_object(caster, "%^BOLD%^RED%^You sense undead in %^CYAN%^" + ob->QCN + "%^RESET%^!");
+    }
 }
 
 int check_undead(object ob)
