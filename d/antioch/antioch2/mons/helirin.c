@@ -1,6 +1,6 @@
 #include <std.h>
 #include "../antioch.h"
-inherit "/std/comp_vend.c";
+inherit VENDOR;
 
 int CALL;
 
@@ -47,8 +47,8 @@ void create()
 		"chain lightning",
 	}));
 	set_spell_chance(100);
-	set_components(100);
 	force_me("speech speak in a nasally voice");
+    set_storage_room(MONS"helirin_storage.c");
 }
 
 void heart_beat()

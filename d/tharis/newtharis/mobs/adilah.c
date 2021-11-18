@@ -1,6 +1,6 @@
 #include <std.h>
 #include "../tharis.h"
-inherit "/std/comp_vend.c";
+inherit VENDOR;
 
 // Based on old Tharis City Buildings, Mobs, etc.
 // Tharis City Remodle - Created by LoKi in 2009.  
@@ -52,8 +52,8 @@ void create(){
        "%^RESET%^%^MAGENTA%^Adilah says%^RESET%^: Come drink a cup "+
        "of chai with Adilah.  She'll read the leaves for you!  Yes?"
     }), 0);
-    set_components(100);
     set_spell_chance(100);
     set_spells(({"fireball","lightning bolt","acid arrow",
         "cone of cold"}));
+    set_storage_room(MOBS"adilah_storage.c");
 }
