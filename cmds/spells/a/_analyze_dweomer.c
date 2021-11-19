@@ -9,7 +9,7 @@ void create()
     set_domains("magic");
     set_spell_sphere("divination");
     set_syntax("cast CLASS analyze dweomer on TARGET");
-    set_description("This spell allows you to sense what spells and magical afflictions affect the target. If the target passes their save they will know the caster has analyzed them with a magic probe. A party member will always fail the save.");
+    set_description("This spell allows you to sense what spells and magical afflictions affect the target. If the target passes their save they will know the caster has analyzed them with a magic probe.");
     set_verbal_comp();
     set_somatic_comp();
     set_target_required(1);
@@ -28,13 +28,11 @@ void spell_effect()
     object* slist, spl;
     spell_successful();
 
-    if (member_array(target, ob_party(caster)) == -1) {
-        if (do_save(target, 0)) {
-            tell_object(caster, "%^BOLD%^%^CYAN%^"+target->query_cap_name()+" %^BOLD%^%^CYAN%^shakes off your attempt to analyze them.");
-            tell_object(target, "%^BOLD%^%^CYAN%^You sense a magical probe from "+caster->query_cap_name()+" %^BOLD%^%^CYAN%^trying to analyze your spells.");
-            dest_effect();
-            return;
-        }
+    if (do_save(target, 0)) {
+        tell_object(caster, "%^BOLD%^%^CYAN%^"+target->query_cap_name()+" %^BOLD%^%^CYAN%^shakes off your attempt to analyze them.");
+        tell_object(target, "%^BOLD%^%^CYAN%^You sense a magical probe from "+caster->query_cap_name()+" %^BOLD%^%^CYAN%^trying to analyze your spells.");
+        dest_effect();
+        return;
     }
 
     slist = target->query_property("dispellable spells") + target->query_property("spelled");
