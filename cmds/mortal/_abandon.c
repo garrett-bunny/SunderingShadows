@@ -116,7 +116,8 @@ int confirm_drop(string str, string theclass, int drop, int cost)
     if (TP->is_class("warlock")) {
         TP->delete("warlock_blast_type");
     }
-
+    
+    if(TP->query("elementalist")) TP->delete("elementalist");
 
     // this should only get called if they have no levels in the class that they abandoned, to remove it from the score sheet
     if (((int)TP->query_class_level(theclass) == 1 || (int)TP->query_class_level(theclass) == 0) && sizeof(TP->query_classes()) > 1) {
