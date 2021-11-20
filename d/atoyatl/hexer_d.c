@@ -481,6 +481,9 @@ varargs string get_adjusted_line(int line_no, int show_hexes){
     hex = __hex_blocks[hex_index];
     
 //    tell_room(find_object_or_load("/realms/lujke/workroom"),"Loading line " + y_within_hex + "of the hex.");
+    if(y_within_hex >= sizeof(hex))
+        continue;
+    
     hex_line = hex[y_within_hex];
     if (hex_x == 0){
       if (query_width(hex)<16){
