@@ -55,18 +55,7 @@ int cmd_dest(string str) {
      
     seteuid(geteuid(previous_object()));
     
-    /*
-    foreach(object spell in ob->query_property("spelled"))
-    {
-        if(!objectp(spell))
-            continue;
-        
-        if(catch(spell->dest_effect()))
-            continue;
-        
-        spell->remove();
-    }
-    */
+    ob->break_all_spells();
     destruct(ob, 1);
     objectp(ob) && ob->remove();
     
