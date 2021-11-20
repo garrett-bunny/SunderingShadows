@@ -43,7 +43,7 @@ int preSpell(){
 }
 
 void spell_effect(int prof){
-   	int i;
+   	int i, hp;
    if(spell_type == "warlock") {
    	tell_object(caster,"%^BOLD%^%^CYAN%^You summon forth a tangible figment of %^BOLD%^%^BLACK%^nightmare%^RESET%^%^CYAN%^, setting it loose on "+target->QCN+"!%^RESET%^");
       tell_room(place,"%^BOLD%^%^CYAN%^As "+caster->QCN+" chants, a figment forms from the air, taking on a vaguely humanoid shape!%^RESET%^",caster);
@@ -67,7 +67,8 @@ void spell_effect(int prof){
    ob->set_damage_bonus(clevel/8);
    ob->set_attack_bonus(clevel/3);
    ob->set_hd(clevel,8);
-   ob->set_max_hp((int)target->query_max_hp());
+   hp = target->query_max_hp() > 10000 ? 10000 : target->query_max_hp();
+   ob->set_max_hp(hp);
    ob->set_hp((int)ob->query_max_hp());
    ob->set_stats("strength",(10+(clevel/4)));
    ob->set_ac(-1*(clevel/2));
