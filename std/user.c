@@ -1510,6 +1510,7 @@ void setup()
         TO->set_sphere(0);
         TO->set_divine_domain(({}));
     }
+    delete("no advance");
     force_me("look");
 }
 
