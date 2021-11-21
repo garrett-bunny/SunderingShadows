@@ -16,7 +16,7 @@ void create()
     set_save("will");
     set_syntax("cast CLASS scintillating pattern");
     set_damage_desc("mass confusion, or staggered on save");
-    set_description("This casting summons forward illusionary patterns that attempt to confuse all targets in the area. If they make a will save, they are instead staggered.");
+    set_description("This casting summons forward illusionary patterns that attempt to confuse all targets in the area. If they make a will save, they are instead staggered for one round instead.");
     splash_spell(3);
 }
 
@@ -52,7 +52,7 @@ void spell_effect(int prof)
         {
             tell_room(place, "%^BOLD%^" + ob->query_cap_name() + " is shocked by the patterns!%^RESET%^", target);
             tell_object(ob, "%^BOLD%^You are shocked by the scintillating patterns!%^RESET%^");
-            "/std/effect/status/staggered"->apply_effect(ob, clevel / 5 + 1, caster);
+            "/std/effect/status/staggered"->apply_effect(ob, 1, caster);
             if(!userp(ob))
                 spell_kill(ob, caster);
             continue;
