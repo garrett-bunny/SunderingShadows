@@ -92,7 +92,7 @@ void spell_effect(int prof)
     caster->set_property("prismatic sphere", 1);
     caster->set_property("added short",({"%^BOLD%^MAGENTA%^ (surrounded in a magical shell)%^RESET%^"}));
 
-    spell_duration = 2 + (clevel / 10) * ROUND_LENGTH;
+    spell_duration = (2 + (clevel / 10)) * ROUND_LENGTH;
     call_out("dest_effect",spell_duration);
 }
 
