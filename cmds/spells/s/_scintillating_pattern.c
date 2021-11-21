@@ -45,14 +45,14 @@ void spell_effect(int prof)
         {
             tell_room(place, "%^MAGENTA%^The patterns captivate " + ob->query_cap_name() + "!", ob);
             tell_object(ob, "%^MAGENTA%^You are captivated by the scintillating pattern, and lash out!%^RESET%^");
-            "/std/effect/status/confused"->apply_effect(ob, clevel / 5 + 1);
+            "/std/effect/status/confused"->apply_effect(ob, clevel / 5 + 1, caster);
             continue;
         }
         else
         {
             tell_room(place, "%^BOLD%^" + ob->query_cap_name() + " is shocked by the patterns!%^RESET%^", target);
             tell_object(ob, "%^BOLD%^You are shocked by the scintillating patterns!%^RESET%^");
-            "/std/effect/status/staggered"->apply_effect(ob, clevel / 5 + 1);
+            "/std/effect/status/staggered"->apply_effect(ob, clevel / 5 + 1, caster);
             if(!userp(ob))
                 spell_kill(ob, caster);
             continue;
