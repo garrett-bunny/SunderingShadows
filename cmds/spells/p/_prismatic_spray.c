@@ -6,7 +6,7 @@
 
 inherit SPELL;
 
-int flag, roll, theProf;
+int flag, roll, theProf, heavens;
 
 
 void create()
@@ -61,7 +61,9 @@ void spell_effect(int prof)
     hits = clevel / 11;
 
     if(caster->query_mystery() == "heavens" && caster->query_class_level("oracle") > 30)
-        hits += BONUS_D->query_stat_bonus(caster, "charisma");
+        heavens = BONUS_D->query_stat_bonus(caster, "charisma") / 2;
+    
+    hits += heavens;
 
     attackers = target_selector();
     attackers = distinct_array(attackers);
@@ -86,7 +88,7 @@ void spell_effect(int prof)
         tell_object(targs[i],"%^BOLD%^A rainbow of colors flash from "+caster->QCN+"'s hand striking you!");
         tell_room(place,"%^BOLD%^A rainbow of colors flash from "+caster->QCN+"'s hand striking "+targs[i]->QCN+"!",({caster,targs[i]}));
 
-        if(targs[i]->query_level() < 9) targs[i]->set_temporary_blinded(2);
+        if(targs[i]->query_level() < caster->query_level() - 10) targs[i]->set_temporary_blinded(2);
 
         flash(targs[i],0);
     }
@@ -122,18 +124,18 @@ void ray1(object targ)
     if(!objectp(targ)) return;
 
     set_save("reflex");
-    if(do_save(targ))
+    if(do_save(targ, heavens))
     {
         if(evade_splash(targ)) return;
         tell_object(targ,"%^BOLD%^%^RED%^A blinding red light grazes you!");
         tell_room(place,"%^BOLD%^%^RED%^A blinding red light grazes "+targ->QCN+"!",targ);
-        damage_targ(targ, targ->return_target_limb(), sdamage/6,"fire");
+        damage_targ(targ, targ->return_target_limb(), sdamage/2,"fire");
         return;
     }
 
     tell_object(targ,"%^BOLD%^%^RED%^A blinding red light burns into you!");
     tell_room(place,"%^BOLD%^%^RED%^A blinding red light burns into "+targ->QCN+"!",targ);
-    damage_targ(targ, targ->return_target_limb(), sdamage / 3,"fire");
+    damage_targ(targ, targ->return_target_limb(), sdamage,"fire");
 }
 
 
@@ -142,18 +144,18 @@ void ray2(object targ)
     if(!objectp(targ)) return;
 
     set_save("reflex");
-    if(do_save(targ))
+    if(do_save(targ, heavens))
     {
         if(evade_splash(targ)) return;
         tell_object(targ,"%^BOLD%^A blinding orange light grazes you!");
         tell_room(place,"%^BOLD%^A blinding orange light grazes "+targ->QCN+"!",targ);
-        damage_targ(targ, targ->return_target_limb(), sdamage/6,"acid");
+        damage_targ(targ, targ->return_target_limb(), sdamage/2,"acid");
         return;
     }
 
     tell_object(targ,"%^BOLD%^A blinding orange light burns into you!");
     tell_room(place,"%^BOLD%^A blinding orange light burns into "+targ->QCN+"!",targ);
-    damage_targ(targ, targ->return_target_limb(), sdamage / 3,"acid");
+    damage_targ(targ, targ->return_target_limb(), sdamage,"acid");
 }
 
 
@@ -163,18 +165,18 @@ void ray3(object targ)
 
     set_save("reflex");
 
-    if(do_save(targ))
+    if(do_save(targ, heavens))
     {
         if(evade_splash(targ)) return;
         tell_object(targ,"%^BOLD%^%^YELLOW%^A blinding yellow light grazes you!");
         tell_room(place,"%^BOLD%^%^YELLOW%^A blinding yellow light grazes "+targ->QCN+"!",targ);
-        damage_targ(targ, targ->return_target_limb(), sdamage/6,"electricity");
+        damage_targ(targ, targ->return_target_limb(), sdamage/2,"electricity");
         return;
     }
 
     tell_object(targ,"%^BOLD%^%^YELLOW%^A blinding yellow light burns into you!");
     tell_room(place,"%^BOLD%^%^YELLOW%^A blinding yellow light burns into "+targ->QCN+"!",targ);
-    damage_targ(targ, targ->return_target_limb(), sdamage / 3,"electricity");
+    damage_targ(targ, targ->return_target_limb(), sdamage,"electricity");
 }
 
 
@@ -188,9 +190,9 @@ void ray4(object targ)
     tell_room(place, "%^BOLD%^%^GREEN%^A blinding green light burns into " + targ->QCN + "!", targ);
     set_save("fort");
 
-    if (!do_save(targ)) {
+    if (!do_save(targ, heavens)) {
         // Disadvantage should be the same as in FOD.
-        if (combat_death_save(targ, 6)) {
+        if (combat_death_save(targ, heavens - 6)) {
             tell_object(caster, "" + targ->QCN + " seems to struggle for a minute but recovers quickly.");
             tell_object(targ, "You struggle for a minute but recover quickly.");
             tell_room(place, "" + targ->QCN + " struggles for a minute but recovers quickly.", ({ targ, caster }));
@@ -213,7 +215,7 @@ void ray5(object targ)
     tell_room(place,"%^BOLD%^%^BLUE%^A blinding blue light burns into "+targ->QCN+"!",targ);
 
     set_save("fort");
-    if(!do_save(targ))
+    if(!do_save(targ, heavens))
     {
         if (targ->query_property("no death") || userp(caster))
         {
@@ -265,7 +267,7 @@ void ray6(object targ)
     tell_room(place,"%^BOLD%^%^CYAN%^A blinding indigo light burns into "+targ->QCN+"!",targ);
 
     set_save("will");
-    if(!do_save(targ))
+    if(!do_save(targ, heavens))
     {
         targ->set_paralyzed(ROUND_LENGTH * roll_dice(1,4),"You are still shaking after being hit by the flash of light!");
         return;
@@ -289,7 +291,7 @@ void ray7(object targ)
     }
 
     set_save("will");
-    if(!do_save(targ))
+    if(!do_save(targ, heavens))
     {
         call_out("move_me",1,targ);
         return;
