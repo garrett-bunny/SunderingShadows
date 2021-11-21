@@ -16,7 +16,7 @@ void create()
     set_save("will");
     set_syntax("cast CLASS scintillating pattern");
     set_damage_desc("mass confusion, or staggered on save");
-    set_description("This casting summons forward illusionary patterns that attempt to confuse all targets in the area. If they make a will save, they are instead staggered for one round instead.");
+    set_description("This casting summons forward illusionary patterns that attempt to confuse all targets in the area. If they make a successful will save, they are instead staggered for one round.");
     splash_spell(3);
 }
 
@@ -41,7 +41,7 @@ void spell_effect(int prof)
         if(!objectp(ob))
             continue;
         
-        if((ob->query_level() < clevel || !do_save(ob, 0)) && !mind_immunity_damage(ob))
+        if((ob->query_level() < (caster->query_level() - 10) || !do_save(ob, 0)) && !mind_immunity_damage(ob))
         {
             tell_room(place, "%^MAGENTA%^The patterns captivate " + ob->query_cap_name() + "!", ob);
             tell_object(ob, "%^MAGENTA%^You are captivated by the scintillating pattern, and lash out!%^RESET%^");
