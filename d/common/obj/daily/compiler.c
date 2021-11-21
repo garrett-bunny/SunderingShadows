@@ -311,32 +311,39 @@ string get_room_long(string theme)
 int place_monsters(int x, int y, string theme)
 {
     string file, key;
+    object boss;
     
-    key = x + "x" + y;
+    key = (string)x + "x" + (string)y;
     //In the last room, place the boss
     if(x == (MAX_WIDTH - 1) && y == (MAX_HEIGHT - 1))
     {
         switch(theme)
         {
             case "clockwork":
-            file = PATH + "/mon/steamgolem";
+            file = PATH + "mon/steamgolem";
             break;
             case "offal marsh":
-            file = PATH + "/mon/plaguelord";
+            file = PATH + "mon/plaguelord";
             break;
             case "deep caverns":
-            file = PATH + "/mon/grue";
+            file = PATH + "mon/grue";
             break;
         }
         
         if(!load_object(file))
             return 0;
         
-        if(catch(new(file)->move(cloned_rooms[key])))
+        if(catch(boss = new(file)))
+            return 0;
+        
+        if(boss->move(cloned_rooms[key]))
             return 0;
     }
     else
     {
+        if(x == 0 && y == 0)
+            return 0;
+        
         for(int z = 0; z < random(6); z++)
         {
             if(catch(new(monsters_to_use[random(sizeof(monsters_to_use) - 1)])->move(cloned_rooms[key])))
