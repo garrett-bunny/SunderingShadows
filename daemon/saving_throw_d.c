@@ -163,19 +163,19 @@ varargs int do_save(object ob, int dc, string type, raw_save)
         mod += 4;
         
     if(FEATS_D->usable_feat(ob, "resistance"))
-        mod += 1;
+        mod += 2;
     
     if(FEATS_D->usable_feat(ob, "increased resistance"))
-        mod += 1;
+        mod += 2;
     
     if(FEATS_D->usable_feat(ob, "improved resistance"))
-        mod += 1;
+        mod += 2;
 
     if (FEATS_D->usable_feat(ob, "shadow master") && objectp(ENV(ob)) && ENV(ob)->query_light() < 2)
         mod += 2;
 
     save += mod;
-    save = save > (level + 20 + max_mod) ? (level + 20 + max_mod) : save;
+    save = save > (level + 22 + max_mod) ? (level + 22 + max_mod) : save;
 
     if (raw_save) {
         return save;
