@@ -192,7 +192,7 @@ void compile_plane(object owner)
     write("Area Compiled Successfully!");
     
     if(!catch(owner->move_player(cloned_rooms["0x0"])))
-        write("Transfer of owner to area successful!");
+        write("%^CYAN%^BOLD%^Demiplane teleport successful!%^RESET%^");
     
     call_out("check_plane", 60, owner);
 }
@@ -224,8 +224,8 @@ void destroy_plane(object owner)
     
     if(objectp(owner) && environment(owner)->is_demiplane_room())
     {
-        owner->move(PATH + "entrance");
-        tell_object(owner, "You are whisked away to safety as the plane collapses!");
+        owner->move_player(PATH + "entrance");
+        tell_object(owner, "%^BOLD%^You are whisked away to safety as the plane collapses!%^RESET%^");
     }
     
     foreach(string str in keys(cloned_rooms))
@@ -332,7 +332,7 @@ int place_monsters(int x, int y, string theme)
         if(!load_object(file))
             return 0;
         
-        if(catch(new(file))->move(cloned_rooms[key]))
+        if(catch(new(file)->move(cloned_rooms[key])))
             return 0;
     }
     else
