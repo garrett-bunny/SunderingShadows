@@ -41,7 +41,7 @@ int leave(string str)
         return 1;
     }
     
-    write("Are you sure you want to leave the demiplane? Your demiplane will collapse and cease to exist [y/n]: ");
+    write("%^RED%^BOLD%^Are you sure you want to leave the demiplane? Your demiplane will collapse and cease to exist [y/n]: %^RESET%^");
     input_to("finish_leave");
     return 1;
 }

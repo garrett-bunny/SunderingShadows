@@ -30,8 +30,8 @@
 #include <daemons.h>
 
 //X and Y Axis Limits
-#define MAX_WIDTH 2
-#define MAX_HEIGHT 5
+#define MAX_WIDTH 3
+#define MAX_HEIGHT 10
 #define PATH "/d/common/obj/daily/"
 #define THEMES ({ "clockwork", "offal marsh", "deep caverns" })
 
@@ -103,15 +103,8 @@ void compile_plane(object owner)
             room->set_compiler(this_object());
             
             
-            //Add monsters
-            for(int z = 0; z < random(6); z++)
-            {
-                if(catch(new(monsters_to_use[random(sizeof(monsters_to_use) - 1)])->move(cloned_rooms[key])))
-                {
-                    write("Monster cloning failed!");
-                    continue;
-                }
-            }           
+            if(!place_monsters(x, y, theme))
+                continue;
         }
         x++;       
     }
@@ -314,3 +307,44 @@ string get_room_long(string theme)
         
     return CRAYON_D->color_string("You are lost in a strange Demiplane.", "dark black");
 }
+
+int place_monsters(int x, int y, string theme)
+{
+    string file, key;
+    
+    key = x + "x" + y;
+    //In the last room, place the boss
+    if(x == (MAX_WIDTH - 1) && y == (MAX_HEIGHT - 1))
+    {
+        switch(theme)
+        {
+            case "clockwork":
+            file = PATH + "/mon/steamgolem";
+            break;
+            case "offal marsh":
+            file = PATH + "/mon/plaguelord";
+            break;
+            case "deep caverns":
+            file = PATH + "/mon/grue";
+            break;
+        }
+        
+        if(!load_object(file))
+            return 0;
+        
+        if(catch(new(file))->move(cloned_rooms[key]))
+            return 0;
+    }
+    else
+    {
+        for(int z = 0; z < random(6); z++)
+        {
+            if(catch(new(monsters_to_use[random(sizeof(monsters_to_use) - 1)])->move(cloned_rooms[key])))
+                return 0;
+        }
+    }
+    
+    return 1;
+}
+        
+    
