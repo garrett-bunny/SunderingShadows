@@ -33,7 +33,7 @@
 #define MAX_WIDTH 3
 #define MAX_HEIGHT 10
 #define PATH "/d/common/obj/daily/"
-#define THEMES ({ "clockwork", "offal marsh", "deep caverns" })
+#define THEMES ({ "clockwork", "offal marsh", "deep caverns", "feywild" })
 
 //rename_object() or compile() would have been the ideal method
 //to do this. Without those funs, we will use a mapping instead.
@@ -283,6 +283,15 @@ string get_room_long(string theme)
 {
     switch(theme)
     {
+        case "feywild":
+            if(random(2))
+                return "%^RESET%^%^CRST%^%^C082%^You stand in the %^C243%^shadows%^C082%^ of massive trees. The gargantua trunks stretch up and up hundreds of feet, becoming lost in a %^C245%^ha%^C250%^zy mi%^C245%^st%^C082%^ that creeps through the %^C095%^twi%^C101%^ste%^C095%^d b%^C101%^ran%^C095%^che%^C101%^s%^C082%^ and %^C041%^l%^C047%^u%^C041%^sh l%^C047%^e%^C041%^av%^C047%^e%^C041%^s%^RESET%^%^C082%^. You feel very small amongst such primal majesty, and the entire world seems to be a bit disorienting and dizzying. Despite the thickness of the canopy overhead, the forest is shocking in its %^C112%^b%^C118%^r%^C154%^i%^C148%^g%^C112%^h%^C118%^t%^C154%^n%^C148%^e%^C112%^s%^C118%^s%^RESET%^%^C082%^ and %^C190%^v%^C226%^i%^C220%^v%^C214%^i%^C190%^d %^C226%^c%^C220%^o%^C214%^l%^C190%^o%^C226%^r%^C220%^s%^RESET%^%^C082%^. The air s%^C040%^hi%^C082%^mme%^C040%^r%^C082%^s and rippl%^C040%^e%^C082%^s at times, as if enraptured by %^C043%^magic%^C082%^. Small %^C192%^lights%^C082%^ flicker and dance in the distance, luring you deeper into the dense foliage.%^RESET%^%^CRST%^";
+            else if(random(2))
+                return "%^RESET%^%^CRST%^%^C121%^You find yourself inundated by the reflection of a familiar forest, but it seems wilder, boundless in breadth, and overflowing with vibrancy%^C121%^. Most of the surrounding %^C040%^foliage%^C121%^ and %^C040%^trees%^C121%^ are curiously warped with elaborately patterned trunks and branches that grow any which way. Shining leaves hide fruits that %^C111%^g%^C117%^l%^C123%^o%^C159%^w%^RESET%^ %^C121%^and %^C111%^g%^C117%^l%^C123%^i%^C159%^m%^C111%^m%^C117%^e%^C123%^r%^RESET%^%^C121%^. Some of the more %^BOLD%^%^C090%^e%^C096%^x%^C102%^o%^C108%^t%^C090%^i%^C096%^c %^C102%^p%^C108%^l%^C090%^a%^C096%^n%^C102%^t%^C108%^s%^RESET%^%^C121%^ bloom with colors you have never experienced, with %^BOLD%^%^C090%^s%^C102%^c%^C090%^en%^C102%^t%^C090%^s%^RESET%^%^C121%^ that bewilder and invigorate you. The forest feels very ancient and alive, each thing with a %^C195%^breath%^C121%^ and %^C195%^magic%^C121%^ of its own, and you get the feeling that they've all taken an %^C118%^interest%^C121%^ in you.%^RESET%^%^CRST%^";
+            else
+                return "%^RESET%^%^CRST%^%^C042%^Standing in the shade of the forest, a sea of %^C118%^tall grasses%^C042%^ and %^C129%^w%^C128%^il%^C127%^d%^C126%^f%^C125%^l%^C124%^o%^C128%^w%^C129%^e%^C128%^r%^C127%^s%^RESET%^ %^C042%^stretch out before you. The flowers are a cacophony of %^C129%^vi%^C127%^bra%^C129%^nt c%^C127%^o%^C129%^lors%^RESET%^ %^C042%^against the %^C118%^lively green%^C042%^. They sway to the song of the %^C081%^wind%^C042%^, without care or choreography. Busy %^C153%^winged creatures%^C042%^ flit from flower to flower adding their own enchanting dance to the expansive meadow. The meadow is inundated with such life and vibrancy, you soon find yourself feeling quite %^C162%^aroused%^C042%^ and attuned to your striking surroundings. The sky above is cast in the %^C220%^g%^C226%^o%^C220%^ld%^C226%^e%^C220%^n gl%^C226%^o%^C220%^w%^C042%^ of %^C092%^t%^C098%^w%^C104%^i%^C110%^l%^C092%^i%^C098%^g%^C104%^h%^C110%^t%^RESET%^%^C042%^.%^RESET%^%^CRST%^";
+        break;
+        
         case "clockwork":
             if(random(2))
                 return "%^RESET%^%^CRST%^%^C008%^S%^C007%^i%^C015%^lv%^C007%^e%^C008%^r%^CRST%^ %^C130%^and %^C149%^b%^C143%^r%^C137%^a%^C143%^s%^C149%^s %^C130%^cogs shine in the ambient light, a steady click and whirl of %^C156%^cl%^C150%^oc%^C144%^kw%^C156%^or%^C150%^k g%^C144%^ea%^C156%^rs %^C130%^shifting beneath the %^C007%^tr%^C015%^an%^C007%^sp%^C015%^ar%^C007%^en%^C015%^t g%^C007%^la%^C015%^ss %^CRST%^%^RESET%^%^C130%^floor. They move with a ponderous and methodical pace, like the heartbeat of some great mechanical being. Strange %^C149%^metal %^C143%^tubes %^C130%^run the length of these corridors, forming walls and junctions, rumbling and shaking with barely contained pressures. Vents periodically shutter open, the %^CRST%^%^C007%^s%^C008%^t%^C007%^e%^C008%^a%^C007%^m %^CRST%^%^C130%^screaming out as the cogs and tubing whirl about into new formations.%^RESET%^%^CRST%^";
@@ -319,6 +328,9 @@ int place_monsters(int x, int y, string theme)
     {
         switch(theme)
         {
+            case "feywild":
+            file = PATH + "mon/redcap";
+            break;
             case "clockwork":
             file = PATH + "mon/steamgolem";
             break;

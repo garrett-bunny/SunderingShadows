@@ -6,7 +6,7 @@ inherit SPELL;
 
 int bonus;
 
-object * victims=({});;
+object * victims=({}), dazzle;
 
 void create()
 {
@@ -15,9 +15,9 @@ void create()
     set_spell_level((["mage":4,"oracle":4,"bard":4]));
     set_mystery("heavens");
     set_spell_sphere("illusion");
-    set_damage_desc("clevel / 8 to perception");
+    set_damage_desc("dazzled");
     set_syntax("cast CLASS rainbow pattern on TARGET");
-    set_description("This spell creates a hypnotic pattern in the air, causing every enemy to be fascinated and distracting them from reacting properly. Strong willed may shrug off that pattern.");
+    set_description("This spell creates a hypnotic pattern in the air, causing every enemy to be dazzled and distracting them from reacting properly. Strong willed may shrug off that pattern.");
     set_save("will");
     set_verbal_comp();
     set_somatic_comp();
@@ -43,7 +43,7 @@ void spell_effect(int prof)
     bonus = clevel/8+1;
 
     if(caster->query_mystery() == "heavens" && caster->query_class_level("oracle") > 30)
-        heavens += BONUS_D->query_stat_bonus(caster, "charisma");
+        heavens = BONUS_D->query_stat_bonus(caster, "charisma") / 2;
 
     foreach(foe in foes)
     {
@@ -59,11 +59,11 @@ void spell_effect(int prof)
         {
             tell_object(foe,"%^BOLD%^%^WHITE%^You can not shrug of distracting patterns.");
             tell_room(place,"%^BOLD%^%^WHITE%^"+foe->QCN+" seems to be fascinated by the pattern.",foe);
+            "/std/effect/status/dazzled"->apply_effect(foe, duration + heavens);
             foe->set_property("fascinated",1);
             victims+=({foe});
 
-            foe->add_skill_bonus("perception",-bonus);
-
+            //foe->add_skill_bonus("perception",-bonus);
         }
     }
     if(sizeof(victims)){
@@ -84,7 +84,8 @@ void dest_effect()
             tell_object(foe,"%^BOLD%^%^WHITE%^Fascinating patterns fade away");
             tell_room(ENV(foe),"%^BOLD%^%^WHITE%^Patterns were dancing in front of "+foe->QCN+"'s eyes fade away.",foe);
             foe->remove_property("fascinated");
-            foe->add_skill_bonus("perception",bonus);
+            //foe->add_skill_bonus("perception",bonus);
+            "/std/effect/status/dazzled"->dest_effect(foe);
         }
     }
     if(objectp(TO))
