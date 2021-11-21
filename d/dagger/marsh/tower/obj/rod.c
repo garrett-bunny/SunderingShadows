@@ -45,6 +45,10 @@ int extra_wield()
     if (!objectp(ETO)) {
         return 0;
     }
+    
+    if(!owner || !objectp(owner))
+        owner = ETO;
+    
 // multiple uses of TP replaced by ETO, Lujke 17 October 2005
     if ((string)ETO != owner && (string)ETO->query_name() != "nicodemus") {
         write("The rod fails to bond with you!");
