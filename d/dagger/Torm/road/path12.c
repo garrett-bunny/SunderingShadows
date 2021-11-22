@@ -60,8 +60,6 @@ int townsperson(){
 
 void reset(){
     ::reset();
-    set_open("gate",((string)EVENTS_D->query_time_of_day() != "night"));
-    set_locked("gate", 0);
     if(!present("law sign")){
         new("/d/dagger/Torm/obj/lawsign")->move(TO);
     }

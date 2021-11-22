@@ -46,3 +46,11 @@ void create() {
       "/d/dagger/Torm/city/c89"->set_open("gates",1);
    }
 }
+
+
+void reset(){
+    ::reset();
+    if(!present("law sign")){
+        new("/d/dagger/Torm/obj/lawsign")->move(TO);
+    }
+}
