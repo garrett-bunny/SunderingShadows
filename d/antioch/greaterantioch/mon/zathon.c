@@ -111,9 +111,7 @@ void reply_func(string msg, object who){
       if(interactive(fighterz[i])) {
         ppl += ({ fighterz[i] });
         if(member_array(queststring,fighterz[i]->query_mini_quests()) == -1) {
-          fighterz[i]->set_mini_quest(queststring,1000000,queststring);
-		  tell_object(fighterz[i],"\n%^BOLD%^%^YELLOW%^You successfully brought justice to the Keep of Greater Antioch!%^RESET%^\n");
-		  
+          fighterz[i]->set_mini_quest(queststring,0,queststring);		  
         }
       }
     }
