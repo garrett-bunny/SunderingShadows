@@ -46,6 +46,9 @@ Inside the plane you have access to the following commands:
 
 %^ORANGE%^<feature clear>%^RESET%^
   Will remove all features.
+  
+%^ORANGE%^<open/close door>%^RESET%^
+  This will open and close the entry between the prime material plane and your demiplane. If the door disappears due to a reset, this is also call it back into existence.
 ");
     set_verbal_comp();
     set_somatic_comp();
