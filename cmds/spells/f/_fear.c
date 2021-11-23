@@ -98,7 +98,7 @@ void spell_effect(int prof)
             tell_room(place,"%^BLUE%^You see "+inven[i]->QCN+" wince and shudder, "
                       "before regaining composure.",inven[i]);
 
-            "/std/effect/status/shaken"->apply_effect(inven[i],2);
+            "/std/effect/status/shaken"->apply_effect(inven[i],2, caster);
 
         }
         else
@@ -109,7 +109,7 @@ void spell_effect(int prof)
             tell_room(place, "%^BLUE%^Sheer horror contorts "+
                       ""+inven[i]->QCN+"'s face. "+inven[i]->QS+" breaks in "+
                       "fear and trembles.",inven[i]);
-            "/std/effect/status/panicked"->apply_effect(inven[i],roll_dice(1,6));
+            "/std/effect/status/panicked"->apply_effect(inven[i],roll_dice(1,6), caster);
         }
 
     }
