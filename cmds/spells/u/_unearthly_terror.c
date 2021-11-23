@@ -49,13 +49,13 @@ void spell_effect(int prof){
         tell_object(target, "%^RESET%^%^BLUE%^You fight back some horrid images projected into your mind.%^RESET%^");
         tell_room(place,"%^RESET%^%^BLUE%^"+target->QCN+" grimmaces and shakes "+target->QP+" head, fighting off the mental attack.%^RESET%^",target);
 
-        "/std/effect/status/sickened"->apply_effect(target,roll_dice(1,6));
+        "/std/effect/status/sickened"->apply_effect(target,roll_dice(1,6), caster);
     }
     else
     {
         tell_object(target,"%^BOLD%^%^BLACK%^Images from your worst nightmares spring to life, flooding your mind and shaking the foundation of your soul.%^RESET%^");
         tell_room(place, "%^BOLD%^%^BLACK%^Sheer horror contorts "+target->QCN+"'s face as "+target->QS+" breaks in fear and trembles.%^RESET%^",target);
-      "/std/effect/status/frightened"->apply_effect(target,roll_dice(1,6));
+      "/std/effect/status/frightened"->apply_effect(target,roll_dice(1,6), caster);
     }
 
     dest_effect();
