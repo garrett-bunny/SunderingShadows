@@ -97,7 +97,7 @@ void check_awe(int count)
             ob->set_paralyzed(0);
             tell_object(ob, "%^MAGENTA%^You collect yourself and begin to stand.%^RESET%^");
             tell_room(place, "%^MAGENTA%^" + ob->query_cap_name() + " collects themselves and begins to stand.%^RESET%^", ob);
-            "/std/effect/status/staggered"->apply_effect(ob, roll_dice(1, 4));
+            "/std/effect/status/staggered"->apply_effect(ob, roll_dice(1, 4), caster);
             ob->add_stat_bonus("wisdom", -wisdamage);
             recovered += ({ ob }); //If they recover before spell wears off
             targets -= ({ ob });
