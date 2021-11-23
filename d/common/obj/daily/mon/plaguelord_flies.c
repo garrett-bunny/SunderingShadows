@@ -62,12 +62,12 @@ void buzz_fun(object targ){
         case 0 :
             tell_object(targ, "%^RESET%^%^CRST%^%^C137%^They buzz and crawl all over and around your face, causing you to %^C226%^stagger %^C137%^about!%^CRST%^");
             tell_room(room, "%^RESET%^%^CRST%^%^C137%^"+targ->QCN+"%^RESET%^%^CRST%^ %^C226%^staggers %^C137%^about, unable to avoid the swarm of %^C244%^f%^C248%^l%^C244%^i%^C250%^e%^C246%^s%^C137%^!%^CRST%^", targ);  
-            load_object("/std/effect/status/staggered")->apply_effect(targ, roll_dice(1, 2));
+            load_object("/std/effect/status/staggered")->apply_effect(targ, roll_dice(1, 2), TO);
             break;
         case 1 :
             tell_object(targ, "%^RESET%^%^CRST%^%^C137%^The %^C244%^f%^C248%^l%^C244%^i%^C250%^e%^C246%^s %^C137%^crawl inside your clothing, into your mouth and across your body! It is %^C102%^si%^C108%^ck%^C114%^e%^C102%^ni%^C108%^ng%^C137%^, and you start to %^C102%^p%^C108%^u%^C114%^k%^C102%^e %^C137%^uncontrollably!%^CRST%^");
             tell_room(room, "%^RESET%^%^CRST%^%^C137%^"+targ->QCN+"%^RESET%^%^CRST%^%^C137%^ is absolutely covered in flies, and begins to %^C102%^p%^C108%^u%^C114%^k%^C102%^e%^C137%^!%^CRST%^", targ);  
-            load_object("/std/effect/status/sickened")->apply_effect(targ, roll_dice(1, 2));
+            load_object("/std/effect/status/sickened")->apply_effect(targ, roll_dice(1, 2), TO);
             break;
         default :
             tell_room(room, "%^RESET%^%^CRST%^%^C196%^Something went wrong, please contact Chernobog.%^CRST%^");
