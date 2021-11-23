@@ -87,7 +87,7 @@ void execute_feat()
     {
         tell_room(place, target->QCN + " fumbles " + target->query_possessive() + " steps with self-conscious footing.", ({ target }));
         tell_object(target, "%^BOLD%^You fumble your steps with self-conscious footing.");
-        load_object("/std/effect/status/staggered")->apply_effect(target, roll_dice(1, 6) + 1);
+        load_object("/std/effect/status/staggered")->apply_effect(target, roll_dice(1, 6) + 1, caster);
     }
     else
     {
@@ -112,7 +112,7 @@ void execute_feat()
     {
         tell_room(place, target->QCN + " loses " + target->query_possessive() + " grip on reality and swings wildly.", ({ target }));
         tell_object(target, "%^BOLD%^You lose your grip on reality and swing wildly.");
-        load_object("/std/effect/status/confused")->apply_effect(target, roll_dice(1, 6) + 1);
+        load_object("/std/effect/status/confused")->apply_effect(target, roll_dice(1, 6) + 1, caster);
     }
     else
     {
@@ -124,7 +124,7 @@ void execute_feat()
     {
         tell_room(place, target->QCN + " grips " + target->query_possessive() + " head as the world becomes too big to handle.", ({ target }));
         tell_object(target, "%^BOLD%^You grip your head as the world becomes too big to handle.");
-        load_object("/std/effect/status/panicked")->apply_effect(target, roll_dice(1, 6) + 1);
+        load_object("/std/effect/status/panicked")->apply_effect(target, roll_dice(1, 6) + 1, caster);
     }
     else
     {
@@ -149,7 +149,7 @@ void execute_feat()
     {
         tell_room(place, target->QCN + " grabs " + target->query_possessive() + " stomach as self-loathing sets in.", ({ target }));
         tell_object(target, "%^BOLD%^You grab your stomach as self-loathing sets in.");
-        load_object("/std/effect/status/sickened")->apply_effect(target, roll_dice(1, 6) + 1);
+        load_object("/std/effect/status/sickened")->apply_effect(target, roll_dice(1, 6) + 1, caster);
     }
     else
     {
