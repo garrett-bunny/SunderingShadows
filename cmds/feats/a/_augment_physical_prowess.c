@@ -106,7 +106,7 @@ void execute_feat()
     }
     ::execute_feat();
 	
-    duration = (int)caster->query_class_level("magus") * ROUND_LENGTH;
+    duration = (10 + (int)caster->query_class_level("magus")) * ROUND_LENGTH;
     bonus = 1 + (int)caster->query_class_level("magus") / 10;
     stat_value = (int)caster->query_stats(VALIDSTATS[i]);
     if (stat_value > 30) {
