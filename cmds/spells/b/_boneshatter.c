@@ -35,9 +35,9 @@ void spell_effect(int prof)
     duration = clevel/4+1;
 
     if(do_save(target,0))
-        "/std/effect/status/fatigued"->apply_effect(target,duration);
+        "/std/effect/status/fatigued"->apply_effect(target, duration, caster);
     else
-        "/std/effect/status/exhausted"->apply_effect(target,duration);
+        "/std/effect/status/exhausted"->apply_effect(target, duration, caster);
 
     spell_successful();
 }
