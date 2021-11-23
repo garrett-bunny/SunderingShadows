@@ -78,6 +78,6 @@ spell_effect(int prof)
     if(catch(stagger = load_object("/std/effect/status/staggered")))
         return;
     
-    stagger->apply_effect(target, roll_dice(1, 6));
+    stagger->apply_effect(target, roll_dice(1, 6), caster);
     ::dest_effect();
 }
