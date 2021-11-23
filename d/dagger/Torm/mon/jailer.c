@@ -2,7 +2,7 @@
 #include "/d/common/common.h"
 #include <daemons.h>
 
-#define CITYLAW "tharis law"
+#define CITYLAW "torm law"
 
 inherit "/std/jailer";
 
@@ -12,19 +12,18 @@ int guard_check(string str);
 void create()
 {
     ::create();
-    set_jail("/d/tharis/newtharis/rooms/jail_main");
-    set_cell("/d/tharis/newtharis/rooms/jail");
+    set_jail("/d/dagger/Torm/city/jail_main");
+    set_cell("/d/dagger/Torm/city/jail");
     set_property("official","tharis");
     set_property("knock unconscious",1);
-    set_id(({"jailer", "guard", "girard", "tharis jailer", CITYLAW}));
+    set_id(({"jailer", "guard", "caleb", "torm jailer", CITYLAW}));
     set_name("tharis jailer");
-    set_short("%^CYAN%^BOLD%^Girard, the Tharis Jailer%^RESET%^");
-    set_long(CRAYON_D->color_string("You see before you a man of a pale complexion and dark disposition. He is wearing a high-collared grey leather jacket, which extends down to his knees, just above his knee-length riding boots. He carries a single arming sword at his side, kept in a leaf-gilt fine leather scabbard. His face is serious and forebidding, with deep black eyes that stare at you with cold intensity. The shadows around him seem to seep into him, nourishing him with their dark caress.  He obviously takes his job as the city jailer VERY seriously.", "very black"));
+    set_short("%^CYAN%^BOLD%^Caleb, the Torm Jailer%^RESET%^");
+    set_long(CRAYON_D->color_string("Placeholder", "very black"));
     set_race("human");
     set_gender("male");
     set_size(2);
     set_hd(60);
-    set_acquired_template("shade");
     set_hp(roll_dice(query_hd(),60));
     set_max_level(50);
     set_overall_ac(-60);
@@ -39,7 +38,7 @@ void create()
     set_property("swarm",1);
     set_property("no bows", 1);
     set_property("no dominate", 1); 
-    new("/d/tharis/newtharis/obj/jail_key")->move(this_object());
+    new("/d/dagger/Torm/obj/jail_key")->move(this_object());
     force_me("wear key");
     new("/d/common/obj/armour/coif")->move(TO);
     command("wear coif");
@@ -89,9 +88,9 @@ int kill_ob(object ob, int i)
     if (hold)
     {
         tell_room(room, "The jailer yells loudly for help.");
-        new("/d/tharis/newtharis/mobs/bladegolem")->move(room);
-        new("/d/tharis/newtharis/mobs/bladegolem")->move(room);
-        new("/d/tharis/newtharis/mobs/bladegolem")->move(room);
+        new("/d/dagger/Torm/mon/patrol_guard")->move(room);
+        new("/d/dagger/Torm/mon/patrol_guard")->move(room);
+        new("/d/dagger/Torm/mon/patrol_guard")->move(room);
     }
     return hold;
 }
