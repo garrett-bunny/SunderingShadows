@@ -14,7 +14,7 @@ void create() {
     feat_category("MeleeDamage");
     feat_syntax("rush [TARGET]");
     feat_prereq("Strength 13");
-    feat_desc("The character can attempt to rush at a foe with their weapon, throwing as much force as they can behind it in the hope of dealing damage and knocking them over. Missing, however, will send the character sprawling. This will only work while shapeshifted, or using a standard melee weapon, unless the character has an aptitude in unarmed combat. Note: Monks cannot take the unarmed combat feat and so cannot take this feat.
+    feat_desc("The character can attempt to rush at a foe with their weapon, throwing as much force as they can behind it in the hope of dealing damage and knocking them over. Missing, however, will send the character sprawling. This will only work while shapeshifted, or using a standard melee weapon. Monks or characters with the unarmed combat feat can also use this feat without a weapon.
 
 If used without an argument this feat will pick up a random attacker.
 
@@ -33,10 +33,12 @@ int prerequisites(object ob)
         return 0;
     }
     
+    /*
     if((ob->is_class("monk")) && (!FEATS_D->usable_feat(ob, "unarmed combat")))
     {
         return 0;
     }
+    */
     
     return ::prerequisites(ob);
 }
@@ -96,7 +98,7 @@ void execute_feat() {
         dest_effect();
         return;
     }
-    if(!sizeof(caster->query_wielded()) && !caster->query_property("shapeshifted")) {
+    if(!sizeof(caster->query_wielded()) && !caster->query_property("shapeshifted") && !caster->is_class("monk") && !FEATS_D->usable_feat(caster, "unarmed combat")) {
         tell_object(caster,"How can you rush at anyone without a weapon?");
         dest_effect();
         return;
@@ -144,7 +146,14 @@ void execute_attack() {
         dest_effect();
         return;
     }
+    /*
     if(!sizeof(caster->query_wielded()) && !caster->query_property("shapeshifted") && !FEATS_D->usable_feat(caster,"unarmed combat")) {
+        tell_object(caster,"How can you rush at anyone without a weapon?");
+        dest_effect();
+        return;
+    }
+    */
+    if(!sizeof(caster->query_wielded()) && !caster->query_property("shapeshifted") && !caster->is_class("monk") && !FEATS_D->usable_feat(caster, "unarmed combat")) {
         tell_object(caster,"How can you rush at anyone without a weapon?");
         dest_effect();
         return;
