@@ -3376,9 +3376,10 @@ int query_spell_DC(object ob, int mod)
     return spell_DC ? spell_DC : do_save(ob, mod, 1);
 }   
 
-int combat_death_save(object foe, int casters_disadvantage)
+//casters disavantage is actually caster advantage
+int combat_death_save(object foe, int casters_advantage)
 {
-    return do_save(foe, casters_disadvantage) ||
+    return do_save(foe, casters_advantage) ||
         foe->query_property("no death") ||
         foe->query_level() > caster->query_level() ||
         foe->query_level() > clevel ||
