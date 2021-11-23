@@ -59,7 +59,7 @@ void spell_effect(int prof)
         {
             tell_object(foe,"%^BOLD%^%^WHITE%^You can not shrug of distracting patterns.");
             tell_room(place,"%^BOLD%^%^WHITE%^"+foe->QCN+" seems to be fascinated by the pattern.",foe);
-            "/std/effect/status/dazzled"->apply_effect(foe, duration + heavens);
+            "/std/effect/status/dazzled"->apply_effect(foe, duration + heavens, caster);
             foe->set_property("fascinated",1);
             victims+=({foe});
 
