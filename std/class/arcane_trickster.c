@@ -134,7 +134,7 @@ int prerequisites(object player)
 
 mapping stat_requirements(object ob) { return base_class_ob(ob)->stat_requirements(); }
 
-int *saving_throws(object ob) { return ({0,1,1}); }
+int *saving_throws(object ob) { return base_class_ob(ob)->saving_throws(); }
 
 string *combat_styles() { return ({}); }
 
