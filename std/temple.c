@@ -470,7 +470,7 @@ int is_temple() {
 
 void heart_beat()
 {
-    object faithful, aggressors, sickened;
+    object *faithful, *aggressors, *tmp, sickened;
     
     tick++;
     
@@ -478,6 +478,8 @@ void heart_beat()
         return;
     
     tick = 0;
+    
+    faithful = ({  });
     
     if(diety == "ashra")
     {
@@ -499,8 +501,13 @@ void heart_beat()
     
     foreach(object ob in faithful)
     {
-        aggressors += ob->query_attackers();
-        // Need some code here to remove duplicates
+        tmp = ob->query_attackers();
+        
+        foreach(object dude in tmp)
+        {
+            if(member_array(dude, aggressors) < 0)
+                aggressors += ({ dude });
+        }
     }
     
     if(!sizeof(aggressors))
