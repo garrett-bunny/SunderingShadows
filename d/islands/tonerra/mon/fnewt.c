@@ -166,7 +166,7 @@ void fire(object targ)
               + targ->query_cap_name() + ".", targ);
     tell_object(targ, "%^RED%^A shot of flame bellows toward you.");
     set_property("magic", 1);
-    targ->do_damage("torso", random(75));
+    targ->cause_typed_damage(targ, "torso", random(75), "fire");
     remove_property("magic");
 }
 
