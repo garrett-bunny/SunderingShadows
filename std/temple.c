@@ -472,6 +472,8 @@ void heart_beat()
 {
     object *faithful, *aggressors, *tmp, sickened;
     
+    ::heart_beat();
+    
     tick++;
     
     if(tick < 3)
