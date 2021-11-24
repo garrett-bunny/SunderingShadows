@@ -21,8 +21,10 @@
 inherit "/std/church";
 
 string diety;
+int tick;
 
-void init() {
+void init()
+{
     ::init();
     add_action("select_diety","choose");
     add_action("leave_diety","forsake");
@@ -33,7 +35,15 @@ void init() {
     add_action("withdraw", "withdraw");
     add_action("look_box", "look");
     add_action("soulbind", "soulbind");
-    if(!present("templewardxxx",TP)) new("/d/magic/obj/templeward")->move(TP);
+    
+    call_out("warning", 2, this_player());
+    //if(!present("templewardxxx",TP)) new("/d/magic/obj/templeward")->move(TP);
+}
+
+void warning(object who)
+{
+    tell_object(who, "%^CYAN%^BOLD%^You feel the power of the patron deity protecting this place. Hostile action against the faithful of this deity will be punished.%^RESET%^");
+    return;
 }
 
 void create() {
@@ -458,6 +468,60 @@ int is_temple() {
     return 1;
 }
 
+void heart_beat()
+{
+    object faithful, aggressors, sickened;
+    
+    tick++;
+    
+    if(tick < 3)
+        return;
+    
+    tick = 0;
+    
+    if(diety == "ashra")
+    {
+        faithful = filter_array(all_living(this_object()), (: ($1->query_diety() == "khyron" || $1->query_diety() == "nilith" || $1->query_diety() == "lord shadow" || $1->query_diety() == "the faceless one") :));
+    }
+    else if(diety == "edea")
+    {
+        faithful = filter_array(all_living(this_object()), (: ($1->query_diety() == "jarmila" || $1->query_diety() == "callamir" || $1->query_diety() == "kreysneothosies") :));
+    }
+    else
+    {
+        faithful = filter_array(all_living(this_object()), (: $1->query_diety() == diety :));
+    }
+    
+    if(!sizeof(faithful))
+        return;
+    
+    aggressors = ({  });
+    
+    foreach(object ob in faithful)
+    {
+        aggressors += ob->query_attackers();
+        // Need some code here to remove duplicates
+    }
+    
+    if(!sizeof(aggressors))
+        return;
+    
+    if(catch(sickened = load_object("/std/effect/status/sickened")))
+        return;
+    
+    foreach(object foe in aggressors)
+    {
+        if(SAVING_THROW_D->do_save(foe, 85, "will"))
+            continue;
+        
+        tell_room(this_object(), "%^MAGENTA%^" + foe->query_cap_name() + " is struck with a sense of dread!%^RESET%^", foe);
+        tell_object(foe, "%^MAGENTA%^You feel a sense of dread from fighting in this holy place!%^RESET%^");
+        foe->cause_typed_damage(foe, "torso", roll_dice(5 + foe->query_level() / 10, 6), "divine");
+        sickened->apply_effect(foe, 1);
+    }   
+}
+    
+/*
 void trigger_ward()
 {
     	object *combatants, destroom, MyWard;
@@ -467,6 +531,8 @@ void trigger_ward()
     	for(i = 0;i< sizeof(combatants); i++)
     	{
         	if(!objectp(combatants[i])) { continue; }
+            if(combatants[i]->query_diety() == diety)
+                continue;
 		//adding this because I'm guessing it bugs whenever
 		//someone summons fodder to a battle in a temple, since
 		//they wont get a temple ward object - (it removes it
@@ -499,6 +565,7 @@ void trigger_ward()
             "they disappear from view!%^RESET%^");
     	}
 }
+*/
 
 int confirm_soulbind(string str,object bob,object bindob,int cost,object unbindob) {
     object *contents=({});
