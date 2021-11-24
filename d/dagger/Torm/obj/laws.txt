@@ -32,4 +32,4 @@
 
 %^RESET%^%^MAGENTA%^The sign is marked at the bottom with an official seal of the City of Torm, showing a ship with three stars below with a moon above.
 
-%^BOLD%^%^RED%^Across the sign is a large, crudely drawn penis drawn.%^RESET%^
+%^BOLD%^%^RED%^Across the sign is a large, crudely drawn penis.%^RESET%^
