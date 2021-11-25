@@ -15,7 +15,7 @@ void create() {
     set_spell_sphere("invocation_evocation");
     set_syntax("cast CLASS deadly finale on TARGET");
     set_damage_desc("sonic damage to target and splash. rend on failed fort save.");
-    set_description("With this spell the bard sings a discordant melody, ending your performance with a deadly finale. The target, and possibly those around it are struck with painful sonic energy. If the affected targets do not make a fortitude save, they are also afflicted with the rend condition as their ears, nose and eyes bleed. This spell will end your current performance or inspiration. You must have an inspiration active to use this spell.");
+    set_description("With this spell the bard sings a discordant melody, ending their performance with a deadly finale. The target, and possibly those around it are struck with painful sonic energy. If the affected targets do not make a fortitude save, they are also afflicted with the rend condition as their ears, nose and eyes bleed. This spell will end your current performance or inspiration. You must have an inspiration active to use this spell.");
     set_verbal_comp();
     set_somatic_comp();
     set_target_required(1);
@@ -25,7 +25,7 @@ void create() {
 }
 
 string query_cast_string() {
-    return "%^BOLD%^%^CYAN%^"+caster->QCN+" raises a hand, fingertips touching.";
+    return "%^BOLD%^%^CYAN%^"+caster->query_cap_name() + " begins to sing a deadly refrain.";
 }
 
 void spell_effect(int prof)
