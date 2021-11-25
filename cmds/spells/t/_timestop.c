@@ -18,7 +18,7 @@ void create() {
 "after a brief interval, while the very strongest of opponents may manage to resist the effect entirely.");
     set_verbal_comp();
     set_somatic_comp();
-    splash_spell();
+    splash_spell(3);
 }
 
 string query_cast_string() {
