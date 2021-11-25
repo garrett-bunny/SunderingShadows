@@ -70,7 +70,7 @@ void spell_effect(int prof)
         if(!do_save(ob, 0))
         {
             tell_object(ob, "%^MAGENTA%^BOLD%^The beautiful sound leaves you awe struck!%^RESET%^");
-            tell_room(place, "%^MAGENTA%^BOLD%^The beautiful sound leaves " + target->query_cap_name() + " awe struck!%^RESET%^");
+            tell_room(place, "%^MAGENTA%^BOLD%^The beautiful sound leaves " + target->query_cap_name() + " awe struck!%^RESET%^", ob);
             ob->set_paralyzed(6, "You are awe struck by the finale!");
         }
         
@@ -78,7 +78,7 @@ void spell_effect(int prof)
             continue;
         
         tell_object(ob, "%^MAGENTA%^BOLD%^You are staggered by the stunning finale!%^RESET%^");
-        tell_room(place, "%^MAGENTA%^BOLD%^The stunning finale staggers " + target->query_cap_name() + "!%^RESET%^");
+        tell_room(place, "%^MAGENTA%^BOLD%^The stunning finale staggers " + target->query_cap_name() + "!%^RESET%^", ob);
         stagger->apply_effect(ob, 1);
     }
     
