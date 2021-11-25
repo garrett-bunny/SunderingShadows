@@ -7,9 +7,8 @@ void create() {
     ::create();
     set_author("nienne");
     set_spell_name("timestop");
-    set_spell_level(([ "mage" : 9, "oracle":9, "psion" : 9 ]));
+    set_spell_level(([ "mage" : 9, "psion" : 9 ]));
     set_discipline("nomad");
-    set_mystery("lore");
     set_spell_sphere("alteration");
     set_syntax("cast CLASS timestop");
     set_description("This spell allows the transmuter to alter their immediate surroundings into a state of such forced "
