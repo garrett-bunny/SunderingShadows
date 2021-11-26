@@ -72,7 +72,7 @@ void spell_effect(int prof)
         {
             tell_object(ob, "%^RED%^BOLD%^You ears, nose, and eyes begin to bleed profusely!%^RESET%^");
             tell_room(place, "%^RED%^BOLD%^" + ob->query_cap_name() + "'s ears, nose and eyes begin to bleed profusely!%^RESET%^", ob);
-            ob->set_property("rend", 2);
+            ob->set_property("rend", 5);
         }
         
         ob->cause_typed_damage(ob, "torso", sdamage, "sonic");
