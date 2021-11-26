@@ -44,7 +44,7 @@ void spell_effect(int prof)
         return;
     }
     
-    spell_succesful();
+    spell_successful();
     
     targets = ({  });
     targets = ob_party(caster);

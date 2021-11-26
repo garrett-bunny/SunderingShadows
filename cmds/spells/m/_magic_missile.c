@@ -16,7 +16,7 @@ create()
 {
     ::create();
     set_spell_name("magic missile");
-    set_spell_level( ([ "mage" : 1 ]) );
+    set_spell_level( ([ "mage" : 1, "magus" : 1 ]) );
     set_spell_sphere("invocation_evocation");
     set_syntax("cast CLASS magic missile on [TARGET]");
     set_damage_desc("force damage per missile. 1 missile + clevel / 6 additional missiles.");
@@ -70,7 +70,10 @@ void spell_effect(int prof)
     c_name = caster->query_cap_name();
     
     //Adjusts spell damage formula to scale for number of darts.
-    define_base_damage(max( ({ 1, min( ({ num, 9 }) ) })));
+    if(query_spell_type() == "mage" || query_spell_type() == "sorcerer")
+        define_base_damage(max( ({ 1, min( ({ num, 9 }) ) })));
+    else
+        define_base_damage(max( ({ 1, min( ({ num, 6 }) ) })));        
     
     //tell_object(caster, "Damage per dart : " + sdamage);
     

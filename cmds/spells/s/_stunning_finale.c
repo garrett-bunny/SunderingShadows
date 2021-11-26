@@ -54,7 +54,7 @@ void spell_effect(int prof)
         return;
     }
     
-    spell_succesful();
+    spell_successful();
     targets = target_selector();
     
     tell_object(caster, CRAYON_D->color_string("You sing a beautiful melody and, with a flourish, deliver a stunning finale!", "sierra"));
