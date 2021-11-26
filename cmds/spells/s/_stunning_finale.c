@@ -82,7 +82,7 @@ void spell_effect(int prof)
         stagger->apply_effect(ob, 1);
     }
     
-    inspire->dest_all_effects();
+    inspire->remove();
     dest_effect();
 }
 

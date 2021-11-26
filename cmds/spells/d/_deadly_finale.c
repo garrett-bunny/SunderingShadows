@@ -78,7 +78,7 @@ void spell_effect(int prof)
         ob->cause_typed_damage(ob, "torso", sdamage, "sonic");
     }
     
-    inspire->dest_all_effects();
+    inspire->remove();
     dest_effect();
 }
 

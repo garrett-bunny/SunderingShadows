@@ -70,7 +70,7 @@ void spell_effect(int prof)
         ob->cause_typed_damage(ob, "torse", sdamage, "positive energy");
     }
     
-    inspire->dest_all_effects();
+    inspire->remove();
     dest_effect();
 }
 
