@@ -40,7 +40,10 @@ void create() {
     ] ));
 find_object_or_load("/d/attaya/cliff20.c");
 }
-void init() {
-  ::init();
-  do_random_encounters(({"/d/attaya/mon/riptide.c"}),75,1);
+
+void reset()
+{
+	::reset();
+    if(!present("riptide"))
+        new("/d/attaya/mon/riptide.c")->move(TO);
 }
