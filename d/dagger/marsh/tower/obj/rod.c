@@ -46,6 +46,7 @@ int extra_wield()
         return 0;
     }
     
+    /*
     if(!owner || !stringp(owner))
         owner = ETO->query_name();
     
@@ -55,6 +56,7 @@ int extra_wield()
         TO->remove();
         return 0;
     }
+    */
     if ((int)ETO->query_prestige_level("mage") < 25 &&
         (int)ETO->query_prestige_level("sorcerer") < 25) {
         write("You are not able to utilize this item!\nA surge of energy fills your "
