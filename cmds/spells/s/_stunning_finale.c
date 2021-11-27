@@ -14,7 +14,7 @@ void create() {
     set_spell_level(([ "bard" : 5 ]));
     set_spell_sphere("enchantment_charm");
     set_syntax("cast CLASS stunning finale on TARGET");
-    set_damage_desc("paralysis for one round, or, staggered for one round on successful save.");
+    set_damage_desc("paralysis, or, staggered for one round on successful save.");
     set_description("With this spell the bard sings a beautiful melody, ending their performance with a stunning finale. The target, and possibly those around it are awe struck by this finale. Those who fail a fortitude save will be utterly paralyzed by this finale, while those who pass their save will be staggered for one round. This spell will end your current performance or inspiration. You must have an inspiration active to use this spell.");
     set_verbal_comp();
     set_somatic_comp();
@@ -71,7 +71,7 @@ void spell_effect(int prof)
         {
             tell_object(ob, "%^MAGENTA%^BOLD%^The beautiful sound leaves you awe struck!%^RESET%^");
             tell_room(place, "%^MAGENTA%^BOLD%^The beautiful sound leaves " + target->query_cap_name() + " awe struck!%^RESET%^", ob);
-            ob->set_paralyzed(6, "You are awe struck by the finale!");
+            ob->set_paralyzed(ROUND_LENGTH * 3, "You are awe struck by the finale!");
         }
         
         if(!objectp(stagger))
