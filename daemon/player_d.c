@@ -837,6 +837,9 @@ int immunity_check(object obj, string type)
         
         if(obj->query_mystery() == "life" && obj->query_class_level("oracle") >= 31)
             return 1;
+        
+        if(obj->query_bloodline() == "boreal")
+            return 1;
 
         return 0;
     }
@@ -899,6 +902,14 @@ int immunity_check(object obj, string type)
     
         if (FEATS_D->usable_feat(obj, "earthen blood"))
             return 1;
+        
+        if(obj->is_class("sorcerer"))
+        {
+            if(obj->query_bloodline() == "abyssal" ||
+               obj->query_bloodline() == "infernal" ||
+               obj->query_bloodline() == "fey")
+               return 1;
+        }
 
         if (obj->is_undead())
             return 1;

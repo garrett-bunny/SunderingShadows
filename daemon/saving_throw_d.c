@@ -98,6 +98,9 @@ varargs int do_save(object ob, int dc, string type, raw_save)
                 mod += (ob->query_class_level("thief") / 10 + 2);
             }
             
+            if(ob->query_bloodline() == "kobold")
+                mod += 2;
+            
             mod += ob->query_saving_bonus("reflex");
             mod += (saves[1] * 2);
             max_mod = saves[1] * 2;
@@ -336,6 +339,7 @@ mapping debug_will_save(object ob, int dc)
     return save_info;
 }
 
+//Keep here until all spells have updated
 int magic_save_throw_adjust(object targ, object caster, object spell)
 {
     int caster_bonus = 0;

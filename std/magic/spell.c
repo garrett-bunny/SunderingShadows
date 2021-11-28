@@ -2639,6 +2639,16 @@ void define_clevel()
         if(member_array(caster->query("elementalist"), immune) >= 0)
             clevel += 3;
     }
+    
+    if(caster->query_bloodline() == "aberrant")
+    {
+        if(spell_name == "shapechange" ||
+           spell_name == "greater polymorph" ||
+           spell_name == "polymorph" ||
+           spell_name == "polymorph self" ||
+           spell_name == "alter self")
+           clevel += 1;
+    }        
 
     if ((int)caster->query_property("empowered")) {
         clevel += (int)caster->query_property("empowered");
@@ -3296,6 +3306,43 @@ varargs int do_save(object targ, int mod, int get_dc)
             }
         }
     }
+    
+    //Bloodline DC adjustments
+    if(caster->is_class("sorcerer"))
+    {
+        switch(caster->query_bloodline())
+        {
+            case "arcane":
+            if(caster->query_property("quicken spell") ||
+               caster->query_property("maximize spell") ||
+               caster->query_property("empower spell") ||
+               caster->query_property("enlarge spell"))
+               DC += 1;
+            break;
+            
+            case "fey": case "infernal": 
+            if(spell_sphere == "enchantment_charm")
+                DC += 1;
+            break;
+            
+            case "boreal":
+            if(member_array("cold", immune) >= 0)
+                DC += 1;
+            break;
+            
+            case "stormborn":
+            if(member_array("electricity", immune) >= 0 ||
+               member_array("sonic", immune) >= 0)
+               DC += 1;
+            break;
+            
+            case "kobold":
+            if(targ->is_vulnerable_to(caster))
+                DC += 2;
+            break;
+        }
+    }           
+        
 
 //////SPELL-SPECIFIC SAVE ADJUSTMENTS///////
 
@@ -3512,7 +3559,7 @@ object *target_selector()
     object * foes = caster->query_attackers();
     object * everyone = all_living(place);
     object * slctd = ({});
-    int aff, max, statbonus;
+    int aff, max, statbonus, enlarge;
     int slevel = query_spell_level(spell_type);
 
     everyone = target_filter(everyone);
@@ -3524,28 +3571,38 @@ object *target_selector()
 
     slevel = slevel < 1 ? 1 : slevel;
     max = 6 + BONUS_D->query_stat_bonus(caster, query_casting_stat());
+    
+    enlarge = caster->query_property("enlarge spell");
+    
+    if(enlarge)
+        max *= 2;
 
     if (splash_spell == 2) {
         aff = random(slevel) + 1;
         aff = aff > max ? max : aff;
+        aff *= (1 + enlarge);
         slctd += foes[0..aff];
     } else if (splash_spell == 3 || aoe_spell) {
         aff = random(slevel) + 1;
         aff = aff > max ? max : aff;
+        aff *= (1 + enlarge);
         slctd += everyone[0..aff];
     } else if (traveling_spell || traveling_aoe_spell) {
         aff = random(slevel) + 1;
         aff = aff > max ? max : aff;
+        aff *= (1 + enlarge);
         slctd += foes[0..aff];
     } else {
         aff = random(slevel) + 1;
         aff = aff > max ? max : aff;
+        aff *= (1 + enlarge);
         slctd += foes[0..aff];
         if (roll_dice(1, 20) > (clevel / 3)) {
             slctd += everyone[0..(48 / clevel + 1)];
         }
     }
 
+    caster->remove_property("enlarge spell");
     slctd = distinct_array(slctd);
     return slctd;
 }
