@@ -81,13 +81,13 @@ class_spell_storage =
     //"elemental":
     //    ({"burning hands","scorcher","fireball","ice storm","cone of cold","chain lightning","incendiary cloud","meteor swarm"}),
     "fey":
-        ({"dancing lights","glitterdust","phantom steed","confusion","domination","eyebite","reverse gravity","irresistible dance", "overwhelming presence"}),
+        ({"dancing lights","glitterdust","phantom steed","confusion","domination","eyebite","irresistible dance", "overwhelming presence"}),
     "ghoul":
         ({"chill touch","ray of enfeeblement","vampiric touch","boneshatter","teleport","circle of death","finger of death","horrid wilting"}),
     "infernal":
         ({"infernal healing","scorcher","fireball","fire shield","mind fog","hellfire ray","finger of death","powerword stun"}),
     "kobold":
-        ({"reduce person","cats grace","slow","polymorph","acid breath","tar pool","delayed fireball","protection from spells","greater polymorph"}),
+        ({"reduce person","slow","polymorph","acid breath","tar pool","delayed fireball","protection from spells","greater polymorph"}),
     //"possessed":
     //    ({"sleep","blindness","displacement","phantasmal killer","false vision""eyebite","visions from within","euphoric tranquility"}),
     //"shadow":

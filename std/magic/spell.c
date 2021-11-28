@@ -3327,7 +3327,7 @@ varargs int do_save(object targ, int mod, int get_dc)
             break;
             
             case "fey": case "infernal": 
-            if(spell_sphere == "enchantment_charm")
+            if(spell_sphere == "illusion")
                 DC += 1;
             break;
             
