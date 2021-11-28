@@ -800,6 +800,7 @@ int query_resistance(string res)
                 myres += this_object()->query_prestige_level("oracle") / 2;
         }
     }
+            
     
     if (FEATS_D->usable_feat(TO, "no fear of the flame") && res == "fire") {
         myres += 30;
@@ -938,6 +939,32 @@ int query_resistance_percent(string res)
             }
         } 
         
+    }
+
+    if(this_object()->is_class("sorcerer"))
+    {
+        switch(this_object()->query_bloodline())
+        {
+            case "stormborn":
+            if(res == "sonic" || res == "electricity")
+                mod = 110;
+            break;
+            
+            case "abyssal":
+            if(res == "electricity")
+                mod = 100;
+            break;
+            
+            case "infernal":
+            if(res == "fire")
+                mod = 100;
+            break;
+            
+            case "boreal":
+            if(res == "cold")
+                mod = 100;
+            break;
+        }
     }
   
     //Mage is invulnerable for duration of prismatic sphere
