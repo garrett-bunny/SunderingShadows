@@ -68,6 +68,11 @@ int cmd_master(string args)
                 write("%^CYAN%^Level " + (i + 1) + ": %^RESET%^" + spelllevels[i] + " of " + max_spells);
             }
         }
+        if(TP->is_class("sorcerer"))
+        {
+            if(TP->query_bloodline() == "arcane")
+                bonuslimit += 1;
+        }
         if (FEATS_D->usable_feat(TP, "spell knowledge")) {
             bonuslimit += 2;
         }
@@ -78,7 +83,7 @@ int cmd_master(string args)
             bonuslimit += 5;
         }
         if (bonuslimit) {
-            write("%^CYAN%^You can learn " + bonuslimit + " spells above limit due to your spell knowledge feat.");
+            write("%^CYAN%^You can learn " + bonuslimit + " spells above limit due to your spell knowledge feats.");
         }
 
         return 1;

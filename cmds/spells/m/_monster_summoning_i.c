@@ -64,6 +64,13 @@ int spell_effect(int prof)
         monster->set_new_exp(1, "low");
         monster->set_property("minion", caster);
         monster->move(environment(caster));
+        
+        if(caster->is_class("sorcerer") && (caster->query_bloodline() == "abyssal" || caster->query_bloodline() == "celestial"))
+        {
+            monster->set_property("damage resistance", 1 + clevel / 10);
+            monster->set_property("spell damage resistance", 1 + clevel / 10);
+        }
+        
         caster->add_follower(monster);
         caster->add_protector(monster);
 

@@ -943,26 +943,28 @@ int query_resistance_percent(string res)
 
     if(this_object()->is_class("sorcerer"))
     {
+        int sorc_level = this_object()->query_class_level("sorcerer");
+        
         switch(this_object()->query_bloodline())
         {
             case "stormborn":
             if(res == "sonic" || res == "electricity")
-                mod = 110;
+                mod = 30 + sorc_level * 2;
             break;
             
             case "abyssal":
             if(res == "electricity")
-                mod = 100;
+                mod = 20 + sorc_level * 2;
             break;
             
             case "infernal":
             if(res == "fire")
-                mod = 100;
+                mod = 20 + sorc_level * 2;
             break;
             
             case "boreal":
             if(res == "cold")
-                mod = 100;
+                mod = 20 + sorc_level * 2;
             break;
         }
     }
