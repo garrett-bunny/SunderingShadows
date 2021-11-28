@@ -65,7 +65,7 @@ class_spell_storage =
     "aberrant":
         ({"enlarge person","detect invisibility","tongues","black tentacles","prying eyes","impenetrable veil","phase door","shapechange"}),
     "abyssal":
-        ({"acid splash","darkness","acid orb","fear","domination","impenetrable veil","acid fog","unholy aura"}),
+        ({"acid splash","darkness","acid orb","fear","domination","impenetrable veil","acid fog","unholy aura", "monster summoning ix"}),
     //"accursed":
     //    ({"touch of fatigue","touch of idiocy","garble","bestow curse","ruin","eyebite","powerword blind","spellscar"}),
     "arcane":
