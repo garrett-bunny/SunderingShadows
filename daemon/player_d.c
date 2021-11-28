@@ -881,6 +881,16 @@ int immunity_check(object obj, string type)
                 return 1;
             }
         }
+
+        if(obj->query_bloodline() == "ghoul")
+        {
+            if(!obj->cooldown("ghoulish aspect"))
+            {
+                tell_object(obj, "%^YELLOW%^Your ghoulish aspect helps you shrug off the paralysis!");
+                obj->add_cooldown("ghoulish aspect", 120);
+                return 1;
+            }
+        }        
     
         return 0;
     }

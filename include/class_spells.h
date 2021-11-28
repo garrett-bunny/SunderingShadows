@@ -81,7 +81,7 @@ class_spell_storage =
     //"elemental":
     //    ({"burning hands","scorcher","fireball","ice storm","cone of cold","chain lightning","incendiary cloud","meteor swarm"}),
     "fey":
-        ({"dancing lights","glitterdust","phantom steed","confusion","domination","eyebite","reverse gravity","irresistible dance"}),
+        ({"dancing lights","glitterdust","phantom steed","confusion","domination","eyebite","reverse gravity","irresistible dance", "overwhelming presence"}),
     "ghoul":
         ({"chill touch","ray of enfeeblement","vampiric touch","boneshatter","teleport","circle of death","finger of death","horrid wilting"}),
     "infernal":

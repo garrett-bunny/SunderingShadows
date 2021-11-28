@@ -2750,7 +2750,7 @@ void define_base_damage(int adjust)
                 sdamage += (BONUS_D->query_stat_bonus(caster, "intelligence") * (1 + clevel / 12));
         }
         
-        if(target->is_class("sorcerer"))
+        if(target && target->is_class("sorcerer"))
         {
             if(target->query_bloodline() == "celestial" && is_evil(caster))
                 sdamage -= (11 + target->query_class_level("sorcerer") / 2);

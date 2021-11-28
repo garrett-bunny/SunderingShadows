@@ -9,7 +9,7 @@ void create() {
     ::create();
     set_author("ares");
     set_spell_name("dispel evil");
-    set_spell_level(([ "cleric" : 6 ]));
+    set_spell_level(([ "cleric" : 6, "sorcerer" : 1 ]));
     set_domains("good");
     set_spell_sphere("combat");
     set_syntax("cast CLASS dispel evil on TARGET");

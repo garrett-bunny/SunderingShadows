@@ -12,7 +12,7 @@ void create() {
     ::create();
     set_author("ares");
     set_spell_name("bless");
-    set_spell_level(([ "cleric" : 1,"inquisitor" : 1, "paladin" : 1 ]));
+    set_spell_level(([ "cleric" : 1,"inquisitor" : 1, "paladin" : 1, "sorcerer" : 1 ]));
     set_spell_sphere("alteration");
     set_bonus_type("morale");
     set_syntax("cast CLASS bless on TARGET");

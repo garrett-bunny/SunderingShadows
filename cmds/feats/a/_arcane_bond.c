@@ -70,7 +70,7 @@ int prerequisites(object ob)
     if(!objectp(ob))
         return 0;
     
-    if(ob->query_class_level("mage") < 1)
+    if(ob->query_class_level("mage") < 1 && ob->query_bloodline() != "arcane")
     {
         dest_effect();
         return 0;

@@ -840,6 +840,9 @@ mixed query_property(string prop)
             }
         }
 		
+        if(this_object()->query_bloodline() == "fey")
+            num += 10;
+        
 		if (FEATS_D->usable_feat(TO, "perfect self")) {
             num += 50;
         }
