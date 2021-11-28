@@ -3297,6 +3297,10 @@ varargs int do_save(object targ, int mod, int get_dc)
         }
     }
 
+//////SPELL-SPECIFIC SAVE ADJUSTMENTS///////
+
+//Moved from saving_throw_d.c
+
     if(diminish_returns)
         DC -= (5 * targ->is_diminish_return(spell_name, caster));
 
@@ -3315,9 +3319,56 @@ varargs int do_save(object targ, int mod, int get_dc)
 
     if(evil_spell && FEATS_D->usable_feat(targ, "celestial totem"))
         DC -= 2;
+    
+    if (arrayp(targ->query_property("protection_from_alignment")))
+    {
+        if (member_array(caster->query_alignment(), targ->query_property("protection_from_alignment")) != -1)
+            DC -= 2;
+    }
+    
+    if (FEATS_D->usable_feat(targ, "disruptive"))
+    {
+        DC -= 5;
+    }
+
+    if (FEATS_D->usable_feat(targ, "closed mind"))
+    {
+        DC -= 2;
+    }
+    
+    if(FEATS_D->usable_feat(targ, "superstition") && targ->query_property("raged"))
+    {
+        DC -= 2;
+    }
+    
+    if(targ->is_shade() && total_light(environment(targ)) < 2)
+    {
+        DC -= 1;
+    }
+    
+    if(targ->query_mystery() == "spellscar" && targ->query_class_level("oracle") >= 15)
+    {
+        DC -= 2;
+    }
+
+    //RACIAL ADJUSTMENTS AGAINST SPELLS
+    if (targ->query_race() == "dwarf")
+    {
+        if (targ->query("subrace") == "shield dwarf" || targ->query("subrace") == "gold dwarf")
+            DC -= 2;
+    }
+    if (targ->query_race() == "orc" || targ->query_race() == "half-orc")
+    {
+        DC -= 1;
+    }
+    if (targ->query_race() == "human")
+    {
+        if (targ->query("subrace") == "heartlander")
+            DC -= 1;
+    }
 
     // racial saves from magic here
-    DC += SAVING_THROW_D->magic_save_throw_adjust(targ, caster, this_object());
+    //DC += SAVING_THROW_D->magic_save_throw_adjust(targ, caster, this_object());
 
 
     // racial saves from spells here
@@ -3338,6 +3389,8 @@ varargs int do_save(object targ, int mod, int get_dc)
             DC -= 2;
         }
     }
+
+///////END SPELL SAVE ADJUSTMENTS///////
     
     if (intp(mod)) {
         DC += mod;
