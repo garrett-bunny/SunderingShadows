@@ -611,6 +611,10 @@ varargs int typed_damage_modification(object attacker, object targ, string limb,
     {
         if(attacker->query_mystery() == "bones" && attacker->query_class_level("oracle") >= 31)
             targ && targ->set_property("rend", attacker->query_prestige_level("oracle") / 8 + 1);
+        
+        //Ghouls bloodline heals if they deal negative energy damage
+        if(attacker->query_bloodline() == "ghoul")
+            attacker->add_hp(5 + attacker->query_prestige_level("sorcerer") / 5);
     }
 
     return damage;

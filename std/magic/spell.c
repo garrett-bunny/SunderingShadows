@@ -2757,6 +2757,11 @@ void define_base_damage(int adjust)
                 if(FEATS_D->usable_feat(target, "celestial totem"))
                     sdamage -= (11 + target->query_class_level("barbarian") / 2);
             }
+            if(target->is_class("sorcerer"))
+            {
+                if(target->query_bloodline() == "celestial")
+                    sdamage -= (11 + target->query_class_level("sorcerer") / 2);
+            }
         }
     }
 
