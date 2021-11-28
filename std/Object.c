@@ -599,6 +599,11 @@ mixed query_property(string prop)
         if (FEATS_D->usable_feat(TO, "undead graft")) {
             num += 6;
         }
+		
+		if (FEATS_D->usable_feat(TO, "perfect self")) {
+            num += 10;
+        }
+		
         if (FEATS_D->usable_feat(TO, "shadow master")) {
             if (ETO->query_light() < 1) {
                 num += 8;
@@ -833,6 +838,10 @@ mixed query_property(string prop)
                     num += 5;                          // +5 SR for human Maalish ethnicity
                 }
             }
+        }
+		
+		if (FEATS_D->usable_feat(TO, "perfect self")) {
+            num += 50;
         }
         if (FEATS_D->usable_feat(TO, "resistance")) {
             num += 5;
