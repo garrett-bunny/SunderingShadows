@@ -952,6 +952,11 @@ int query_resistance_percent(string res)
                 mod = 30 + sorc_level * 2;
             break;
             
+            case "celestial":
+            if(res == "acid")
+                mod = 20 + sorc_level * 2;
+            break;
+            
             case "abyssal":
             if(res == "electricity")
                 mod = 20 + sorc_level * 2;

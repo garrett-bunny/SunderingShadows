@@ -65,7 +65,7 @@ int spell_effect(int prof)
         monster->set_property("minion", caster);
         monster->move(environment(caster));
         
-        if(caster->is_class("sorcerer") && (caster->query_bloodline() == "abyssal" || caster->query_bloodline() == "celestial"))
+        if(caster->is_class("sorcerer") && (caster->query_bloodline() == "abyssal"))
         {
             monster->set_property("damage resistance", 1 + clevel / 10);
             monster->set_property("spell damage resistance", 1 + clevel / 10);

@@ -69,13 +69,13 @@ class_spell_storage =
     //"accursed":
     //    ({"touch of fatigue","touch of idiocy","garble","bestow curse","ruin","eyebite","powerword blind","spellscar"}),
     "arcane":
-        ({"identify","mirror image","dispel magic","break curse","siphon magic","repulsion","foresight","screen"}),
+        ({"identify","invisibility","dispel magic","dimension door","siphon magic","true seeing", "limited wish", "powerword stun","disjunction"}),
     //"astral":
     //    ({"flare","invisibility","blink","suppress wild magic","dismissal","contingency","greater teleport","antimagic field"}),
     "boreal":
-        ({"enlarge person","bears endurance","rage","stoneskin","cone of cold","transformation","true strike","polar ray"}),
+        ({"enlarge person","bears endurance","rage","stoneskin","cone of cold","transformation","true strike","polar ray", "polar midnight"}),
     "celestial":
-        ({"light","eagles splendor","lightning bolt","shout","angelic aspect","serenity","project image","protection from spells"}),
+        ({"bless", "resist energy", "dispel evil", "break curse", "angelic aspect", "greater dispel magic", "sunburst", "gate"}),
     //"draconic":
     //    ({"armor","resist energy","fireball","fear","acid breath","disintegrate","protection from spells","shapechange"}),
     //"elemental":
