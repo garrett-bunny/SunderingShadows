@@ -34,7 +34,7 @@ void create()
         ({"cloth","shroud"}) : "%^BOLD%^%^BLACK%^These wisps of gauzy black cloth billow softly across the archway, partially concealing the landing that lies beyond.%^RESET%^",
     ]));
     set_exits(([
-       "south" : "balcony",
+       "south" : "/d/magic/temples/ashra/balcony",
     ]));
 }
 
