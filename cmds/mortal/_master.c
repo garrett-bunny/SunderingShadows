@@ -70,7 +70,7 @@ int cmd_master(string args)
         }
         if(TP->is_class("sorcerer"))
         {
-            if(TP->query_bloodline() == "arcane")
+            if(TP->query_bloodline() == "arcane" && TP->query_class_level("sorcerer") > 30)
                 bonuslimit += 1;
         }
         if (FEATS_D->usable_feat(TP, "spell knowledge")) {

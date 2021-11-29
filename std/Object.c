@@ -840,7 +840,7 @@ mixed query_property(string prop)
             }
         }
 		
-        if(this_object()->query_bloodline() == "fey")
+        if(this_object()->query_bloodline() == "fey" && this_object()->query_class_level("sorcerer") > 30)
             num += 10;
         
 		if (FEATS_D->usable_feat(TO, "perfect self")) {

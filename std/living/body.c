@@ -941,7 +941,7 @@ int query_resistance_percent(string res)
         
     }
 
-    if(this_object()->is_class("sorcerer"))
+    if(this_object()->is_class("sorcerer") && this_object()->query_class_level("sorcerer") > 30)
     {
         int sorc_level = this_object()->query_class_level("sorcerer");
         

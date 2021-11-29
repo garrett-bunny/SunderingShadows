@@ -3494,7 +3494,7 @@ void internal_execute_attack(object who)
                 if(victim->query_class_level("oracle") >= 31 && total_light(environment(victim)) < 2)
                     critical_hit = 0;
             }
-            if(victim->query_bloodline() == "aberrant" && critical_hit)
+            if(victim->query_bloodline() == "aberrant" && critical_hit && victim->query_class_level("sorcerer") > 30)
             {
                 critical_hit = 0;
             }
