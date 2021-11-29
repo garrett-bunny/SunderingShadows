@@ -64,10 +64,16 @@ void do_finish()
         TO->remove();
         return;
     }
+	int damage, timerz, i, bonusdc;
     ETO->remove_property_value("spelled", ({TO}));
-    if(!myDC) myDC = 17;
-    if(SAVING_THROW_D->fort_save(ETO, myDC) || ETO->query_property("no death"))
-    {
+   // if(!myDC) myDC = 17;
+   //if(SAVING_THROW_D->fort_save(ETO, myDC) || ETO->query_property("no death"))
+   
+ bonusdc = BONUS_D->query_stat_bonus(caster, "intelligence");
+
+    if (target->query_property("no death") ||
+        do_save(target, bonusdc)) {
+			
         tell_object(ETO, "%^BOLD%^%^BLACK%^An excrutiating %^BOLD%^%^RED%^PAIN"+
         "%^BOLD%^%^BLACK%^ radiates throughout your entire body and "+
         "you %^GREEN%^S%^BOLD%^%^BLACK%^H%^GREEN%^"+

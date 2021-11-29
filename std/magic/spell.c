@@ -3323,7 +3323,8 @@ varargs int do_save(object targ, int mod, int get_dc)
                caster->query_property("maximize spell") ||
                caster->query_property("empower spell") ||
                caster->query_property("enlarge spell"))
-               DC += 1;
+               if(caster->query_class_level("sorcerer") > 30)
+                   DC += 1;
             break;
             
             case "fey":
