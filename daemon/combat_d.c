@@ -504,6 +504,20 @@ varargs int typed_damage_modification(object attacker, object targ, string limb,
             targ->set_spell_attack(1);
         }
     }
+    
+    //Bones Mystery bleed effect on negative energy
+    if(damage > 0 && type == "negative energy" && !targ->query_property("negative energy affinity"))
+    {
+        if(attacker->query_mystery() == "bones" && attacker->query_class_level("oracle") >= 31)
+            targ && targ->set_property("rend", attacker->query_prestige_level("oracle") / 8 + 1);
+        
+        //Ghouls bloodline heals if they deal negative energy damage
+        if(attacker->query_bloodline() == "ghoul")
+        {
+            tell_object(attacker, "%^CYAN%^You draw upon the life energy in your target.%^RESET%^");
+            attacker->add_hp(5 + attacker->query_prestige_level("sorcerer") / 5);
+        }
+    }
 
     //Healing effects reduction on typed damage
     if (targ->query_property("fester") && damage < 0) {
@@ -604,17 +618,6 @@ varargs int typed_damage_modification(object attacker, object targ, string limb,
                 }
             }
         }
-    }
-
-    //Bones Mystery bleed effect on negative energy
-    if(damage > 0 && type == "negative energy" && !targ->query_property("negative energy affinity"))
-    {
-        if(attacker->query_mystery() == "bones" && attacker->query_class_level("oracle") >= 31)
-            targ && targ->set_property("rend", attacker->query_prestige_level("oracle") / 8 + 1);
-        
-        //Ghouls bloodline heals if they deal negative energy damage
-        if(attacker->query_bloodline() == "ghoul")
-            attacker->add_hp(5 + attacker->query_prestige_level("sorcerer") / 5);
     }
 
     return damage;
