@@ -144,7 +144,14 @@ void execute_feat()
         dest_effect();
         return;
     }
-
+    if(!caster->spend_ki(8))
+    {
+        tell_object(caster, "%^CYAN%^You lack the needed ki to attempt "+
+        "quivering palm!%^RESET%^");
+        dest_effect();
+        return;
+    }
+	
     if (mapp(tempmap)) {
         if (tempmap[target] > time()) {
             tell_object(caster, "That target is still wary of such an attack!");
@@ -182,7 +189,7 @@ void execute_feat()
 
     tell_object(caster, "%^BOLD%^%^CYAN%^You slam your palm into "+
     target->QCN+" 's chest!%^RESET%^");
-    tell_object(target, "%^BOLD%^%^RED%^Your body begins violently vibrating!!!%^RESET%^");
+    tell_object(target, caster->QCN+"%^BOLD%^%^RED%^ drives their fist into your chest and your body begins violently vibrating!!!%^RESET%^");
 	tell_room(place, "%^BOLD%^%^RED%^You see " + target->QCN + "'s body begin violently vibrating!", ({ target, caster }));
 
     bonusdc = BONUS_D->query_stat_bonus(caster, "wisdom");
@@ -202,6 +209,11 @@ void execute_feat()
             "R%^BOLD%^%^BLACK%^I%^BOLD%^%^GREEN%^E%^BOLD%^%^BLACK%^K%^BOLD%^%^GREEN%^S%^BOLD%^%^BLACK%^ in "+
             "%^BOLD%^%^RED%^PAIN%^BOLD%^%^BLACK%^ suddenly as the vibrations "+
             "in " + target->QCN + "'s body finally stop!%^RESET%^", ({ target, caster }));
+		
+		tell_object(caster, "%^BOLD%^%^WHITE%^You see " + target->QCN + " %^BOLD%^%^GREEN%^S%^BOLD%^%^BLACK%^H%^BOLD%^%^GREEN%^"+
+            "R%^BOLD%^%^BLACK%^I%^BOLD%^%^GREEN%^E%^BOLD%^%^BLACK%^K%^BOLD%^%^GREEN%^S%^BOLD%^%^BLACK%^ in "+
+            "%^BOLD%^%^RED%^PAIN%^BOLD%^%^BLACK%^ suddenly as the vibrations "+
+            "in " + target->QCN + "'s body finally stop!%^RESET%^", ({ target, caster }));
 			
         if (target->query_max_hp() < caster->query_max_hp()) {
             todamage = roll_dice(flevel, 8);
@@ -215,10 +227,18 @@ void execute_feat()
         "you %^BOLD%^%^GREEN%^S%^BOLD%^%^BLACK%^H%^BOLD%^%^GREEN%^"+
         "R%^BOLD%^%^BLACK%^I%^BOLD%^%^GREEN%^E%^BOLD%^%^BLACK%^K%^BOLD%^%^BLACK%^ as "+
         "you collapse in a heap!%^RESET%^");
-        tell_room(place, "%^BOLD%^%^WHITE%^You see " + target->QCN + " %^BOLD%^%^GREEN%^S%^BOLD%^%^BLACK%^H%^BOLD%^%^GREEN%^"+
+        
+		tell_room(place, "%^BOLD%^%^WHITE%^You see " + target->QCN + " %^BOLD%^%^GREEN%^S%^BOLD%^%^BLACK%^H%^BOLD%^%^GREEN%^"+
             "R%^BOLD%^%^BLACK%^I%^BOLD%^%^GREEN%^E%^BOLD%^%^BLACK%^K%^BOLD%^%^GREEN%^S in "+
             "%^BOLD%^%^RED%^PAIN%^BOLD%^%^BLACK%^ suddenly before collapsing in "+
             "a heap!%^RESET%^", ({ target, caster }));
+		
+		tell_object(caster, "%^BOLD%^%^WHITE%^You see " + target->QCN + " %^BOLD%^%^GREEN%^S%^BOLD%^%^BLACK%^H%^BOLD%^%^GREEN%^"+
+            "R%^BOLD%^%^BLACK%^I%^BOLD%^%^GREEN%^E%^BOLD%^%^BLACK%^K%^BOLD%^%^GREEN%^S in "+
+            "%^BOLD%^%^RED%^PAIN%^BOLD%^%^BLACK%^ suddenly before collapsing in "+
+            "a heap!%^RESET%^", ({ target, caster }));
+			
+		target->cause_typed_damage(target, target->return_target_limb(), target->query_max_hp() * 2, "divine");
     }
     spell_kill(target,caster);
     return;

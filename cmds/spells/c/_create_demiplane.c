@@ -73,12 +73,12 @@ void spell_effect(int prof)
     }
     if(!TELEPORT->object_can_be_teleported(caster,place,clevel))
     {
-        tell_object(caster, "Something is interferring with your power.");
+        tell_object(caster, "Something is interfering with your power.");
         ::dest_effect();
         return;
     }
     if (place->query_property("no pocket space")) {
-        tell_object(caster, "Something is interferring with your power.");
+        tell_object(caster, "Something is interfering with your power.");
         ::dest_effect();
         return;
     }
