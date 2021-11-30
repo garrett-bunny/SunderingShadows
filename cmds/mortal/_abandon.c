@@ -226,7 +226,7 @@ int cmd_abandon(string str)
         if (class_ob->is_prestige_class() &&
             str != classes[i] &&
             member_array(str, class_ob->query_base_classes()) != -1 &&
-            TP->query_class_level(str) > 20 ) {
+            TP->query_class_level(str) <= 20) {
             tell_object(TP, "You must abandon your prestige class before abandoning more than twenty base class levels.");
             return 1;
         }
