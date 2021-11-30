@@ -144,7 +144,7 @@ void execute_feat()
         dest_effect();
         return;
     }
-    if(!caster->spend_ki(8))
+    if(!caster->spend_ki(20))
     {
         tell_object(caster, "%^CYAN%^You lack the needed ki to attempt "+
         "quivering palm!%^RESET%^");
@@ -154,7 +154,7 @@ void execute_feat()
 	
     if (mapp(tempmap)) {
         if (tempmap[target] > time()) {
-            tell_object(caster, "That target is still wary of such an attack!");
+            tell_object(caster, "The target is still cannot be impacted by that yet!");
             dest_effect();
             return;
         }
@@ -181,8 +181,8 @@ void execute_feat()
         }
         continue;
     }
-    timerz = time() + 90;
-    delay_subject_msg(target,90,"%^BOLD%^%^WHITE%^"+target->QCN+" can be hit with %^CYAN%^quivering palm%^WHITE%^ again.%^RESET%^");
+    timerz = time() + 120;
+    delay_subject_msg(target,120,"%^BOLD%^%^WHITE%^"+target->QCN+" can be hit with %^CYAN%^quivering palm%^WHITE%^ again.%^RESET%^");
     tempmap += ([ target : timerz ]);
     caster->remove_property("using quivering palm");
     caster->set_property("using quivering palm",tempmap);
@@ -216,9 +216,9 @@ void execute_feat()
             "in " + target->QCN + "'s body finally stop!%^RESET%^", ({ target, caster }));
 			
         if (target->query_max_hp() < caster->query_max_hp()) {
-            todamage = roll_dice(flevel, 8);
+            todamage = roll_dice(flevel, 10);
         } else{
-            todamage = roll_dice(flevel + BONUS_D->query_stat_bonus(caster, "wisdom"), 8);
+            todamage = roll_dice(flevel + BONUS_D->query_stat_bonus(caster, "wisdom"), 10);
         }
         target->cause_typed_damage(target, target->return_target_limb(), todamage, "divine");
     } else {
