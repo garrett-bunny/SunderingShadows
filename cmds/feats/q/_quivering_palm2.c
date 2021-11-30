@@ -181,6 +181,7 @@ void execute_feat()
     caster->set_property("using quivering palm",tempmap);
 
     tell_object(target, "%^BOLD%^%^RED%^Your body begins violently vibrating!!!%^RESET%^");
+	tell_room(place, "%^BOLD%^%^RED%^You see " + target->QCN + "'s body begin violently vibrating!", ({ target, caster }));
 
     bonusdc = BONUS_D->query_stat_bonus(caster, "wisdom");
 
@@ -189,17 +190,29 @@ void execute_feat()
         target->is_undead() ||
         do_save(target, bonusdc)) {
         int todamage;
-        tell_object(target, "%^BOLD%^%^WHITE%^The immense pain spreads from your back!!%^RESET%^");
-        tell_room(place, "%^BOLD%^%^WHITE%^You almost didn't see a shadow behind " + target->QCN + "'s back!", ({ target, caster }));
-        tell_object(caster, "%^BOLD%^%^WHITE%^You phase quickly behind " + target->QCN + ", but " + target->QS + " withstands your assault.");
+        tell_object(target, "%^BOLD%^%^BLACK%^An excrutiating %^BOLD%^%^RED%^PAIN"+
+        "%^BOLD%^%^BLACK%^ radiates throughout your entire body and "+
+        "you %^GREEN%^S%^BOLD%^%^BLACK%^H%^GREEN%^"+
+        "R%^BOLD%^%^BLACK%^I%^GREEN%^E%^BOLD%^%^BLACK%^K as "+
+        "the vibrations finally stop!%^RESET%^");
+		
+		tell_room(place, "%^BOLD%^%^WHITE%^You see " + target->QCN + " %^BOLD%^%^GREEN%^S%^BOLD%^%^BLACK%^H%^BOLD%^%^GREEN%^"+
+            "R%^BOLD%^%^BLACK%^I%^BOLD%^%^GREEN%^E%^BOLD%^%^BLACK%^K%^BOLD%^%^GREEN%^S%^BOLD%^%^BLACK%^ in "+
+            "%^BOLD%^%^RED%^PAIN%^BOLD%^%^BLACK%^ suddenly as the vibrations "+
+            "in " + target->QCN + "'s body finally stop!%^RESET%^", ({ target, caster }));
+			
         if (target->query_max_hp() < caster->query_max_hp()) {
-            todamage = roll_dice(flevel, 10);
+            todamage = roll_dice(flevel, 8);
         } else{
-            todamage = roll_dice(flevel + BONUS_D->query_stat_bonus(caster, "intelligence"), 10);
+            todamage = roll_dice(flevel + BONUS_D->query_stat_bonus(caster, "wisdom"), 8);
         }
-        target->cause_typed_damage(target, target->return_target_limb(), todamage, "untyped");
+        target->cause_typed_damage(target, target->return_target_limb(), todamage, "divine");
     } else {
-        tell_object(target, "%^BOLD%^%^WHITE%^Wait, what?! How did it happen?!%^RESET%^");
+        tell_object(target, "%^BOLD%^%^BLACK%^An excrutiating %^BOLD%^%^RED%^PAIN"+
+        "%^BOLD%^%^BLACK%^ radiates throughout your entire body and "+
+        "you %^BOLD%^%^GREEN%^S%^BOLD%^%^BLACK%^H%^BOLD%^%^GREEN%^"+
+        "R%^BOLD%^%^BLACK%^I%^BOLD%^%^GREEN%^E%^BOLD%^%^BLACK%^K%^BOLD%^%^BLACK%^ as "+
+        "you collapse in a heap!%^RESET%^");
         tell_room(place, "%^BOLD%^%^WHITE%^You almost didn't see a shadow behind " + target->QCN + "'s back!", ({ target, caster }));
         tell_object(caster, "%^BOLD%^%^WHITE%^You phase quickly behind " + target->QCN + " and put an end to them with a swift motion.");
         target->cause_typed_damage(target, target->return_target_limb(), target->query_max_hp() * 2, "untyped");
