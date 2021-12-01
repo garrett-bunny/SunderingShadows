@@ -69,6 +69,10 @@ int spell_effect(int prof)
         {
             monster->set_property("damage resistance", 1 + clevel / 10);
             monster->set_property("spell damage resistance", 1 + clevel / 10);
+            monster->set_short("%^BOLD%^%^BLACK%^Dark w%^RESET%^%^MAGENTA%^i%^BOLD%^%^BLACK%^ng%^RESET%^%^MAGENTA%^e%^BOLD%^%^BLACK%^d d%^RESET%^%^MAGENTA%^e%^BOLD%^%^BLACK%^m%^RESET%^%^MAGENTA%^o%^BOLD%^%^BLACK%^n%^RESET%^");
+            monster->set_long("%^BOLD%^%^BLACK%^Flapping in the air, this horrifying demon is a %^CYAN%^chilling %^BLACK%^sight to behold. It’s eyes are glowing %^RESET%^%^MAGENTA%^v%^BOLD%^i%^RESET%^%^MAGENTA%^ol%^BOLD%^e%^RESET%^%^MAGENTA%^t %^BOLD%^o%^RESET%^%^MAGENTA%^rbs %^BOLD%^%^BLACK%^and it’s lupine snout is wrinkled in a perpetual snarl, revealing rows of %^RESET%^%^RED%^jagged %^WHITE%^teeth%^BOLD%^%^BLACK%^. Pitch black skin shot through with v%^RESET%^%^MAGENTA%^e%^BOLD%^%^BLACK%^ins of %^RESET%^%^MAGENTA%^v%^BOLD%^i%^RESET%^%^MAGENTA%^ol%^BOLD%^e%^RESET%^%^MAGENTA%^t %^BOLD%^%^BLACK%^is stretched over a lean muscular body. Large m%^RESET%^%^MAGENTA%^e%^BOLD%^%^BLACK%^mbr%^RESET%^%^MAGENTA%^a%^BOLD%^%^BLACK%^no%^RESET%^%^MAGENTA%^u%^BOLD%^%^BLACK%^s w%^RESET%^%^MAGENTA%^i%^BOLD%^%^BLACK%^ngs hold it aloft while wicked claws tip it’s fingers and toes which it rends at the air with, its hunger for %^RED%^v%^RESET%^%^RED%^i%^BOLD%^ol%^RESET%^%^RED%^e%^BOLD%^nc%^RESET%^%^RED%^e %^BOLD%^%^BLACK%^palpable. %^RESET%^");
+            monster->set_race("demon");
+            monster->add_id("demon");
         }
         
         caster->add_follower(monster);
