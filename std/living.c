@@ -246,11 +246,24 @@ void set_parrying(int i)
     parrying = i;
 }
 
-int query_parrying()
+int query_parrying(object att)
 {
-    object* weapons;
+    object* weapons, *eweapons;
     weapons = TO->query_wielded();
     if (sizeof(weapons) && !weapons[0]->is_lrweapon()) {
+        
+        eweapons = att->query_wielded();
+        
+        //can't parry if both weapons ranged
+        if(sizeof(eweapons) && eweapons[0]->is_lrweapon())
+        {
+            if(sizeof(eweapons) == 1)
+                return 0;
+            
+            if(sizeof(eweapons) > 1 && eweapons[1]->is_lrweapon())
+                return 0;
+        }
+            
         if (FEATS_D->usable_feat(TO, "parry")) {
             return 1;
         }
