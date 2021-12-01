@@ -3017,7 +3017,9 @@ int check_avoidance(object who, object victim)
 // 3 combos: parry+scramble, parry+ride-by attack, scramble+shot on the run
 // 1 special case: mounts (rider has mounted combat feat)
 
-    if (victim->query_parrying()) {
+    weapons = who->query_wielded();
+
+    if (victim->query_parrying(who)) {
        //dependencies checked in living.c
        parry = 1;
        avoid += ({"TYPE_PARRY"});
