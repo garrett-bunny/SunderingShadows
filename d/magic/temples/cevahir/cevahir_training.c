@@ -10,7 +10,7 @@ void create(){
    set_indoors(1);
    set_name("Cevahir Training Grounds");
    set_short("%^RESET%^%^MAGENTA%^Training Grounds%^RESET%^");
-   set_long("%^C167%^A huge training ground unfolds before you. Individuals and small organized groups run and take part in %^C186%^exercise %^C167%^to improve their strength and endurance. You can see as you scan the area that %^C019%^soldiers%^C167%^, %^C196%^adventurers%^C167%^, and %^C190%^mercenaries%^C167%^ alike are making good use of the facilities and trainers that are available. There are individual areas where professional highly skilled trainers work to improve participants skills in various %^C093%^close combat %^C167%^weapons and what combinations work and don't work well against different types of armor and how to disarm most any opponents. The the north lies a %^C222%^archery range %^C167%^for perfecting ranged weapon skills including archery, crossbow, and javelin. The the south, a %^C065%^training dummy %^C167%^can be seen. Opposite the weapons training areas are stations to improve one's skills with a shield both defensively and offensively. Next to it is an area that teaches unarmed combat. Beyond this is a %^C036%^large field %^C167%^with walls nd terrain features for small group training in both offensive and defensive maneuvers in how to best use terrain to one's advantage or make it an oppenent's disadvantage and taking or defending a wall. Small group tactical situations can be worked and reworked here. A small group makes it's way around the complex and %^C028%^field areas %^C167%^taking particular interest in places that might give good cover and advantageous view positions. %^CRST%^%^RESET%^\n");
+   set_long("%^C167%^A huge training ground unfolds before you. Individuals and small organized groups run and take part in %^C186%^exercise %^C167%^to improve their strength and endurance. You can see as you scan the area that %^C019%^soldiers%^C167%^, %^C196%^adventurers%^C167%^, and %^C190%^mercenaries%^C167%^ alike are making good use of the facilities and trainers that are available. There are individual areas where professional highly skilled trainers work to improve participants skills in various %^C093%^close combat %^C167%^weapons and what combinations work and don't work well against different types of armor and how to disarm most any opponents. The the north lies a %^C222%^archery range %^C167%^for perfecting ranged weapon skills including archery, crossbow, and javelin. The the south, a %^C065%^training dummy %^C167%^can be seen. Opposite the weapons training areas are stations to improve one's skills with a shield both defensively and offensively. Next to it is an area that teaches unarmed combat. Beyond this is a %^C036%^large field %^C167%^with walls and terrain features for small group training in both offensive and defensive maneuvers in how to best use terrain to one's advantage or make it an oppenent's disadvantage and taking or defending a wall. Small group tactical situations can be worked and reworked here. A small group makes it's way around the complex and %^C028%^field areas %^C167%^taking particular interest in places that might give good cover and advantageous view positions. %^CRST%^%^RESET%^\n");
    set_items(([
       ({"cliff","sea","ocean"}) : "The flat, rocky outcropping overlooks the sea hundreds of feet below. The sparkling waves of the ocean stretch as far as the eye can see.",
       ({"marble","white marble","floor","ceiling"}) : "This building is crafted from white marble shot through here and there with subtle veins of %^CYAN%^bl%^BOLD%^u%^RESET%^%^CYAN%^e%^RESET%^ that seem almost out of place, given the color scheme of the temple. Those who know their history might recognize the marble as a relic of the temple to the departed moon goddess that once stood here.",
@@ -28,5 +28,13 @@ void create(){
    set_exits(([
 	  "west": "/d/magic/temples/cevahir/cevahir",
 	  "south": "/d/magic/temples/cevahir/dummyroom",
+	  "north": "/d/magic/temples/cevahir/archery",
    ]));
+   set_pre_exit_functions(({"north"}),({"GoThroughDoor"}));
+}
+
+int GoThroughDoor(){
+	if(avatarp(TP)) return 1;
+	write("You realize that would be really dumb as you start to cross the line.");
+	return 0;
 }
