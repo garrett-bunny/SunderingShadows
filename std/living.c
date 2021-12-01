@@ -252,7 +252,9 @@ int query_parrying(object att)
     weapons = TO->query_wielded();
     if (sizeof(weapons) && !weapons[0]->is_lrweapon()) {
         
-        eweapons = att->query_wielded();
+        if(!objectp(att))
+        
+        objectp(att) && eweapons = att->query_wielded();
         
         //can't parry if both weapons ranged
         if(sizeof(eweapons) && eweapons[0]->is_lrweapon())
