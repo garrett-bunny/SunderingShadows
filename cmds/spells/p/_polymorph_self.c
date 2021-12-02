@@ -20,3 +20,27 @@ void create()
     set_helpful_spell(1);
     set_feats_required(([ "warlock" : "tome of ancient secrets"]));
 }
+
+int preSpell()
+{
+    object shape;
+    string *forms;
+    if(objectp(shape = caster->query_property("shapeshifted")) ||
+       objectp(shape = caster->query_property("transformed")) ||
+       objectp(shape = caster->query_property("dance-of-cuts")) ||
+       objectp(shape = caster->query_property("altered")))
+    {
+        tell_object(caster,"You are already in an alternative form!");
+        return 0;
+    }
+    
+    forms = valid_forms();
+      
+    if(member_array(arg,forms)==-1)
+    {
+        tell_object(caster,"Invalid form, valid forms are: "+implode(valid_forms(),", "));
+        return 0;
+    }
+
+    return 1;
+}
