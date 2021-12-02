@@ -59,6 +59,7 @@ string* combat_styles()
 string* class_feats(string myspec)
 {
     return ({ "simple weapon proficiency",
+	          "exotic weapon proficiency",
               "unarmored defense",
               "evasion",
               "dodge",
@@ -75,7 +76,7 @@ string* class_feats(string myspec)
 mapping class_featmap(string myspec)
 {
     mapping myMap;
-    myMap = ([ 1 : ({ "simple weapon proficiency", "unarmored defense", "spell focus" }),
+    myMap = ([ 1 : ({ "simple weapon proficiency", "unarmored defense", "spell focus", "exotic weapon proficiency" }),
                2 : ({ "dodge", "flurry of blows" }),
                5 : ({ "stunning strike" }),
                7 : ({ "evasion", "stillness of mind" }),
