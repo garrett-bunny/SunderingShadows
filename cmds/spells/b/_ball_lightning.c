@@ -51,6 +51,7 @@ string query_cast_string()
         set_immunities(({"sonic"}));
         break;
     default:
+        element = "electricity";
         tell_object(caster,"%^BOLD%^%^CYAN%^As you chant rapidly, sparks of lightning begin to gather in your hand.%^RESET%^");
         tell_room(place,"%^BOLD%^%^CYAN%^"+caster->QCN+" chants rapidly, gathering sparks of lightning into "+caster->QP+" hand.%^RESET%^",caster);
         set_immunities(({"electricity"}));
