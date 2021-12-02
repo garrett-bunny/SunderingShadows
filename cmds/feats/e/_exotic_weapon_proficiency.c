@@ -19,14 +19,8 @@ int allow_shifted() { return 1; }
 int prerequisites(object ob)
 {
    if(!objectp(ob)) {return 0; }
-   
-   if(!FEATS_D->has_feat(ob,"martial weapon proficiency")&&!ob->is_class("inquisitor"))
-   {
-      dest_effect();
-      return 0;
-   }
 
-   if(!FEATS_D->has_feat(ob,"martial weapon proficiency")&&!ob->is_class("monk"))
+   if(!FEATS_D->has_feat(ob,"martial weapon proficiency")&&!ob->is_class("inquisitor"))
    {
       dest_effect();
       return 0;
