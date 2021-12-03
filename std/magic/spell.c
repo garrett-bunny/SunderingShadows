@@ -3248,7 +3248,11 @@ varargs int do_save(object targ, int mod, int get_dc)
         mod = 0;
     }
     
-    classlvl = max( ({ caster->query_guild_level(spell_type), caster->query_character_level() - 10 }) );
+    classlvl = max( ({ caster->query_guild_level(spell_type), caster->query_base_character_level() - 10 }) );
+    
+    if(spell_type == "innate")
+        classlvl = caster->query_base_character_level();
+    
     classlvl = min( ({ classlvl, 60 }) );
 
     if (FEATS_D->usable_feat(caster, "eldritch conditioning"))
