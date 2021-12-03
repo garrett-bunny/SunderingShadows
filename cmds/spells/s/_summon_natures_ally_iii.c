@@ -6,7 +6,7 @@ inherit "/cmds/spells/s/summon_natures_ally.c";
 void create() {
     ::create();
     set_spell_name("summon natures ally iii");
-    set_spell_level(([ "ranger" : 3,"druid" : 3 ]));
+    set_spell_level(([ "ranger" : 3,"druid" : 3, "oracle" : 3 ]));
     set_syntax("cast CLASS summon natures ally iii");
 }
 
