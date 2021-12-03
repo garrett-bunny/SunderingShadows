@@ -4,8 +4,8 @@ inherit LRWEAPON;
 
 void create(){
     ::create();
-    set_id(({"darts"}));
-    set_name("darts");
+    set_id(({"dart"}));
+    set_name("dart");
     set_short("A dart");
     set_long(
         "This is a simple throwing dart."
