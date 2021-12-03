@@ -10,7 +10,7 @@ void create()
     feat_type("permanent");
     feat_category("Steel&Magic");
     feat_name("legendary blade");
-    feat_prereq("Magus L20");
+    feat_prereq("Magus L21");
     feat_classes("magus");
     feat_desc("When the magus enhances his weapon with his arcane pool, he grants it an additional +2 enhancement bonus to his weapon.");
     permanent(1);
@@ -23,7 +23,7 @@ int prerequisites(object ob)
     if (!objectp(ob)) {
         return 0;
     }
-    if (ob->query_class_level("magus") < 20) {
+    if (ob->query_class_level("magus") < 21) {
         dest_effect();
         return 0;
     }
