@@ -28,32 +28,4 @@ void create(){
     set_rate_of_fire(2);
     set_weapon_speed(2);
     set_property("repairtype",({"woodwork", "weaponsmith"}));
-	set_wield((:TO,"wield_fun":));
-    set_unwield((:TO,"remove_fun":));
-}
-
-int wield_fun() {
-   if(member_array("martial weapon proficiency",(string*)ETO->query_temporary_feats()) == -1)&&!ob->is_class("monk")) {
-     ETO->add_temporary_feat("martial weapon proficiency");
-     martialtrack = 1;
-   }
-   if(member_array("exotic weapon proficiency",(string*)ETO->query_temporary_feats()) == -1) {
-     ETO->add_temporary_feat("exotic weapon proficiency");
-     exotictrack = 1;
-   }
-   tell_object(ETO,"%^RESET%^%^CYAN%^You slip the ring over a finger, and you feel a sudden battle readiness fill you.%^RESET%^");
-   return 1;
-}
-
-int remove_fun() {
-   tell_room(EETO,"%^RESET%^%^CYAN%^The battle readiness fades, and you feel normal again.%^RESET%^");
-   if(exotictrack) {
-     ETO->remove_temporary_feat("exotic weapon proficiency");
-     exotictrack = 0;
-   }
-   if(martialtrack) {
-     ETO->remove_temporary_feat("martial weapon proficiency");
-     martialtrack = 0;
-   }
-   return 1;
 }
