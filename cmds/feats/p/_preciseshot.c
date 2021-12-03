@@ -196,7 +196,8 @@ void execute_attack()
     if (!(res = thaco(target))) {
         tell_object(caster, "%^BOLD%^%^YELLOW%^You overextend your shot and fumble with your weapon!");
         tell_room(environment(caster), "%^BOLD%^%^YELLOW%^" + caster->QCN + " overextends " + caster->QP + " shot and fumbles with " + caster->QP + " weapon!", caster);
-        caster->set_tripped(4, "You're still trying to recover from your fumbled shot!", 4);
+        if(!FEATS_D->usable_feat(caster, "improved preciseshot"))
+            caster->set_tripped(4, "You're still trying to recover from your fumbled shot!", 4);
         dest_effect();
         return;
     }else if (res == -1) {
@@ -219,6 +220,7 @@ void execute_attack()
       weapon = weapons[1];
     }
 
+    clevel += (FEATS_D->usable_feat(caster, "improved preciseshot") * 2);
     damage = roll_dice(clevel, 8); // up to d8 on a trial basis
 
     damage += weapon->query_damage();
