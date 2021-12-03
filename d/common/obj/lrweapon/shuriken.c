@@ -2,6 +2,8 @@
 
 inherit LRWEAPON;
 
+int martialtrack, exotictrack;
+
 void create(){
     ::create();
     set_id(({"shuriken"}));
@@ -28,10 +30,10 @@ void create(){
     set_property("repairtype",({"woodwork", "weaponsmith"}));
 	set_wield((:TO,"wield_fun":));
     set_unwield((:TO,"remove_fun":));
-
+}
 
 int wield_fun() {
-   if(member_array("martial weapon proficiency",(string*)ETO->query_temporary_feats()) == -1) {
+   if(member_array("martial weapon proficiency",(string*)ETO->query_temporary_feats()) == -1)&&!ob->is_class("monk")) {
      ETO->add_temporary_feat("martial weapon proficiency");
      martialtrack = 1;
    }
