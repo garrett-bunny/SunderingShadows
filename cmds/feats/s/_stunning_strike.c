@@ -277,7 +277,7 @@ void execute_attack()
     tell_object(target, "%^BOLD%^%^RED%^Your entire body shudders violently for a brief "+
     "instant and suddenly you are completely unable to move!%^RESET%^");
 
-    target->set_paralyzed((ROUND_LENGTH * 2), "%^BOLD%^%^RED%^The impact of "+
+    target->set_paralyzed((ROUND_LENGTH * 5), "%^BOLD%^%^RED%^The impact of "+
     "the strike has left you unable to move!%^RESET%^");
 
     if(objectp(environment(caster)))
