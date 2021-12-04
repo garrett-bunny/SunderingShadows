@@ -85,7 +85,7 @@ int remove_fun(){
 }
 
 int struck_fun(int damage,object what,object who){
-   if(!random(10)){
+   if(!random(4)){
      tell_room(EETO,"%^BOLD%^%^BLACK%^"+ETOQCN+" seems to %^RESET%^%^CYAN%^"
 "va%^RESET%^n%^CYAN%^ish %^BOLD%^%^BLACK%^as "+who->QCN+" strikes at "
 +ETO->QO+", only to reappear beside "+who->QO+" and launch another "

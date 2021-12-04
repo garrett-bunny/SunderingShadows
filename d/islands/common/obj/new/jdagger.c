@@ -59,13 +59,13 @@ int hit_func(object targ)
     int i;
 
     if (!objectp(TO)) {
-        return 1;
+        return 0;
     }
     if (!objectp(ETO)) {
-        return 1;
+        return 0;
     }
     if (!objectp(targ)) {
-        return 1;
+        return 0;
     }
 
     if (random(1000) < 500) {
