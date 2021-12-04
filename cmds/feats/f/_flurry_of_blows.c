@@ -198,7 +198,7 @@ void flurry_hit()
         }
         if(myWay == "way of the fist" && !random(5))
         {
-            if(do_save(myVic,DC) || myVic->query_property("no paralyze") || myVic->query_property("no death"))
+            if(do_save(myVic,DC) || myVic->query_property("no paralyze"))
             {
                 tell_object(myVic, "%^BOLD%^%^RED%^Your body shudders violently for "+
                 "a brief instant but you manage to shake off most of the strike.%^RESET%^");
