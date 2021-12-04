@@ -437,21 +437,10 @@ void check()
         {
             tell_room(environment(caster), caster->QCN+"%^BOLD%^%^CYAN%^ launches an attack!%^RESET%^", caster);
         }*/
-        if(caster->query("monk way") == "way of the fist")
+        for(int y = 0; y < (1 + caster->query_class_level("monk") / 15); y++)
         {
-            for(int y = 0; y < (1 + caster->query_class_level("monk") / 10); y++)
-            {
-                flurry_hit();
-                caster->spend_ki(1);
-            }
-        }
-        else
-        {
-            for(int y = 0; y < (1 + caster->query_class_level("monk") / 20); y++)
-            {
-                flurry_hit();
-                caster->spend_ki(1);
-            }
+            flurry_hit();
+            caster->spend_ki(1);
         }
         
         //redesigning so that extra hits are successful if
