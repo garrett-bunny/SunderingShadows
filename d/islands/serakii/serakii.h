@@ -1,15 +1,14 @@
-
-//Define page for Serakii - LoKi - 2012
+//Production Define page for Serakii - LoKi - 2021
 
 //File paths
-#define ROOMS "/realms/loki/serakii/rooms/"+
-#define OBJ "/realms/loki/serakii/obj/"+
-#define MOBS "/realms/loki/serakii/mobs/"+
-#define STORAGE "/realms/loki/serakii/storage/"+
+#define ROOMS "/d/islands/serakii/rooms/"+
+#define OBJ "/d/islands/serakii/obj/"+
+#define MOBS "/d/islands/serakii/mobs/"+
+#define STORAGE "/d/islands/serakii/storage/"+
 
-#define DOCK "/realms/loki/serakii/rooms/dock/"+
-#define TOWN "/realms/loki/serakii/rooms/village/"+
-#define HOUND "/realms/loki/serakii/rooms/hound/"+
-#define INN "/realms/loki/serakii/rooms/inn/"+
-#define ROAD "/realms/loki/serakii/rooms/road/"+
-#define WHITE "/realms/loki/serakii/rooms/white/"+
+#define DOCK "/d/islands/serakii/rooms/dock/"+
+#define TOWN "/d/islands/serakii/rooms/village/"+
+#define HOUND "/d/islands/serakii/rooms/hound/"+
+#define INN "/d/islands/serakii/rooms/inn/"+
+#define ROAD "/d/islands/serakii/rooms/road/"+
+#define WHITE "/d/islands/serakii/rooms/white/"+
