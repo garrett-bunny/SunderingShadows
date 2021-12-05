@@ -13,29 +13,27 @@ void create()
 	set_property("light",3);
 	set_short("%^BOLD%^Branches of a chestnut tree");
 	set_long(
-	"%^RESET%^%^BOLD%^%^BLACK%^The tree is wilted and dead. Some dead leaves and pieces of rotten fruit still cling to the tree's skeleton-like branches. Blood coats its limbs and the dryad that usually resides here is nowhere to be seen.%^RESET%^\n"
-//	"%^GREEN%^You've climbed up into the branches of a %^ORANGE%^chestnut%^GREEN%^ tree."+
-//	" Peering down you can see that the ground is a very long"+
-//	" ways from here and you better hold on tightly to the"+
-//	" branches. It's a little crowded in here, the branches"+
-//	" don't spread out much and tend to crowd you in. The"+
-//	" inside of the tree looks incredible, however, for it"+
-//	" appears that the edges are lined with %^YELLOW%^golden%^RESET%^%^GREEN%^ leaves. It"+
-//	" really is quite lovely. The tree continues on upwards,"+
-//	" but you can't safely climb much higher. It's peaceful"+
-//	" here, though, not even the wind disturbs the leaves.\n"
+	"%^GREEN%^You've climbed up into the branches of a %^ORANGE%^chestnut%^GREEN%^ tree."+
+	" Peering down you can see that the ground is a very long"+
+	" ways from here and you better hold on tightly to the"+
+	" branches. It's a little crowded in here, the branches"+
+	" don't spread out much and tend to crowd you in. The"+
+	" inside of the tree looks incredible, however, for it"+
+	" appears that the edges are lined with %^YELLOW%^golden%^RESET%^%^GREEN%^ leaves. It"+
+	" really is quite lovely. The tree continues on upwards,"+
+	" but you can't safely climb much higher. It's peaceful"+
+	" here, though, not even the wind disturbs the leaves.\n"
 	);
 	set("night long",
-	"%^RESET%^%^BOLD%^%^BLACK%^The tree is wilted and dead. Some dead leaves and pieces of rotten fruit still cling to the tree's skeleton-like branches. Blood coats its limbs and the dryad that usually resides here is nowhere to be seen.%^RESET%^\n"
-//	"%^GREEN%^This is the %^ORANGE%^chestnut%^RESET%^%^GREEN%^ tree that you have climbed into."+
-//	" You're standing on some thick branches, high above the"+
-//	" ground. The leaves are blocking out most of the %^BOLD%^%^WHITE%^moonlight%^RESET%^%^GREEN%^,"+
-//	" giving the place a %^BOLD%^%^BLACK%^dark%^RESET%^%^GREEN%^ atmosphere. The glimmer of"+
-//	" %^YELLOW%^gold%^RESET%^%^GREEN%^"+
-//	" on the underside of the leaves can barely be seen. It's"+
-//	" a little crowded in here with all the branches, the tree"+
-//	" isn't very wide. The branches beneath your feet are nice"+
-//	" and thick, but they get more supple further up the tree.\n"
+	"%^GREEN%^This is the %^ORANGE%^chestnut%^RESET%^%^GREEN%^ tree that you have climbed into."+
+	" You're standing on some thick branches, high above the"+
+	" ground. The leaves are blocking out most of the %^BOLD%^%^WHITE%^moonlight%^RESET%^%^GREEN%^,"+
+	" giving the place a %^BOLD%^%^BLACK%^dark%^RESET%^%^GREEN%^ atmosphere. The glimmer of"+
+	" %^YELLOW%^gold%^RESET%^%^GREEN%^"+
+	" on the underside of the leaves can barely be seen. It's"+
+	" a little crowded in here with all the branches, the tree"+
+	" isn't very wide. The branches beneath your feet are nice"+
+	" and thick, but they get more supple further up the tree.\n"
 	);
 	set_smell("default",
 	"The ripe chestnuts smell delicious."
@@ -58,10 +56,10 @@ void create()
 	]) );
 }
 
-//void reset()
-//{
-//	::reset();
-//	if(!present("dryad")) {
-//		new(MONS+"chestnut_dryad")->move(TO);
-//	}
-//}
+void reset()
+{
+	::reset();
+	if(!present("dryad")) {
+		new(MONS+"chestnut_dryad")->move(TO);
+	}
+}
