@@ -10,10 +10,10 @@ inherit OBJECT;
 void create() {
     ::create();
     set_name("incense burner");
-    set_id(({"incense","burning incense","incense burner"}));
+    set_id(({"incense","burning incense","incense burner","burner","hearthstone incense burner"}));
     set_weight(1000000);
-    set_short("inn incense");
-    set_long("Incense Thingy.\n");
+    set_short("%^C066%^he%^C244%^a%^C066%^rth%^C244%^s%^C066%^to%^C243%^n%^C066%^e i%^C095%^n%^C066%^ce%^C094%^n%^C066%^se burn%^C094%^e%^C066%^r%^CRST%^");
+    set_long("%^C059%^This %^C246%^metal bowl%^C059%^ filled with %^C095%^incense %^C059%^has been mounted on top of a small pile of %^C249%^hearth stone%^C059%^. The stone looks like the same from the %^C246%^inn %^C059%^nearby and %^C022%^ivy %^C059%^has grown up over most of it. There is a pile of %^C094%^incense%^C059%^ that has been set alight, and smoke drifts up from it slowly. You could %^C226%^inhale %^C059%^the incense to see what it smells like%^CRST%^\n");
     set_value(0);
     set_property("no animate",1);
 }

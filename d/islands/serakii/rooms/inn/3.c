@@ -18,3 +18,10 @@ set_exits(([
 ]));
 
 }
+
+    void reset(){
+   ::reset();
+   if(!present("incense")){
+      new(OBJ"inn_burner.c")->move(TO);
+   }
+}
