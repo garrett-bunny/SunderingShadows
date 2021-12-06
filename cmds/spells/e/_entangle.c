@@ -104,7 +104,7 @@ void execute_attack()
 void dest_effect()
 {
     int i;
-    tell_room(place, "%^GREEN%^The vegeation in the area shrinks as all returns to normal.");
+    tell_room(place, "%^GREEN%^The vegetation in the area shrinks as all returns to normal.");
     for (i = 0; i < sizeof(inven); i++) {
         if (!objectp(inven[i])) {
             continue;
