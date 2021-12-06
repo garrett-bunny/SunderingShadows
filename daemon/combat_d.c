@@ -594,6 +594,8 @@ varargs int typed_damage_modification(object attacker, object targ, string limb,
         }
     }
 
+    /*
+    //move this to spell.c - Tlaloc
     if ((int)targ->query_property("spell damage resistance")) {
         if (member_array(type, (VALID_DAMAGE_TYPES - PHYSICAL_DAMAGE_TYPES)) != -1) {
             if (damage > 0) {
@@ -619,6 +621,7 @@ varargs int typed_damage_modification(object attacker, object targ, string limb,
             }
         }
     }
+    */
 
     return damage;
 }
