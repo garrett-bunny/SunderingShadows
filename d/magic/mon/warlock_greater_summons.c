@@ -97,7 +97,7 @@ void setup_beastie(object caster, int beastheritage) {
       case "astral":
         set_id(({"shuggoth","ooze","outsider","summoned monster","greater summon"}));
         set_short("%^BOLD%^%^BLACK%^w%^WHITE%^r%^RESET%^%^ORANGE%^i%^BOLD%^%^BLACK%^t%^RESET%^%^ORANGE%^hin%^BOLD%^%^BLACK%^g %^RESET%^s%^BOLD%^%^BLACK%^h%^RESET%^%^ORANGE%^ugg%^BOLD%^%^BLACK%^o%^WHITE%^t%^BLACK%^h%^RESET%^");
-        set_long("%^BOLD%^%^BLACK%^This writhiting mass of %^RESET%^%^ORANGE%^flesh %^BOLD%^%^BLACK%^is constantly %^RESET%^%^MAGENTA%^"
+        set_long("%^BOLD%^%^BLACK%^This writhing mass of %^RESET%^%^ORANGE%^flesh %^BOLD%^%^BLACK%^is constantly %^RESET%^%^MAGENTA%^"
 "p%^RED%^ul%^MAGENTA%^s%^RED%^at%^MAGENTA%^i%^RED%^ng %^BOLD%^%^BLACK%^and %^RESET%^%^MAGENTA%^w%^RED%^ea%^MAGENTA%^v%^RED%^in%^MAGENTA%^"
 "g%^BOLD%^%^BLACK%^, coated in a t%^WHITE%^h%^RESET%^i%^BOLD%^%^BLACK%^ck o%^RESET%^o%^BOLD%^%^BLACK%^z%^RESET%^i%^BOLD%^n%^BLACK%^g b"
 "%^WHITE%^l%^RESET%^a%^BOLD%^%^BLACK%^ck%^WHITE%^n%^RESET%^e%^BOLD%^%^BLACK%^ss. All along the shifting surface, %^GREEN%^s%^ORANGE%^tr"
