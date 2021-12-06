@@ -2797,7 +2797,7 @@ void define_base_damage(int adjust)
         }
     }
     
-    if(objectp(target))
+    if(objectp(target) && sdamage)
     {
         int reduction = target->query_property("spell damage resistance");
         
