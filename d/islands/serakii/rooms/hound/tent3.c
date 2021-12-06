@@ -1,16 +1,13 @@
-
 #include <std.h>
 #include "../../serakii.h"
 
-inherit STORAGE"hound_camp.c";
-
+inherit STORAGE"hound_tent.c";
 void create(){
    ::create();
 
+
 set_exits(([
-"east" : HOUND"12",
-"west" : HOUND"14",
-"south" : HOUND"10",
+"out" : HOUND"17",
 
 ]));
 
