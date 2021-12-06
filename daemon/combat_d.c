@@ -1203,7 +1203,7 @@ varargs void calculate_damage(object attacker, object targ, object weapon, strin
 
     sneak = 0;
 
-    if(damage && targ->is_vulnerable_to(attacker))
+    if(targ->is_vulnerable_to(attacker))
     {
         //Duelist tree has chance to do an extra attack on vulnerable opponent
         if(FEATS_D->usable_feat(attacker, "positioning"))

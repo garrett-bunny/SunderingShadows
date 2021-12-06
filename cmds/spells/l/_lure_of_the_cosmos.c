@@ -60,7 +60,8 @@ void dest_effect()
 {
     if(objectp(caster))
     {
-        tell_object(caster, "%^BLACK%^BOLD%^The wings of darkness fade.%^RESET%^");
+        tell_object(caster, "%^BLACK%^BOLD%^You descend back to the ground.%^RESET%^");
+        tell_room(environment(caster), "%^BOLD%^%^BLACK%^"+caster->QCN+" %^CRST%^%^BOLD%^%^BLACK%^descends back to the ground.%^RESET%^", caster);
         caster->remove_property("flying");
         caster->set_property("endurance",(-1*(clevel/10)));
     }
