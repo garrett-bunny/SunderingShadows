@@ -5,6 +5,7 @@
 #include <schoolspells.h>
 #include <psions.h>
 #include <mysteries.h>
+#include <damage_types.h>
 
 #define NO_EFFECT -100
 #define TRACK_SPELLS 1
@@ -2765,6 +2766,8 @@ void define_base_damage(int adjust)
             }
         }
     }
+    
+    
 
     if (!wasreflected) {
         if (FEATS_D->is_active(caster, "spell combat") && caster->query_property("magus spell")) {
@@ -2793,6 +2796,14 @@ void define_base_damage(int adjust)
             sdamage = roll_dice(2, sdamage / 4);
         }
     }
+    
+    {
+        int reduction = target->query_property("spell damage resistance");
+        
+        reduction -= (FEATS_D->usable_feat(caster, "spell penetration") * 5);
+        reduction -= (FEATS_D->usable_feat(caster, "greater spell penetration") * 5);
+        sdamage -= reduction;
+    }   
 }
 
 int query_base_damage()
