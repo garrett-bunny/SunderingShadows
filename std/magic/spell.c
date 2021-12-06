@@ -3250,7 +3250,7 @@ void debug_saves(int num)
 varargs int do_save(object targ, int mod, int get_dc)
 {
     string type, stat, * myclasses;
-    int DC, classlvl, num;
+    int DC, classlvl, num, base_level;
     object daemon;
 
     if (!objectp(caster)) {
@@ -3263,10 +3263,18 @@ varargs int do_save(object targ, int mod, int get_dc)
         mod = 0;
     }
     
-    classlvl = max( ({ caster->query_guild_level(spell_type), caster->query_base_character_level() - 10 }) );
+    base_level = caster->query_base_character_level();
+    classlvl = max( ({ caster->query_guild_level(spell_type), base_level - 10 }) );
     
     if(spell_type == "innate")
-        classlvl = caster->query_base_character_level();
+        classlvl = base_level;
+    
+    //Cypher casts scroll with full DC
+    if(abnormal_cast == 1)
+    {
+        if(FEATS_D->usable_feat(caster, "enhance scroll"))
+            classlvl = base_level;
+    }
     
     classlvl = min( ({ classlvl, 60 }) );
 

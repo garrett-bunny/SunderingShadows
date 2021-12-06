@@ -144,7 +144,7 @@ void execute_feat()
         dest_effect();
         return;
     }
-    if(!caster->spend_ki(20))
+    if(!caster->spend_ki(3))
     {
         tell_object(caster, "%^CYAN%^You lack the needed ki to attempt "+
         "quivering palm!%^RESET%^");
