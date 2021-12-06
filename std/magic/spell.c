@@ -2804,6 +2804,7 @@ void define_base_damage(int adjust)
         reduction -= (FEATS_D->usable_feat(caster, "spell penetration") * 5);
         reduction -= (FEATS_D->usable_feat(caster, "greater spell penetration") * 5);
         sdamage -= reduction;
+        
         if(sdamage < 0)
             sdamage = 0;
     }   
