@@ -90,13 +90,14 @@ void create()
     ob->move(TO);
     command("wear bracers");
 	
-    ob = new(OBJ"black_leather_whip.c");
+    ob = new(OBJ"flying_wind.c");
 	ob->move(TO);
-	command("wield whip");
+        command("wield bardiche");
 	
 	ob = new("/d/common/obj/armour/studded");
     ob->move(TO);
     command("wear studded");
+                 new(OBJ"legion_seal")->move(TO);
 }
 
 void set_paralyzed(int time,string message){return 1;}

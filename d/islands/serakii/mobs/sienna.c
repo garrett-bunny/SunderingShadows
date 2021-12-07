@@ -97,6 +97,7 @@ void create()
 	ob = new("/d/common/obj/armour/studded");
     ob->move(TO);
     command("wear studded");
+     new(OBJ"hound_seal")->move(TO);
 }
 
 void set_paralyzed(int time,string message){return 1;}
