@@ -1,6 +1,7 @@
 // Shard of Divine Wrath - LoKi
 
 #include <std.h>
+#include <daemons.h>
 inherit "/d/common/obj/weapon/giant_bastard.c";
 
 
@@ -37,7 +38,7 @@ void create()
 		        " \n%^C094%^- Father Belanos, The "+
 				"Weapons of Light%^CRST%^");
 
-   set_property("lore",20);
+    set_property("lore",20);
     set_property("no curse",1);
     set_property("enchantment",7);
 
@@ -72,6 +73,17 @@ int unwield_func()
     tell_room(EETO, ETO->QCN + "%^C088%^ releases the " + query_short() + "%^C088%^, almost"
               + " reluctantly flexing " + ETO->QP + "%^C088%^ fingers.%^CRST%^", ETO);
     return 1;
+}
+
+int special_damage()
+{
+    int sdamage;
+    string bonus_stat;
+
+    bonus_stat = "strength";
+    
+    sdamage = TO->query_wc() + (int)this_object()->query_property("enchantment") + (int)ETO->query_damage_bonus() + (int)BONUS_D->new_damage_bonus(ETO, ETO->query_stats(bonus_stat));
+    return sdamage;
 }
 
 int extra_hit(object targ)
