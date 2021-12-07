@@ -8,6 +8,7 @@
   "deku":SHADOW_SEA "16,20.sea",\
   "laerad":SHADOW_SEA "36,20.sea",\
   "hmquest":SHADOW_SEA "16,45.sea",\
+  "serakii":SHADOW_SEA "41,44.sea",\
   "attaya":SHADOW_SEA "43,28.sea",\
   "eldebaro":SHADOW_SEA "51,7.sea",\
   "dallyh":SHADOW_SEA "13,22.sea",\
