@@ -19,7 +19,7 @@ void create() {
    set_items(([
       ({"ground","grass"}) : "%^C101%^The ground around the inn is a collection of %^C094%^dirt %^C101%^and %^C034%^healthy grass%^C101%^.\n%^CRST%^",
       ({"walls","wall"}) : "%^C248%^large %^C244%^stone blocks%^C248%^ form the walls of the inn, each the size of a %^C058%^barrel%^C248%^. There is a %^C255%^pure white plaster%^C248%^ between the %^C243%^cracks%^C248%^. Even in the roughest storm or battle these walls would hold up as well as a fortress.\n%^CRST%^",
-      ({"vines","flowers"}) : "%^C022%^Hearty vines grow up the stone and across the %^C058%^wooden windows%^C022%^. The ivy is dotted with small%^CRST%^ %^C196%^de%^C088%^e%^C196%^p r%^C088%^e%^C196^d flow%^C124%^e%^C196%^rs%^CRST%^ %^C022%^and is quite beautiful.\n%^CRST%^",
+      ({"vines","flowers"}) : "%^C022%^Hearty vines grow up the stone and across the %^C058%^wooden windows%^C022%^. The ivy is dotted with small%^CRST%^ %^C196%^de%^C088%^e%^C196%^p r%^C088%^e%^C196%^d flow%^C124%^e%^C196%^rs%^CRST%^ %^C022%^and is quite beautiful.\n%^CRST%^",
     ]));
 
 
