@@ -9,7 +9,7 @@ void create(){
    set_exits(([
 
           "northeast" : DOCK"2",
-
+         "west" : "/d/shadow/virtual/sea/serakii.dock",
 
 
    ]));
