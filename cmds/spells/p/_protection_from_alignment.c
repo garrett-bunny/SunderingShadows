@@ -98,7 +98,7 @@ void wrong_align()
 void dest_effect()
 {
     if (objectp(caster)) {
-        caster->remove_property("aligned_weapon");
+        caster->remove_property("protection_from_alignment");
         tell_object(caster, "%^CYAN%^You sense your ability to ward against opposing auras fades.");
     }
     ::dest_effect();
