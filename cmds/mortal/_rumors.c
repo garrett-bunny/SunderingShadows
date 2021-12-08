@@ -105,6 +105,8 @@ arealist = ({
             ({"Kinaro Underdark (Beneath Kinaro)" ,30,35,}),
             ({"Muln's Lair (Ice Island)" ,30,35,}),
             ({"Oubliette (Crystal Tower)",30,35,}),
+            ({"The Hound Mercenary Camp (Serakii - 44 41)",30,35,}),
+            ({"The White Tower (Serakii - 44 41)",30,35,}),
             ({"Lava Tubes (Tonerra)",33,42,}),
             ({"QUEST: Shar's Failed Deed (Tonerra)",33,42,}),
             ({"Arkhon's Lair" ,35,40,}),

@@ -14,10 +14,10 @@ void create() {
     set_travel(PAVED_ROAD);
 
     set_property("indoors",1);
-    set_name("%^C231%^whi%^C252%^t%^C231%^e "+
+    set_short("%^C231%^whi%^C252%^t%^C231%^e "+
 	"wal%^C249%^l%^C231%^ed k%^C250%^e%^C231%^ep "+
 	"hal%^C251%^l%^C231%^way%^CRST%^");
-    set_short("");
+    set_name("white walled keep hallway");
     set_long("%^C248%^The halls inside the keep are wide "+
 	"enough for seven %^C245%^armored men%^C248%^ to march "+
 	"side by side without touching and have obviously been "+
