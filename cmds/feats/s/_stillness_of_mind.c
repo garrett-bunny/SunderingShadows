@@ -136,8 +136,10 @@ void execute_feat()
         "intently and you watch as "+caster->QS+" envisions himself free to "+
         "move at will!%^RESET%^", caster);
     }
-    caster->set_tripped(0);
-    caster->set_paralyzed(0);
+    //caster->set_tripped(0);
+    //caster->set_paralyzed(0);
+	ETO->remove_paralyzed();
+    ETO->set_tripped(0);
     delay_messid_msg(90,"%^BOLD%^%^WHITE%^You can %^CYAN%^stillness of mind%^WHITE%^ again.%^RESET%^");
     caster->remove_property("using stillness of mind");
     caster->set_property("using stillness of mind", time());
