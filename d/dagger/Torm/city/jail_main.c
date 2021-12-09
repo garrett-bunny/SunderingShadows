@@ -12,13 +12,13 @@
 #include <std.h>
 #include <daemons.h>
 
-#define CELL "/d/dagger/tonovi/town/cell"
+#define CELL "/d/dagger/Torm/city/cell"
 
 inherit "/std/jail_main";
 
 void create(){
     ::create();
-    set_jail_location("Tonovi");
+    set_jail_location("Torm");
     set_cell(CELL);
     set_terrain(STONE_BUILDING);
     set_travel(PAVED_ROAD);
@@ -27,13 +27,8 @@ void create(){
     set_name("Tonovi City Jail");
     set_short("Tonovi City Jail");
     set_property("no sticks",1);
-/*
-    set_long(
-      "You are in the main room of the jail of Tonovi.  From here you can see many cells, most empty but some contain the thieves and killers of the city, awaiting judgement or punishment."
-    );
-Original desc
-*/
-    set_long("%^ORANGE%^This is the City of Tonovi jail.  "+
+
+    set_long("%^ORANGE%^This is the City of Torm jail.  "+
        "A beautiful %^BOLD%^%^BLACK%^ebony desk %^RESET%^%^ORANGE%^"+
        "is in the center of the room, with a mahogany chair "+
        "slightly pulled out from behind it.  The office is "+
@@ -78,7 +73,7 @@ Original desc
           "crisp and look to be fresh.  The book is currently "+
           "open to a page that is not quite filled up with "+
           "names.%^RESET%^\n(<help jail> for commands)",
-       ({"sign","wooden sign"}) : "%^YELLOW%^Tonovi City Jail%^RESET%^\n"
+       ({"sign","wooden sign"}) : "%^YELLOW%^Torm City Jail%^RESET%^\n"
           "The sign directs you to the various lists posted on the "
 	  "walls.  (%^BOLD%^< help jail >%^RESET%^ for the commands "
 	  "to see the lists and other commands available)",
@@ -94,7 +89,7 @@ Original desc
     ]));
     set_invis_exits(({"grate"}));
    add_pre_exit_function("grate", "GoThroughDoor");
-   set_door("cell door",CELL,"cell","Tonovi jail key","lock");
+   set_door("cell door",CELL,"cell","Torm jail key","lock");
    set_open("cell door",0);
    set_locked("cell door", 1, "lock");
    lock_difficulty("cell door",-90, "lock");
@@ -129,10 +124,10 @@ void init() {
 
 void reset() {
    ::reset();
-   if(!present("waynon"))
-      new("/d/dagger/tonovi/guards/jail_guard")->move(TO);
-   if(!present("tonovi guard"))
-      new("/d/dagger/tonovi/guards/guard")->move(TO);
+   if(!present("caleb"))
+      new("/d/dagger/Torm/mon/jailer")->move(TO);
+   if(!present("torm guard"))
+      new("/d/dagger/Torm/mon/guard")->move(TO);
 }
 
 int peer_out(string str) {

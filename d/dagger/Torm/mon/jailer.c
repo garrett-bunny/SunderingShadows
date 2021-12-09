@@ -14,10 +14,10 @@ void create()
     ::create();
     set_jail("/d/dagger/Torm/city/jail_main");
     set_cell("/d/dagger/Torm/city/jail");
-    set_property("official","tharis");
+    set_property("official","torm");
     set_property("knock unconscious",1);
     set_id(({"jailer", "guard", "caleb", "torm jailer", CITYLAW}));
-    set_name("tharis jailer");
+    set_name("torm jailer");
     set_short("%^CYAN%^BOLD%^Caleb, the Torm Jailer%^RESET%^");
     set_long(CRAYON_D->color_string("Placeholder", "very black"));
     set_race("human");
@@ -88,9 +88,9 @@ int kill_ob(object ob, int i)
     if (hold)
     {
         tell_room(room, "The jailer yells loudly for help.");
-        new("/d/dagger/Torm/mon/patrol_guard")->move(room);
-        new("/d/dagger/Torm/mon/patrol_guard")->move(room);
-        new("/d/dagger/Torm/mon/patrol_guard")->move(room);
+        new("/d/dagger/Torm/mon/guard")->move(room);
+        new("/d/dagger/Torm/mon/guard")->move(room);
+        new("/d/dagger/Torm/mon/guard")->move(room);
     }
     return hold;
 }

@@ -1,7 +1,7 @@
 #include <std.h>
 #include "/d/common/common.h"
 
-#define CITYLAW "tonovi law"
+#define CITYLAW "torm law"
 
 inherit "/std/guardsman.c";
 
@@ -19,9 +19,9 @@ void create()
     string rank;
     ::create();
     will_open_doors(1);
-    set_nogo(({ "/d/dagger/tonovi/road2", }));
-    set_name("Tonovi Guard");
-    set_id(({ "Tonovi Guard", "tonovi guard", "guard", CITYLAW }));
+    set_nogo(({ "/d/dagger/Torm/road/path12", "/d/dagger/Torm/road/path22" }));
+    set_name("Torm Guard");
+    set_id(({ "Torm Guard", "torm guard", "guard", CITYLAW }));
     set_short("A tall human");
     set_gender(random(2) ? "male" : "female");
     hairColor();
@@ -90,15 +90,15 @@ void create()
     add_id(rank);
     add_id(capitalize(rank));
     set_short("%^RESET%^%^RED%^A " + query("hair") + " haired, " + query("eye") + " eyed"
-              " " + query_gender() + " " + query_race() + " in a %^WHITE%^Tonovi guard uniform");
+              " " + query_gender() + " " + query_race() + " in a %^WHITE%^Torm guard uniform");
     set_ac(2 - random(10));
     set_detecting_invis(random(2));
     set_exp(1);
     set_long("This " + query_gender() + " guard wears the standard uniform of "
-             "the Tonovi Guard, with an insignia indicating a rank of " + rank + ".  "
+             "the Torm Guard, with an insignia indicating a rank of " + rank + ".  "
              "Vigilant in " + QP + " duties, " + QS + " patrols the streets "
-             "of Tonovi to enforce the law and protect citizens and officials.  "
-             "The Tonovi Guard is made up of both citizens and hired mercenaries.  "
+             "of Torm to enforce the law and protect citizens and officials.  "
+             "The Torm Guard is made up of both citizens and hired mercenaries.  "
              "The citizens may lack the battle experience of the mercenaries "
              "but they are determined to defend their city and uphold the laws."
              );
@@ -140,13 +140,11 @@ void create()
 
 void set_guard_stuff()
 {
-    set_jail_location("/d/dagger/tonovi/town/jail_main");
-    set_guarding("Tonovi");
-    set_bad_races(({ "elf", "half-elf", "hobgoblin", "hobgoblin", "kobold", "ogre", "orc", "gnoll", "bugbear", "minotaur", "dragon", "ratkin", "wererat", "undead", "troll" }));
+    set_jail_location("/d/dagger/Torm/city/jail_main");
+    set_guarding("Torm");
+    set_bad_races(({ "hobgoblin", "hobgoblin", "kobold", "ogre", "orc", "gnoll", "bugbear", "minotaur", "dragon", "ratkin", "wererat", "undead", "troll" }));
     set_race_action("capture");
     set_race_messages(([
-                           "elf"       : "Stop that elf and put it back in chains!",
-                           "half-elf"  : "Grab that half-elf and put it back in chains",
                            "hobgoblin" : "Careful folks, it's a hobgoblin, I'll take care of it.",
                            "kobold"    : "Dog faced rat!  Get that kobold!!",
                            "ogre"      : "Gods help us, its an ogre, how did it get past the gate?",
@@ -160,7 +158,7 @@ void set_guard_stuff()
     ARREST_MSG = "%^BOLD%^%^CYAN%^Stop in the name of the law!";
     CAPTURE_MSG = "%^BOLD%^You are under arrest, criminal!";
     RACE_CAPTURE_MSG = "%^BOLD%^You'll be put on display for entering the city!";
-    EXPEL_MSG = "%^BOLD%^Begone! Do not return to Tonovi!";
+    EXPEL_MSG = "%^BOLD%^Begone! Do not return to Torm!";
     KILL_MSG = "%^BOLD%^For your crimes, you now die!";
     JAIL_MSG = "%^BOLD%^Off to jail you go for your crimes!";
     return;
@@ -272,7 +270,7 @@ void blow_horn(object ob)
     if (horn) {
         return;
     }
-    broadcast_area("/d/dagger/tonovi/town", "%^BOLD%^%^RED%^The warning horn blows, alerting the city guards!");
+    broadcast_area("/d/dagger/Torm/city", "%^BOLD%^%^RED%^The warning horn blows, alerting the city guards!");
     horn = 1;
 }
 
