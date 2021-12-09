@@ -66,8 +66,8 @@ void bite(object targ)
         targ->do_damage("torso",roll_dice(3,6));
         TO->remove_property("magic");
     }
-	sizeof(ids) && TO->force_me("kill "+ids[0]+"");
-    kill_ob(targ,1);
+	//sizeof(ids) && present(ids[0], environment(this_object())) && TO->force_me("kill "+ids[0]+"");
+    targ && objectp(targ) && kill_ob(targ,1);
     return;
 }
 
