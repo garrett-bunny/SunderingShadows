@@ -99,7 +99,7 @@ varargs int do_save(object ob, int dc, string type, raw_save)
             }
             
             if(FEATS_D->usable_feat(ob, "fighter reflexes"))
-                mod += (ob->query_class_level("fighter") / 10);
+                mod += (1 + ob->query_class_level("fighter") / 10);
             
             if(ob->query_bloodline() == "kobold")
                 mod += 2;

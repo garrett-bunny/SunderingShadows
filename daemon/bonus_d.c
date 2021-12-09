@@ -380,6 +380,10 @@ varargs int hit_bonus(object who, object targ, int attack_num, object current, i
             if (FEATS_D->usable_feat(who, "weapon finesse") && ((mysize >= 0) || touch == 1)) {
                 to_hit += (query_dex_bonus(who) * -1);
             }
+            else if(FEATS_D->usable_feat(who, "fighter finesse"))
+            {
+                to_hit += (query_dex_bonus(who) * -1);
+            }
             else if(FEATS_D->usable_feat(who, "cunning insight"))
             {
                 to_hit += query_stat_bonus(who, "charisma");
