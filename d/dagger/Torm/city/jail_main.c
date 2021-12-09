@@ -83,7 +83,7 @@ void create(){
           "is in the cell."
     ]));
     set_exits(([
-      "south" : RPATH "bazaar1",
+      "south" : "/d/dagger/Torm/city/gallows",
       "cell" : CELL,
       "grate" : CELL
     ]));
@@ -124,7 +124,7 @@ void init() {
 
 void reset() {
    ::reset();
-   if(!present("caleb"))
+   if(!present("bryon"))
       new("/d/dagger/Torm/mon/jailer")->move(TO);
    if(!present("torm guard"))
       new("/d/dagger/Torm/mon/guard")->move(TO);

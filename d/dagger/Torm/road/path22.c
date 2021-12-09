@@ -53,4 +53,10 @@ void reset(){
     if(!present("law sign")){
         new("/d/dagger/Torm/obj/lawsign")->move(TO);
     }
+    if(!present("torm guard", this_object()))
+        new("/d/dagger/Torm/mon/guard")->move(this_object());
+    if(!present("torm guard 2", this_object()))
+        new("/d/dagger/Torm/mon/guard")->move(this_object());
+    if(!present("torm guard 3", this_object()))
+        new("/d/dagger/Torm/mon/guard")->move(this_object());
 }

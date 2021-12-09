@@ -16,9 +16,9 @@ void create()
     set_cell("/d/dagger/Torm/city/jail");
     set_property("official","torm");
     set_property("knock unconscious",1);
-    set_id(({"jailer", "guard", "caleb", "torm jailer", CITYLAW}));
+    set_id(({"jailer", "guard", "bryon", "torm jailer", CITYLAW}));
     set_name("torm jailer");
-    set_short("%^CYAN%^BOLD%^Caleb, the Torm Jailer%^RESET%^");
+    set_short("%^MAGENTA%^BOLD%^Bryon, the Torm Jailer%^RESET%^");
     set_long(CRAYON_D->color_string("Placeholder", "very black"));
     set_race("human");
     set_gender("male");

@@ -89,7 +89,7 @@ void create()
                       ]));
     add_id(rank);
     add_id(capitalize(rank));
-    set_short("%^RESET%^%^RED%^A " + query("hair") + " haired, " + query("eye") + " eyed"
+    set_short("%^RESET%^%^MAGENTA%^A " + query("hair") + " haired, " + query("eye") + " eyed"
               " " + query_gender() + " " + query_race() + " in a %^WHITE%^Torm guard uniform");
     set_ac(2 - random(10));
     set_detecting_invis(random(2));
