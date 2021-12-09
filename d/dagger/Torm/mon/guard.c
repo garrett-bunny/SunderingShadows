@@ -19,7 +19,7 @@ void create()
     string rank;
     ::create();
     will_open_doors(1);
-    set_nogo(({ "/d/dagger/Torm/road/path12", "/d/dagger/Torm/road/path22" }));
+    set_nogo(({ "/d/dagger/Torm/road/path12", "/d/dagger/Torm/road/path22", "/d/dagger/Torm/road/path11", "/d/dagger/Torm/road/path13", "/d/dagger/Torm/road/path21", }));
     set_name("Torm Guard");
     set_id(({ "Torm Guard", "torm guard", "guard", CITYLAW }));
     set_short("A tall human");
