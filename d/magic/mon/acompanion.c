@@ -15,11 +15,6 @@ inherit WEAPONLESS;
 #define SAVEDIR "/d/save/summons/" + owner->query_name() + "/animal/"
 
 object owner;
-object tp;
-
-
-
-void timer(object tp);
 
 string saved_short,
        saved_long;
@@ -77,9 +72,11 @@ int sic(string str) {
  object room, target;
 
   if(!str) {
-    write("What would you like your pet to attack!");
+    write("What would you like your companion to attack!");
     return 1;
   }
+  
+  if(this_player() != owner) return 0;
 
 str = lower_case(str);
 target = present(str, environment(this_player()));
@@ -94,17 +91,16 @@ target = present(str, environment(this_player()));
     if(environment(target) != room)
         return;
 
-   if ((int)target->query_property("using sic") > time()) {
+   if(owner->cooldown("sic")) {
         tell_object(owner, "You can't try to knock someone down yet!");
-        dest_effect();
-        return 0;
+        return;
     }
   force_me("kill "+str);
   tell_room(room, "%^BOLD%^" + sprintf("%s responds to the whistle and leaps into the air, knocking %s to the ground!", aname, tname));
-            target && target->set_tripped(3, "%^WHITE%^You are struggling to regain your footing! %^RESET%^");
+            target && target->set_tripped(2, "%^WHITE%^You are struggling to regain your footing! %^RESET%^");
                 delay_msg(30,"%^BOLD%^%^WHITE%^You can %^CYAN%^sic%^WHITE%^ again.%^RESET%^");
-                target()->set_property("using sic",time() + 30);
-            timer(owner);
+				owner->set_property("sic", 1);
+                owner->add_cooldown("sic", 30);
   return 1;
 } 
 
@@ -356,18 +352,6 @@ void special_attack(object target)
     }
 
     return;
-}
-
-void timer(object target)
-{
-   //if(!objectp(tp))  return;  // added because it's in a callout *Styx*
-   if(!target->query_property("using sic")) dest_effect();
-   if(!sizeof(tp->query_attackers())) {
-        target->remove_property("using sic");
-        dest_effect();
-        return;
-   }
-   call_out("timer",1,tp);
 }
 
 void die(object ob)
