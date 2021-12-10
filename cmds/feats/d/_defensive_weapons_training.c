@@ -6,9 +6,9 @@ void create() {
     ::create();
     feat_type("permanent");
     feat_category("FighterEnhancement");
-    feat_name("fighter reflexes");
+    feat_name("defensive weapons training");
     feat_prereq("Fighter L21, Advanced Training Feat");
-    feat_desc("Through rigorous focus on their reflexiveness and their ability to react to danger will allow a fighter with this skillset gain bonuses on their reflex save.");
+    feat_desc("With a unriveled focus in defensive swordplay the fighter can utilize the inherent magic of their weapon for dodging blows as well as the normal attack and damage benefits.");
     permanent(1);
     set_required_for(({}));
 }

@@ -6,9 +6,9 @@ void create() {
     ::create();
     feat_type("permanent");
     feat_category("FighterEnhancement");
-    feat_name("fighter reflexes");
+    feat_name("abundant tactics");
     feat_prereq("Fighter L21, Advanced Training Feat");
-    feat_desc("Through rigorous focus on their reflexiveness and their ability to react to danger will allow a fighter with this skillset gain bonuses on their reflex save.");
+    feat_desc("Practice makes perfect. Through a concerted effort in perfecting their skills in martial feats and maneuvers, the fighter will recieve a cooldown reduction on martial feats/maneuvers.");
     permanent(1);
     set_required_for(({}));
 }
