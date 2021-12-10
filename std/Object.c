@@ -609,6 +609,10 @@ mixed query_property(string prop)
                 num += 8;
             }
         }
+        
+        if(FEATS_D->usable_feat(this_object(), "armored juggernaut") && !this_object()->is_ok_armour("thief"))
+            num += (BONUS_D->query_stat_bonus(this_object(), "strength") / 2);
+        
         if(this_object()->is_shade() || this_object()->query_race() == "nightwing")
         {
             num -= (total_light(environment(this_object())) - 2);

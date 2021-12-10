@@ -1169,7 +1169,7 @@ int query_ac()
 {
     int myac, raceac, shifted_ac, myLev;
     string myfile, myrace, mysubrace;
-    object shape, attacker;
+    object shape, attacker, weapon;
 
     if (!userp(TO) && !TO->query_property("full ac")) {
         return monster_ac;
@@ -1194,7 +1194,16 @@ int query_ac()
         if(this_object()->validate_combat_stance("weapon and shield") || this_object()->validate_combat_stance("unarmed and shield"))
             myac += (1 + this_object()->query_base_character_level() / 10);
     }
-
+    
+    if(FEATS_D->usable_feat(this_object(), "defensive weapon training"))
+    {
+        if(weapon = this_object()->query_wielded()[0])
+            myac += weapon->query_property("enchantment");
+    }
+    
+    if(FEATS_D->usable_feat(this_object(), "armored juggernaut") && !this_object()->is_ok_armour("thief"))
+        myac += (BONUS_D->query_stat_bonus(this_object(), "strength") / 2);
+        
     if(FEATS_D->usable_feat(TO, "canny defense") && !TO->query_paralyzed() &&
        !TO->query_tripped() && !TO->query_bound() && TO->is_ok_armour("thief"))
            myac += BONUS_D->query_stat_bonus(TO, "intelligence");
