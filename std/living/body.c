@@ -1188,6 +1188,12 @@ int query_ac()
         !TO->query_tripped() && !TO->query_bound() && TO->is_ok_armour("thief")) {
         myac += 4;
     }
+    
+    if(FEATS_D->usable_feat(this_object(), "shield focus"))
+    {
+        if(this_object()->validate_combat_stance("weapon and shield") || this_object()->validate_combat_stance("unarmed and shield"))
+            myac += (1 + this_object()->query_base_character_level() / 10);
+    }
 
     if(FEATS_D->usable_feat(TO, "canny defense") && !TO->query_paralyzed() &&
        !TO->query_tripped() && !TO->query_bound() && TO->is_ok_armour("thief"))
