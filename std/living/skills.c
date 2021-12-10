@@ -372,6 +372,15 @@ int query_skill(string skill)
         }
     }
     
+    if(this_object()->query_class_level("fighter") > 20)
+    {
+        if(skill == "craft, weaponsmith" && FEATS_D->usable_feat(this_object(), "master weaponsmith"))
+            x += 10;
+        
+        if(skill == "craft, armorsmith" && FEATS_D->usable_feat(this_object(), "master armorsmith"))
+            x += 10;
+    }
+    
     if(this_object()->is_class("mage"))
     {
         switch(PLAYER_D->check_familiar(this_object()))
