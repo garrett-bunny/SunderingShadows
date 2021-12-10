@@ -5,7 +5,7 @@ inherit FEAT;
 void create() {
     ::create();
     feat_type("permanent");
-    feat_category("FighterEnhancement");
+    feat_category("AdvancedTraining");
     feat_name("defensive weapons training");
     feat_prereq("Fighter L21, Advanced Training Feat");
     feat_desc("With a unriveled focus in defensive swordplay the fighter can utilize the inherent magic of their weapon for dodging blows as well as the normal attack and damage benefits.");

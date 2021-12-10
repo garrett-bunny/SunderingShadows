@@ -5,7 +5,7 @@ inherit FEAT;
 void create() {
     ::create();
     feat_type("permanent");
-    feat_category("FighterEnhancement");
+    feat_category("AdvancedTraining");
     feat_name("aura of confidence");
     feat_prereq("Fighter L21, Advanced Training Feat");
     feat_desc("Through sheer grit the warrior can push through fear, inspiring others to do the same.");

@@ -5,7 +5,7 @@ inherit FEAT;
 void create() {
     ::create();
     feat_type("permanent");
-    feat_category("FighterEnhancement");
+    feat_category("AdvancedTraining");
     feat_name("master armorsmith");
     feat_prereq("Fighter L21, Advanced Training Feat");
     feat_desc("Both in combat and out, your devotion to armor is unriveled. You gain a +10 bonus to your armorsmith skill.");

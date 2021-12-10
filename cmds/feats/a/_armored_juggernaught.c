@@ -5,7 +5,7 @@ inherit FEAT;
 void create() {
     ::create();
     feat_type("permanent");
-    feat_category("FighterEnhancement");
+    feat_category("AdvancedTraining");
     feat_name("armored juggernaught");
     feat_prereq("Fighter L21, Advanced Training Feat");
     feat_desc("Through strength training and mastering defensive techniques in heavy armor the fighter is able to increase their ability to dodge and resist blows while in heavy armor.");

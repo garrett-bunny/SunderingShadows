@@ -638,6 +638,8 @@ int combat_maneuver(object victim, object attacker)
     CMB = query_combat_maneuver_bonus(attacker) + result;
     CMD = query_combat_maneuver_defense(victim) + 10;
     
+    CMD += (FEATS_D->usable_feat(victim, "unmoving") * query_stat_bonus(victim, "strength"));
+    
     result = CMB >= CMD ? 1 : 0;
     
     return result;

@@ -5,7 +5,7 @@ inherit FEAT;
 void create() {
     ::create();
     feat_type("permanent");
-    feat_category("FighterEnhancement");
+    feat_category("AdvancedTraining");
     feat_name("fighter reflexes");
     feat_prereq("Fighter L21, Advanced Training Feat");
     feat_desc("Through rigorous focus on their reflexiveness and their ability to react to danger will allow a fighter with this skillset gain bonuses on their reflex save.");

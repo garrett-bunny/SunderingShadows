@@ -5,7 +5,7 @@ inherit FEAT;
 void create() {
     ::create();
     feat_type("permanent");
-    feat_category("FighterEnhancement");
+    feat_category("AdvancedTraining");
     feat_name("fighter finesse");
     feat_prereq("Fighter L21, Advanced Training Feat");
     feat_desc("This feat allows an experienced dexterity-based fighter to utilize their dexterity on all weapons, despite their size.");
