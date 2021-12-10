@@ -63,26 +63,24 @@ void init()
     }
 
     add_action("animal_command", "animal");
+	add_action("sic", "sic");
 }
 
-int sic(string str)
-{
-	string *input;
-	
-mod = max( ({ BONUS_D->query_stat_bonus(caster, "dexterity"), BONUS_D->query_stat_bonus(caster, "strength") }) );
-    
-    if(do_save(target, mod))
-    {
-        tell_object(caster,"%^RED%^"+target->QCN+" twists at the last instant, avoiding "
-            "your knockdown attempt!%^RESET%^");
-        tell_object(target,"%^RESET%^%^BOLD%^%^GREEN%^You twist away at the last instant, "
-            "avoiding "+caster->QCN+"'s knockdown attempt!%^RESET%^");
-        tell_room(place,"%^BOLD%^"+target->QCN+" twists away at the last instant, avoiding "
-            ""+caster->QCN+"'s knockdown attempt!%^RESET%^",({target,caster}));
-        caster->set_paralyzed(roll_dice(2,6),"%^MAGENTA%^You're getting back into position.%^RESET%^");
-        dest_effect();
-        return;
-}}
+int sic(string str) {
+  if(!str) {
+    write("What would you like your pet to attack!");
+    return 1;
+  }
+  if(this_player() != owner) return 0;
+  if(sicked = !present(str, environment(this_player()))) {
+    write("The eagle looks for something to attack, then gives up.");
+    return 1;
+  }
+  force_me("kill "+str);
+  write("You point your finger toward "+str+" and yell:  SIC EM!");
+  say(this_player()->query_cap_name()+" points at "+str+" and yells:  SIC EM!");
+  return 1;
+}
 	
 int animal_command(string str)
 {
