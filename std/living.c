@@ -254,7 +254,7 @@ int query_parrying(object att)
     objectp(att) && eweapons = att->query_wielded();
     
     //can't parry if both weapons ranged
-    if(sizeof(eweapons) && eweapons[0]->is_lrweapon())
+    if(sizeof(eweapons) && eweapons[0]->is_lrweapon() && !FEATS_D->usable_feat(this_object(), "deflect arrows"))
     {
         if(sizeof(eweapons) == 1)
             return 0;
