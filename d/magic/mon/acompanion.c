@@ -68,25 +68,19 @@ void init()
 
 int sic(string str) {
 
-    string tname, aname, mess;
+   // string tname, aname, mess;
     object room;
+	object victim;
+	object target;
 
-object victim;
+	target = lower_case(str);
+	victim = present(target, environment(this_player()));
 
-target = lower_case(target);
-victim = present(target, environment(this_player()));
-
-    if(!target || !objectp(target))
-        return;
-
-    tname = target->query_name();
-    aname = capitalize(this_object()->query_name());
+    //tname = target->query_name();
+    //aname = capitalize(this_object()->query_name());
     room = environment(this_object());
 
-    if(environment(target) != room)
-        return;
-
-  if(!target) {
+	if(!target) {
     write("What would you like your pet to attack!");
     return 1;
   }
@@ -97,7 +91,7 @@ victim = present(target, environment(this_player()));
         return;
     }
   force_me("kill "+target);
-  tell_room(room, "%^BOLD%^" + sprintf("%s responds to the whistle and leaps into the air, knocking %s to the ground!", aname, tname));
+ // tell_room(room, "%^BOLD%^" + sprintf("%s responds to the whistle and leaps into the air, knocking %s to the ground!", aname, tname));
             target && target->set_tripped(3, "%^WHITE%^You are struggling to regain your footing! %^RESET%^");
 			    delay_msg(30,"%^BOLD%^%^WHITE%^You can %^CYAN%^sic%^WHITE%^ again.%^RESET%^");
                 owner->set_property("using sic",time() + 30);
