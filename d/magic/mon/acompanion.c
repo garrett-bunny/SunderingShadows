@@ -99,7 +99,7 @@ target = present(str, environment(this_player()));
             target && target->set_tripped(3, "%^WHITE%^You are struggling to regain your footing! %^RESET%^");
                 delay_msg(30,"%^BOLD%^%^WHITE%^You can %^CYAN%^sic%^WHITE%^ again.%^RESET%^");
                 this_object()->set_property("using sic",time() + 30);
-            timer(owner);
+            timer(target);
   return 1;
 } 
 
@@ -356,7 +356,7 @@ void special_attack(object target)
 void timer(object tp)
 {
    if(!objectp(tp))  return;  // added because it's in a callout *Styx*
-   if(!this_object()->query_property("using sic")) dest_effect();
+   if(!tp->query_property("using sic")) dest_effect();
    if(!sizeof(tp->query_attackers())) {
         tp->remove_property("using sic");
         dest_effect();
