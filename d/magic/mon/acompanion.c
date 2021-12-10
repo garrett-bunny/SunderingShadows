@@ -68,34 +68,16 @@ void init()
 
 int sic(string str) {
 
-   // string tname, aname, mess;
-    object room;
-	object victim;
-	object target;
-
-	target = lower_case(str);
-	victim = present(target, environment(this_player()));
-
-    //tname = target->query_name();
-    //aname = capitalize(this_object()->query_name());
-    room = environment(this_object());
-
-	if(!target) {
+  if(!str) {
     write("What would you like your pet to attack!");
     return 1;
   }
-      
-   if ((int)owner->query_property("using sic") > time()) {
-        tell_object(owner, "You can't try to knock someone down yet!");
-        dest_effect();
-        return;
-    }
-  force_me("kill "+target);
- // tell_room(room, "%^BOLD%^" + sprintf("%s responds to the whistle and leaps into the air, knocking %s to the ground!", aname, tname));
-            target && target->set_tripped(3, "%^WHITE%^You are struggling to regain your footing! %^RESET%^");
-			    delay_msg(30,"%^BOLD%^%^WHITE%^You can %^CYAN%^sic%^WHITE%^ again.%^RESET%^");
-                owner->set_property("using sic",time() + 30);
-			timer(owner);
+  
+  if(this_player() != owner) return 0;
+  
+  force_me("kill "+str);
+  write("You point your finger toward "+str+" and yell:  SIC EM!");
+  say(this_player()->query_cap_name()+" points at "+str+" and yells:  SIC EM!");
   return 1;
 }
 	
