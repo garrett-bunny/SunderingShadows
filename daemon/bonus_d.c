@@ -585,3 +585,63 @@ int new_damage_bonus(object attacker, int str)
     dbonus += ((str - 10) / 2);
     return dbonus;
 }
+
+//Combat Maneuvers Calcs
+int query_combat_maneuver_bonus(object ob)
+{
+    int cmb, mysize;
+    
+    if(!objectp(ob))
+        return 0;
+    
+    mysize = ob->query_size();
+    
+    cmb = new_bab(ob->query_level(), ob);  
+    if(mysize <= 1)
+        cmb += query_stat_bonus(ob, "dexterity");
+    else
+        cmb += query_stat_bonus(ob, "strength");
+    
+    cmb += ((mysize - 2) * 4);
+    
+    return cmb;
+}
+
+int query_combat_maneuver_defense(object ob)
+{
+    int cmd, mysize;
+    
+    if(!objectp(ob))
+        return 0;
+    
+    mysize = ob->query_size();
+    cmd = new_bab(ob->query_level(), ob);
+    cmd += (query_stat_bonus(ob, "strength") + query_stat_bonus(ob, "dexterity"));
+    
+    cmd += ((mysize - 2) * 4);
+    
+    return cmd;
+}
+
+int combat_maneuver(object victim, object attacker)
+{
+    int result, CMB, CMD;
+    
+    result = roll_dice(1, 20);
+    
+    if(result == 1)
+        return 0;
+    if(result == 20)
+        return 1;
+    
+    CMB = query_combat_maneuver_bonus(attacker) + result;
+    CMD = query_combat_maneuver_defense(victim) + 10;
+    
+    result = CMB >= CMD ? 1 : 0;
+    
+    return result;
+}
+    
+    
+    
+    

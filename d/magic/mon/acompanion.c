@@ -63,8 +63,43 @@ void init()
     }
 
     add_action("animal_command", "animal");
+	add_action("sic", "sic");
 }
 
+int sic(string target) {
+
+    string tname, aname, mess;
+    object room;
+
+    if(!target || !objectp(target))
+        return;
+
+    tname = target->query_name();
+    aname = capitalize(this_object()->query_name());
+    room = environment(this_object());
+
+    if(environment(target) != room)
+        return;
+
+  if(!target) {
+    write("What would you like your pet to attack!");
+    return 1;
+  }
+      
+   if ((int)owner->query_property("using sic") > time()) {
+        tell_object(owner, "You can't try to knock someone down yet!");
+        dest_effect();
+        return;
+    }
+  force_me("kill "+target);
+  tell_room(room, "%^BOLD%^" + sprintf("%s responds to the whistle and leaps into the air, knocking %s to the ground!", aname, tname));
+            target && target->set_tripped(3, "%^WHITE%^You are struggling to regain your footing! %^RESET%^");
+			    delay_msg(30,"%^BOLD%^%^WHITE%^You can %^CYAN%^sic%^WHITE%^ again.%^RESET%^");
+                owner->set_property("using sic",time() + 30);
+			timer(owner);
+  return 1;
+}
+	
 int animal_command(string str)
 {
     string *input;
@@ -312,6 +347,18 @@ void special_attack(object target)
     }
 
     return;
+}
+
+void timer(object tp)
+{
+   if(!objectp(tp))  return;  // added because it's in a callout *Styx*
+   if(!tp->query_property("using knockdown")) dest_effect();
+   if(!sizeof(tp->query_attackers())) {
+        tp->remove_property("using knockdown");
+        dest_effect();
+        return;
+   }
+   call_out("timer",1,tp);
 }
 
 void die(object ob)
