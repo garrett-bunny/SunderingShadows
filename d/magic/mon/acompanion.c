@@ -15,6 +15,11 @@ inherit WEAPONLESS;
 #define SAVEDIR "/d/save/summons/" + owner->query_name() + "/animal/"
 
 object owner;
+object tp;
+
+
+
+void timer(object tp);
 
 string saved_short,
        saved_long;
@@ -89,17 +94,17 @@ target = present(str, environment(this_player()));
     if(environment(target) != room)
         return;
 
-   if ((int)this_object()->query_property("using sic") > time()) {
+   if ((int)target->query_property("using sic") > time()) {
         tell_object(owner, "You can't try to knock someone down yet!");
         dest_effect();
-        return;
+        return 0;
     }
   force_me("kill "+str);
   tell_room(room, "%^BOLD%^" + sprintf("%s responds to the whistle and leaps into the air, knocking %s to the ground!", aname, tname));
             target && target->set_tripped(3, "%^WHITE%^You are struggling to regain your footing! %^RESET%^");
                 delay_msg(30,"%^BOLD%^%^WHITE%^You can %^CYAN%^sic%^WHITE%^ again.%^RESET%^");
-                this_object()->set_property("using sic",time() + 30);
-            timer(target);
+                target()->set_property("using sic",time() + 30);
+            timer(owner);
   return 1;
 } 
 
@@ -353,12 +358,12 @@ void special_attack(object target)
     return;
 }
 
-void timer(object tp)
+void timer(object target)
 {
-   if(!objectp(tp))  return;  // added because it's in a callout *Styx*
-   if(!tp->query_property("using sic")) dest_effect();
+   //if(!objectp(tp))  return;  // added because it's in a callout *Styx*
+   if(!target->query_property("using sic")) dest_effect();
    if(!sizeof(tp->query_attackers())) {
-        tp->remove_property("using sic");
+        target->remove_property("using sic");
         dest_effect();
         return;
    }
