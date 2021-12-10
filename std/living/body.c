@@ -1197,8 +1197,10 @@ int query_ac()
     
     if(FEATS_D->usable_feat(this_object(), "defensive weapon training"))
     {
-        if(weapon = this_object()->query_wielded()[0])
-            myac += weapon->query_property("enchantment");
+        weapon = this_object()->query_wielded();
+        
+        if(sizeof(weapon))
+            myac += weapon[0]->query_property("enchantment");
     }
     
     if(FEATS_D->usable_feat(this_object(), "armored juggernaut") && !this_object()->is_ok_armour("thief"))
