@@ -66,19 +66,40 @@ void init()
 	add_action("sic", "sic");
 }
 
-int sic(string str) {
-  if(!str) {
+int sic(object target) {
+
+    string tname, aname, mess;
+    object room;
+    int scale;
+    mapping attacks;
+
+    if(!target || !objectp(target))
+        return;
+
+    tname = target->query_name();
+    aname = capitalize(this_object()->query_name());
+    room = environment(this_object());
+
+    if(environment(target) != room)
+        return;
+
+    scale = 1 + this_object()->query_level() / 10;
+    attacks = ([  ]);
+
+  if(!target) {
     write("What would you like your pet to attack!");
     return 1;
   }
-  if(this_player() != owner) return 0;
-  if(sicked = !present(str, environment(this_player()))) {
-    write("The eagle looks for something to attack, then gives up.");
-    return 1;
+  
+  if this_object()->query_property("using knockdown") > time()) {
+        tell_object(owner, "You can't try to knock someone down yet!");
+        dest_effect();
+        return;
   }
-  force_me("kill "+str);
-  write("You point your finger toward "+str+" and yell:  SIC EM!");
-  say(this_player()->query_cap_name()+" points at "+str+" and yells:  SIC EM!");
+  
+  force_me("kill "+target);
+  tell_room(room, "%^BOLD%^" + sprintf("%s responds to the whistle and leaps into the air, knocking %s to the ground!", aname, tname));
+            target && target->set_tripped(3, "%^WHITE%^You are struggling to regain your footing! %^RESET%^");
   return 1;
 }
 	
