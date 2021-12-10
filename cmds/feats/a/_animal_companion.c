@@ -61,6 +61,8 @@ void create()
 
 The Animal Companion will hide if you use the 'hide_in_shadows' command, allowing you to effectively sneak about with your faithful friend.
 
+The Animal Companion will allow you to use the 'sic' command, allowing you to command your companion to pounce on an enemy.
+
 The Animal Companion can also be customized through several commands, which will allow you to change its description:
 
   'animal short [DESCRIPTION]' - Changes the short description of the companion.

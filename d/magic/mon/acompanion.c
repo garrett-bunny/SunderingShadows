@@ -93,12 +93,11 @@ target = present(str, environment(this_player()));
 
    if(owner->cooldown("sic")) {
         tell_object(owner, "You can't try to knock someone down yet!");
-        return;
+        return 1;
     }
   force_me("kill "+str);
   tell_room(room, "%^BOLD%^" + sprintf("%s responds to the whistle and leaps into the air, knocking %s to the ground!", aname, tname));
             target && target->set_tripped(2, "%^WHITE%^You are struggling to regain your footing! %^RESET%^");
-                delay_msg(30,"%^BOLD%^%^WHITE%^You can %^CYAN%^sic%^WHITE%^ again.%^RESET%^");
 				owner->set_property("sic", 1);
                 owner->add_cooldown("sic", 30);
   return 1;
