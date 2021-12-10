@@ -66,10 +66,15 @@ void init()
 	add_action("sic", "sic");
 }
 
-int sic(string target) {
+int sic(string str) {
 
     string tname, aname, mess;
     object room;
+
+object victim;
+
+target = lower_case(target);
+victim = present(target, environment(this_player()));
 
     if(!target || !objectp(target))
         return;

@@ -616,7 +616,8 @@ int query_combat_maneuver_defense(object ob)
     
     mysize = ob->query_size();
     cmd = new_bab(ob->query_level(), ob);
-    cmd += (query_stat_bonus(ob, "strength") + query_stat_bonus(ob, "dexterity"));
+
+    cmd += max( ({ query_stat_bonus(ob, "strength"), query_stat_bonus(ob, "dexterity") }) );
     
     cmd += ((mysize - 2) * 4);
     
