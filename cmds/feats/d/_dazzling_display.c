@@ -33,18 +33,19 @@ int cmd_dazzling_display(string str) {
     tell_object(caster, "You are already in the middle of using a feat!");
     dest_effect();
 	return 1; }
+	
 	tell_object(caster,"%^C107%^You take a deep breath and prepare yourself for your dazzling display.%^C107%^");
 	caster->set_property("dazzling_display", 1);
-    caster->add_cooldown("dazzling_display", 60); }
-	call_out("begin_display",ROUND_LENGTH, target, caster); 
+    caster->add_cooldown("dazzling_display", 60); 
+	call_out("begin_display", 2); 
 }
 
 void begin_display() {
-	tell_room(place,"%^C107%^" caster->query_cap_name() + " begins to dance and twirl as they display and an awesome display of control. With an abrupt stop they end in an intimidating stance, facing you with a small smile.");
+	tell_room(place,"%^C107%^" caster->query_cap_name() + " begins to dance and twirl as they display and an awesome display of control. With an abrupt stop they end in an intimidating stance, facing you with a small smile.",({target}));
 	tell_object(caster,"%^C107%^You begin your dance, ensuring every moment is visible to " target->query_cap_name() + ", wanting to ensure that they fully appreciate the skill you hold.");
 	caster->use_stamina(roll_dice(2,6));
 	caster->set_property("using instant feat", 1);
-	call_out("finish_display",ROUND_LENGTH * 2, target, caster); 
+	call_out("finish_display", 2); 
 }
 	
 void finish_display() {
@@ -66,13 +67,15 @@ void finish_display() {
     continue;
 	
 	if(do_save(targ, 0) || PLAYER_D->immunity_check("fear")) {
-    tell_object(target,"%^C107%^You watch the weapons display with keen interest, however, it fails to inspire much %^C194%^fear at all in you.%^C107%^");
+    tell_object(caster,"You finish your dance, hoping for the best.");
+    tell_room(place,"%^C107%^You watch the weapons display with keen interest, however, it fails to inspire much %^C194%^fear at all in you.%^C107%^");
 	damage_target(target,target->return_target_limb(),damage/2,"mental");
     "/std/effect/status/shaken"->apply_effect(target, roll_dice(1, 2)); }
     
 	else {
-	tell_object(target,"");
-    tell_room(place,"",({target}));
+		
+	tell_object(caster,"You finish your dance, hoping for the best.");
+    tell_room(place,"%^C107%^You watch the weapons display with keen interest, however, it fails to inspire much %^C194%^fear at all in you.%^C107%^",({target}));
     "/std/effect/status/cowering"->apply_effect(targ, roll_dice(1, 4));
     damage_target(target,target->return_target_limb(),damage,"mental");
     caster->remove_property("using instant feat");
