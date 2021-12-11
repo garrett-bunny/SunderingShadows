@@ -13,7 +13,7 @@ void create()
     set_obvious_short("%^C254%^gi%^C246%^a%^C254%^"+
 	"nt p%^C243%^l%^C254%^atin%^C242%^u%^C254%^m "+
 	"s%^C242%^w%^C254%^ord%^CRST%^");
-    set_short("%^C254%^sha%^C154%^r%^C254%^d of %^C154%^d%^C254%^i%^C154%^vine wra%^C254%^t%^C154%^h%^CRST%^");
+    set_short("%^C254%^Sha%^C154%^r%^C254%^d of %^C154%^D%^C254%^i%^C154%^vine Wra%^C254%^t%^C154%^h%^CRST%^");
     set_long("%^C254%^This sword, easily twelve feet from "+
 	"%^C008%^hilt%^C254%^ to tip, is a monstrous thing fit "+
 	"only for a giant. The %^C008%^hilt%^C254%^ has been "+
@@ -47,7 +47,7 @@ void create()
 
     set_wield((:TO,"wield_func":));
     set_unwield((:TO,"unwield_func":));
-    set_hit((:TO,"hit_func":));
+    set_hit((:TO,"extra_hit":));
 }
 
 int wield_func()
@@ -102,7 +102,7 @@ int extra_hit(object targ)
         return 0;
     }
   
-    if (random(1000) > 700) {
+    if (!random(2)) {
         switch (random(10)) {
         case 0..3:
             tell_object(ETO, "%^C070%^You turn your weight and swing the sword "+
@@ -114,16 +114,16 @@ int extra_hit(object targ)
 			"spins " + ETO->QP + "%^C070%^ giant sword quickly and "+
 			"turns " + ETO->QP + "%^C070%^ body, using the momentum to "+
 			"hit " + targ->QCN + " %^C070%^with a devastating blow!%^CRST%^", ({ targ, ETO }));
-            targ->cause_typed_damage(targ, targ->return_target_limb(), TO->special_damage(), TO->query_damage_type());
+            targ->cause_typed_damage(targ, targ->return_target_limb(), TO->special_damage(), "divine");
             break;
 
         case 4..5: 
-            tell_object(ETO, "%^C196%^You thrust your sword viciously at" + targ->QCN + "%^C196%^!%^CRST%^");
+            tell_object(ETO, "%^C196%^You thrust your sword viciously at " + targ->QCN + "%^C196%^!%^CRST%^");
             tell_object(targ, "%^C196%^Turning suddenly, " + ETO->QCN + " %^C196%^thrusts "+
 			"their sword into you!%^CRST%^");
             tell_room(EETO, "%^C196%^" + ETO->QCN + " %^C196%^turns and thrusts their "+
 			"sword into " + targ->QCN + "%^C196%^!%^CRST%^", ({ targ, ETO }));
-            targ->cause_typed_damage(targ, targ->return_target_limb(), TO->special_damage() * 150 / 100, TO->query_damage_type());
+            targ->cause_typed_damage(targ, targ->return_target_limb(), TO->special_damage() * 150 / 100, "divine");
             break;
 
         case 6..7:

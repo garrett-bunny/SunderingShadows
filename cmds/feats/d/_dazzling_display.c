@@ -21,23 +21,30 @@ int prerequisites(object ob) {
     return ::prerequisites(ob); 
 }
 	
-void execute_feat() {
+int cmd_dazzling_display(string str) {
+    object feat;
+    if(!objectp(target)) { return 0; }
+	
+	if(caster->cooldown("dazzling_display")) {
+    tell_object(caster, "You can't try to knock someone down yet!");
+    return 1; }
+	
 	if((int)caster->query_property("using instant feat")) {
     tell_object(caster, "You are already in the middle of using a feat!");
     dest_effect();
 	return 1; }
-	if(owner->cooldown("dazzling_display")) {
-    tell_object(owner, "You can't try to knock someone down yet!");
-    return 1; }
+	tell_object(caster,"%^C107%^You take a deep breath and prepare yourself for your dazzling display.%^C107%^");
+	caster->set_property("dazzling_display", 1);
+    caster->add_cooldown("dazzling_display", 60); }
+	call_out("begin_display",ROUND_LENGTH, target, caster); 
 }
 
 void begin_display() {
-	tell_object(target,"%^C107%^You watch the weapons display with keen interest, however, it fails to inspire much %^C194%^fear at all in you.%^C107%^");
-	tell_object(caster,"%^C107%^You watch the weapons display with keen interest, however, it fails to inspire much %^C194%^fear at all in you.%^C107%^");
-	tell_room(place,"%^C107%^You watch the weapons display with keen interest, however, it fails to inspire much %^C194%^fear at all in you.%^C107%^");
+	tell_room(place,"%^C107%^" caster->query_cap_name() + " begins to dance and twirl as they display and an awesome display of control. With an abrupt stop they end in an intimidating stance, facing you with a small smile.");
+	tell_object(caster,"%^C107%^You begin your dance, ensuring every moment is visible to " target->query_cap_name() + ", wanting to ensure that they fully appreciate the skill you hold.");
 	caster->use_stamina(roll_dice(2,6));
 	caster->set_property("using instant feat", 1);
-	call_out("finish_display", ROUND_LENGTH * 2, target, caster); 
+	call_out("finish_display",ROUND_LENGTH * 2, target, caster); 
 }
 	
 void finish_display() {
