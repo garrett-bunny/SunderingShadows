@@ -13,7 +13,7 @@ void create()
     feat_type("instant");
     feat_category("MeleeAccuracy");
     feat_name("knockdown");
-    feat_prereq("Expertise");
+    feat_prereq("Powerattack OR Mastery of Fang and Claw");
     feat_syntax("knockdown TARGET");
     set_save("reflex");
     feat_desc("Knockdown is an instant combat feat that can be used to try to knock an opponent off of his or her feet. The command requires a target to work, and will use a small amount of stamina.
@@ -27,10 +27,18 @@ int allow_shifted() { return 1; }
 
 int prerequisites(object ob){
     if(!objectp(ob)) return 0;
+    /*
     if(!FEATS_D->has_feat(ob,"expertise")) {
       dest_effect();
       return 0;
+    }*/
+    
+    if(!FEATS_D->has_feat(ob, "powerattack") && !FEATS_D->has_feat(ob, "mastery of fang and claw"))
+    {
+        dest_effect();
+        return 0;
     }
+    
     return ::prerequisites(ob);
 }
 
@@ -145,9 +153,13 @@ void execute_attack()
     
     mod = max( ({ BONUS_D->query_stat_bonus(caster, "dexterity"), BONUS_D->query_stat_bonus(caster, "strength") }) );
     
+    //attack of opportunity
+    target->execute_attack();
+    
 //    if(!thaco(target) || target->query_property("no knockdown"))
     //if( myskill < yourskill || target->query_property("no knockdown"))
-    if(do_save(target, mod))
+    //if(do_save(target, mod))
+    if(!BONUS_D->combat_maneuver(target, caster))
     {
         tell_object(caster,"%^RED%^"+target->QCN+" twists at the last instant, avoiding "
             "your knockdown attempt!%^RESET%^");
@@ -155,7 +167,7 @@ void execute_attack()
             "avoiding "+caster->QCN+"'s knockdown attempt!%^RESET%^");
         tell_room(place,"%^BOLD%^"+target->QCN+" twists away at the last instant, avoiding "
             ""+caster->QCN+"'s knockdown attempt!%^RESET%^",({target,caster}));
-        caster->set_paralyzed(roll_dice(2,6),"%^MAGENTA%^You're getting back into position.%^RESET%^");
+        //caster->set_paralyzed(roll_dice(2,6),"%^MAGENTA%^You're getting back into position.%^RESET%^");
         dest_effect();
         return;
     }

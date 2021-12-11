@@ -16,7 +16,8 @@ void create() {
 
 %^BOLD%^See also:%^RESET%^ daze *spells");
     feat_syntax("daze TARGET");
-    feat_prereq("Knockdown, Disarm");
+    //feat_prereq("Knockdown, Disarm");
+    feat_prereq("Powerattack");
     set_target_required(1);
     set_save("fort");
 }
@@ -25,9 +26,16 @@ int allow_shifted() { return 1; }
 
 int prerequisites(object ob){
     if(!objectp(ob)) return 0;
+    /*
     if(!FEATS_D->has_feat(ob,"disarm") || !FEATS_D->has_feat(ob,"knockdown")) {
       dest_effect();
       return 0;
+    }
+    */
+    if(!FEATS_D->has_feat(ob, "powerattack"))
+    {
+        dest_effect();
+        return 0;
     }
     return ::prerequisites(ob);
 }
@@ -120,7 +128,8 @@ void execute_attack() {
     caster->remove_property("using daze");
     caster->set_property("using daze",newmap);
 
-    if(!(res = thaco(target)))
+    //if(!(res = thaco(target)))
+    if(!BONUS_D->combat_maneuver(target, caster))
     {
         tell_object(caster,"%^RED%^"+target->QCN+" dodges to the side and "
             "you're thrown off balance!%^RESET%^");
@@ -128,7 +137,7 @@ void execute_attack() {
             +caster->QCN+" off balance!%^RESET%^");
         tell_room(place,"%^BOLD%^"+target->QCN+" dodges to the side, throwing "
             ""+caster->QCN+" off balance!%^RESET%^",({target,caster}));
-        caster->set_paralyzed(roll_dice(2,6),"%^MAGENTA%^You're getting back into position.%^RESET%^");
+        //caster->set_paralyzed(roll_dice(2,6),"%^MAGENTA%^You're getting back into position.%^RESET%^");
         dest_effect();
         return;
     }

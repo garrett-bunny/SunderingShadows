@@ -14,7 +14,7 @@ void create() {
     feat_category("MeleeDamage");
     feat_syntax("rush [TARGET]");
     feat_prereq("Strength 13");
-    feat_desc("The character can attempt to rush at a foe with their weapon, throwing as much force as they can behind it in the hope of dealing damage and knocking them over. Missing, however, will send the character sprawling. This will only work while shapeshifted, or using a standard melee weapon. Monks or characters with the unarmed combat feat can also use this feat without a weapon.
+    feat_desc("The character can attempt to rush at a foe with their weapon, throwing as much force as they can behind it in the hope of dealing damage and knocking them over. This maneuver causes an attack of opportunity from the victim unless the character also has the improved rush feat. This will only work while shapeshifted, or using a standard melee weapon. Monks or characters with the unarmed combat feat can also use this feat without a weapon.
 
 If used without an argument this feat will pick up a random attacker.
 
@@ -51,7 +51,8 @@ int cmd_rush(string str) {
     return 1;
 }
 
-void execute_feat() {
+void execute_feat()
+{
     object *myweapon;
     mapping tempmap;
     int rtime;
@@ -125,7 +126,7 @@ void execute_feat() {
 }
 
 void execute_attack() {
-    int damage, timerz, i, enchant, res;
+    int damage, timerz, i, enchant, res, improved;
     object *weapon, *keyz,shape, *myweapon;
     mapping tempmap, newmap;
     string damtype;
@@ -187,18 +188,28 @@ void execute_attack() {
         enchant = COMBAT_D->unarmed_enchantment(caster);
     }
     
+    improved = FEATS_D->usable_feat(caster, "improved rush");
+    
     //Improved Rush gives +2 bonus
-    enchant += (FEATS_D->usable_feat(caster, "improved rush") * 2);
-
-    if(!(res = thaco(target,enchant)))
+    enchant += (improved * 2);
+    
+    //Attack of opportunity from target
+    if(!improved)
+        target->execute_attack();
+        
+    //if(!(res = thaco(target,enchant)))
+    if(!(res = BONUS_D->combat_maneuver(target, caster)))
     {
         miss_mess(caster,target);
+        /*
         if (!FEATS_D->usable_feat(caster, "improved rush")) {
             caster->set_tripped(4, "You're recovering from your missed rush!", 4);
         }
+        */
         dest_effect();
         return;
     }
+    /*
     else if(res == -1)
     {
         if(stringp(caster->query("featMiss")))
@@ -214,9 +225,10 @@ void execute_attack() {
         dest_effect();
         return;
     }
+    */
     
     //+2 dice to damage for improved rush
-    clevel += (FEATS_D->usable_feat(caster, "improved rush") * 2);
+    clevel += (improved * 2);
     damage = roll_dice(clevel,6); // up to d8 on a trial basis
 
     if(sizeof(myweapon))

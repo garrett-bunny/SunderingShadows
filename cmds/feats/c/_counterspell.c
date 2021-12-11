@@ -160,7 +160,8 @@ void execute_feat()
     }
     
     tell_object(caster, "%^BOLD%^%^CYAN%^You use your meta magic knowledge to counter " + target->query_cap_name() + "'s spell.");
-    target->set_property("counterspell", 1);
+    //target->set_property("counterspell", 1);
+    target->spell_interrupt("spell interrupt","%^RED%^BOLD%^Your magic has been blocked!%^RESET%^");
     caster->add_cooldown("counterspell", 60);
 
     dest_effect();
