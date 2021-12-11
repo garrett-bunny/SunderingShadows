@@ -650,6 +650,21 @@ int combat_maneuver(object victim, object attacker, int mod)
     return result;
 }
     
+int intimidate_check(object victim, object attacker, int mod)
+{
+    int DC, result;
     
+    if(!objectp(victim) || !objectp(attacker))
+        return 0;
     
+    DC = min( ({ 50, victim->query_level() }) );
+    DC += (10 + query_stat_bonus(victim, "wisdom"));
+    
+    result = attacker->query_skill("influence") + roll_dice(1, 20);
+    result += mod;
+    
+    result = result >= DC ? 1 : 0;
+    
+    return result;
+}
     
