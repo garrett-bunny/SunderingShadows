@@ -12,7 +12,8 @@ void create(){
 
           "north" : TOWN"5",
           "west" : TOWN"2",
-		  "southeast" : TOWN"6",
+          "southeast" : TOWN"6",
+         "south" : TOWN"foyer",
    ]));
 
 }

@@ -241,15 +241,22 @@ void execute_attack()
     delay_subject_msg(target, FEATTIMER, "%^BOLD%^%^WHITE%^" + target->QCN + " can be %^CYAN%^impaled%^WHITE%^ again.%^RESET%^");
     caster->remove_property("using impale");
     caster->set_property("using impale", newmap);
-    if (!(res = thaco(target, enchant))) {
+    
+    //attack of opportunity
+    target->execute_attack();
+    
+    //if (!(res = thaco(target, enchant))) {
+    if(!(res = BONUS_D->combat_maneuver(target, caster, 0)))
+    {
         tell_object(caster, "%^BOLD%^%^MAGENTA%^" + target->QCN + " sidesteps your thrust at the "
                     "last instant, leaving you open to attack!%^RESET%^");
         tell_object(target, "%^BOLD%^%^MAGENTA%^You sidestep " + caster->QCN + "'s attack at the "
                     "last instant, leaving " + caster->QO + " open to attack!%^RESET%^");
         tell_room(place, "%^BOLD%^%^MAGENTA%^" + target->QCN + " sidesteps " + caster->QCN + "'s attack "
                   "at the last instant, leaving " + caster->QP + " open to attack!%^RESET%^", ({ caster, target }));
-        caster->set_paralyzed(roll_dice(1, 6), "%^YELLOW%^You are trying to get back into "
-                              "position!%^RESET%^");
+        //caster->set_paralyzed(roll_dice(1, 6), "%^YELLOW%^You are trying to get back into "
+        //                      "position!%^RESET%^");
+        target->execute_attack();
         dest_effect();
         return;
     }else if (res == -1) {
@@ -278,8 +285,8 @@ void execute_attack()
     }
 
     mod = BONUS_D->query_stat_bonus(caster, "strength");
+    clevel += enchant;
     
-
     //dam = ((clevel - 1) / 10 + 1) * (dam / 2); //let it scale properly in 10-level blocks. -N, 9/10
     dam += clevel;
     dam = roll_dice(dam, mult) + mod + caster->query_damage_bonus();
@@ -311,7 +318,7 @@ void execute_attack()
         break;
     }
 
-    if (!do_save(target, mod)) {
+    //if (!do_save(target, mod)) {
         tell_object(caster, "%^BOLD%^%^GREEN%^Your attack leaves " + target->QCN + " stunned and "
                     "unable to move!%^RESET%^");
         tell_object(target, "%^BOLD%^%^GREEN%^" + caster->QCN + "'s attack leaves you stunned and "
@@ -319,7 +326,7 @@ void execute_attack()
         tell_room(place, "%^BOLD%^%^GREEN%^" + caster->QCN + "'s attack leaves " + target->QCN + " stunned "
                   "and unable to move!%^RESET%^", ({ target, caster }));
         target->set_paralyzed(roll_dice(2, 4), "%^YELLOW%^You are struggling to move!%^RESET%^");
-    }
+    //}
 
     if (objectp(target_two)) {
         switch (type) {
