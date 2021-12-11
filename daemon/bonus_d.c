@@ -624,7 +624,7 @@ int query_combat_maneuver_defense(object ob)
     return cmd;
 }
 
-int combat_maneuver(object victim, object attacker)
+int combat_maneuver(object victim, object attacker, int mod)
 {
     int result, CMB, CMD;
     
@@ -634,6 +634,8 @@ int combat_maneuver(object victim, object attacker)
         return 0;
     if(result == 20)
         return 1;
+    
+    result += mod;
     
     CMB = query_combat_maneuver_bonus(attacker) + result;
     CMD = query_combat_maneuver_defense(victim) + 10;

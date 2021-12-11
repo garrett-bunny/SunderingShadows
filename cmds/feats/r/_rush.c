@@ -198,7 +198,7 @@ void execute_attack() {
         target->execute_attack();
         
     //if(!(res = thaco(target,enchant)))
-    if(!(res = BONUS_D->combat_maneuver(target, caster)))
+    if(!(res = BONUS_D->combat_maneuver(target, caster, improved * 2)))
     {
         miss_mess(caster,target);
         /*
