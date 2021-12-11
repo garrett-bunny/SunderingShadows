@@ -41,8 +41,8 @@ int cmd_dazzling_display(string str) {
 }
 
 void begin_display() {
-	tell_room(place,"%^C107%^" caster->query_cap_name() + " begins to dance and twirl as they display and an awesome display of control. With an abrupt stop they end in an intimidating stance, facing you with a small smile.",({target}));
-	tell_object(caster,"%^C107%^You begin your dance, ensuring every moment is visible to " target->query_cap_name() + ", wanting to ensure that they fully appreciate the skill you hold.");
+	tell_room(place,"%^C107%^" + caster->query_cap_name() + " begins to dance and twirl as they display and an awesome display of control. With an abrupt stop they end in an intimidating stance, facing you with a small smile.",({target}));
+	tell_object(caster,"%^C107%^You begin your dance, ensuring every moment is visible to " + target->query_cap_name() + ", wanting to ensure that they fully appreciate the skill you hold.");
 	caster->use_stamina(roll_dice(2,6));
 	caster->set_property("using instant feat", 1);
 	call_out("finish_display", 2); 

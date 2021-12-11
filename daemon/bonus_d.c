@@ -628,6 +628,9 @@ int combat_maneuver(object victim, object attacker, int mod)
 {
     int result, CMB, CMD;
     
+    if(victim->query_paralyzed() || victim->query_bound() || victim->query_unconscious())
+        return 1;
+    
     result = roll_dice(1, 20);
     
     if(result == 1)
