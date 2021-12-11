@@ -8,7 +8,7 @@ void create() {
     feat_category("AdvancedTraining");
     feat_name("aura of confidence");
     feat_prereq("Fighter L21, Advanced Training Feat");
-    feat_desc("Through sheer grit the warrior can push through fear, inspiring others to do the same. Parties of the fighter will gain 50% bonus to resist fear effects.");
+    feat_desc("Through sheer grit the warrior can inspire her allies to push through their deepest fears. Party members of the fighter will gain a 50% chance to resist fear effects.");
     permanent(1);
     set_required_for(({}));
 }
@@ -22,7 +22,7 @@ int prerequisites(object ob)
       return 0;
    }
    
-   if(!FEATS_D->has_feat(ob,"AdvancedTraining")) {
+   if(!FEATS_D->has_feat(ob,"advanced training")) {
        dest_effect();
        return 0;
 }

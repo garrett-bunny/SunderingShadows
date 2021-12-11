@@ -5,7 +5,8 @@ inherit FEAT;
 
 int FLAG;
 
-#define FEATTIMER 35
+//#define FEATTIMER 35
+int FEATTIMER = (35 - (FEATS_D->usable_feat(caster, "abundant tactics") * 7));
 
 // Three things are necessary to set in create in all feats.  First, the type of feat
 // either instant or duration or permanent.  The type of feat will tell the inherit

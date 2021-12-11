@@ -602,7 +602,7 @@ int query_combat_maneuver_bonus(object ob)
     else
         cmb += query_stat_bonus(ob, "strength");
     
-    cmb += ((mysize - 2) * 4);
+    cmb += (mysize - 2);
     
     return cmb;
 }
@@ -619,7 +619,7 @@ int query_combat_maneuver_defense(object ob)
 
     cmd += max( ({ query_stat_bonus(ob, "strength"), query_stat_bonus(ob, "dexterity") }) );
     
-    cmd += ((mysize - 2) * 4);
+    cmd += (mysize - 2);
     
     return cmd;
 }

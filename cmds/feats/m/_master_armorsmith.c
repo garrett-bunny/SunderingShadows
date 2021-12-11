@@ -22,7 +22,7 @@ int prerequisites(object ob)
       return 0;
    }
    
-   if(!FEATS_D->has_feat(ob,"AdvancedTraining")) {
+   if(!FEATS_D->has_feat(ob,"advanced training")) {
        dest_effect();
        return 0;
 }

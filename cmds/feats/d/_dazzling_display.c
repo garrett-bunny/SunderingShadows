@@ -18,14 +18,37 @@ int prerequisites(object ob) {
 	if(!FEATS_D->has_feat(ob, "weapon focus")) {
     dest_effect();
 	return 0; }
-    return ::prerequisites(ob); }
+    return ::prerequisites(ob); 
+}
 	
 void execute_feat() {
+	if((int)caster->query_property("using instant feat")) {
+    tell_object(caster, "You are already in the middle of using a feat!");
+    dest_effect();
+	return 1; }
+	if(owner->cooldown("dazzling_display")) {
+    tell_object(owner, "You can't try to knock someone down yet!");
+    return 1; }
+}
+
+void begin_display() {
+	tell_object(target,"%^C107%^You watch the weapons display with keen interest, however, it fails to inspire much %^C194%^fear at all in you.%^C107%^");
+	tell_object(caster,"%^C107%^You watch the weapons display with keen interest, however, it fails to inspire much %^C194%^fear at all in you.%^C107%^");
+	tell_room(place,"%^C107%^You watch the weapons display with keen interest, however, it fails to inspire much %^C194%^fear at all in you.%^C107%^");
+	caster->use_stamina(roll_dice(2,6));
+	caster->set_property("using instant feat", 1);
+	call_out("finish_display", ROUND_LENGTH * 2, target, caster); 
+}
+	
+void finish_display() {
 	object *foes=({}),target;
-	int i;
+	int i, damage, mod;
 	
 	foes = target_selector();
 	foes -= ({ caster });
+	
+	mod = BONUS_D->query_stat_bonus(caster, "charisma");
+	damage = roll_dice(glvl, 4) + mod;
 	
 	for(i=0;i<sizeof(foes);i++) {
 	
@@ -35,24 +58,24 @@ void execute_feat() {
 	if(target->query_property("effect_shaken"))
     continue;
 	
-	if(do_save(targ, 0) || PLAYER_D->immunity_check("fear"))
-        {
-            tell_object(target,"%^C107%^You watch the weapons display with keen interest, however, it fails to inspire %^C194%^fear in you.%^C107%^");
-            
-			damage_targ(targ,targ->return_target_limb(),sdamage/2,"mental");
-            "/std/effect/status/shaken"->apply_effect(targ, roll_dice(1, 4));
-        }
-        else
-        {
-            tell_object(targ,"%^RESET%^%^BOLD%^%^BLACK%^Nigh%^BLUE%^t%^BLACK%^mar%^BLUE%^e%^BLACK%^s%^BLACK%^ pierce into your mind!%^RESET%^%^RESET%^");
-            tell_room(place,"%^BOLD%^%^GREEN%^"+targ->QCN+"%^BOLD%^%^BLACK%^'s mind is %^BLACK%^ravag%^BLUE%^e%^BLUE%^d%^BLACK%^ by the %^BLUE%^n%^BLACK%^i%^BLUE%^g%^BLUE%^h%^BLACK%^tma%^BLUE%^r%^BLUE%^e%^BLUE%^s%^BLACK%^!%^RESET%^%^RESET%^",({targ}));
-            //targ->set_paralyzed(1,"%^RESET%^%^BLUE%^No! No! NO! I must run away! This can't be real!%^RESET%^");
-            "/std/effect/status/cowering"->apply_effect(targ, roll_dice(1, 4));
-            damage_targ(targ,targ->return_target_limb(),sdamage,"mental");
-        }
+	if(do_save(targ, 0) || PLAYER_D->immunity_check("fear")) {
+    tell_object(target,"%^C107%^You watch the weapons display with keen interest, however, it fails to inspire much %^C194%^fear at all in you.%^C107%^");
+	damage_target(target,target->return_target_limb(),damage/2,"mental");
+    "/std/effect/status/shaken"->apply_effect(target, roll_dice(1, 2)); }
+    
+	else {
+	tell_object(target,"");
+    tell_room(place,"",({target}));
+    "/std/effect/status/cowering"->apply_effect(targ, roll_dice(1, 4));
+    damage_target(target,target->return_target_limb(),damage,"mental");
+    caster->remove_property("using instant feat");
+	caster->set_property("dazzling_display", 1);
+    caster->add_cooldown("dazzling_display", 60); }
+	}
+}
 	
-	
-	
-	
-	
-	
+void dest_effect() {
+    ::dest_effect();
+    remove_feat(TO);
+    return;
+}

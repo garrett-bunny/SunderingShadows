@@ -8,7 +8,7 @@ void create() {
     feat_category("AdvancedTraining");
     feat_name("fighter reflexes");
     feat_prereq("Fighter L21, Advanced Training Feat");
-    feat_desc("Through rigorous focus on their reflexiveness and their ability to react to danger will allow a fighter with this skillset gain bonuses on their reflex save. The fighter will get Fighter level/10 bonus to their refkex save.");
+    feat_desc("This feat represents a fighter's ability to hone their reflexes to an astonishing degree. This feat grants the fighter their weapon mastery bonus to their reflex save.");
     permanent(1);
     set_required_for(({}));
 }
@@ -22,7 +22,7 @@ int prerequisites(object ob)
       return 0;
    }
    
-   if(!FEATS_D->has_feat(ob,"AdvancedTraining")) {
+   if(!FEATS_D->has_feat(ob,"advanced training")) {
        dest_effect();
        return 0;
 }
