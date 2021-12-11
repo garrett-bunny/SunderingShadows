@@ -5,7 +5,8 @@ inherit FEAT;
 
 int fired;
 
-#define FEATTIMER 30
+//#define FEATTIMER 30
+int FEATTIMER = (30 - (FEATS_D->usable_feat(caster, "abundant tactics") * 6));
 
 void create() {
     ::create();

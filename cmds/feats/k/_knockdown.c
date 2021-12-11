@@ -56,7 +56,9 @@ void execute_feat()
 {
     object ammo, *weapons, mod;
 
-    if ((int)caster->query_property("using knockdown") > time()) {
+    //if ((int)caster->query_property("using knockdown") > time()) {
+    if(caster->cooldown("knockdown"))
+    {
         tell_object(caster, "You can't try to knock someone down yet!");
         dest_effect();
         return;
@@ -113,7 +115,7 @@ void execute_feat()
     caster->set_property("using instant feat",1);
     caster->remove_property("using knockdown");
     delay_msg(30,"%^BOLD%^%^WHITE%^You can %^CYAN%^knockdown%^WHITE%^ again.%^RESET%^");
-    caster->set_property("using knockdown",time() + 30);
+    caster->add_cooldown("knockdown", 30 - (FEATS_D->has_feat(caster, "abundant tactics") * 6));
     spell_kill(target,caster);
     return;
 }

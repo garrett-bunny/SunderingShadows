@@ -3,7 +3,7 @@
 #include <magic.h>
 inherit FEAT;
 
-int FEATTIMER = 25;
+int FEATTIMER = (25 - (FEATS_D->usable_feat(caster, "abundant tactics") * 5));
 //check time in magic.h
 
 int allow_shifted() { return 1; }

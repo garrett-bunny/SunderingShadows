@@ -8,7 +8,7 @@ void create() {
     feat_category("AdvancedTraining");
     feat_name("abundant tactics");
     feat_prereq("Fighter L21, Advanced Training Feat");
-    feat_desc("Practice makes perfect. Through a concerted effort in perfecting their skills in martial feats and maneuvers, the fighter will recieve a 20% cooldown on all active feats.");
+    feat_desc("Practice makes perfect. Through a concerted effort in perfecting their skills in martial feats and maneuvers, the fighter will recieve a 20% cooldown reduction on martial feats/maneuvers.");
     permanent(1);
     set_required_for(({}));
 }

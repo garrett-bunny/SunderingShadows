@@ -6,9 +6,9 @@ void create() {
     ::create();
     feat_type("permanent");
     feat_category("AdvancedTraining");
-    feat_name("fighter reflexes");
+    feat_name("armored juggernaught");
     feat_prereq("Fighter L21, Advanced Training Feat");
-    feat_desc("Through rigorous focus on their reflexiveness and their ability to react to danger will allow a fighter with this skillset gain bonuses on their reflex save. The fighter will get Fighter level/10 bonus to their refkex save.");
+    feat_desc("Through strength training and mastering defensive techniques in heavy armor the fighter is able to increase their ability to dodge and resist blows while in heavy armor. The fighter will get their strength bonus / 2 to both AC and to DR.");
     permanent(1);
     set_required_for(({}));
 }

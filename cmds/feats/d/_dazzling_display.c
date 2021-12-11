@@ -6,9 +6,9 @@ void create() {
     ::create();
     feat_type("permanent");
     feat_category("AdvancedTraining");
-    feat_name("fighter reflexes");
+    feat_name("master armorsmith");
     feat_prereq("Fighter L21, Advanced Training Feat");
-    feat_desc("Through rigorous focus on their reflexiveness and their ability to react to danger will allow a fighter with this skillset gain bonuses on their reflex save. The fighter will get Fighter level/10 bonus to their refkex save.");
+    feat_desc("While wielding the weapon in which you have Weapon Focus, you can perform a bewildering show of prowess as a full-round action. Make an Intimidate check to demoralize all foes within 30 feet who can see your display.");
     permanent(1);
     set_required_for(({}));
 }
