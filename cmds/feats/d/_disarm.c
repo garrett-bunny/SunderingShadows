@@ -12,9 +12,9 @@ void create() {
     feat_type("instant");
     feat_category("MeleeAccuracy");
     feat_name("disarm");
-    feat_prereq("Expertise");
+    //feat_prereq("Expertise");
     feat_syntax("disarm TARGET");
-    feat_desc("The character can attempt to disarm a foe of their weapons momentarily. This will only work while shapeshifted, or using a weapon, unless the character has an aptitude in unarmed combat.");
+    feat_desc("The character can attempt to disarm a foe of their weapons momentarily. The target gains an attack of opportunity before the attempt is made. This will only work while shapeshifted, or using a weapon, unless the character has an aptitude in unarmed combat.");
     set_target_required(1);
     set_required_for(({"daze"}));
 }
@@ -23,10 +23,12 @@ int allow_shifted() { return 1; }
 
 int prerequisites(object ob){
     if(!objectp(ob)) return 0;
+    /*
     if(!FEATS_D->has_feat(ob,"expertise")) {
       dest_effect();
       return 0;
     }
+    */
     return ::prerequisites(ob);
 }
 
@@ -137,7 +139,11 @@ void execute_attack() {
     caster->remove_property("using disarm");
     caster->set_property("using disarm",newmap);
 
-    if(!(res = thaco(target)))
+    //Attack of opportunity
+    target->execute_attack();
+    
+    //if(!(res = thaco(target)))
+    if(!BONUS_D->combat_maneuver(target, caster))
     {
         tell_object(caster,"%^RED%^"+target->QCN+" twists away quickly, leaving "
             "you off balance!%^RESET%^");
@@ -145,7 +151,7 @@ void execute_attack() {
             +caster->QCN+" off balance!%^RESET%^");
         tell_room(place,"%^BOLD%^"+target->QCN+" twists away quickly, leaving "
             ""+caster->QCN+" off balance!%^RESET%^",({target,caster}));
-        caster->set_paralyzed(roll_dice(2,6),"%^MAGENTA%^You're getting back into position.%^RESET%^");
+        //caster->set_paralyzed(roll_dice(2,6),"%^MAGENTA%^You're getting back into position.%^RESET%^");
         dest_effect();
         return;
     }

@@ -8,7 +8,7 @@ void create() {
     feat_category("AdvancedTraining");
     feat_name("fighter finesse");
     feat_prereq("Fighter L21, Advanced Training Feat");
-    feat_desc("This feat allows an experienced dexterity-based fighter to utilize their dexterity on all weapons, despite their size.");
+    feat_desc("This feat allows an experienced dexterity-based fighter to utilize their dexterity on all weapons, regardless their size.");
     permanent(1);
     set_required_for(({}));
 }
@@ -22,7 +22,7 @@ int prerequisites(object ob)
       return 0;
    }
    
-   if(!FEATS_D->has_feat(ob,"AdvancedTraining")) {
+   if(!FEATS_D->has_feat(ob,"advanced training")) {
        dest_effect();
        return 0;
 }

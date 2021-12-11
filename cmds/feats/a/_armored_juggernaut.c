@@ -6,9 +6,9 @@ void create() {
     ::create();
     feat_type("permanent");
     feat_category("AdvancedTraining");
-    feat_name("armored juggernaught");
+    feat_name("armored juggernaut");
     feat_prereq("Fighter L21, Advanced Training Feat");
-    feat_desc("Through strength training and mastering defensive techniques in heavy armor the fighter is able to increase their ability to dodge and resist blows while in heavy armor.");
+    feat_desc("Through strength training and mastering defensive techniques in armor the fighter is able to increase their ability to dodge and resist blows while in heavy armor. This feat grants the fighter half their strength bonus to both AC and Damage Resistance while wearing medium or heavy armor.");
     permanent(1);
     set_required_for(({}));
 }
@@ -22,7 +22,7 @@ int prerequisites(object ob)
       return 0;
    }
    
-   if(!FEATS_D->has_feat(ob,"AdvancedTraining")) {
+   if(!FEATS_D->has_feat(ob,"advanced training")) {
        dest_effect();
        return 0;
 }

@@ -6,9 +6,9 @@ void create() {
     ::create();
     feat_type("permanent");
     feat_category("AdvancedTraining");
-    feat_name("defensive weapons training");
+    feat_name("defensive weapon training");
     feat_prereq("Fighter L21, Advanced Training Feat");
-    feat_desc("With a unriveled focus in defensive swordplay the fighter can utilize the inherent magic of their weapon for dodging blows as well as the normal attack and damage benefits.");
+    feat_desc("With a focus towards defensive fighting, and the magic inherent to his weapon, the fighter gains an armor class bonus equal to his weapon's enchantment level.");
     permanent(1);
     set_required_for(({}));
 }
@@ -22,7 +22,7 @@ int prerequisites(object ob)
       return 0;
    }
    
-   if(!FEATS_D->has_feat(ob,"AdvancedTraining")) {
+   if(!FEATS_D->has_feat(ob,"advanced training")) {
        dest_effect();
        return 0;
 }

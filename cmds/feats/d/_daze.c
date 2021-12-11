@@ -12,7 +12,7 @@ void create() {
     feat_type("instant");
     feat_category("MeleeAccuracy");
     feat_name("daze");
-    feat_desc("The character can attempt to daze a foe, with a blow to the side of the head, in an attempt to addle them sufficiently that they cannot cast spells for a time. It will also interrupt any spells being cast.
+    feat_desc("The character can attempt to daze a foe, with a blow to the side of the head, in an attempt to addle them sufficiently that they cannot cast spells for a time. It will also interrupt any spells being cast. The target will get an attack of opportunity before the attempt is made.
 
 %^BOLD%^See also:%^RESET%^ daze *spells");
     feat_syntax("daze TARGET");

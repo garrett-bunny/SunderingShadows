@@ -7,9 +7,9 @@ void create()
 {
     ::create();
     feat_type("permanent");
-    feat_category("WeaponMastery");
+    feat_category("AdvancedTraining");
     feat_name("greater penetrating strike");
-    feat_prereq("Penetrating strike");
+    feat_prereq("Penetrating strike, Advanced Training");
     feat_desc("With this feat you ignore up to ten points of damage reduction, making spells such as iron body meaningless..");
     permanent(1);
 }
@@ -26,12 +26,18 @@ int prerequisites(object ob)
     if (!objectp(ob)) {
         return 0;
     }
-
+    /*
     if (ob->is_class("magus") && file_exists("/std/class/magus.c")) {
         magus = (int)"/std/class/magus.c"->fighter_training(ob);
     }
     if (!FEATS_D->has_feat(ob, "penetrating strike") ||
         ob->query_class_level("fighter") + magus < 16) {
+        dest_effect();
+        return 0;
+    }
+    */
+    if(!FEATS_D->has_feat(ob, "penetrating strike") || !FEATS_D->has_feat(ob, "advanced training"))
+    {
         dest_effect();
         return 0;
     }
