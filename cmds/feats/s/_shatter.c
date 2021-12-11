@@ -22,7 +22,7 @@ void create()
     feat_name("shatter");
     feat_syntax("shatter TARGET");
     feat_prereq("powerattack");
-    feat_desc("The character can attempt to shatter an opponent's magical defenses, including stoneskin, iron body & similar variants. This will only work while shapeshifted, or using a weapon, unless the character has an aptitude in unarmed combat. Success is reliant on not only connecting with the target, but being able to overcome their agility to successfully disrupt their protective spell/s.
+    feat_desc("The character can attempt to shatter an opponent's magical defenses, including stoneskin, iron body & similar variants. This will only work while shapeshifted, or using a weapon, unless the character has an aptitude in unarmed combat. Success is reliant on not only connecting with the target, but being able to overcome their agility to successfully disrupt their protective spell/s. Using this feat will prompt an attack of opportunity from the target.
 
 %^BOLD%^See also:%^RESET%^ shatter *spells");
     set_target_required(1);
@@ -190,15 +190,19 @@ void execute_attack()
     delay_subject_msg(target, FEATTIMER, "%^BOLD%^%^WHITE%^" + target->QCN + " can be %^CYAN%^shattered%^WHITE%^ again.%^RESET%^");
     caster->remove_property("using shatter");
     caster->set_property("using shatter", newmap);
+    
+    target->execute_attack();
 
-    if (!thaco(target)) {
+    //if (!thaco(target)) {
+    if(!BONUS_D->combat_maneuver(target, caster))
+    {
         tell_object(caster, "%^RED%^" + target->QCN + " twists away quickly, leaving "
                     "you off balance!%^RESET%^");
         tell_object(target, "%^BOLD%^%^GREEN%^You twist away quickly, leaving "
                     + caster->QCN + " off balance!%^RESET%^");
         tell_room(place, "%^BOLD%^" + target->QCN + " twists away quickly, leaving "
                   "" + caster->QCN + " off balance!%^RESET%^", ({ target, caster }));
-        caster->set_paralyzed(roll_dice(2, 6), "%^MAGENTA%^You're getting back into position.%^RESET%^");
+        //caster->set_paralyzed(roll_dice(2, 6), "%^MAGENTA%^You're getting back into position.%^RESET%^");
         dest_effect();
         return;
     }
