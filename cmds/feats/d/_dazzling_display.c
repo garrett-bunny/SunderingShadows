@@ -2,10 +2,12 @@
 #include <daemons.h>
 inherit FEAT;
 
+object feat;
+
 void create() {
     ::create();
     feat_type("instant");
-    feat_category("General");
+    feat_category("WeaponMastery");
     feat_name("dazzling display");
     feat_prereq("Weapon Focus");
 	feat_syntax("dazzling_display");
@@ -22,16 +24,16 @@ int prerequisites(object ob) {
 }
 	
 int cmd_dazzling_display(string str) {
-    object feat;
-    if(!objectp(target)) { return 0; }
-	
-    feat = new(base_name(caster));
-    feat->setup_feat(caster, str);
+    if(!this_player())
+        return 0;
+
+    feat = new(base_name(this_object()));
+    feat->setup_feat(this_player(), str);
     return 1;
 	
 }
 
-void begin_display() {
+void execute_feat() {
 	
 	if(caster->cooldown("dazzling_display")) {
     tell_object(caster, "You can't try to knock someone down yet!");
@@ -96,6 +98,6 @@ void finish_display() {
 	
 void dest_effect() {
     ::dest_effect();
-    remove_feat(TO);
+    remove_feat(caster);
     return;
 }
