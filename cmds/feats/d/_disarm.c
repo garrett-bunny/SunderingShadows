@@ -15,7 +15,7 @@ void create() {
     feat_name("disarm");
     //feat_prereq("Expertise");
     feat_syntax("disarm TARGET");
-    feat_desc("The character can attempt to disarm a foe of their weapons momentarily. The target gains an attack of opportunity before the attempt is made. This will only work while shapeshifted, or using a weapon, unless the character has an aptitude in unarmed combat.");
+    feat_desc("The character can attempt a combat maneuver to disarm a foe of their weapons momentarily. The target gains an attack of opportunity before the attempt is made. This will only work while shapeshifted, or using a weapon, unless the character has an aptitude in unarmed combat.");
     set_target_required(1);
     set_required_for(({"daze"}));
 }

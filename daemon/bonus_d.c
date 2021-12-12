@@ -597,7 +597,7 @@ int query_combat_maneuver_bonus(object ob)
     mysize = ob->query_size();
     
     cmb = new_bab(ob->query_level(), ob);  
-    if(mysize <= 1)
+    if(FEATS_D->has_feat(ob, "agile maneuvers"))
         cmb += query_stat_bonus(ob, "dexterity");
     else
         cmb += query_stat_bonus(ob, "strength");

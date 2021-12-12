@@ -15,17 +15,18 @@ void create() {
 
 int prerequisites(object ob) 
 {
-   if(!objectp(ob)) { return 0; }
+    if(!objectp(ob)) { return 0; }
 
-   if((int)ob->query_class_level("fighter") < 21) {
-      dest_effect();
-      return 0;
-   }
-   
-   if(!FEATS_D->has_feat(ob,"advanced training")) {
+    if((int)ob->query_class_level("fighter") < 21) {
        dest_effect();
        return 0;
-}
+    }
+   
+    if(!FEATS_D->has_feat(ob,"advanced training")) {
+       dest_effect();
+       return 0;
+    }
+    return ::prerequisites(ob);
 }
 
 void execute_feat() 

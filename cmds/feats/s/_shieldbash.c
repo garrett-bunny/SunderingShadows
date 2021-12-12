@@ -21,7 +21,7 @@ void create()
     feat_category("WeaponAndShield");
     feat_name("shieldbash");
     feat_syntax("shieldbash [TARGET]");
-    feat_desc("Shieldbash is an instant effect feat that  can be used to slam a shield into the target and stun them for  a brief time. In addition, if the target fails to make a  fortitude save, they will be unable to cast spells for a brief time  after the shieldbash. Using this feat will prompt an attack of opportunity from the target.
+    feat_desc("Shieldbash is a combat maneuver that  can be used to slam a shield into the target and stun them for  a brief time. In addition, if the target fails to make a  fortitude save, they will be unable to cast spells for a brief time  after the shieldbash. Using this feat will prompt an attack of opportunity from the target.
 
 If used without an argument this feat will pick up a random attacker.");
     // Sets the type of saving throw to use, same as used in spell.c
