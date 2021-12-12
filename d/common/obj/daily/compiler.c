@@ -204,7 +204,7 @@ void check_plane(object owner)
         destroy_plane(owner);
     
     //Check if they're still in the area
-    if(environment(owner)->query_owner() != owner)
+    if(!environment(owner)->is_demiplane_room())
         destroy_plane(owner);        
     
     call_out("check_plane", 60, owner);
@@ -231,11 +231,13 @@ void destroy_plane(object owner)
     foreach(string str in keys(cloned_rooms))
     {
         ob = cloned_rooms[str];
+        /*
         if(!objectp(ob))
         {
             write(str + " is not an object.");
             continue;
         }
+        */
         //write("Destroying : " + file_name(ob));
         destruct(ob);
     }

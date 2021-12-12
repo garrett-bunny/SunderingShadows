@@ -48,7 +48,7 @@ void execute_feat() {
 	caster->use_stamina(roll_dice(2,6));
 	caster->set_property("using instant feat", 1);
 	caster->set_property("dazzling_display", 1);
-    caster->add_cooldown("dazzling_display", 60); 
+    caster->add_cooldown("dazzling display", 60); 
 
 }
 	
