@@ -11,7 +11,7 @@ int FEATTIMER = (30 - (FEATS_D->usable_feat(caster, "abundant tactics") * 6));
 void create() {
     ::create();
     feat_type("instant");
-    feat_category("MeleeAccuracy");
+    feat_category("CombatManeuvers");
     feat_name("disarm");
     //feat_prereq("Expertise");
     feat_syntax("disarm TARGET");

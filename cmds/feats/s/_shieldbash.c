@@ -18,7 +18,7 @@ void create()
 {
     ::create();
     feat_type("instant");
-    feat_category("WeaponAndShield");
+    feat_category("CombatManeuvers");
     feat_name("shieldbash");
     feat_syntax("shieldbash [TARGET]");
     feat_desc("Shieldbash is a combat maneuver that  can be used to slam a shield into the target and stun them for  a brief time. In addition, if the target fails to make a  fortitude save, they will be unable to cast spells for a brief time  after the shieldbash. Using this feat will prompt an attack of opportunity from the target.

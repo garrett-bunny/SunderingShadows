@@ -11,7 +11,7 @@ int FEATTIMER = (35 - (FEATS_D->usable_feat(caster, "abundant tactics") * 7));
 void create() {
     ::create();
     feat_type("instant");
-    feat_category("MeleeAccuracy");
+    feat_category("CombatManeuvers");
     feat_name("daze");
     feat_desc("The character can attempt to daze a foe, with a blow to the side of the head, in an attempt to addle them sufficiently that they cannot cast spells for a time. It will also interrupt any spells being cast. The target will get an attack of opportunity before the attempt is made.
 

@@ -12,7 +12,7 @@ void create()
     feat_type("instant");
     feat_category("WeaponAndShield");
     feat_name("shieldwall");
-    feat_prereq("Shieldbash");
+    feat_prereq("Shield Focus");
     feat_syntax("shieldwall offensive|defensive|min|max|check");
     feat_desc("The Shieldwall feat allows you to fight defensively using your shield to help deflect attacks and avoid incoming damage. The more defensively that you fight with your shield, the fewer melee attacks that you will get. You may increase your defensive ability with your shield until you have only one melee attack remaining. Using shieldwall defensively will also reduce the power of your spells. Using shieldwall defensively when you have the counter feat will also increase the damage of your attacks.");
     set_target_required(0);
@@ -25,7 +25,7 @@ int allow_shifted() { return 0; }
 int prerequisites(object ob)
 {
     if(!objectp(ob)) { return 0; }
-    if(!FEATS_D->has_feat(ob, "shieldbash"))
+    if(!FEATS_D->has_feat(ob, "shield focus"))
     {
         dest_effect();
         return 0;

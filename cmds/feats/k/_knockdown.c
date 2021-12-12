@@ -11,12 +11,12 @@ void create()
 {
     ::create();
     feat_type("instant");
-    feat_category("MeleeAccuracy");
+    feat_category("CombatManeuvers");
     feat_name("knockdown");
     feat_prereq("Powerattack OR Mastery of Fang and Claw");
     feat_syntax("knockdown TARGET");
     set_save("reflex");
-    feat_desc("Knockdown is an instant combat feat that can be used to try to knock an opponent off of his or her feet.  The target gets an attack of opportunity before the attempt is made. The command requires a target to work, and will use a small amount of stamina.
+    feat_desc("Knockdown is a combat maneuver that can be used to try to knock an opponent off of his or her feet.  The target gets an attack of opportunity before the attempt is made. The command requires a target to work, and will use a small amount of stamina.
 
 A druid with the 'mastery of fang and claw' feat may also use this feat while in wolf form, even if it has not been purchased directly.");
     set_target_required(1);

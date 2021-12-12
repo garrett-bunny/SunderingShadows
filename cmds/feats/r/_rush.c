@@ -11,10 +11,10 @@ int allow_shifted() { return 1; }
 void create() {
     ::create();
     feat_type("instant");
-    feat_category("MeleeDamage");
+    feat_category("CombatManeuvers");
     feat_syntax("rush [TARGET]");
     feat_prereq("Strength 13");
-    feat_desc("The character can attempt to rush at a foe with their weapon, throwing as much force as they can behind it in the hope of dealing damage and knocking them over. This combat maneuver causes an attack of opportunity from the victim unless the character also has the improved rush feat. This will only work while shapeshifted, or using a standard melee weapon. Monks or characters with the unarmed combat feat can also use this feat without a weapon.
+    feat_desc("The character can attempt a combat maneuver to rush at a foe with their weapon, throwing as much force as they can behind it in the hope of dealing damage and knocking them over. This combat maneuver causes an attack of opportunity from the victim unless the character also has the improved rush feat. This will only work while shapeshifted, or using a standard melee weapon. Monks or characters with the unarmed combat feat can also use this feat without a weapon.
 
 If used without an argument this feat will pick up a random attacker.
 

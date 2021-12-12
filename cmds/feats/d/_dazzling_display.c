@@ -35,6 +35,7 @@ int cmd_dazzling_display(string str) {
 
 void execute_feat() {
 	
+	::execute_feat();
 	if(caster->cooldown("dazzling display")) {
     tell_object(caster, "You are not ready to perform your dazzling display yet!");
     return 1; }
@@ -56,7 +57,7 @@ void execute_feat() {
 void execute_attack() {
 	object *foes=({}),target;
 	int i, damage;
-	
+	::execute_attack();
 	foes = caster->query_attackers();
 	foes -= ({ caster }); 
 	
@@ -68,7 +69,7 @@ void execute_attack() {
 	if(target->query_property("effect_shaken"))
     continue;
 	
-	if(intimidate_check(target, caster) && PLAYER_D->immunity_check("fear")) {
+	if(BONUS_D->intimidate_check(target, caster) && PLAYER_D->immunity_check("fear")) {
     tell_object(caster,"You finish your dance, hoping for the best.");
     tell_object(target,"%^C107%^You watch the weapons display with keen interest, however, it fails to inspire much %^C194%^fear at all in you.%^C107%^");
     "/std/effect/status/shaken"->apply_effect(target, roll_dice(1, 2)); }

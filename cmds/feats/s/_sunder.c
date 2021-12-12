@@ -12,7 +12,7 @@ int FEATTIMER = (35 - (FEATS_D->usable_feat(caster, "abundant tactics") * 7));
 void create() {
     ::create();
     feat_type("instant");
-    feat_category("MeleeDamage");
+    feat_category("CombatManeuvers");
     feat_name("sunder");
     feat_prereq("Powerattack");
     feat_desc("The character can attempt a combat manuever to disrupt or damage the armor of their opponent, making them more vulnerable to melee attacks. This will only work while shapeshifted, or using a weapon, unless the character has an aptitude in unarmed combat. This feat will prompt an attack of opportunity from the target.
