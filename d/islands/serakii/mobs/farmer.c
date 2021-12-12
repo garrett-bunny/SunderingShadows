@@ -41,7 +41,9 @@ void create()
     set_hp(query_max_hp());
     set_size(2);
     set_property("magic",1);
-    set_overall_ac(-20);
+    set_overall_ac(-30);
+    add_attack_bonus(roll_dice(3,6));
+    add_damage_bonus(roll_dice(3,3));
     set_mob_magic_resistance("average");
     set_new_exp(level, "normal");
     set_body_type("humanoid");

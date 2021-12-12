@@ -20,7 +20,9 @@ void create()
     set_id(({"rat","infected rat","rous"}));
     set_long("%^C094%^This rat has managed to grow into %^C095%^four times larger%^C094%^ than any of its natural cousins. Its body is rippling with %^C088%^muscles%^C094%^ and its tail is at least %^C095%^five feet%^C094%^ long. In its %^C160%^gaping mouth%^C094%^ a set of %^C252%^wicked teeth%^C094%^ are ready to tear into anything. From its mouth leaks a steady stream of %^C035%^d%^C022%^r%^C035%^ipping t%^C022%^o%^C035%^xin%^C094%^ leaks and its eyes glow with a %^C126%^fe%^C162%^l%^C126%^l lig%^C161%^h%^C126%^t%^C094%^.%^CRST%^\n");
 	rat_level=(38 + random(6));
-    set_hd(rat_level, 10);
+   set_hd(rat_level, 10);
+   set_class("fighter");
+   set_mlevel("fighter",rat_level);
 	
     add_money("gold", random(500));
     add_money("platinum", random(50));
