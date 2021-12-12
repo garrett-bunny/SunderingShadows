@@ -84,7 +84,7 @@ void execute_attack() {
 	tell_object(target,"%^C107%^The dazzling display makes you realize, deep down, you cannot complete...%^C107%^",({target}));
     "/std/effect/status/cowering"->apply_effect(target, roll_dice(1, 4));
 	}
-}
+} }
 	
 void dest_effect() {
     ::dest_effect();

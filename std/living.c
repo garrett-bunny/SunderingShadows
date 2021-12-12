@@ -483,22 +483,22 @@ void heart_beat()
         }   
 
         if(this_object()->is_undead())
-            remove_property("rend");
+            this_object()->remove_property("rend");
         
         if(PLAYER_D->immunity_check(this_object(), "rend"))
-            remove_property("rend");
+            this_object()->remove_property("rend");
 
-        if(query_property("rend"))
+        if(this_object()->query_property("rend"))
         {
             tell_room(environment(this_object()), "%^RED%^BOLD%^" + this_object()->QCN + "'s wounds bleed profusely!%^RESET%^", ({ this_object() }));
             tell_object(this_object(), "%^RED%^BOLD%^Your wounds bleed profusely!%^RESET%^");
             this_object()->cause_typed_damage(this_object(), "torso", roll_dice(query_property("rend"), this_object()->query_level() / 5 + 1), "untyped");
-            add_property("rend", -1);
-            if(query_property("rend") <= 0)
+            this_object()->add_property("rend", -1);
+            if(this_object()->query_property("rend") <= 0)
             {
                 tell_room(environment(this_object()), "%^WHITE%^BOLD%^" + this_object()->QCN + "'s wounds stop bleeding.%^RESET%^", ({ this_object() }));
                 tell_object(this_object(), "%^WHITE%^BOLD%^Your wounds stop bleeding.%^RESET%^");
-                remove_property("rend");
+                this_object()->remove_property("rend");
             }
         }
 
