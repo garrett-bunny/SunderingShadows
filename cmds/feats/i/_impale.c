@@ -10,7 +10,7 @@ void create()
 {
     ::create();
     feat_type("instant");
-    feat_category("TwoHandedWeapons");
+    feat_category("CombatManeuvers");
     feat_name("impale");
     feat_syntax("impale TARGET");
     feat_prereq("Sweeping Blow, Blade block or Parry");

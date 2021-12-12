@@ -200,12 +200,12 @@ void compile_plane(object owner)
 void check_plane(object owner)
 {
     //Check if they're still logged in
-    if(!userp(owner))
+    if(!objectp(owner) || !userp(owner))
         destroy_plane(owner);
     
     //Check if they're still in the area
     if(!environment(owner)->is_demiplane_room())
-        destroy_plane(owner);        
+        destroy_plane(owner);      
     
     call_out("check_plane", 60, owner);
 }
@@ -242,8 +242,8 @@ void destroy_plane(object owner)
         destruct(ob);
     }
     
-    owner->remove_property("demiplane compiler");
-    "/d/common/obj/daily/entrance"->remove_traveler(owner);
+    objectp(owner) && owner->remove_property("demiplane compiler");
+    objectp(owner) && "/d/common/obj/daily/entrance"->remove_traveler(owner);
     cloned_rooms = ([  ]);
     destruct(this_object());
 }
