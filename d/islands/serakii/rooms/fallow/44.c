@@ -12,11 +12,19 @@ void create(){
 
 set_exits(([
 
-"south" : FALLOW"29",
-"northeast" : FALLOW"18",
+"north" : FALLOW"41",
+
+
+
 
 
 ]));
 
 }
 
+void reset(){
+   ::reset();
+   if(!present("scarecrow")){
+      new(MOBS"scarecrow.c")->move(TO);
+   }
+}

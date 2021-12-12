@@ -15,7 +15,7 @@ set_exits(([
 "northeast" : INN"1",
 "north" : ROAD"2",
 "southwest" : ROAD"3",
-// "southeast" : ROAD"4", FOR FUTURE DEV (fallow fields.
+"southeast" : ROAD"4",
 
 
 ]));

@@ -12,8 +12,9 @@ void create(){
 
 set_exits(([
 
-"south" : FALLOW"29",
-"northeast" : FALLOW"18",
+"northeast" : FALLOW"28",
+"east" : FALLOW"33",
+"south" : FALLOW"35",
 
 
 ]));

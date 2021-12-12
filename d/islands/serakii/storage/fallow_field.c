@@ -10,9 +10,12 @@ void pick_critters();
 string seas;
 
 void create() {
+    pick_critters();
+    set_repop(30);
     ::create();
     set_terrain(GRASSLANDS);
     set_travel(RUTTED_TRACK);
+    set_property("no teleport",1);
     set_property("indoors",0);
     set_name("fallow fields");
     set_short("%^C221%^f%^C247%^a%^C221%^ll%^C143%^o%^C221%^w f%^C247%^i%^C142%^e%^C221%^l%^C247%^d%^C221%^s%^CRST%^");
