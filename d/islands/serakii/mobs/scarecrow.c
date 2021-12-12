@@ -70,27 +70,25 @@ void create()
     
     set_func_chance(20);
     set_funcs(({"grab"}));
-	  
-        ob = new(OBJ"dragonrobes");
+
+      ob = new(OBJ"dragonrobes");
     ob->move(TO);
     if(random(4)) ob->set_property("monsterweapon",1);
 
-	ob = new(OBJ"jacquinstears");
+      ob = new(OBJ"jaquinstears.c");
     ob->move(TO);
     if(random(4)) ob->set_property("monsterweapon",1);
-
-	ob = new(OBJ"shoulderplate");
+ob = new(OBJ"shoulderplate");
     ob->move(TO);
     if(random(4)) ob->set_property("monsterweapon",1);
 	
-	ob = new(OBJ"moon_plate");
+ob = new(OBJ"moon_plate");
     ob->move(TO);
     if(random(4)) ob->set_property("monsterweapon",1);
 	
-	ob = new(OBJ"iron_knuckles");
+ob = new(OBJ"iron_knuckles");
     ob->move(TO);
     if(random(4)) ob->set_property("monsterweapon",1);
-
 }
 
 void grab(object targ)

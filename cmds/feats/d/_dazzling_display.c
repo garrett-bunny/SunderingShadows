@@ -12,8 +12,6 @@ void create() {
     feat_prereq("Weapon Focus");
 	feat_syntax("dazzling_display");
     feat_desc("While wielding the weapon in which you have Weapon Focus, you can perform a bewildering show of prowess as a full-round action. Make an Intimidate check to demoralize all foes within 30 feet who can see your display.");
-    set_target_required(1);
-    set_save("will");
 }
 
 int prerequisites(object ob) {
@@ -70,7 +68,9 @@ void execute_attack() {
 	if(target->query_property("effect_shaken"))
     continue;
 	
-	if(PLAYER_D->IMMUNITY_CHECK("fear")){
+	if(PLAYER_D->immunity_check("fear")){
+	tell_object(caster,"You realize your dance is having no effect on your target.");
+	tell_object(target,"%^C107%^You shrug off the effect of the display.");
 	return 1; }
 	
 	if(BONUS_D->intimidate_check(target, caster)) {
@@ -83,9 +83,6 @@ void execute_attack() {
 	tell_object(caster,"You finish your dance, hoping for the best.");
 	tell_object(target,"%^C107%^The dazzling display makes you realize, deep down, you cannot complete...%^C107%^",({target}));
     "/std/effect/status/cowering"->apply_effect(target, roll_dice(1, 4));
-    caster->remove_property("using instant feat");
-	caster->set_property("dazzling_display", 1);
-    caster->add_cooldown("dazzling display", 60); }
 	}
 }
 	
