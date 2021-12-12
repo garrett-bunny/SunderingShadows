@@ -8,7 +8,6 @@ CMB = Base Attack + Strength Bonus + Size Modifier
 CMD = Base Attack + Strength OR Dexterity Bonus + Size Modifier
 
 (*Size Modifier is as follows - Small: -1, Medium: 0, Large: +1)
-(*Small creatures will use DEX for CMB instead of STR)
 
 Maneuver Attack Calulation = d20 + CMB VS 10 + CMD
 
