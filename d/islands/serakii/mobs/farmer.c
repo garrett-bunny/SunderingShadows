@@ -62,7 +62,7 @@ void create()
     set_speed(50);
     set_moving(1);
     
-    //set_nogo(({ROAD"4"}));
+set_nogo(({ROAD"4"}));
     
     set_property("add kits",20);
     

@@ -35,9 +35,8 @@ void create()
     }));
     set_func_chance(35);
     set_funcs(({ "rushit" }));
-    set_resistance("divine", 10);
     set_new_exp(rat_level,"very high");
-    set_max_hp(100 * rat_level);
+       set_max_hp(20 * rat_level);
     set_hp(query_max_hp());
     set_property("swarm",1);
     set_mob_magic_resistance("average");

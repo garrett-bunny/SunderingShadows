@@ -16,7 +16,7 @@ set_exits(([
 "west" : FALLOW"10",
 "east" : FALLOW"12",
 "south" : FALLOW"15",
-
+"southwest" : FALLOW"14",
 
 
 ]));
