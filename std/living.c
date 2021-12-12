@@ -1913,6 +1913,9 @@ int query_damage_bonus()
             FEATS_D->usable_feat(TO, "third favored enemy") && ret += 2;
         }
     }
+    
+    if(FEATS_D->is_active(this_object(), "rending blows"))
+        ret -= 5;
 
     if(FEATS_D->usable_feat(TO, "slay the undead") && attacker && attacker->is_undead())
         ret += 2;

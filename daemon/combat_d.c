@@ -1278,6 +1278,12 @@ varargs void calculate_damage(object attacker, object targ, object weapon, strin
     else
         sneak = 0;
 
+    if(damage && attacker->query_class_level("fighter") > 20)
+    {
+        if(FEATS_D->is_active(attacker, "rending blows"))
+            targ->add_property("rend", 1);
+    }
+    
     //Brutalize wounds causes victim to take extra damage from physical attacks.
     bonus_hit_damage += targ->query_property("brutalized");
 
