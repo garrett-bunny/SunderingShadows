@@ -11,4 +11,5 @@
 #define HOUND "/d/islands/serakii/rooms/hound/"+
 #define INN "/d/islands/serakii/rooms/inn/"+
 #define ROAD "/d/islands/serakii/rooms/road/"+
+#define WHITE "/d/islands/serakii/rooms/fallow/"+
 #define WHITE "/d/islands/serakii/rooms/white/"+
