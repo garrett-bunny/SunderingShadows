@@ -52,13 +52,13 @@ void create() {
 void pick_critters(){
    switch(random(6)){
          case 0:   set_monsters(
-({MOBS"farmer",MOBS"rat"}),({random(4),random(2)}) );
+({MOBS"farmer",MOBS"rat"}),({random(4),random(8)}) );
                    break;
          case 1:   set_monsters(
 ({MOBS"farmer"}),({random(5)}) );
                    break;
          case 2:   set_monsters(
-({MOBS"farmer",MOBS"rat"}),({1,random(1)+1}) );
+({MOBS"farmer",MOBS"rat"}),({1,random(6)+2}) );
                    break;
          case 3:   set_monsters(
 ({MOBS"farmer"}),({random(5)}) );

@@ -31,8 +31,9 @@ void create()
     set_gender("neuter");
     set_race("human");
     set_body_type("human");
-    set_overall_ac(-20);
+    set_overall_ac(-40);
     set_property("swarm",1);
+    set_property("no death", 1);
     lev = 35 + random(9);
     set_class("cleric");
     set_mlevel("cleric",lev);
@@ -56,7 +57,7 @@ void create()
     
     set_alignment(9);
     set_size(3);
-    set_max_hp(lev * 25);
+    set_max_hp(lev * 200);
     set_hp(query_max_hp());
     set_property("full attacks", 1);
     add_money("gold", 400 + random(601));

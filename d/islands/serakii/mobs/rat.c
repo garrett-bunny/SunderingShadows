@@ -27,7 +27,8 @@ void create()
     add_money("gold", random(500));
     add_money("platinum", random(50));
     set_damage_bonus(8);
-    set_overall_ac(-20);
+    set_overall_ac(-30);
+    add_attack_bonus(roll_dice(3,6));
     set_monster_feats(({
         "rush",
 		"unarmed combat",
