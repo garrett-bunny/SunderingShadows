@@ -35,7 +35,7 @@ int cmd_dazzling_display(string str) {
 
 void execute_feat() {
 	
-	if(caster->cooldown("dazzling_display")) {
+	if(caster->cooldown("dazzling display")) {
     tell_object(caster, "You are not ready to perform your dazzling display yet!");
     return 1; }
 	
@@ -68,7 +68,7 @@ void execute_attack() {
 	if(target->query_property("effect_shaken"))
     continue;
 	
-	if(intimidate_check(target, caster) || PLAYER_D->immunity_check("fear")) {
+	if(intimidate_check(target, caster) && PLAYER_D->immunity_check("fear")) {
     tell_object(caster,"You finish your dance, hoping for the best.");
     tell_object(target,"%^C107%^You watch the weapons display with keen interest, however, it fails to inspire much %^C194%^fear at all in you.%^C107%^");
     "/std/effect/status/shaken"->apply_effect(target, roll_dice(1, 2)); }
@@ -80,7 +80,7 @@ void execute_attack() {
     "/std/effect/status/cowering"->apply_effect(target, roll_dice(1, 4));
     caster->remove_property("using instant feat");
 	caster->set_property("dazzling_display", 1);
-    caster->add_cooldown("dazzling_display", 60); }
+    caster->add_cooldown("dazzling display", 60); }
 	}
 }
 	

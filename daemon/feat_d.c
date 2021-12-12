@@ -1905,6 +1905,9 @@ int number_feats(object obj, string category, string* valid_classes) {
                     j = ((obj->query_class_level(subset[i]) + 1) / 6);
                 }
                 break;
+            case "monk":
+                j = ((obj->query_class_level(subset[i]) + 4) / 5);
+                break;
             case "psywarrior":
                 if (obj->query_class_level("psywarrior") < 21) {
                     j = (obj->query_class_level(subset[i]) / 3) + 2;
