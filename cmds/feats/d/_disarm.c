@@ -99,7 +99,7 @@ void execute_feat() {
 }
 
 void execute_attack() {
-    int i, timerz, res;
+    int i, timerz, res, improved;
     object *targweapon, *keyz;
     string wpn_name, *ids;
     mapping tempmap, newmap;
@@ -141,10 +141,13 @@ void execute_attack() {
     caster->set_property("using disarm",newmap);
 
     //Attack of opportunity
-    target->execute_attack();
+    improved = FEATS_D->has_feat(caster, "improved disarm");
+    
+    if(!improved)
+      target->execute_attack();
     
     //if(!(res = thaco(target)))
-    if(!BONUS_D->combat_maneuver(target, caster))
+    if(!BONUS_D->combat_maneuver(target, caster, improved * 2))
     {
         tell_object(caster,"%^RED%^"+target->QCN+" twists away quickly, leaving "
             "you off balance!%^RESET%^");
