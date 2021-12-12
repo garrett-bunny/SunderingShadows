@@ -8,7 +8,7 @@ void create() {
     feat_category("AdvancedTraining");
     feat_name("unmoving");
     feat_prereq("Fighter L21, Advanced Training Feat");
-    feat_desc("You are an immovable object, a rock set against the tide of battle. With this feat, the fighter gains a bonus equal to their strength bonus against combat maneuvers like rush, disarm, knockdown or daze.");
+    feat_desc("You are an immovable object, a rock set against the tide of battle. With this feat, the fighter gains a +3 bonus to defense against combat maneuvers like rush, disarm, knockdown or daze.");
     permanent(1);
     set_required_for(({}));
 }

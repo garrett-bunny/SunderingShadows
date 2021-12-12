@@ -58,6 +58,7 @@ void execute_attack() {
 	object *foes=({}),target;
 	int i, damage;
 	::execute_attack();
+	
 	foes = caster->query_attackers();
 	foes -= ({ caster }); 
 	
@@ -69,7 +70,10 @@ void execute_attack() {
 	if(target->query_property("effect_shaken"))
     continue;
 	
-	if(BONUS_D->intimidate_check(target, caster) && PLAYER_D->immunity_check("fear")) {
+	if(PLAYER_D->IMMUNITY_CHECK("fear")){
+	return 1; }
+	
+	if(BONUS_D->intimidate_check(target, caster)) {
     tell_object(caster,"You finish your dance, hoping for the best.");
     tell_object(target,"%^C107%^You watch the weapons display with keen interest, however, it fails to inspire much %^C194%^fear at all in you.%^C107%^");
     "/std/effect/status/shaken"->apply_effect(target, roll_dice(1, 2)); }
