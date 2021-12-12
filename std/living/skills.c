@@ -343,9 +343,10 @@ int query_skill(string skill)
     {
         if(this_object()->query_stats("strength") > this_object()->query_stats("dexterity"))
             mystat = "strength";
-        else
-            mystat = SKILL_STATS[skill];
+        else mystat = "dexterity";
     }
+    else
+        mystat = SKILL_STATS[skill];
     // override various stats for epic feats
 
     if ((skill == "perception" || skill == "stealth") && FEATS_D->usable_feat(TO, "shadow perception")) {

@@ -626,7 +626,7 @@ int query_combat_maneuver_defense(object ob)
 
 int combat_maneuver(object victim, object attacker, int mod)
 {
-    int result, CMB, CMD;
+    int result, CMB, CMD, diff;
     
     if(victim->query_paralyzed() || victim->query_bound() || victim->query_unconscious())
         return 1;
@@ -640,8 +640,18 @@ int combat_maneuver(object victim, object attacker, int mod)
     
     result += mod;
     
-    CMB = query_combat_maneuver_bonus(attacker) + result;
-    CMD = query_combat_maneuver_defense(victim) + 10;
+    if(!userp(victim))
+        CMD = attacker->query_level() + 10;
+    else
+        CMD = query_combat_maneuver_defense(victim);
+
+    if(!userp(attacker))
+        CMB = victim->query_level() + 10;
+    else
+        CMB = query_combat_maneuver_bonus(attacker);
+    
+    CMB += result;
+    CMD += 10;
     
     CMD += (FEATS_D->usable_feat(victim, "unmoving") * 3);
     
