@@ -14,34 +14,35 @@ void create() {
     feat_desc("While wielding the weapon in which you have Weapon Focus, you can perform a bewildering show of prowess as a full-round action. Make an Intimidate check to demoralize all foes within 30 feet who can see your display.");
 }
 
-int prerequisites(object ob) {
+int prerequisites(object ob)
+{
 	if(!FEATS_D->has_feat(ob, "weapon focus")) {
-    dest_effect();
-	return 0; }
+		dest_effect();
+		return 0; }
     return ::prerequisites(ob); 
 }
 	
-int cmd_dazzling_display(string str) {
+int cmd_dazzling_display(string str) 
+{
     if(!this_player())
-        return 0;
-
+    return 0;
     feat = new(base_name(this_object()));
     feat->setup_feat(this_player(), str);
-    return 1;
-	
+	return 1;
 }
 
-void execute_feat() {
+void execute_feat() 
+{
 	mapping tempmap;
 	::execute_feat();
 	if(caster->cooldown("dazzling display")) {
-    tell_object(caster, "You are not ready to perform your dazzling display yet!");
-    return 1; }
+		tell_object(caster, "You are not ready to perform your dazzling display yet!");
+		return 1; }
 	
 	if((int)caster->query_property("using instant feat")) {
-    tell_object(caster, "You are already in the middle of using a feat!");
-    dest_effect();
-	return 1; }
+		tell_object(caster, "You are already in the middle of using a feat!");
+		dest_effect();
+		return 1; }
 	
 	tell_object(target,"%^C107%^" + caster->query_cap_name() + " begins to dance and twirl as they show an awesome display of control. With an abrupt stop they end in an intimidating stance, facing you with a small smile.",({target}));
 	tell_object(caster,"%^C107%^You begin your dance, ensuring every moment is visible to your enemies to ensure that they fully appreciate the skill you hold.");
@@ -57,32 +58,30 @@ void execute_attack() {
     object* targets;
 
     if (!objectp(caster)) {
-    dest_effect();
-    return; }
+		dest_effect();
+		return; }
 
     caster->remove_property("using instant feat");
     ::execute_attack();
 
     if (caster->query_unconscious()) {
-    dest_effect();
-    return; }
+		dest_effect();
+		return; }
 
     targets = caster->query_attackers();
 
     if (!sizeof(targets)) {
-	tell_object(caster, "You are not under attack!");
-    dest_effect();
-    return; }
+		tell_object(caster, "You are not under attack!");
+		dest_effect();
+		return; }
 	
 	if(PLAYER_D->immunity_check("fear")){
-	tell_object(caster,"You realize your dance is having no effect on your target.");
-	tell_object(target,"%^C107%^You shrug off the effect of the display.");
-	return 1; }
+		tell_object(caster,"You realize your dance is having no effect on your target.");
+		tell_object(target,"%^C107%^You shrug off the effect of the display.");
+		return 1; }
 
     targets += ({ caster });
-
     targets -= ({ caster });
-
     targets = shuffle(targets);
 
     for (i = 0; i < sizeof(targets) && i < 8; i++) {
