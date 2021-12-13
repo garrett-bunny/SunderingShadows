@@ -9,7 +9,7 @@ void create() {
     feat_type("instant");
     feat_category("WeaponMastery");
     feat_name("dazzling display");
-    feat_prereq("Weapon Focus");
+    feat_prereq("Weapon Focu");
 	feat_syntax("dazzling_display");
     feat_desc("While wielding the weapon in which you have Weapon Focus, you can perform a bewildering show of prowess as a full-round action. Make an Intimidate check to demoralize all foes within 30 feet who can see your display.");
 }
@@ -82,8 +82,7 @@ void execute_attack() {
 		
 	tell_object(caster,"You finish your dance, hoping for the best.");
 	tell_object(target,"%^C107%^The dazzling display makes you realize, deep down, you cannot complete...%^C107%^",({target}));
-    "/std/effect/status/cowering"->apply_effect(target, roll_dice(1, 4));
-	}
+    "/std/effect/status/cowering"->apply_effect(target, roll_dice(1, 4)); }
 } }
 	
 void dest_effect() {

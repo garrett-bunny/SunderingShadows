@@ -69,7 +69,7 @@ void reward_player(object who)
     }
     
     tell_object(who, "You pick up the fragment and you feel the demiplane dissolve arround you.");
-    compiler->destroy_plane();
+    compiler->destroy_plane(who);
     tell_object(who, "You are rewarded for your efforts!");
     money = who->query_level() * (500 + random(101));
     exp = exp_for_level(who->query_level() + 1) / 13;

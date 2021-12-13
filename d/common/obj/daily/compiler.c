@@ -276,6 +276,10 @@ string get_room_short(string theme)
         case "deep caverns":
             return "%^BOLD%^BLACK%^Deep Caverns Demiplane%^RESET%^";
         break;
+        
+        case "feywild":
+            return "%^BOLD%^MAGENTA%^Feywild Demiplane%^RESET%^";
+        break;
     }
     
     return CRAYON_D->color_string("Strange Demiplane", "very black");
