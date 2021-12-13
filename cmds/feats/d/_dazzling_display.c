@@ -9,7 +9,7 @@ void create() {
     feat_type("instant");
     feat_category("WeaponMastery");
     feat_name("dazzling display");
-    feat_prereq("Weapon Focu");
+    feat_prereq("Weapon Focus");
 	feat_syntax("dazzling_display");
     feat_desc("While wielding the weapon in which you have Weapon Focus, you can perform a bewildering show of prowess as a full-round action. Make an Intimidate check to demoralize all foes within 30 feet who can see your display.");
 }
@@ -48,7 +48,7 @@ void execute_feat() {
 	caster->use_stamina(roll_dice(2,6));
 	caster->set_property("using instant feat", 1);
 	caster->set_property("dazzling_display", 1);
-    caster->add_cooldown("dazzling display", 60); 
+    caster->add_cooldown("dazzling display", 20); 
 
 }
 	
@@ -56,7 +56,7 @@ void execute_attack() {
 	object *foes=({}),target;
 	int i, damage;
 	::execute_attack();
-	
+	caster->remove_property("using instant feat", 1);
 	foes = caster->query_attackers();
 	foes -= ({ caster }); 
 	
@@ -75,14 +75,13 @@ void execute_attack() {
 	
 	if(BONUS_D->intimidate_check(target, caster)) {
     tell_object(caster,"You finish your dance, hoping for the best.");
-    tell_object(target,"%^C107%^You watch the weapons display with keen interest, however, it fails to inspire much %^C194%^fear at all in you.%^C107%^");
-    "/std/effect/status/shaken"->apply_effect(target, roll_dice(1, 2)); }
+    tell_object(target,"%^C107%^You watch the weapons display with keen interest, however, it fails to inspire much %^C194%^fear at all in you.%^C107%^"); }
     
 	else {
 		
 	tell_object(caster,"You finish your dance, hoping for the best.");
 	tell_object(target,"%^C107%^The dazzling display makes you realize, deep down, you cannot complete...%^C107%^",({target}));
-    "/std/effect/status/cowering"->apply_effect(target, roll_dice(1, 4)); }
+    "/std/effect/status/shaken"->apply_effect(target, roll_dice(1, 6)); }
 } }
 	
 void dest_effect() {
