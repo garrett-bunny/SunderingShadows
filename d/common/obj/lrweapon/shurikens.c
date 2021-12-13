@@ -16,5 +16,5 @@ void create(){
    set_wc(1,4);
    set_large_wc(1,4);
    set_ammo_type("shurikens");
-   set_property("repairtype",({"woodwork", "weaponsmith"}));
+   set_property("repairtype",({"leatherwork"}));
 }
