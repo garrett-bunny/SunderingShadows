@@ -45,6 +45,10 @@ void execute_feat()
 		dest_effect();
 		return 1; }
 	
+	if(!sizeof(caster->query_wielded()) && !caster->query_property("shapeshifted") && !caster->is_class("monk") && !FEATS_D->usable_feat(caster, "unarmed combat")) {
+        tell_object(caster,"How can you rush at anyone without a weapon?");
+        dest_effect();
+        return; }
 	tell_object(target,"%^C107%^" + caster->query_cap_name() + " begins to dance and twirl as they show an awesome display of control. With an abrupt stop they end in an intimidating stance, facing you with a small smile.",({target}));
 	tell_object(caster,"%^C107%^You begin your dance, ensuring every moment is visible to your enemies to ensure that they fully appreciate the skill you hold.");
 	caster->use_stamina(roll_dice(2,6));
