@@ -53,7 +53,7 @@ void execute_feat() {
 }
 	
 void execute_attack() {
-	int die, i;
+	int i;
     object* targets;
 
     if (!objectp(caster)) {
@@ -79,7 +79,7 @@ void execute_attack() {
 	tell_object(target,"%^C107%^You shrug off the effect of the display.");
 	return 1; }
 
-    //targets += ({ caster });
+    targets += ({ caster });
 
     targets -= ({ caster });
 
