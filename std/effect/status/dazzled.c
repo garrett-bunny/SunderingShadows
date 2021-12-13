@@ -50,7 +50,7 @@ void dest_effect(object ob)
         ob->add_skill_bonus("perception", power);
         ob->add_skill_bonus("thievery", power);
         ob->add_attack_bonus(power);
-        ob->remove_property("effect_shaken");
+        ob->remove_property("effect_dazzled");
     }
 
     ::dest_effect();
