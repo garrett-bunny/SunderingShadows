@@ -12,6 +12,7 @@ void create() {
     feat_prereq("Weapon Focus");
 	feat_syntax("dazzling_display");
     feat_desc("While wielding the weapon in which you have Weapon Focus, you can perform a bewildering show of prowess as a full-round action. Make an Intimidate check to demoralize all foes within 30 feet who can see your display.");
+    set_save("will");
 }
 
 int prerequisites(object ob) {
@@ -32,7 +33,7 @@ int cmd_dazzling_display(string str) {
 }
 
 void execute_feat() {
-	
+	mapping tempmap;
 	::execute_feat();
 	if(caster->cooldown("dazzling display")) {
     tell_object(caster, "You are not ready to perform your dazzling display yet!");
@@ -94,7 +95,7 @@ void execute_attack() {
             continue;
         }
 
-        if(BONUS_D->intimidate_check(target, caster)) {
+        if(do_save(target)) {
 		tell_object(caster,"You finish your dance, hoping for the best.");
 		tell_object(target,"%^C107%^You watch the weapons display with keen interest, however, it fails to inspire much %^C194%^fear at all in you.%^C107%^"); 
 		    continue;
@@ -102,9 +103,9 @@ void execute_attack() {
 
 		
 		else {
-		tell_object(caster,"You finish your dance, hoping for the best.");
+		tell_object(caster,"You finish your dance and can tell by the look on your targets face... they are scared.");
 		tell_object(target,"%^C107%^The dazzling display makes you realize, deep down, you cannot complete...%^C107%^",({target}));
-		"/std/effect/status/shaken"->apply_effect(target, roll_dice(1, 2)); }
+		"/std/effect/status/shaken"->apply_effect(targets[i],roll_dice(1, 4));}
 
         caster->add_attacker(targets[i]);
         targets[i]->add_attacker(caster); }
