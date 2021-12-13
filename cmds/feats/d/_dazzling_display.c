@@ -62,12 +62,12 @@ void execute_feat()
         
 	tell_object(target,"%^C107%^" + caster->query_cap_name() + " begins to dance and twirl as they show an awesome display of control. With an abrupt stop they end in an intimidating stance, facing you with a small smile.",({target}));
 	tell_object(caster,"%^C107%^You begin your dance, ensuring every moment is visible to your enemies to ensure that they fully appreciate the skill you hold.");
-	tell_room(place,"%^C107%^You see "+caster->query_cap_name()+" begin a dazzling display with "+caster->query_possessive()+" weapons.",caster);
+	tell_room(place,"%^C107%^You see "+caster->QCN+" begin a dazzling display with his weapons.",caster);
 	caster->use_stamina(roll_dice(2,6));
 	caster->set_property("using instant feat", 1);
 	//caster->set_property("dazzling_display", 1);
 	//Will add in later when other feats use it.
-    caster->add_cooldown("dazzling display", 20); 
+    caster->add_cooldown("dazzling display", 60); 
 
 }
 	
@@ -93,10 +93,12 @@ void execute_attack()
 
     targets = caster->query_attackers();
 
-    if (!sizeof(targets)) {
+    if (!sizeof(targets))
+    {
 		tell_object(caster, "You are not under attack!");
 		dest_effect();
-		return; }
+		return;
+    }
 		
     targets += ({ caster });
     targets -= ({ caster });
@@ -118,15 +120,15 @@ void execute_attack()
 		{
 			tell_object(caster,"%^C107%^You finish your dance, hoping for the best.");
 			tell_object(target,"%^C107%^You watch the weapons display with keen interest, however, it fails to inspire much %^C194%^fear at all in you.%^C107%^"); 
-   
+            tell_room(place,"%^C107%^You see "+caster->QCN+" finish their dazzling display with his weapons.",caster);
 		    continue; 
 		}
 
 		else 
 		{
 			tell_object(caster,"You finish your dance and can tell by the look on your targets face... they are scared.");
-			tell_object(target,"%^C107%^The dazzling display makes you realize, deep down, you cannot complete...%^C107%^",({target}));
-			//tell_room(place,"%^BOLD%^WHITE%^" + target->query_cap_name() + " manages to resist the chains!%^RESET%^", target);
+			tell_object(targets[i],"%^C107%^The dazzling display makes you realize, deep down, you cannot complete...%^C107%^",({targets[i]}));
+            tell_room(place,"%^C107%^You see "+caster->QCN+" finish their dazzling display with his weapons.",caster);
 			"/std/effect/status/shaken"->apply_effect(targets[i],roll_dice(1, 4));
         }
 
