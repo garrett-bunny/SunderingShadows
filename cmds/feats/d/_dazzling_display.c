@@ -5,7 +5,8 @@ inherit FEAT;
 
 object feat;
 
-void create() {
+void create() 
+{
     ::create();
     feat_type("instant");
     feat_category("WeaponMastery");
@@ -17,9 +18,11 @@ void create() {
 
 int prerequisites(object ob)
 {
-	if(!FEATS_D->has_feat(ob, "weapon focus")) {
+	if(!FEATS_D->has_feat(ob, "weapon focus")) 
+	{
 		dest_effect();
-		return 0; }
+		return 0; 
+	}
     return ::prerequisites(ob); 
 }
 	
@@ -37,23 +40,29 @@ void execute_feat()
 	mapping tempmap;
 	::execute_feat();
 	
-	if(caster->cooldown("dazzling display")) {
+	if(caster->cooldown("dazzling display"))
+	{
 		tell_object(caster, "You are not ready to perform your dazzling display yet!");
-		return 1; }
+		return 1; 
+	}
 	
-	if((int)caster->query_property("using instant feat")) {
+	if((int)caster->query_property("using instant feat")) 
+	{
 		tell_object(caster, "You are already in the middle of using a feat!");
 		dest_effect();
-		return 1; }
+		return 1; 
+	}
 	
-	if(!sizeof(caster->query_wielded()) && !caster->query_property("shapeshifted") && !caster->is_class("monk") && !FEATS_D->usable_feat(caster, "unarmed combat")) {
+	if(!sizeof(caster->query_wielded()) && !caster->query_property("shapeshifted") && !caster->is_class("monk") && !FEATS_D->usable_feat(caster, "unarmed combat")) 
+	{
         tell_object(caster,"How can you rush at anyone without a weapon?");
         dest_effect();
-        return; } //FIX ALL OF THESE BRACKETS
+        return; 
+	} 
         
 	tell_object(target,"%^C107%^" + caster->query_cap_name() + " begins to dance and twirl as they show an awesome display of control. With an abrupt stop they end in an intimidating stance, facing you with a small smile.",({target}));
 	tell_object(caster,"%^C107%^You begin your dance, ensuring every moment is visible to your enemies to ensure that they fully appreciate the skill you hold.");
-	tell_room(place,"%^C107%^You see "+caster->QCN+" begin a dazzling display with his weapons.",caster);
+	tell_room(place,"%^C107%^You see "+caster->QCN+" begin a dazzling display with "+caster-<QCN+"'s weapons.",caster);
 	caster->use_stamina(roll_dice(2,6));
 	caster->set_property("using instant feat", 1);
 	//caster->set_property("dazzling_display", 1);
@@ -62,20 +71,25 @@ void execute_feat()
 
 }
 	
-void execute_attack() {
+void execute_attack() 
+{
 	int i;
     object* targets;
 
-    if (!objectp(caster)) {
+    if (!objectp(caster)) 
+	{
 		dest_effect();
-		return; }
+		return; 
+	}
 
     caster->remove_property("using instant feat");
     ::execute_attack();
 
-    if (caster->query_unconscious()) {
+    if (caster->query_unconscious()) 
+	{
 		dest_effect();
-		return; }
+		return; 
+	}
 
     targets = caster->query_attackers();
 
@@ -88,25 +102,31 @@ void execute_attack() {
     targets -= ({ caster });
     targets = shuffle(targets);
 
-    for (i = 0; i < sizeof(targets) && i < 8; i++) {
-        if (targets[i] == caster) {
-            continue; }
+    for (i = 0; i < sizeof(targets) && i < 8; i++) 
+	{
+        if (targets[i] == caster) 
+		{
+            continue; 
+		}
 
-        if (!objectp(targets[i])) {
-            continue; }
+        if (!objectp(targets[i])) 
+		{
+            continue; 
+		}
 
-
-		//if(BONUS_D->intimidate_check(target, caster)) {
-        if(!BONUS_D->intimidate_check(targets[i], caster) || PLAYER_D->immunity_check(targets[i], "fear")) {
-			tell_object(caster,"You finish your dance, hoping for the best.");
+        if(!BONUS_D->intimidate_check(targets[i], caster) || PLAYER_D->immunity_check(targets[i], "fear")) 
+		{
+			tell_object(caster,"%^C107%^You finish your dance, hoping for the best.");
 			tell_object(target,"%^C107%^You watch the weapons display with keen interest, however, it fails to inspire much %^C194%^fear at all in you.%^C107%^"); 
-            tell_room(place,"%^C107%^You see "+caster->QCN+" finish their dazzling display with his weapons.",caster);
-		    continue; }
+            tell_room(place,"%^C107%^You see "+caster->QCN+" finish their dazzling display with "+caster->QCN+"'s weapons and "+target->QCN+ "looks unaffected by the display.",caster);
+		    continue; 
+		}
 
-		else {
+		else 
+		{
 			tell_object(caster,"You finish your dance and can tell by the look on your targets face... they are scared.");
 			tell_object(target,"%^C107%^The dazzling display makes you realize, deep down, you cannot complete...%^C107%^",({target}));
-            tell_room(place,"%^C107%^You see "+caster->QCN+" finish their dazzling display with his weapons.",caster);
+            tell_room(place,"%^C107%^You see "+caster->QCN+" finish their dazzling display with "+caster->QCN+"'s weapons and "+target->QCN+ "looks shaken by the display!",caster);
 			"/std/effect/status/shaken"->apply_effect(targets[i],roll_dice(1, 4));
         }
 
@@ -116,7 +136,8 @@ void execute_attack() {
     return;
 }
 	
-void dest_effect() {
+void dest_effect() 
+{
     ::dest_effect();
     remove_feat(caster);
     return;
