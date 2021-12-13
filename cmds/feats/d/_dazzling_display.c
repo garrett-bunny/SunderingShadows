@@ -53,36 +53,65 @@ void execute_feat() {
 }
 	
 void execute_attack() {
-	object *foes=({}),target;
-	int i, damage;
-	::execute_attack();
-	caster->remove_property("using instant feat", 1);
-	foes = caster->query_attackers();
-	foes -= ({ caster }); 
-	
-	for(i=0;i<sizeof(foes);i++) {
-	
-	if(!objectp(target = foes[i]))
-    continue;
-	
-	if(target->query_property("effect_shaken"))
-    continue;
+	int die, i;
+    object* targets;
+
+    if (!objectp(caster)) {
+    dest_effect();
+    return; }
+
+    caster->remove_property("using instant feat");
+    ::execute_attack();
+
+    if (caster->query_unconscious()) {
+    dest_effect();
+    return; }
+
+    targets = caster->query_attackers();
+
+    if (!sizeof(targets)) {
+	tell_object(caster, "You are not under attack!");
+    dest_effect();
+    return; }
 	
 	if(PLAYER_D->immunity_check("fear")){
 	tell_object(caster,"You realize your dance is having no effect on your target.");
 	tell_object(target,"%^C107%^You shrug off the effect of the display.");
 	return 1; }
-	
-	if(BONUS_D->intimidate_check(target, caster)) {
-    tell_object(caster,"You finish your dance, hoping for the best.");
-    tell_object(target,"%^C107%^You watch the weapons display with keen interest, however, it fails to inspire much %^C194%^fear at all in you.%^C107%^"); }
-    
-	else {
+
+    //targets += ({ caster });
+
+    targets -= ({ caster });
+
+    targets = shuffle(targets);
+
+    for (i = 0; i < sizeof(targets) && i < 8; i++) {
+        if (targets[i] == caster) {
+            continue;
+        }
+
+        if (!objectp(targets[i])) {
+            continue;
+        }
+
+        if(BONUS_D->intimidate_check(target, caster)) {
+		tell_object(caster,"You finish your dance, hoping for the best.");
+		tell_object(target,"%^C107%^You watch the weapons display with keen interest, however, it fails to inspire much %^C194%^fear at all in you.%^C107%^"); 
+		    continue;
+		}
+
 		
-	tell_object(caster,"You finish your dance, hoping for the best.");
-	tell_object(target,"%^C107%^The dazzling display makes you realize, deep down, you cannot complete...%^C107%^",({target}));
-    "/std/effect/status/shaken"->apply_effect(target, roll_dice(1, 6)); }
-} }
+		else {
+		tell_object(caster,"You finish your dance, hoping for the best.");
+		tell_object(target,"%^C107%^The dazzling display makes you realize, deep down, you cannot complete...%^C107%^",({target}));
+		"/std/effect/status/shaken"->apply_effect(target, roll_dice(1, 2)); }
+
+        caster->add_attacker(targets[i]);
+        targets[i]->add_attacker(caster); }
+
+    dest_effect();
+    return;
+}
 	
 void dest_effect() {
     ::dest_effect();
