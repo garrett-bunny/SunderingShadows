@@ -1,3 +1,4 @@
+//Created by: Klieth
 #include <std.h>
 #include <daemons.h>
 inherit FEAT;
@@ -86,28 +87,23 @@ void execute_attack() {
 
     for (i = 0; i < sizeof(targets) && i < 8; i++) {
         if (targets[i] == caster) {
-            continue;
-        }
+            continue; }
 
         if (!objectp(targets[i])) {
-            continue;
-        }
+            continue; }
 
 		if(BONUS_D->intimidate_check(target, caster)) {
-		tell_object(caster,"You finish your dance, hoping for the best.");
-		tell_object(target,"%^C107%^You watch the weapons display with keen interest, however, it fails to inspire much %^C194%^fear at all in you.%^C107%^"); 
-		    continue;
-		}
+			tell_object(caster,"You finish your dance, hoping for the best.");
+			tell_object(target,"%^C107%^You watch the weapons display with keen interest, however, it fails to inspire much %^C194%^fear at all in you.%^C107%^"); 
+		    continue; }
 
-		
 		else {
-		tell_object(caster,"You finish your dance and can tell by the look on your targets face... they are scared.");
-		tell_object(target,"%^C107%^The dazzling display makes you realize, deep down, you cannot complete...%^C107%^",({target}));
-		"/std/effect/status/shaken"->apply_effect(targets[i],roll_dice(1, 4));}
+			tell_object(caster,"You finish your dance and can tell by the look on your targets face... they are scared.");
+			tell_object(target,"%^C107%^The dazzling display makes you realize, deep down, you cannot complete...%^C107%^",({target}));
+			"/std/effect/status/shaken"->apply_effect(targets[i],roll_dice(1, 4)); }
 
-        caster->add_attacker(targets[i]);
-        targets[i]->add_attacker(caster); }
-
+	caster->add_attacker(targets[i]);
+	targets[i]->add_attacker(caster); }
     dest_effect();
     return;
 }
