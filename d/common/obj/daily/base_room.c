@@ -7,6 +7,7 @@ inherit "/std/virtual/compile";
 int is_virtual() { return 1; }
 
 object owner, compiler;
+string owner_name;
 
 void create()
 {   
@@ -97,7 +98,7 @@ void remove()
     
     foreach(object ob in inv)
     {
-        if(playerp(ob))
+        if(userp(ob))
             move_player(ob, (object)"/d/common/obj/daily/entrance");
     }
     
