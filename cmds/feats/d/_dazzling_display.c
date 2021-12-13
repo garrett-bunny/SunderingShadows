@@ -67,7 +67,7 @@ void execute_feat()
 	caster->set_property("using instant feat", 1);
 	//caster->set_property("dazzling_display", 1);
 	//Will add in later when other feats use it.
-    caster->add_cooldown("dazzling display", 60); 
+    caster->add_cooldown("dazzling display", 120); 
 
 }
 	
@@ -118,7 +118,7 @@ void execute_attack()
 		{
 			tell_object(caster,"%^C107%^You finish your dance, hoping for the best.");
 			tell_object(target,"%^C107%^You watch the weapons display with keen interest, however, it fails to inspire much %^C194%^fear at all in you.%^C107%^"); 
-            tell_room(place,"%^C107%^You see "+caster->QCN+" finish their dazzling display with "+caster->query_possessive()+" weapons and "+target->QCN+ "looks unaffected by the display.",caster);
+            //tell_room(place,"%^C107%^You see " + caster->QCN + " finish their dazzling display with " + caster->query_possessive() + " weapons and " + target->QCN + "looks unaffected by the display.",caster);
 		    continue; 
 		}
 
@@ -126,7 +126,8 @@ void execute_attack()
 		{
 			tell_object(caster,"You finish your dance and can tell by the look on your targets face... they are scared.");
 			tell_object(target,"%^C107%^The dazzling display makes you realize, deep down, you cannot complete...%^C107%^",({target}));
-            tell_room(place,"%^C107%^You see "+caster->QCN+" finish their dazzling display with "+caster->QP+" weapons and "+target->QCN+ "looks shaken by the display!",caster);
+            //tell_room(place,"%^C107%^You see " + caster->QCN + " finish their dazzling display with " + caster->query_possessive() + " weapons and "+ target->QCN + "looks shaken by the display!",caster);
+			tell_room(place,"TEST");
 			"/std/effect/status/shaken"->apply_effect(targets[i],roll_dice(1, 4));
         }
 
