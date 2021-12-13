@@ -670,7 +670,14 @@ int intimidate_check(object victim, object attacker, int mod)
     DC = min( ({ 50, victim->query_level() }) );
     DC += (10 + query_stat_bonus(victim, "wisdom"));
     
-    result = attacker->query_skill("influence") + roll_dice(1, 20);
+    result = roll_dice(1, 20);
+    
+    if(result == 1)
+        return 0;
+    if(result == 20)
+        return 1;
+    
+    result = attacker->query_skill("influence") + result;
     result += mod;
     
     result = result >= DC ? 1 : 0;
