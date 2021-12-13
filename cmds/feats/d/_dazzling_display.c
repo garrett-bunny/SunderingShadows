@@ -26,7 +26,7 @@ int prerequisites(object ob)
 int cmd_dazzling_display(string str) 
 {
     if(!this_player())
-    return 0;
+		return 0;
     feat = new(base_name(this_object()));
     feat->setup_feat(this_player(), str);
 	return 1;
@@ -36,6 +36,7 @@ void execute_feat()
 {
 	mapping tempmap;
 	::execute_feat();
+	
 	if(caster->cooldown("dazzling display")) {
 		tell_object(caster, "You are not ready to perform your dazzling display yet!");
 		return 1; }
@@ -48,12 +49,15 @@ void execute_feat()
 	if(!sizeof(caster->query_wielded()) && !caster->query_property("shapeshifted") && !caster->is_class("monk") && !FEATS_D->usable_feat(caster, "unarmed combat")) {
         tell_object(caster,"How can you rush at anyone without a weapon?");
         dest_effect();
-        return; }
+        return; } //FIX ALL OF THESE BRACKETS
+        
 	tell_object(target,"%^C107%^" + caster->query_cap_name() + " begins to dance and twirl as they show an awesome display of control. With an abrupt stop they end in an intimidating stance, facing you with a small smile.",({target}));
 	tell_object(caster,"%^C107%^You begin your dance, ensuring every moment is visible to your enemies to ensure that they fully appreciate the skill you hold.");
+	tell_room(place,"%^C107%^You see "+caster->QCN+" begin a dazzling display with his weapons.",caster);
 	caster->use_stamina(roll_dice(2,6));
 	caster->set_property("using instant feat", 1);
-	caster->set_property("dazzling_display", 1);
+	//caster->set_property("dazzling_display", 1);
+	//Will add in later when other feats use it.
     caster->add_cooldown("dazzling display", 60); 
 
 }
@@ -79,12 +83,7 @@ void execute_attack() {
 		tell_object(caster, "You are not under attack!");
 		dest_effect();
 		return; }
-	
-	if(PLAYER_D->immunity_check("fear")){
-		tell_object(caster,"You realize your dance is having no effect on your target.");
-		tell_object(target,"%^C107%^You shrug off the effect of the display.");
-		return 1; }
-
+		
     targets += ({ caster });
     targets -= ({ caster });
     targets = shuffle(targets);
@@ -96,15 +95,20 @@ void execute_attack() {
         if (!objectp(targets[i])) {
             continue; }
 
-		if(BONUS_D->intimidate_check(target, caster)) {
+
+		//if(BONUS_D->intimidate_check(target, caster)) {
+        if(!BONUS_D->intimidate_check(targets[i], caster) || PLAYER_D->immunity_check(targets[i], "fear")) {
 			tell_object(caster,"You finish your dance, hoping for the best.");
 			tell_object(target,"%^C107%^You watch the weapons display with keen interest, however, it fails to inspire much %^C194%^fear at all in you.%^C107%^"); 
+            tell_room(place,"%^C107%^You see "+caster->QCN+" finish their dazzling display with his weapons.",caster);
 		    continue; }
 
 		else {
 			tell_object(caster,"You finish your dance and can tell by the look on your targets face... they are scared.");
 			tell_object(target,"%^C107%^The dazzling display makes you realize, deep down, you cannot complete...%^C107%^",({target}));
-			"/std/effect/status/shaken"->apply_effect(targets[i],roll_dice(1, 4)); }
+            tell_room(place,"%^C107%^You see "+caster->QCN+" finish their dazzling display with his weapons.",caster);
+			"/std/effect/status/shaken"->apply_effect(targets[i],roll_dice(1, 4));
+        }
 
 	caster->add_attacker(targets[i]);
 	targets[i]->add_attacker(caster); }

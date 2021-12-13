@@ -662,7 +662,7 @@ int combat_maneuver(object victim, object attacker, int mod)
     
 int intimidate_check(object victim, object attacker, int mod)
 {
-    int DC, result;
+    int DC, result, influence, diminish;
     
     if(!objectp(victim) || !objectp(attacker))
         return 0;
@@ -671,6 +671,11 @@ int intimidate_check(object victim, object attacker, int mod)
     DC += (10 + query_stat_bonus(victim, "wisdom"));
     
     result = roll_dice(1, 20);
+    influence = attacker->query_skill("influence");
+    diminish = attacker->query_level() + 10;
+    
+    if(influence > diminish)
+        influence = diminish + (influence - diminish) / 2;
     
     if(result == 1)
         return 0;
