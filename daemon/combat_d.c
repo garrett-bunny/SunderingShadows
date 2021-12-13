@@ -1291,7 +1291,7 @@ varargs void calculate_damage(object attacker, object targ, object weapon, strin
     if(damage && attacker->query_class_level("fighter") > 20)
     {
         if(FEATS_D->is_active(attacker, "rending blows"))
-            targ->add_property("rend", 1);
+            targ->set_property("rend", 1);
     }
 
     if (!objectp(weapon) || attacker->query_property("shapeshifted")) {
