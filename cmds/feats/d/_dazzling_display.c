@@ -120,7 +120,7 @@ void execute_attack()
 		{
 			tell_object(caster,"%^C107%^You finish your dance, hoping for the best.");
 			tell_object(targets[i],"%^C107%^You watch the weapons display with keen interest, however, it fails to inspire much %^C194%^fear at all in you.%^C107%^"); 
-            tell_room(place,"%^C107%^You see "+caster->QCN+" finish their dazzling display with his weapons.",caster);
+            tell_room(place,"%^C107%^You see "+targets[i]->query_cap_name() + " resist the display.",caster);
 		    continue; 
 		}
 
@@ -128,12 +128,13 @@ void execute_attack()
 		{
 			tell_object(caster,"You finish your dance and can tell by the look on your targets face... they are scared.");
 			tell_object(targets[i],"%^C107%^The dazzling display makes you realize, deep down, you cannot complete...%^C107%^");
-            tell_room(place,"%^C107%^You see "+caster->QCN+" finish their dazzling display with his weapons.",caster);
+            tell_room(place,"%^C107%^You see "+targets[i]->query_cap_name()+" become intimidated!",caster);
 			"/std/effect/status/shaken"->apply_effect(targets[i],roll_dice(1, 4));
         }
 
-	caster->add_attacker(targets[i]);
-	targets[i]->add_attacker(caster); }
+	    caster->add_attacker(targets[i]);
+	    targets[i]->add_attacker(caster);
+    }
     dest_effect();
     return;
 }
