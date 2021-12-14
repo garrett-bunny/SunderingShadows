@@ -19,6 +19,7 @@ void create()
     
 %^CYAN%^BOLD%^The choices for dragon affinity are as follows: \n\%^RED%^" + implode(VALID,"\n") + "%^RESET%^");
     allow_tripped(1);
+    set_save("reflex");
 }
 
 int allow_shifted()
