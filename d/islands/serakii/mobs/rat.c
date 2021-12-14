@@ -33,7 +33,7 @@ void create()
         "rush",
 		"unarmed combat",
     }));
-    set_func_chance(35);
+    set_func_chance(20);
     set_funcs(({ "rushit" }));
     set_new_exp(rat_level,"very high");
        set_max_hp(20 * rat_level);

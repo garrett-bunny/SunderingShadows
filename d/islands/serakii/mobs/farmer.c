@@ -56,8 +56,6 @@ void create()
 
     add_money("gold",random(1800)+600);      
         
-    set_property("no paralyze",1);
-    set_property("no tripped",1);
     
     set_speed(50);
     set_moving(1);
