@@ -42,7 +42,7 @@ void create(){
     set_property("no_random_treasure", 1);
     set_property("cast and attack", 1);
     set_property("darkvision", 1);
-    set_spell_chance(100);
+    set_spell_chance(50);
     set_spells(({
         "mass fester",
         "acid fog",
@@ -67,12 +67,12 @@ void set_powerlevel(int pwrlvl){
     powerlevel = pwrlvl;
     set_hd((powerlevel * 10), 0);
     set_class("mage");
-    set_mlevel("mage", (powerlevel * 10));
-    set_guild_level("mage", (powerlevel * 10));
+    set_mlevel("mage", (powerlevel * 7));
+    set_guild_level("mage", (powerlevel * 7));
     set_class("inquisitor");
     set_mlevel("inquisitor", (powerlevel * 10));
     set_guild_level("inquisitor", (powerlevel * 10));
-    set_damage((powerlevel * 2), 20);
+    set_damage((powerlevel * 2), 10);
     set_attacks_num(powerlevel);
     set_overall_ac(-((powerlevel * 10) + 5));
     set_max_hp(powerlevel * powerlevel * 400);
@@ -83,7 +83,7 @@ void set_powerlevel(int pwrlvl){
 
 void init(){
     ::init();
-    if((!buffed) && (powerlevel > 3)){
+    if((!buffed) && (powerlevel > 4)){
         new("/cmds/spells/e/_elemental_aura.c")->use_spell(this_object(), "acid", (powerlevel * 10), 100, "mage");
         buffed = 1;
     }
@@ -138,7 +138,7 @@ void wave_fun(){
             targ->die();
             continue;
         }
-        if(SAVING_THROW_D->reflex_save(targ, (powerlevel * 15) + handicap)){
+        if(SAVING_THROW_D->reflex_save(targ, (powerlevel * 10) + (powerlevel * powerlevel) + handicap)){
             tell_object(targ, "%^RESET%^%^CRST%^%^C118%^You manage to keep your footing against the foul tidal wave!\n%^CRST%^");
             tell_room(room, "%^RESET%^%^CRST%^%^C118%^"+targ->QCN+"%^RESET%^%^CRST%^%^C118%^ manages to keep their footing against the foul tidal wave!\n%^CRST%^", targ);
             handicap++;

@@ -24,7 +24,7 @@ void create(){
     set_alignment(2);
     set_attack_limbs(({ "left hand blade", "right hand blade", "buzz saw" }));
     set_base_damage_type("slashing");
-    set_func_chance(100);
+    set_func_chance(75);
     set_funcs(({ 
         "steam_fun",
         "buzz_fun",
@@ -78,7 +78,7 @@ void steam_fun(object targ){
     tell_room(environment(this_object()), "%^RESET%^%^CRST%^\n%^C202%^The %^C250%^g%^C248%^o%^C246%^l%^C244%^em %^C202%^shudders, vents opening along its sides to expel huge clouds of %^C255%^steam %^C202%^towards %^C230%^"+targ->QCN+"%^RESET%^%^CRST%^%^C255%^!%^CRST%^");
 
     if(userp(targ)){
-        if(SAVING_THROW_D->reflex_save(targ, (powerlevel * 15) + handicap)){
+        if(SAVING_THROW_D->reflex_save(targ, (powerlevel * 10) + (powerlevel * powerlevel) + handicap)){
             tell_object(targ, "%^RESET%^%^CRST%^%^C118%^You manage to dive away, avoiding the hot blast!%^CRST%^\n");
             tell_room(environment(this_object()), "%^RESET%^%^CRST%^%^C118%^"+targ->QCN+"%^RESET%^%^CRST%^%^C118%^ manages to dive away!%^CRST%^\n", targ);
             handicap++;
@@ -109,7 +109,7 @@ void buzz_fun(object targ){
     for(i=0; i < powerlevel; i++){
         targ=attackers[random(sizeof(attackers))];
         if(userp(targ)){
-            if(SAVING_THROW_D->reflex_save(targ, (powerlevel * 15) + handicap)){
+            if(SAVING_THROW_D->reflex_save(targ, (powerlevel * 10) + (powerlevel * powerlevel) + handicap)){
                 tell_object(targ, "%^RESET%^%^CRST%^%^C118%^You dodge, and the buzz saw blade only grazes you!%^CRST%^\n");
                 tell_room(environment(this_object()), "%^RESET%^%^CRST%^%^C118%^"+targ->QCN+"%^RESET%^%^CRST%^%^C118%^ dodges out of the way!%^CRST%^\n", targ);
                 targ->cause_typed_damage(targ, "torso", roll_dice(powerlevel, 10), "slashing");

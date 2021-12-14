@@ -96,7 +96,7 @@ void bloody_slash(){
         targ = attackers[random(sizeof(attackers))];
         tell_room(ETO, "%^RESET%^%^CRST%^\n%^C208%^The redcap lunges forward, his talons outstretched!%^CRST%^");
         if(userp(targ)){
-            if(SAVING_THROW_D->reflex_save(targ, ((powerlevel * 15) + bloodthirst + handicap))){
+            if(SAVING_THROW_D->reflex_save(targ, ((powerlevel * 10) + (powerlevel * powerlevel) + bloodthirst + handicap))){
                 tell_room(ETO, "%^RESET%^%^CRST%^%^C118%^"+targ->QCN+"%^RESET%^%^CRST%^%^C118%^ barely avoids the razor claws of the redcap!%^CRST%^\n", targ);
                 tell_object(targ, "%^RESET%^%^CRST%^%^C118%^You barely avoid the razor claws of the redcap!%^CRST%^\n");
                 targ->set_property("rend", 1);
@@ -146,7 +146,7 @@ void bloody_heal(){
         targ = attackers[random(sizeof(attackers))];
         tell_room(ETO, "%^RESET%^%^CRST%^\n%^C208%^The redcap leaps towards "+targ->QCN+"%^RESET%^%^CRST%^%^C208%^, trying to stomp down on their feet with his %^C244%^heavy iron boots%^C208%^!%^CRST%^", targ);
         tell_object(targ, "%^RESET%^%^CRST%^\n%^C208%^The redcap leaps towards you, trying to stomp down on your feet with his %^C244%^heavy iron boots%^C208%^!%^CRST%^");
-        if(SAVING_THROW_D->reflex_save(targ, (powerlevel * 14) + bloodthirst)){
+        if(SAVING_THROW_D->reflex_save(targ, (powerlevel * 10) + (powerlevel * powerlevel) + bloodthirst)){
             tell_room(ETO, "%^RESET%^%^CRST%^%^C118%^"+targ->QCN+"%^RESET%^%^CRST%^%^C118%^ dodges to the side!%^CRST%^\n", targ);
             tell_object(targ, "%^RESET%^%^CRST%^%^C118%^You dodge to the side!%^CRST%^\n");
         }
