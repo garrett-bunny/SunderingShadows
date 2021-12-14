@@ -50,7 +50,7 @@ void create(){
 
 int stone(object targ){
     string targ_name,targ_desc;
-    if(!"/daemon/saving_throw_d.c"->fort_save(targ,-12)){
+    if((!SAVING_THROW_D->fort_save(targ, 40)) && (!targ->query_property("no death"))){
 	   tell_object(targ,"%^BOLD%^RED%^The cockatrice bites you and "+
 	      "causes immense pain as your flesh begins to harden into stone"+
 		  "...oh, that's petrifying!");
