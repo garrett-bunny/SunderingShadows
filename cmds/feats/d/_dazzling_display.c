@@ -119,7 +119,7 @@ void execute_attack()
         if(!BONUS_D->intimidate_check(targets[i], caster) || PLAYER_D->immunity_check(targets[i], "fear")) 
 		{
 			tell_object(caster,"%^C107%^You finish your dance, hoping for the best.");
-			tell_object(target,"%^C107%^You watch the weapons display with keen interest, however, it fails to inspire much %^C194%^fear at all in you.%^C107%^"); 
+			tell_object(targets[i],"%^C107%^You watch the weapons display with keen interest, however, it fails to inspire much %^C194%^fear at all in you.%^C107%^"); 
             tell_room(place,"%^C107%^You see "+caster->QCN+" finish their dazzling display with his weapons.",caster);
 		    continue; 
 		}
@@ -127,7 +127,7 @@ void execute_attack()
 		else 
 		{
 			tell_object(caster,"You finish your dance and can tell by the look on your targets face... they are scared.");
-			tell_object(targets[i],"%^C107%^The dazzling display makes you realize, deep down, you cannot complete...%^C107%^",({targets[i]}));
+			tell_object(targets[i],"%^C107%^The dazzling display makes you realize, deep down, you cannot complete...%^C107%^");
             tell_room(place,"%^C107%^You see "+caster->QCN+" finish their dazzling display with his weapons.",caster);
 			"/std/effect/status/shaken"->apply_effect(targets[i],roll_dice(1, 4));
         }
