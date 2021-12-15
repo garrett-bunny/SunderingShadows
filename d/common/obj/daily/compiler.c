@@ -103,7 +103,7 @@ void compile_plane(object owner)
             room->set_compiler(this_object());
             
             
-            if(!place_monsters(x, y, theme))
+            if(!place_monsters(x, y, theme, owner))
                 continue;
         }
         x++;       
@@ -323,7 +323,7 @@ string get_room_long(string theme)
     return CRAYON_D->color_string("You are lost in a strange Demiplane.", "dark black");
 }
 
-int place_monsters(int x, int y, string theme)
+int place_monsters(int x, int y, string theme, object owner)
 {
     string file, key;
     object boss;
@@ -354,8 +354,10 @@ int place_monsters(int x, int y, string theme)
         if(catch(boss = new(file)))
             return 0;
         
-        if(boss->move(cloned_rooms[key]))
+        if(catch(boss->move(cloned_rooms[key])))
             return 0;
+        
+        boss->set_powerlevel(owner->query_level() / 10);
     }
     else
     {
