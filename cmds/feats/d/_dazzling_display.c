@@ -120,7 +120,7 @@ void execute_attack()
 		{
 			tell_object(caster,"%^C107%^You finish your dance - but don't think it worked.");
 			tell_object(targets[i],"%^C107%^You watch the weapons display with keen interest, however, it %^C160%^fails %^C107%^to inspire much %^C194%^fear at all in you.%^C107%^"); 
-            tell_room(place,"%^C107%^You see "+targets[i]->query_cap_name() + " resist the display.",caster);
+            tell_room(place,"%^C190%^You see "+targets[i]->query_cap_name() + " resist the display.",caster);
 		    continue; 
 		}
 
