@@ -72,7 +72,9 @@ void reward_player(object who)
     compiler->destroy_plane(who);
     tell_object(who, "You are rewarded for your efforts!");
     money = who->query_level() * (500 + random(101));
+    who->add_money("gold", money);
     exp = exp_for_level(who->query_level() + 1) / 13;
+    who->add_exp(exp);
     tell_object(who, sprintf("You are awarded %d XP and %d gold!", exp, money));
     
     ::remove();
