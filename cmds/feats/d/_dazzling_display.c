@@ -128,7 +128,7 @@ void execute_attack()
 		{
 			tell_object(caster,"You finish your dance and can tell by the look on your targets face... they are scared.");
 			tell_object(targets[i],"%^C107%^The dazzling display makes you realize, deep down, you cannot complete...%^C107%^");
-            tell_room(place,"%^C107%^You see "+targets[i]->query_cap_name()+" become intimidated!",caster);
+            tell_room(place,"%^C107%^You see "+targets[i]->query_cap_name()+" is clearly %^C160%^intimidated %^C107%^by the display.",caster);
 			"/std/effect/status/shaken"->apply_effect(targets[i],roll_dice(1, 4));
         }
 
