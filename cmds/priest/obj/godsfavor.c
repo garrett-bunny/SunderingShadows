@@ -677,15 +677,7 @@ int now(string str){
 		 "ene%^RESET%^%^ORANGE%^v%^BOLD%^%^BLACK%^lopes you a%^RESET%^%^ORANGE%^n%^BOLD%^%^BLACK%^d "
 		 "p%^RESET%^%^ORANGE%^u%^BOLD%^%^BLACK%^lls you to so%^RESET%^%^ORANGE%^m%^BOLD%^%^BLACK%^ew"+
 		 "here else%^RESET%^");
-         tell_room(environment(ETO),"%^BOLD%^%^BLACK%^S%^RESET%^%^ORANGE%^h%^BOLD%^%^BLACK%^im"+
-		 "%^RESET%^%^ORANGE%^m%^BOLD%^%^BLACK%^er%^RESET%^%^ORANGE%^i%^BOLD%^%^BLACK%^ng"
-		 "sp%^RESET%^%^ORANGE%^e%^BOLD%^%^BLACK%^ct%^RESET%^%^ORANGE%^e%^BOLD%^%^BLACK%^ral "+
-		 "%^RESET%^%^ORANGE%^e%^BOLD%^%^BLACK%^nti%^RESET%^%^ORANGE%^t%^BOLD%^%^BLACK%^ies "+
-		 "%^RESET%^%^ORANGE%^s%^BOLD%^%^BLACK%^w%^RESET%^%^ORANGE%^i%^BOLD%^%^BLACK%^rl ar"+
-		 "%^RESET%^%^ORANGE%^o%^BOLD%^%^BLACK%^un%^RESET%^%^ORANGE%^d%^WHITE%^ "+TPQCN+"%^BOLD%^%^BLACK%^and"+
-		 "%^RESET%^%^ORANGE%^en%^BOLD%^%^BLACK%^gu%^RESET%^%^ORANGE%^l%^BOLD%^%^BLACK%^f them."+
-		 "As the mist d%^RESET%^%^ORANGE%^i%^BOLD%^%^BLACK%^s%^RESET%^%^ORANGE%^s%^BOLD%^%^BLACK%^a%^RESET%^%^ORANGE%^p %^BOLD%^%^BLACK%^at%^RESET%"+
-         "^%^ORANGE%^e%^BOLD%^%^BLACK%^s,%^RESET%^ "+TP->QS+" %^BOLD^&^&BLACK^&is %^WHITE%^gone!%^RESET%^",TP);
+         tell_room(environment(ETO),"%^BOLD%^%^BLACK%^S%^RESET%^%^ORANGE%^h%^BOLD%^%^BLACK%^im%^RESET%^%^ORANGE%^m%^BOLD%^%^BLACK%^er%^RESET%^%^ORANGE%^i%^BOLD%^%^BLACK%^ng sp%^RESET%^%^ORANGE%^e%^BOLD%^%^BLACK%^ct%^RESET%^%^ORANGE%^e%^BOLD%^%^BLACK%^ral %^RESET%^%^ORANGE%^e%^BOLD%^%^BLACK%^nti%^RESET%^%^ORANGE%^t%^BOLD%^%^BLACK%^ies %^RESET%^%^ORANGE%^s%^BOLD%^%^BLACK%^w%^RESET%^%^ORANGE%^i%^BOLD%^%^BLACK%^rl ar%^RESET%^%^ORANGE%^o%^BOLD%^%^BLACK%^un%^RESET%^%^ORANGE%^d%^WHITE%^ "+TPQCN+"%^BOLD%^%^BLACK%^ and%^RESET%^%^ORANGE%^ en%^BOLD%^%^BLACK%^gu%^RESET%^%^ORANGE%^l%^BOLD%^%^BLACK%^f them. As the mist d%^RESET%^%^ORANGE%^i%^BOLD%^%^BLACK%^s%^RESET%^%^ORANGE%^s%^BOLD%^%^BLACK%^a%^RESET%^%^ORANGE%^p%^BOLD%^%^BLACK%^at%^RESET%^%^ORANGE%^e%^BOLD%^%^BLACK%^s,%^RESET%^ "+TP->QS+" %^BOLD%^%^BLACK%^is %^WHITE%^gone!%^RESET%^",TP);
          tell_room(find_object_or_load(where),"%^ORANGE%^s%^BOLD%^%^BLACK%^pec"+
 		 "%^RESET%^%^ORANGE%^t%^BOLD%^%^BLACK%^ra%^RESET%^%^ORANGE%^l %^BOLD%^%^BLACK%^en"+
 		 "%^RESET%^%^ORANGE%^t%^BOLD%^%^BLACK%^it%^RESET%^%^ORANGE%^i%^BOLD%^%^BLACK%^es "+
