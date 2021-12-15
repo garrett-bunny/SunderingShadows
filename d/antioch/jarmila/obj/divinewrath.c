@@ -163,8 +163,6 @@ void move_caster(object dest, object player)
     tell_room(dest, player->query_cap_name() + " steps silently from the rift.", player);
     tell_object(player,color_me("You have arrived at your destination."));
     this_player()->add_cooldown("plane slice", 60);
-
-    dest_effect();
     return;
 }
 
