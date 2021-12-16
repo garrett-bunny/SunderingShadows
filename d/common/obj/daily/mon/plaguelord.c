@@ -101,11 +101,13 @@ void flies_fun(){
     tell_room(room, "%^RESET%^%^CRST%^\n%^C118%^St%^C112%^er%^C106%^cus%^C130%^ opens his maw wide, spewing out a cloud of %^C244%^f%^C248%^l%^C244%^i%^C250%^e%^C246%^s%^C130%^!");
     
     if(!userp(targ)){
-        tell_room(room, "%^RESET%^%^CRST%^%^C196%^Several swarms erupt from his bloated lips!\n%^CRST%^");
-        ob2 = new("/d/common/obj/daily/mon/plaguelord_flies");
-        ob2->move(room);
-        ob2->set_powerlevel(powerlevel);
-        ob2->kill_ob(targ);
+        if(powerlevel >3){
+            tell_room(room, "%^RESET%^%^CRST%^%^C196%^Several swarms erupt from his bloated lips!\n%^CRST%^");
+            ob2 = new("/d/common/obj/daily/mon/plaguelord_flies");
+            ob2->move(room);
+            ob2->set_powerlevel(powerlevel);
+            ob2->kill_ob(targ);
+        }
     }
     
     ob = new("/d/common/obj/daily/mon/plaguelord_flies");
@@ -133,19 +135,22 @@ void wave_fun(){
             targ->die();
             continue;
         }
-        if(SAVING_THROW_D->reflex_save(targ, (powerlevel * 14) + handicap)){
-            tell_object(targ, "%^RESET%^%^CRST%^%^C118%^You manage to keep your footing against the foul tidal wave!\n%^CRST%^");
-            tell_room(room, "%^RESET%^%^CRST%^%^C118%^"+targ->QCN+"%^RESET%^%^CRST%^%^C118%^ manages to keep their footing against the foul tidal wave!\n%^CRST%^", targ);
-            handicap++;
-            continue;
+        if(powerlevel > 4){
+            if(SAVING_THROW_D->reflex_save(targ, (powerlevel * 15) + handicap)){
+                tell_object(targ, "%^RESET%^%^CRST%^%^C118%^You manage to keep your footing against the foul tidal wave!\n%^CRST%^");
+                tell_room(room, "%^RESET%^%^CRST%^%^C118%^"+targ->QCN+"%^RESET%^%^CRST%^%^C118%^ manages to keep their footing against the foul tidal wave!\n%^CRST%^", targ);
+                handicap++;
+                continue;
+            }
+            else{
+                tell_object(targ, "%^RESET%^%^C106%^The %^C143%^f%^C137%^o%^C131%^u%^C143%^l %^C137%^w%^C131%^a%^C143%^v%^C137%^e %^C106%^slams into you, throwing you off your feet!\n");
+                tell_room(room, "%^RESET%^%^CRST%^%^C106%^"+targ->QCN+"%^RESET%^%^CRST%^%^C106%^ is thrown to the ground by the force of the %^C143%^f%^C137%^o%^C131%^u%^C143%^l %^C137%^w%^C131%^a%^C143%^v%^C137%^e%^C106%^!\n", targ);
+                targ->set_tripped(roll_dice(1, 3), "%^C130%^You keep slipping on the %^C118%^sl%^C112%^i%^C106%^m%^C118%^y f%^C112%^i%^C106%^l%^C118%^th%^C106%^!");
+                handicap--;
+                continue;
+            }
         }
-        else{
-            tell_object(targ, "%^RESET%^%^C106%^The %^C143%^f%^C137%^o%^C131%^u%^C143%^l %^C137%^w%^C131%^a%^C143%^v%^C137%^e %^C106%^slams into you, throwing you off your feet!\n");
-            tell_room(room, "%^RESET%^%^CRST%^%^C106%^"+targ->QCN+"%^RESET%^%^CRST%^%^C106%^ is thrown to the ground by the force of the %^C143%^f%^C137%^o%^C131%^u%^C143%^l %^C137%^w%^C131%^a%^C143%^v%^C137%^e%^C106%^!\n", targ);
-            targ->set_tripped(roll_dice(1, 3), "%^C130%^You keep slipping on the %^C118%^sl%^C112%^i%^C106%^m%^C118%^y f%^C112%^i%^C106%^l%^C118%^th%^C106%^!");
-            handicap--;
-            continue;
-        }
+        continue;
     }
     return;
 }

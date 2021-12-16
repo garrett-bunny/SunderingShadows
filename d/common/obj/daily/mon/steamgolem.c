@@ -78,17 +78,20 @@ void steam_fun(object targ){
     tell_room(environment(this_object()), "%^RESET%^%^CRST%^\n%^C202%^The %^C250%^g%^C248%^o%^C246%^l%^C244%^em %^C202%^shudders, vents opening along its sides to expel huge clouds of %^C255%^steam %^C202%^towards %^C230%^"+targ->QCN+"%^RESET%^%^CRST%^%^C255%^!%^CRST%^");
 
     if(userp(targ)){
-        if(SAVING_THROW_D->reflex_save(targ, (powerlevel * 14) + handicap)){
-            tell_object(targ, "%^RESET%^%^CRST%^%^C118%^You manage to dive away, avoiding the hot blast!%^CRST%^\n");
-            tell_room(environment(this_object()), "%^RESET%^%^CRST%^%^C118%^"+targ->QCN+"%^RESET%^%^CRST%^%^C118%^ manages to dive away!%^CRST%^\n", targ);
-            handicap++;
+        if(powerlevel > 4){
+            if(SAVING_THROW_D->reflex_save(targ, (powerlevel * 15) + handicap)){
+                tell_object(targ, "%^RESET%^%^CRST%^%^C118%^You manage to dive away, avoiding the hot blast!%^CRST%^\n");
+                tell_room(environment(this_object()), "%^RESET%^%^CRST%^%^C118%^"+targ->QCN+"%^RESET%^%^CRST%^%^C118%^ manages to dive away!%^CRST%^\n", targ);
+                handicap++;
+                return;
+            }
+            tell_object(targ, "%^RESET%^%^CRST%^%^C196%^A blast of superheated %^C255%^steam %^C196%^catches you in the face, searing and %^C214%^bl%^C220%^i%^C226%^nd%^C220%^i%^C214%^ng %^C196%^you!%^CRST%^\n");
+            tell_room(environment(this_object()), "%^RESET%^%^CRST%^%^C230%^"+targ->QCN+"%^RESET%^%^CRST%^%^C196%^ catches a blast of %^C255%^steam %^C196%^in the face!%^CRST%^\n", targ);
+            targ->cause_typed_damage(targ, "head", roll_dice(powerlevel,10), "fire");   
+            targ->set_temporary_blinded(roll_dice(1,powerlevel));
+            handicap--;
             return;
         }
-        tell_object(targ, "%^RESET%^%^CRST%^%^C196%^A blast of superheated %^C255%^steam %^C196%^catches you in the face, searing and %^C214%^bl%^C220%^i%^C226%^nd%^C220%^i%^C214%^ng %^C196%^you!%^CRST%^\n");
-        tell_room(environment(this_object()), "%^RESET%^%^CRST%^%^C230%^"+targ->QCN+"%^RESET%^%^CRST%^%^C196%^ catches a blast of %^C255%^steam %^C196%^in the face!%^CRST%^\n", targ);
-        targ->cause_typed_damage(targ, "head", roll_dice(powerlevel,10), "fire");   
-        targ->set_temporary_blinded(roll_dice(1,powerlevel));
-        handicap--;
         return;
     }
     else{

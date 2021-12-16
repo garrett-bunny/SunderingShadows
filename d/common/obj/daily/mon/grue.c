@@ -92,7 +92,9 @@ void round_cleanup(){
             warning();
             break;
         case 4 :
-            slam_attack();
+            if(powerlevel > 3){
+                slam_attack();
+            }
             darkness_heal();
             break;
         default :
@@ -144,7 +146,7 @@ void slam_attack(){
         targ = attackers[random(sizeof(attackers))];
         tell_room(ETO, "%^RESET%^%^CRST%^\n%^C093%^With a piercing screech, the grue charges forward!%^CRST%^");
         if(userp(targ)){
-            if(SAVING_THROW_D->reflex_save(targ, ((powerlevel * 14) + darkness + handicap))){
+            if(SAVING_THROW_D->reflex_save(targ, ((powerlevel * 15) + darkness + handicap))){
                 tell_room(ETO, "%^RESET%^%^CRST%^%^C118%^"+targ->QCN+"%^RESET%^%^CRST%^%^C118%^ barely jumps out of the way!%^CRST%^\n", targ);
                 tell_object(targ, "%^RESET%^%^CRST%^%^C118%^You barely jump out of the way!%^CRST%^\n");
                 handicap++;

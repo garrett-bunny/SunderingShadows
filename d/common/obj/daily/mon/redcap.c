@@ -58,7 +58,7 @@ void set_powerlevel(int pwrlvl){
     set_class("fighter");
     set_mlevel("fighter", (powerlevel * 10));
     set_damage((powerlevel * 2), 10);
-    set_attacks_num(powerlevel * 2);
+    set_attacks_num(powerlevel + 2);
     set_overall_ac(-((powerlevel * 10) + 5));
     set_max_hp(powerlevel * powerlevel * 300);
     set_hp(query_max_hp());
@@ -70,7 +70,13 @@ void set_powerlevel(int pwrlvl){
 void round_cleanup(){
     if(bloodthirst > 10) bloodthirst = 10;
     switch(counter){
-        case 1..2 :
+        case 1 :
+            if(powerlevel > 4){
+                bloody_shash();
+            }
+            bloodthirst++;
+            break;
+        case 2 :
             bloody_slash();
             break;
         case 3 :
@@ -96,7 +102,7 @@ void bloody_slash(){
         targ = attackers[random(sizeof(attackers))];
         tell_room(ETO, "%^RESET%^%^CRST%^\n%^C208%^The redcap lunges forward, his talons outstretched!%^CRST%^");
         if(userp(targ)){
-            if(SAVING_THROW_D->reflex_save(targ, ((powerlevel * 14) + bloodthirst + handicap))){
+            if(SAVING_THROW_D->reflex_save(targ, ((powerlevel * 15) + bloodthirst + handicap))){
                 tell_room(ETO, "%^RESET%^%^CRST%^%^C118%^"+targ->QCN+"%^RESET%^%^CRST%^%^C118%^ barely avoids the razor claws of the redcap!%^CRST%^\n", targ);
                 tell_object(targ, "%^RESET%^%^CRST%^%^C118%^You barely avoid the razor claws of the redcap!%^CRST%^\n");
                 targ->set_property("rend", 1);
@@ -142,7 +148,7 @@ void bloody_heal(){
         }
         continue;
     }
-    if(random(5) < 1){
+    if((random(5) < 1) && (powerlevel > 4)){
         targ = attackers[random(sizeof(attackers))];
         tell_room(ETO, "%^RESET%^%^CRST%^\n%^C208%^The redcap leaps towards "+targ->QCN+"%^RESET%^%^CRST%^%^C208%^, trying to stomp down on their feet with his %^C244%^heavy iron boots%^C208%^!%^CRST%^", targ);
         tell_object(targ, "%^RESET%^%^CRST%^\n%^C208%^The redcap leaps towards you, trying to stomp down on your feet with his %^C244%^heavy iron boots%^C208%^!%^CRST%^");

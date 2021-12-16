@@ -36,10 +36,10 @@ void set_powerlevel(int pwrlvl){
     set_hd((powerlevel * 10), 0);
     set_class("fighter");
     set_mlevel("fighter", (powerlevel * 10));
-    set_damage(powerlevel * 2, 10);
+    set_damage(powerlevel, 10);
     set_attacks_num(1);
     set_overall_ac(-(powerlevel * 10));
-    set_max_hp(powerlevel * 100);
+    set_max_hp(powerlevel * 50);
     set_hp(query_max_hp());
     set_new_exp((powerlevel * 10), "very low");
     return;
@@ -52,7 +52,7 @@ void buzz_fun(object targ){
     tell_object(targ, "%^RESET%^%^CRST%^%^C144%^The %^C244%^f%^C248%^l%^C244%^i%^C250%^e%^C246%^s %^C144%^swarm about your face, crawling over your eyes, into your mouth!%^CRST%^");
     tell_room(room, "%^RESET%^%^CRST%^%^C144%^The %^C244%^f%^C248%^l%^C244%^i%^C250%^e%^C246%^s %^C144%^swarm about "+targ->QCN+"%^RESET%^%^CRST%^%^C144%^, covering their face!%^CRST%^", targ);
     
-    if(SAVING_THROW_D->fort_save(targ, (powerlevel * 13))){
+    if(SAVING_THROW_D->fort_save(targ, (powerlevel * 14))){
         tell_object(targ, "%^RESET%^%^CRST%^%^C118%^You manage to shake them off, spitting out a couple as well.%^CRST%^");
         tell_room(room, "%^RESET%^%^CRST%^%^C118%^"+targ->QCN+"%^RESET%^%^CRST%^%^C118%^ shakes free of the swarm.%^CRST%^", targ);
         return;
@@ -60,9 +60,11 @@ void buzz_fun(object targ){
     
     switch(random(2)){
         case 0 :
-            tell_object(targ, "%^RESET%^%^CRST%^%^C137%^They buzz and crawl all over and around your face, causing you to %^C226%^stagger %^C137%^about!%^CRST%^");
-            tell_room(room, "%^RESET%^%^CRST%^%^C137%^"+targ->QCN+"%^RESET%^%^CRST%^ %^C226%^staggers %^C137%^about, unable to avoid the swarm of %^C244%^f%^C248%^l%^C244%^i%^C250%^e%^C246%^s%^C137%^!%^CRST%^", targ);  
-            load_object("/std/effect/status/staggered")->apply_effect(targ, roll_dice(1, 2), TO);
+            if(powerlevel > 4){
+                tell_object(targ, "%^RESET%^%^CRST%^%^C137%^They buzz and crawl all over and around your face, causing you to %^C226%^stagger %^C137%^about!%^CRST%^");
+                tell_room(room, "%^RESET%^%^CRST%^%^C137%^"+targ->QCN+"%^RESET%^%^CRST%^ %^C226%^staggers %^C137%^about, unable to avoid the swarm of %^C244%^f%^C248%^l%^C244%^i%^C250%^e%^C246%^s%^C137%^!%^CRST%^", targ);  
+                load_object("/std/effect/status/staggered")->apply_effect(targ, roll_dice(1, 2), TO);
+            }
             break;
         case 1 :
             tell_object(targ, "%^RESET%^%^CRST%^%^C137%^The %^C244%^f%^C248%^l%^C244%^i%^C250%^e%^C246%^s %^C137%^crawl inside your clothing, into your mouth and across your body! It is %^C102%^si%^C108%^ck%^C114%^e%^C102%^ni%^C108%^ng%^C137%^, and you start to %^C102%^p%^C108%^u%^C114%^k%^C102%^e %^C137%^uncontrollably!%^CRST%^");
