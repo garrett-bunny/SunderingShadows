@@ -28,6 +28,7 @@
 */
 
 #include <daemons.h>
+#include <security.h>
 
 //X and Y Axis Limits
 #define MAX_WIDTH 3
@@ -243,8 +244,10 @@ void destroy_plane(object owner)
         }
         */
         //write("Destroying : " + file_name(ob));
+        seteuid(UID_SYSTEM);
         ob->dest_effect();
         objectp(ob) && destruct(ob);
+        seteuid(geteuid(previous_object()));
     }
     
     objectp(owner) && owner->remove_property("demiplane compiler");
@@ -362,7 +365,7 @@ int place_monsters(int x, int y, string theme, object owner)
         if(catch(boss->move(cloned_rooms[key])))
             return 0;
         
-        boss->set_powerlevel(1 + owner->query_level() / 10);
+        boss->set_powerlevel(max( ({ owner->query_level() / 10, 1 }) ));
     }
     else
     {
