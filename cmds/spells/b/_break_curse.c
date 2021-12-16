@@ -10,7 +10,6 @@ void create() {
     set_spell_level(([ "mage" : 4, "bard" : 3, "paladin" : 3, "cleric" : 3, "inquisitor":3,]));
     set_spell_sphere("abjuration");
     set_domains("magic");
-    set_mystery("godclaw");
     set_syntax("cast CLASS break curse on TARGET
         cast CLASS break curse on OBJECT [at PLAYER]");
     set_description("This spell will break curses that have been placed upon a living or magical item, unravelling the corrupted weave around it. Unlike dispel magic, this spell will always succeed if its caster level is greater than that of the curse. This spell will affect spells that dispel magic can not.");
