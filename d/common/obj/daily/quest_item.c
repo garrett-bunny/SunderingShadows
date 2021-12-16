@@ -44,6 +44,9 @@ void init()
     if(!holder || !userp(holder))
         return;
     
+    if(avatarp(holder))
+        return;
+    
     reward_player(holder);
 }
 
@@ -55,7 +58,6 @@ void reward_player(object who)
     
     if(!userp(who))
     {
-        ::remove();
         return;
     }
     
@@ -72,9 +74,9 @@ void reward_player(object who)
     tell_object(who, "You pick up the fragment and you feel the demiplane dissolve arround you.");
     compiler->destroy_plane(who);
     tell_object(who, "You are rewarded for your efforts!");
-    money = who->query_level() * (500 + random(101));
+    money = who->query_level() * (600 + random(101));
     who->add_money("gold", money);
-    exp = exp_for_level(who->query_level() + 1) / 13;
+    exp = exp_for_level(who->query_level() + 1) / 5;
     who->add_exp(exp);
     mats_ob = new("/cmds/mortal/obj/enchanting_mats.c");
     mats = who->query_level() * 100;
