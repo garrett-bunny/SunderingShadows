@@ -48,7 +48,7 @@ int snuff_fun(string str){
         tell_object(TP, "%^RESET%^%^CRST%^%^C125%^You're too busy to do that!%^CRST%^");
         return 1;
     }
-    TP->set_paralyzed(1, "%^RESET%^%^CRST%^%^C125%^You're busy snuffing out that orb!%^CRST%^");
+    
     remove();
     return 1;
 }

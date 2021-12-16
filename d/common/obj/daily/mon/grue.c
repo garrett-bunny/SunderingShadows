@@ -53,7 +53,7 @@ void create(){
     set_spell_chance(50);
     set_spells(({
         "interstellar void",
-        "umbral strike", }));
+        "tremor",}));
     set_powerlevel(5);
     counter = 1;
     handicap = 0;
