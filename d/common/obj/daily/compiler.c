@@ -201,7 +201,7 @@ void compile_plane(object owner)
 void check_plane(object owner)
 {
     //Check if they're still logged in
-    if(!objectp(owner) || !userp(owner))
+    if(!objectp(owner) || !userp(owner) || owner->query_ghost())
         destroy_plane(owner);
     
     //Check if they're still in the area
@@ -247,7 +247,6 @@ void destroy_plane(object owner)
         seteuid(UID_SYSTEM);
         ob->dest_effect();
         objectp(ob) && destruct(ob);
-        seteuid(geteuid(previous_object()));
     }
     
     objectp(owner) && owner->remove_property("demiplane compiler");
