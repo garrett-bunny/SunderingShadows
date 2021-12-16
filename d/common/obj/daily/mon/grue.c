@@ -114,7 +114,8 @@ void darkness_spread(){
     object ob;
     
     if(ETO->query_property("light") <= -10) return;
-    ob = new("/d/common/obj/daily/obj/grue_orb")->move(ETO);
+    ob = new("/d/common/obj/daily/obj/grue_orb");
+    ob->move(ETO);
     tell_room(ETO, "%^RESET%^%^CRST%^%^C244%^The grue shudders... and coughs out an %^C059%^orb of darkness %^C244%^that drifts away!\n\n%^RESET%^%^C037%^The %^C030%^dark%^C024%^ness inte%^C023%^nsif%^C019%^ies...\n%^CRST%^");
     return;
 }

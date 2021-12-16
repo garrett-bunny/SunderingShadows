@@ -90,7 +90,7 @@ void init(){
 }
 
 void flies_fun(){
-    object room, ob, ob2, ob3, targ;
+    object room, ob, ob2, targ;
     object* attackers;
     
     room = environment(this_object());
@@ -102,19 +102,14 @@ void flies_fun(){
     
     if(!userp(targ)){
         tell_room(room, "%^RESET%^%^CRST%^%^C196%^Several swarms erupt from his bloated lips!\n%^CRST%^");
-        ob = new("/d/common/obj/daily/mon/plaguelord_flies")->move(room);
-        ob->set_powerlevel(powerlevel);
-        ob->kill_ob(targ);
-        ob2 = new("/d/common/obj/daily/mon/plaguelord_flies")->move(room);
+        ob2 = new("/d/common/obj/daily/mon/plaguelord_flies");
+        ob2->move(room);
         ob2->set_powerlevel(powerlevel);
         ob2->kill_ob(targ);
-        ob3 = new("/d/common/obj/daily/mon/plaguelord_flies")->move(room);
-        ob3->set_powerlevel(powerlevel);
-        ob3->kill_ob(targ);
-        return;
     }
     
-    ob = new("/d/common/obj/daily/mon/plaguelord_flies")->move(room);
+    ob = new("/d/common/obj/daily/mon/plaguelord_flies");
+    ob->move(room);
     ob->set_powerlevel(powerlevel);
     ob->kill_ob(targ);
     return;
@@ -129,7 +124,7 @@ void wave_fun(){
     attackers = query_attackers();
     count = sizeof(attackers);
     
-    tell_room(ETP, "%^RESET%^%^CRST%^\n%^C118%^St%^C112%^er%^C106%^cus%^C106%^ raises his horrid limbs up, and the corrupt turgid waters gather behind him in a %^C143%^ma%^C137%^ss%^C131%^iv%^C143%^e t%^C137%^id%^C131%^al %^C143%^wa%^C137%^ve %^C106%^of %^C112%^filth %^C106%^and %^C118%^putrescence%^C106%^. It rushes forward with his gesture, slamming into everything in sight!%^CRST%^");
+    tell_room(ETO, "%^RESET%^%^CRST%^\n%^C118%^St%^C112%^er%^C106%^cus%^C106%^ raises his horrid limbs up, and the corrupt turgid waters gather behind him in a %^C143%^ma%^C137%^ss%^C131%^iv%^C143%^e t%^C137%^id%^C131%^al %^C143%^wa%^C137%^ve %^C106%^of %^C112%^filth %^C106%^and %^C118%^putrescence%^C106%^. It rushes forward with his gesture, slamming into everything in sight!%^CRST%^");
     
     for(i = 0; i < count; i++){
         targ = attackers[i];

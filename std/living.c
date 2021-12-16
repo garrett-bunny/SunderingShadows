@@ -2061,6 +2061,9 @@ void set_detecting_invis(int xx)
 
 int true_seeing()
 {
+    if(!objectp(TO) || !objectp(ETO))
+        return 0;
+    
     return true_seeing || ETO->query_property("no invis") || avatarp(TO);
 }
 
