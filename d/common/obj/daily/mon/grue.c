@@ -4,7 +4,7 @@
 #include <std.h>
 #include <daemons.h>
 
-inherit WEAPONLESS;
+inherit MONSTER;
 
 int powerlevel, counter, handicap;
 

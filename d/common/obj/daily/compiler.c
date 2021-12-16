@@ -231,6 +231,10 @@ void destroy_plane(object owner)
     foreach(string str in keys(cloned_rooms))
     {
         ob = cloned_rooms[str];
+        
+        if(!objectp(ob))
+            continue;
+        
         /*
         if(!objectp(ob))
         {
@@ -239,7 +243,8 @@ void destroy_plane(object owner)
         }
         */
         //write("Destroying : " + file_name(ob));
-        destruct(ob);
+        ob->dest_effect();
+        objectp(ob) && destruct(ob);
     }
     
     objectp(owner) && owner->remove_property("demiplane compiler");

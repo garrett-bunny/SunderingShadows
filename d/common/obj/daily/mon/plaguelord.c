@@ -5,7 +5,7 @@
 #include <daemons.h>
 #include <magic.h>
 
-inherit WEAPONLESS;
+inherit MONSTER;
 
 int powerlevel, buffed, handicap;
 
