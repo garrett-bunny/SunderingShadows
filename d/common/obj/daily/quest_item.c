@@ -50,7 +50,8 @@ void init()
 void reward_player(object who)
 {
     object compiler;
-    int money, exp;
+    int money, exp, mats;
+    object mats_ob;
     
     if(!userp(who))
     {
@@ -75,7 +76,10 @@ void reward_player(object who)
     who->add_money("gold", money);
     exp = exp_for_level(who->query_level() + 1) / 13;
     who->add_exp(exp);
-    tell_object(who, sprintf("You are awarded %d XP and %d gold!", exp, money));
+    mats_ob = new("/cmds/mortal/obj/enchanting_mats.c");
+    mats = who->query_level() * 100;
+    mats_ob->set_count(mats);
+    tell_object(who, sprintf("You are awarded %d XP, %d enchanting materials and %d gold!", exp, mats, money));
     
     ::remove();
 }
