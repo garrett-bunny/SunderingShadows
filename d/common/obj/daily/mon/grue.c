@@ -92,7 +92,7 @@ void round_cleanup(){
             warning();
             break;
         case 4 :
-            if(powerlevel > 3){
+            if(powerlevel > 4){
                 slam_attack();
             }
             darkness_heal();

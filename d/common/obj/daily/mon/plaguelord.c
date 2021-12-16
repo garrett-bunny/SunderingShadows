@@ -83,7 +83,7 @@ void set_powerlevel(int pwrlvl){
 
 void init(){
     ::init();
-    if((!buffed) && (powerlevel > 3)){
+    if((!buffed) && (powerlevel > 4)){
         new("/cmds/spells/e/_elemental_aura.c")->use_spell(this_object(), "acid", (powerlevel * 10), 100, "mage");
         buffed = 1;
     }
@@ -101,7 +101,7 @@ void flies_fun(){
     tell_room(room, "%^RESET%^%^CRST%^\n%^C118%^St%^C112%^er%^C106%^cus%^C130%^ opens his maw wide, spewing out a cloud of %^C244%^f%^C248%^l%^C244%^i%^C250%^e%^C246%^s%^C130%^!");
     
     if(!userp(targ)){
-        if(powerlevel >3){
+        if(powerlevel > 4){
             tell_room(room, "%^RESET%^%^CRST%^%^C196%^Several swarms erupt from his bloated lips!\n%^CRST%^");
             ob2 = new("/d/common/obj/daily/mon/plaguelord_flies");
             ob2->move(room);
