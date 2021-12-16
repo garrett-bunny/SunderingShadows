@@ -52,7 +52,7 @@ void buzz_fun(object targ){
     tell_object(targ, "%^RESET%^%^CRST%^%^C144%^The %^C244%^f%^C248%^l%^C244%^i%^C250%^e%^C246%^s %^C144%^swarm about your face, crawling over your eyes, into your mouth!%^CRST%^");
     tell_room(room, "%^RESET%^%^CRST%^%^C144%^The %^C244%^f%^C248%^l%^C244%^i%^C250%^e%^C246%^s %^C144%^swarm about "+targ->QCN+"%^RESET%^%^CRST%^%^C144%^, covering their face!%^CRST%^", targ);
     
-    if(SAVING_THROW_D->fort_save(targ, (powerlevel * 10) + (powerlevel * powerlevel))){
+    if(SAVING_THROW_D->fort_save(targ, (powerlevel * 13))){
         tell_object(targ, "%^RESET%^%^CRST%^%^C118%^You manage to shake them off, spitting out a couple as well.%^CRST%^");
         tell_room(room, "%^RESET%^%^CRST%^%^C118%^"+targ->QCN+"%^RESET%^%^CRST%^%^C118%^ shakes free of the swarm.%^CRST%^", targ);
         return;
