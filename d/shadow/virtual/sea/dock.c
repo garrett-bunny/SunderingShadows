@@ -73,14 +73,18 @@ int __Read_me(string str)
   %^ORANGE%^<sell boat>%^RESET%^      Will sell boat.
 
 %^CYAN%^Known safe harbors:%^RESET%^
+  %^BOLD%^%^BLUE%^On the Seakrune Sea:%^RESET%^
   Attaya: 28,43
-  Dagger Straits: 5,18
   Deku: 20,16
   Graez: 8,16
   Eldebaro: 7,51
   Laerad: 20,36
+  Serakii: 41,44
   Shadow: 0,36
-  The Ocean is at 24,10
+  The Dagger Straits: 5,18
+  
+  %^BOLD%^%^BLUE%^In the Dagger Straits:%^RESET%^
+  The Seakrune Sea 24,10
   Torm: 1,5
 
 %^CYAN%^Known %^RED%^dangerous%^CYAN%^ harbors:%^RESET%^
