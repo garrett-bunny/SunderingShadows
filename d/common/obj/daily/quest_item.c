@@ -48,7 +48,7 @@ void init()
     if(avatarp(holder))
         return;
     
-    reward_player(holder);
+    call_out("reward_player", 1, holder);
 }
 
 void reward_player(object who)
