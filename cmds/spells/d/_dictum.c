@@ -9,7 +9,6 @@ create()
     set_spell_name("dictum");
     set_spell_level(([ "cleric" : 7, "inquisitor" : 6, ]));
     set_spell_sphere("invocation_evocation");
-    set_mystery("godclaw");
     set_domains("law");
     set_syntax("cast CLASS dictum on TARGET");
     set_description("You proclaim a word of power, and stagger, paralyze or kill your target.");
@@ -34,10 +33,12 @@ void spell_effect()
 
     caster->force_me("yell %^WHITE%^%^BOLD%^DIE!");
 
-    if (!do_save(target, 4)) {
+    if (!do_save(target, 0))
+    {
         tell_room(place, "%^BOLD%^" + target->QCN + " is blasted to the groud with the power of the voice.", target);
         tell_object(target, "%^BOLD%^%^You are blasted to the ground with the power of the voice.");
-        target->set_tripped(roll_dice(1, 4), "%^BOLD%^You are trying to regain your footing.");
+        //target->set_tripped(roll_dice(1, 4), "%^BOLD%^You are trying to regain your footing.");
+        find_object("/std/effect/status/staggered")->apply_effect(target, roll_dice(1, 4));
     }
 
     if (ldiff > 4) {
@@ -45,18 +46,19 @@ void spell_effect()
         tell_room(place, "%^BOLD%^" + target->QCN + " stops for a moment with a thoughtful expression.", target);
         tell_object(target, "%^BOLD%^%^You are stunned by the command.");
         duration = roll_dice(2, 4);
-        if (do_save(target, 4)) {
+        if (do_save(target, 0)) {
             duration = 8 * roll_dice(1, 4);
         }
         target->set_paralyzed(duration, "You are stunned by the command you just heard.");
     }
 
     if (ldiff > 9) {
-        if (!combat_death_save(target, 6)) {
+        if (!combat_death_save(target, 0)) {
             tell_room(place, "%^BOLD%^Upon hearing the words, " + target->QCN + " simply dies!", target);
             tell_object(target, "%^BOLD%^YOU OBEY AND DIE.");
-            damage_targ(target, target->return_target_limb(), target->query_max_hp() * 2, "mental");
-        }
+            //damage_targ(target, target->return_target_limb(), target->query_max_hp() * 2, "mental");
+            target->cause_typed_damage(target, "torso", target->query_max_hp() * 2, "untyped");
+        }   
     }
 
     dest_effect();
