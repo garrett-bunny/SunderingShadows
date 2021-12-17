@@ -24,8 +24,8 @@ void create(){
     set_travel(PAVED_ROAD);
     set_property("indoors",1);
     set_property("light",2);
-    set_name("Tonovi City Jail");
-    set_short("Tonovi City Jail");
+    set_name("Torm City Jail");
+    set_short("Torm City Jail");
     set_property("no sticks",1);
 
     set_long("%^ORANGE%^This is the City of Torm jail.  "+
