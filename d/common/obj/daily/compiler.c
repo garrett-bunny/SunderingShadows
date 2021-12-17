@@ -333,7 +333,7 @@ string get_room_long(string theme)
 int place_monsters(int x, int y, string theme, object owner)
 {
     string file, key;
-    object boss;
+    object boss, fragment;
     
     key = (string)x + "x" + (string)y;
     //In the last room, place the boss
@@ -363,6 +363,9 @@ int place_monsters(int x, int y, string theme, object owner)
         
         if(catch(boss->move(cloned_rooms[key])))
             return 0;
+        
+        fragment = new("/d/common/daily/obj/quest_item");
+        fragment->move(boss);
         
         boss->set_powerlevel(max( ({ owner->query_level() / 10, 1 }) ));
     }

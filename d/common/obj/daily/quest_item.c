@@ -81,6 +81,7 @@ void reward_player(object who)
     mats_ob = new("/cmds/mortal/obj/enchanting_mats.c");
     mats = who->query_level() * 100;
     mats_ob->set_count(mats);
+    mats_ob->move(who);
     tell_object(who, sprintf("You are awarded %d XP, %d enchanting materials and %d gold!", exp, mats, money));
     
     ::remove();

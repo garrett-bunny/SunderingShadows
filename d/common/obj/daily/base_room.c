@@ -15,6 +15,7 @@ void create()
     set_property("indoors",0);
     set_property("light",2);
     set_property("no sticks",1);
+    set_property("teleport proof", 1);
     set_no_clean(1);
 
     set_short("Plane of Shadows");

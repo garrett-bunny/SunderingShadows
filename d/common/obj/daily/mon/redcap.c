@@ -72,7 +72,7 @@ void round_cleanup(){
     switch(counter){
         case 1 :
             if(powerlevel > 4){
-                bloody_shash();
+                bloody_slash();
             }
             bloodthirst++;
             break;
