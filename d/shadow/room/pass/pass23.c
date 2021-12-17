@@ -12,30 +12,21 @@ void create(){
     set_long(
 @MELNMARN
 %^BOLD%^You are walking on the Dragon Pass Road.%^RESET%^
-%^CYAN%^All around you lie the Charu Mountains. They are very intimidating, looming high in the sky. The road windsthrough the mountains.
+%^CYAN%^All around you lie the Charu Mountains. They are very intimidating, looming high in the sky. The road winds through the mountains. A %^ORANGE%^small wooden cabin %^CYAN%^has been built along the mountainside.
 MELNMARN
 );
 
     set_smell("default","You can smell the fresh mountain air.");
-    set_listen("default","You can hear the wind blowing through the
-valleys.");
-
-
-
+    set_listen("default","You can hear the wind blowing through the valleys.");
     set_items(([
         "road":"A new road through the mountains.",
-        ({"mountains","mountain","glint","top","peak","snow"}):""+
-		"The mountains rise up above you, high into "+
-		"the air.  From this vantage point you can just make out "+
-		"the highest peak and the blackened scar that shreads its "+
-		"one side.  It is hard to tell, but it would seem "+
-		"something is lodged up there still.  Though what is "+
-		"hard to say.  An explosion has spewed a lot of its "+
-		"structure into every which direction.",
+        ({"mountains","mountain","glint","top","peak","snow"}):"The mountains rise up above you, high into the air.  From this vantage point you can just make out the highest peak and the blackened scar that shreads its one side.  It is hard to tell, but it would seem something is lodged up there still.  Though what is hard to say.  An explosion has spewed a lot of its structure into every which direction.",
+        "cabin":"%^RESET%^%^CRST%^%^C058%^This is pretty typical for a small cabin, with a couple windows and a simple wooden entryway. However, parts of it look newer than others. It seems like someone has regularly had to make repairs to it, in %^C124%^catastrophic %^C058%^proportions.%^CRST%^",
         ]));
-
     set_exits(([
         "southeast" : PASSDIR+"pass22",
-        "northeast" : PASSDIR+"pass24"
+        "northeast" : PASSDIR+"pass24",
+        "cabin" : "/d/common/obj/daily/entrance",
         ]));
 }
+
