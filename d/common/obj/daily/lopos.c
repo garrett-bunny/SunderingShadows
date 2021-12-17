@@ -71,7 +71,7 @@ void reply_func(string str, object targ){
     if(((strsrch(str,"yes") != -1 ) || (strsrch(str,"Yes") != -1 ) || (strsrch(str,"okay") != -1 )) && greeted){
         force_me("emote %^RESET%^%^CRST%^%^C144%^claps his hands together, rubbing them eagerly.%^CRST%^");
         force_me("say %^RESET%^%^CRST%^%^C202%^\"Excellent! Just %^C226%^open %^C202%^a %^C226%^demiplane %^C202%^here, and you'll be swept into his latest tear. Find the fragment of reality to close it up and I'll bring you right back here!\"%^CRST%^");
-        force_me("emote %^RESET%^%^CRST%^%^C144%^Gestures towards the stone portal.%^CRST%^");
+        force_me("emote %^RESET%^%^CRST%^%^C144%^gestures towards the stone portal.%^CRST%^");
         return;
     }
     
