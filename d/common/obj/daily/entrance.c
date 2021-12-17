@@ -43,7 +43,7 @@ void create()
         ({"bookshelves","notes","tomes"}):"%^RESET%^%^CRST%^%^C025%^The entirety of these %^C131%^shelves %^C025%^have been utilized, either by %^C137%^books%^C025%^, stacks of %^C229%^notes%^C025%^, or odd pieces of %^C118%^c%^C154%^r%^C148%^y%^C118%^s%^C154%^t%^C148%^a%^C118%^l%^C025%^.%^CRST%^",
         ]));
     set_exits(([
-        "out" : "/d/shadow/room/pass/pass23",
+        "east" : "/d/shadow/room/pass/pass23",
         ]));
 }
 

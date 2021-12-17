@@ -26,7 +26,7 @@ MELNMARN
     set_exits(([
         "southeast" : PASSDIR+"pass22",
         "northeast" : PASSDIR+"pass24",
-        "cabin" : "/d/common/obj/daily/entrance",
+        "west" : "/d/common/obj/daily/entrance",
         ]));
 }
 
