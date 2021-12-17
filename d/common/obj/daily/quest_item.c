@@ -9,6 +9,7 @@
 
 #include <std.h>
 #include <daemons.h>
+#include <security.h>
 
 inherit OBJECT;
 
@@ -72,6 +73,8 @@ void reward_player(object who)
     }
     
     tell_object(who, "You pick up the fragment and you feel the demiplane dissolve arround you.");
+
+    seteuid(UID_SYSTEM);
     compiler->destroy_plane(who);
     tell_object(who, "You are rewarded for your efforts!");
     money = who->query_level() * (1000 + random(101));
@@ -85,9 +88,4 @@ void reward_player(object who)
     tell_object(who, sprintf("You are awarded %d XP, %d enchanting materials and %d gold!", exp, mats, money));
     
     ::remove();
-}
-    
-    
-    
-    
-    
+}    
