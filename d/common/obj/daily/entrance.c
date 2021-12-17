@@ -57,7 +57,7 @@ void init()
 
 void reset(){
     ::reset();
-    //if(!present("lopos")) new("/d/common/obj/daily/lopos")->move(TO);
+    if(!present("lopos")) new("/d/common/obj/daily/lopos")->move(TO);
 }
 
 int open(string str)

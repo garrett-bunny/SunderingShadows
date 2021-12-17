@@ -74,12 +74,12 @@ void reward_player(object who)
     tell_object(who, "You pick up the fragment and you feel the demiplane dissolve arround you.");
     compiler->destroy_plane(who);
     tell_object(who, "You are rewarded for your efforts!");
-    money = who->query_level() * (600 + random(101));
+    money = who->query_level() * (1000 + random(101));
     who->add_money("gold", money);
     exp = exp_for_level(who->query_level() + 1) / 5;
     who->add_exp(exp);
     mats_ob = new("/cmds/mortal/obj/enchanting_mats.c");
-    mats = who->query_level() * 100;
+    mats = who->query_level() * 200;
     mats_ob->set_count(mats);
     mats_ob->move(who);
     tell_object(who, sprintf("You are awarded %d XP, %d enchanting materials and %d gold!", exp, mats, money));
