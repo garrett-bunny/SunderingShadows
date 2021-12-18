@@ -231,6 +231,8 @@ void destroy_plane(object owner)
         tell_object(owner, "%^BOLD%^You are whisked away to safety as the plane collapses!%^RESET%^");
     }
     
+    seteuid(UID_ROOT);
+    
     foreach(string str in keys(cloned_rooms))
     {
         ob = cloned_rooms[str];
@@ -246,7 +248,6 @@ void destroy_plane(object owner)
         }
         */
         //write("Destroying : " + file_name(ob));
-        seteuid(UID_SYSTEM);
         ob->dest_effect();
         objectp(ob) && destruct(ob);
     }
@@ -255,6 +256,7 @@ void destroy_plane(object owner)
     objectp(owner) && "/d/common/obj/daily/entrance"->remove_traveler(owner);
     cloned_rooms = ([  ]);
     destruct(this_object());
+    objectp(this_object()) && this_object()->remove();
 }
 
 mapping query_rooms()
@@ -335,7 +337,7 @@ string get_room_long(string theme)
 int place_monsters(int x, int y, string theme, object owner)
 {
     string file, key;
-    object boss, fragment;
+    object boss, fragment, monster;
     
     key = (string)x + "x" + (string)y;
     //In the last room, place the boss
@@ -378,8 +380,18 @@ int place_monsters(int x, int y, string theme, object owner)
         
         for(int z = 0; z < random(6); z++)
         {
+            if(catch(monster = new(monsters_to_use[random(sizeof(monsters_to_use) - 1)])))
+                continue;
+            
+            monster->set_moving(0);
+            
+            if(catch(monster->move(cloned_rooms[key])))
+                continue;
+            
+            /*
             if(catch(new(monsters_to_use[random(sizeof(monsters_to_use) - 1)])->move(cloned_rooms[key])))
                 return 0;
+            */
         }
     }
     

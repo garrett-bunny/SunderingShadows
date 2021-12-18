@@ -1,5 +1,6 @@
 #include <std.h>
 #include <daemons.h>
+#include <security.h>
 
 inherit ROOM;
 inherit "/std/virtual/compile";
@@ -55,6 +56,8 @@ int finish_leave(string str)
         write("You decide to stay within the demiplane.");
         return 1;
     }
+    
+    seteuid(UID_ROOT);
     
     write("You decide to leave the demiplane and you begin to see it fade around you.");
     compiler = this_player()->query_property("demiplane compiler");

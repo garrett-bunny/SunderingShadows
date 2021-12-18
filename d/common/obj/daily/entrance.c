@@ -74,7 +74,7 @@ int open(string str)
         write("You already have a demiplane open. Type <close demiplane> to close it.");
         return 1;
     }   
-    if(this_player()->cooldown("daily demiplane"))
+    if(this_player()->cooldown("daily demiplane") && !avatarp(this_player()))
     {
         write("You need to wait to open another demiplane. Type <cooldowns> to see your cooldowns.");
         return 1;
@@ -92,7 +92,8 @@ int open(string str)
     compiler->compile_plane(this_player());
     add_traveler(this_player());
     //once per day
-    this_player()->add_cooldown("daily demiplane", 86400); //commented out for testing purposes
+    if(!avatarp(this_player()))
+        this_player()->add_cooldown("daily demiplane", 86400); //commented out for testing purposes
     
     return 1;
 }
