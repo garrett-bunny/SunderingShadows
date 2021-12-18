@@ -36,6 +36,8 @@
 #define PATH "/d/common/obj/daily/"
 #define THEMES ({ "clockwork", "offal marsh", "deep caverns", "feywild" })
 
+inherit OBJECT;
+
 //rename_object() or compile() would have been the ideal method
 //to do this. Without those funs, we will use a mapping instead.
 
