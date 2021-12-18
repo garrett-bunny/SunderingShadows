@@ -169,7 +169,7 @@ void heart_beat()
     if(!room || !objectp(room))
         return;
 
-    if(!objectp(owner) || owner->query_property("animal_companion") != this_object())
+    if(!objectp(owner) || owner->query_property("animal_companion") != this_object() || owner->query_ghost())
     {
         this_object()->remove();
         return;
