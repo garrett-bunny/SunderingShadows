@@ -44,10 +44,9 @@ create() {
   set_body_type("human");
   set_currency("gold");
   set_menu(
-      ({"red wine", "whiskey", "dark ale", "water", "coffee", "meat platter", "bread platter"}),
-      ({ "alcoholic", "alcoholic", "alcoholic", "soft drink", "caffeine",
-         "food", "food"}),
-      ({ 25, 30, 10, 1, 5, 20, 20 })
+      ({"red wine", "whiskey", "dark ale", "water", "coffee", "meat platter", "bread platter", "fried fish"}),
+      ({ "alcoholic", "alcoholic", "alcoholic", "soft drink", "caffeine", "food", "food", "food"}),
+      ({ 25, 30, 10, 1, 5, 20, 20, 25 })
   );
  
   set_my_mess(({
@@ -57,7 +56,8 @@ create() {
     "%^C075%^The water is clear and refreshing.%^CRST%^\n",
     "%^C094%^The bitter coffee's warmth spreads through you.%^CRST%^\n",
     "%^C126%^The meat platter has all of the choices you'd expect.%^CRST%^\n",
-    "%^C130%^The bread is plain and simple but very filling.%^CRST%^\n"
+    "%^C130%^The bread is plain and simple but very filling.%^CRST%^\n",
+"%^C250%^You eat the %^C225%^tender %^C142%^fried fish%^C250%^. It is %^C142%^tender %^C250%^and %^C110%^filling%^C250%^.%^CRST%^",
   }));
   
   set_your_mess(({
@@ -68,6 +68,7 @@ create() {
     "%^C094%^drinks the coffee and stretches.%^CRST%^\n",
     "%^C126%^slowly picks apart the meat platter.%^CRST%^\n",
     "%^C130%^breaks open the bread and devours it.%^CRST%^\n",
+"%^C109%^eats the plate of %^C142%^fried fish%^C109%^ with a smile%^CRST%^.",
 
   }));
   
@@ -78,7 +79,8 @@ create() {
     "%^C075%^Water%^CRST%^",
     "%^C094%^Bitter Coffee%^CRST%^",
     "%^C126%^Meat Platter%^CRST%^",
-    "%^C130%^Bread Platter%^CRST%^"
+    "%^C130%^Bread Platter%^CRST%^",
+"%^C142%^fried fish%^CRST%^",
 
   }));
   
@@ -90,6 +92,7 @@ create() {
     "The %^C094%^coffee%^CRST%^ is simple and strong, served in a clay mug.%^CRST%^\n",
     "This wooden platter has been piled with all matter of %^C126%^meats%^CRST%^. Farmer's sausage, bacon and others.%^CRST%^\n",
     "This platter is loaded up with different %^C130%^breads%^CRST%^ and butter. Perfect for any meal.%^CRS%^\n",
+"%^C225%^This simple plate is loaded with small carefully %^C214%^fried %^C225%^portions of %^C142%^fish%^CRST%^",
 
   }));
 }

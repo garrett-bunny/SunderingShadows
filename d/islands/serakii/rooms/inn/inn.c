@@ -37,7 +37,10 @@ void create() {
 	"with a %^C124%^ra%^C009%^g%^C124%^ing "+
 	"fi%^C009%^r%^C124%^e%^C094%^. Tables "+
 	"dot the room, %^C094%^each with enough chairs "+
-	"for the patrons. Overall the mood of "+
+        "%^C094%^for the patrons. Near the %^C244%^fireplace "+
+		"%^C094%^a %^C101%^fine hammock%^C094%^ is hung, "+
+        "%^C094%^and above it is mounted a fishing rod. Overall "+
+		"the mood of "+
 	"the room is %^C094%^one of %^C059%^calm "+
 	"comfort%^C094%^.%^CRST%^\n");
 
@@ -88,7 +91,8 @@ void create() {
 	   "is a small insignia of a Rook chess "+
 	   "piece. It is worn down though as "+
 	   "if thousands of hands have brushed "+
-	   "over it.\n%^CRST%^",
+           "over it.\n",
+       ({"hammock","fishing rod"}) : "%^C058%^Strung up near the fireplace is a hammock large enough for two people to comfortably lay in. Above it is a %^C241%^glossy black %^C058%^fishing rod with a %^C028%^bright green cording%^C058%^ for a handle.\n",
     ]));
 
     set_exits(([
@@ -127,7 +131,8 @@ int read(string str)
 		tell_object(TP,"Whiskey\t\t30 Gold\n");
 		tell_object(TP,"%^C179%^Food%^CRST%^");
 		tell_object(TP,"Meat Platter\t20 Gold");
-		tell_object(TP,"Bread Platter\t20 Gold\n");
+		                tell_object(TP,"Bread Platter\t20 Gold");
+						tell_object(TP,"Fried Fish\t25 Gold\n");
 		tell_object(TP,"%^C125%^**********************************\n%^CRST%^");
 		tell_object(TP,"<buy> any dish to get it\n");
                 return 1;
