@@ -56,13 +56,13 @@ void spell_effect(int prof){
         tell_room(environment(target), "%^BLUE%^The void energy tears into " + target->QCN + ", threatening to unmake " + target->query_objective() + ".", target);
         target->set_paralyzed(roll_dice(2, 4) * 6);
         "/std/effect/status/exhausted"->apply_effect(target, clevel / 14 + 1);
-        target->cause_typed_damage(target, "torso", damage, "void");
+        target->cause_typed_damage(target, "torso", sdamage, "void");
     }
     else
     {
         tell_object(target, "%^BLUE%^The void energy strikes you, causing serious pain, but you are able to shrug some of it off.");
         tell_room(environment(caster), "%^BLUE%^The void energy strikes " + target->QCN + ", but " + target->query_subjective() + " is able to shrug some of it off.", target);
-        target->cause_typed_damage(target, "torso", damage / 2, "void");
+        target->cause_typed_damage(target, "torso", sdamage / 2, "void");
     }
     spell_kill(target, caster);
     spell_successful();

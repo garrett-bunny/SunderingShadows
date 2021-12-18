@@ -74,7 +74,7 @@ void reward_player(object who)
     
     tell_object(who, "You pick up the fragment and you feel the demiplane dissolve arround you.");
 
-    seteuid(UID_SYSTEM);
+    seteuid(UID_ROOT);
     compiler->destroy_plane(who);
     tell_object(who, "You are rewarded for your efforts!");
     money = who->query_level() * (1000 + random(101));
