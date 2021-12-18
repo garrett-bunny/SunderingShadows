@@ -49,7 +49,10 @@ int prerequisites(object ob)
 
 int cmd_chains_of_justice(string str)
 {
-    if(!this_player())
+    if(!objectp(this_player()))
+        return 0;
+    
+    if(!stringp(str))
         return 0;
 
     feat = new(base_name(this_object()));
@@ -61,6 +64,8 @@ void execute_feat()
 {
     object *foes;
     string color, mess;
+    
+    ::execute_feat();
     
     if((int)caster->query_property("using instant feat"))
     {
@@ -84,7 +89,7 @@ void execute_feat()
     
     foes = caster->query_attackers();
     
-    if(member_array(target, foes) < 0)
+    if(!objectp(target) || member_array(target, foes) < 0)
     {
         tell_object(caster, "That is not a valid target.");
         dest_effect();
@@ -180,7 +185,7 @@ void executive_attack()
 
 void dest_effect()
 {
-    if(objectp(caster))
+    if(objectp(caster) && caster->query_property("chains of justice"))
     {
         tell_object(caster, "You release your chains of justice.");
         caster->remove_property("chains of justice");
