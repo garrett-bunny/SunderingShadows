@@ -50,6 +50,8 @@ void compile_plane(object owner)
     string key, exit_key, short, long, theme;
     object room;
     
+    seteuid(UID_SYSTEM);
+    
     if(!userp(owner))
         owner = previous_object();
     if(!userp(owner))
