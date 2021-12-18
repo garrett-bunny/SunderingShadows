@@ -384,7 +384,7 @@ varargs int typed_damage_modification(object attacker, object targ, string limb,
         }
     }
     
-    if(chained = targ->query_property("chains of justice"))
+    if(damage > 0 && chained = targ->query_property("chains of justice"))
     {
         if(objectp(chained) && environment(chained) == environment(targ))
         {

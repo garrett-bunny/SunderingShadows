@@ -130,7 +130,7 @@ void execute_feat()
     return;
 }
 
-void executive_attack()
+void execute_attack()
 {
     string mess;
     
@@ -179,7 +179,7 @@ void executive_attack()
     tell_object(target, mess);
     
     caster->set_property("chains of justice", target);
-    call_out("dest_effect", 30);
+    call_out("dest_effect", 60);
     return;
 }
 
@@ -187,7 +187,7 @@ void dest_effect()
 {
     if(objectp(caster) && caster->query_property("chains of justice"))
     {
-        tell_object(caster, "You release your chains of justice.");
+        tell_object(caster, "%^BOLD%^You release your chains of justice.%^RESET%^");
         caster->remove_property("chains of justice");
     }
     
