@@ -38,6 +38,16 @@
 
 inherit OBJECT;
 
+object real_owner;
+
+void create()
+{
+    ::create();
+    set_name("demiplane_compiler");
+}
+
+int query_noclean(){ return 1; }
+
 //rename_object() or compile() would have been the ideal method
 //to do this. Without those funs, we will use a mapping instead.
 
@@ -195,6 +205,8 @@ void compile_plane(object owner)
     }
     
     write("Area Compiled Successfully!");
+    
+    real_owner = owner;
     
     if(!catch(owner->move_player(cloned_rooms["0x0"])))
         write("%^CYAN%^BOLD%^Demiplane teleport successful!%^RESET%^");
