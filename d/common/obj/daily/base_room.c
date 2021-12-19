@@ -17,7 +17,7 @@ void create()
     set_property("light",2);
     set_property("no sticks",1);
     set_property("teleport proof", 1);
-    set_no_clean(1);
+    //set_no_clean(1);
 
     set_short("Plane of Shadows");
     set_long("You are lost in the Plane of Shadow.");
@@ -89,6 +89,20 @@ object set_compiler(object ob)
 
 int is_demiplane_room()
 {
+    return 1;
+}
+
+int query_noclean()
+{
+    if(!owner)
+        return 0;
+    
+    if(!objectp(owner))
+        return 0;
+    
+    if(!environment(owner)->is_demiplane_room())
+        return 0;
+    
     return 1;
 }
 

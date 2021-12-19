@@ -46,7 +46,19 @@ void create()
     set_name("demiplane_compiler");
 }
 
-int query_noclean(){ return 1; }
+int query_noclean()
+{
+    if(!real_owner)
+        return 0;
+    
+    if(!objectp(real_owner))
+        return 0;
+    
+    if(!environment(real_owner)->is_demiplane_room())
+        return 0;
+    
+    return 1;
+}
 
 //rename_object() or compile() would have been the ideal method
 //to do this. Without those funs, we will use a mapping instead.
