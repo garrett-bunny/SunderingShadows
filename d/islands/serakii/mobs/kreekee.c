@@ -77,7 +77,7 @@ void create(){
 }
 
 void catch_say(string message){
-    if(strsrch(message,"hello") != -1) {
+    if(strsrch(message,"ello") != -1) {
       call_out("reply_hello",1,TP,message);
     }
     if(strsrch(message,"who are you") != -1) {
@@ -102,7 +102,7 @@ void catch_say(string message){
 
 void reply_hello(string msg, object who){
     tell_room(ETO,"%^C224%^The woman turns from a bowl "+
-	"of incense and squeels!%^CRST%^\n");
+	"of incense and squeals!%^CRST%^\n");
     force_me("say Hello Hello! Welcome! %^C205%^Who are "+
 	"you%^CRST%^?");
     return 1;
@@ -138,7 +138,7 @@ void reply_visions(string msg, object who){
 	"visions of the past the island has seen.");
 	tell_room(ETO,"\n");
 	force_me("say Remember too, who you are, changes "+
-	"what you see. %^C205%^Incens%^CRST%^e is a mix "+
+	"what you see. %^C205%^Incense%^CRST%^ is a mix "+
 	"of all %^C205%^Serakii%^CRST%^, so who you "+
 	"align with here, will change what the incense "+
 	"shows you! %^C205%^hounds%^CRST%^, %^C205%^"+
@@ -157,7 +157,7 @@ void reply_hounds(string msg, object who){
 }
 void reply_legion(string msg, object who){
     force_me("say The Legion of Pearl formed "+
-	"after the Night of Betrayal from remenants "+
+	"after the Night of Betrayal from remnants "+
 	"of other companies that couldn't stand alone."+
        "They hold the contract for the white keep. They "+
 "have locked the gates north, so you can't go any "+

@@ -36,7 +36,7 @@ void init(){
     }
     if((tod != "night") && query_property("light")){
        remove_property("light");
-       set_short("%^BLACK%^%^BOLD%^A heavy iron brzier%^RESET%^");
+       set_short("%^BLACK%^%^BOLD%^A heavy iron brazier%^RESET%^");
 	   set_long("%^BLACK%^%^BOLD%^Formed from heavy black iron into a "+
 	"half cage, this brazier is filled with oil soaked wood. It is "+
 	"large enough that it would take a team of horses to budge it.%^RESET%^");

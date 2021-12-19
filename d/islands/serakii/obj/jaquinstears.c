@@ -14,7 +14,7 @@ void create(){
 	"the face entirely and ties with %^RESET%^%^MAGENTA%^purple silk "+
 	"ribbons%^BLACK%^%^BOLD%^ behind the head. The front of the masque is "+
 	"carved into quite possibly the %^RESET%^most sorrowsome%^BLACK%^%^BOLD%^ "+
-	"woman's face you have ever seen. A single tear if %^RESET%^%^BOLD%^dia"+
+	"woman's face you have ever seen. A single tear of %^RESET%^%^BOLD%^dia"+
 	"m%^CYAN%^o%^WHITE%^nd%^BLACK%^%^BOLD%^ is insert below the right eye. "+
 	"You sense there must be more to this masque then simple ivory and silk "+
 	"as the more you look on it, the sadder you feel.%^RESET%^");
