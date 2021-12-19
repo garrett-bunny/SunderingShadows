@@ -9,13 +9,7 @@ void create() {
     set_short("Priest of the Order of Ximes");
     set("aggressive", 0);
     set_level(19);
-    set_long("%^RESET%^%^CYAN%^This man is one of many of his Order that tends "
-"to the castle.  %^YELLOW%^The Order of Ximes %^RESET%^%^CYAN%^is a sect of "
-"%^BOLD%^%^RED%^Tempus %^RESET%^%^CYAN%^based upon the cursed island of Sangri"
-".  They worship the Lord of Battle, taking His fight against the dark powers "
-"that threaten to constantly overwhelm the isle.  While this man is garbed "
-"in the robe of a priest and is quiet and respectful here, his sturdy build and "
-"muscled frame hints that he too, plays his part in the fight for this city.");
+    set_long("%^RESET%^%^CYAN%^This man is one of many of his Order that tends to the castle.  %^YELLOW%^The Order of Ximes %^RESET%^%^CYAN%^is a sect of %^BOLD%^%^RED%^Tempus %^RESET%^%^CYAN%^based upon the cursed island of Sangri. They worshipped the Lord of Battle before his fall, and have taken to praying to Lysara in their fight against the dark powers of undeath that threaten to constantly overwhelm the isle.  While this man is garbed in the robe of a priest and is quiet and respectful here, his sturdy build and muscled frame hints that he too, plays his part in the fight for this city.");
     set_gender("male");
     set_alignment(5);
     set_race("human");

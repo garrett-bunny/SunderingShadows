@@ -81,6 +81,7 @@ int preSpell()
     spell_to_cast->set_shadow_spell(max_level);
 
     spell_to_cast->use_spell(TP, sargs, clevel, 100, "mage");
+    call_out("dest_effect", 2);
     return 1;
 }
 
