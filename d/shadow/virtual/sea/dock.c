@@ -78,7 +78,7 @@ int __Read_me(string str)
   Deku: 20,16
   Graez: 8,16
   Eldebaro: 7,51
-  Serakii: 41,44
+  Serakii: 44,41
   Shadow: 0,36
   The Dagger Straits: 5,18
   
