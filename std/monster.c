@@ -12,6 +12,7 @@
 #include <daemons.h>
 #include <new_exp_table.h>
 #include <rooms.h>
+#include <security.h>
 
 
 inherit "/std/weaponless_users.c"; // consolidating all weaponless combat into one spot -Ares
@@ -783,6 +784,7 @@ void move_around()
         }
         if (member_array(exitfile, query_nogo()) == -1) { // *if it's not in the array, go ahead
 //      (ETO->query_exit(exit))->init();  // *was-but we already have filename now, so this saves querying the exit again
+            seteuid(UID_ROOT);
             if (objectp(find_object_or_load(exitfile))) {
                 exitfile->init();
                 if (exit != "temple") {
