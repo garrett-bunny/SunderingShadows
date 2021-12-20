@@ -156,22 +156,19 @@ void execute_attack()
     call_out("finish_smite", ROUND_LENGTH * ROUNDS, target, caster);
     
     if(FEATS_D->usable_feat(caster, "searing smite"))
-        call_out("searing_smite", ROUND_LENGTH, target, dam);
+        call_out("searing_smite", ROUND_LENGTH, dam);
 }
 
-void searing_smite(object ob, int dam)
+void searing_smite(int dam)
 {
-    if(!objectp(ob))
+    if(!objectp(target))
         return;
     
-    if(!ob->query_property("paladin smite"))
-        return;
+    tell_object(target, "%^CYAN%^BOLD%^You feel the sizzling divine energy burn to your very soul!%^RESET%^");
+    tell_room(environment(target), "%^CYAN%^BOLD%^Sizzling divine energies burn " + target->query_cap_name() + " with searing power!%^RESET%^", target);
+    target->cause_typed_damage(target, "torso", dam / 2, "divine");
     
-    tell_object(ob, "%^CYAN%^BOLD%^You feel the sizzling divine energy burn to your very soul!%^RESET%^");
-    tell_room(environment(ob), "%^CYAN%^BOLD%^Sizzling divine energies burn " + target->query_cap_name() + " with searing power!%^RESET%^", target);
-    ob->cause_typed_damage(ob, "torso", dam / 2, "divine");
-    
-    call_out("searing_smite", ROUND_LENGTH, ob, dam);
+    call_out("searing_smite", ROUND_LENGTH, dam);
 }
     
 void finish_smite(object you, object me)

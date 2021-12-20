@@ -33,7 +33,7 @@ void create() {
 	]));
 
      set_items(([
-       "shelves":" ."
+       "shelves":"%^C094%^Wooden shelves%^CRST%^ line every wall and are crammed with %^C172%^incense%^CRST%^, %^C159%^jars%^CRST%^, and %^C059%^bags%^CRST%^.\n"
      ] ));
     if(!present("kreekee"))
     {
