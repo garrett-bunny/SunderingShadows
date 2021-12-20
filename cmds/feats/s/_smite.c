@@ -17,6 +17,7 @@
 inherit FEAT;
 
 #define FEATTIMER 40
+#define ROUNDS 5
 
 void finish_smite(object you, object me);
 
@@ -70,10 +71,17 @@ void execute_feat()
         tell_object(caster,"You are already in the middle of using a feat!");
         dest_effect();
         return;
-    }   
+    }
+    if(caster->cooldown("smite"))
+    {
+        tell_object(caster, "You can't use smite yet.");
+        dest_effect();
+        return;
+    }
     if(!(int)USER_D->spend_pool(TP, 1, "grace"))
     {
         tell_object(caster, "You don't have the Divine Grace to Smite your foe!");
+        dest_effect();
         return;
     }
     
@@ -81,8 +89,6 @@ void execute_feat()
     
     tell_object(caster, "%^BOLD%^You prepare to smite your foe with divine energy.%^RESET%^");
     
-    //delay = time() + FEATTIMER;
-    //delay_messid_msg(FEATTIMER,"%^BOLD%^%^WHITE%^You can %^CYAN%^smite%^WHITE%^ again.%^RESET%^");
     caster->set_property("using instant feat",1);
     caster->remove_property("using smite");
     caster->set_property("using smite",delay);
@@ -140,17 +146,38 @@ void execute_attack()
         }
     }
     
+    caster->add_cooldown("smite", FEATTIMER);
     caster->set_property("magic", 1);
     tell_object(caster, "%^BOLD%^CYAN%^With a shout of your convictions, you unleash divine energy upon your foe!%^RESET%^");
     tell_room(place, "%^BOLD%^CYAN%^" + caster->QCN + " lets out a shout and strikes down " + caster->query_possessive() + " foe with divine energy!%^RESET%^", ({ caster }));
     caster->cause_typed_damage(target, "head", dam, "divine");
     caster->set_property("magic", -1);
     
-    call_out("finish_smite", ROUND_LENGTH * 5, target, caster);
+    call_out("finish_smite", ROUND_LENGTH * ROUNDS, target, caster);
+    
+    if(FEATS_D->usable_feat(caster, "searing smite"))
+        call_out("searing_smite", ROUND_LENGTH, dam);
 }
 
+void searing_smite(int dam)
+{
+    if(!objectp(target))
+        return;
+    
+    if(!target->query_property("paladin smite"))
+        return;
+    
+    tell_object(target, "%^CYAN%^BOLD%^You feel the sizzling divine energy burn to your very soul!%^RESET%^");
+    tell_room(place, "%^CYAN%^BOLD%^Sizzling divine energies burn " + target->query_cap_name() + " with searing power!%^RESET%^", target);
+    target->cause_typed_damage(target, "body", dam / 2, "divine");
+    
+    call_out("searing_smite", ROUND_LENGTH, dam);
+}
+    
 void finish_smite(object you, object me)
 {
+    remove_call_out("searing_smite");
+    
     if(you)
     {
         if(you->query_property("paladin smite"))
