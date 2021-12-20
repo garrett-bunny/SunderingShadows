@@ -36,7 +36,7 @@ create() {
   set_mp(random(400));
   set_max_mp(query_mp());
   add_money("copper", random(20));
-   set_emotes(10,({
+  set_emotes(4, ({
       "%^C246%^A table of off duty %^C242%^militia %^C246%^quietly play a game of %^C231%^dice %^C246%^at a %^C100%^table %^C246%^in the corner%^CRST%^\n",
       "%^C251%^The%^C196%^ f%^C226%^i%^C196%^re %^C250%^in the%^C196%^ %^C245%^fireplace %^C196%^c%^C247%^r%^C196%^ack%^C247%^l%^C196%^es.%^CRST%^\n",
       "%^C140%^A %^C064%^farmer %^C140%^finishes their %^C249%^drink%^C140%^. They go over to the %^C241%^fireplace %^C140%^to place a hand on the %^C227%^plaque%^C140%^, mouthing something %^C250%^silently%^C140%^ before leaving.%^CRST%^\n",
