@@ -22,4 +22,11 @@ void create(){
 
 }
 
-
+void reset()
+{
+    ::reset();
+    if(!present("oracle"))
+    {
+      new(MOBS"kyra.c")->move(TO);
+    }
+}
