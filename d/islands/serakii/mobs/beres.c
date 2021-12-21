@@ -12,7 +12,14 @@ void create() {
    set_name("trader");
    set_short("%^C142%^Beres Quijano%^C101%^, the%^CRST%^ %^C028%^Woodsman%^CRST%^");
    set_id(({ "beres","Bares","Bares Quijano","vendor","shopkeep"}));
-   set_long("Dressed in %^C094%^heavy leathers%^CRST%^, this %^C142%^half-elf's%^CRST%^ features lean more heavily to his w%^C028%^ood elf%^CRST%^ ancestry. His chin and nose are sharp and angular and his %^C208%^coppery%^CRST%^ long hair barely hides one %^C221%^long elven ear%^CRST%^. Strangely his other %^C221%^ear %^CRST%^is completely gone. Under his %^C094%^leather armor%^CRST%^ he is comfortably dressed for the %^C028%^wilderness%^CRST%^.\n");
+   set_long("Dressed in %^C094%^heavy leathers%^CRST%^, this "+
+   "%^C142%^half-elf's%^CRST%^ features lean more heavily to his "+
+   "%^C028%^wood elf%^CRST%^ ancestry. His chin and nose are sharp "+
+   "and angular and his %^C208%^coppery%^CRST%^ long hair barely "+
+   "hides one %^C221%^long elven ear%^CRST%^. Strangely his other "+
+   "%^C221%^ear %^CRST%^is completely gone. Under his %^C094%^leather "+
+   "armor%^CRST%^ he is comfortably dressed for "+
+   "the %^C028%^wilderness%^CRST%^.\n");
    set_race("half-elf");
    set_stats("intelligence",14);
    set_stats("wisdom",18);
