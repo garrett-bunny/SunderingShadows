@@ -334,9 +334,11 @@ int confirm_add_type(string str, object ob, string feat, string extradata, strin
         if (feat == "spellmastery" || feat == "archmage" || feat == "greater spell mastery") {
             ob->set("spellmastery_spell", extradata);
         }
+        /*
         if (feat == "skill focus") {
             ob->set("skill_focus", extradata);
         }
+        */
         FEATS_D->add_my_feat(ob, feattype, feat);
         //moved this down - otherwise feats that require a specific level will
         //never get added if the exp cost would cause you to lose a level - Saide
@@ -368,9 +370,11 @@ int confirm_add_type(string str, object ob, string feat, string extradata, strin
             if (feat == "spellmastery") {
                 ob->set("spellmastery_spell", extradata);
             }
+            /*
             if (feat == "skill focus") {//racial only
                 ob->set("skill_focus", extradata);
             }
+            */
         }
         FEATS_D->add_my_feat(ob, feattype, feat);
         tell_object(ob, "%^YELLOW%^Congratulations, you have successfully added "
@@ -1020,6 +1024,7 @@ int validation_messages(object obj, string group, string feat_name) {
         }
     }
     if (group == "racial" || group == "add") {
+        /*
         if (feat_name == "skill focus") {
             tell_object(obj, "%^YELLOW%^In order to gain the skill focus feat, you must "
                 "select a skill that you wish to learn as a class-skill.  You can pick "
@@ -1029,6 +1034,7 @@ int validation_messages(object obj, string group, string feat_name) {
             input_to("skill_focus_setting", obj, feat_name, group_2);
             return 1;
         }
+        */
     }
 
     if (group == "add") {

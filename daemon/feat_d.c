@@ -726,7 +726,7 @@ int can_remove_feat(object ob,string feat)
 
 string* get_all_removable_feats(object ob)
 {
-    string* feats, * cls_feats = ({}), * classes, file, myspec;
+    string* feats, * cls_feats = ({}), *racial_feats = ({  }), * classes, file, myspec;
     int i;
 
     if (!objectp(ob)) {
@@ -738,8 +738,10 @@ string* get_all_removable_feats(object ob)
         file = DIR_CLASSES + "/" + classes[i] + ".c";
         cls_feats += class_feat_array(classes[i], myspec, ob);
     }
+    racial_feats = race_feat_array(ob->query_race(), ob->query("subrace"), ob);
     feats = (string*)ob->query_player_feats();
     feats -= cls_feats;
+    feats -= racial_feats;
     return feats;
 }
 
@@ -1738,6 +1740,32 @@ string* class_feat_array(string myclass, string spec, object ob)
     for (i = 0; i < sizeof(featkeys); i++) {
         feat_array += cls_feats[featkeys[i]];
     }
+    return feat_array;
+}
+
+string *racial_feat_array(string myrace, string subrace, object ob)
+{
+    string file, *feat_array;
+    mapping race_feats;
+    
+    if(!myrace)
+        return 0;
+    
+    file = DIR_RACES + "/" + myrace + ".c";
+    
+    if(!file_exists(file))
+        return 0;
+    
+    race_feats = file->race_featmap(subrace, ob);
+    
+    if(!mapp(race_feats))
+        return 0;
+    
+    feat_array = ({  });
+    
+    foreach(string key in keys(race_feats))
+        feat_array += race_feats[key];
+        
     return feat_array;
 }
 
