@@ -8,7 +8,7 @@ inherit STORAGE"village.c";
 
 void create(){
    ::create();
-   set_long(::query_long()+"%^C058%^\nTo the south stands a small ruined church.%^CRST%^\n");
+set_long(::query_long()+"%^C059%^\nTo the south is a cozy little church.%^CRST%^\n");
    set_exits(([
 
 		  "west" : TOWN"8",
