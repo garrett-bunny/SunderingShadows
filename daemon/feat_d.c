@@ -1743,7 +1743,7 @@ string* class_feat_array(string myclass, string spec, object ob)
     return feat_array;
 }
 
-string *racial_feat_array(string myrace, string subrace, object ob)
+string *race_feat_array(string myrace, string subrace, object ob)
 {
     string file, *feat_array;
     mapping race_feats;
