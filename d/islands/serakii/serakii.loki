@@ -12,5 +12,4 @@
 #define INN "/d/islands/serakii/rooms/inn/"+
 #define ROAD "/d/islands/serakii/rooms/road/"+
 #define FALLOW "/d/islands/serakii/rooms/fallow/"+
-#define RUINS "/d/islands/serakii/ruin/"+
 #define WHITE "/d/islands/serakii/rooms/white/"+
