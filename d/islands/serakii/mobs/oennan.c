@@ -50,5 +50,5 @@ void create() {
        ob->se_property("monsterweapon",1);
        command("wear cloak");
 
-   set_storage_room("/d/islands/serakii/storage/serakii_metal_storage");
+   set_storage_room("/d/npc/storage/deku_metal_storage");
 }
