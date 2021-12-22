@@ -80,3 +80,11 @@ slowly.");
 
 }
 
+    void reset()
+{
+        ::reset();
+        if(!present("guard"))
+        {
+           new(MOBS"serith_guard")->move(TO);
+        }
+}
