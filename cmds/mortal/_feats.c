@@ -440,7 +440,7 @@ int confirm_remove(string str, object ob, string feat, string extradata)
 int cmd_feats(string str)
 {
     object ob;
-    string tmp, feat, * info = ({}), * required, * my_required = ({}), * my_tmp_feats = ({}), category, * subset = ({}), * feats = ({}), * melee_retool = ({}), * feat_types, feat_types_labels;
+    string tmp, feat, * info = ({}), * required, * my_required = ({}), * my_tmp_feats = ({}), category, * subset = ({}), * feats = ({}), * melee_retool = ({}), * feat_types, feat_types_labels, *racefeats;
     int i, j, MAX_ALLOWED, BONUS_ALLOWED, num_feats, allowed, num_bonus, bonus, my_lev, * featkeys;
     mapping classfeats, otherfeats, bonus_feats;
 
@@ -546,6 +546,27 @@ int cmd_feats(string str)
         featkeys = keys(otherfeats);
         for (i = 0; i < sizeof(featkeys); i++) {
             feats += otherfeats[featkeys[i]];
+        }
+        
+        
+        racefeats = FEATS_D->race_feat_array(this_player()->query_race(), this_player()->query("subrace"), this_player());
+        feats += racefeats;
+        
+        foreach(string rfeat in racefeats)
+        {
+            if(!FEATS_D->has_feat(this_player(), rfeat))
+            {
+                FEATS_D->add_feat(this_player(), rfeat, this_player()->query_level());
+                tell_object(this_player(), "Adding racial feat " + rfeat + ".");
+            }
+            else
+            {
+                if(FEATS_D->get_feat_type(this_player(), rfeat) != "bonus")
+                {
+                    tell_object(this_player(), "Moving " + rfeat + " feat to racial feats.");
+                    num_feats++;
+                }
+            }
         }
 
         // now run addition of any missing class feats; remove from bought
