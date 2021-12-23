@@ -548,9 +548,8 @@ int cmd_feats(string str)
             feats += otherfeats[featkeys[i]];
         }
         
-        
+        /*
         racefeats = FEATS_D->race_feat_array(this_player()->query_race(), this_player()->query("subrace"), this_player());
-        feats += racefeats;
         
         foreach(string rfeat in racefeats)
         {
@@ -568,6 +567,7 @@ int cmd_feats(string str)
                 }
             }
         }
+        */
 
         // now run addition of any missing class feats; remove from bought
         // feats first if they already did
@@ -579,6 +579,7 @@ int cmd_feats(string str)
             }
             tmp = (string)TP->query_combat_spec(required[bonus]);         // new combat spec code, N 1/14.
             classfeats = category->class_featmap(tmp, TP);
+            
             if (!mapp(classfeats)) {
                 continue;
             }

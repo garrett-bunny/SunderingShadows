@@ -1749,17 +1749,17 @@ string *race_feat_array(string myrace, string subrace, object ob)
     mapping race_feats;
     
     if(!myrace)
-        return 0;
+        return ({  });
     
     file = DIR_RACES + "/" + myrace + ".c";
     
     if(!file_exists(file))
-        return 0;
+        return ({  });
     
     race_feats = file->race_featmap(subrace, ob);
     
     if(!mapp(race_feats))
-        return 0;
+        return ({  });
     
     feat_array = ({  });
     
