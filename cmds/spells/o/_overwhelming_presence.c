@@ -17,7 +17,7 @@ void create() {
     set_discipline("telepath");
     set_syntax("cast CLASS overwhelming presence");
     set_damage_desc("AOE paralysis");
-    set_description("Your presence inspires incredible awe in your enemies. Those who fail to make a will save are struck with awe and fall to their knees, paralyzed, in worship. Each round, they attempt another will save. If they succeed the will save and end the paralysis early, they are staggered for 1d4 rounds and take 1d6 wisdom damage until the overwhelming presence ends. If a target makes succeeds the initial save they are only staggered for one round. Targets with immunity to charm effects will not be affected by this spell.");
+    set_description("Your presence inspires incredible awe in your enemies. Those who fail to make a will save are struck with awe and fall to their knees, paralyzed, in worship. Each round, they attempt another will save. If they succeed the will save and end the paralysis early, they are staggered for 1d4 rounds and take 1d6 wisdom damage until the overwhelming presence ends. If a target succeeds the initial save they are only staggered for one round. Targets with immunity to charm effects will not be affected by this spell.");
     mental_spell();
     splash_spell(3);
     set_verbal_comp();
