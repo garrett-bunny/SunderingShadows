@@ -43,6 +43,7 @@ void execute_feat()
 	if(caster->cooldown("dazzling display"))
 	{
 		tell_object(caster, "You are not ready to perform your dazzling display yet!");
+        dest_effect();
 		return 1; 
 	}
 	
@@ -55,7 +56,7 @@ void execute_feat()
 	
 	if(!sizeof(caster->query_wielded()) && !caster->query_property("shapeshifted") && !caster->is_class("monk") && !FEATS_D->usable_feat(caster, "unarmed combat")) 
 	{
-        tell_object(caster,"How can you rush at anyone without a weapon?");
+        tell_object(caster,"You can't use dazzling display without a weapon.");
         dest_effect();
         return; 
 	} 

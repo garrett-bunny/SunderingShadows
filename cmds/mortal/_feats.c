@@ -548,26 +548,29 @@ int cmd_feats(string str)
             feats += otherfeats[featkeys[i]];
         }
         
-        /*
+        
         racefeats = FEATS_D->race_feat_array(this_player()->query_race(), this_player()->query("subrace"), this_player());
         
-        foreach(string rfeat in racefeats)
+        if(pointerp(racefeats))
         {
-            if(!FEATS_D->has_feat(this_player(), rfeat))
+            foreach(string rfeat in racefeats)
             {
-                FEATS_D->add_feat(this_player(), rfeat, this_player()->query_level());
-                tell_object(this_player(), "Adding racial feat " + rfeat + ".");
-            }
-            else
-            {
-                if(FEATS_D->get_feat_type(this_player(), rfeat) != "bonus")
+                if(!FEATS_D->has_feat(this_player(), rfeat))
                 {
-                    tell_object(this_player(), "Moving " + rfeat + " feat to racial feats.");
-                    num_feats++;
+                    FEATS_D->add_feat(this_player(), rfeat, 1);
+                    tell_object(this_player(), "Adding racial feat " + rfeat + ".");
+                }
+                else
+                {
+                    if(FEATS_D->get_feat_type(this_player(), rfeat) != "bonus")
+                    {
+                        tell_object(this_player(), "Moving " + rfeat + " feat to racial feats.");
+                        num_feats++;
+                    }
                 }
             }
         }
-        */
+        
 
         // now run addition of any missing class feats; remove from bought
         // feats first if they already did
