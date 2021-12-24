@@ -9,10 +9,9 @@ void create(){
 
    set_exits(([
 
-         // "north" : CAER"1",
-        "south" : RUINS"5",
-         "east" : RUINS"9",
-          "west" : RUINS"7",
+          "north" : RUINS"c1",
+          "west" : RUINS"8",
+          "east" : RUINS"6",
 
    ]));
 
