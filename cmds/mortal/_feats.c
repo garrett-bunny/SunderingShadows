@@ -557,7 +557,7 @@ int cmd_feats(string str)
             {
                 if(!FEATS_D->has_feat(this_player(), rfeat))
                 {
-                    FEATS_D->add_feat(this_player(), rfeat, 1);
+                    FEATS_D->add_feat(this_player(), "racial", rfeat, 1);
                     tell_object(this_player(), "Adding racial feat " + rfeat + ".");
                 }
                 else
