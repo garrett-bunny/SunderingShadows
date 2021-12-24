@@ -27,7 +27,7 @@ void cleanse(object target)
                effect->query_name() == "effect_dazzled" ||
                effect->query_name() == "effect_confused" ||
                effect->query_name() == "effect_negative_level" ||
-               effect->query_name() == "effect_sicken"
+               effect->query_name() == "effect_sickened"
                 )
                 effect->dest_effect(target);
         }
