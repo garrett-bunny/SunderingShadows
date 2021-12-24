@@ -548,7 +548,7 @@ int cmd_feats(string str)
             feats += otherfeats[featkeys[i]];
         }
         
-        
+        //Racial feats check
         racefeats = FEATS_D->race_feat_array(this_player()->query_race(), this_player()->query("subrace"), this_player());
         
         if(pointerp(racefeats))
@@ -558,19 +558,18 @@ int cmd_feats(string str)
                 if(!FEATS_D->has_feat(this_player(), rfeat))
                 {
                     FEATS_D->add_feat(this_player(), "racial", rfeat, 1);
-                    tell_object(this_player(), "Adding racial feat " + rfeat + ".");
+                    tell_object(this_player(), "%^YELLOW%^Adding racial feat %^BLUE%^" + rfeat + ".%^RESET%^");
                 }
                 else
                 {
                     if(FEATS_D->get_feat_type(this_player(), rfeat) != "bonus")
                     {
-                        tell_object(this_player(), "Moving " + rfeat + " feat to racial feats.");
+                        tell_object(this_player(), "%^YELLOW%^Moving %^BLUE%^" + rfeat + "%^YELLOW%^ feat to racial feats.%^RESET%^");
                         num_feats++;
                     }
                 }
             }
-        }
-        
+        }       
 
         // now run addition of any missing class feats; remove from bought
         // feats first if they already did
