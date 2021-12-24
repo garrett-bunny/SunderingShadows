@@ -14,7 +14,7 @@ void create()
     set_mystery("solar");
     set_spell_sphere("invocation_evocation");
     set_syntax("cast CLASS hellball");
-    set_description("The ultimate skill of the most trained evokers, this spell unleashes a hellish blast of energy in all directions from a single point directed by the caster. A simultaneous blast of sonic, acid, fire and electricity unleashes massive damage upon everyone near the caster!\n\n%^BOLD%^%^RED%^This spell will do damage as if it were four levels higher.  This is before any further modifications due to feats.%^RESET%^");
+    set_description("The ultimate skill of the most trained evokers, this spell unleashes a hellish blast of energy in all directions from a single point directed by the caster. A simultaneous blast of sonic, acid, fire and electricity unleashes massive damage upon everyone near the caster!");
     set_verbal_comp();
     set_somatic_comp();
     splash_spell(3);
@@ -44,7 +44,6 @@ void spell_effect(int prof)
         return;
     }
 
-    define_base_damage(4);
     for (i = 0; i < sizeof(attackers); i++) {
         if (!objectp(attackers[i])) {
             continue;
