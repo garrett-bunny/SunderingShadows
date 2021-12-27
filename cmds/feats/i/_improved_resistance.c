@@ -10,7 +10,7 @@ void create()
     feat_category("MagicResistance");
     feat_name("improved resistance");
     feat_prereq("Increased resistance");
-    feat_desc("Improved Resistance is a passive feat that when taken will further boost a character's saves by +2 and grant an additional +9 spell damage resistance.");
+    feat_desc("Improved Resistance is a passive feat that when taken will further boost a character's saves by +2 and grant an additional +1 spell resistance.");
     permanent(1);
     set_required_for(({"death ward","spell reflection"}));
 }

@@ -652,7 +652,7 @@ mixed query_property(string prop)
             num += 1;
         }
         if (FEATS_D->usable_feat(TO, "increased resistance")) {
-            num += 2;
+            num += 1;
         }
         if ((string)TO->query_race() == "human") {
             subrace = (string)TO->query("subrace");
@@ -850,6 +850,7 @@ mixed query_property(string prop)
 		if (FEATS_D->usable_feat(TO, "perfect self")) {
             num += 50;
         }
+        /*
         if (FEATS_D->usable_feat(TO, "resistance")) {
             num += 5;
         }
@@ -859,6 +860,7 @@ mixed query_property(string prop)
         if (FEATS_D->usable_feat(TO, "improved resistance")) {
             num += 9;
         }
+        */
         num += props[prop];
         return (num + EQ_D->gear_bonus(TO, "spell damage resistance"));
     }
