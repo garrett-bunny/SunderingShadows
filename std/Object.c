@@ -647,7 +647,7 @@ mixed query_property(string prop)
         return (num + EQ_D->gear_bonus(TO, "damage resistance"));
     }
 
-    if (prop == "magic resistance") {
+    if (prop == "magic resistance" || prop == "spell resistance") {
         if (FEATS_D->usable_feat(TO, "improved resistance")) {
             num += 1;
         }

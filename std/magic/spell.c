@@ -2404,10 +2404,12 @@ varargs int do_spell_damage(object victim, string hit_limb, int wound, string da
         return 1;
     }
 
-    //spmod = clevel;     // spmod = base spell penetration
-    if (!spmod) {
-        spmod = 1;
-    }
+    //spmod = ((caster->query_base_character_level() - victim->query_base_character_level()) / 10);
+    spmod = clevel;     // spmod = base spell penetration
+    //spmod = 0;
+    //if (!spmod) {
+    //    spmod = 1;
+    //}
     spmod += (int)caster->query_property("spell penetration");     // add spell pen to base caster level
     
     if(caster->query_race() == "elf" && caster->query("subrace") != "szarkai")
@@ -3079,9 +3081,11 @@ varargs int checkMagicResistance(object victim, int mod)
     int res = 0;
     int dieroll = 0;
 
+    /*
     if (!intp(mod)) {
         mod = 1;
     }
+    */
     if (!objectp(victim)) {
         return 0;
     }
@@ -3101,7 +3105,7 @@ varargs int checkMagicResistance(object victim, int mod)
     }
 
     if (victim->query_property("magic resistance")) {
-        res = (int)victim->query_property("magic resistance");
+        res = (int)victim->query_property("magic resistance") + victim->query_property("spell resistance");
     }
 
     dieroll = roll_dice(1, 20);
