@@ -81,7 +81,7 @@ int do_wear()
     }
 
     protect = ETO;
-    resamt = 1 + protect->query_level() / 10;
+    resamt = 5;
     protect->set_property("magic resistance",resamt);
     protect->set_property("raised resistance",1);
 
