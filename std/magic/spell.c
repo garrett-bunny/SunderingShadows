@@ -2411,9 +2411,6 @@ varargs int do_spell_damage(object victim, string hit_limb, int wound, string da
     //    spmod = 1;
     //}
     spmod += (int)caster->query_property("spell penetration");     // add spell pen to base caster level
-    
-    if(caster->query_race() == "elf" && caster->query("subrace") != "szarkai")
-        spmod += 2;
 
     if (checkMagicResistance(victim, spmod)) {
         sendDisbursedMessage(victim);
@@ -2661,7 +2658,11 @@ void define_clevel()
            spell_name == "polymorph self" ||
            spell_name == "alter self")
            clevel += 1;
-    }        
+    }
+    
+    if(caster->query("subrace") == "trixie")
+        if(spell_sphere == "illusion" || spell_sphere == "enchantment_charm")
+            clevel += 1;
 
     if ((int)caster->query_property("empowered")) {
         clevel += (int)caster->query_property("empowered");
@@ -2813,8 +2814,8 @@ void define_base_damage(int adjust)
     {
         int reduction = target->query_property("spell damage resistance");
         
-        reduction -= (FEATS_D->usable_feat(caster, "spell penetration") * 5);
-        reduction -= (FEATS_D->usable_feat(caster, "greater spell penetration") * 5);
+        //reduction -= (FEATS_D->usable_feat(caster, "spell penetration") * 5);
+        //reduction -= (FEATS_D->usable_feat(caster, "greater spell penetration") * 5);
         sdamage -= reduction;
         
         if(sdamage < 0)
@@ -3490,9 +3491,13 @@ varargs int do_save(object targ, int mod, int get_dc)
         }
     }
     
-    if(caster->query_race() == "gnome")
+    if(caster->query_race() == "gnome" && caster->query("subrace") != "deep gnome")
+    {
         if(spell_sphere == "illusion")
             DC += 1;
+        if(spell_sphere == "enchantment_charm" && caster->query("subrace") == "trixie")
+            DC += 1;
+    }
 
 ///////END SPELL SAVE ADJUSTMENTS///////
     

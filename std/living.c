@@ -1834,12 +1834,12 @@ int query_attack_bonus()
     
     if(this_object()->query_race() == "dwarf")
     {
-        if(this_object()->query("subrace") == "gold dwarf" || this_object()->query("subrace") == "shield dwarf")
+        if(this_object()->query("subrace") != "gray dwarf")
         {
             if(USER_D->is_valid_enemy(attacker->query_race(), "orcs") || USER_D->is_valid_enemy(attacker->query_race(), "goblins"))
                 ret += 1;
         }
-        else if(this_object()->query("subrace") == "gray dwarf")
+        else
         {
             if(attacker->query_race() == "drow")
                 ret += 1;
@@ -1848,8 +1848,16 @@ int query_attack_bonus()
     
     if(this_object()->query_race() == "gnome")
     {
-        if(USER_D->is_valid_enemy(attacker->query_race(), "lizrdfolk") || USER_D->is_valid_enemy(attacker->query_race(), "goblins"))
-            ret += 1;
+        if(this_object()->query("subrace") != "deep gnome")
+        {
+            if(USER_D->is_valid_enemy(attacker->query_race(), "lizrdfolk") || USER_D->is_valid_enemy(attacker->query_race(), "goblins"))
+                ret += 1;
+        }
+        else if(this_object()->query("subrace") != "trixie")
+        {
+            if(USER_D->is_valid_enemy(attacker->query_race(), "dwarves") || USER_D->is_valid_enemy(attacker->query_race(), "lizardfolk"))
+                ret += 1;
+        }        
     }
 
     //Inquisitor Bane
