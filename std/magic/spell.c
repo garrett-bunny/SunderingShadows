@@ -2405,8 +2405,8 @@ varargs int do_spell_damage(object victim, string hit_limb, int wound, string da
     }
 
     //spmod = ((caster->query_base_character_level() - victim->query_base_character_level()) / 10);
-    spmod = clevel;     // spmod = base spell penetration
-    //spmod = 0;
+    //spmod = clevel;     // spmod = base spell penetration
+    spmod = 0;
     //if (!spmod) {
     //    spmod = 1;
     //}

@@ -1811,48 +1811,49 @@ void set_mob_magic_resistance(string perc)
 
     case "extremely low":
         //modifier = base_level * 10;
-        modifier = 5;
+        modifier = 1;
         break;
 
     case "very low":
         //modifier = base_level * 80 / 100;
-        modifier = 10;
+        modifier = 2;
         break;
 
     case "low":
         //modifier = base_level * 90 / 100;
-        modifier = 15;
+        modifier = 3;
         break;
 
     case "average":
         //modifier = base_level;
-        modifier = 20;
+        modifier = 5;
         break;
 
     case "high":
         //modifier = base_level * 105 / 100;
-        modifier = 30;
+        modifier = 7;
         break;
 
     case "very high":
         //modifier = base_level * 110 / 100;
-        modifier = 35;
+        modifier = 9;
         break;
 
     case "extremely high":
         //modifier = base_level * 125 / 100;
-        modifier = 40;
+        modifier = 11;
         break;
 
     case "insanely high":
         //modifier = base_level * 150 / 100;
-        modifier = 45;
+        modifier = 13;
         break;
 
     default:
-        modifier = 50;
+        modifier = 0;
         break;
     }
+    
     TO->set_property("magic resistance", modifier);
 }
 
