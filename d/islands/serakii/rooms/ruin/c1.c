@@ -17,7 +17,8 @@ void create(){
 
 void reset(){
    ::reset();
-   if(!present("constuct")){
+   if(!present("construct")){
+
       new(OBJ"construct.c")->move(TO);
    }
 }
