@@ -53,7 +53,7 @@ int do_wear() {
   protect = TP;
   old = protect->query_property("magic resistance");
   protect->remove_property("magic resistance");
-  protect->set_property("magic resistance", 70);
+  protect->set_property("magic resistance", 10);
   tell_object(TP, "%^BOLD%^The ring flashes brightly for a brief instant "+
     "%^BOLD%^on your finger and then fades to a steady glow.%^RESET%^");
   TO->set_short("a %^BOLD%^WHITE%^glowing%^RESET%^ platinum ring");

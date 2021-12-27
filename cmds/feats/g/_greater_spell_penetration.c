@@ -10,7 +10,7 @@ void create()
     feat_category("MagicAccuracy");
     feat_name("greater spell penetration");
     feat_prereq("Perfect Caster OR Flawless Control");
-    feat_desc("Greater Spell Penetration adds an additional +1 to spell save DCs. Additionally, targets of your spells have their spell damage resistance reduced by an additional 5.");
+    feat_desc("Greater Spell Penetration adds an additional +1 to spell save DCs. Additionally, they gain +2 to spell penetration.");
     permanent(1);
     set_required_for(({"armored caster"}));
 }
