@@ -4,7 +4,7 @@ When a spell is cast against a creature or player, the spell must overcome that 
 
 The roll against spell resistance is as follows:
 
-D20 + modifiers VS spell/magic resistance number
+D20 + spell penetration VS spell/magic resistance number
 
 So, if you had 4 spell resistance without any other modifiers from yourself or the caster, you would have a 20% chance to resist the spell.
 

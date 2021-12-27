@@ -526,11 +526,14 @@ mixed query_property(string prop)
 
     if (prop == "spell penetration") {
         if (FEATS_D->usable_feat(TO, "spell penetration")) {
-            num += 1;
+            num += 2;
         }
         if (FEATS_D->usable_feat(TO, "greater spell penetration")) {
             num += 2;
         }
+        if(this_object()->query_race() == "elf" && this_object()->query("subrace") != "szarkai")
+            num += 2;
+        
         num += props[prop];
         return (num + EQ_D->gear_bonus(TO, "spell penetration"));
     }
