@@ -13,6 +13,7 @@ void create(){
    set_exits(([
 
           "north" : RUINS"2",
+          "south" : WHITE"5",
           "east" : RUINS"12",
          "west" : RUINS"11",
    ]));

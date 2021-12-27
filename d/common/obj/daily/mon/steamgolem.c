@@ -42,6 +42,7 @@ void create(){
     set_property("no dominate", 1);
     set_property("no hold", 1);
     set_property("no_random_treasure", 1);
+    set_property("hidden inventory", 1);
     set_property("function and attack", 1);
     set_property("darkvision", 1);
     set_true_seeing(1);
