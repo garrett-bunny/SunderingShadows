@@ -1,8 +1,6 @@
 %^BOLD%^%^BLUE%^Aquatic elf:
 
 %^BOLD%^%^BLUE%^Stat adjustments: %^RESET%^+2 dexterity, +2 intelligence, -2 constitution
-%^BOLD%^%^BLUE%^Skill adjustments: %^RESET%^+2 perception
-x%^BOLD%^%^BLUE%^Misc bonuses: %^RESET%^+2 saves vs charm spells, low light vision 2
 %^BOLD%^%^BLUE%^Innate spells: %^RESET%^water breathing
 %^BOLD%^%^BLUE%^Size: %^RESET%^medium
 
@@ -10,6 +8,12 @@ x%^BOLD%^%^BLUE%^Misc bonuses: %^RESET%^+2 saves vs charm spells, low light visi
 %^BOLD%^%^BLUE%^Classes restricted: %^RESET%^paladin, inquisitor, cleric
 %^BOLD%^%^BLUE%^Normal adventuring starting age: %^RESET%^101-130
 %^BOLD%^%^BLUE%^Average life span: %^RESET%^550
+
+%^BOLD%^%^BLUE%^Racial Traits:
+%^CYAN%^Elven Magic%^RESET%^      - +2 to caster level to overcome magic resistance
+%^CYAN%^Elven Immunities%^RESET%^ - +2 to saves vs charm spells, sleep immunity
+%^CYAN%^Low Light Vision%^RESET%^ - +2 to sight bonus to see in the dark
+%^CYAN%^Keen Senses%^RESET%^      - +2 perception
 
 %^BOLD%^%^BLUE%^Description:
 Low from below the deep, close to ancient leviathans that swam primordial oceans, a branch of elvenkin lives. Changed and adapted through the arcane to the deep, this aquatic race of elves hasn't been seen on the surface for eons, and was rumored to be extinct. When the Silence shut down the old powers, curious souls of these species, at times entire cities full of them, rose to the surface to walk The Dry for the first time in thousands of years. Though more open to contact, they still remain uneasy and unwelcoming toward drywalkers, including their former cousins. Prideful and arrogant, they consider themselves to be, by many measures, superior to the barbaric "civilizations" of The Dry.

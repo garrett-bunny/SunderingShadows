@@ -2409,6 +2409,7 @@ varargs int do_spell_damage(object victim, string hit_limb, int wound, string da
         spmod = 1;
     }
     spmod += (int)caster->query_property("spell penetration");     // add spell pen to base caster level
+    spmod += ((caster->query_race() == "elf") * 2);
 
     if (checkMagicResistance(victim, spmod)) {
         sendDisbursedMessage(victim);
@@ -3482,6 +3483,10 @@ varargs int do_save(object targ, int mod, int get_dc)
             DC -= 2;
         }
     }
+    
+    if(caster->query_race() == "gnome")
+        if(spell_sphere == "illusion")
+            DC += 1;
 
 ///////END SPELL SAVE ADJUSTMENTS///////
     
