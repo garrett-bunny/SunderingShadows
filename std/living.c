@@ -1831,6 +1831,26 @@ int query_attack_bonus()
             FEATS_D->usable_feat(TO, "improved quarry") && ret += 2;
         }
     }
+    
+    if(this_object()->query_race() == "dwarf")
+    {
+        if(this_object()->query("subrace") == "gold dwarf" || this_object()->query("subrace") == "shield dwarf")
+        {
+            if(USER_D->is_valid_enemy(attacker->query_race(), "orcs") || USER_D->is_valid_enemy(attacker->query_race(), "goblins"))
+                ret += 1;
+        }
+        else if(this_object()->query("subrace") == "gray dwarf")
+        {
+            if(attacker->query_race() == "drow")
+                ret += 1;
+        }
+    }
+    
+    if(this_object()->query_race() == "gnome")
+    {
+        if(USER_D->is_valid_enemy(attacker->query_race(), "lizrdfolk") || USER_D->is_valid_enemy(attacker->query_race(), "goblins"))
+            ret += 1;
+    }
 
     //Inquisitor Bane
     if(this_object()->query_property("bane weapon") && sizeof(weap) && attacker)
