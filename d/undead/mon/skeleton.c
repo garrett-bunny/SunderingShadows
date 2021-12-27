@@ -22,7 +22,8 @@ void create()
     set_class("fighter");
     set_guild_level("fighter",20);
     add_search_path( "cmds/fighter" );
-    set_hp(300);
+    set_max_hp(300);
+    set_hp(query_max_hp());
     set_body_type("human");
     set_property("swarm",1);
     set_property("full attacks",1);

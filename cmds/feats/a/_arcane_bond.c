@@ -34,7 +34,7 @@ void create()
     feat_type("instant");
     feat_category("ArcaneSpellcraft");
     feat_name("arcane bond");
-    feat_prereq("Mage L1");
+    feat_prereq("Mage L1 OR Arcane Bloodline Sorcerer L1");
     feat_syntax("arcane_bond [TYPE] to summon or arcane_bond to dismiss");
     feat_desc("Summons or dismisses your trusty familiar. This familiar will follow you through thick and thin and will level up with you. The TYPE of familiar will determine its base stats and natural armor.  The familiar can also assist with touch attack spells, much like spectral hand. The familiar is a non-combat companion, and won't fight or protect you in combat.
 
@@ -70,7 +70,7 @@ int prerequisites(object ob)
     if(!objectp(ob))
         return 0;
     
-    if(ob->query_class_level("mage") < 1)
+    if(ob->query_class_level("mage") < 1 && ob->query_bloodline() != "arcane")
     {
         dest_effect();
         return 0;

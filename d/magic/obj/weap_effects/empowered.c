@@ -50,7 +50,7 @@ int empower_func(object ob)
     pname = player->query_cap_name();
     ename = enemy->query_cap_name();
 
-    amount = roll_dice(1, 8) + power * (player->query_guild_level("psywarrior") / 10);
+    amount = roll_dice(1, 8) + power * (1 + player->query_guild_level("psywarrior") / 10);
 
     if(!random(10))
     {

@@ -96,7 +96,8 @@ void move_followers(object prev)
 	    }
 	    else
         {
-            if(followers[i]->follow(base_name(ETO),followers[i])) { tmp += ({ followers[i] }); }
+            //if(followers[i]->follow(base_name(ETO),followers[i])) { tmp += ({ followers[i] }); }
+            if(followers[i]->follow(file_name(ETO),followers[i])) { tmp += ({ followers[i] }); }
 	    }
     }
 
@@ -140,6 +141,9 @@ varargs int follow(string exit,object obj)
 
     here = ETO;
     there = to_object(exit);
+    
+    if(!objectp(there))
+        there = find_object(exit);
 
     if(objectp(obj) && objectp(here) && objectp(there))
     {

@@ -12,9 +12,9 @@ void create() {
     feat_type("instant");
     feat_category("UnarmedCombat");
     feat_name("spinning kick");
-    feat_prereq("Unarmed combad or Monk");
+    feat_prereq("Unarmed combat or Monk");
     feat_syntax("spinning_kick");
-    feat_desc("Spinning Kick is an instant combat feat. It allows someone skilled in unarmed combat to launch of series of devasting attacks on all enemies within melee range. It requires at least one enemy to work and will use a small amount of stamina.");
+    feat_desc("Spinning Kick is an instant combat feat. It allows someone skilled in unarmed combat to launch of series of devastating attacks on all enemies within melee range. It requires at least one enemy to work and will use a small amount of stamina.");
     set_target_required(0);
 }
 
@@ -80,7 +80,7 @@ void execute_feat()
         dest_effect();
         return;
     }
-    tell_object(caster,"%^BOLD%^You center yourself, preparing your body to launch a series of devasting attacks!\n%^RESET%^");
+    tell_object(caster,"%^BOLD%^You center yourself, preparing your body to launch a series of devastating attacks!\n%^RESET%^");
     tell_room(environment(caster),"%^WHITE%^"+caster->QCN+" seems to center "+caster->QO+"self, preparing "+caster->QP+" body!\n%^RESET%^",caster);
 
     caster->use_stamina(roll_dice(1,6));

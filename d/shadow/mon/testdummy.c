@@ -18,6 +18,7 @@ void create()
     set_class("fighter");
     set_mlevel("fighter", 1);
     set_hp(10000000);
+    set_property("no death", 1);
 }
 
 int do_typed_damage_effects(victim, limb, damage, damage_type)

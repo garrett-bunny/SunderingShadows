@@ -39,6 +39,6 @@ void create()
         "south" : "/d/magic/temples/ashra/courtyard",
     ]));
            
-    set_door("dark doors","salon","north",0);
+    set_door("dark doors","/d/magic/temples/ashra/salon","north",0);
     set_door_description("dark doors","%^BOLD%^%^BLACK%^These large intimidating adamantium doors are of exquisite craft, their smooth surfaces glistening as though the metal had been freshly polished. On each door are engravings depicting %^RESET%^%^RED%^demonic %^BOLD%^%^BLACK%^and %^RESET%^%^MAGENTA%^otherworldly %^BOLD%^%^BLACK%^creatures, some utterly %^RED%^monstrous %^BLACK%^and others unspeakably %^MAGENTA%^alluring%^BLACK%^. The creatures are intertwined in a mass with mortal beings, some in the throes of %^RESET%^%^MAGENTA%^ecstasy %^BOLD%^%^BLACK%^and others contorted in %^RESET%^%^RED%^suffering%^BOLD%^%^BLACK%^. As your eyes linger upon the engravings, they seem to shift... blurring the lines between %^RED%^agony %^BLACK%^and %^MAGENTA%^pleasure%^BLACK%^, between %^RESET%^%^RED%^monstrous %^BOLD%^%^BLACK%^and %^RESET%^mundane%^BOLD%^%^BLACK%^.%^RESET%^");
 }

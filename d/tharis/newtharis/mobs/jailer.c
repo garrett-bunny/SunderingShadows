@@ -89,9 +89,9 @@ int kill_ob(object ob, int i)
     if (hold)
     {
         tell_room(room, "The jailer yells loudly for help.");
-        new("/d/antioch/antioch2/mons/patrol_guard")->move(room);
-        new("/d/antioch/antioch2/mons/patrol_guard")->move(room);
-        new("/d/antioch/antioch2/mons/patrol_guard")->move(room);
+        new("/d/tharis/newtharis/mobs/bladegolem")->move(room);
+        new("/d/tharis/newtharis/mobs/bladegolem")->move(room);
+        new("/d/tharis/newtharis/mobs/bladegolem")->move(room);
     }
     return hold;
 }

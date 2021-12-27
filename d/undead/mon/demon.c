@@ -178,7 +178,8 @@ void bolt(object targ)
 void desoul(object targ)
 {
     if(!targ) return 0;
-    if(random(35) > targ->query_stats("wisdom"))
+    //if(random(35) > targ->query_stats("wisdom"))
+    if(!SAVING_THROW_D->will_save(targ, 35))
     {
         tell_room(ETO, "%^BLUE%^The fires of Hell glow strong as Barliagus calls forth "
             "their full powers.");
@@ -197,7 +198,8 @@ void desoul(object targ)
         tell_room(ETO, "%^BOLD%^%^RED%^You watch as Barliagus crushes the ball of light "
             "within his mighty fist!",targ);
         force_me("say Now to finish of the rest of you, so that you may join me in Hell!");
-        targ->set_hp(5);
+        targ->set_hp(targ->query_max_hp() / 10);
+        //targ->set_hp(5);
         return 1;
     }
     tell_object(targ, "Barliagus grabs you by the scruff of your neck and holds you up "

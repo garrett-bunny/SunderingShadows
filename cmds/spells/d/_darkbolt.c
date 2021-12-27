@@ -9,7 +9,6 @@ void create()
     set_spell_name("darkbolt");
     set_spell_level(([ "innate" : 5 ]));
     set_spell_sphere("necromancy");
-    set_domains("darkness");
     set_syntax("cast CLASS darkbolt on TARGET");
     set_damage_desc("void damage on ranged touch attack");
     set_description("This spell will hurl a bolt of pure evil at the target, and those enemies near that target, attempting a ranged touch attack.");

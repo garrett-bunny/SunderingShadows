@@ -17,7 +17,7 @@ void create()
     set_syntax("cast CLASS impenetrable veil on TARGET");
     set_damage_desc("half of clevel to stealth checks on sneaking, untrackable, protection from scrying");
     set_description("You raise a veil of impenetrable magic around the target, causing them to move silently, leaving no tracks. They also become extremely difficult to detect with scrying magic.");
-    set_arg_needed();
+    set_target_required(1);
 	set_helpful_spell(1);
 }
 
@@ -69,6 +69,9 @@ spell_effect()
     target->set_property("block scrying", 1);
     target->set_property("chameleoned",clevel / 2);
     target->set_property("untrackable", 1);
+    spell_duration = 5 * clevel * ROUND_LENGTH;
+    set_end_time();
+    call_out("dest_effect",spell_duration);
     addSpellToCaster();
 }
 

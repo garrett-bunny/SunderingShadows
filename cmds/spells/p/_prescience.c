@@ -54,7 +54,7 @@ void spell_effect(int prof)
     tell_object(target, "%^ORANGE%^You seem to see complex formulae and "+
         "equations in the air around you, giving you foresight in battle!");
 
-    mybonus = clevel - BONUS_D->new_bab(caster->query_base_level(), caster);
+    mybonus = clevel - BONUS_D->new_bab(caster->query_base_character_level(), caster);
 
     //Without improved, gets you to 3/4 BAB, otherwise full
     if(!FEATS_D->usable_feat(caster,"improved prescience")) {

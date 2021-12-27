@@ -15,6 +15,7 @@ void create() {
     set_spell_sphere("alteration");
     set_domains( ({ "repose" }) ); 
     set_syntax("cast CLASS ghostform");
+    set_damage_desc("clevel + 10 to misschance (max 50)");
     set_description("Drawing forth the power of his deity, the caster is imbued with a spectral presence, causing him to "
 "be harder to see and therefore more difficult to hit.  This spell will last for a time depending upon the caster's "
 "level.");

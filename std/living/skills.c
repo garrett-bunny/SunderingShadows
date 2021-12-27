@@ -312,6 +312,10 @@ int query_skill(string skill)
                 mydisc = TO->query_mystery();
                 myclassskills = (string*)(DIR_CLASSES + "/oracle.c")->mystery_skills(mydisc);
             }
+            if (myclasses[i] == "sorcerer" || (TO->is_class("sorcerer") && (int)file->is_prestige_class())) {
+                mydisc = TO->query_bloodline();
+                myclassskills = (string*)(DIR_CLASSES + "/sorcerer.c")->bloodline_skills(mydisc);
+            }
             if (member_array(skill, myclassskills) != -1 ||
                 (FEATS_D->usable_feat(TO, "surprise spells") && (skill == "spellcraft" || skill == "stealth")) ||
                 (FEATS_D->usable_feat(TO, "skill focus") && ((string)this_object()->query("skill_focus") == skill))) {
@@ -335,7 +339,14 @@ int query_skill(string skill)
         }
     }
 
-    mystat = SKILL_STATS[skill];
+    if(skill == "athletics")
+    {
+        if(this_object()->query_stats("strength") > this_object()->query_stats("dexterity"))
+            mystat = "strength";
+        else mystat = "dexterity";
+    }
+    else
+        mystat = SKILL_STATS[skill];
     // override various stats for epic feats
 
     if ((skill == "perception" || skill == "stealth") && FEATS_D->usable_feat(TO, "shadow perception")) {
@@ -366,6 +377,15 @@ int query_skill(string skill)
             x += (FEATS_D->usable_feat(TO, "third favored terrain") * 2);
             x += (FEATS_D->usable_feat(TO, "resist undead") * 2);
         }
+    }
+    
+    if(this_object()->query_class_level("fighter") > 20)
+    {
+        if(skill == "craft, weaponsmith" && FEATS_D->usable_feat(this_object(), "master weaponsmith"))
+            x += 10;
+        
+        if(skill == "craft, armorsmith" && FEATS_D->usable_feat(this_object(), "master armorsmith"))
+            x += 10;
     }
     
     if(this_object()->is_class("mage"))

@@ -89,7 +89,7 @@ protected string *query_categories() {
    tmp = ({ "*player general", "*player commands","*feats","*skills","*spells", "*diseases"});
    // tmp += ({ "*abilities" });
 
-   tmp += ({ "*policies", "*rules", "*lore", "*guidelines", "*deities", "*races", "*alignment","*roleplaying","*classes" ,"*faq", "*domains", "*mysteries"});
+   tmp += ({ "*policies", "*rules", "*lore", "*guidelines", "*deities", "*races", "*alignment","*roleplaying","*classes" ,"*faq", "*domains", "*mysteries", "*bloodlines"});
 
    if((TP->is_class("bard"))
       || (avatarp(TP)))
@@ -166,6 +166,7 @@ string *query_topics(string category) {
    case "*faq": return topics_dir(DIR_FAQ_HELP+"/");
    case "*domains": return topics_dir(DIR_DOMAINS_HELP+"/");
    case "*mysteries": return topics_dir(DIR_MYSTERIES_HELP+"/");
+   case "*bloodlines": return topic_dir(DIR_BLOODLINES_HELP+"/");
    case "*skills": return topics_dir(DIR_SKILLS_HELP+"/");
 
    case "*diseases":
@@ -350,6 +351,9 @@ protected int find_help(string topic, string category, int menu) {
      break;
    case "*mysteries":
       if(!file_exists(tmp = DIR_MYSTERIES_HELP+"/"+topic)) return 0;
+     break;
+   case "*bloodlines":
+      if(!file_exists(tmp = DIR_BLOODLINES_HELP+"/"+topic)) return 0;
      break;
    case "*guidelines":
      if(!file_exists(tmp = DIR_GUIDELINES_HELP+"/"+topic)) return 0;

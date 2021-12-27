@@ -11,7 +11,7 @@ void create() {
    set_name("Vasha's Pride");
    set_id(({"shield","black dragon scale","scale shield","black dragon scale shield"}));
    set_obvious_short("%^C059%^b%^CRST%^la%^C059%^ck dr%^CRST%^a%^C059%^gon sca%^CRST%^l%^C059%^e shie%^CRST%^l%^C059%^d%^CRST%^");
-   set_short("%^C059%^Va%^CRST%^%^MAGENTA%^h%^C059%^sa's Pr%^CRST%^%^MAGENTA%^i%^C059%^de%^CRST%^");
+   set_short("%^C059%^Va%^CRST%^%^MAGENTA%^s%^C059%^ha's Pr%^CRST%^%^MAGENTA%^i%^C059%^de%^CRST%^");
    set_long("%^C059%^Formed from a single giant %^C249%^"+
    "scale%^C059%^ from a %^C249%^black dragon%^C059%^, this "+
    "scale is as large as the largest kite shield. The surface "+
@@ -59,7 +59,7 @@ int limited_wear() {
          TO->remove();
          return 0;
       }
-
+return 1;
    
 }
 int unwear_msg() {

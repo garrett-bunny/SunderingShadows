@@ -90,6 +90,11 @@ int raise_player(string verb)
         TP->delete("RaisingPriestGod");
         TP->delete("RaisingExpLoss");
         TP->delete("RaisingType");
+        if(TP->query("just_been_pkilled"))
+        {
+            TP->delete("no pk");
+            TP->remove_pk_death_flag();
+        }
         tell_object(TP,"%^BOLD%^You have choosen to return to life!%^RESET%^");
         tell_room(environment(TP),"%^BOLD%^"+TP->QCN+" has returned from the dead!",TP);
         if(stringp(WHICH_CALL_OUT)) { remove_call_out(WHICH_CALL_OUT); }

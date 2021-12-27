@@ -3,7 +3,7 @@
 inherit "/d/common/obj/weapon/club";
 
 nosave int dynbonus;
-object owner;
+string owner;
 int uses;
 int BLAST;
 void init()
@@ -45,12 +45,18 @@ int extra_wield()
     if (!objectp(ETO)) {
         return 0;
     }
+    
+    /*
+    if(!owner || !stringp(owner))
+        owner = ETO->query_name();
+    
 // multiple uses of TP replaced by ETO, Lujke 17 October 2005
     if ((string)ETO->query_name() != owner && (string)ETO->query_name() != "nicodemus") {
         write("The rod fails to bond with you!");
         TO->remove();
         return 0;
     }
+    */
     if ((int)ETO->query_prestige_level("mage") < 25 &&
         (int)ETO->query_prestige_level("sorcerer") < 25) {
         write("You are not able to utilize this item!\nA surge of energy fills your "
@@ -79,9 +85,9 @@ int extra_wield()
     return 1;
 }
 
-void set_owner(object o)
+void set_owner(string str)
 {
-    owner = o;
+    owner = str;
 }
 
 int extra_unwield()

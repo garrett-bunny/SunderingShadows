@@ -61,6 +61,8 @@ void create()
 
 The Animal Companion will hide if you use the 'hide_in_shadows' command, allowing you to effectively sneak about with your faithful friend.
 
+The Animal Companion will allow you to use the 'sic' command, allowing you to command your companion to pounce on an enemy.
+
 The Animal Companion can also be customized through several commands, which will allow you to change its description:
 
   'animal short [DESCRIPTION]' - Changes the short description of the companion.
@@ -180,7 +182,7 @@ void execute_feat()
     companion->set_hd(comp_hd, 14);
     companion->set_attacks_num(2 + class_level / 8);
     companion->set_mlevel("fighter", comp_hd);
-    companion->set_max_hp(14 + (14 * comp_hd));
+    companion->set_max_hp(14 + (25 * comp_hd));
     companion->set_hp(14 * comp_hd + 14);
     companion->set_alignment(caster->query_alignment());
     companion->set_owner(caster);
@@ -236,7 +238,7 @@ void execute_feat()
                 pack_animal->set_hd(comp_hd, 14);
                 pack_animal->set_attacks_num(2 + class_level / 8);
                 pack_animal->set_mlevel("fighter", comp_hd);
-                pack_animal->set_max_hp(14 + (14 * comp_hd));
+                pack_animal->set_max_hp(14 + (25 * comp_hd));
                 pack_animal->set_hp(14 * comp_hd + 14);
                 pack_animal->set_alignment(caster->query_alignment());
                 pack_animal->set_owner(caster);

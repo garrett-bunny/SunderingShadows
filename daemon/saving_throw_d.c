@@ -29,7 +29,7 @@ varargs int do_save(object ob, int dc, string type, raw_save)
     save = 0;
     mod = 0;
     max_mod = 0;
-    level = ob->query_base_character_level();
+    level = min( ({ ob->query_base_character_level(), 60 }) );
     
     classes = ob->query_classes();
     if(!pointerp(classes))
@@ -50,9 +50,9 @@ varargs int do_save(object ob, int dc, string type, raw_save)
         if(!sizeof(cls_save))
             continue;
         
-        saves[0] += cls_save[0];
-        saves[1] += cls_save[1];
-        saves[2] += cls_save[2];
+        saves[0] += cls_save[0] * 2;
+        saves[1] += cls_save[1] * 2;
+        saves[2] += cls_save[2] * 2;
     }
     
     saves[0] = max( ({ min( ({ saves[0], 2 }) ), -2 }) );
@@ -74,7 +74,7 @@ varargs int do_save(object ob, int dc, string type, raw_save)
             
             mod += ob->query_saving_bonus("fortitude");
             mod += (saves[0] * 2);
-            max_mod = saves[0] * 2;
+            max_mod = saves[0];
         
             if(ob->query("subrace") == "aesatri")
                 mod += 1;
@@ -98,9 +98,15 @@ varargs int do_save(object ob, int dc, string type, raw_save)
                 mod += (ob->query_class_level("thief") / 10 + 2);
             }
             
+            if(FEATS_D->usable_feat(ob, "fighter reflexes"))
+                mod += (1 + ob->query_class_level("fighter") / 10);
+            
+            if(ob->query_bloodline() == "kobold")
+                mod += 2;
+            
             mod += ob->query_saving_bonus("reflex");
             mod += (saves[1] * 2);
-            max_mod = saves[1] * 2;
+            max_mod = saves[1];
             
             if(ob->query("subrace") == "senzokuan")
                 mod += 1;
@@ -129,7 +135,7 @@ varargs int do_save(object ob, int dc, string type, raw_save)
             
             mod += ob->query_saving_bonus("will");
             mod += (saves[2] * 2);
-            max_mod = saves[2] * 2;
+            max_mod = saves[2];
         
             if(ob->query("subrace") == "maalish")
                 mod += 1;
@@ -150,6 +156,7 @@ varargs int do_save(object ob, int dc, string type, raw_save)
     }
     
     save = level;
+    statbonus = statbonus > 10 ? 10 : statbonus;
     save += statbonus;
 
     //SAVE ROLL MODIFIERS
@@ -162,19 +169,19 @@ varargs int do_save(object ob, int dc, string type, raw_save)
         mod += 4;
         
     if(FEATS_D->usable_feat(ob, "resistance"))
-        mod += 1;
+        mod += 2;
     
     if(FEATS_D->usable_feat(ob, "increased resistance"))
-        mod += 1;
+        mod += 2;
     
     if(FEATS_D->usable_feat(ob, "improved resistance"))
-        mod += 1;
+        mod += 2;
 
     if (FEATS_D->usable_feat(ob, "shadow master") && objectp(ENV(ob)) && ENV(ob)->query_light() < 2)
         mod += 2;
 
     save += mod;
-    save = save > (level + 20 + max_mod) ? (level + 20 + max_mod) : save;
+    save = save > (level + 22 + max_mod) ? (level + 22 + max_mod) : save;
 
     if (raw_save) {
         return save;
@@ -335,7 +342,8 @@ mapping debug_will_save(object ob, int dc)
     return save_info;
 }
 
-int magic_save_throw_adjust(object targ, object caster)
+//Keep here until all spells have updated
+int magic_save_throw_adjust(object targ, object caster, object spell)
 {
     int caster_bonus = 0;
 

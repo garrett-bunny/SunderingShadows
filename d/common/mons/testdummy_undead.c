@@ -20,6 +20,7 @@ void create()
     set_exp(1);
     set_overall_ac(9);
     set_property("undead",1);
+    set_property("no death", 1);
 }
 
 int do_typed_damage_effects(victim, limb, damage, damage_type){

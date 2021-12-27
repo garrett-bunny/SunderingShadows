@@ -42,15 +42,53 @@ mapping query_cantrip_spells(object ob)
     return ([ "acid splash" : 1, "detect magic" : 1, "daze" : 1, "dancing lights" : 1, "disrupt undead" : 1, "resistance" : 1, "ray of frost" : 1 ]);
 }
 
-mapping class_featmap(string myspec) {
+mapping class_featmap(string myspec, object player)
+{
+    myspec = player->query_bloodline();
+    
+    if(myspec == "arcane")
+        return ([ 1 : ({ "simple weapon proficiency", "spell focus", "arcane bond" }) ]);
+    
     return ([ 1 : ({ "simple weapon proficiency", "spell focus", }) ]);
 }
 
-string *class_skills()
+string *class_skills(object ob)
 {
     return ({ "academics","perception","influence","spellcraft" });
 }
 
+string *bloodline_skills(string bloodline)
+{
+    string *skills;
+    
+    skills = ({ "academics", "perception", "influence", "spellcraft" });
+    
+    switch(bloodline)
+    {
+        case "abyssal":
+        skills += ({ "athletics" });
+        break;
+        
+        case "celestial":
+        skills += ({ "healing" });
+        break;
+        
+        case "stormborn": case "boreal": case "fey":
+        skills += ({ "survival" });
+        break;
+        
+        case "kobold": case "aberrant":
+        skills += ({ "dungeoneering" });
+        break;
+        
+        case "ghoul": case "infernal":
+        skills += ({ "stealth" });
+        break;
+    }
+    
+    return skills;
+}
+        
 int skill_points() { return 4; }
 
 string old_save_type() { return "mage"; }

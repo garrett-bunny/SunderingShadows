@@ -73,14 +73,17 @@ int __Read_me(string str)
   %^ORANGE%^<sell boat>%^RESET%^      Will sell boat.
 
 %^CYAN%^Known safe harbors:%^RESET%^
+  %^BOLD%^%^BLUE%^On the Seakrune Sea:%^RESET%^
   Attaya: 28,43
-  Dagger Straits: 5,18
   Deku: 20,16
   Graez: 8,16
   Eldebaro: 7,51
-  Laerad: 20,36
+  Serakii: 44,41
   Shadow: 0,36
-  The Ocean is at 24,10
+  The Dagger Straits: 5,18
+  
+  %^BOLD%^%^BLUE%^In the Dagger Straits:%^RESET%^
+  The Seakrune Sea 24,10
   Torm: 1,5
 
 %^CYAN%^Known %^RED%^dangerous%^CYAN%^ harbors:%^RESET%^
@@ -88,6 +91,7 @@ int __Read_me(string str)
   Argentrock: 34,10
   Dallyh: 22,13
   Dinosaur island: 30,20
+  Laerad: 20,36
   Ovadexel: 21,46
   Pirates cove: 0,55
   Tonerra: 40,26

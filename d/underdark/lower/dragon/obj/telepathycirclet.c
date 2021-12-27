@@ -71,7 +71,7 @@ int contact_me(string str) {
    charges--;
    tell_room(ETP,"%^BOLD%^%^BLACK%^The opal %^RESET%^glows %^BOLD%^%^BLACK%^momentarily in "+TP->QCN+
 "'s circlet.%^RESET%^",TP);
-   new("/cmds/spells/t/_telepathy")->use_spell(ETO,str,40,100,"cleric");
+   new("/cmds/spells/t/_telepathy")->use_spell(ETO,str,40,100,"psion");
    return 1;
 }
 

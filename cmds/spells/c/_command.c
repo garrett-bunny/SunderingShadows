@@ -37,6 +37,11 @@ void spell_effect()
         return;
     }
 
+    if (!caster->ok_to_kill(target)) {
+        if(objectp(TO)) TO->remove();
+        return;
+    }
+
     tell_object(caster,"%^BOLD%^%^MAGENTA%^You enspell your voice and command "+target->QCN+":%^RESET%^ "+command+"!");
     tell_room(place,"%^BOLD%^%^MAGENTA%^"+caster->QCN+" enspells "+caster->QP+" voice and commands "+target->QCN+"%^RESET%^!",caster);
 

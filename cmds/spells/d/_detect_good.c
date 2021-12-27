@@ -11,6 +11,8 @@ void create() {
     set_description("Detect good will detect the presence of good in players or monsters.");
     set_verbal_comp();
     set_somatic_comp();
+    set_save("will");
+    diminish_returns();
     set_arg_needed();
     set_non_living_ok(1);
 }
@@ -51,7 +53,7 @@ void spell_effect(int prof)
         for (i=0;i<sizeof(alive);i++) {
             if(alive[i]->query_invis()) continue;
             hits++;
-            if (is_evil(alive[i])) 
+            if (is_good(alive[i]) && !do_save(alive[i], 0)) 
             {
                 tell_object(CASTER,"%^BOLD%^%^RED%^You detect good in "+alive[i]->QCN+".");
             }else {
@@ -77,7 +79,7 @@ void spell_effect(int prof)
     } 
     else 
     {
-        if (is_evil(ob)) 
+        if (is_good(ob) && !do_save(alive[i], 0)) 
         {
             tell_object(CASTER, "%^BOLD%^%^RED%^You detect good in "+ob->QCN+".");
         } 

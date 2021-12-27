@@ -1,5 +1,6 @@
 #include <std.h>
 #include <daemons.h>
+#include <security.h>
 
 inherit ROOM;
 inherit "/std/virtual/compile";
@@ -7,6 +8,7 @@ inherit "/std/virtual/compile";
 int is_virtual() { return 1; }
 
 object owner, compiler;
+string owner_name;
 
 void create()
 {   
@@ -14,6 +16,7 @@ void create()
     set_property("indoors",0);
     set_property("light",2);
     set_property("no sticks",1);
+    set_property("teleport proof", 1);
     //set_no_clean(1);
 
     set_short("Plane of Shadows");
@@ -41,7 +44,7 @@ int leave(string str)
         return 1;
     }
     
-    write("Are you sure you want to leave the demiplane? Your demiplane will collapse and cease to exist [y/n]: ");
+    write("%^RED%^BOLD%^Are you sure you want to leave the demiplane? Your demiplane will collapse and cease to exist [%^WHITE%^y/n%^RED%^]: %^RESET%^");
     input_to("finish_leave");
     return 1;
 }
@@ -53,6 +56,8 @@ int finish_leave(string str)
         write("You decide to stay within the demiplane.");
         return 1;
     }
+    
+    seteuid(UID_ROOT);
     
     write("You decide to leave the demiplane and you begin to see it fade around you.");
     compiler = this_player()->query_property("demiplane compiler");
@@ -87,6 +92,20 @@ int is_demiplane_room()
     return 1;
 }
 
+int query_noclean()
+{
+    if(!owner)
+        return 0;
+    
+    if(!objectp(owner))
+        return 0;
+    
+    if(!environment(owner)->is_demiplane_room())
+        return 0;
+    
+    return 1;
+}
+
 void remove()
 {
     object *inv;
@@ -97,7 +116,7 @@ void remove()
     
     foreach(object ob in inv)
     {
-        if(playerp(ob))
+        if(userp(ob))
             move_player(ob, (object)"/d/common/obj/daily/entrance");
     }
     

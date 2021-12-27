@@ -75,7 +75,9 @@ int cmd_spells(string str)
 
     speccache = filter_mapping(MAGIC_D->query_global_index(), (: member_array($1, $3) != -1 :), magic);
 
-    if (regexp(args, "by school") && (myclass == "mage" || myclass == "sorcerer")) {
+    //if (regexp(args, "by school") && (myclass == "mage" || myclass == "sorcerer")) {
+    if(regexp(args, "by school"))
+    {
         sort_by_school();
     }
 
@@ -83,8 +85,8 @@ int cmd_spells(string str)
         if (level && (spells[magic[x]] != level)) {
             continue;
         }
-        output += ({ "%^BOLD%^%^GREEN%^ " + arrange_string(magic[x], 24) + "%^RESET%^%^GREEN%^ " + arrange_string(spells[magic[x]], 2) +
-                    (myclass == "mage" || myclass == "sorcerer" ? arrange_string(speccache[magic[x]]["sphere"], 4) : "")});
+        output += ({ "%^BOLD%^%^GREEN%^ " + arrange_string(magic[x], 24) + "%^RESET%^%^GREEN%^ " + arrange_string(spells[magic[x]], 2) + arrange_string(speccache[magic[x]]["sphere"], 4) });
+                    //(myclass == "mage" || myclass == "sorcerer" ? arrange_string(speccache[magic[x]]["sphere"], 4) : "")});
     }
 
     if (sizeof(output))

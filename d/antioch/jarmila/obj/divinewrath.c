@@ -1,6 +1,9 @@
 // Shard of Divine Wrath - LoKi
 
 #include <std.h>
+#include <daemons.h>
+#include <teleport.h>
+
 inherit "/d/common/obj/weapon/giant_bastard.c";
 
 
@@ -12,7 +15,7 @@ void create()
     set_obvious_short("%^C254%^gi%^C246%^a%^C254%^"+
 	"nt p%^C243%^l%^C254%^atin%^C242%^u%^C254%^m "+
 	"s%^C242%^w%^C254%^ord%^CRST%^");
-    set_short("%^C254%^sha%^C154%^r%^C254%^d of %^C154%^d%^C254%^i%^C154%^vine wra%^C254%^t%^C154%^h%^CRST%^");
+    set_short("%^C254%^Sha%^C154%^r%^C254%^d of %^C154%^D%^C254%^i%^C154%^vine Wra%^C254%^t%^C154%^h%^CRST%^");
     set_long("%^C254%^This sword, easily twelve feet from "+
 	"%^C008%^hilt%^C254%^ to tip, is a monstrous thing fit "+
 	"only for a giant. The %^C008%^hilt%^C254%^ has been "+
@@ -37,7 +40,7 @@ void create()
 		        " \n%^C094%^- Father Belanos, The "+
 				"Weapons of Light%^CRST%^");
 
-   set_property("lore",20);
+    set_property("lore",20);
     set_property("no curse",1);
     set_property("enchantment",7);
 
@@ -46,7 +49,121 @@ void create()
 
     set_wield((:TO,"wield_func":));
     set_unwield((:TO,"unwield_func":));
-    set_hit((:TO,"hit_func":));
+    set_hit((:TO,"extra_hit":));
+}
+
+init()
+{
+    ::init();
+    add_action("plane_slice", "slice");
+}
+
+string color_me(string str) { return  str = CRAYON_D->color_string(str, "sierra"); }
+
+int plane_slice(string arg)
+{
+    string destination, *destination_names = ({}), destination_file;
+    mapping locations = ([]);
+    object destination_room;
+    int power, bonus;
+    
+    if(!arg)
+    {
+        tell_object(this_player(),"You need to specify a destination");
+        return 1;
+    }
+    
+    if(this_player()->query_current_attacker())
+    {
+        tell_object(this_player(), "You are a little busy for that right now!");
+        return 1;
+    }
+
+    if(this_player()->query_bound() || this_player()->query_tripped() || this_player()->query_paralyzed())
+    {
+        this_player()->send_paralyzed_message("info",TP);
+        return 1;
+    }
+    
+    if(this_player()->cooldown("plane slice"))
+    {
+        tell_object(this_player(), "You're not ready to slice the planes yet.");
+        return 1;
+    }
+
+    locations = this_player()->query_rem_rooms();
+    if(!mapp(locations) || !sizeof(keys(locations)))
+    {
+        tell_object(this_player(),"You don't seem to have any locations remembered");
+        return 1;
+    }
+
+    destination_names = keys(locations);
+    destination = arg;
+
+    if(member_array(destination, destination_names) == -1)
+    {
+        tell_object(this_player(),"You don't have a location named "+destination+" remembered");
+        return 1;
+    }
+
+    destination_file = locations[destination];
+
+    if(catch(call_other(destination_file,"??")))
+    {
+        tell_object(this_player(),"There seems to be an error with the destination room.");
+        return 1;
+    }
+
+    destination_room = find_object_or_load(destination_file);
+
+    if(!objectp(destination_room) || !destination_room->is_room())
+    {
+        tell_object(this_player(), "Your destination doesn't seem to be a room.");
+        return 1;
+    }
+
+    if(!TELEPORT->object_can_be_teleported(this_player(),destination_room, this_player()->query_level() + roll_dice(1, 20)))
+    {
+        tell_object(this_player(),"You notice some kind of interference preventing you from shadow jumping.");
+        return 1;
+    }
+
+    this_player()->clear_followers();
+    this_player()->setAdminBlock();
+
+    tell_object(this_player(),color_me("You heft your blade in a mighty swing, slicing through the very fabric of reality."));
+    tell_object(this_player(),color_me("The blade makes a clean slice and a rift appears in the air in front of you. You step through to another place..."));
+
+    tell_room(destination_room,"A vertical slice appears in the air and opens downward, revealing another place beyond.",this_player());
+
+    call_out("move_caster",1, destination_room, this_player());
+    return 1;
+}
+
+void move_caster(object dest, object player)
+{
+    if(!objectp(player))
+        return;
+
+    if(!objectp(dest))
+    {
+        tell_object(player,color_me("Something has gone wrong with the destination.."));
+        tell_object(player,color_me("The rift in reality closes itself up."));
+        tell_object(player,color_me("You remain where you were standing."));
+        tell_room(dest,"There's a slight flicker in the air.",player);
+        return;
+    }
+
+    player->move(dest);
+    player->removeAdminBlock();
+    player->force_me("look");
+    tell_object(player,color_me("You can feel a rush of sensation you step through the rift to your destination."));
+    tell_object(player,color_me("You step silently from the rift."));
+    tell_room(dest, player->query_cap_name() + " steps silently from the rift.", player);
+    tell_object(player,color_me("You have arrived at your destination."));
+    this_player()->add_cooldown("plane slice", 60);
+    return;
 }
 
 int wield_func()
@@ -74,6 +191,17 @@ int unwield_func()
     return 1;
 }
 
+int special_damage()
+{
+    int sdamage;
+    string bonus_stat;
+
+    bonus_stat = "strength";
+    
+    sdamage = TO->query_wc() + (int)this_object()->query_property("enchantment") + (int)ETO->query_damage_bonus() + (int)BONUS_D->new_damage_bonus(ETO, ETO->query_stats(bonus_stat));
+    return sdamage;
+}
+
 int extra_hit(object targ)
 {
     int rand, size;
@@ -90,7 +218,7 @@ int extra_hit(object targ)
         return 0;
     }
   
-    if (random(1000) > 700) {
+    if (!random(2)) {
         switch (random(10)) {
         case 0..3:
             tell_object(ETO, "%^C070%^You turn your weight and swing the sword "+
@@ -102,16 +230,16 @@ int extra_hit(object targ)
 			"spins " + ETO->QP + "%^C070%^ giant sword quickly and "+
 			"turns " + ETO->QP + "%^C070%^ body, using the momentum to "+
 			"hit " + targ->QCN + " %^C070%^with a devastating blow!%^CRST%^", ({ targ, ETO }));
-            targ->cause_typed_damage(targ, targ->return_target_limb(), TO->special_damage(), TO->query_damage_type());
+            targ->cause_typed_damage(targ, targ->return_target_limb(), TO->special_damage(), "divine");
             break;
 
         case 4..5: 
-            tell_object(ETO, "%^C196%^You thrust your sword viciously at" + targ->QCN + "%^C196%^!%^CRST%^");
+            tell_object(ETO, "%^C196%^You thrust your sword viciously at " + targ->QCN + "%^C196%^!%^CRST%^");
             tell_object(targ, "%^C196%^Turning suddenly, " + ETO->QCN + " %^C196%^thrusts "+
 			"their sword into you!%^CRST%^");
             tell_room(EETO, "%^C196%^" + ETO->QCN + " %^C196%^turns and thrusts their "+
 			"sword into " + targ->QCN + "%^C196%^!%^CRST%^", ({ targ, ETO }));
-            targ->cause_typed_damage(targ, targ->return_target_limb(), TO->special_damage() * 150 / 100, TO->query_damage_type());
+            targ->cause_typed_damage(targ, targ->return_target_limb(), TO->special_damage() * 150 / 100, "divine");
             break;
 
         case 6..7:

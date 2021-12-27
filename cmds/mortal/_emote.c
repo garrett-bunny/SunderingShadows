@@ -38,7 +38,8 @@ int cmd_emote(string str)
     all += ({ TP });
     pick += ({ TP });
     if (!str) {
-        write("You look emotional.");
+        write("What are you trying to emote?");
+        /*write("You look emotional.");
         if ((int)TP->query_disguised() == 0) {
             tell_room(ETP, TP->query_cap_name() + " looks emotional.", pick);
             if (TP->query_invis()) {
@@ -53,7 +54,7 @@ int cmd_emote(string str)
             }else {
                 tell_room(ETP, capitalize(TP->query_vis_name()) + " looks emotional.", all);
             }
-        }
+        }*/
         return 1;
     }
     all -= ({ TP });

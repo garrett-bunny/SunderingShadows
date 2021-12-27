@@ -11,6 +11,8 @@ void create() {
     set_description("Detect chaos will detect the presence of law in players or monsters.");
     set_verbal_comp();
     set_somatic_comp();
+    set_save("will");
+    diminish_returns();
     set_arg_needed();
     set_non_living_ok(1);
 }
@@ -47,7 +49,7 @@ void spell_effect(int prof)
         alive = all_living(environment(CASTER));
         for (i=0;i<sizeof(alive);i++) 
         {
-            if (is_lawful(alive[i]) && !alive[i]->query_invis()) 
+            if (is_lawful(alive[i]) && !alive[i]->query_invis() && !do_save(alive[i], 0)) 
             {
                 hits ++;
                 tell_object(caster,"%^BOLD%^%^GREEN%^You detect law in "+alive[i]->QCN+".");
@@ -73,7 +75,7 @@ void spell_effect(int prof)
     } 
     else 
     {
-        if (is_lawful(ob)) 
+        if (is_lawful(ob) && !do_save(alive[i], 0)) 
         {
             tell_object(caster, "%^BOLD%^%^GREEN%^You detect law in "+ob->QCN+".");
         } 

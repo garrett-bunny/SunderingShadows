@@ -28,7 +28,7 @@ set_id(({"Emerald gem","Gem","gem","emerald","Gem","emerald gem","powergem","pow
 	  "originates deep within the gem...%^RESET%^");
    //set_weight(25);
    set_weight(10); // changing weight along with other encumbrance changes -Ares
-   set_value(150000);
+   set_value(50000); //Lowering value as the market is flooded - LoKi
    set_property("no animate",1);
    set_property("magic",4);
    set_property("lore",25);   

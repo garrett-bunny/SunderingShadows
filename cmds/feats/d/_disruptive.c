@@ -10,7 +10,7 @@ void create()
     feat_category("MagicResistance");
     feat_name("disruptive");
     feat_prereq("Fighter L6");
-    feat_desc("By warding yourself, this feat increases your chance to avoid negative spell effects, granting you +4 to all your saving throws against spells.");
+    feat_desc("By warding yourself, this feat increases your chance to avoid negative spell effects, granting you +5 to all your saving throws against spells.");
     permanent(1);
     allow_blind(1);
 }

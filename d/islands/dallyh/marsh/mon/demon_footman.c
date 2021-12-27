@@ -110,7 +110,7 @@ void stuns(object targ)
     if (!intp(mod = TO->query("damage mod")) || mod < 1) {
         mod = 1;
     }
-    if (roll_dice(2, 20) > targ->query_stats("wisdom") &&
+    if(!load_object("/daemon/saving_throw_d")->do_save(targ, 75, "will") &&
         !targ->query_property("no paralyze")) {
         tell_room(ETO, me + "%^RESET%^%^BLUE%^'s eyes glow an " +
                   "intense%^BOLD%^%^RED%^ RED %^RESET%^%^BLUE%^hypnotizing"

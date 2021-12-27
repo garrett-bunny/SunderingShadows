@@ -56,7 +56,7 @@ void spell_effect(int prof){
         tell_object(target, "%^BLUE%^The beam of darkness strikes you, ravaging your mind.");
         tell_room(environment(target), "%^BLUE%^The beam of darkness strikes " + target->QCN + ".", target);
         target->set_temporary_blinded(roll_dice(2, 4));
-        target->cause_typed_damage(target, "torso", damage, "void");
+        target->cause_typed_damage(target, "torso", sdamage, "void");
     }
     else
     {

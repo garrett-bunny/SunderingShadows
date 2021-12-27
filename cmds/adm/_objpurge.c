@@ -21,7 +21,7 @@ int cmd_objpurge(string str)
     obs = objects( (: base_name($1) == $(str) :) );
     map_array(obs, (: envs[$1] = environment($1) :));
     
-    seteuid(getuid(this_player()));
+    seteuid(UID_ROOT);
     
     foreach(object ob in obs)
     {
@@ -36,6 +36,8 @@ int cmd_objpurge(string str)
                 ob->remove();
             if(objectp(ob))
                 ob->dest_effect();
+            if(objectp(ob))
+                destruct(ob);
             
             if(objectp(ob))
                 write("Failed to destruct " + obshort + ".");

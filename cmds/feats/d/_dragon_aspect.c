@@ -19,6 +19,7 @@ void create()
     
 %^CYAN%^BOLD%^The choices for dragon affinity are as follows: \n\%^RED%^" + implode(VALID,"\n") + "%^RESET%^");
     allow_tripped(1);
+    set_save("reflex");
 }
 
 int allow_shifted()
@@ -237,7 +238,7 @@ void execute_attack()
     
         foreach(object ob in attackers)
         {
-            if(SAVING_THROW_D->reflex_save(ob, flevel + bonus))
+            if(do_save(ob, bonus))
             {
                 tell_room(place, "%^BOLD%^" + ob->query_cap_name() + " scrambles out of the way of the breath!", ob);
                 tell_object(ob, "%^BOLD%^You scramble out of the way of the breath!");
@@ -278,7 +279,7 @@ void execute_attack()
     
     dam = (roll_dice(1, 10) * (1 + flevel /  10)) + bonus;
     
-    if(SAVING_THROW_D->reflex_save(attacker, flevel + bonus))
+    if(do_save(attacker, bonus))
     {
         tell_room(place, "%^BOLD%^" + att_name + " avoids the tail swing!", attacker);
         tell_object(attacker, "You avoid the tail swing!");

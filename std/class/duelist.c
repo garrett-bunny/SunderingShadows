@@ -111,6 +111,7 @@ string requirements() // string version, maybe we'll need this, maybe not, can r
     str = "Prerequisites:\n"
         "    Level 20 Martial or Hybrid except Druid\n"
         "    14 Base Intelligence\n"
+        "    20 Base Dexterity\n"
         "    10 Ranks spent in Athletics Skill\n";
 
     return str;

@@ -33,7 +33,7 @@ void create()
 }
 void reset(){
   ::reset();
-  if(!present("torm guardsman",TO)) {
-     new(MON+"guard2.c")->move(TO);
+  if(!present("torm guard",TO)) {
+     new(MON+"guard.c")->move(TO);
   }
 }

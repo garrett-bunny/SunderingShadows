@@ -800,6 +800,7 @@ int query_resistance(string res)
                 myres += this_object()->query_prestige_level("oracle") / 2;
         }
     }
+            
     
     if (FEATS_D->usable_feat(TO, "no fear of the flame") && res == "fire") {
         myres += 30;
@@ -938,6 +939,39 @@ int query_resistance_percent(string res)
             }
         } 
         
+    }
+
+    if(this_object()->is_class("sorcerer") && this_object()->query_class_level("sorcerer") > 30)
+    {
+        int sorc_level = this_object()->query_class_level("sorcerer");
+        
+        switch(this_object()->query_bloodline())
+        {
+            case "stormborn":
+            if(res == "sonic" || res == "electricity")
+                mod = 30 + sorc_level * 2;
+            break;
+            
+            case "celestial":
+            if(res == "acid")
+                mod = 20 + sorc_level * 2;
+            break;
+            
+            case "abyssal":
+            if(res == "electricity")
+                mod = 20 + sorc_level * 2;
+            break;
+            
+            case "infernal":
+            if(res == "fire")
+                mod = 20 + sorc_level * 2;
+            break;
+            
+            case "boreal":
+            if(res == "cold")
+                mod = 20 + sorc_level * 2;
+            break;
+        }
     }
   
     //Mage is invulnerable for duration of prismatic sphere
@@ -1135,7 +1169,7 @@ int query_ac()
 {
     int myac, raceac, shifted_ac, myLev;
     string myfile, myrace, mysubrace;
-    object shape, attacker;
+    object shape, attacker, weapon;
 
     if (!userp(TO) && !TO->query_property("full ac")) {
         return monster_ac;
@@ -1154,7 +1188,24 @@ int query_ac()
         !TO->query_tripped() && !TO->query_bound() && TO->is_ok_armour("thief")) {
         myac += 4;
     }
-
+    
+    if(FEATS_D->usable_feat(this_object(), "shield focus"))
+    {
+        if(this_object()->validate_combat_stance("weapon and shield") || this_object()->validate_combat_stance("unarmed and shield"))
+            myac += (1 + this_object()->query_base_character_level() / 10);
+    }
+    
+    if(FEATS_D->usable_feat(this_object(), "defensive weapon training"))
+    {
+        weapon = this_object()->query_wielded();
+        
+        if(sizeof(weapon))
+            myac += weapon[0]->query_property("enchantment");
+    }
+    
+    if(FEATS_D->usable_feat(this_object(), "armored juggernaut") && !this_object()->is_ok_armour("thief"))
+        myac += (BONUS_D->query_stat_bonus(this_object(), "strength") / 2);
+        
     if(FEATS_D->usable_feat(TO, "canny defense") && !TO->query_paralyzed() &&
        !TO->query_tripped() && !TO->query_bound() && TO->is_ok_armour("thief"))
            myac += BONUS_D->query_stat_bonus(TO, "intelligence");

@@ -25,6 +25,7 @@ Lothwaite
 Muul'daan
 Nurval
 Seneca (Attaya)
+Serakii
 Shadow
 Tabor
 Tharis
@@ -84,6 +85,10 @@ void spell_effect(int prof)
     case "seneca":
         where = "/d/attaya/newseneca/rooms/cath_nave";
         placename = "Seneca";
+        break;
+    case "serakii":
+        where = "/d/islands/serakii/rooms/village/church";
+        placename = "Serakii";
         break;
     case "graez":
     case "sangri":

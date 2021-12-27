@@ -67,7 +67,7 @@ void spell_effect(int prof)
         bonus += heavens;
         target->add_skill_bonus("perception",-bonus);
         spell_duration = duration * ROUND_LENGTH;
-        set_end_time();
+        //set_end_time();
         call_out("dest_effect",spell_duration);
     }
 }

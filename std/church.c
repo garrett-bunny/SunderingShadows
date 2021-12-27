@@ -520,7 +520,7 @@ int select_domain(string str)
             return 1;
         }
 
-        if (is_alignment_domain(selection)) {
+        /*if (is_alignment_domain(selection)) {
             string tmpdom;
 
             foreach(tmpdom in player_domains)
@@ -530,7 +530,7 @@ int select_domain(string str)
                     return 1;
                 }
             }
-        }
+        }*/
 
         if (FEATS_D->usable_feat(TP, "divine domain")) {
             if (!sizeof(player_domains)) {

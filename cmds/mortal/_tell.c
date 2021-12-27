@@ -181,7 +181,7 @@ int cmd_tell(string str)
         if(!FEATS_D->usable_feat(obj, "psychic vampire"))
             continue;
         
-        if(this_player()->query_discipline() == "telepath")
+        if(this_player()->query_discipline() != "telepath")
             continue;
         
         DC = obj->query_stats("intelligence") - this_player()->query_stats("intelligence");

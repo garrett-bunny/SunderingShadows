@@ -43,21 +43,21 @@ void create()
     set_class("fighter");
     set_class("mage");
     set_class("cleric");
-    set_guild_level("fighter", 80);
-    set_guild_level("mage", 80);
-    set_guild_level("cleric", 80);
-    set_mlevel("fighter", 80);
-    set_mlevel("mage", 80);
-    set_mlevel("cleric", 80);
+    set_guild_level("fighter", 75);
+    set_guild_level("mage", 75);
+    set_guild_level("cleric", 75);
+    set_mlevel("fighter", 75);
+    set_mlevel("mage", 75);
+    set_mlevel("cleric", 75);
     set_alignment(4);
     set("aggressive",100);
     set_property("full attacks",1);
     set_true_seeing(1);
 
-    set_hd(80, 10);
+    set_hd(75, 10);
     set_hp(125000);
-    set_new_exp(80, "boss");
-    set_overall_ac(-55);
+    set_new_exp(75, "boss");
+    set_overall_ac(-75);
 
     set_damage(10, 20);
     set_base_damage_type("slashing");
@@ -95,7 +95,9 @@ void create()
 
     set_skill("perception", 50);
 
-    set_resistance("holy", 80);
+    set_resistance_percent("radiant", 50);
+    set_resistance_percent("fire", 50);
+    set_mob_magic_resistance("high");
     set_property("cast and attack", 1);
     set_property("function and attack", 1);
     set_property("add quest", "%^BOLD%^%^RED%^Faced the Avatar of Jarmila!%^RESET%^");
@@ -130,7 +132,7 @@ int dam;
 //dam = random(500)+100;
 	dam = roll_dice(25, 20) + 200;
 
-   if(!"/daemon/saving_throw_d.c"->dex_save(targ,40)){
+   if(!"/daemon/saving_throw_d.c"->dex_save(targ,80)){
 
    tell_room(ETO,"%^C178%^The phoenix spreads its massive wings wide "+
    "and calls down a single massive commet on "+targ->QCN+"%^C178%^ which "+
@@ -183,7 +185,7 @@ int dam;
 //dam = random(300)+100;
 	dam = roll_dice(15, 20) + 200;
 
-   if(!"/daemon/saving_throw_d.c"->will_save(targ,40)){
+   if(!"/daemon/saving_throw_d.c"->will_save(targ,80)){
 
    tell_room(ETO,"%^C127%^The phoenix grabs "+targ->QCN+"%^C127%^ "+
    "and lifts them up to their face. It's eyes blaze "+

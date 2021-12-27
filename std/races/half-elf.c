@@ -31,6 +31,11 @@ mapping skill_mods(string subrace) {
     return ([ "influence" : 2 ]);
 }
 
+mapping race_featmap(string subrace, object player)
+{
+    return ([ 1 : ({ "skill focus" }) ]);
+}
+
 int natural_AC(string subrace) { return 0; }
 
 int sight_bonus(string subrace)

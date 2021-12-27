@@ -505,7 +505,7 @@ varargs int thaco(object targ, int mod, int flag)
     return 1;
 }*/
 
-//Tlaloc changed this ti standardize with spell.c do_save
+//Tlaloc changed this to standardize with spell.c do_save
 //Please only send stat bonuses as mod except in very rare circumstances
 varargs int do_save(object ob,int mod)
 {
@@ -525,7 +525,7 @@ varargs int do_save(object ob,int mod)
     if(catch(daemon = load_object("/daemon/saving_throw_d")))
         return 0;
     
-    num = daemon->do_save(ob, DC, save, mod);
+    num = daemon->do_save(ob, DC, save);
 
     return num;
 }

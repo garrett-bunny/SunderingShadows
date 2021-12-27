@@ -86,7 +86,7 @@ int contact_em(string str) {
    charges1--;
    tell_room(ETP,"%^BOLD%^%^BLUE%^The %^CYAN%^e%^RESET%^%^CYAN%^y%^BOLD%^e %^BLUE%^of "+TP->QCN+
 "'s %^WHITE%^circlet %^BLUE%^closes briefly.%^RESET%^",TP);
-   new("/cmds/spells/t/_telepathy")->use_spell(ETO,str,40,100,"cleric");
+   new("/cmds/spells/t/_telepathy")->use_spell(ETO,str,40,100,"psion");
    return 1;
 }
 int find_em(string str) { //code off of drow masks

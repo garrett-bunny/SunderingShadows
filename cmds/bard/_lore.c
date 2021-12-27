@@ -70,7 +70,6 @@ int cmd_lore(string str) {
       return 1;
    } else if(how == "stop"){
       tell_object(TP,"You stop reciting.");
-      tell_room(ETP,TPQCN+" stops reciting ShadowGate lore.",TP);
       TP->set_property("stop recite",1);
       return 1;
    } else if(how == "delete"){

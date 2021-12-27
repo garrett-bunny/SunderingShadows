@@ -106,7 +106,7 @@ void spell_effect(int prof)
     }
     addSpellToCaster();
     spell_successful();
-    duration = clevel / 10 + 3;
+    duration = (clevel / 10 + 3) * ROUND_LENGTH;
     call_out("do_tentacles", ROUND_LENGTH);
 }
 

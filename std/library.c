@@ -508,7 +508,7 @@ void remove_something(string str)
         if((string)TP->query_position() != "high mortal" && !avatarp(TP))
         {
             tell_object(TP,"You are not authorized to remove a librarian.");
-            return 1;
+            return 0;
         }
         LIBRARY_D->remove_librarian(query_library_name(),info[1],TP);
         tell_object(TP,"Removing "+info[1]+" from "+query_library_name()+"'s "
@@ -579,7 +579,7 @@ void put_book_in_library(string str)
         }else{
            tell_object(TP,"You are not authorized to add books to this "
                "library.\n");
-           return 1;
+           return 0;
         }
     }
 

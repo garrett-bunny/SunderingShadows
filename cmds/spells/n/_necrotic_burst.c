@@ -81,10 +81,10 @@ void spell_effect(int prof)
                     continue;
                     tell_object(targets[i], "You shouldn't do that to yourself.");
                 }
-                set_helpful_spell(0);
+                //set_helpful_spell(0);
             }
             else {
-                set_helpful_spell(1);
+                //set_helpful_spell(1);
             }
 
             if (targets[i] == caster)
@@ -102,7 +102,8 @@ void spell_effect(int prof)
                 tell_object(targets[i], "%^BLUE%^A fell " +
                     "wave moves through you, carrying with it the essence of death.");
             }
-            damage_targ(targets[i], targets[i]->return_target_limb(), healamnt, "negative energy");
+            targets[i]->cause_typed_damage(targets[i], "torso", healamnt, "negative energy");
+            //damage_targ(targets[i], targets[i]->return_target_limb(), sdamage, "negative energy");
         }
     }
 

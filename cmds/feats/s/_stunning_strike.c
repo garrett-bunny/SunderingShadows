@@ -258,10 +258,11 @@ void execute_attack()
         "on "+target->QCN+"%^BOLD%^%^CYAN%^ connecting squarely with "+target->QO+
         "!%^RESET%^", ({caster, target}));
     }
-    DC = (int)caster->query_class_level("monk");
-    DC += (int)"/daemon/bonus_d.c"->query_stat_bonus(caster, "wisdom");
-    DC += 10;
-    if(do_save(target, DC) || target->query_property("no paralyze") || target->query_property("no death"))
+
+    //Feat.c already builds DC, just need stat mod to send.
+    DC = (int)"/daemon/bonus_d.c"->query_stat_bonus(caster, "wisdom");
+    
+    if(do_save(target, DC) || PLAYER_D->immunity_check(target, "paralysis"))
     {
         tell_object(target, "%^BOLD%^%^WHITE%^You feel your body shudder momentarily but "+
         "quickly shake off the impact of the strike!%^RESET%^");
@@ -276,7 +277,7 @@ void execute_attack()
     tell_object(target, "%^BOLD%^%^RED%^Your entire body shudders violently for a brief "+
     "instant and suddenly you are completely unable to move!%^RESET%^");
 
-    target->set_paralyzed((ROUND_LENGTH * 2), "%^BOLD%^%^RED%^The impact of "+
+    target->set_paralyzed((ROUND_LENGTH * 5), "%^BOLD%^%^RED%^The impact of "+
     "the strike has left you unable to move!%^RESET%^");
 
     if(objectp(environment(caster)))

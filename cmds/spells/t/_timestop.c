@@ -7,9 +7,8 @@ void create() {
     ::create();
     set_author("nienne");
     set_spell_name("timestop");
-    set_spell_level(([ "mage" : 9, "oracle":9, "psion" : 9 ]));
+    set_spell_level(([ "mage" : 9, "psion" : 9 ]));
     set_discipline("nomad");
-    set_mystery("lore");
     set_spell_sphere("alteration");
     set_syntax("cast CLASS timestop");
     set_description("This spell allows the transmuter to alter their immediate surroundings into a state of such forced "
@@ -18,7 +17,7 @@ void create() {
 "after a brief interval, while the very strongest of opponents may manage to resist the effect entirely.");
     set_verbal_comp();
     set_somatic_comp();
-    splash_spell();
+    splash_spell(3);
 }
 
 string query_cast_string() {
@@ -30,7 +29,7 @@ string query_cast_string() {
 void spell_effect(int prof) {
     object *mytargs, myparty;
     int duration, i;
-    duration = (ROUND_LENGTH * roll_dice(1,4) * 8); // d4 rounds, no +1
+    duration = (ROUND_LENGTH * roll_dice(1,4) * 2); // d4 rounds, no +1
     mytargs = target_selector();
     mytargs -= ({ caster });
     myparty = ob_party(caster);

@@ -1,29 +1,20 @@
+//desc updated by Circe 12/11/04 after adding ability to take arrows
 #include <std.h>
 
-inherit LRWEAPON;
+inherit "/std/ammo";
 
 void create(){
-    ::create();
-    set_id(({"shurikens"}));
-    set_name("shurikens");
-    set_short("A stack of shurikens");
-    set_long(
-        "This is a stack of throwing all-edges knives known as shurikens."
-        );
-    set_prof_type("staff");
-    set_weight(1);
-    set_type("piercing");
-    set_decay_rate(100);
-    set_range(2,4,8);
-    set_ammo("shuriken");
-    set_lr_prof_type("sling");
-    set_weapon_prof("exotic");
-    set_lr_type("piercing");
-    set_size(1);
-    set_wc(1,4);
-    set_large_wc(1,4);
-    set_value(3);
-    set_rate_of_fire(2);
-    set_weapon_speed(2);
-    set_property("repairtype",({"woodwork", "weaponsmith"}));
+   ::create();
+   set_id(({ "shurikens","shurikens holster","holster of shurikens","holster"}));
+   set_name("shurikens");
+   set_short("holster of shurikens");
+   set_long("This is a small leather holster with many shurikens "+
+      "carefully designed to allow for quick access and the drawing  "+
+      "of a new shuriken during combat.");
+   set_shots(50);
+   set_value(1);
+   set_wc(1,4);
+   set_large_wc(1,4);
+   set_ammo_type("shurikens");
+   set_property("repairtype",({"leatherwork"}));
 }

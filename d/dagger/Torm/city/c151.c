@@ -1,7 +1,7 @@
 #include <std.h>
 #include "../tormdefs.h"
 #include <daemons.h>
-inherit "/std/jail_main.c";
+inherit VAULT;
 //#define LIST "torm_official_position_list"
 //#define WANTED "torm_wanted_list"
 //#define SENTS "torm_wanted_sentences_list"
@@ -10,8 +10,8 @@ inherit "/std/jail_main.c";
 //inherit CELLAR;
 void create(){
   ::create();
-set_jail_location("Torm");
-set_cell("/d/dagger/Torm/city/c146.c");
+//set_jail_location("Torm");
+//set_cell("/d/dagger/Torm/city/c146.c");
 set_short(
   "Beneath the Torm townhall"
   );

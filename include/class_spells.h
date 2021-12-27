@@ -65,35 +65,37 @@ class_spell_storage =
     "aberrant":
         ({"enlarge person","detect invisibility","tongues","black tentacles","prying eyes","impenetrable veil","phase door","shapechange"}),
     "abyssal":
-        ({"acid splash","darkness","acid orb","fear","domination","impenetrable veil","acid fog","unholy aura"}),
-    "accursed":
-        ({"touch of fatigue","touch of idiocy","garble","bestow curse","ruin","eyebite","powerword blind","spellscar"}),
+        ({"acid splash","darkness","acid orb","fear","domination","impenetrable veil","acid fog","unholy aura", "monster summoning ix"}),
+    //"accursed":
+    //    ({"touch of fatigue","touch of idiocy","garble","bestow curse","ruin","eyebite","powerword blind","spellscar"}),
     "arcane":
-        ({"identify","mirror image","dispel magic","break curse","siphon magic","repulsion","foresight","screen"}),
-    "astral":
-        ({"flare","invisibility","blink","suppress wild magic","dismissal","contingency","greater teleport","antimagic field"}),
+        ({"identify","invisibility","dispel magic","dimension door","siphon magic","true seeing", "limited wish", "powerword stun","disjunction"}),
+    //"astral":
+    //    ({"flare","invisibility","blink","suppress wild magic","dismissal","contingency","greater teleport","antimagic field"}),
     "boreal":
-        ({"enlarge person","bears endurance","rage","stoneskin","cone of cold","transformation","true strike","polar ray"}),
+        ({"enlarge person","bears endurance","rage","stoneskin","cone of cold","transformation","true strike","polar ray", "polar midnight"}),
     "celestial":
-        ({"light","eagles splendor","lightning bolt","shout","angelic aspect","serenity","project image","protection from spells"}),
-    "draconic":
-        ({"armor","resist energy","fireball","fear","acid breath","disintegrate","protection from spells","shapechange"}),
-    "elemental":
-        ({"burning hands","scorcher","fireball","ice storm","cone of cold","chain lightning","incendiary cloud","meteor swarm"}),
+        ({"bless", "resist energy", "dispel evil", "break curse", "angelic aspect", "greater dispel magic", "sunburst", "gate"}),
+    //"draconic":
+    //    ({"armor","resist energy","fireball","fear","acid breath","disintegrate","protection from spells","shapechange"}),
+    //"elemental":
+    //    ({"burning hands","scorcher","fireball","ice storm","cone of cold","chain lightning","incendiary cloud","meteor swarm"}),
     "fey":
-        ({"dancing lights","glitterdust","phantom steed","confusion","domination","eyebite","reverse gravity","irresistible dance"}),
+        ({"dancing lights","glitterdust","phantom steed","confusion","domination","eyebite","irresistible dance", "overwhelming presence"}),
     "ghoul":
         ({"chill touch","ray of enfeeblement","vampiric touch","boneshatter","teleport","circle of death","finger of death","horrid wilting"}),
     "infernal":
         ({"infernal healing","scorcher","fireball","fire shield","mind fog","hellfire ray","finger of death","powerword stun"}),
-    "possessed":
-        ({"sleep","blindness","displacement","phantasmal killer","false vision""eyebite","visions from within","euphoric tranquility"}),
-    "shadow":
-        ({"touch of fatigue","alter self","phantom steed","shadowform","angelic aspect","shadow alteration","umbral strike","greater shadow evocation"}),
+    "kobold":
+        ({"reduce person","slow","polymorph","acid breath","tar pool","delayed fireball","protection from spells","greater polymorph"}),
+    //"possessed":
+    //    ({"sleep","blindness","displacement","phantasmal killer","false vision""eyebite","visions from within","euphoric tranquility"}),
+    //"shadow":
+    //    ({"touch of fatigue","alter self","phantom steed","shadowform","angelic aspect","shadow alteration","umbral strike","greater shadow evocation"}),
     "stormborn":
         ({"shocking grasp","lightning bolt","gust of wind","lightning arc","chain lightning","phase door","stormbolts","ride the lightning"}),
-    "undead":
-        ({"chill touch","spectral hand","necrotic burst","animate dead","create undead","exhume corpses","finger of death","create greater undead"}),
+    //"undead":
+    //    ({"chill touch","spectral hand","necrotic burst","animate dead","create undead","exhume corpses","finger of death","create greater undead"}),
 ]),
 
 "chronicler":
@@ -119,7 +121,7 @@ class_spell_storage =
     "kineticist":
         ({"animate object","energy emanation","energy cone","hold person","energy current","bolt of force","reddopsi","crushing hand","tornado blast"}),
     "nomad":
-        ({"dimension slide","phantom steed","trace psychoport","dimensional anchor","psionic teleport","planar portal","astral projection","planar sending"}),
+        ({"dimension slide","phantom steed", "dismissal", "trace psychoport","dimensional anchor","psionic teleport","planar portal","astral projection","planar sending"}),
     "telepath":
         ({"suggestion","charm monster","hostile empathic transfer","modify memory","mass suggestion","visions from within","mindnet","overwhelming presence","psychic scream"}),
 ]),

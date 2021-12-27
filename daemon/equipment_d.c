@@ -54,7 +54,7 @@ mapping BONUS_CATS = ([
              "electricity resistance",          "electricity resistance percent",
              "fire resistance",                 "fire resistance percent",
              "force resistance",                "force resistance percent",
-             "magic resistance",                "magic resistance percent",
+             "spell resistance",                "magic resistance percent",
              "mental resistance",               "mental resistance percent",
              "negative energy resistance",      "negative energy resistance percent",
              "piercing resistance",             "piercing resistance percent",
@@ -411,7 +411,10 @@ mixed all_active_bonuses(object who, int flag)
                 totalBon = who->query_max_hp_bonus();
                 break;
                 // misc bonuses held in set_property()
-            case "magic resistance": case "spell damage resistance": case "damage resistance": case "spell penetration":
+            case "spell resistance":
+                totalBon = who->query_property("magic resistance");
+                break;
+            case "spell damage resistance": case "damage resistance": case "spell penetration":
                 totalBon = who->query_property(Bonus);
             break;
             case "caster level":

@@ -17,6 +17,7 @@ void create()
     ::create();
     set_author("tlaloc");
     set_spell_name("empowered weapon");
+    set_spell_sphere("telepathy");
     set_spell_level( ([ "psywarrior" : 5 ]) );
     set_damage_desc("Chance on hit to do mental damage to enemy.");
     set_syntax("cast CLASS empowered weapon on WEAPON");

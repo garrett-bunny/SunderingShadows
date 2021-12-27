@@ -246,11 +246,25 @@ void set_parrying(int i)
     parrying = i;
 }
 
-int query_parrying()
+int query_parrying(object att)
 {
-    object* weapons;
+    object* weapons, *eweapons;
     weapons = TO->query_wielded();
+    
+    objectp(att) && eweapons = att->query_wielded();
+    
+    //can't parry if both weapons ranged
+    if(sizeof(eweapons) && eweapons[0]->is_lrweapon() && !FEATS_D->usable_feat(this_object(), "deflect arrows"))
+    {
+        if(sizeof(eweapons) == 1)
+            return 0;
+            
+        if(sizeof(eweapons) > 1 && eweapons[1]->is_lrweapon())
+            return 0;
+    }
+    
     if (sizeof(weapons) && !weapons[0]->is_lrweapon()) {
+            
         if (FEATS_D->usable_feat(TO, "parry")) {
             return 1;
         }
@@ -433,6 +447,7 @@ void heart_beat()
         !avatarp(this_object()) &&
         !wizardp(this_object()) &&
         !this_object()->query_hidden() &&
+        !this_object()->query_property("altered") &&
         !this_object()->query_invis())
         {
             object room = environment(this_object());
@@ -467,23 +482,23 @@ void heart_beat()
                 tell_object(person, this_object()->QCN + " is fighting " + attacker->QCN + ".");
         }   
 
-        if(is_undead())
-            remove_property("rend");
+        if(this_object()->is_undead())
+            this_object()->remove_property("rend");
         
         if(PLAYER_D->immunity_check(this_object(), "rend"))
-            remove_property("rend");
+            this_object()->remove_property("rend");
 
-        if(query_property("rend"))
+        if(this_object()->query_property("rend"))
         {
             tell_room(environment(this_object()), "%^RED%^BOLD%^" + this_object()->QCN + "'s wounds bleed profusely!%^RESET%^", ({ this_object() }));
             tell_object(this_object(), "%^RED%^BOLD%^Your wounds bleed profusely!%^RESET%^");
             this_object()->cause_typed_damage(this_object(), "torso", roll_dice(query_property("rend"), this_object()->query_level() / 5 + 1), "untyped");
-            set_property("rend", -1);
-            if(query_property("rend") <= 0)
+            this_object()->set_property("rend", -1);
+            if(this_object()->query_property("rend") <= 0)
             {
                 tell_room(environment(this_object()), "%^WHITE%^BOLD%^" + this_object()->QCN + "'s wounds stop bleeding.%^RESET%^", ({ this_object() }));
                 tell_object(this_object(), "%^WHITE%^BOLD%^Your wounds stop bleeding.%^RESET%^");
-                remove_property("rend");
+                this_object()->remove_property("rend");
             }
         }
 
@@ -1816,6 +1831,34 @@ int query_attack_bonus()
             FEATS_D->usable_feat(TO, "improved quarry") && ret += 2;
         }
     }
+    
+    if(this_object()->query_race() == "dwarf")
+    {
+        if(this_object()->query("subrace") != "gray dwarf")
+        {
+            if(USER_D->is_valid_enemy(attacker->query_race(), "orcs") || USER_D->is_valid_enemy(attacker->query_race(), "goblins"))
+                ret += 1;
+        }
+        else
+        {
+            if(attacker->query_race() == "drow")
+                ret += 1;
+        }
+    }
+    
+    if(this_object()->query_race() == "gnome")
+    {
+        if(this_object()->query("subrace") != "deep gnome")
+        {
+            if(USER_D->is_valid_enemy(attacker->query_race(), "lizrdfolk") || USER_D->is_valid_enemy(attacker->query_race(), "goblins"))
+                ret += 1;
+        }
+        else if(this_object()->query("subrace") != "trixie")
+        {
+            if(USER_D->is_valid_enemy(attacker->query_race(), "dwarves") || USER_D->is_valid_enemy(attacker->query_race(), "lizardfolk"))
+                ret += 1;
+        }        
+    }
 
     //Inquisitor Bane
     if(this_object()->query_property("bane weapon") && sizeof(weap) && attacker)
@@ -1898,6 +1941,9 @@ int query_damage_bonus()
             FEATS_D->usable_feat(TO, "third favored enemy") && ret += 2;
         }
     }
+    
+    if(FEATS_D->is_active(this_object(), "rending blows"))
+        ret -= 5;
 
     if(FEATS_D->usable_feat(TO, "slay the undead") && attacker && attacker->is_undead())
         ret += 2;
@@ -2043,6 +2089,9 @@ void set_detecting_invis(int xx)
 
 int true_seeing()
 {
+    if(!objectp(TO) || !objectp(ETO))
+        return 0;
+    
     return true_seeing || ETO->query_property("no invis") || avatarp(TO);
 }
 
@@ -2377,9 +2426,9 @@ int is_undead()
             query_property("undead") ||
             query_race() == "undead" ||
             query_race() == "nightwing" ||
-            member_array("undead", query_id()) != -1 ||
+            member_array("undead", this_object()->query_id()) != -1 ||
             query_acquired_template() == "undead" ||
-            query_acquired_template() == "vampire") || 0;
+            query_acquired_template() == "vampire");
 }
 
 /**

@@ -124,7 +124,7 @@ void execute_feat()
     if(DC > base + roll_dice(1, 20))
     {
         tell_object(caster, "%^CYAN%^The spell resists your attempt to counter it!");
-        caster->add_cooldown("counterspell", 300);
+        caster->add_cooldown("counterspell", 60);
         dest_effect();
         return;
     }
@@ -160,8 +160,9 @@ void execute_feat()
     }
     
     tell_object(caster, "%^BOLD%^%^CYAN%^You use your meta magic knowledge to counter " + target->query_cap_name() + "'s spell.");
-    target->set_property("counterspell", 1);
-    caster->add_cooldown("counterspell", 300);
+    //target->set_property("counterspell", 1);
+    target->spell_interrupt("spell interrupt","%^RED%^BOLD%^Your magic has been blocked!%^RESET%^");
+    caster->add_cooldown("counterspell", 60);
 
     dest_effect();
     return;

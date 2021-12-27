@@ -17,6 +17,7 @@
     "light", \
     "sight bonus", \
     "magic resistance", \
+    "spell resistance", \
     "spell damage resistance",\
     "damage resistance", \
     "caster level", \

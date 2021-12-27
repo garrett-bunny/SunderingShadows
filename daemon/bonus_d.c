@@ -375,8 +375,13 @@ varargs int hit_bonus(object who, object targ, int attack_num, object current, i
                 mysize++;           //run small creatures as normal size please.
             }
             mysize -= (int)current->query_size();
-            if (FEATS_D->usable_feat(who, "weapon finesse") && ((mysize >= 0) || current->query_property("finesse") || touch == 1)) { // if has-feat & weapon is smaller/same size as user - Odin 5/24/2020 or weapon has the property - Venger dec20
+            //if (FEATS_D->usable_feat(who, "weapon finesse") && ((mysize >= 0) || current->query_property("finesse") || touch == 1)) { // if has-feat & weapon is smaller/same size as user - Odin 5/24/2020 or weapon has the property - Venger dec20
             //Or it's a ranged touch attack (uses dex)
+            if (FEATS_D->usable_feat(who, "weapon finesse") && ((mysize >= 0) || touch == 1)) {
+                to_hit += (query_dex_bonus(who) * -1);
+            }
+            else if(FEATS_D->usable_feat(who, "fighter finesse"))
+            {
                 to_hit += (query_dex_bonus(who) * -1);
             }
             else if(FEATS_D->usable_feat(who, "cunning insight"))
@@ -580,3 +585,111 @@ int new_damage_bonus(object attacker, int str)
     dbonus += ((str - 10) / 2);
     return dbonus;
 }
+
+//Combat Maneuvers Calcs
+int query_combat_maneuver_bonus(object ob)
+{
+    int cmb, mysize;
+    
+    if(!objectp(ob))
+        return 0;
+    
+    mysize = ob->query_size();
+    
+    cmb = new_bab(ob->query_level(), ob);  
+    if(FEATS_D->has_feat(ob, "agile maneuvers"))
+        cmb += query_stat_bonus(ob, "dexterity");
+    else
+        cmb += query_stat_bonus(ob, "strength");
+    
+    cmb += (mysize - 2);
+    
+    return cmb;
+}
+
+int query_combat_maneuver_defense(object ob)
+{
+    int cmd, mysize;
+    
+    if(!objectp(ob))
+        return 0;
+    
+    mysize = ob->query_size();
+    cmd = new_bab(ob->query_level(), ob);
+
+    cmd += max( ({ query_stat_bonus(ob, "strength"), query_stat_bonus(ob, "dexterity") }) );
+    
+    cmd += (mysize - 2);
+    
+    if(ob->query_race() == "dwarf")
+        cmd += 4;
+    
+    return cmd;
+}
+
+int combat_maneuver(object victim, object attacker, int mod)
+{
+    int result, CMB, CMD, diff;
+    
+    if(victim->query_paralyzed() || victim->query_bound() || victim->query_unconscious())
+        return 1;
+    
+    result = roll_dice(1, 20);
+    
+    if(result == 1)
+        return 0;
+    if(result == 20)
+        return 1;
+    
+    result += mod;
+    
+    if(!userp(victim))
+        CMD = attacker->query_level() + 10;
+    else
+        CMD = query_combat_maneuver_defense(victim);
+
+    if(!userp(attacker))
+        CMB = victim->query_level() + 10;
+    else
+        CMB = query_combat_maneuver_bonus(attacker);
+    
+    CMB += result;
+    CMD += 10;
+    
+    CMD += (FEATS_D->usable_feat(victim, "unmoving") * 3);
+    
+    result = CMB >= CMD ? 1 : 0;
+    
+    return result;
+}
+    
+int intimidate_check(object victim, object attacker, int mod)
+{
+    int DC, result, influence, diminish;
+    
+    if(!objectp(victim) || !objectp(attacker))
+        return 0;
+    
+    DC = min( ({ 50, victim->query_level() }) );
+    DC += (10 + query_stat_bonus(victim, "wisdom"));
+    
+    result = roll_dice(1, 20);
+    influence = attacker->query_skill("influence");
+    diminish = attacker->query_level() + 10;
+    
+    if(influence > diminish)
+        influence = diminish + (influence - diminish) / 2;
+    
+    if(result == 1)
+        return 0;
+    if(result == 20)
+        return 1;
+    
+    result = attacker->query_skill("influence") + result;
+    result += mod;
+    
+    result = result >= DC ? 1 : 0;
+    
+    return result;
+}
+    

@@ -726,7 +726,7 @@ int can_remove_feat(object ob,string feat)
 
 string* get_all_removable_feats(object ob)
 {
-    string* feats, * cls_feats = ({}), * classes, file, myspec;
+    string* feats, * cls_feats = ({}), *racial_feats = ({  }), * classes, file, myspec;
     int i;
 
     if (!objectp(ob)) {
@@ -738,8 +738,10 @@ string* get_all_removable_feats(object ob)
         file = DIR_CLASSES + "/" + classes[i] + ".c";
         cls_feats += class_feat_array(classes[i], myspec, ob);
     }
+    racial_feats = race_feat_array(ob->query_race(), ob->query("subrace"), ob);
     feats = (string*)ob->query_player_feats();
     feats -= cls_feats;
+    feats -= racial_feats;
     return feats;
 }
 
@@ -1741,6 +1743,32 @@ string* class_feat_array(string myclass, string spec, object ob)
     return feat_array;
 }
 
+string *race_feat_array(string myrace, string subrace, object ob)
+{
+    string file, *feat_array;
+    mapping race_feats;
+    
+    if(!myrace)
+        return ({  });
+    
+    file = DIR_RACES + "/" + myrace + ".c";
+    
+    if(!file_exists(file))
+        return ({  });
+    
+    race_feats = file->race_featmap(subrace, ob);
+    
+    if(!mapp(race_feats))
+        return ({  });
+    
+    feat_array = ({  });
+    
+    foreach(string key in keys(race_feats))
+        feat_array += race_feats[key];
+        
+    return feat_array;
+}
+
 int bought_as_type_feat(string feat, object targ, string feattype) {
     string* feat_array;
     mapping type_feats;
@@ -1904,6 +1932,9 @@ int number_feats(object obj, string category, string* valid_classes) {
                 else {
                     j = ((obj->query_class_level(subset[i]) + 1) / 6);
                 }
+                break;
+            case "monk":
+                j = ((obj->query_class_level(subset[i]) + 4) / 5);
                 break;
             case "psywarrior":
                 if (obj->query_class_level("psywarrior") < 21) {

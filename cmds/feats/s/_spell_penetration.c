@@ -10,7 +10,7 @@ void create()
     feat_category("MagicAccuracy");
     feat_name("spell penetration");
     feat_prereq("Spell focus");
-    feat_desc("Spell penetration adds +1 to the caster's spell save DCs and reduces their target's spell damage resistance by 5.");
+    feat_desc("Spell penetration adds +1 to the caster's spell save DCs and +2 to their spell penetration.");
     permanent(1);
     set_required_for(({"perfect caster","greater spell penetration","armored caster"}));
 }

@@ -42,7 +42,7 @@ void create()
     
     set_item_bonus("attack bonus", 7);
     set_item_bonus("damage bonus", 7);
-    set_item_bonus("negative energy resistance", 25);
+    set_item_bonus("negative energy resistance percent", 25);
     
     set_wield( (: this_object(), "wield_func" :) );
     set_unwield( (: this_object(), "unwield_func" :) );
@@ -66,6 +66,7 @@ void init()
     {
         if((holder->query_true_align() != 1 &&
            holder->query_true_align() != 4 &&
+           holder->query_true_align() != 5 &&
            holder->query_true_align() != 7) ||
            holder->query_character_level() < 40)
         {
@@ -92,8 +93,16 @@ int hit_func(object target)
         return 0;
     
     //This blade adds a sneak attack
+    //If opponent not vulnerabe, it does a consolation special
     if(!target->is_vulnerable_to(owner))
+    {
+        if(random(3))
+            return 0;
+        
+        tell_object(owner, color("Your blade flashes with divine purpose!"));
+        target->cause_typed_damage(targ, targ->return_target_limb(), roll_dive(6, 10) + 10, "divine");
         return 0;
+    }
     
     hit_count = 0;
     

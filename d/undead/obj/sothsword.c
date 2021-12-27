@@ -58,7 +58,7 @@ int wieldit() {
    }
    
    tell_object(ETO,"%^BOLD%^%^RED%^As you grip the hilt of the sword, you sense the spirit within!%^RESET%^");
-   tell_room(environment(ETO),"%^BOLD%^%^RED%^"+ETO->query_cap_name()+"'s sword egde starts glowing as "+ETO->QS+" wields it.%^RESET%^",ETO);
+   tell_room(environment(ETO),"%^BOLD%^%^RED%^"+ETO->query_cap_name()+"'s sword edge starts glowing as "+ETO->QS+" wields it.%^RESET%^",ETO);
    counter = 0;
    ETO->set_property("evil",1);
    ETO->set_property("soth weapon",1);
@@ -107,7 +107,7 @@ int hitit(object ob) {
          case 13..15:
 			
 			if(counter < 4) {
-			tell_object(ETO,"%^RESET%^%^RED%^You feel warmth eminating from the hilt of the sword.%^RESET%^");
+			tell_object(ETO,"%^RESET%^%^RED%^You feel warmth emanating from the hilt of the sword.%^RESET%^");
             tell_object(ob,"%^RESET%^%^RED%^"+ETO->query_cap_name()+"'s sword glows softly as it strikes you!%^RESET%^");
             tell_room(environment(query_wielded()),"%^RESET%^%^RED%^"+ETO->query_cap_name()+"'s sword gloves softly as it drinks "+ob->QCN+"'s blood!%^RESET%^",({ETO,ob}));	
 			counter = 0;
@@ -123,7 +123,7 @@ int hitit(object ob) {
             counter = 0;
 			set_property("magic",1);
             ob->do_damage(ob->return_taget_limb(),roll_dice(2,6)+10);
-			ob->set_paralyzed(roll_dice(2,10)+5,"Your body will not move under the spirit's posession!");
+			ob->set_paralyzed(roll_dice(2,10)+5,"Your body will not move under the spirit's possession!");
 			set_property("magic",-1);
 			}
 			

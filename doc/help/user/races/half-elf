@@ -1,8 +1,6 @@
 %^BOLD%^%^BLUE%^Half-elf:
 
 %^BOLD%^%^BLUE%^Stat adjustments: %^RESET%^+2 to stat of choice
-%^BOLD%^%^BLUE%^Skill adjustments: %^RESET%^+2 influence
-%^BOLD%^%^BLUE%^Misc bonuses: %^RESET%^+2 saves vs charm spells, sleep immunity, low light vision 2
 %^BOLD%^%^BLUE%^Innate spells: %^RESET%^none
 %^BOLD%^%^BLUE%^Size: %^RESET%^medium
 
@@ -10,6 +8,12 @@
 %^BOLD%^%^BLUE%^Classes restricted: %^RESET%^none
 %^BOLD%^%^BLUE%^Normal adventuring starting age: %^RESET%^16-21
 %^BOLD%^%^BLUE%^Average life span: %^RESET%^155
+
+%^BOLD%^%^BLUE%^Racial Traits:
+%^CYAN%^Adaptability%^RESET%^     - Skill Focus as a free feat at level 1
+%^CYAN%^Elven Immunity%^RESET%^   - +2 to saves vs charm spells, sleep immunity
+%^CYAN%^Low Light Vision%^RESET%^ - +2 to sight bonus to see in the dark
+%^CYAN%^Diplomatic%^RESET%^       - +2 influence
 
 %^BOLD%^%^BLUE%^Description:
 Half-elves are perhaps the most diverse of all known races, made up of a combination between their elven and human heritage, with their skin color typically being that from their human side. They are still typically much like their elven heritage, however, with the delicate features of that race. They are only slightly taller than the average elf, but their weight and build is usually similar to their human side. Some half-elves prefer the company of other elven types, while others prefer humans.

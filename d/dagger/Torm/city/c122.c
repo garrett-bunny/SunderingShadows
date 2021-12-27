@@ -26,7 +26,7 @@ void create(){
 }
 void reset(){
   ::reset();
-  if(!present("torm city guard")) new(MON+"guard2")->move(TO);
+  if(!present("torm guard")) new(MON+"guard")->move(TO);
   }
 int block(){
   if(avatarp(TP))return 1;

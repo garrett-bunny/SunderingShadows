@@ -10,7 +10,7 @@ void create(){
    set_property("indoors",1);
    set_name("A narrow, winding tunnel");
    set_short("%^BLUE%^A narrow, winding tunnel%^RESET%^");
-   set_terrain(CEMETERY);
+   set_terrain(NAT_TUNNEL);
    set_travel(FOOT_PATH);
    set_smell("default","%^ORANGE%^The dank smell of %^BOLD%^%^BLACK%^sto%^RESET%^n%^BOLD%^%^BLACK%^e %^RESET%^%^ORANGE%^"
 "and the underground fills the air.%^RESET%^");

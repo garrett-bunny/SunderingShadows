@@ -61,6 +61,7 @@ void dest_effect()
     if(objectp(caster))
     {
         tell_object(caster, "%^BLACK%^BOLD%^The wings of darkness fade.%^RESET%^");
+        tell_room(environment(caster), "%^BOLD%^%^BLACK%^The wings of darkness fade from "+caster->QCN+".%^RESET%^", caster);
         caster->remove_property_value("added short",({"%^BOLD%^%^CYAN%^ (trailed by %^BLACK%^%^BOLD%^inky black wings%^CYAN%^)%^RESET%^"}));
         caster->remove_property("flying");
     }

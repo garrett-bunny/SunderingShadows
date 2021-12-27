@@ -17,7 +17,7 @@ void create() {
     set_discipline("telepath");
     set_syntax("cast CLASS overwhelming presence");
     set_damage_desc("AOE paralysis");
-    set_description("Your presence inspires incredible awe in your enemies. Those who fail to make a will save are struck with awe and fall to their knees, paralyzed, in worship. Each round, they attempt another will save. If they succeed the will save and end the paralysis early, they are staggered for 1d4 rounds and take 1d6 wisdom damage until the overwhelming presence ends. Targets with immunity to charm effects will not be affected by this spell.");
+    set_description("Your presence inspires incredible awe in your enemies. Those who fail to make a will save are struck with awe and fall to their knees, paralyzed, in worship. Each round, they attempt another will save. If they succeed the will save and end the paralysis early, they are staggered for 1d4 rounds and take 1d6 wisdom damage until the overwhelming presence ends. If a target succeeds the initial save they are only staggered for one round. Targets with immunity to charm effects will not be affected by this spell.");
     mental_spell();
     splash_spell(3);
     set_verbal_comp();
@@ -70,6 +70,7 @@ void spell_effect(int prof)
         {
             tell_object(ob, "%^MAGENTA%^You manage to shrug off the feeling of overwhelming awe!%^RESET%^");
             tell_room(place, "%^MAGENTA%^" + c_name + " manages to shrug off the feeling of overwhelming awe!%^RESET%^", ob);
+            "/std/effect/status/staggered"->apply_effect(ob, 1, caster);
             targets -= ({ ob });
         }
     }
@@ -92,12 +93,12 @@ void check_awe(int count)
             continue;
         }
         
-        if(do_save(ob, 0))
+        if(do_save(ob, 0) || !(ob->query_paralyzed())) //removing the paralyzation is "recovered"
         {
             ob->set_paralyzed(0);
             tell_object(ob, "%^MAGENTA%^You collect yourself and begin to stand.%^RESET%^");
             tell_room(place, "%^MAGENTA%^" + ob->query_cap_name() + " collects themselves and begins to stand.%^RESET%^", ob);
-            "/std/effect/status/staggered"->apply_effect(ob, roll_dice(1, 4));
+            "/std/effect/status/staggered"->apply_effect(ob, roll_dice(1, 4), caster);
             ob->add_stat_bonus("wisdom", -wisdamage);
             recovered += ({ ob }); //If they recover before spell wears off
             targets -= ({ ob });

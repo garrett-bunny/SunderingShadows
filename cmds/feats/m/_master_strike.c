@@ -184,7 +184,8 @@ void execute_attack()
     
     spell_kill(target, caster);
     //Bypasses physical avoidance...needs to have a cooldown....starting with 5 minutes
-    caster->add_cooldown("master strike", 300);
+    //Down to 3 minutes
+    caster->add_cooldown("master strike", 180);
     ename = target->QCN;
     pname = caster->QCN;
     
@@ -226,14 +227,14 @@ void execute_attack()
     damage += BONUS_D->query_stat_bonus(caster, "dexterity");
     damage += caster->query_damage_bonus();
     
+    target->set_property("magic", 1);
     target->cause_typed_damage(target, target->return_target_limb(), damage, "untyped");
+    target->remove_property("magic");
     
     if(!objectp(target))
         return;
     
-    DC = 10 + BONUS_D->query_stat_bonus(caster, "intelligence") + caster->query_class_level("thief") / 5;
-    
-    if(!do_save(target, DC))
+    if(!do_save(target, BONUS_D->query_stat_bonus(caster, "dexterity")))
     {
         
         tell_object(target, "%^BOLD%^RED%^The strike ruptures your organs!");

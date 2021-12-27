@@ -334,9 +334,11 @@ int confirm_add_type(string str, object ob, string feat, string extradata, strin
         if (feat == "spellmastery" || feat == "archmage" || feat == "greater spell mastery") {
             ob->set("spellmastery_spell", extradata);
         }
+        /*
         if (feat == "skill focus") {
             ob->set("skill_focus", extradata);
         }
+        */
         FEATS_D->add_my_feat(ob, feattype, feat);
         //moved this down - otherwise feats that require a specific level will
         //never get added if the exp cost would cause you to lose a level - Saide
@@ -368,9 +370,11 @@ int confirm_add_type(string str, object ob, string feat, string extradata, strin
             if (feat == "spellmastery") {
                 ob->set("spellmastery_spell", extradata);
             }
+            /*
             if (feat == "skill focus") {//racial only
                 ob->set("skill_focus", extradata);
             }
+            */
         }
         FEATS_D->add_my_feat(ob, feattype, feat);
         tell_object(ob, "%^YELLOW%^Congratulations, you have successfully added "
@@ -436,7 +440,7 @@ int confirm_remove(string str, object ob, string feat, string extradata)
 int cmd_feats(string str)
 {
     object ob;
-    string tmp, feat, * info = ({}), * required, * my_required = ({}), * my_tmp_feats = ({}), category, * subset = ({}), * feats = ({}), * melee_retool = ({}), * feat_types, feat_types_labels;
+    string tmp, feat, * info = ({}), * required, * my_required = ({}), * my_tmp_feats = ({}), category, * subset = ({}), * feats = ({}), * melee_retool = ({}), * feat_types, feat_types_labels, *racefeats;
     int i, j, MAX_ALLOWED, BONUS_ALLOWED, num_feats, allowed, num_bonus, bonus, my_lev, * featkeys;
     mapping classfeats, otherfeats, bonus_feats;
 
@@ -543,6 +547,29 @@ int cmd_feats(string str)
         for (i = 0; i < sizeof(featkeys); i++) {
             feats += otherfeats[featkeys[i]];
         }
+        
+        //Racial feats check
+        racefeats = FEATS_D->race_feat_array(this_player()->query_race(), this_player()->query("subrace"), this_player());
+        
+        if(pointerp(racefeats))
+        {
+            foreach(string rfeat in racefeats)
+            {
+                if(!FEATS_D->has_feat(this_player(), rfeat))
+                {
+                    FEATS_D->add_feat(this_player(), "racial", rfeat, 1);
+                    tell_object(this_player(), "%^YELLOW%^Adding racial feat %^BLUE%^" + rfeat + ".%^RESET%^");
+                }
+                else
+                {
+                    if(FEATS_D->get_feat_type(this_player(), rfeat) != "bonus")
+                    {
+                        tell_object(this_player(), "%^YELLOW%^Moving %^BLUE%^" + rfeat + "%^YELLOW%^ feat to racial feats.%^RESET%^");
+                        num_feats++;
+                    }
+                }
+            }
+        }       
 
         // now run addition of any missing class feats; remove from bought
         // feats first if they already did
@@ -554,6 +581,7 @@ int cmd_feats(string str)
             }
             tmp = (string)TP->query_combat_spec(required[bonus]);         // new combat spec code, N 1/14.
             classfeats = category->class_featmap(tmp, TP);
+            
             if (!mapp(classfeats)) {
                 continue;
             }
@@ -1020,6 +1048,7 @@ int validation_messages(object obj, string group, string feat_name) {
         }
     }
     if (group == "racial" || group == "add") {
+        /*
         if (feat_name == "skill focus") {
             tell_object(obj, "%^YELLOW%^In order to gain the skill focus feat, you must "
                 "select a skill that you wish to learn as a class-skill.  You can pick "
@@ -1029,6 +1058,7 @@ int validation_messages(object obj, string group, string feat_name) {
             input_to("skill_focus_setting", obj, feat_name, group_2);
             return 1;
         }
+        */
     }
 
     if (group == "add") {

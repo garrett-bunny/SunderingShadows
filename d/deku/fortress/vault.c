@@ -26,7 +26,7 @@ KAYLA
        "west" : "/d/deku/fortress/hallN7"
     ] ));
     set_items(([
-       "custion" : "The velvet cushion holds red stones that appear to radiate red light.",
+       "cushion" : "The velvet cushion holds red stones that appear to radiate red light.",
 "statue" : "This statue is made of stone and resembles a large demon with a goat's head",
     ] ));
 }

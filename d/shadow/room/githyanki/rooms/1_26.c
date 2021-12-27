@@ -48,7 +48,7 @@ void create() {
       "west" : ROOMS"1_17",
    ]));
 
-    set_door("iron door",ROOMS"1_17","west",OBJ"gith_key");
+    set_door("iron door",ROOMS"1_17","west","gith_key");
     set_locked("iron door", 1);
     lock_difficulty("iron door",-80, "lock");
     set_door_description("iron door","%^BLACK%^%^BOLD%^This door has been wrought "+

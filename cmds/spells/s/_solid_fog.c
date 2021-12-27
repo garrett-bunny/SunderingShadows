@@ -41,7 +41,7 @@ void spell_effect()
     round_duration = roll_dice(1, 6);
 
     foreach(target in attackers) {
-        "/std/effect/status/staggered"->apply_effect(target, round_duration);
+        "/std/effect/status/staggered"->apply_effect(target, round_duration, caster);
         spell_kill(target, caster);
     }
 

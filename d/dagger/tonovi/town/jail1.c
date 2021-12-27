@@ -11,7 +11,6 @@
 
 #include <std.h>
 #include <daemons.h>
-#include "/d/dagger/tonovi/town/short.h"
 
 #define CELL "/d/dagger/tonovi/town/cell"
 
@@ -89,9 +88,9 @@ Original desc
           "is in the cell."
     ]));
     set_exits(([
-      "south" : RPATH "bazaar1",
+      "south" : "/d/dagger/tonovi/town/bazaar1",
       "cell" : CELL,
-      "grate" : CELL
+      "grate" : CELL,
     ]));
     set_invis_exits(({"grate"}));
    add_pre_exit_function("grate", "GoThroughDoor");
@@ -131,7 +130,7 @@ void init() {
 void reset() {
    ::reset();
    if(!present("waynon"))
-      new(MPATH"jail_guard")->move(TO);
+      new("/d/dagger/tonovi/mon/jail_guard")->move(TO);
    if(!present("tonovi guard"))
       new("/d/dagger/tonovi/guards/guard")->move(TO);
 }

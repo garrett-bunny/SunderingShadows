@@ -1,4 +1,6 @@
-inherit "/std/comp_vend.c";
+#include <std.h>
+inherit VENDOR;
+
 create() {
    ::create();
    set_name("seath");
@@ -16,8 +18,9 @@ create() {
    set_body_type("human");
    set_property("no bump", 1);
    set_class("mage");
-    set_components(100);
    set_spells(({"magic missile","acid arrow","chill touch"}));
    set_spell_chance(75);
    remove_std_db();
+   set_storage_room("/d/deku/monster/seath_storage.c");
 }
+

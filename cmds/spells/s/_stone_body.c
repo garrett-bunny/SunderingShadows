@@ -10,7 +10,7 @@ void create() {
     set_spell_name("stone body");
     set_spell_level(([ "cleric" : 8,
                        "druid"  : 8]));
-    set_spell_sphere("combat");
+    set_spell_sphere("alteration");
     set_mystery("stone");
     set_syntax("cast CLASS stone body");
     set_description("This spell will cover the caster's skin in a layer of granite, reducing the damage he takes with "

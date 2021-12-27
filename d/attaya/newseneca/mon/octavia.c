@@ -5,8 +5,7 @@
 
 #include <std.h>
 #include "../seneca.h"
-
-inherit "/std/comp_vend.c";
+inherit VENDOR;
 
 void buff_up(object myself, object target, int stage);
 void summon_familiar(object myself, object familiar);
@@ -63,10 +62,9 @@ object ob;
       "tail slithers out of the bottom of her gown."}), 0);
    set_emotes(10, ({"%^BOLD%^%^BLACK%^Octavia's eyes %^GREEN%^flash "+
       "%^BLACK%^as she lashes out with her tail!%^RESET%^",
-      "%^MAGENTA%^Octavia snarls%^RESET%^: That snivelling rat Godfrey "+
+      "%^MAGENTA%^Octavia snarls%^RESET%^: That sniveling rat Godfrey "+
       "put you up to this, didn't he?!","Octavia screeches and slices "+
       "with her claws!"}), 1);
-   set_components(100);
    set_spell_chance(100);
    set_spells(({"fireball","lightning bolt","acid arrow",
         "powerword stun", "incendiary cloud", "magic missile"}));
@@ -75,6 +73,7 @@ object ob;
    ob->set_property("my_master",TO);
    TO->set_property("my_familiar",ob);
    call_out("summon_familiar",1,TO,ob);
+   set_storage_room(MON"octavia_storage.c");
 }
 
 void summon_familiar(object myself, object familiar) {

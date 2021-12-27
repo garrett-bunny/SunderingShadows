@@ -526,11 +526,14 @@ mixed query_property(string prop)
 
     if (prop == "spell penetration") {
         if (FEATS_D->usable_feat(TO, "spell penetration")) {
-            num += 1;
+            num += 2;
         }
         if (FEATS_D->usable_feat(TO, "greater spell penetration")) {
             num += 2;
         }
+        if(this_object()->query_race() == "elf" && this_object()->query("subrace") != "szarkai")
+            num += 2;
+        
         num += props[prop];
         return (num + EQ_D->gear_bonus(TO, "spell penetration"));
     }
@@ -599,11 +602,20 @@ mixed query_property(string prop)
         if (FEATS_D->usable_feat(TO, "undead graft")) {
             num += 6;
         }
+		
+		if (FEATS_D->usable_feat(TO, "perfect self")) {
+            num += 10;
+        }
+		
         if (FEATS_D->usable_feat(TO, "shadow master")) {
             if (ETO->query_light() < 1) {
                 num += 8;
             }
         }
+        
+        if(FEATS_D->usable_feat(this_object(), "armored juggernaut") && !this_object()->is_ok_armour("thief"))
+            num += (BONUS_D->query_stat_bonus(this_object(), "strength") / 2);
+        
         if(this_object()->is_shade() || this_object()->query_race() == "nightwing")
         {
             num -= (total_light(environment(this_object())) - 2);
@@ -638,12 +650,12 @@ mixed query_property(string prop)
         return (num + EQ_D->gear_bonus(TO, "damage resistance"));
     }
 
-    if (prop == "magic resistance") {
+    if (prop == "magic resistance" || prop == "spell resistance") {
         if (FEATS_D->usable_feat(TO, "improved resistance")) {
             num += 1;
         }
         if (FEATS_D->usable_feat(TO, "increased resistance")) {
-            num += 2;
+            num += 1;
         }
         if ((string)TO->query_race() == "human") {
             subrace = (string)TO->query("subrace");
@@ -693,7 +705,7 @@ mixed query_property(string prop)
     
     if(prop == "darkvision")
     {
-        if(avatarp(this_object()) || creatorp(this_object()))
+        if(avatarp(this_object()) || wizardp(this_object()))
             return 1;
         
         if(this_object()->query_mystery() == "shadow")
@@ -834,6 +846,14 @@ mixed query_property(string prop)
                 }
             }
         }
+		
+        if(this_object()->query_bloodline() == "fey" && this_object()->query_class_level("sorcerer") > 30)
+            num += 10;
+        
+		if (FEATS_D->usable_feat(TO, "perfect self")) {
+            num += 50;
+        }
+        /*
         if (FEATS_D->usable_feat(TO, "resistance")) {
             num += 5;
         }
@@ -843,6 +863,7 @@ mixed query_property(string prop)
         if (FEATS_D->usable_feat(TO, "improved resistance")) {
             num += 9;
         }
+        */
         num += props[prop];
         return (num + EQ_D->gear_bonus(TO, "spell damage resistance"));
     }
@@ -2464,6 +2485,8 @@ void add_the_bonus(object myplayer, string bonustype, int bonusvalue)
     case "light resistance":
     case "darkness resistance":
     case "nature resistance":
+    case "void resistance":
+    case "radiant resistance":
         myplayer->set_resistance(replace_string(bonustype, " resistance", ""), bonusvalue);
         break;
 
@@ -2489,6 +2512,8 @@ void add_the_bonus(object myplayer, string bonustype, int bonusvalue)
     case "mental resistance percent":
     case "light resistance percent":
     case "darkness resistance percent":
+    case "void resistance percent":
+    case "radiant resistance percent":
         myplayer->set_resistance_percent(replace_string(bonustype, " resistance percent", ""), bonusvalue);
         break;
 

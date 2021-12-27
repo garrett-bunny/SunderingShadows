@@ -28,15 +28,23 @@ void create()
     set_race("human");
     set_level(LVL);
     set_hd(LVL + random(10), 1);
-    set_max_hp(LVL * 20 + 6000);
+    set_max_hp(LVL * 20 + 15000);
     set_hp(TO->query_max_hp());
     set_new_exp(50, "boss");
     set_class("fighter");
     set_guild_level("fighter", LVL);
-    set_mlevel("fighter", LVL);
+    set_mlevel("fighter", LVL - 10);
+    set_mlevel("immortal_defender", 10);
+    set("base_class", "fighter");
     add_search_path("/cmds/fighter");
     set_fighter_style("soldier");
     set_speed(30);
+    set_stats("strength", 30);
+    set_stats("constitution", 30);
+    set_stats("intelligence", 12);
+    set_stats("wisdom", 12);
+    set_stats("dexterity", 16);
+    set_stats("charisma", 20);
     add_attack_bonus(15);
     add_damage_bonus(10);
     set_property("add kits", 50);
@@ -74,15 +82,17 @@ void create()
         "rushit",
         "kdit",
         "kdit",
-        "disarmit"
+        "disarmit",
+        "shieldchargeit"
     }));
     set_func_chance(35);
     set_property("full attacks", 1);
     set_property("fast healing", 5);
+    set_property("shieldwall", 5);
     set_property("magic resistance", random(60) + 10);
     set_property("no death");
-    
-    set_ac(-50 - random(10));
+    set_mob_magic_resistance("medium");
+    set_ac(-60 - random(10));
     set_detecting_invis(1);
     set_long("This " + query_gender() + " guard wears the standard uniform of "
              "the Tonovi Guard, with an insignia indicating a rank of Champion.  "
@@ -282,6 +292,21 @@ void disarmit(object targ)
     TO->force_me("disarm " + targ->query_name());
 }
 
+void shieldchargeit(object targ)
+{
+    //string *choices;
+    
+    if (!objectp(targ)) {
+        return;
+    }
+    if (!objectp(TO)) {
+        return;
+    }
+    //choices = environment(this_object())->query_exits();
+    
+    TO->force_me("shield charge");
+}
+
 void report()
 {
     return;
@@ -290,7 +315,7 @@ void report()
 void die(object ob)
 {
     int power;//%
-    power = 10 + random(5);
+    power = 5 + random(5);
     WORLD_EVENTS_D->kill_event("Gates of Tonovi");
     WORLD_EVENTS_D->inject_event((["Gates of Tonovi" : (["start message" : "%^CYAN%^%^BOLD%^The Champion of Tonovi has fallen in battle!%^RESET%^
 
@@ -298,4 +323,5 @@ void die(object ob)
                                                              "event type" : "exp bonus", "length" : 120, "notification" : power + "% Bonus Exp",
                                                              "event name" : "Gates of Tonovi", "modifier" : power, "announce" : 1, "announce to" : "world" ]), ])
                                  );
+    ::die();
 }

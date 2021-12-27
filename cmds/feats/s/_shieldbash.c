@@ -5,7 +5,8 @@ inherit FEAT;
 
 int FLAG;
 
-#define FEATTIMER 35
+//#define FEATTIMER 35
+int FEATTIMER = (35 - (FEATS_D->usable_feat(caster, "abundant tactics") * 7));
 
 // Three things are necessary to set in create in all feats.  First, the type of feat
 // either instant or duration or permanent.  The type of feat will tell the inherit
@@ -17,10 +18,10 @@ void create()
 {
     ::create();
     feat_type("instant");
-    feat_category("WeaponAndShield");
+    feat_category("CombatManeuvers");
     feat_name("shieldbash");
     feat_syntax("shieldbash [TARGET]");
-    feat_desc("Shieldbash is an instant effect feat that  can be used to slam a shield into the target and stun them for  a brief time. In addition, if the target fails to make a  fortitude save, they will be unable to cast spells for a brief time  after the shieldbash.
+    feat_desc("Shieldbash is a combat maneuver that  can be used to slam a shield into the target and stun them for  a brief time. In addition, if the target fails to make a  fortitude save, they will be unable to cast spells for a brief time  after the shieldbash. Using this feat will prompt an attack of opportunity from the target.
 
 If used without an argument this feat will pick up a random attacker.");
     // Sets the type of saving throw to use, same as used in spell.c
@@ -196,7 +197,12 @@ void execute_attack()
     caster->set_property("using shieldbash", newmap);
     bonus = 2 * FEATS_D->usable_feat(caster, "improved shieldbash");
     
-    if (!(res = thaco(target, bonus))) {
+    if(!FEATS_D->has_feat(caster, "improved shieldbash"))
+        target->execute_attack();
+    
+    //if (!(res = thaco(target, bonus))) {
+    if(BONUS_D->combat_maneuver(target, caster))
+    {
         tell_object(caster, "%^RED%^" + target->QCN + " sidesteps your shieldbash at the "
                     "last instant and you scramble to stay on your feet!%^RESET%^");
         tell_object(target, "%^BOLD%^%^GREEN%^You sidestep " + caster->QCN + "'s attempt "
@@ -204,7 +210,7 @@ void execute_attack()
         tell_room(place, "%^BOLD%^" + target->QCN + " sidesteps at the last instant, avoiding "
                   "" + caster->QCN + "'s shieldbash and leaving " + caster->QCN + " off balance!", ({ target, caster }));
         if (!FEATS_D->usable_feat(caster, "improved shieldbash")) {
-            caster->set_paralyzed(roll_dice(4, 6), "%^MAGENTA%^You're struggling to stay on your feet!%^RESET%^");
+            //caster->set_paralyzed(roll_dice(4, 6), "%^MAGENTA%^You're struggling to stay on your feet!%^RESET%^");
         }
         // It's very important that dest_effect() is called when the feat ends.  If not, it
         // will break combat in the room where the feat was used

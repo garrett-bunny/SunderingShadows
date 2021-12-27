@@ -281,7 +281,8 @@ void daemonic_surprise(object vic)
                     "scream! An image of a demon appears and vanishes.");
         tell_room(ETO, "%^RED%^" + vic->query_cap_name() + " suddenly screams " +
                   "in pain!", vic);
-        vic->do_damage(vic->return_target_limb(), roll_dice(5, 20));
+        //vic->do_damage(vic->return_target_limb(), roll_dice(5, 20));
+        vic->cause_typed_damage(vic, vic->return_target_limb(), roll_dice(5, 20), "mental");
     }
 }
 
@@ -305,7 +306,8 @@ void energy_strike(object vic)
                     "sword. You scream in pain!");
         tell_room(ETO, "%^BLUE%^" + vic->query_cap_name() + " suddenly screams " +
                   "in pain!", vic);
-        vic->do_damage(vic->return_target_limb(), roll_dice(5, 20));
+        //vic->do_damage(vic->return_target_limb(), roll_dice(5, 20));
+        vic->cause_typed_damage(vic, vic->return_target_limb(), roll_dice(5, 20), "force");
     }
 }
 
@@ -330,7 +332,8 @@ void mind_blast(object vic)
         tell_room(ETO, "%^CYAN%^" + vic->query_cap_name() + " suddenly looks " +
                   "odd, " + vic->query_possessive() + "+ face looks twisted, some " +
                   "expression of extreme pain appears.", vic);
-        vic->do_damage(vic->return_target_limb(), roll_dice(4, 20));
+        //vic->do_damage(vic->return_target_limb(), roll_dice(4, 20));
+        vic->cause_typed_damage(vic, vic->return_target_limb(), roll_dice(4, 20), "mental");
         vic->set_paralyzed(random(20) + 10, "%^CYAN%^Your mind is in chaos.");
     }
 }

@@ -45,7 +45,7 @@ void spell_effect(int prof){
         {
             if(objectp(stagger))
             {
-                stagger->apply_effect(ob, 1);
+                stagger->apply_effect(ob, 1, caster);
                 tell_object(ob, "You manage to shrug off the majority of the wave of ecstasy.");
                 tell_object(caster, ob->QCN + " manages to shrug off the majority of the wave of ecstasy.");
             }

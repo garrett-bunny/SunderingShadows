@@ -112,7 +112,7 @@ int peer_out(string str)
     if (str == "grate" || str == "through grate") {
         tell_object(this_player(), "You step up to the door and peer out into the jail.\n");
         tell_room(environment(this_player()), this_player()->QCN + " steps up to the cell door and peers out.\n", this_player());
-        tell_room("/d/shadow/city/room/jail_main", "You hear a scratching "
+        tell_room("/d/tharis/newtharis/rooms/jail_main", "You hear a scratching "
                   "at the door and a glimpse of movement through the grate.\n", this_player());
         this_player()->force_me("peer grate 1");
         return 1;

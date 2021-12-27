@@ -14,7 +14,7 @@ void create(){
              "%^MAGENTA%^dr%^RESET%^%^MAGENTA%^u%^BOLD%^%^MAGENTA%^nk%^RESET%^" 
              "%^MAGENTA%^e%^BOLD%^%^MAGENTA%^n l%^RESET%^%^MAGENTA%^au%^BOLD%^"
              "%^MAGENTA%^ght%^RESET%^%^MAGENTA%^e%^BOLD%^%^MAGENTA%^r%^RESET%^ "
-             "reaches your ears, and you realize this isnt a cathedral at all, but "
+             "reaches your ears, and you realize this isn't a cathedral at all, but "
              "an inn. A %^BOLD%^%^BLACK%^sign%^RESET%^ hanging above the door "
              "proudly declares it to be %^BOLD%^%^WHITE%^The %^BOLD%^%^RED%^B"
              "%^RESET%^%^RED%^lo%^BOLD%^%^RED%^o%^RESET%^%^RED%^d%^BOLD%^%^RED%^y"
@@ -25,7 +25,7 @@ void create(){
       set_listen("default", "%^RESET%^%^CYAN%^Laughter and"+
                  " drunken conversations spill out over the hills.%^RESET%^");
     set_items( ([
-        "hills" : "You are sorrounded by these great majestic green monsters.",
+        "hills" : "You are surrounded by these great majestic green monsters.",
         "road" : "The new road here is just starting to get ruts in"+
 		" it, as is burns an ominous scar across the plains.",
         "wall" : "The great wall around the plain is"+
@@ -58,8 +58,6 @@ void create(){
         "south" : "/d/dagger/road/road7",]));
 	
    set_door("cathedral door","/d/player_houses/innaeli/rooms/bsb1","inn",0);
-   set_locked("cathedral door", 0);
-      lock_difficulty("cathedral door",-0, "lock");
    set_door_description("cathedral door",
    "%^BOLD%^%^BLACK%^The doors are made of thick"+
    " stone that looks quite heavy. They can be "+

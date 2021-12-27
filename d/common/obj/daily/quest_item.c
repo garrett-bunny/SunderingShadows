@@ -9,6 +9,7 @@
 
 #include <std.h>
 #include <daemons.h>
+#include <security.h>
 
 inherit OBJECT;
 
@@ -44,17 +45,20 @@ void init()
     if(!holder || !userp(holder))
         return;
     
-    reward_player(holder);
+    if(avatarp(holder))
+        return;
+    
+    call_out("reward_player", 1, holder);
 }
 
 void reward_player(object who)
 {
     object compiler;
-    int money, exp;
+    int money, exp, mats;
+    object mats_ob;
     
     if(!userp(who))
     {
-        ::remove();
         return;
     }
     
@@ -69,16 +73,19 @@ void reward_player(object who)
     }
     
     tell_object(who, "You pick up the fragment and you feel the demiplane dissolve arround you.");
-    compiler->destroy_plane();
+
+    seteuid(UID_ROOT);
+    compiler->destroy_plane(who);
     tell_object(who, "You are rewarded for your efforts!");
-    money = who->query_level() * (500 + random(101));
-    exp = exp_for_level(who->query_level() + 1) / 13;
-    tell_object(who, sprintf("You are awarded %d XP and %d gold!", exp, money));
+    money = who->query_level() * (1000 + random(101));
+    who->add_money("gold", money);
+    exp = exp_for_level(who->query_level() + 1) / 5;
+    who->add_exp(exp);
+    mats_ob = new("/cmds/mortal/obj/enchanting_mats.c");
+    mats = who->query_level() * 200;
+    mats_ob->set_count(mats);
+    mats_ob->move(who);
+    tell_object(who, sprintf("You are awarded %d XP, %d enchanting materials and %d gold!", exp, mats, money));
     
     ::remove();
-}
-    
-    
-    
-    
-    
+}    

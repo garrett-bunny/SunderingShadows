@@ -484,6 +484,10 @@ void cull_levels()
     player_position = query_position();
     if(OB_ACCOUNT->is_high_mortal(query_true_name())) { player_position = "high mortal"; }
 
+    cap = CHARACTER_LEVEL_CAP + 1;
+    delete("no advance");
+    
+    /*
     switch(player_position)
     {
     case "high mortal":
@@ -505,6 +509,7 @@ void cull_levels()
     default:
         return;
     }
+    */
 
     for(i=0;i<sizeof(classes);i++)
     {
@@ -522,6 +527,7 @@ void cull_levels()
     info = CMD_NOTE->format_checkpoint(query_name(),"%^RESET%^%^BOLD%^"+query_name()+" lost "+implode(display,"and")+" total lost: "+total_lost+"");
     TS_D->add_value_to_array("notes",query_name(),capitalize(query_name())+", "+ctime(time())+" "+info+"");
 
+    /*
     switch(player_position)
     {
     case "player":
@@ -532,6 +538,7 @@ void cull_levels()
             "a wiz immediately.");
         break;
     }
+    */
     return;
 }
 
@@ -928,6 +935,7 @@ void create() {
   enable_commands();
   set_max_internal_encumbrance(MAX_ENCUMBRANCE[7]);
   set("id",({"player"}));
+  delete("no advance");
   init_feats();
 
   static_user = ([
@@ -1502,6 +1510,7 @@ void setup()
         TO->set_sphere(0);
         TO->set_divine_domain(({}));
     }
+    delete("no advance");
     force_me("look");
 }
 

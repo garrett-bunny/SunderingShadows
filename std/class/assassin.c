@@ -101,9 +101,6 @@ int set_base_class(object obj, string choice)
     if (member_array(choice, classes) == -1) {
         return 0;
     }
-    if (member_array(choice, ({"psion", "psywarrior"})) != -1) {
-        return 0;
-    }
     obj->set("base_class", choice);
     return 1;
 }
@@ -171,10 +168,12 @@ int prerequisites(object player)
     if (!player->is_class(base)) {
         return 0;
     }
+    /*
     if(player->query("no pk")){
         tell_object(player,"%^YELLOW%^You are unable to pick this class while you have a %^MAGENTA%^NoPK %^YELLOW%^flag.%^RESET%^");
         return 0;
     }
+    */
     return 1;
 }
 

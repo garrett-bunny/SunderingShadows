@@ -63,8 +63,47 @@ void init()
     }
 
     add_action("animal_command", "animal");
+	add_action("sic", "sic");
 }
 
+int sic(string str) {
+
+ string tname, aname, mess;
+ object room, target;
+
+  if(!str) {
+    write("What would you like your companion to attack!");
+    return 1;
+  }
+  
+  if(this_player() != owner) return 0;
+
+str = lower_case(str);
+target = present(str, environment(this_player()));
+
+    if(!target || !objectp(target))
+        return;
+
+    tname = target->query_name();
+    aname = capitalize(this_object()->query_name());
+    room = environment(this_object());
+
+    if(environment(target) != room)
+        return;
+
+   if(owner->cooldown("sic")) {
+        tell_object(owner, "You can't try to knock someone down yet!");
+        return 1;
+    }
+  force_me("kill "+str);
+  tell_room(room, "%^BOLD%^" + sprintf("%s responds to the whistle and leaps into the air, knocking %s to the ground!", aname, tname));
+            target && target->set_tripped(2, "%^WHITE%^You are struggling to regain your footing! %^RESET%^");
+				owner->set_property("sic", 1);
+                owner->add_cooldown("sic", 30);
+  return 1;
+} 
+
+	
 int animal_command(string str)
 {
     string *input;
@@ -130,7 +169,7 @@ void heart_beat()
     if(!room || !objectp(room))
         return;
 
-    if(!objectp(owner) || owner->query_property("animal_companion") != this_object())
+    if(!objectp(owner) || owner->query_property("animal_companion") != this_object() || owner->query_ghost())
     {
         this_object()->remove();
         return;
