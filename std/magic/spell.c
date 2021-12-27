@@ -2404,12 +2404,14 @@ varargs int do_spell_damage(object victim, string hit_limb, int wound, string da
         return 1;
     }
 
-    spmod = clevel;     // spmod = base spell penetration
+    //spmod = clevel;     // spmod = base spell penetration
     if (!spmod) {
         spmod = 1;
     }
     spmod += (int)caster->query_property("spell penetration");     // add spell pen to base caster level
-    spmod += ((caster->query_race() == "elf") * 2);
+    
+    if(caster->query_race() == "elf" && caster->query("subrace") != "szarkai")
+        spmod += 2;
 
     if (checkMagicResistance(victim, spmod)) {
         sendDisbursedMessage(victim);

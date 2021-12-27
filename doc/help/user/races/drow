@@ -1,8 +1,6 @@
 %^BOLD%^%^BLUE%^Drow:
 
 %^BOLD%^%^BLUE%^Stat adjustments: %^RESET%^+2 dexterity, +2 intelligence, -2 constitution
-%^BOLD%^%^BLUE%^Skill adjustments: %^RESET%^+2 perception
-%^BOLD%^%^BLUE%^Misc bonuses: %^RESET%^+2 saves vs charm spells, sleep immunity, 1MR
 %^BOLD%^%^BLUE%^Innate spells: %^RESET%^darkness, faerie fire
 %^BOLD%^%^BLUE%^Size: %^RESET%^medium
 
@@ -10,6 +8,12 @@
 %^BOLD%^%^BLUE%^Classes restricted: %^RESET%^psion, psywarrior, monk, druid
 %^BOLD%^%^BLUE%^Normal adventuring starting age: %^RESET%^101-130
 %^BOLD%^%^BLUE%^Average life span: %^RESET%^550
+
+%^BOLD%^%^BLUE%^Racial Traits:
+%^CYAN%^Magic Resistance%^RESET%^ - +1 to magic resistance
+%^CYAN%^Drow  Immunities%^RESET%^ - +2 to saves vs charm spells, sleep immunity
+%^CYAN%^Night Race%^RESET%^       - light and darkness reversed
+%^CYAN%^Keen Senses%^RESET%^      - +2 perception
 
 %^BOLD%^%^BLUE%^Description:
 Cruel and cunning, drow are a dark reflection of elven race. They dwell in deep dark in elaborate cities shaped from the rock of caverns. Drow seldom make themselves known to surface folk, preferring to remain legends while advancing their sinister agendas through proxies and agents. Drow have no love for anyone but themselves, and are adept at manipulating other creatures. While they are not born evil, malignancy is deep-rooted in their culture and society, and nonconformists rarely survive for long. In recent years, the human city of Tonovi has accepted drow citizens, most likely due to their slave trade.
