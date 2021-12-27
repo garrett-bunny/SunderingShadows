@@ -621,6 +621,9 @@ int query_combat_maneuver_defense(object ob)
     
     cmd += (mysize - 2);
     
+    if(ob->query_race() == "dwarf")
+        cmd += 4;
+    
     return cmd;
 }
 
