@@ -50,9 +50,9 @@ varargs int do_save(object ob, int dc, string type, raw_save)
         if(!sizeof(cls_save))
             continue;
         
-        saves[0] += cls_save[0];
-        saves[1] += cls_save[1];
-        saves[2] += cls_save[2];
+        saves[0] += cls_save[0] * 2;
+        saves[1] += cls_save[1] * 2;
+        saves[2] += cls_save[2] * 2;
     }
     
     saves[0] = max( ({ min( ({ saves[0], 2 }) ), -2 }) );
@@ -74,7 +74,7 @@ varargs int do_save(object ob, int dc, string type, raw_save)
             
             mod += ob->query_saving_bonus("fortitude");
             mod += (saves[0] * 2);
-            max_mod = saves[0] * 2;
+            max_mod = saves[0];
         
             if(ob->query("subrace") == "aesatri")
                 mod += 1;
@@ -106,7 +106,7 @@ varargs int do_save(object ob, int dc, string type, raw_save)
             
             mod += ob->query_saving_bonus("reflex");
             mod += (saves[1] * 2);
-            max_mod = saves[1] * 2;
+            max_mod = saves[1];
             
             if(ob->query("subrace") == "senzokuan")
                 mod += 1;
@@ -135,7 +135,7 @@ varargs int do_save(object ob, int dc, string type, raw_save)
             
             mod += ob->query_saving_bonus("will");
             mod += (saves[2] * 2);
-            max_mod = saves[2] * 2;
+            max_mod = saves[2];
         
             if(ob->query("subrace") == "maalish")
                 mod += 1;
