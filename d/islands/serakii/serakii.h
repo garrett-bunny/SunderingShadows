@@ -13,4 +13,5 @@
 #define ROAD "/d/islands/serakii/rooms/road/"+
 #define FALLOW "/d/islands/serakii/rooms/fallow/"+
 #define RUINS "/d/islands/serakii/rooms/ruin/"+
+#define CAER "/d/islands/serakii/rooms/caer/"+
 #define WHITE "/d/islands/serakii/rooms/white/"+

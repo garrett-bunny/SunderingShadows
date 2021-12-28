@@ -13,7 +13,7 @@ set_long(::query_long()+"\n%^C247%^You can see a room to the south that has stai
 set_exits(([
 "southeast" : WHITE"4",
 "southwest" : WHITE"6",
-"north" : RUINS"1",
+"gates" : RUINS"1",
 "south" : WHITE"7",
 
 ]));
