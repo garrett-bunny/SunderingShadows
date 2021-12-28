@@ -1848,12 +1848,12 @@ int query_attack_bonus()
     
     if(this_object()->query_race() == "gnome")
     {
-        if(this_object()->query("subrace") != "deep gnome")
+        if(this_object()->query("subrace") == "forest gnome" || this_object()->query_race() == "rock gnome")
         {
-            if(USER_D->is_valid_enemy(attacker->query_race(), "lizrdfolk") || USER_D->is_valid_enemy(attacker->query_race(), "goblins"))
+            if(USER_D->is_valid_enemy(attacker->query_race(), "lizardfolk") || USER_D->is_valid_enemy(attacker->query_race(), "goblins"))
                 ret += 1;
         }
-        else if(this_object()->query("subrace") != "trixie")
+        else if(this_object()->query("subrace") == "deep gnome")
         {
             if(USER_D->is_valid_enemy(attacker->query_race(), "dwarves") || USER_D->is_valid_enemy(attacker->query_race(), "lizardfolk"))
                 ret += 1;

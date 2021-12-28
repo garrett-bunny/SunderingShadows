@@ -61,8 +61,7 @@ void spell_effect(int prof)
     {
         spell_kill(ob, caster);
         
-        if((ob->query_character_level() < caster->query_character_level() - 5) ||
-        !combat_death_save(ob, 0))
+        if((ob->query_base_character_level() < caster->query_base_character_level() - 10) || !combat_death_save(ob, 0))
         {
             tell_object(target,"%^BOLD%^The wave of death rips your soul from your body, leaving a pale after-image!");
             tell_room(place,"%^BOLD%^"+target->QCN+"'s soul is ripped from their body, leaving a pale after-image!",({target}));

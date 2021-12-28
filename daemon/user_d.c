@@ -842,6 +842,12 @@ int is_valid_enemy_cat(string str)
 
 int is_valid_enemy(string id, string cat)
 {
+    if(!strlen(id))
+        return 0;
+    
+    if(!pointerp(VALID_ENEMY[cat]))
+        return 0;
+    
     if (member_array(id, VALID_ENEMY[cat]) != -1) {
         return 1;
     }
