@@ -2,7 +2,6 @@
 inherit WEAPONLESS;
 
 object caster;
-string castname, fname;
 
 void create(){
     ::create();
@@ -31,95 +30,32 @@ void create(){
     setenv("MIN", "$N floats in.");
     setenv("MOUT", "$N floats off to the $D.");
 }
-
-void setup_chest(object invoker)
-{
-	caster = invoker;
-    "/daemon/yuck_d"->load_inventory(this_object(), "/d/save/summons/fart/chest");
-    drop_containers();
-}
-
 init()
 {
   ::init();
   add_action("dismiss","dismiss");
+  add_action("open","open");
 }
 
+int open(string str){
+	
+	if (str=="chest") {
+        tell_object(ETO,"%^RESET%^%^ORANGE%^You open the chest and its contents materialize!%^RESET%^");
+		//seteuid(getuid());
+		 "/daemon/yuck_d"->load_inventory(this_object(),"/d/save/summons/fart/chest");
+    }
+}
 
 int dismiss(string str){
 	
 	if (str=="chest") {
         tell_object(ETO,"%^RESET%^%^ORANGE%^Floating %^BOLD%^%^ORANGE%^Ch%^BLACK%^e%^BLACK%^s%^ORANGE%^t%^RESET%^%^ORANGE%^ simply vanishes!%^RESET%^");
+		//seteuid(getuid())
+		//mkdir("/d/save/summons/fart");
+		//mkdir("/d/save/summons/fart/chest");
 		 "/daemon/yuck_d"->save_inventory(this_object(),"/d/save/summons/fart/chest");
         move("/d/shadowgate/void");
-        remove();
+		remove();
     }
 }
 
-void die(object obj)
-{
-    if (objectp(caster)) {
-        caster->remove_property("has_elemental");
-    }
-    remove();
-}
-
-int remove()
-{
-    drop_containers();
-    save_chest();
-    all_inventory(TO)->remove();
-    ::remove();
-}
-
-void drop_containers()
-{
-    object invitem;
-    object* myinven;
-    string* ids;
-
-    if (!objectp(ETO)) {
-        return;
-    }
-
-    myinven = all_inventory(TO);
-
-    foreach(invitem in myinven)
-    {
-        if (!invitem->is_container()) {
-            continue;
-        }
-
-        if (sizeof(all_inventory(invitem))) {
-            ids = invitem->query_id();
-            force_me("drop " + ids[0]);
-        }
-    }
-}
-
-void save_chest()
-{
-    /* seteuid(getuid()); */
-    if(!objectp(TO))
-        return;
-    if(!objectp(ETO))
-        return;
-
-    mkdir("/d/save/summons/"+castname);
-    mkdir(fname);
-    "/daemon/yuck_d"->save_inventory(this_object(),"/d/save/summons/fart/chest");
-}
-
-void receive_given_item(object obj)
-{
-    string * ids;
-
-    if (!obj->is_container()) {
-        return;
-    }
-
-    if (sizeof(all_inventory(obj))) {
-        ids = obj->query_id();
-        force_me("drop " + ids[0]);
-    }
-}
