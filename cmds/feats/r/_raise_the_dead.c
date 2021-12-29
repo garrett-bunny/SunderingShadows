@@ -26,7 +26,7 @@ void create()
     feat_category("DivineSpellcraft");
     feat_name("raise the dead");
     feat_prereq("Bones Oracle L5");
-    feat_classes(({"druid", "ranger"}));
+    feat_classes("oracle");
     feat_syntax("raise_the_dead to summon or raise_the_dead to dismiss");
     feat_desc("Summons or dismisses a skeleton to do your bidding. This skeleton will follow you through thick and thin, will level up with you, and gains several perks as it grows. The skeleton gains its own feats as follows:
 
