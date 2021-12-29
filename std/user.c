@@ -2001,12 +2001,15 @@ nomask void die()
     
     if((this_object()->query_race() == "half-orc" || this_object()->query_race() == "orc") && !this_object()->cooldown("orc ferocity"))
     {
-        tell_object(TO, "%^BOLD%^%^RED%^As you are struck down, you find the will in your blood to continue the fight.");
-        tell_object(TO, "%^BOLD%^You stand u and brush yourself up, ready to stick it out to the very end!!");
-        tell_room(ETO, "%^RESET%^%^RED%^" + TO->query_cap_name() + " stands and continues to fight!", TO);
-        TO->set_hp(query_max_hp());
-        this_object()->add_cooldown("orc ferocity", 7200);
-        return;
+        if(this_object()->query("subrace") != "tanarukk" && this_object()->query("subrace") != "orog")
+        {
+            tell_object(TO, "%^BOLD%^%^RED%^As you are struck down, you find the will in your blood to continue the fight.");
+            tell_object(TO, "%^BOLD%^You stand u and brush yourself up, ready to stick it out to the very end!!");
+            tell_room(ETO, "%^RESET%^%^RED%^" + TO->query_cap_name() + " stands and continues to fight!", TO);
+            TO->set_hp(query_max_hp());
+            this_object()->add_cooldown("orc ferocity", 7200);
+            return;
+        }
     }
    
     if(this_object()->query_property("raged"))
