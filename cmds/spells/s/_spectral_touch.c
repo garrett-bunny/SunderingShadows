@@ -12,7 +12,7 @@ void create(){
     ::create();
     set_spell_name("spectral touch");
     set_spell_level(([ "cleric" : 2 ]));
-    set_spell_sphere("combat");
+    set_spell_sphere("necromancy");
     set_syntax("cast CLASS spectral touch on TARGET");
     set_description("This spell causes the caster's hand to glow with a blue light, infusing it with the energy of the "
 "grave.  The energy in the casters hand blasts forth to strike the target, draining him of life and energy.  The beam may "
