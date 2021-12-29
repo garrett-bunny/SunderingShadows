@@ -23,7 +23,7 @@ mapping skill_mods(string subrace) { return ([ "endurance" : 2 ]); }
 
 int natural_AC(string subrace) { return 0; }
 
-int sight_bonus(string subrace) { return 0; }
+int sight_bonus(string subrace) { return 2; }
 
 mapping daily_uses(string subrace) { return ([]); }
 

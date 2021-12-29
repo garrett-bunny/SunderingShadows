@@ -685,7 +685,10 @@ int intimidate_check(object victim, object attacker, int mod)
     if(result == 20)
         return 1;
     
-    result = attacker->query_skill("influence") + result;
+    if(attacker->query_race() == "half-orc")
+        mod += 2;
+    
+    result = influence + result;
     result += mod;
     
     result = result >= DC ? 1 : 0;
