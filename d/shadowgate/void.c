@@ -2,6 +2,8 @@
 //it also cleans itself so some things go here to be removed.
 #include <config.h>
 #include <std.h>
+#include <security.h>
+
 #define PRISON_D ("/adm/daemon/prison_d")
 #define JAIL ("/d/shadowgate/jail")
 void check_my_inventory();
@@ -84,6 +86,8 @@ void clean_inventory()
         return;
     }
 
+    seteuid(UID_ROOT);
+    
     foreach(ob in deep_inventory(TO))
     {
         if (!objectp(ob)) {
