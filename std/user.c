@@ -1999,7 +1999,7 @@ nomask void die()
         return;
     }
     
-    if(this_object()->query_race() == "half-orc" && !this_object()->cooldown("orc ferocity"))
+    if((this_object()->query_race() == "half-orc" || this_object()->query_race() == "orc") && !this_object()->cooldown("orc ferocity"))
     {
         tell_object(TO, "%^BOLD%^%^RED%^As you are struck down, you find the will in your blood to continue the fight.");
         tell_object(TO, "%^BOLD%^You stand u and brush yourself up, ready to stick it out to the very end!!");

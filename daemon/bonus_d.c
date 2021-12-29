@@ -685,7 +685,7 @@ int intimidate_check(object victim, object attacker, int mod)
     if(result == 20)
         return 1;
     
-    if(attacker->query_race() == "half-orc")
+    if(attacker->query_race() == "half-orc" || attacker->query_race() == "orc")
         mod += 2;
     
     result = influence + result;
