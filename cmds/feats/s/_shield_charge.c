@@ -152,11 +152,13 @@ void execute_attack()
     {
         level = caster->query_base_character_level();
         level += roll_dice(1,10); // might need adjustment
+        int bonusdc =  max( ({ BONUS_D->query_stat_bonus(caster, "strength"), BONUS_D->query_stat_bonus(caster, "dexterity") }) );
 
         for(i=0;i<sizeof(attackers);i++)
         {
             if(!objectp(attackers[i])) { continue; }
-            if(attackers[i]->reflex_save(level))
+            set_save("reflex");
+            if(do_save(attackers[i], bonusdc))
             {
                 tell_object(attackers[i],"%^MAGENTA%^"+caster->QCN+" charges around with "+caster->QP+" shield, but you manage "
                     "to get out of the way!");
@@ -164,7 +166,8 @@ void execute_attack()
                     ""+attackers[i]->QCN+" manages to dodge out of the way!",({attackers[i],caster}) );
                 continue;
             }
-            if(attackers[i]->fort_save(level))
+            set_save("fort");
+            if(do_save(attackers[i], bonusdc))
             {
                 tell_object(attackers[i],"%^RED%^"+caster->QCN+" bowls into you with "+caster->QP+" shield, almost knocking you over!");
                 tell_room(place, "%^RED%^"+caster->QCN+" bowls into "+attackers[i]->QCN+" with "+caster->QP+" shield, almost "
