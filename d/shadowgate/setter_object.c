@@ -1153,6 +1153,7 @@ build_race()
 build_subrace()
 {
     ETO->set("subrace", char_sheet["subrace"]);
+    ETO->init_lang();
 }
 
 build_template()
