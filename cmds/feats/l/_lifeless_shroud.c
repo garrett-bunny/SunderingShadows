@@ -176,16 +176,19 @@ void positive_effects(object obj)
  */
 void negative_effects(object obj)
 {
-    int damage;
+    int damage, bonusdc;
 
     if (!objectp(obj)) {
         return;
     }
+    
+    bonusdc = max( ({ BONUS_D->query_stat_bonus(caster, "intelligence"), BONUS_D->query_stat_bonus(caster, "charisma"), BONUS_D->query_stat_bonus(caster, "wisdom") }) );
 
     // damage, blind, fatigue, sickened
     switch (random(20)) {
     case 0..3:
-        if (!obj->will_save(clevel) && !obj->query_property("no blind")) {
+        set_save("will");
+        if (!do_save(obj, bonusdc) && !obj->query_property("no blind")) {
             tell_object(obj, cm("You feel unnaturally cold as you vision becomes hazy and the world around you fades!"));
             tell_room(place, cm(obj->QCN + " blinks and stares around sightlessly."), obj);
             obj->set_temporary_blinded(clevel / 18 + 1);
@@ -194,7 +197,8 @@ void negative_effects(object obj)
 
     case 4..15:
         damage = roll_dice(clevel, 5);
-        if (obj->fort_save(clevel)) {
+        set_save("fort");
+        if (do_save(obj, bonusdc)) {
             damage = damage / 2;
         }
 
@@ -210,14 +214,16 @@ void negative_effects(object obj)
         break;
 
     case 16..17:
-        if (!obj->reflex_save(clevel)) {
+        set_save("reflex");
+        if (!do_save(obj, bonusdc)) {
             tell_object(obj, cm("You feel tired as the cold envelops you."));
             "/std/effect/status/fatigued"->apply_effect(obj, clevel / 25 + 1);
         }
         break;
 
     case 18..19:
-        if (!obj->reflex_save(clevel)) {
+        set_save("reflex");
+        if (!do_save(obj, bonusdc)) {
             tell_object(obj, cm("You feel sickened as the cold reaches your internals."));
             "/std/effect/status/sickened"->apply_effect(obj, clevel / 25 + 1);
         }
