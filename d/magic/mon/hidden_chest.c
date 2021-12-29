@@ -34,8 +34,8 @@ void create(){
 
 void setup_chest(object invoker)
 {
+	caster = invoker;
     "/daemon/yuck_d"->load_inventory(this_object(), "/d/save/summons/fart/chest");
-
     drop_containers();
 }
 
@@ -49,9 +49,11 @@ init()
 int dismiss(string str){
 	
 	if (str=="chest") {
-	tell_object(ETO,"%^BOLD%^You dismiss the chest!\n");
-	remove();
-	}
+        tell_object(ETO,"%^RESET%^%^ORANGE%^Floating %^BOLD%^%^ORANGE%^Ch%^BLACK%^e%^BLACK%^s%^ORANGE%^t%^RESET%^%^ORANGE%^ simply vanishes!%^RESET%^");
+		 "/daemon/yuck_d"->save_inventory(this_object(),"/d/save/summons/fart/chest");
+        move("/d/shadowgate/void");
+        remove();
+    }
 }
 
 void die(object obj)
