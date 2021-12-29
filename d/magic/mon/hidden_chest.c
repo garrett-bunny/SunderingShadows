@@ -39,6 +39,21 @@ void setup_chest(object invoker)
     drop_containers();
 }
 
+init()
+{
+  ::init();
+  add_action("dismiss","dismiss");
+}
+
+
+int dismiss(string str){
+	
+	if (str=="chest") {
+	tell_object(ETO,"%^BOLD%^You dismiss the chest!\n");
+	remove();
+	}
+}
+
 void die(object obj)
 {
     if (objectp(caster)) {
