@@ -50,8 +50,8 @@ int dismiss(string str){
 	
 	if (str=="chest") {
         tell_object(ETO,"%^RESET%^%^ORANGE%^Floating %^BOLD%^%^ORANGE%^Ch%^BLACK%^e%^BLACK%^s%^ORANGE%^t%^RESET%^%^ORANGE%^ simply vanishes!%^RESET%^");
-		 "/daemon/yuck_d"->save_inventory(this_object(),"/d/save/summons/fart/chest");
 		 call_out("save_chest",1);
+		 return 1;
     }
 }
 
@@ -61,14 +61,6 @@ void die(object obj)
         caster->remove_property("has_elemental");
     }
     remove();
-}
-
-int remove()
-{
-    drop_containers();
-    save_chestsave_chest();
-    all_inventory(TO)->remove();
-    ::remove();
 }
 
 void drop_containers()
@@ -105,6 +97,9 @@ void save_chest()
         return;
 
 	"/daemon/yuck_d"->save_inventory(this_object(),"/d/save/summons/fart/chest");
+	tell_object(ETO,"%^RESET%^%^ORANGE%^Floating %^BOLD%^%^ORANGE%^Ch%^BLACK%^e%^BLACK%^s%^ORANGE%^t%^RESET%^%^ORANGE%^ dsadas!%^RESET%^");
+	all_inventory(TO)->remove();
+	TO->remove();
 }
 
 void receive_given_item(object obj)
