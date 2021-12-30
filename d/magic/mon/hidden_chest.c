@@ -9,7 +9,7 @@ void create(){
     set_name("chest");
     set_id(({"chest","hidden chest","wooden chest","greater summon"}));
     set_short("%^RESET%^%^BLUE%^wooden %^RESET%^%^ORANGE%^chest %^RESET%^with %^BOLD%^%^YELLOW%^golden latches%^RESET%^");
-    set_long("%^RESET%^%^BLUE%^This is an %^BOLD%^%^ORANGE%^iro%^BLACK%^n%^ORANGE%^-bound%^RESET%^%^BLUE%^ wooden chest that appears to float. It is quite large and could probably fit a lot of things inside. You could probably %^BOLD%^%^YELLOW%^<rehide> %^RESET%^%^BLUE%^it to make it disappear again.%^RESET%^");
+    set_long("%^RESET%^%^BLUE%^This is an %^BOLD%^%^ORANGE%^iro%^BLACK%^n%^ORANGE%^-bound%^RESET%^%^BLUE%^ wooden chest that rests on the ground. It is quite large and could probably fit a lot of things inside. You could probably %^BOLD%^%^YELLOW%^<rehide> %^RESET%^%^BLUE%^it to make it disappear again.%^RESET%^");
     set_attacks_num(1);
     set_exp(1);
     set_gender("neuter");
