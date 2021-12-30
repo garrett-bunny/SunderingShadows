@@ -101,6 +101,7 @@ int preSpell()
     spell_successful();
 
     spell_to_cast->use_spell(TP,sargs,clevel,100,ctype);
+    call_out("dest_effect", 1);
     return 1;
 
 }
