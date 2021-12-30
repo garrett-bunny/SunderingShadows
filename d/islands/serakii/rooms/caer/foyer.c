@@ -126,3 +126,13 @@ int GoThroughDoor(){
    "another plane of existence.%^CRST%^");
    return 1;
 }
+
+
+void reset()
+{
+    ::reset();
+    if(!present("mercenary"))
+    {
+      new(MOBS"caermerc.c")->move(TO);
+    }
+}

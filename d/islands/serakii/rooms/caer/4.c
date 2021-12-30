@@ -3,7 +3,7 @@
 #include <std.h>
 #include "../../serakii.h"
 
-inherit ROOM;
+inherit VAULT;
 
 void create() {
     set_terrain(STONE_BUILDING);
@@ -29,8 +29,17 @@ void create() {
 
    set_exits(([
         "south" : CAER"3",
-//               "northeast" : CAER"5",
+                "northeast" : CAER"voice",
    ]));
-
+    set_door("white door",RUINS"voice","northeast",0);
+    set_door_description("white door","Formed from solid wood painted white.");
+}
+void reset()
+{
+    ::reset();
+    if(!present("mercenary"))
+    {
+      new(MOBS"caermerc.c")->move(TO);
+    }
 }
 
