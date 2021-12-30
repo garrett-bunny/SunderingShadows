@@ -410,6 +410,7 @@ int place_monsters(int x, int y, string theme, object owner)
                 continue;
             
             monster->set_moving(0);
+            monster->set_no_moving(1);
             
             if(catch(monster->move(cloned_rooms[key])))
                 continue;
