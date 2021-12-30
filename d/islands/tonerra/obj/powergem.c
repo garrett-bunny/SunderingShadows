@@ -178,7 +178,7 @@ void heart_beat()
   {
      tell_object(ETO,"The Emerald gems start to interact and shake and quiver.");
      tell_room(environment(ETO),"The gems held by "+ETO->query_cap_name()+" quiver and shake.",ETO);
-     tell_room(environment(ETO),"%^BOLD%^%^CYAN%^They explode in a blillient burst of light and fire.");
+     tell_room(environment(ETO),"%^BOLD%^%^CYAN%^They explode in a brilliant burst of light and fire.");
      ETO->do_damage("torso",roll_dice(3,50));
      ETO->add_attacker(TO);
      ETO->continue_attack();
