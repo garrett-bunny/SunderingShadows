@@ -53,8 +53,9 @@ int dismiss(string str){
 		//seteuid(getuid())
 		//mkdir("/d/save/summons/fart");
 		//mkdir("/d/save/summons/fart/chest");
+		      move("/d/shadowgate/void");
 		 "/daemon/yuck_d"->save_inventory(this_object(),"/d/save/summons/fart/chest");
-        move("/d/shadowgate/void");
+  
 		remove();
     }
 }
