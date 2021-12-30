@@ -4,6 +4,8 @@
 // gmr_ring.c
 // modified to grant a set amount, and fixed to ETO wear/remove. nienne, 08/07.
 //Added some color - Octothorpe 12/5/09
+// reduced duration to 2-3 rounds and only able to carry one -Chernobog
+
 #include <std.h>
 inherit "/d/common/obj/jewelry/ring.c";
 
@@ -86,7 +88,7 @@ void heart_beat(){
     object ob;
     
     if(!objectp(TO->query_worn())) TO->takeoff();
-    if(!objectp(TO) || !objectp(ETO)) return;
+    if(!objectp(ETO)) return;
     
     if((ob = present("mr_ring",ETO)) && living(ETO) && ob != TO){
         tell_object(ETO,"The rings start to interact and shake and quiver.");
