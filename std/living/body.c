@@ -706,11 +706,13 @@ void set_resistance_percent(string res, int num)
 int query_resistance(string res)
 {
     int myres;
-    string *domains;
+    string *domains, myrace, mysubrace;
     
     if (!valid_resistance(res)) {
         return 0;                        // to avoid throwing errors on any invalid queries. N, 8/15.
     }
+    myrace = this_object()->query_race();
+    mysubrace = this_object()->query("subrace");
     myres = resistances["resistance"][res];
     if (((string)TO->query("subrace") == "aasimar" || (string)TO->query("subrace") == "feytouched") && (res == "acid" || res == "cold" || res == "electricity")) {
         myres += 5;
@@ -736,6 +738,29 @@ int query_resistance(string res)
         }
         if ((string)TO->query("warlock heritage") == "infernal" && res == "fire") {
             myres += 10;
+        }
+    }
+    
+    if(strsrch(myrace, "genasi") >= 0)
+    {
+        switch(myrace)
+        {
+            case "air genasi":
+            if(res == "electricity")
+                myres += 5;
+            break;
+            case "fire genasi":
+            if(res == "fire")
+                myres += 5;
+            break;
+            case "water genasi":
+            if(res == "cold")
+                myres += 5;
+            break;
+            case "earth genasi":
+            if(res == "acid")
+                myres += 5;
+            break;
         }
     }
 
