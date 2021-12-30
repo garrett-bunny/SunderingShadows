@@ -37,11 +37,11 @@ int *stat_mods(string subrace) { // stats in order: str, dex, con, int, wis, cha
 }
 
 mapping skill_mods(string subrace) {
-    if(!subrace || subrace == "") return ([ "stealth" : 2, "athletics" : 2 ]);
+    if(!subrace || subrace == "") return ([ "stealth" : 2, "athletics" : 2, "perception" : 2 ]);
     switch(subrace) {
-      case "strongheart halfling": return ([ "stealth" : 2, "survival" : 2 ]); break;
-      case "ghostwise halfling": return ([ "stealth" : 2 ]); break;
-      default: return ([ "stealth" : 2, "athletics" : 2 ]); break; // lightfoot halfling default
+      case "strongheart halfling": return ([ "stealth" : 2, "survival" : 2, "perception" : 2 ]); break;
+      case "ghostwise halfling": return ([ "stealth" : 2, "perception" : 2 ]); break;
+      default: return ([ "stealth" : 2, "athletics" : 2, "perception" : 2 ]); break; // lightfoot halfling default
     }
 }
 

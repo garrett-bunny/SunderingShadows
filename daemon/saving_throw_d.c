@@ -160,7 +160,7 @@ varargs int do_save(object ob, int dc, string type, raw_save)
     save += statbonus;
 
     //SAVE ROLL MODIFIERS
-    if (ob->query_race() == "halfling" && ob->query("subrace") == "lightfoot halfling")
+    if (ob->query_race() == "halfling")
             mod += 1;
         
     if(ob->query_race() == "nightwing" && total_light(environment(ob)) > -1)
