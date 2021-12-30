@@ -15,3 +15,5 @@ void create() {
    set_weight(1);
     set_value(500);
 }
+
+int is_gem(){return 1;}

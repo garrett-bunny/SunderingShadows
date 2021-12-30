@@ -28,7 +28,7 @@ int preSpell()
         tell_object(caster, "You need either a target or <room> for this spell.");
         return 0;
     }
-    if(!is_lawful(caster)) {
+    if(!is_good(caster)) {
         tell_object(caster, "Only casters of good alignment may use this spell.");
         return 0;
     }
