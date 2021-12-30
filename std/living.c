@@ -1832,7 +1832,7 @@ int query_attack_bonus()
         }
     }
     
-    if(this_object()->query_race() == "dwarf")
+    if(attacker && this_object()->query_race() == "dwarf")
     {
         if(this_object()->query("subrace") != "gray dwarf")
         {
@@ -1846,7 +1846,7 @@ int query_attack_bonus()
         }
     }
     
-    if(this_object()->query_race() == "gnome")
+    if(attacker && this_object()->query_race() == "gnome")
     {
         if(this_object()->query("subrace") == "forest gnome" || this_object()->query_race() == "rock gnome")
         {

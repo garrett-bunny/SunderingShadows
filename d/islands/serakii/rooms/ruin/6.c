@@ -6,19 +6,19 @@ inherit STORAGE"tree_lined.c";
 void create(){
    ::create();
 
-   set_long(::query_long()+"\n%^C241%^To the north is a massive closed and barred gate%^CRST%^\n");
+   set_long(::query_long()+"\n%^C241%^To the north is a massive gate.%^CRST%^\n");
 
 
    set_exits(([
 
-        "heavy gate" : CAER"foyer",
+        "gate" : CAER"foyer",
         "south" : RUINS"5",
          "east" : RUINS"9",
           "west" : RUINS"7",
 
    ]));
 
-    set_door("heavy gate",CAER"foyer","heavy gate",0);
+    set_door("heavy gate",CAER"foyer","gate",0);
     set_door_description("heavy gate","%^C094%^Formed from solid "+
         "wood, this door looks very"+
 

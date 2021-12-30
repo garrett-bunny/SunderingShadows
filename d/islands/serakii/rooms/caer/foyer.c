@@ -59,11 +59,11 @@ void create() {
        "stairs" : CAER"library",
         "east" : CAER"1",
         "west" : CAER"2",
-        "heavy gate" : RUINS"6",
+        "gate" : RUINS"6",
 
     ]));
 
-    set_door("heavy gate",RUINS"6","heavy gate",0);
+    set_door("heavy gate",RUINS"6","gate",0);
     set_door_description("heavy gate","%^C094%^Formed from solid "+
         "wood, this door looks very"+
 " heavy. An %^C244%^iron ring %^C094%^hangs from it to allow it "+
@@ -108,7 +108,7 @@ int func_read(string str){
     }
     if(str == "western archway"){
         tell_room(ETP,"%^C098%^"+TPQCN+" %^C098%^looks up to read the "+
-            "eastern archway...%^CRST%^\n",TP);
+            "western archway...%^CRST%^\n",TP);
         tell_object(TP,"%^C098%^You look up at the writing on the "+
             "eastern archway.\n\n %^C110%^Bastion of the Voice of "+
             "Serakii%^C098%^.%^RESET%^\n");

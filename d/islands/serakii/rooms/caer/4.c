@@ -29,7 +29,7 @@ void create() {
 
    set_exits(([
         "south" : CAER"3",
-		"northeast" : CAER"5",
+//               "northeast" : CAER"5",
    ]));
 
 }

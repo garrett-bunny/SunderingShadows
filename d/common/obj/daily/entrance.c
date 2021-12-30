@@ -93,7 +93,7 @@ int open(string str)
     add_traveler(this_player());
     //once per day
     if(!avatarp(this_player()))
-        this_player()->add_cooldown("daily demiplane", 86400); //commented out for testing purposes
+        this_player()->add_cooldown("daily demiplane", 82800); //commented out for testing purposes
     
     return 1;
 }
