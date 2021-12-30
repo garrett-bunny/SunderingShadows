@@ -40,6 +40,21 @@ void setup_chest(object invoker)
     drop_containers();
 }
 
+init()
+{
+  ::init();
+  add_action("dismiss","dismiss");
+}
+
+int dismiss(string str){
+	
+	if (str=="chest") {
+        tell_object(ETO,"%^RESET%^%^ORANGE%^Floating %^BOLD%^%^ORANGE%^Ch%^BLACK%^e%^BLACK%^s%^ORANGE%^t%^RESET%^%^ORANGE%^ simply vanishes!%^RESET%^");
+		 "/daemon/yuck_d"->save_inventory(this_object(),"/d/save/summons/fart/chest");
+		 call_out("save_chest",1);
+    }
+}
+
 void die(object obj)
 {
     if (objectp(caster)) {
