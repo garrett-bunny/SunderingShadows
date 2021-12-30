@@ -60,9 +60,7 @@ spell_effect(int prof){
                 tell_room(place,"%^BOLD%^%^BLUE%^A beam of energy is "+
                    "suddenly released from "+caster->QCN+"'s hand, "+
                    "striking "+target->QCN+"!%^RESET%^",({caster,target}));
-                spell_kill(target,caster);
                 if(!do_save(attackers[i],0)) {
-                //if(!SAVING_D->saving_throw(attackers[i],"spell",0)){
                     damage_targ(attackers[i],attackers[i]->return_target_limb(),damage,"negative energy");
                     target->use_stamina(clevel/5);
                 }else{
@@ -70,20 +68,17 @@ spell_effect(int prof){
                 }
             }else{
                 if(!do_save(attackers[i],0)) {
-                //if(!SAVING_D->saving_throw(attackers[i],"spell",0)){
                     tell_room(place,"%^BOLD%^%^BLUE%^"+attackers[i]->QCN+" "+
                        "is struck by the beam of energy!%^RESET%^",attackers[i]);
                     tell_object(attackers[i],"%^BOLD%^%^BLUE%^The beam "+
                        "of energy tears into you as well!%^RESET%^");
                     damage_targ(attackers[i],attackers[i]->return_target_limb(),damage,"negative energy");
-                    spell_kill(attackers[i],caster);
                 }else{
                     tell_room(place,"%^BOLD%^%^BLUE%^"+attackers[i]->QCN+" "+
                        "is grazed by the beam of energy!%^RESET%^",attackers[i]);
                     tell_object(attackers[i],"%^BOLD%^%^BLUE%^The "+
                        "beam of energy grazes you!%^RESET%^");
                     damage_targ(attackers[i],attackers[i]->return_target_limb(),damage/2,"negative energy");
-                    spell_kill(attackers[i],caster);
                 }
             }
         }
