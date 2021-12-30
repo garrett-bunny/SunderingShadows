@@ -94,7 +94,7 @@ void spell_effect(int prof)
         
         tell_object(caster, "%^BOLD%^%^CYAN%^" + sprintf("Your %s %s into %s with arcane force!", miss_str, verb_str, ob->query_cap_name()));
         tell_object(ob, "%^BOLD%^%^CYAN%^" + sprintf("The %s %s into you with arcane force!", miss_str, verb_str));
-        tell_room(place, "%^BOLD%^%^CYAN%^" + sprintf("The %s %s into %s arcane force!", miss_str, verb_str, ob->query_cap_name()), ({ ob, caster }));
+        tell_room(place, "%^BOLD%^%^CYAN%^" + sprintf("The %s %s into %s with arcane force!", miss_str, verb_str, ob->query_cap_name()), ({ ob, caster }));
         //tell_object(caster, "Total damage : " + ((sdamage * num) / sizeof(victims)));
         ob->cause_typed_damage(ob, "torso", sdamage / sizeof(victims), "force");
     }
