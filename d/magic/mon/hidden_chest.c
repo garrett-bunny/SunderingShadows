@@ -27,8 +27,6 @@ void create(){
     remove_limb("right leg");
     add_limb("chest",0,0,0,0);
     set_attack_limbs(({"chest"}));
-    setenv("MIN", "$N floats in.");
-    setenv("MOUT", "$N floats off to the $D.");
 }
 init()
 {
@@ -55,8 +53,6 @@ int dismiss(string str){
 		//mkdir("/d/save/summons/fart/chest");
 		      move("/d/shadowgate/void");
 		 "/daemon/yuck_d"->save_inventory(this_object(),"/d/save/summons/fart/chest");
-  
-		remove();
     }
 }
 
