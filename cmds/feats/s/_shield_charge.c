@@ -95,7 +95,7 @@ void execute_attack()
 {
     object room, *followers, *attackers;
     string door;
-    int i,open, locked,charging_direction,level, doing;
+    int i,open, locked,charging_direction,level, doing, bonusdc;
 
     if(!objectp(caster) || !objectp(environment(caster)))
     {
@@ -152,7 +152,7 @@ void execute_attack()
     {
         level = caster->query_base_character_level();
         level += roll_dice(1,10); // might need adjustment
-        int bonusdc =  max( ({ BONUS_D->query_stat_bonus(caster, "strength"), BONUS_D->query_stat_bonus(caster, "dexterity") }) );
+        bonusdc = max( ({ BONUS_D->query_stat_bonus(caster, "strength"), BONUS_D->query_stat_bonus(caster, "dexterity") }) );
 
         for(i=0;i<sizeof(attackers);i++)
         {
