@@ -102,7 +102,6 @@ void execute_attack(){
         tell_room(place,"%^BOLD%^%^CYAN%^The grey aura around "+caster->QCN+" falls upon "+caster->QP+" enemies!",({caster,target}));
         tell_object(caster,"%^BOLD%^%^CYAN%^The grey aura around you falls upon your enemies!");
         for(i=0;i<sizeof(attackers);i++){
-            if(SAVING_D->saving_throw(attackers[i],"spell",0)) { continue; }
             tell_object(attackers[i],"%^BOLD%^%^CYAN%^You are scorched by the magical energy as you strike "
                         ""+caster->QCN+"!");
             damage_targ(attackers[i],attackers[i]->return_target_limb(),sdamage,"divine");
