@@ -48,7 +48,7 @@ void spell_effect(int prof) {
         TO->remove();
         return;
     }
-    if(do_save(target, -2)){
+    if(do_save(target, 0)){
         tell_object(target,"%^CYAN%^You manage to shake off the dark aura that starts to grow around you, and it fades "
 "away to nothing!%^RESET%^");
         tell_room(place,"%^CYAN%^A mirroring aura starts to grow around "+target->QCN+", but then it fades away to "
@@ -56,7 +56,7 @@ void spell_effect(int prof) {
         TO->remove();
         return;
     }
-    bonus = clevel / 6 + 1;
+    bonus = clevel / 8;
     duration = (ROUND_LENGTH * 4 + roll_dice(1, 20)) * clevel;
 
     tell_object(target,"%^BLUE%^A mirroring aura starts to grow around you, seeping into your skin to taint it a %^RESET%^sic%^GREEN%^k%^RESET%^ly %^BLUE%^pallid hue.  An overwhelming feeling of weakness comes over you.%^RESET%^");
