@@ -22,7 +22,7 @@ void create() {
   );
   set_exits(([
   "north":TCITY+"c14",
-  //"east": "/d/player_houses/gwenhwyfar/salon_main.c",
+  "east": "/d/player_houses/gwenhwyfar/salon_main.c",
   "south":TCITY+"c35",
   ]));
 }
