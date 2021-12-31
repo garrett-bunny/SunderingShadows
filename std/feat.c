@@ -734,6 +734,8 @@ object query_active_feat(string name)
 
 int allow_shifted() {return 0;};
 
+int is_feat() { return 1; }
+
 void delay_msg(int delay, string message)
 {
     MESSAGING_D->delay_message(delay,"info","\n"+message+"\n",({caster}));
