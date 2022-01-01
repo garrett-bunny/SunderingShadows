@@ -26,7 +26,7 @@ void create()
 		" here.");
 	set_property("lore",13);
    set_property("enchantment",3);
-	set_item_bonus("magic resistance",7);
+	set_item_bonus("magic resistance",2);
 	set_value(5000);
 	set_wear((:TO,"wearme":));
 	set_remove((:TO,"removeme":));
