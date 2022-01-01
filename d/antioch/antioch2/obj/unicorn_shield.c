@@ -37,7 +37,7 @@ int wearme()
 		tell_object(ETO,"%^BOLD%^You slip the %^YELLOW%^Unicorn Shield%^WHITE%^"+
 		" on your arm in honor.");
 		FLAG = 1;
-		ETO->add_property("magic resistance",20);
+		ETO->add_property("magic resistance",1);
 		return 1;
 	}
 	if(ALIGN->is_evil(ETO)) {
@@ -60,7 +60,7 @@ int removeme()
 		" blood slowly return to your arm.");
 	}
 	if(FLAG == 1) {
-		ETO->add_property("magic resistance",-20);
+		ETO->add_property("magic resistance",-1);
 		return 1;
 	}
 	return 1;
