@@ -17,6 +17,7 @@ void create() {
    set_limbs( ({"neck"}) );
    set_ac(0);
    set_property("enchantment",2);
+   set_item_bonus("magic resistance",1);
    set_value(500+random(2)*750);
    set_wear( (: TO,"wear_func" :) );
    set_remove( (: TO,"remove_func" :) );
@@ -24,12 +25,10 @@ void create() {
 
 int wear_func() {
    write("%^ORANGE%^The cloak fits itself to your shoulders and feels wonderful.");
-   TP->set_property("magic resistance",10);
    return 1;
 }
 
 int remove_func() {
    write("%^ORANGE%^You miss the feel of the soft wool.");
-   ETO->set_property("magic resistance",-10);
    return 1;
 }
