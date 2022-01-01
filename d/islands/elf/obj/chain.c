@@ -31,18 +31,19 @@ void create() {
 	set_property("enchantment",4);
     set_item_bonus("endurance",2);
 	set_struck((:TO,"strike_func":));
-	set_item_bonus("spell resistance",20);
+	set_item_bonus("spell damage resistance",20);
 
 }
 int strike_func(int damage, object what, object who){
         if(!objectp(ETO)) return 1;
-		if(!random(5)){
-        tell_room(environment(query_worn()),"%^BOLD%^"+
+	if(!random(5)){
+          tell_room(environment(query_worn()),"%^BOLD%^"+
             ""+who->QCN+"'s blow glances off "
             +ETO->QCN+" harmelessly.",({ETO,who}));
-        tell_object(ETO,"%^BOLD%^As the blow lands against your armor you feel no pain.");
-        tell_object(who,"%^BOLD%^Your stern blow lands,"+
+          tell_object(ETO,"%^BOLD%^As the blow lands against your armor you feel no pain.");
+          tell_object(who,"%^BOLD%^Your stern blow lands,"+
 		" but causes no effect and harmlessly glances off.");
-        return (damage*-1);
-       }
+          return 0;
+	}
+	return damage;
 }
