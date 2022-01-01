@@ -177,7 +177,7 @@ void execute_feat()
     companion->set_race(arg);
     companion->set_name(arg);
     companion->set_id( ({ arg, "companion", "animal companion", "greater summon", "animal" }) );
-    companion->set_short(sprintf("%s's faithful %s companion.",capitalize(caster->query_name()),arg));
+    companion->set_short(sprintf("%s's faithful %s companion.",caster->query_cap_name(),arg));
     companion->set_level(class_level);
     companion->set_hd(comp_hd, 14);
     companion->set_attacks_num(2 + class_level / 8);
