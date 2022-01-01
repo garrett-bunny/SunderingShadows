@@ -88,7 +88,7 @@ void execute_attack()
         prevAc = random(clevel / 8) + 1;
         target->add_ac_bonus(prevAc);
         target->set_property("magic resistance", (-1 * magRes));
-        magRes = random(clevel / 3) + 1;
+        magRes = random(clevel / 24) + 1;
         target->set_property("magic resistance", (magRes));
         counter++;
     }
