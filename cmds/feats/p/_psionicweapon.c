@@ -12,7 +12,7 @@ void create()
     feat_category("Psionics");
     feat_name("psionicweapon");
     feat_prereq("Psywarriors L5 or Psion L11");
-    feat_desc("With this feat psionic character can build a charge of raw psychic energy and deliver an untyped damage to every attaker. This feat consumes 1d6 power points when used.");
+    feat_desc("With this feat a psionic character can build a charge of raw psychic energy and deliver an mental damage to every attacker. This feat consumes 1d6 power points when used.");
     feat_syntax("psionicweapon");
     set_required_for(({ "greaterpsionicweapon" }));
     psionic(1);
@@ -127,7 +127,7 @@ void execute_attack()
         if (!objectp(targets[i])) {
             continue;
         }
-        tell_object(targets[i], "%^BOLD%^%^MAGENTA%^" + caster->QCN + " releashes a psionic tempest that slices through your mind like countless blades!%^RESET%^");
+        tell_object(targets[i], "%^BOLD%^%^MAGENTA%^" + caster->QCN + " releases a psionic tempest that slices through your mind like countless blades!%^RESET%^");
         dmg = roll_dice(clevel, die);
 
         //caster->cause_damage_to(targets[i], "head", dmg);

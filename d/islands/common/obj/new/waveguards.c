@@ -45,8 +45,8 @@ void create()
     set_struck((: TO, "strike_func" :));
 
     set_lore("This set of bracers was made by the mage only known as " +
-             "Tornado, a follower of Akadi. Facinated with the power and grace" +
-             " of the elements for everday and combat use, he thought he would" +
+             "Tornado, a follower of Akadi. Fascinated with the power and grace" +
+             " of the elements for everyday and combat use, he thought he would" +
              " honor them with bracers. He made a set of each element he thought" +
              " worthy, it is no accident no guards of the earth were never made.");
 
@@ -58,7 +58,7 @@ int wear_func()
 {
     ::check();
     tell_room(EETO, "%^CYAN%^Beads of condensation appear on " + ETOQCN + "'s bracers as " + ETO->QS + " secures them. %^RESET%^", ETO);
-    tell_object(ETO, "%^CYAN%^You feel a cooling senation as you secure the bracers on.%^RESET%^");
+    tell_object(ETO, "%^CYAN%^You feel a cooling sensation as you secure the bracers on.%^RESET%^");
     return 1;
 }
 

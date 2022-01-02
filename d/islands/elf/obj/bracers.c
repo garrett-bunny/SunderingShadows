@@ -34,7 +34,7 @@ void create(){
 }
 void init(){
     ::init();
-    add_action("inspect","inspect_em");
+    add_action("inspect_em","inspect");
     add_action("cold","cold");
     add_action("recharge","recharge");
 
