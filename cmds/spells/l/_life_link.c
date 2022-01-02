@@ -82,7 +82,7 @@ void heal_pulse()
         return;
     }
     
-    if(caster->query_hp() > caster->query_max_hp() / 2)
+    if(caster->query_hp() > caster->query_max_hp() / 2 && target->query_hp() < target->query_max_hp())
     {
         amount = caster->query_max_hp() / 20;
         tell_object(caster, "%^GREEN%^You feel some of your health transfer to " + target->query_cap_name() + ".");
