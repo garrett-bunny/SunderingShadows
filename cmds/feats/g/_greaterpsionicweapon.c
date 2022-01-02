@@ -130,7 +130,7 @@ void execute_attack()
         tell_object(targets[i], "%^BOLD%^%^CYAN%^" + caster->QCN + " releashes a psionic tempest that slices through your mind like countless blades!%^RESET%^");
         dmg = roll_dice(clevel, die) + BONUS_D->query_stat_bonus(caster, "intelligence");
 
-        caster->cause_damage_to(targets[i], "head", dmg);
+        targets[i]->cause_typed_damage(targets[i], targets[i]->return_target_limb(), dmg, "mental");
         caster->add_attacker(targets[i]);
         targets[i]->add_attacker(caster);
     }
