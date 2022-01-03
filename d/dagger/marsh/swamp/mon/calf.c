@@ -35,7 +35,7 @@ void create()
     set_mlevel("fighter",level);
     set_alignment(6);
     set("aggressive",random(6)+7);
-    set_property ("magic resistance",level);
+    set_mob_magic_resistance("average");
     set_new_exp(level-4,"normal");
     set_max_hp(level * 18);
     set_hp(level * 18);
