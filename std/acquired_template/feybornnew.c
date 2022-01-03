@@ -32,6 +32,11 @@ int query_unbound_age()
     return 1;
 }
 
+int natural_AC() 
+{ 
+	return 2; 
+}
+
 int sight_bonus()
 {
     return 2;
