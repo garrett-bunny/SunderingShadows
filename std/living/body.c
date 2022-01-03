@@ -869,6 +869,14 @@ int query_resistance_percent(string res)
         if(res == "electricity")
             mod += 25;
     }
+	
+	if(this_object()->is_feyborn())
+    {
+        if(res == "silver")
+            mod += -25;
+		if(res == "sonic")
+            mod += 10;
+    }
 
     if (TO->is_undead()) {
         if (res == "fire") {
