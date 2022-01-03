@@ -2468,6 +2468,14 @@ int is_shade()
     return 0;
 }
 
+int is_feyborn()
+{
+    if(query_acquired_template() == "feyborn")
+        return 1;
+
+    return 0;
+}
+
 int is_deva()
 {
     if(query_acquired_template() == "deva")
