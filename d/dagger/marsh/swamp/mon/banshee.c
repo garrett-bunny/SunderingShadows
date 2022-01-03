@@ -39,7 +39,7 @@ void create()
     set_race("undead");
     set_alignment(6);
     set("aggressive", random(8) + 7);
-    set_property("magic resistance", level);
+    set_mob_magic_resistance("high");
     set_new_exp(level + 10, "high");
     set_max_hp(level * 12);
     set_hp(level * 12);
