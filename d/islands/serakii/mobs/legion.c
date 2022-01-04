@@ -225,7 +225,7 @@ int friend_or_foe()
 	 return 1;
 	}
    else{
-  if(!random(5)) {force_me("say Move along civilian."); }
+  if(!random(10)) {force_me("say What do you want?"); }
     return 1; 
  }
 }
