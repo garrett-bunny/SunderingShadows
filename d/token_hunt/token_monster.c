@@ -487,7 +487,6 @@ void set_inventory(string level)
     MID_G =  ({ "/d/barriermnts/ruins/obj/sash",
                 "/d/dagger/derro/obj/noblemanspants",
                 //"/d/azha/obj/gmr_ring", - not needed unless somebody wants to put them back in - Ts
-    }); 
                 "/d/deku/keep/obj/obsidianrobe",
                 "/d/deku/armours/ring_p",
                 "/d/deku/armours/boots_of_twilight",
