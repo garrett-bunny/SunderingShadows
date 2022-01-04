@@ -62,7 +62,7 @@ int change_into_message(object obj)
     tell_object(obj,"%^RESET%^%^YELLOW%^You turn your mind out to the wilds as you focus on the core of your spirit.");
     tell_object(obj,"%^RESET%^%^BOLD%^You can feel your body beginning to change!");
     tell_object(obj,"%^RESET%^%^BLUE%^You reach out to the planes beyond the material, harnessing the very essence of "
-        "life Your bond with positive energy grows stronger, attuned as you are now with the magical energies of the "
+        "life. Your bond with positive energy grows stronger, attuned as you are now with the magical energies of the "
         "world around you.  You are ELEMENTAL!");
 
     tell_room(environment(obj),"%^RESET%^%^BOLD%^"+obj->QCN+" grows very still and appears to concentrate deeply.",obj);
@@ -79,7 +79,7 @@ int change_outof_message(object obj)
     if(!objectp(obj)) { return 0; }
 
     tell_object(obj,"%^RESET%^%^BOLD%^You relax your focus on the nature of life.");
-    tell_object(obj,"%^RESET%^%^BLUE%^You can feel a tinge of remose as you feel your elemental form slipping away.");
+    tell_object(obj,"%^RESET%^%^BLUE%^You can feel a tinge of remorse as you feel your elemental form slipping away.");
     tell_object(obj,"%^RESET%^%^GREEN%^You inhale a breath and stretch as you grow accustomed to the foreign sensation of your own body once again.");
 
     tell_room(environment(obj),"%^RESET%^%^BOLD%^"+obj->QCN+"'s motions slow and "+obj->QS+" gets a far-away look in "+obj->QP+" eyes.",obj);
@@ -122,8 +122,8 @@ int shape_attack(object tp, object targ)
     
     targets = attackers + allies;
     
-    tell_room(place, "%^WHITE%^Whisps of healing energy emanate from " + tp->query_cap_name() + ", caressing everyone with healing energy!", ({ tp }));
-    tell_object(tp, "%^WHITE%^Whispes of healing energy emanate from your form, caressing everyone with healing energies!");
+    tell_room(place, "%^WHITE%^Wisps of healing energy emanate from " + tp->query_cap_name() + ", caressing everyone with healing energy!", ({ tp }));
+    tell_object(tp, "%^WHITE%^Wisps of healing energy emanate from your form, caressing everyone with healing energies!");
     
     foreach(object ob in targets)
         ob->cause_typed_damage(ob, "torso", roll_dice(1, 6) + tp->query_class_level("oracle"), "positive energy");

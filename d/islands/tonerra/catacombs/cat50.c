@@ -19,7 +19,7 @@ dust on the floor is tracked and unsettled.
 DESC
   );
   set_items(([
-   "seal":"This seal is made of 3 interlinking circles. It appears to serve as a cover for an openning.",
+   "seal":"This seal is made of 3 interlinking circles. It appears to serve as a cover for an opening.",
    ]));
   set_listen("default","You hear some small creatures scurrying among the remains.");
   set_smell("default","You smell the rotting remains all around you.");

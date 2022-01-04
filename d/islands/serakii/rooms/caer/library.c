@@ -23,7 +23,7 @@ void create() {
         "%^C247%^ground floor%^CRST%^ of the library the floor itself is "+
         "a %^C029%^thick deep green carpet%^CRST%^. Large %^C124%^comfortable "+
         "couches%^CRST%^ are arranged around a %^C111%^large fountain%^CRST%^ "+
-        "with %^C034%^ferns%^CRST%^ arranged around it. Everywhere in the libray "+
+        "with %^C034%^ferns%^CRST%^ arranged around it. Everywhere in the library "+
         "you see %^C220%^songbirds%^CRST%^. Some are small, others are extremely "+
         "large and can be seen carrying %^C094%^books%^CRST%^ from spot "+
         "to spot.\n");
