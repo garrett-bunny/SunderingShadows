@@ -3106,7 +3106,7 @@ varargs int checkMagicResistance(object victim, int mod)
     }
 
     if (victim->query_property("magic resistance")) {
-        res = (int)victim->query_property("magic resistance") + victim->query_property("spell resistance");
+        res = (int)victim->query_property("magic resistance");
     }
 
     dieroll = roll_dice(1, 20);
