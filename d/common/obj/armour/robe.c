@@ -12,7 +12,7 @@ void create(){
 	j = random(sizeof(COLORS));
       COLOR = COLORS[j];
     	set_name("robe");
-    	set_id(({ "robe", "armor" }) );
+    	set_id(({ "robe", "armor", "clothing" }) );
     	set_short("%^RESET%^%^CYAN%^A "+COLOR+" %^RESET%^%^CYAN%^quilted cotton robe%^RESET%^");
     	set_long("%^CYAN%^Layers of "+COLOR+"%^RESET%^%^CYAN%^ cotton have"+
 		" been quilted together to create this robe.  The thick robe"+

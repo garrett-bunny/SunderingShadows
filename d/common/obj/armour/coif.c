@@ -3,7 +3,7 @@ inherit "/std/armour";
 void create() {
     ::create();
     set_name("helm");
-    set("id", ({ "helm", "chain", "coif", "helmet", "chain coif" }) );
+    set("id", ({ "helm", "chain", "coif", "helmet", "chain coif", "armor" }) );
     set("short", "a chain coif");
     set("long", "This is a decorative light chain coif.");
     set_weight(6);

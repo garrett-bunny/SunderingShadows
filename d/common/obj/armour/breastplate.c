@@ -8,7 +8,7 @@ void create()
     set_armor_prof("medium");
 	set_name("breastplate");
 	set_short("A shiny breastplate");
-	set_id(({"breastplate","breast plate","shiny breast plate","shiny breastplate"}));
+	set_id(({"breastplate","breast plate","shiny breast plate","shiny breastplate", "armor"}));
 	set_long(
 	"This suit of metal armor has been carefully crafted together by an expert smith. "+
 	" It covers the torso, leaving the arms free to attack, but also allowing more"+

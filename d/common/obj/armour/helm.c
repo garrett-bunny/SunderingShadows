@@ -4,7 +4,7 @@ void create() {
     ::create();
     set_name("helm");
     set_armor_prof("heavy");
-    set("id", ({ "helm", "helmet", "great helm" }) );
+    set("id", ({ "helm", "helmet", "great helm", "armor" }) );
     set("short", "Great helm");
     set("long", "This massive metal helmet covers the entire head, neck, and "
      "upper shoulders of the wearer.  It is designed to offer good protection "

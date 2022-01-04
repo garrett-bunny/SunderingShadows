@@ -21,7 +21,7 @@ void create() {
     ::create();
     comp = ([]);
     set_name("robe");
-    set_id(({ "robe","simple robe" }));
+    set_id(({ "robe","simple robe", "clothing" }));
     set_short("simple robe");
     set_long("This is a simple but serviceable robe, crafted of sturdy linen with long sleeves and a nearly ground-length hemline. There are pockets inside to keep a few belongings. It would be good for day-to-day activities and travel.");
     set_weight(8);

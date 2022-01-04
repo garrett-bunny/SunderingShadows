@@ -7,7 +7,7 @@ void create()
 {
      ::create();
      set_name("metal gauntlets");
-     set_id(({ "gauntlets", "metal gauntlets" }));
+     set_id(({ "gauntlets", "metal gauntlets", "armor" }));
      set_short("metal gauntlets");
      set_long("These gauntlets are fashioned from several small steel plates.  "
          "they form a set of bulky gloves that will protect the wearers hands and "

@@ -3,7 +3,7 @@ inherit "/std/armour";
 void create() {
     ::create();
     set_name("shirt");
-    set_id(({ "shirt","simple shirt" }));
+    set_id(({ "shirt","simple shirt", "clothing" }));
     set_short("simple shirt");
     set_long("This is a simple but serviceable shirt, stitched of sturdy linen with gathered sleeves and buttons down the "
 "front. It would be good for day-to-day activities and travel, if they were not too athletic or strenuous.");

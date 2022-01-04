@@ -7,7 +7,7 @@ void create()
 {
      ::create();
      set_name("leather gauntlets");
-     set_id(({ "gauntlets", "leather gauntlets" }));
+     set_id(({ "gauntlets", "leather gauntlets", "armor" }));
      set_short("leather gauntlets");
      set_long("These gauntlets are fashioned from hardened lengths of leather stitched "
          "onto a softer leather lining.  They form heavy gloves that would protect "
