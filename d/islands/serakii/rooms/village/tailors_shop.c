@@ -20,7 +20,7 @@ set_long("To call this a mere %^C143%^tailoring%^CRST%^ workshop is a "+
 "and %^C028%^tapestries%^CRST%^; %^C094%^comfortable chairs%^CRST%^ sit near "+
 "%^C159%^windows%^CRST%^ with %^C254%^lace pillows%^CRST%^; %^C109%^cushions%^CRST%^ "+
 "are scattered in one part of the room surrounding a %^C094%^large frame%^CRST%^ "+
-"where students apply %^C203%^silk%^CRST%^ and %^C226%^metalic%^CRST%^ embroidery; "+
+"where students apply %^C203%^silk%^CRST%^ and %^C226%^metallic%^CRST%^ embroidery; "+
 "%^C142%^vats%^CRST%^ heated by %^C205%^magic%^CRST%^ sit side by side in one "+
 "corner, %^C046%^bright dyes%^CRST%^ ready for thread, fabric, or garments. There "+
 "are enormous %^C094%^cutting tables%^CRST%^, covered in a %^C251%^paper%^CRST%^ "+
@@ -35,7 +35,7 @@ set_long("To call this a mere %^C143%^tailoring%^CRST%^ workshop is a "+
     set_items(([
 
     ({"vats"}) : "The %^C094%^vats%^CRST%^ themselves %^C244%^steam%^CRST%^ "+
-    "as they are gently adgitated by students dying %^C044%^fabrics%^CRST%^ "+
+    "as they are gently agitated by students dying %^C044%^fabrics%^CRST%^ "+
     "and %^C142%^yarns%^CRST%^. One bubbles as if alive, itself a "+
     "%^C227%^yellowish%^CRST%^ %^C036%^green%^CRST%^ colour despite "+
     "anything emerging turning immediately from %^C040%^green%^CRST%^ "+

@@ -22,8 +22,8 @@ set_long("This large, circular %^C029%^atrium %^CRST%^is surrounded by covered g
     ]));
 
 
-set_smell("default","%^C094%^The atrium currently smell of fresh-turned soil.%^CRST%^");
-set_listen("default","%^C044%^Sounds of conversation, laughter, and occassional disagreement fill the atrium.%^CRST%^");
+set_smell("default","%^C094%^The atrium currently smells of fresh-turned soil.%^CRST%^");
+set_listen("default","%^C044%^Sounds of conversation, laughter, and occasional disagreement fill the atrium.%^CRST%^");
 
 
    set_exits(([
