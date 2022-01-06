@@ -38,7 +38,7 @@ set_long("%^C246%^Dressed in "+
    set_stats("dexterity",18);
    set_stats("wisdom",18);
    set_stats("intelligence",18);
-   set_alignment(3);
+   set_alignment(2);
    set_size(2);
    set_body_type("human");
    add_limb("neck","neck",0,0,0);

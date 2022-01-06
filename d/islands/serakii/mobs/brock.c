@@ -27,8 +27,9 @@ void create()
     set_guild_level("fighter",40);
     set_property("full attacks",1);
     set_hd(30, 6);
-    set_size(3);
+    set_size(2);
     set_overall_ac(-20);
+    set_alignment(2);
     set_property("magic", 1);
     set_max_hp(2500);
     set_hp(2500);
