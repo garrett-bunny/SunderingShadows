@@ -18,7 +18,7 @@ set_long(" Thick %^C245%^stone tabletops%^CRST%^ support complex networks "+
 "%^C094%^four stools%^CRST%^ placed neatly at each one. %^C094%^Cabinets%^CRST%^ "+
 "line the walls, some with %^C159%^glass doors%^CRST%^ displaying items inside, "+
 "while others consist of a multitude of %^C059%^square drawers%^CRST%^, all "+
-"neatly labled for the ingredients they hold. The end of the room has a "+
+"neatly labeled for the ingredients they hold. The end of the room has a "+
 "large %^C243%^slab of slate%^CRST%^ affixed to the wall, %^C043%^obscure "+
 "alchemical%^CRST%^ equations, diagrams and notes scrawled over it in "+
 "%^C231%^chalk%^CRST%^. A series of %^C245%^stone sinks%^CRST%^ that drain "+
@@ -28,7 +28,7 @@ set_long(" Thick %^C245%^stone tabletops%^CRST%^ support complex networks "+
 "Overhead, %^C028%^herbs%^CRST%^ hang to dry. Despite this department being the "+
 "cleanest of them all, with no ingredients left strewn or unattended, no "+
 "%^C142%^spills%^CRST%^ not immediately cleaned up, there are already signs of "+
-"wear; %^C242%^scortch%^CRST%^ marks betraying experiments gone wrong, and the "+
+"wear; %^C242%^scorch%^CRST%^ marks betraying experiments gone wrong, and the "+
 "desperate attempts to scrub them away.\n");
 
 
@@ -45,9 +45,9 @@ set_long(" Thick %^C245%^stone tabletops%^CRST%^ support complex networks "+
     "as they are worked.",
     ({"cabinet"}) : "A series of %^C159%^glass-doored%^CRST%^ "+
     "%^C094%^cabinets%^CRST%^ lines the walls, alternating with neatly "+
-    "labled %^C094%^apothecary cabinets%^CRST%^. Inside the class cabinets "+
+    "labeled %^C094%^apothecary cabinets%^CRST%^. Inside the class cabinets "+
     "are shelves lined with %^C133%^medicine jars%^CRST%^ and %^C159%^bottles%^CRST%^, "+
-    "also neatly labled in elegant %^C248%^script%^CRST%^ and perfectly stoppered. "+
+    "also neatly labeled in elegant %^C248%^script%^CRST%^ and perfectly stoppered. "+
     "Inside them are all manner of ingredients; eyeballs, %^C246%^metal filings%^CRST%^, "+
     "%^C094%^herbs%^CRST%^, %^C178%^beetles%^CRST%^ to name but a few. On other "+
     "%^C094%^shelves%^CRST%^, racks holding rows of empty, %^C159%^sterile vials%^CRST%^ "+
@@ -55,7 +55,7 @@ set_long(" Thick %^C245%^stone tabletops%^CRST%^ support complex networks "+
     "%^C247%^mortars%^CRST%^ and %^C247%^pestles%^CRST%^, and packages of "+
     "%^C143%^delicate papers%^CRST%^ for powders and tobacco. There are some books on "+
     "the topics of herbalism, alchemy, and brewing, and the odd cloche jar displaying "+
-    "specemins such as skeletal birds, or enclosed, mossy ecosystems.",
+    "specimens such as skeletal birds, or enclosed, mossy ecosystems.",
     ({"casks"}) : "It should surprise no one that students with access to this "+
     "kind of equipment would take the opportunity for some extracurricular "+
     "experimentation - namely, the brewing of %^C051%^moonshine%^CRST%^. These "+
