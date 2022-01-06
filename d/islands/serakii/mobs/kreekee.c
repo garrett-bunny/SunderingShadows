@@ -83,7 +83,7 @@ void catch_say(string message){
     if(strsrch(message,"who are you") != -1) {
       call_out("reply_introductions",1,TP,message);
     }
-    if(strsrch(message,"serakii") != -1) {
+    if(strsrch(message,"erakii") != -1) {
       call_out("reply_serakii",1,TP,message);
     }
     if(strsrch(message,"incense") != -1) {
@@ -158,11 +158,11 @@ void reply_hounds(string msg, object who){
 void reply_legion(string msg, object who){
     force_me("say The Legion of Pearl formed "+
 	"after the Night of Betrayal from remnants "+
-	"of other companies that couldn't stand alone."+
-       "They hold the contract for the white keep. They "+
-"have locked the gates north, so you can't go any "+
-"further north. They tussle with the %^C205%^"+
-"hounds%^CRST%^ constantly.");
+	"of other companies that couldn't stand alone. "+
+    "They hold the contract for the white keep. They "+
+    "have locked the gates north, so you can't go any "+
+    "further north. They tussle with the %^C205%^"+
+    "hounds%^CRST%^ constantly.");
     return 1;
 }
 

@@ -24,7 +24,7 @@ void create() {
 
 
 set_smell("default","%^C221%^You smell rich %^C214%^dyes%^C221%^ and clean %^C142%^cloth%^C221%^.%^CRST%^");
-set_listen("default","%^C101%^With all the fabric sounds eem %^C060%^muted%^C101%^ here.%^CRST%^");
+set_listen("default","%^C101%^With all the fabric, sounds seem %^C060%^muted%^C101%^ here.%^CRST%^");
 
 
    set_exits(([
