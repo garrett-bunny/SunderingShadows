@@ -16,7 +16,7 @@ void create(){
     set_description("This spell causes the warlock to sprout a set of wings, their nature "
 "dependent upon the origins of their pact. As the wings are only shaped from energy, they "
 "are not powerful enough to bear the caster aloft in true flights of any length. However, "
-"they allow the warlock to drift in short bursts to conserve energy when travelling, and may "
+"they allow the warlock to drift in short bursts to conserve energy when traveling, and may "
 "also be used to propel the warlock with unexpected speed in combat, to land an extra attack "
 "against a foe. This invocation does not work together with other flight-based spells, nor "
 "similar spell buffs such as haste, rage or berserker.");
@@ -77,7 +77,7 @@ void spell_effect(int prof) {
       break;
 	  case "astral":
         tell_room(caster,"%^RESET%^%^ORANGE%^You straighten your shoulders as %^BLUE%^t%^BOLD%^hi%^RESET%^%^BLUE%^c%^BOLD%^k writhing %^RESET%^%^BLUE%^t%^BOLD%^e%^RESET%^%^BLUE%^n%^BOLD%^ta%^RESET%^%^BLUE%^c%^BOLD%^l%^RESET%^%^BLUE%^e%^BOLD%^s %^RESET%^%^ORANGE%^erupt from them.%^RESET%^");
-        tell_room(place,"%^RESET%^%^ORANGE%^"+caster->QCN+" %^RESET%^%^ORANGE%^straightes %^WHITE%^"+caster->QP+" %^RESET%^%^ORANGE%^shoulders as %^BLUE%^t%^BOLD%^hi%^RESET%^%^BLUE%^c%^BOLD%^k writhing %^RESET%^%^BLUE%^t%^BOLD%^e%^RESET%^%^BLUE%^n%^BOLD%^ta%^RESET%^%^BLUE%^c%^BOLD%^l%^RESET%^%^BLUE%^e%^BOLD%^s %^RESET%^%^ORANGE%^erupt from them.%^RESET%^",caster);
+        tell_room(place,"%^RESET%^%^ORANGE%^"+caster->QCN+" %^RESET%^%^ORANGE%^straightens %^WHITE%^"+caster->QP+" %^RESET%^%^ORANGE%^shoulders as %^BLUE%^t%^BOLD%^hi%^RESET%^%^BLUE%^c%^BOLD%^k writhing %^RESET%^%^BLUE%^t%^BOLD%^e%^RESET%^%^BLUE%^n%^BOLD%^ta%^RESET%^%^BLUE%^c%^BOLD%^l%^RESET%^%^BLUE%^e%^BOLD%^s %^RESET%^%^ORANGE%^erupt from them.%^RESET%^",caster);
         caster->set_property("added short",({"%^RESET%^%^BLUE%^ (held aloft by %^BOLD%^writhing %^RESET%^%^BLUE%^t%^BOLD%^e%^RESET%^%^BLUE%^n%^BOLD%^ta%^RESET%^%^BLUE%^c%^BOLD%^l%^RESET%^%^BLUE%^e%^BOLD%^s%^RESET%^%^BLUE%^)%^RESET%^"}));
       break;
       case "gloom":
