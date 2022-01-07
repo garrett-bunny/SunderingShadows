@@ -380,6 +380,9 @@ void set_property(string prop, mixed value)
     if (prop == "enchantment" && !random(20) && !query("no curse") && !query_property("no curse")) {
         value = -1 * value;
     }
+    if (prop == "magic resistance" && value > 5) {
+	log_file("reports/magic_resistance", "Magic resistance value of " + value + " in " + base_name(TO) + "\n");
+    }
     if (pointerp(value)) {
         if (!props) {
             props = ([]);
