@@ -40,7 +40,7 @@ void create(){
 	set_size(3);
 	set_weight(10000);
 	set_property("swarm",1);
-	set_property("magic resistance",25);
+	set_mob_magic_resistance("insanely high");
 	set_property("no steal",1);
 	set_property("knock unconscious",1);
 	
