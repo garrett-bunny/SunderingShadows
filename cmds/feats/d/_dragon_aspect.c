@@ -15,11 +15,8 @@ void create()
     feat_name("dragon aspect");
     feat_syntax("dragon_aspect");
     feat_classes("oracle");
-    feat_desc("This feat allows an oracle with the dragon mystery to choose their chosen dragon affinity. This will determine things like resistance granted and damage types for breath weapons.
-    
-%^CYAN%^BOLD%^The choices for dragon affinity are as follows: \n\%^RED%^" + implode(VALID,"\n") + "%^RESET%^");
+    feat_desc("This feat allows an oracle with the dragon mystery take on attributes of their chosen dragon type, such as claw attacks, tail swipe, and breath weapons. While dragon aspect is active, these dragon specials will automatically happen during combat.");
     allow_tripped(1);
-    set_save("reflex");
 }
 
 int allow_shifted()
