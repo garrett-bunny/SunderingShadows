@@ -80,7 +80,7 @@ int check_can_use()
         tell_object(caster,"You cannot use quivering palm while mounted!");
         return 0;
     }
-    if(!(int)USER_D->can_spend_ki(caster, 3))
+    if(!(int)USER_D->can_spend_ki(caster, 20))
     {
         tell_object(caster, "%^CYAN%^You lack the needed ki to attempt "+
         "quivering palm.%^RESET%^");
@@ -144,7 +144,7 @@ void execute_feat()
         dest_effect();
         return;
     }
-    if(!caster->spend_ki(3))
+    if(!caster->spend_ki(20))
     {
         tell_object(caster, "%^CYAN%^You lack the needed ki to attempt "+
         "quivering palm!%^RESET%^");
