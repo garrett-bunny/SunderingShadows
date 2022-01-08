@@ -17,7 +17,7 @@ set_long("This room is dominated by an %^C040%^e%^C034%^n%^C040%^ormo%^C035%^u%^
 "hov%^C035%^e%^C040%^ring cryst%^C034%^a%^C040%^l%^CRST%^ "+
 "surrounded by a series of %^C247%^inscribed concentric "+
 "rings%^CRST%^ which spin lazily around it on different "+
-"axis. A %^C044%^magical circle%^CRST%^ has been "+
+"axes. A %^C044%^magical circle%^CRST%^ has been "+
 "permanently carved and inlaid with %^C226%^gold%^CRST%^ "+
 "into the %^C246%^solid stone floor%^CRST%^ surrounding "+
 "the device, intended to contain and amplify %^C204%^energy%^CRST%^ "+

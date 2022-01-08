@@ -51,7 +51,7 @@ set_short("%^C094%^co%^C059%^m%^C094%^forta%^C059%^b%^C094%^le foy%^C059%^e%^C09
 
 
 set_smell("default","%^C094%^This area is filled with the satisfying scent of cut wood.%^CRST%^");
-set_listen("default","%^C158%^Muted sounds of apprentice's conversation, construction, and crafting drift through the room.%^CRST%^");
+set_listen("default","%^C158%^Muted sounds of apprentices' conversation drift through the room.%^CRST%^");
 
 
    set_exits(([
