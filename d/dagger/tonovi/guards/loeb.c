@@ -89,9 +89,8 @@ void create()
     set_property("full attacks", 1);
     set_property("fast healing", 5);
     set_property("shieldwall", 5);
-    set_property("magic resistance", random(60) + 10);
     set_property("no death");
-    set_mob_magic_resistance("medium");
+    set_mob_magic_resistance("high");
     set_ac(-60 - random(10));
     set_detecting_invis(1);
     set_long("This " + query_gender() + " guard wears the standard uniform of "
