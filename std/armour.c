@@ -480,17 +480,17 @@ int do_struck(int damage, object weapon, object attacker)
 {
     object who = query_worn();
     if (!objectp(who)) {
-        return 0;
+        return damage;
     }
     if (query_property("struck")) {
         return call_other(TO, "property_special", damage, weapon, attacker);
     }
     if (!stringp(struck)) {
-        return 0;
+        return damage;
     }
     if (!query_property("fstruck")) {
         message("combat", struck, environment(who));
-        return 0;
+        return damage;
     }
     return call_other(TO, struck, damage, weapon, attacker);
 }
