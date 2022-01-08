@@ -130,8 +130,8 @@ int struck(int damage, object what, object who){
 				  "'s strike passes through "+ETO->query_objective()+" "+
 				  "as harmlessly as if "+ETO->query_subjective()+" "+
 				  "were a shadow.%^RESET%^",({who,ETO}));
-               tell_object(who,"%^BOLD%^%^BLACK%^"+ETO->query_cap_name()+"+
-			      ""'s form suddenly flickers as your strike passes "+
+               tell_object(who,"%^BOLD%^%^BLACK%^"+ETO->query_cap_name()+""+
+			      "'s form suddenly flickers as your strike passes "+
 				  "through "+ETO->query_objective()+" as harmlessly "+
 				  "as if "+ETO->query_subjective()+" were a shadow.%^RESET%^");
                tell_object(ETO,"%^BOLD%^%^BLACK%^Your form suddenly "+
