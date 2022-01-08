@@ -380,8 +380,13 @@ void set_property(string prop, mixed value)
     if (prop == "enchantment" && !random(20) && !query("no curse") && !query_property("no curse")) {
         value = -1 * value;
     }
-    if (prop == "magic resistance" && value > 5) {
-	log_file("reports/magic_resistance", "Magic resistance value of " + value + " in " + base_name(TO) + "\n");
+    if (prop == "magic resistance") {
+	if(TO->is_living() && value > 9) {
+	    log_file("reports/magic_resistance", "Living Object magic resistance value of " + value + " in " + base_name(TO) + "\n");
+	}
+	else if (!(TO->is_living()) && value > 4) {
+	    log_file("reports/magic_resistance", "Non-living Object magic resistance value of " + value + " in " + base_name(TO) + "\n");
+	}
     }
     if (pointerp(value)) {
         if (!props) {
