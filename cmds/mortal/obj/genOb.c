@@ -891,7 +891,7 @@ void finish_object()
     tell_room(EETO, ETO->QCN + " pauses from working on the new item.", ETO);
     tell_object(ETO, "You pause from working on the new item.");
     ob = new(fileName);
-    if(ob->query_property("treasure_type") { //prevent crafted items from adding themselves to random treasure table
+    if(ob->query_property("treasure_type")) { //prevent crafted items from adding themselves to random treasure table
       ob->remove_property("treasure_type);
     }
     if (ob->move(TP) != MOVE_OK) {
