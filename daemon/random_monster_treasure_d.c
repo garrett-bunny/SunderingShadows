@@ -118,7 +118,8 @@ void add_treasure(object ob)
     string *level_files, file, *lets, type;
     int x, level;
     
-    if(!objectp(ob)) return;    
+    if(!objectp(ob)) return;
+    if(strsrch(base_name(ob), "d/players")) return;
     type = ob->query_property("treasure_type");
     if(interactive(ob)) return;
     if(!stringp(type)) return;    
