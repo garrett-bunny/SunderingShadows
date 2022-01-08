@@ -79,7 +79,7 @@ void create()
     }));
     set_func_chance(35);
     set_property("full attacks", 1);
-    set_property("magic resistance", random(60) + 10);
+    set_mob_magic_resistance("average");
     rank = set_ranks(([
                           18 : "rookie",
                           20 : "sergeant",
