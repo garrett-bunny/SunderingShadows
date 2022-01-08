@@ -124,7 +124,7 @@ int struck(int damage, object what, object who){
 			      "unfurl suddenly from your back, whipping around to "+
 				  "parry "+who->query_cap_name()+"'s strike!%^RESET%^");
               break;
-            case 3:
+            case 2:
                tell_room(EETO,"%^BOLD%^%^BLACK%^"+ETO->query_cap_name()+""+
 			      "'s form suddenly flickers as "+who->query_cap_name()+""+
 				  "'s strike passes through "+ETO->query_objective()+" "+
