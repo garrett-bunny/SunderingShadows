@@ -50,7 +50,7 @@ void create()
         "spring attack",
         "defensive roll",
         "evasion",
-        "scremble",
+       "scramble",
         "blindfight",
         "death ward",
         "toughness",
