@@ -154,15 +154,6 @@ int drain(object targ)
 
 int scare(object targ)
 {
-                  if(race_immunity_check(inven[i], "fear") || PLAYER_D->immunity_check(inven[i], "fear")) 
-                  // Adding proper immunity check here - LoKi
-        {
-                        tell_object(targ,"%^BOLD%^%^BLUE%^The ghost "+
-                        "stares into your eyes, but you resist its power!%^RESET%^");
-                        tell_room(ETO,"%^BOLD%^%^BLUE%^The ghost stares "+
-                        "at "+targ->QCN+" but nothing happens.%^RESET%^",targ);
-                        return 1;
-        }
 		if(!"daemon/saving_d"->saving_throw(targ,"spell")) {
 			tell_object(targ,"%^BOLD%^%^BLUE%^The ghost "+
                      "stares into your eyes and you feel yourself "+
