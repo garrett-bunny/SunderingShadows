@@ -36,8 +36,8 @@ void create() {
         "of the underdark, while to the east lies a shallower incline, with "
         "what looks like some manner of settlement atop its ridge."
     );
-    set_smell("default", "A strange acrid stench wafts down from upstreram.");
-    set_listen("default", "The thundrous current of the river rushes past you.");
+    set_smell("default", "A strange acrid stench wafts down from upstream.");
+    set_listen("default", "The thunderous current of the river rushes past you.");
     set_exits(([
     ]));
     set_items(([
