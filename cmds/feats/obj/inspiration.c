@@ -339,7 +339,7 @@ int countersong(int lvl)
         }
         TO->remove();
     } else {
-            tell_object(caster,"%^BOLD%^%^BLACK%^Hostile c%^RESET%^%^RED%^ou%^BOLD%^%^BLACK%^nt%^RESET%^%^RED%^e%^BOLD%^%^BLACK%^rs%^RESET%^%^RED%^o%^BOLD%^%^BLACK%^ng %^WHITE%^fails%^BLACK to disrupt your melodies.%^RESET%^");
+            tell_object(caster,"%^BOLD%^%^BLACK%^Hostile c%^RESET%^%^RED%^ou%^BOLD%^%^BLACK%^nt%^RESET%^%^RED%^e%^BOLD%^%^BLACK%^rs%^RESET%^%^RED%^o%^BOLD%^%^BLACK%^ng %^WHITE%^fails%^BLACK%^ to disrupt your melodies.%^RESET%^");
             tell_room(ENV(caster),"%^BOLD%^%^BLACK%^Hostile c%^RESET%^%^RED%^ou%^BOLD%^%^BLACK%^nt%^RESET%^%^RED%^e%^BOLD%^%^BLACK%^rs%^RESET%^%^RED%^o%^BOLD%^%^BLACK%^ng %^WHITE%^fails%^BLACK%^ to disrupt the harmony of " + caster->QCN + "'s melodies.%^RESET%^", caster);
     }
 }
