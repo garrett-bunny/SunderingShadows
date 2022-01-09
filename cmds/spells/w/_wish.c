@@ -36,6 +36,12 @@ int preSpell()
     string spl, sargs, disc;
     string splfn, ctype;
 
+    if(!FEATS_D->usable_feat(caster, "deep magic"))
+    {
+        tell_object(caster,"You are unable to comprehend magic of this complexity.");
+        return 0;
+    }
+
     if(!stringp(arg))
     {
         tell_object(caster,"You must provide arguments to this spell!");
