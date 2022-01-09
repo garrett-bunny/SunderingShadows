@@ -198,8 +198,9 @@ string query_spoken()
     
     if(catch(file = find_object("/std/races/" + this_object()->query_race() + ".c")))
         return "common";
-    
-    d_lang = file->query_default_language();
+   
+    if(function_exists("query_default_language", file))
+        d_lang = file->query_default_language();
     
     if(!strlen(d_lang))
         return "common";

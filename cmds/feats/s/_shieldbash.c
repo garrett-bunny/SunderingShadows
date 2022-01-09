@@ -28,7 +28,7 @@ If used without an argument this feat will pick up a random attacker.");
     set_save("fort");
     // This tells the feat daemon what feats this one is required for, it's needed for
     // removing feats from players so they don't remove one that they are going to need
-    set_required_for(({ "shieldwall", "deflection", "reflection", "counter" }));
+    //set_required_for(({ "shieldwall", "deflection", "reflection", "counter" }));
 }
 
 int allow_shifted()
