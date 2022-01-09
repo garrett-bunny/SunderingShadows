@@ -459,8 +459,13 @@ int select_domain(string str)
                         "a specialized way.");
             return 1;
         }
+        if (sizeof(info) != 5) {
+            tell_object(TP, "Syntax: <pick way> <way of the fist/elements/shadow>.");
+            return 1;
+        }
+        str = info[1]+" "+info[2]+" "+info[3]+" "+info[4];
         if (str != "way of the fist" && str != "way of the elements" && str != "way of the shadow") {
-            tell_object(TP, "A monk can only pick %^YELLOW%^way of the fists%^RESET%^, " +
+            tell_object(TP, "A monk can only pick %^YELLOW%^way of the fist%^RESET%^, " +
                         "%^YELLOW%^way of the elements%^RESET%^, or %^YELLOW%^way of the shadow" +
                         "%^RESET%^!");
             return 1;
