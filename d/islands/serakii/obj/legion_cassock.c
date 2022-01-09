@@ -88,7 +88,7 @@ int removeme() {
 }
 
 int strike_fnc(int damage, object what, object who){
-        if(random(1000) < 100){
+    if(random(1000) < 100){
         tell_room(environment(query_worn()),"%^C124%^"+
             ""+ETOQCN+" %^C124%^turns as "+who->QCN+" %^C124%^strikes "+
 			"them, softening the blow!",({ETO,who}));
@@ -96,7 +96,8 @@ int strike_fnc(int damage, object what, object who){
 		"you, it hurts, but you're saved from the worst of it!");
         tell_object(who,"%^C124%^"+ETOQCN+" %^C124%^turns as you hit them!");
         return (damage/3);
- }
+    }
+    return damage;
 }
 
  
