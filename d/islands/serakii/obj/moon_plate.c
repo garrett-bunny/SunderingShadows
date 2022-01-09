@@ -85,7 +85,7 @@ int remove_func(){
         return 1;
 }
 int strike_func(int damage, object what, object who){
-        if(random(1000) < 100){
+    if(random(1000) < 100){
         tell_room(EETO,"%^BLACK%^%^BOLD%^As "+who->QCN+" %^BLACK%^%^BOLD%^strikes"+
 "		"+ETOQCN+"%^BLACK%^%^BOLD%^, their blow glances off the wet "+
 "plates.%^RESET%^",({ETO,who}));
@@ -93,6 +93,7 @@ int strike_func(int damage, object what, object who){
 "		blow strikes you, it glances off the wet plate.%^RESET%^");
         tell_object(who,"%^BLACK%^%^BOLD%^As you strike "+ETOQCN+"%^BLACK%^%^BOLD%^ "+
 		"the blow is deflected off by the wet plate.%^RESET%^");
-return(-1)*(damage);
-}
+	return 0;
+    }
+    return damage;
 }
