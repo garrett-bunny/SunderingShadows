@@ -162,7 +162,7 @@ int struck(int damage, object what, object who){
         }
         return (damage*(1/2));
     }
-    return 1;
+    return damage;
 }
 
 void heart_beat() {
