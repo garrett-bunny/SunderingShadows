@@ -46,7 +46,7 @@ void create(){
    set_gender("male");
    set("aggressive",6);
    set_property("swarm",1);
-   set_property("magic resistance",40);
+   set_mob_magic_resistance("average");
    make_me();
    add_money("gold",3000+random(5));
    add_money("silver",5000+random(5));
