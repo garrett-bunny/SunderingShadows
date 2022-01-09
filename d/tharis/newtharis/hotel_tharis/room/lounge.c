@@ -34,5 +34,6 @@ void create(){
 void reset(){
     ::reset();
     if(!present("waitress")) new(MON "natalie")->move(TO);
+    if(!present("dealer")) new(MON "zashan")->move(TO);
 }
 
