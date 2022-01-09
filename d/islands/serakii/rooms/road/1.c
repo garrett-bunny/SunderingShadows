@@ -13,9 +13,7 @@ void create(){
 set_exits(([
 
 "northeast" : INN"1",
-"portal" : "/d/darkwood/room/road7",
 "north" : ROAD"2",
-"tent" : "/realms/loki/events/serakii_benefit/rooms/tent.c",
 "southwest" : ROAD"3",
 "southeast" : ROAD"4",
 
