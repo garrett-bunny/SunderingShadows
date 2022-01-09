@@ -53,5 +53,5 @@ int strike_func(int damage, object what, object who){
 	tell_object(who,"%^BOLD%^%^BLUE%^A sheet of pure darkness billows about "+ETOQCN+" deflecting your attack.%^RESET%^");
         return 0;	
     }
-    damage;
+    return damage;
 }
