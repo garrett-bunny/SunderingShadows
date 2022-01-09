@@ -30,7 +30,7 @@ THORN
               (["north" : "/d/darkwood/room/road6",
                 "south" : "/d/darkwood/room/road8",
 //For Serakii Benefit LoKi
-// "portal" : "/d/islands/serakii/rooms/road/1.c",
+"portal" : "/d/islands/serakii/rooms/road/1.c",
                 "inn": "/d/darkwood/room/rhapsody",
                 "northeast" : "/d/darkwood/room/tetherarea",
        ]) );
