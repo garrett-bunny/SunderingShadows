@@ -228,7 +228,7 @@ void execute_attack()
             break;
         }
     
-        dam = (roll_dice(1, 8) * (1 + flevel /  10) + BONUS_D->query_stat_bonus(caster, "charisma"));
+        dam = (5 + roll_dice(1, 8) * (1 + flevel /  10) + BONUS_D->query_stat_bonus(caster, "charisma"));
     
         if(sizeof(attackers) > 6)
             attackers = attackers[0..6];
