@@ -18,7 +18,6 @@ void create(){
 "blades in the air depends on the level of the caster.");
     set_property("magic",1);
     set_casting_time(1);
-    set_helpful_spell(1);
     traveling_aoe_spell(1);
 }
 
@@ -108,7 +107,6 @@ void execute_attack(){
 
         tell_object(caster, "%^BOLD%^%^BLACK%^Your spinning blades tear into your enemies as they get too close!");
         tell_room(place, "%^BOLD%^%^BLACK%^" + caster->QCN + "'s spinning blades tear into " + caster->QP + " enemies as they get too close!", caster);
-        define_base_damage(0);
         for (i = 0; i < sizeof(foes); i++) {
             if (!objectp(foes[i])) {
                 continue;
