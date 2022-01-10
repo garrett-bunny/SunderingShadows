@@ -84,6 +84,7 @@ void dest_effect()
         target->remove_property("chameleoned");
         target->remove_property("untrackable");
         target->remove_property("block scrying");
+        if(objectp(blocker)) blocker->self_destruct();
     }
     ::dest_effect();
     if(objectp(TO))
