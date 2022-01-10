@@ -38,6 +38,7 @@ void create(){
     set_gender("neuter");
     set_funcs( ({ "special_attack" }) );
     set_func_chance(35);
+    set_property("function and attack",1);
 }
 
 int is_undead() { return 1; }
