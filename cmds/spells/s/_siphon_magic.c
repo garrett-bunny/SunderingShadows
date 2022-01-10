@@ -59,15 +59,15 @@ int preSpell()
     if (strsrch(base_name(fob), "/d/magic/") != -1 ||
         fob->query_property("monsterweapon")) {
         tell_object(TP, "You cannot siphon a conjured item!");
-        return 1;
+        return 0;
     }
     if (fob->query_weight() > 200) {
         tell_object(TP, "This is too large to siphon!");
-        return 1;
+        return 0;
     }
     if (tob->query_property("no repair")) {
         tell_object(TP, "This object can't accept magic!");
-        return 1;
+        return 0;
     }
     if (((fob->is_weapon() && !tob->is_weapon()) ||
          (!fob->is_weapon() && tob->is_weapon())) &&
