@@ -166,7 +166,8 @@ int prerequisites(object player)
     if (!player->is_class(base)) {
         return 0;
     }
-    if ((player->query_class_level(base)) < 20) {
+    //if ((player->query_class_level(base)) < 20) {
+    if(player->query_base_character_level() < 20) {
         write("Fail levels.");
         return 0;
     }
