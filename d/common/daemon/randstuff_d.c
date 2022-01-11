@@ -193,7 +193,7 @@ int make_drink() {
    object drink;
    drink = new("std/drink");
    drink->set_name("water");
-   drink->set_id( ({ "drink", "liquid", "clear liquid" }) );
+   drink->set_id( ({ "drink", "liquid", "clear liquid", "bottle", "water" }) );
    drink->set_short("A bottle of clear liquid");
    drink->set_long("This is a small bottle containing a few ounces of "
 	"clear liquid.  Closer examination leads you to conclude it's "
