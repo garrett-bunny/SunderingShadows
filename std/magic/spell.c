@@ -3281,7 +3281,7 @@ varargs int do_save(object targ, int mod, int get_dc)
     base_level = caster->query_base_character_level();
     classlvl = max( ({ caster->query_guild_level(spell_type), base_level - 10 }) );
     
-    if(spell_type == "innate")
+    if(spell_type == "innate" || spell_type == "cantrip")
         classlvl = base_level;
     
     //Cypher casts scroll with full DC
