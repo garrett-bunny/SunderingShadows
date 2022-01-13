@@ -10,7 +10,7 @@ void create() {
     set_author("ares");
     set_spell_name("dispel chaos");
     set_spell_level(([ "cleric" : 6, "paladin" : 4, "inquisitor" : 4 ]));
-    set_spell_sphere("combat");
+    set_spell_sphere("abjuration");
     set_syntax("cast CLASS dispel chaos on TARGET");
     set_description("Dispel Chaos can only be cast by users of lawful alignment and it only effects targets of chaotic "
 "alignment.  When cast at a target of the correct alignment, it will disrupt the harmonics of their soul and wrack their "

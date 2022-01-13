@@ -11,7 +11,7 @@ void create() {
     set_spell_name("dispel evil");
     set_spell_level(([ "cleric" : 6, "sorcerer" : 6 ]));
     set_domains("good");
-    set_spell_sphere("combat");
+    set_spell_sphere("abjuration");
     set_syntax("cast CLASS dispel evil on TARGET");
     set_description("Dispel Evil can only be cast by users of good alignment and it only effects targets of evil "
 "alignment.  When cast at a target of the correct alignment, it will disrupt the harmonics of their soul and wrack their "
@@ -22,7 +22,7 @@ void create() {
     set_save("fort");
 }
 
-string query_cast_string() 
+string query_cast_string()
 {
     tell_object(caster,"%^BOLD%^%^WHITE%^Holding your hand out,"+
 		" you begins to chant in a pure flowing tone.");
@@ -31,9 +31,9 @@ string query_cast_string()
     return"display";
 }
 
-int preSpell() 
+int preSpell()
 {
-    if (!target) 
+    if (!target)
     {
         tell_object(caster, "That is not here.");
         return 0;
@@ -41,20 +41,20 @@ int preSpell()
     return 1;
 }
 
-void spell_effect(int prof) 
+void spell_effect(int prof)
 {
     int damage;
     tell_room(place, "%^BOLD%^The air shimmers as "+caster->QCN+" "+
 		"completes "+caster->QCN+" chant.", caster);
     tell_object(caster, "%^BOLD%^Your chant builds in power, causing the very air to shimmer.");
 
-    if(target && !present(target,PLACE)) 
-    { 
-        dest_effect(); 
-        return; 
+    if(target && !present(target,PLACE))
+    {
+        dest_effect();
+        return;
     }
-    if(target && !caster->ok_to_kill(target)) 
-    {  
+    if(target && !caster->ok_to_kill(target))
+    {
         dest_effect();
         return;
     }
@@ -76,7 +76,7 @@ void spell_effect(int prof)
         "from the purity of "+caster->QCN+"'s chant.");
     if(do_save(target,0))
         damage = roll_dice(clevel,6) / 2;
-    else 
+    else
         damage = roll_dice(clevel,6);
     damage_targ(target,target->return_target_limb(),damage,"divine");
 	spell_kill(target,caster);
@@ -85,7 +85,7 @@ void spell_effect(int prof)
     return;
 }
 
-void dest_effect() 
+void dest_effect()
 {
     ::dest_effect();
     if(objectp(TO)) TO->remove();
