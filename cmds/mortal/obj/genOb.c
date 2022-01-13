@@ -892,7 +892,7 @@ void finish_object()
     tell_object(ETO, "You pause from working on the new item.");
     ob = new(fileName);
     if(ob->query_property("treasure_type")) { //prevent crafted items from adding themselves to random treasure table
-      ob->remove_property("treasure_type);
+      ob->remove_property("treasure_type");
     }
     if (ob->move(TP) != MOVE_OK) {
         ob->move(ETP);
