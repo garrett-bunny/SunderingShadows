@@ -122,8 +122,8 @@ void execute_feat()
     companion->set_hd(comp_hd, 14);
     companion->set_attacks_num(2 + class_level / 10);
     companion->set_mlevel("fighter", comp_hd);
-    companion->set_max_hp(14 + (14 * comp_hd));
-    companion->set_hp(14 * comp_hd + 14);
+    companion->set_max_hp(14 + (25 * comp_hd));
+    companion->set_hp(25 * comp_hd + 14);
     companion->set_alignment(caster->query_alignment());
     companion->set_owner(caster);
        
