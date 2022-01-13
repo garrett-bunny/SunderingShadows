@@ -15,6 +15,7 @@ void create()
     set_syntax("cast CLASS fear");
     set_description("Fear sends a wave of horrid thoughts and images out toward the foes around the caster, possibly terrifying them. An invisible cone of terror causes each living creature in the area to become panicked unless it succeeds on a Will save. If cornered, a panicked creature begins cowering. If the Will save succeeds, the creature is shaken for 1 round.");
     mental_spell();
+    evil_spell(1);
     splash_spell(3);
     set_verbal_comp();
     set_somatic_comp();
