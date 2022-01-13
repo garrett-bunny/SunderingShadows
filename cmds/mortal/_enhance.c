@@ -93,8 +93,28 @@ int cmd_enhance(string str)
             }
         }
         if (feat_wb) {
-            my_levels = (int)TP->query_prestige_level("paladin");
-            power += ((int)TP->query_prestige_level("paladin") + 1) / 6;
+            if(TP->is_class("cleric"))
+            {
+                domains = TP->query_divine_domain();
+
+                if(member_array("good", domains) >= 0  ||
+                   member_array("evil", domains) >= 0  ||
+                   member_array("chaos", domains) >= 0 ||
+                   member_array("law", domains) >= 0) {
+                    if(TP->is_class("paladin"))
+                        my_levels = max( ({ (int)TP->query_prestige_level("paladin"), (int)TP->query_prestige_level("cleric") }) );
+                        power += max( ({ ((int)TP->query_prestige_level("paladin") + 1) / 6, ((int)TP->query_prestige_level("cleric") + 1) / 6 }) );    
+                    }
+                    else {
+                        my_levels = (int)TP->query_prestige_level("cleric");
+                        power += ((int)TP->query_prestige_level("cleric") + 1) / 6;        
+                    }
+                }
+            }
+            else {
+                my_levels = (int)TP->query_prestige_level("paladin");
+                power += ((int)TP->query_prestige_level("paladin") + 1) / 6;    
+            }
         }
         power += ((int)TP->query_level() - my_levels) / 16;//half levels / 8
         if (sizeof(temp))
