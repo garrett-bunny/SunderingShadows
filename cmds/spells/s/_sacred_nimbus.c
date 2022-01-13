@@ -10,7 +10,7 @@ void create()
     ::create();
     set_spell_name("sacred nimbus");
     set_spell_level(([ "cleric" : 5, "paladin" : 4,"inquisitor":5 ]));
-    set_spell_sphere("combat");
+    set_spell_sphere("invocation_evocation");
     set_syntax("cast CLASS sacred nimbus");
     set_damage_desc("divine to evil");
     set_description("You are surrounded by a nimbus of golden light shaped like your god's holy symbol or a symbol of your faith. Any evil creature attacking you will be burned by the light.");

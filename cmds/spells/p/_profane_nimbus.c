@@ -11,7 +11,7 @@ void create()
     ::create();
     set_spell_name("profane nimbus");
     set_spell_level(([ "cleric" : 5, "paladin" : 4,"inquisitor":5 ]));
-    set_spell_sphere("combat");
+    set_spell_sphere("invocation_evocation");
     set_syntax("cast CLASS profane nimbus");
     set_damage_desc("divine to good");
     set_description("You are surrounded by a nimbus of darkness shaped like your god's holy symbol or a symbol of your faith. Any good creature attacking you will be scorched by the darkness.");
