@@ -26,6 +26,7 @@ void create(){
 "the alignment of the caster with respect to the target.\n\nNOTE: This spell will damage all attackers regardless of "
 "alignment, but the damage will very if the attackers are players based on each individual's alignment.  The damage done "
 "to mobs is consistent no matter the mob's alignment.");
+    evil_spell(1);
     set_verbal_comp();
     set_somatic_comp();
     splash_spell(2);
