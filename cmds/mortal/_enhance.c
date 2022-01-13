@@ -23,11 +23,11 @@ int cmd_enhance(string str)
     feat_wb = FEATS_D->usable_feat(TP, "weapon bond");
     feat_ab = FEATS_D->usable_feat(TP, "armor bond");
     feat_wr = FEATS_D->usable_feat(TP, "warding");
-    
+
     if(TP->is_class("cleric"))
     {
         domains = TP->query_divine_domain();
-        
+
         if(member_array("good", domains) >= 0  ||
            member_array("evil", domains) >= 0  ||
            member_array("chaos", domains) >= 0 ||
@@ -40,12 +40,12 @@ int cmd_enhance(string str)
         !feat_ab) {
         return 0;
     }
-    
+
     if (!stringp(str) || str == "" || str == " ") {
         str = "list";
-        
+
     }
-    
+
     arguments = explode(str, " ");
 
     if (!sizeof(arguments)) {
@@ -93,27 +93,30 @@ int cmd_enhance(string str)
             }
         }
         if (feat_wb) {
-            if(TP->is_class("cleric"))
-            {
+            if(TP->is_class("cleric")) {
                 domains = TP->query_divine_domain();
 
                 if(member_array("good", domains) >= 0  ||
                    member_array("evil", domains) >= 0  ||
                    member_array("chaos", domains) >= 0 ||
                    member_array("law", domains) >= 0) {
-                    if(TP->is_class("paladin"))
+                    if(TP->is_class("paladin")) {
                         my_levels = max( ({ (int)TP->query_prestige_level("paladin"), (int)TP->query_prestige_level("cleric") }) );
-                        power += max( ({ ((int)TP->query_prestige_level("paladin") + 1) / 6, ((int)TP->query_prestige_level("cleric") + 1) / 6 }) );    
+                        power += max( ({ ((int)TP->query_prestige_level("paladin") + 1) / 6, ((int)TP->query_prestige_level("cleric") + 1) / 6 }) );
                     }
                     else {
                         my_levels = (int)TP->query_prestige_level("cleric");
-                        power += ((int)TP->query_prestige_level("cleric") + 1) / 6;        
+                        power += ((int)TP->query_prestige_level("cleric") + 1) / 6;
                     }
+                }
+                else if(TP->is_class("paladin")) {
+                    my_levels = (int)TP->query_prestige_level("paladin");
+                    power += ((int)TP->query_prestige_level("paladin") + 1) / 6;
                 }
             }
             else {
                 my_levels = (int)TP->query_prestige_level("paladin");
-                power += ((int)TP->query_prestige_level("paladin") + 1) / 6;    
+                power += ((int)TP->query_prestige_level("paladin") + 1) / 6;
             }
         }
         power += ((int)TP->query_level() - my_levels) / 16;//half levels / 8
@@ -230,7 +233,7 @@ int cmd_enhance(string str)
                 cost = (int)this_enhance[enhancement_name]["cost"];
                 has_element = 0;
                 element = replace_string(property_name, " en_res", "");
-                if (strsrch(property_name, " en_res") + 1 && feat_ab) { cost -= 1; } //improveds are set as 6 
+                if (strsrch(property_name, " en_res") + 1 && feat_ab) { cost -= 1; } //improveds are set as 6
                 if (is_burst = strsrch(property_name, "improved") + 1) {
                     element = replace_string(property_name, " en_res improved", "");
                     if (has_element = TP->query_property(element + " en_res")) {
@@ -331,7 +334,7 @@ int cmd_enhance(string str)
             tell_object(TP, "You don't seem to have any enhancements added to your list yet.");
             return 1;
         }
-        
+
         display += ({ "%^RESET%^%^BOLD%^%^BLUE%^--==%^RESET%^%^BOLD%^%^CYAN%^< %^RESET%^%^BOLD%^Enhancements to be applied %^RESET%^%^BOLD%^%^CYAN%^>%^RESET%^%^BOLD%^%^BLUE%^==--%^RESET%^" });
 
         for (i = 0;i < sizeof(temp);i++)
@@ -347,7 +350,7 @@ int cmd_enhance(string str)
         }
 
         TP->more(display);
-        
+
         return 1;
     }
     return 0;
@@ -480,7 +483,7 @@ void off_enhances(object obj, string enh_type)
                 TP->set_resistance(element, -10);
             }
             obj->remove_property(property_name);
-        
+
         }
     }
     return;
