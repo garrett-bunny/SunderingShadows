@@ -161,6 +161,7 @@ int cmd_enhance(string str)
                 }
             }
         }
+        
         if (power) {
             TP->set_property("weapon enhancement bonus", power);
             TP->add_attack_bonus(power);
@@ -174,8 +175,8 @@ int cmd_enhance(string str)
             duration = (int)TP->query_prestige_level("magus") * 60;
         }
         else {
-            duration = 80;
-            duration *= (1 + (TP->query_prestige_level("paladin") / 5));
+            duration = 180;
+            duration *= (1 + (TP->query_prestige_level("paladin") / 5) + (TP->query_prestige_level("cleric") / 5));
         }
         TP->set_property("weapon enhancement timer", duration);
         return 1;
