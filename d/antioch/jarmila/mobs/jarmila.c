@@ -320,7 +320,7 @@ void die(object ob) {
     object *att;
 
        ETO->lockdown();
-       new(OBJ"cracked_sunstone")->move(TO);
+       new(OBJ"cracked_sunstone")->move(ETO);
     tell_room(ETO, "%^C160%^The phoenix bursts into an explosion "+
 	"of epic proportions and disappears, though the force of its "+
 	"death has cracked open one of the larger sunstones.%^CRST%^");
