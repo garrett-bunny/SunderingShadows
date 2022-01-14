@@ -3514,7 +3514,14 @@ varargs int do_save(object targ, int mod, int get_dc)
                 shadow_spell += 1;
         }
 
-        DC = shadow_spell * DC / 10;
+        /*******************************************************************************
+          In our d20 system 1 point represents 5%
+          Shades is a level 9 shadow spell and has an 80% effectiveness per source
+          shadow_spell is (spell_level - 1), which would be set to 8 for the Shades spell
+          20 - (8 * 2) will give us 4, which matches the 20% penalty from source
+          this should scale correctly for all shadow spells
+        *******************************************************************************/
+        DC -= 20 - (shadow_spell * 2); 
     }
 
     spell_DC = DC;
