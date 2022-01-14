@@ -38,7 +38,7 @@ void init() {
     if(!userp(TP)) {
         return;
     }
-    tell_object(TP, "\n%^YELLOW%^<OOC: There is some potentially traumatizing sexual violence ahead. Turn back now if it is not something you wish to witness.>%^RESET%^\n");
+    tell_object(TP, "\n%^YELLOW%^<OOC: %^BOLD%^%^RED%^There is some potentially traumatizing sexual violence ahead. Turn back now if it is not something you wish to witness.>%^RESET%^\n");
 }
 
 int GoThroughDoor(){
