@@ -63,17 +63,17 @@ void spell_effect(int prof)
         
         if((ob->query_base_character_level() < caster->query_base_character_level() - 10) || !combat_death_save(ob, 0))
         {
-            tell_object(target,"%^BOLD%^The wave of death rips your soul from your body, leaving a pale after-image!");
-            tell_room(place,"%^BOLD%^"+target->QCN+"'s soul is ripped from their body, leaving a pale after-image!",({target}));
+            tell_object(ob,"%^BOLD%^The wave of death rips your soul from your body, leaving a pale after-image!");
+            tell_room(place,"%^BOLD%^"+ob->QCN+"'s soul is ripped from their body, leaving a pale after-image!",({ob}));
             target->set_hp(-100);
             continue;
         }
         else
         {
-            tell_object(target,"%^BOLD%^The wave of death passes through you, and you barely retain your soul!");
-            tell_room(place,"%^BOLD%^The wave of death passes through "+target->QCN+", and they barely retain their soul!",({target}));
-            target && target->cause_typed_damage(target, target->return_target_limb(), sdamage,"divine");
-            target && target->set_property("fester", sdamage / 2);
+            tell_object(ob,"%^BOLD%^The wave of death passes through you, and you barely retain your soul!");
+            tell_room(place,"%^BOLD%^The wave of death passes through "+ob->QCN+", and they barely retain their soul!",({ob}));
+            ob && ob->cause_typed_damage(ob, ob->return_target_limb(), sdamage,"divine");
+            ob && ob->set_property("fester", sdamage / 2);
             continue;
         }
     }
