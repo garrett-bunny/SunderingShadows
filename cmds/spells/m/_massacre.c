@@ -65,7 +65,7 @@ void spell_effect(int prof)
         {
             tell_object(ob,"%^BOLD%^The wave of death rips your soul from your body, leaving a pale after-image!");
             tell_room(place,"%^BOLD%^"+ob->QCN+"'s soul is ripped from their body, leaving a pale after-image!",({ob}));
-            target->set_hp(-100);
+            ob->set_hp(-100);
             continue;
         }
         else
