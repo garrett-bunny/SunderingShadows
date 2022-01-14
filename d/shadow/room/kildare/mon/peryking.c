@@ -1,4 +1,5 @@
 #include <std.h>
+#include <daemons.h>
 #include "../kildare.h"
 inherit MON "peryton";
 
@@ -41,7 +42,7 @@ void create()
 
 void screech(object targ)
 {
-    if (!"daemon/saving_d"->saving_throw(targ, "spell", -2)) {
+    if ((!"daemon/saving_d"->saving_throw(targ, "spell", -2)) && (!PLAYER_D->immunity_check(targ, "fear"))){
         tell_object(targ, "%^MAGENTA%^The peryton screeches with rage, freezing you in place!");
         tell_room(ETO, "%^MAGENTA%^You cringe in terror as the peryton screeches and " +
                   "" + targ->query_cap_name() + " freezes in place!%^RESET%^", targ);
