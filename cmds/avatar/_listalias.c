@@ -38,10 +38,6 @@ varargs int cmd_listalias(string str) {
         write("No such player online.");
         return 1;
     }
-    if(avatarp(ob) && ob->query_level() > TP->query_level()) {
-        write("I'm afraid not.");
-        return 1;
-    }
 
     name = capitalize(ob->query_name());
     alias = (mapping) ob->query_aliases();

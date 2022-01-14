@@ -1183,6 +1183,7 @@ varargs void calculate_damage(object attacker, object targ, object weapon, strin
         ***************************************/
 	if (damage && mod <= 0) {
 	    log_file("reports/struck_damage", "Review for malformed struck function with damage " + mod + ": " + base_name(armor[i]) + "\n");
+        log_file("reports/struck_damage", "Previous Object : " + base_name(previous_object()) + "\n");
 	}
         if (mod < 0) {
             damage += mod;
