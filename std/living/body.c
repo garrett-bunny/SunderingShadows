@@ -1052,6 +1052,12 @@ int cause_typed_damage(object targ, string limb, int damage, string type)
             attacker = attacker->query_caster();
         }
     }
+    
+    if(damage <= 0)
+    {
+        log_file("reports/negative_damage", "Negative or zero damage value passed : " + base_name(previous_object()) + "\n");
+    }
+        
     damage = (int)COMBAT_D->typed_damage_modification(attacker, targ, limb, damage, type);
     return targ->cause_damage_to(targ, limb, damage);
 }
