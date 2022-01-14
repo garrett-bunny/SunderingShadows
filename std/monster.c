@@ -1848,7 +1848,9 @@ void set_mob_magic_resistance(string perc)
         //modifier = base_level * 150 / 100;
         modifier = 13;
         break;
-
+    case "immune":
+        modifier = 100;
+        break;
     default:
         modifier = 0;
         break;
