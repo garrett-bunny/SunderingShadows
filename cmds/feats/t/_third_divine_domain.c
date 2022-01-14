@@ -9,7 +9,7 @@ void create()
     feat_category("DivineSpellcraft");
     feat_name("third divine domain");
     feat_prereq("Greater spell penetration, Greater spell power, Cleric");
-    feat_desc("This feat conveys a high level of favor in which a cleric is held by their patron. It allows for those rare cases where a priest is permitted to wield any and all specialty spells their deity offers.");
+    feat_desc("This feat conveys a high level of favor in which a cleric is held by their patron. It allows for those rare cases where a priest is permitted to wield even more of the specialty spells and passive benefits their deity offers.");
     permanent(1);
 }
 int allow_shifted()
