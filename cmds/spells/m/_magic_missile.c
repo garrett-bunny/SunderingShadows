@@ -82,6 +82,12 @@ void spell_effect(int prof)
     
     foreach(object ob in victims)
     {
+        if(!objectp(caster))
+        {
+            dest_effect();
+            return;
+        }
+        
         spell_kill(ob, caster);
         
         if(objectp(ob) && ob->query_property("spell shield"))
@@ -91,6 +97,9 @@ void spell_effect(int prof)
             tell_room(place, "%^BOLD%^The missile is absorbed by " + ob->query_cap_name() + "'s magical shield!", ob);
             continue;
         }
+        
+        if(!objectp(ob) || !objectp(caster))
+            continue;
         
         tell_object(caster, "%^BOLD%^%^CYAN%^" + sprintf("Your %s %s into %s with arcane force!", miss_str, verb_str, ob->query_cap_name()));
         tell_object(ob, "%^BOLD%^%^CYAN%^" + sprintf("The %s %s into you with arcane force!", miss_str, verb_str));
