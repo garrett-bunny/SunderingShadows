@@ -10,7 +10,7 @@ void create()
     feat_category("Archpsion");
     feat_name("kinetic conversion");
     feat_prereq("Archpsion L4, Power Surge");
-    feat_desc("When the archpsion is damaged by kinetic objects it will restore a small amount of lost power points.");
+    feat_desc("The Archpsion has become a master of the nature of energy and the astral. With this feat, the Archpsion will occasionally be able to convert the energy of a non-physical attack into latent astral energy, shunting it into the astral plane. This will reduce the damage by half. This is a passive feat that consumes focus on triggering. This feat will only trigger on non-physical hits of significant size.");
     permanent(1);
     set_required_for(({"perfect manifesting"}));
 }
