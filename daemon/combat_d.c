@@ -371,6 +371,7 @@ varargs int typed_damage_modification(object attacker, object targ, string limb,
     if(targ->query_property("prismatic sphere") || attacker->query_property("prismatic sphere"))
         return 0;
 
+    /*
     if (objectp(targ) && FEATS_D->usable_feat(targ, "kinetic conversion")) {
         if (member_array(type, PHYSICAL_DAMAGE_TYPES) > -1) {
             amt = damage / 4;
@@ -381,6 +382,19 @@ varargs int typed_damage_modification(object attacker, object targ, string limb,
                 amt = 1;
             }
             targ->add_mp(amt);
+        }
+    }
+    */
+    
+    //Now ONLY works on non-physical hits
+    //Occasional halving of big energy hits
+    if(damage > 100 && objectp(targ) && FEATS_D->usable_feat(targ, "kinetic conversion"))
+    {
+        if(!targ->cooldown("kinetic conversion") && member_array(type, PHYSICAL_DAMAGE_TYPES) < 0)
+        {
+            tell_object(targ, "%^YELLOW%^BOLD%^You negate some of the energy and dissipate it harmlessly into the astral!%^RESET%^");
+            damage /= 2;
+            targ->add_cooldown("kinetic conversion", 30);
         }
     }
     
