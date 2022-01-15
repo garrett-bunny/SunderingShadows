@@ -1006,6 +1006,10 @@ int query_resistance_percent(string res)
             break;
         }
     }
+    
+    //Psion mental mastery capstone
+    if(this_object()->is_class("psion") && this_object()->query("available focus") == 2 && res == "mental")
+        mod = 100;
 
     //Mage is invulnerable for duration of prismatic sphere
     if(TO->query_property("prismatic sphere"))

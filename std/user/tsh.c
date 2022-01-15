@@ -167,8 +167,10 @@ string write_prompt()
 
         if(this_player()->is_class("psion") || this_player()->is_class("psywarrior"))
         {
-            if(this_player()->query("available focus") == this_player()->query("maximum focus"))
+            if(this_player()->query("available focus") == 1)
                 prompt = replace_string(prompt, "$_PF", "Focused");
+            else if(this_player()->query("available focus") > 1)
+                prompt = replace_string(prompt, "$_PF", "Firmly Focused");
             else
                 prompt = replace_string(prompt, "$_PF", "");
         }

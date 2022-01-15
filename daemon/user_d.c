@@ -190,7 +190,7 @@ int spend_pool(object ob, int amount, string pool_type)
     }
     avail -= amount;
     
-    if(pool_type == "focus")
+    if(pool_type == "focus" && avail < 1)
         tell_object(ob, "%^BOLD%^You lose your psionic focus.%^RESET%^");
     
     ob->set("available " + pool_type, avail);
@@ -358,7 +358,7 @@ void init_pool(object ob, string pool_type)
         }
         else
         {
-            newmax = 1;
+            newmax = 1 + FEATS_D->has_feat(ob, "mental mastery");
         }
     }
     if (!intp(avail = (int)ob->query("available " + pool_type))) avail = newmax;
