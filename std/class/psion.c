@@ -41,7 +41,7 @@ mapping class_featmap(string myspec, object player) {
 
     mapping feats;
 
-    feats = ([ 1 : ({ "simple weapon proficiency", "spell focus", "discipline", }), ]);
+    feats = ([ 1 : ({ "simple weapon proficiency", "spell focus", "discipline", }), 31 : ({ "mental mastery" }) ]);
 
     switch(player->query_discipline())
     {
