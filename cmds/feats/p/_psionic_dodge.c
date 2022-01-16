@@ -24,7 +24,7 @@ int prerequisites(object ob)
 {
     if(!objectp(ob)) { return 0; }
 
-    if(!ob->is_class("psion") || !ob->is_class("psywarrior"))
+    if(!ob->is_class("psion") && !ob->is_class("psywarrior"))
     {
         dest_effect();
         return 0;
