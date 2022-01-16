@@ -945,7 +945,7 @@ void prepare(string str, int temp, string myclass, int num, int flag)
 
     if (myclass == "psywarrior" || myclass == "psion") {
         
-        int focus;
+        int focus, avail;
         
         mymax = TO->query_max_mp();
         if (!mymax) {
@@ -981,12 +981,18 @@ void prepare(string str, int temp, string myclass, int num, int flag)
         }else {
             TO->add_mp(num);
             
+            avail = this_object()->query("available focus");
+            
             if(focus)
             {
-                if(!this_object()->query("available focus"))
+                if(avail < this_object()->query("maximum focus"))
                 {
-                    this_object()->set("available focus", 1);
-                    tell_object(this_object(), "%^BOLD%^You regain your psionic focus.%^RESET%^");
+                    this_object()->set("available focus", avail + 1);
+                    
+                    if(avail + 1 == 2)
+                        tell_object(this_object(), "%^BOLD%^You become firmly focused.%^RESET%^");
+                    else
+                        tell_object(this_object(), "%^BOLD%^You regain your psionic focus.%^RESET%^");
                 }
                 focus = 0;
             }           

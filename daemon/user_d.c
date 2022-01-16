@@ -358,7 +358,7 @@ void init_pool(object ob, string pool_type)
         }
         else
         {
-            newmax = 1 + FEATS_D->has_feat(ob, "mental mastery");
+            newmax = 1 + FEATS_D->usable_feat(ob, "mental mastery");
         }
     }
     if (!intp(avail = (int)ob->query("available " + pool_type))) avail = newmax;
