@@ -33,7 +33,13 @@ void create(){
     set_hp(40);
     set_exp(1);
     set_damage(2, 6);
-    set_size(2);
+    set_size(3);
+    set_stats("strength", 30);
+    set_stats("constitution", 30);
+    set_stats("dexterity", 10);
+    set_stats("wisdom", 10);
+    set_stats("charisma", 18);
+    set_stats("intelligence", 5);
     set_gender("neuter");
     set_funcs( ({ "special_attack" }) );
     set_func_chance(35);
