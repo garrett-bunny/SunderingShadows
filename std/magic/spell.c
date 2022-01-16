@@ -2520,6 +2520,12 @@ void define_clevel()
             clevel += caster->query_property("augment power");
             caster->remove_property("augment power");
         }
+        
+        if(FEATS_D->usable_feat(caster, "mental mastery"))
+        {
+            if(mydiscipline == caster->query_discipline())
+                clevel += 1;
+        }
     }
 
     if(spell_type == "cleric")

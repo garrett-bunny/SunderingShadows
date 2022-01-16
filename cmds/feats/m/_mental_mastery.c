@@ -17,7 +17,7 @@ void create()
     feat_category("Psionics");
     feat_name("mental mastery");
     feat_prereq("Psion L31");
-    feat_desc("With this feat, the psion gains unparalelled ability to psionically focus. They can gain an additional charge of focus, becoming firmly focused. While firmly focused, the psion gains 100% immunity to mental damage.");
+    feat_desc("With this feat, the psion gains unparalelled ability to psionically focus. They can gain an additional charge of focus, becoming firmly focused. While firmly focused, the psion gains 100% immunity to mental damage. In addition, powers cast from the psion's chosen discipline gain +1 caster level.");
     permanent(1);
     psionic(1);
 }

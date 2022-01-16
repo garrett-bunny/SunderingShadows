@@ -17,7 +17,7 @@ void create()
 
     set_obvious_short("%^RESET%^%^RED%^A pair of %^BOLD%^%^BLACK%^blue %^BLACK%^meta%^BLUE%^l%^RESET%^%^RED%^ gauntlets%^RESET%^");
 
-    set_long("%^BLUE%^These gauntlets has been designed to fit "+
+    set_long("%^BLUE%^These gauntlets have been designed to fit "+
     "tightly over the left hand. They are made from a deep blue "+
     "substance that is easily recognized as a metal. The fingers "+
     "of the gauntlets are made from a %^BOLD%^%^BLACK%^m%^RESET%^"+
@@ -29,7 +29,7 @@ void create()
     "The upperside of the gauntlets are %^RED%^emblazed%^RESET%^"+
     "%^BLUE%^ with an intense and out of control "+
     "%^RESET%^blue flame%^BLUE%^. The emblems seem almost "+
-    "real and even just hastingly glancing at them "+
+    "real and even just hastily glancing at them "+
     "causes your eyes to burn from the invisible heat that seems to "+
     "be given off from them.%^RESET%^");
 
