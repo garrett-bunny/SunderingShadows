@@ -77,7 +77,7 @@ set_long("This room is dominated by an %^C040%^e%^C034%^n%^C040%^ormo%^C035%^u%^
 
 set_smell("default","%^C110%^You smell nothing here%^CRST%^");
 set_listen("default","%^C042%^Crystals resonate and hum when in use, some "+
-"thrumming rhytmically, others piercingly high-pitched.%^CRST%^");
+"thrumming rhythmically, others piercingly high-pitched.%^CRST%^");
 
    set_exits(([
 
