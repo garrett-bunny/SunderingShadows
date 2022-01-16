@@ -51,8 +51,9 @@ int strike_func(int damage, object what, object who){
       tell_object(ETO,"%^BOLD%^%^RED%^Flames lick off of the silken doublet and %^RESET%^%^RED%^burn%^BOLD%^ "+who->QCN+"!%^RESET%^");
       tell_object(who,"%^BOLD%^%^RED%^Flames lick off of "+ETOQCN+"s fiery red silk doublet and %^B_RED%^%^YELLOW%^burn%^RESET%^%^BOLD%^%^RED%^ you!%^RESET%^");
       who->do_damage("torso",random(8));
-   return 0;
+      return 0;
    }
+   return damage;
 }
 
 void init()
