@@ -69,12 +69,12 @@ int unwear_msg() {
 }
 
 int strikeme(int damage, object what, object who){
-        if(random(1000) < 250){
+    if(random(1000) < 250){
         tell_room(environment(query_worn()),"%^C059%^As a blow lands on "+ETOQCN+"%^C059%^'s shield. Your hear the scream of a dragon that staggers "+who->QCN+"%^C059%^!%^CRST%^",({ETO,who}));
         tell_object(ETO,"%^C059%^You hear the scream of a dragon coming from your shield and "+who->QCN+"%^C059%^ staggers backwards!%^CRST%^");
         tell_object(who,"%^C059%^You are stagged by the scream of a dragon from "+ETOQCN+"%^C059%^'s shield!");
         who->set_paralyzed(1,"%^C059%^You are staggered from the shield!%^CRST%^");
-        return 1;
-      }
+    }
+    return damage;
 }
 
