@@ -99,8 +99,8 @@ void create()
     }), 0);
     set_emotes(4, ({
         "The %^BOLD%^%^BLACK%^gh%^RESET%^o%^BOLD%^%^BLACK%^stly"
-        + " %^RESET%^priest %^ORANGE%^mutters%^RESET%^ a chant under"
-        + TO->QP + "  breath",
+        + " %^RESET%^priest %^ORANGE%^mutters%^RESET%^ a chant under "
+        + TO->QP + " breath",
 
         "The %^BOLD%^%^BLACK%^gh%^RESET%^o%^BOLD%^%^BLACK%^st%^RESET%^"
         + " of the %^CYAN%^tecqumin%^RESET%^ priest moves around a little"

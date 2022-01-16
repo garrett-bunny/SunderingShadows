@@ -135,7 +135,7 @@ if(strsrch(msg, "no") != -1 || strsrch(msg,"orry") != -1|| strsrch(msg,"No") != 
  
 	tell_room(ETO,"The hope in %^YELLOW%^Khamvani %^BLACK%^e%^YELLOW%^y%^BLACK%^es%^RESET%^ is extinguished and replaced with %^BOLD%^%^RED%^mindless rage");
 	force_me("You killed my cubs! The sands will drink your blood!");
-	tell_room(ETO,"%^YELLOW%^Khamvani%^RESET%^%^RED%^ gives %^BOLD%^bloodcurling roar %^RESET%^and attacks in a crazed frenzy");
+	tell_room(ETO,"%^YELLOW%^Khamvani%^RESET%^%^RED%^ gives %^BOLD%^bloodcurdling roar %^RESET%^and attacks in a crazed frenzy");
 	force_me("rush "+ob->query_name());
 }
 	
@@ -146,8 +146,8 @@ if(strsrch(msg, "no") != -1 || strsrch(msg,"orry") != -1|| strsrch(msg,"No") != 
 	return;
 	break;
 		case 7..9:
-	tell_object(ob,"%^YELLOW%^Khamvani %^BLACK%^looks chocked as you speak");
-	tell_room(ETO,"%^YELLOW%^Khamvani %^BLACK%^looks chocked as "+ob->QCN+" speaks",ob);
+	tell_object(ob,"%^YELLOW%^Khamvani %^BLACK%^looks shocked as you speak");
+	tell_room(ETO,"%^YELLOW%^Khamvani %^BLACK%^looks shocked as "+ob->QCN+" speaks",ob);
 	force_me("say You shall die for what you did to my mate!");
 	tell_room(ETO,"Khamvani roars ferociously and attacks!");
 	force_me("rush "+ob->query_name());

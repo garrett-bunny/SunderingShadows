@@ -40,16 +40,16 @@ int hit_func(object targ){
         tell_object(ETO,"%^GREEN%^V%^BOLD%^i%^RESET%^%^GREEN%^n%^BOLD%^e"+
 "%^RESET%^%^GREEN%^s from the staff %^BOLD%^g%^ORANGE%^r%^GREEN%^o%^ORANGE%^w "+
 "%^RESET%^%^GREEN%^and %^ORANGE%^l%^BOLD%^%^GREEN%^as%^RESET%^%^ORANGE%^h %^GREEN%^around"+
-        "%^BOLD%^%^ORANGE%^ "+targ->QCN+"'s%^GREEN%^body and start to %^BOLD%^%^RED%^c"+
-"%^RESET%^%^RED%^rus%^BOLD%^h %^BOLD%^%^ORANGE%^"+targ->QP+"!%^RESET%^");
+        "%^BOLD%^%^ORANGE%^ "+targ->QCN+"'s %^GREEN%^body and start to %^BOLD%^%^RED%^c"+
+"%^RESET%^%^RED%^rus%^BOLD%^h %^BOLD%^%^ORANGE%^"+targ->QS+"!%^RESET%^");
         tell_object(targ,"%^BOLD%^%^GREEN%^V%^RESET%^%^ORANGE%^in"+
 "%^BOLD%^%^GREEN%^es %^RESET%^%^GREEN%^from %^BOLD%^%^RED%^ "+ETO->QCN+"'s %^YELLOW%^s"+
 "%^GREEN%^t%^ORANGE%^a%^GREEN%^f%^ORANGE%^f %^GREEN%^lash %^RESET%^%^GREEN%^around your "+
 "body and begin to %^RED%^c%^BOLD%^rus%^RESET%^%^RED%^h %^GREEN%^you!%^RESET%^");
         tell_room(environment(ETO),"%^BOLD%^%^GREEN%^V%^RESET%^%^ORANGE%^ine"+
-"%^BOLD%^%^GREEN%^s %^RESET%^%^GREEN%^from %^BOLD%^%^RED%^"+ETO->QCN+"'s%^BOLD%^s%^ORANGE%^t"+
-"%^GREEN%^a%^ORANGE%^f%^GREEN%^f %^RESET%^%^GREEN%^wrap around %^YELLOW%^"+targ->QCN+"'s"
-    "body and begin to %^BOLD%^%^RED%^c%^RESET%^%^RED%^rus%^BOLD%^h%^YELLOW%^"+targ->QP+"!%^RESET%^",({ETO,targ}));
+"%^BOLD%^%^GREEN%^s %^RESET%^%^GREEN%^from %^BOLD%^%^RED%^"+ETO->QCN+"'s %^BOLD%^s%^ORANGE%^t"+
+"%^GREEN%^a%^ORANGE%^f%^GREEN%^f %^RESET%^%^GREEN%^wrap around %^YELLOW%^"+targ->QCN+"'s "
+    "body and begin to %^BOLD%^%^RED%^c%^RESET%^%^RED%^rus%^BOLD%^h%^YELLOW%^"+targ->QS+"!%^RESET%^",({ETO,targ}));
 
         return random(4)+8;
    }

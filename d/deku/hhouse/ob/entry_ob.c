@@ -25,8 +25,8 @@ void create()
     "n%^BOLD%^%^WHITE%^c%^BOLD%^%^YELLOW%^e%^BOLD%^%^CYAN%^"+
     " at any moment. It is outlined "+
     "by what looks to be %^BOLD%^%^BLACK%^blackened bones%^BOLD%^%^CYAN%^ "+
-    "that are cracked and chipped. There is no apparently method in which "+
-    "in can be opened, instead you believe that you could simply "+
+    "that are cracked and chipped. There is no apparent method in which "+
+    "it can be opened, instead you believe that you could simply "+
     "%^BOLD%^%^WHITE%^<%^BOLD%^%^MAGENTA%^enter%^BOLD%^%^WHITE%^>"+
     "%^BOLD%^%^CYAN%^ it, if you were so inclined. Where does it "+
     "lead? Perhaps to untold riches in a faraway land but more "+
