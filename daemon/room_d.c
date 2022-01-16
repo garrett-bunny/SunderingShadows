@@ -195,17 +195,17 @@ int set_rooms(string room,string player,string dest)
     if (member_array(room, keys(NeededRooms)) != -1) return ERROR;
     else NeededRooms[room] = ""+player+"&"+dest+"";
     SaveTrainerFile();
-    if(objectp(find_object(room)))
-    {
-        if(!present("signpost",find_object(room)))
-        {
-            ob = new("/d/shadow/obj/special/signpost");
-            ob->set_dest(dest);
-            ob->set_player(player);
-            ob->move(room);
-        }
-	}
-	return 1;
+//     if(objectp(find_object(room)))
+//     {
+//         if(!present("signpost",find_object(room)))
+//         {
+//             ob = new("/d/shadow/obj/special/signpost");
+//             ob->set_dest(dest);
+//             ob->set_player(player);
+//             ob->move(room);
+//         }
+//     }
+    return 1;
 }
 
 void inhere(string name)
