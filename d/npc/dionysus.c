@@ -41,7 +41,8 @@ OLI
    set_stats("strength",25);
    set_stats("dexterity",25);
    set_stats("constitution",25);
-   set_db("dionysus");
+  set_random_act_db("dionysusrandom");
+   set_random_act_chance(10);
    set_body_type("human");
    set_need_addressed(1);
 }

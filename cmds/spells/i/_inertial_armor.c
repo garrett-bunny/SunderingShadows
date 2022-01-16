@@ -16,7 +16,7 @@ void create() {
     set_syntax("cast CLASS inertial armor");
     set_description("When a psion manifests inertial armor, his psionic energy streams through a gem, where it coalesces "
 "and forms a shield about the psion.  This shield of protection offers an AC bonus that grows with the psion as his "
-"mental powers grow stronger.");
+"mental powers grow stronger. This spell, for psions, only works when wearing NO ARMOR. Psywarriors can cast this spell in any armor.");
     set_verbal_comp();
     set_somatic_comp();
     set_property("keywords", ({ "defensive", "targeted", "personal" }));

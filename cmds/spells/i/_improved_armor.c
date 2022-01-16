@@ -20,7 +20,7 @@ void create()
     set_syntax("cast CLASS improved armor [on TARGET]");
     set_damage_desc("+8 AC");
     set_bonus_type("armor");
-    set_description("With this spell, the caster surrounds themselves with strong force field that absorbs weak attacks and spells. This spell won't work together with lesser variant, as it is essentially the same spell pumped with power.");
+    set_description("With this spell, the caster surrounds themselves with strong force field that absorbs weak attacks and spells. This spell won't work together with lesser variant, as it is essentially the same spell pumped with power. This spell, like the armor spell, only works when wearing NO ARMOR.");
     set_verbal_comp();
     set_somatic_comp();
     set_components(([ "mage" : ([ "dragon scale" : 1, ]), ]));
