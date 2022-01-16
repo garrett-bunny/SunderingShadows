@@ -48,17 +48,14 @@ int remove_fun() {
    return 1;
 }
 int strikeme(int damage, object what, object who){
-       if(!random(5))return damage;
-        tell_object(ETO,"%^BLUE%^"+who->QCN +"strikes your scales and gets cut
-on the barnicles.");
-        tell_object(who,"%^BLUE%^You strike "+ETO->QCN+"'s scale mail and get cut
-on the barnicles.");
-        tell_room(EETO,"%^BLUE%^"+who->QCN+" strikes "+ETO->QCN+
-                "'s scale mail and gets cut by it.",({who,ETO}));
-  if(!random(4)){   
-        who->set_paralyzed((random(6)+3),
-       "Poison freezes your limbs!");
-  }
-  who->cause_typed_damage(who,0,roll_dice(1,6)+5,"slashing");
-  return (-1)*(damage/2);
+    if(random(5)) return damage;
+    tell_object(ETO,"%^BLUE%^"+who->QCN +"strikes your scales and gets cut on the barnicles.");
+    tell_object(who,"%^BLUE%^You strike "+ETO->QCN+"'s scale mail and get cut on the barnicles.");
+    tell_room(EETO,"%^BLUE%^"+who->QCN+" strikes "+ETO->QCN+
+        "'s scale mail and gets cut by it.",({who,ETO}));
+    if(!random(4)){   
+        who->set_paralyzed((random(6)+3), "Poison freezes your limbs!");
+    }
+    who->cause_typed_damage(who,0,roll_dice(1,6)+5,"slashing");
+    return (-1)*(damage/2);
 }
