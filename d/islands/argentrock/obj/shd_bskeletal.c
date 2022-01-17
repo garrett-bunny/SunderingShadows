@@ -104,14 +104,14 @@ int unwear_msg() {
 }
 
 int strikeme(int damage, object what, object who){
-        if(random(1000) < 250){
+      if(random(1000) < 250){
         tell_room(environment(query_worn()),"%^BOLD%^"+ETOQCN+" spins the shield "+
            "masterfully, confusing "+who->QCN+"!",({ETO,who}));
         tell_object(ETO,"%^BOLD%^You spin the shield masterfully, "+
            "confusing "+who->QCN+"!");
         tell_object(who,"%^BOLD%^"+ETOQCN+" spins "+ETO->QP+" shield and "+
            "for a moment, you're confused!");
-        who->set_paralyzed(1,"You are confused from the shield!");
-        return 1;
+        who->set_paralyzed(roll_dice(1,4),"You are confused from the shield!");
       }
+      return damage;
 }
