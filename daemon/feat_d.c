@@ -847,6 +847,9 @@ int display_is_known(string feat, object ob)
     if(!objectp(ob) || !stringp(feat))
         return 0;
     
+    if(is_temporary(feat, ob))
+        return 1;
+    
     return has_feat(ob, feat);
 }
 
