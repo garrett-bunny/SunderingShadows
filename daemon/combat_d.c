@@ -1175,37 +1175,12 @@ varargs void calculate_damage(object attacker, object targ, object weapon, strin
             }
         }
     }
+    
+    if(!damage)
+        return;
+    
     if (objectp(weapon) && !attacker->query_property("shapeshifted")) {
         weapon->reaction_to_hit(targ, damage);
-    }
-
-    armor = targ->query_armour(target_thing);
-    j = sizeof(armor);
-    for (i = 0; i < j; i++) {
-        if (targ->query_property("shapeshifted")) {
-            continue;
-        }
-        if (!objectp(armor[i])) {
-            continue;
-        }
-        mod = armor[i]->do_struck(damage, weapon, attacker);
-        /**************************************
-         Let's review this code in the future.
-         Struck function should apply modifiers
-         and return total damage at the end.
-         -- Tlaloc --
-        ***************************************/
-	if (damage && mod <= 0) {
-	    log_file("reports/struck_damage", "Review for malformed struck function with damage " + mod + ": " + base_name(armor[i]) + "\n");
-        //log_file("reports/struck_damage", "Previous Object : " + base_name(previous_object()) + "\n");
-	}
-        if (mod < 0) {
-            damage += mod;
-        }
-        if (mod >= 0) {
-            damage = mod;
-        }
-        /**************************************/
     }
 
     if (critical_hit) {
@@ -1300,6 +1275,38 @@ varargs void calculate_damage(object attacker, object targ, object weapon, strin
     bonus_hit_damage += targ->query_property("brutalized");
 
     damage += bonus_hit_damage;
+    
+    armor = targ->query_armour(target_thing);
+    j = sizeof(armor);
+    for (i = 0; i < j; i++) {
+        if (targ->query_property("shapeshifted")) {
+            continue;
+        }
+        if (!objectp(armor[i])) {
+            continue;
+        }
+        mod = armor[i]->do_struck(damage, weapon, attacker);
+        /**************************************
+         Let's review this code in the future.
+         Struck function should apply modifiers
+         and return total damage at the end.
+         -- Tlaloc --
+        ***************************************/
+	if (damage && mod <= 0) {
+	    log_file("reports/struck_damage", "Review for malformed struck function with damage " + mod + ": " + base_name(armor[i]) + "\n");
+        //log_file("reports/struck_damage", "Previous Object : " + base_name(previous_object()) + "\n");
+	}
+        if (mod < 0) {
+            damage += mod;
+        }
+        if (mod >= 0) {
+            damage = mod;
+        }
+        /**************************************/
+    }
+    
+    if(!damage)
+        return;
 
     new_struck(damage, weapon, attacker, target_thing, targ, fired, ammoname, critical_hit, cant_shot, sneak);
 
