@@ -85,7 +85,7 @@ int cmd_peo(){
       name = ob->query_race();
       name = arrange_string(name, 10);
       str += "%^BLUE%^"+name;
-      str += " %^MAGENTA%^"+align_abbrev((int)ob->query_alignment());
+      str += " %^MAGENTA%^"+align_abbrev((int)ob->query_true_align());
       xxx = ob->query_age();
       if(xxx>86400) xxx = (xxx/86400+"D");
       else if(xxx>3600) xxx = (xxx/3600+"h");
