@@ -1080,6 +1080,7 @@ varargs void calculate_damage(object attacker, object targ, object weapon, strin
     if (!objectp(targ)) {
         return;
     }
+    
     attacker_size = (int)targ->query_size();
     if (objectp(weapon) && weapon != attacker && !attacker->query_property("shapeshifted")) {
         damage = (int)weapon->query_wc();
@@ -1159,25 +1160,6 @@ varargs void calculate_damage(object attacker, object targ, object weapon, strin
     if (!objectp(targ) || !objectp(attacker)) {
         return;
     }
-
-    if (res = targ->query_property("weapon resistance") > 0) {
-        if (!weapon || weapon == attacker) {
-            eff_ench = (int)attacker->query_property("effective_enchantment");
-            eff_ench += COMBAT_D->unarmed_enchantment(attacker);
-            if (eff_ench < res) {
-                damage = 0;                // no need for these to stack, greatest is sufficient to override.
-            }
-        }else {
-            ench = (int)weapon->query_property("enchantment");
-            eff_ench = (int)weapon->query_property("effective_enchantment");
-            if ((ench + eff_ench) < res) {
-                damage = 0;
-            }
-        }
-    }
-    
-    if(!damage)
-        return;
     
     if (objectp(weapon) && !attacker->query_property("shapeshifted")) {
         weapon->reaction_to_hit(targ, damage);
@@ -3338,7 +3320,7 @@ void combined_attack(object who, object victim)
 void internal_execute_attack(object who)
 {
     int toAttack, toattack, lastHand, critical_hit, fortification;
-    int i, roll, temp1, temp2, touch_attack = 0, fumble = 0;
+    int i, roll, temp1, temp2, touch_attack = 0, fumble = 0, res, ench;
     object* weapons, current, victim, * protectors, * attackers, EWHO;
     string target_thing, who_name, who_poss, v_name, v_obj, v_poss, who_obj;
 
@@ -3445,6 +3427,21 @@ void internal_execute_attack(object who)
             }
             return;
         }
+        
+        if(res = victim->query_property("weapon resistance") > 0)
+        {
+            if(!current || current == who)
+                ench = who->query_property("effective_enchantment") + unarmed_enchantment(who);
+            else
+                ench = current->query_property("enchantment") + current->query_property("effective_enchantment");
+            
+            if(res < ench)
+            {
+                tell_object(who, "Your attack passes harmlessly through " + victim->query_cap_name());
+                return;
+            }
+        }
+            
         roll = random(20) + 1;
 
         //Touch of Chaos gives disadvantage
