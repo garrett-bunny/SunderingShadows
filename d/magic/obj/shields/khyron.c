@@ -14,10 +14,10 @@ void create(){
 
 int strikeme(int damage, object what, object who){
    if(!random(10)) {
-      tell_room(environment(query_worn()),"%^RESET%^%^RED%^The f%^BOLD%^l%^YELLOW%^a%^WHITE%^m%^YELLOW%^e%^RED%^s %^RESET%^%^RED%^on "+ETOQCN+"'s shield f%^BOLD%^l%^YELLOW%^a%^RED%^r%^RESET%^%^RED%^e to life, blocking "+who->QCN+"'s attack!%^RESET%^",({ETO,who}));
-      tell_object(ETO,"%^RESET%^%^RED%^The f%^BOLD%^l%^YELLOW%^a%^WHITE%^m%^YELLOW%^e%^RED%^s %^RESET%^%^RED%^on your shield f%^BOLD%^l%^YELLOW%^a%^RED%^r%^RESET%^%^RED%^e to life, blocking "+who->QCN+"'s attack!%^RESET%^");
-      tell_object(who,"%^RESET%^%^RED%^The f%^BOLD%^l%^YELLOW%^a%^WHITE%^m%^YELLOW%^e%^RED%^s %^RESET%^%^RED%^on "+ETOQCN+"'s shield f%^BOLD%^l%^YELLOW%^a%^RED%^r%^RESET%^%^RED%^e to life, blocking your attack!%^RESET%^");
-      return (-1)*damage;
-      return 1;
-   }
+       tell_room(environment(query_worn()),"%^RESET%^%^RED%^The f%^BOLD%^l%^YELLOW%^a%^WHITE%^m%^YELLOW%^e%^RED%^s %^RESET%^%^RED%^on "+ETOQCN+"'s shield f%^BOLD%^l%^YELLOW%^a%^RED%^r%^RESET%^%^RED%^e to life, blocking "+who->QCN+"'s attack!%^RESET%^",({ETO,who}));
+       tell_object(ETO,"%^RESET%^%^RED%^The f%^BOLD%^l%^YELLOW%^a%^WHITE%^m%^YELLOW%^e%^RED%^s %^RESET%^%^RED%^on your shield f%^BOLD%^l%^YELLOW%^a%^RED%^r%^RESET%^%^RED%^e to life, blocking "+who->QCN+"'s attack!%^RESET%^");
+       tell_object(who,"%^RESET%^%^RED%^The f%^BOLD%^l%^YELLOW%^a%^WHITE%^m%^YELLOW%^e%^RED%^s %^RESET%^%^RED%^on "+ETOQCN+"'s shield f%^BOLD%^l%^YELLOW%^a%^RED%^r%^RESET%^%^RED%^e to life, blocking your attack!%^RESET%^");
+       return 0;
+    }
+    return damage;
 }

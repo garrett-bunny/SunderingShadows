@@ -37,7 +37,7 @@ void create()
         "%^RESET%^t%^BOLD%^%^CYAN%^r%^RESET%^ans%^BOLD%^%^CYAN%^u%^RESET%^lece%^BOLD%^%^CYAN%^n%^RESET%^t "
         "%^BOLD%^%^BLACK%^mesh provide a grip that seems to leave the shield suspended in the "
         "%^CYAN%^a%^RESET%^%^CYAN%^i%^WHITE%^r%^BOLD%^%^BLACK%^, unattached "
-        "from the wearer. Occasionally slitted %^RESET%^%^RED%^cr%^BOLD%^i%^RESET%^%^RED%^mson "
+        "from the wearer. Occasionally, slitted %^RESET%^%^RED%^cr%^BOLD%^i%^RESET%^%^RED%^mson "
         "eyes %^BOLD%^%^BLACK%^peer out from around the edges of the maw and slowly morph into "
         "%^RESET%^%^RED%^bl%^BOLD%^o%^RESET%^%^RED%^od red te%^BOLD%^a%^RESET%^%^RED%^rdr%^BOLD%^o%^RESET%^%^RED%^ps "
         "%^BOLD%^%^BLACK%^to form the holy symbol of %^RESET%^%^RED%^T%^BOLD%^h%^RESET%^%^RED%^e "
@@ -74,6 +74,7 @@ int strikeme(int damage, object what, object who){
             "a%^RESET%^b%^BOLD%^%^BLACK%^so%^RESET%^r%^BOLD%^%^BLACK%^b %^RESET%^%^CYAN%^your "
             "%^RED%^attack %^BOLD%^%^BLACK%^before shrinking to the center once more.%^RESET%^"
         );
-        return (-1)*damage;
-   }
+        return 0;
+    }
+    return damage;
 }

@@ -19,8 +19,7 @@ int strikeme(int damage, object what, object who)
         tell_room(environment(query_worn()), "%^BOLD%^%^BLUE%^The primordial elements within " + ETOQCN + "'s shield manifest to absorb " + who->QCN "'s attack.", ({ ETO, who }));
         tell_object(ETO, "%^BOLD%^%^BLUE%^The primordial elements within your shield manifest to absorb " + who->QCN "'s attack.");
         tell_object(who, "%^BOLD%^%^BLUE%^The primordial elements within " + ETOQCN + "'s shield manifest to absorb your attack.");
-        return (-1) * damage;
-
-        return 1;
+        return 0;
     }
+    return damage;
 }
