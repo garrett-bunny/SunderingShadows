@@ -6,7 +6,11 @@
 inherit SPELL;
 
 object dest, mytarg, myplace;
-int DELAY = 60;
+
+int clairvoyance_delay()
+{
+    return 60;
+}
 
 void create()
 {
@@ -27,7 +31,7 @@ void create()
 
 int preSpell()
 {
-    if(spell_type != "psion" && (this_player()->cooldown("clairvoyance")))
+    if(spell_type != "psion" && ((int)caster->query_property("clairvoyance time") + clairvoyance_delay()) > time())
     {
         tell_object(caster,"You need to take a moment's rest before you can try that again.");
         return 0;
@@ -129,7 +133,8 @@ void spell_effect(int prof)
     else
     {
         tell_object(CASTER,"%^YELLOW%^A flash of insight reveals "+capitalize(targ)+"'s location:");
-        this_player()->add_cooldown("clairvoyance", DELAY);
+        caster->remove_property("clairvoyance time");
+        caster->set_property("clairvoyance time",time());
     }
 
     myplace = environment(mytarg);

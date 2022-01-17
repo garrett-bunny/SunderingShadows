@@ -4,8 +4,7 @@ void create()
 {
     ::create();
     set_spell_name("greater shadow conjuration");
-    set_spell_level(([ "mage" : 7, "oracle" : 7,"innate":7]));
-    set_mystery("darkness");
+    set_spell_level(([ "mage" : 7, "innate":7]));
     set_spell_sphere("illusion");
     set_syntax("cast CLASS greater shadow conjuration on SPELL_NAME [on SPELL_ARGS]");
     set_description("You create an illusory version of a conjuration spell of 6th level or lower. The source of the illusion can differ based on the caster.

@@ -27,7 +27,7 @@ void create()
     ({"%^BOLD%^%^BLACK%^The darkness on the southern wall here is constantly "+
     "pulsating and for some reason you believe that it might be a living "+
     "thing.  A sense of fear and dread, mixed with a deep longing is given "+
-    "off by it.  You notice that there appears to be a barely noticable "+
+    "off by it.  You notice that there appears to be a barely noticeable "+
     "message written in it.", "\nMy names are three.... \nThe first is written on the "+
     "same grave stone...this one you must read..."+
     "\n\nThe second is written inside the fire, in the blood "+
@@ -61,7 +61,7 @@ int dive_em(string str)
             TP->send_paralyzed_message("info",TP);
             return 1;
         }
-        tell_object(TP, "You decided, against your better judgement, "+
+        tell_object(TP, "You decided, against your better judgment, "+
         "to dive head first into the stagnant water!");	
         if(!TP->query_invis()) 
         {
