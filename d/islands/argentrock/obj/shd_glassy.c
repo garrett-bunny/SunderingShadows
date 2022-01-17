@@ -34,7 +34,6 @@ void create() {
    set_property("lore",15);
    set_value(1000);
    set_property("enchantment",5);
-//   set_item_bonus("intelligence",4);
    set_item_bonus("athletics",4);
    set_item_bonus("fire resistance",35);   
    set_struck((:TO,"strikeme":));
@@ -113,7 +112,7 @@ int unwear_msg() {
 }
 
 int strikeme(int damage, object what, object who){
-        if(random(1000) < 250){
+    if(random(1000) < 250){
         tell_room(environment(query_worn()),"%^BOLD%^%^RED%^The bright "+
 		"red eyes of the dragon image on "+ETOQCN+"'s shield starts "+
 		"to pulse rhythmically at "+who->QCN+"!",({ETO,who}));
@@ -122,7 +121,7 @@ int strikeme(int damage, object what, object who){
         tell_object(who,"%^BOLD%^%^RED%^You feel yourself drawn to the "+
 		"pulsing red eyes of the dragon image on "+ETOQCN+"'s shield"+
 		" for a moment!");
-        who->set_paralyzed(1,"You are confused from the shield!");
-        return 1;
-      }
+        who->set_paralyzed(roll_dice(1,4),"You are confused from the shield!");
+    }
+    return damage;
 }
