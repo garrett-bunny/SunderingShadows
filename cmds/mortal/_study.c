@@ -128,7 +128,7 @@ int cmd_study(string str)
             }
             continue;
         }
-        if (FEATS_D->usable_feat(TP, "skill focus"))
+        /*if (FEATS_D->usable_feat(TP, "skill focus"))
         {
             myclassskills += ({ ((string)TP->query("skill_focus")) });
         }
@@ -136,7 +136,7 @@ int cmd_study(string str)
 
         if (member_array("academics", myclassskills) == -1 && !TP->is_favored_enemy(monster)) {
             return notify_fail("You need training in academics to study this monster.\n");
-        }
+        }*/
         
         if (!TP->query_time_delay("studying_monster", 5) && !avatarp(TP)) {
             write("You need more time to reflect on your knowledge and " +

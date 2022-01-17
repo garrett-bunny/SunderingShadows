@@ -43,24 +43,17 @@ void spell_effect(int prof) {
         dest_effect();
         return;
     }
+    
+    pets = caster->query_protectors();
+    pets = filter_array(pets, (: !userp($1) :));
 
-    minions = all_living(place);
-    if(!sizeof(minions)){
+    if(!pointerp(pets) || !sizeof(pets))
+    {
       tell_object(caster,"You have no creatures by your side.");
       dest_effect();
       return;
     }
-    pets = ({});
-    myshort = caster->query_name()+"'s ally";
-    for(i=0;i<sizeof(minions);i++) {
-      if(minions[i]->id(myshort)) pets += ({ minions[i] });
-    }
-    if(!sizeof(pets)){
-      tell_object(caster,"You have no creatures by your side.");
-      dest_effect();
-      return;
-    }
-
+    
     spell_successful();
     tell_object(caster,"%^BOLD%^You close your eyes and concentrate, letting your will lend strength to your "
 "creatures.%^RESET%^");

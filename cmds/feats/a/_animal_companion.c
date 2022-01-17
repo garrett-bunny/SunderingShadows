@@ -222,6 +222,8 @@ void execute_feat()
         {
             companion->set_property("damage resistance", 10);
             companion->set_monster_feats( ({ "toughness", "improved toughness", "evasion", "resistance", "precise strikes", "stalwart", "rapid strikes" }) );
+            companion->add_attack_bonus(2);
+            companion->add_damage_bonus(2);
         }
 
         if(FEATS_D->usable_feat(caster, "pack leader"))

@@ -41,7 +41,7 @@ int hit_func(object targ){
 "%^RESET%^%^GREEN%^s from the staff %^BOLD%^g%^ORANGE%^r%^GREEN%^o%^ORANGE%^w "+
 "%^RESET%^%^GREEN%^and %^ORANGE%^l%^BOLD%^%^GREEN%^as%^RESET%^%^ORANGE%^h %^GREEN%^around"+
         "%^BOLD%^%^ORANGE%^ "+targ->QCN+"'s %^GREEN%^body and start to %^BOLD%^%^RED%^c"+
-"%^RESET%^%^RED%^rus%^BOLD%^h %^BOLD%^%^ORANGE%^"+targ->QS+"!%^RESET%^");
+"%^RESET%^%^RED%^rus%^BOLD%^h %^BOLD%^%^ORANGE%^them!%^RESET%^");
         tell_object(targ,"%^BOLD%^%^GREEN%^V%^RESET%^%^ORANGE%^in"+
 "%^BOLD%^%^GREEN%^es %^RESET%^%^GREEN%^from %^BOLD%^%^RED%^ "+ETO->QCN+"'s %^YELLOW%^s"+
 "%^GREEN%^t%^ORANGE%^a%^GREEN%^f%^ORANGE%^f %^GREEN%^lash %^RESET%^%^GREEN%^around your "+
@@ -49,7 +49,7 @@ int hit_func(object targ){
         tell_room(environment(ETO),"%^BOLD%^%^GREEN%^V%^RESET%^%^ORANGE%^ine"+
 "%^BOLD%^%^GREEN%^s %^RESET%^%^GREEN%^from %^BOLD%^%^RED%^"+ETO->QCN+"'s %^BOLD%^s%^ORANGE%^t"+
 "%^GREEN%^a%^ORANGE%^f%^GREEN%^f %^RESET%^%^GREEN%^wrap around %^YELLOW%^"+targ->QCN+"'s "
-    "body and begin to %^BOLD%^%^RED%^c%^RESET%^%^RED%^rus%^BOLD%^h%^YELLOW%^"+targ->QS+"!%^RESET%^",({ETO,targ}));
+    "body and begin to %^BOLD%^%^RED%^c%^RESET%^%^RED%^rus%^BOLD%^h%^YELLOW%^them!%^RESET%^",({ETO,targ}));
 
         return random(4)+8;
    }
