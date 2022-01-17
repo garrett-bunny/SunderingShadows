@@ -11,7 +11,7 @@ int cmd_item(string str){
    string file,name,type;
    object item;
 
-   seteuid(UID_ROOT);
+   //seteuid(UID_ROOT);
    if(!str) return notify_fail("Usage: item <name>");
    if(sscanf(str, "-f %s -n %s -t %s",file, name, type) != 3) return help();
    if(member_array(type,VALID_TYPES) == -1) return help();
