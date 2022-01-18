@@ -72,31 +72,26 @@ int strikeme(int damage, object what, object who)
       	if(objectp(what))
       	{
 
-      	tell_object(ETO,"%^BLUE%^The force behind "+who->QCN+
-      			  "'s weapon gets abosrbed into the robe "+
-       			  "as it strikes you.%^RESET%^");
-      
-      
-      	tell_object(who,"%^BLUE%^The insubstantial folds of "+ETOQCN+
-      			 "'s robe absorbs the majority of your blow%^RESET%^");
+            tell_object(ETO,"%^BLUE%^The force behind "+who->QCN+
+                      "'s weapon gets abosrbed into the robe "+
+                      "as it strikes you.%^RESET%^");
 
 
-      	tell_room(environment(query_worn()),"%^BLUE%^"+who->QCN+
-      	       "'s blow is absorbed into the shadowy form of "
-      	       +ETOQCN+".",({who,ETO}));
-      	num = ((damage)-(num2));
-      	if (num < 0)
-      	{
-      		num = damage;
-      	}
-      	num = ((-1)*(num));
-      	return num;
+            tell_object(who,"%^BLUE%^The insubstantial folds of "+ETOQCN+
+                     "'s robe absorbs the majority of your blow%^RESET%^");
+
+
+            tell_room(environment(query_worn()),"%^BLUE%^"+who->QCN+
+                   "'s blow is absorbed into the shadowy form of "
+                   +ETOQCN+".",({who,ETO}));
+            num = ((damage)-(num2));
+            if (num < 0)
+            {
+                num = damage;
+            }
+            num = ((-1)*(num));
+            return num;
       	}
       }
-      	else
-      	{
-      	    return 0;
-   	  	}
+      return damage;    
 }
-
-
