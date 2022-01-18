@@ -24,8 +24,13 @@ void create() {
     set_helpful_spell(1);
 }
 
-void spell_effect(int prof) {
-
+void spell_effect(int prof)
+{
+    if(caster->query_magic_hidden())
+    {
+        tell_object(caster, "You are already invisible.");
+        return;
+    }
     tell_object(caster,"%^ORANGE%^You manifest a thin sheen of "+
        "e%^GREEN%^c%^ORANGE%^t%^GREEN%^o%^ORANGE%^p%^GREEN%^l"+
        "%^ORANGE%^a%^GREEN%^s%^ORANGE%^m to cover you from "+
@@ -49,6 +54,7 @@ void targ_vanish() {
     invisob->set_player_name(caster->query_name());
     invisob->set_mychance(num);
     invisob->move(caster);
+    addSpellToCaster();
     return;
 }
 

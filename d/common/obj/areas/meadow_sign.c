@@ -24,10 +24,9 @@ string main, tmp;
 		"the verdant bounty of the meadowlands to be a gift to their "+
 		"people from Mielikki.  Some halflings have set up shops for "+
 		"the adventures across the Meadowlands, offering clothing in "+
-		"all sizes, trinkets, and even healing.  The temples of "+
-		"%^BOLD%^%^MAGENTA%^Lathander%^RESET%^ and %^BOLD%^%^BLUE%^"+
-		"Tymora%^RESET%^ also can be found within the verdant green "+
-		"meadows. The Meadowlands have "+
+		"all sizes, trinkets, and even healing.  The temple of "+
+        "%^BOLD%^%^BLUE%^Callamir%^RESET%^ can be found within the verdant "+
+        "green meadows. The Meadowlands have "+
 		"become infested with werebeasts and ill tempered creatures that"+
 		" threaten the halflings who live here.\n\n"+
          	"Can you, young adventurer, quell the large number of "+
