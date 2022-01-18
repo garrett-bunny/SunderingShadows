@@ -2617,10 +2617,35 @@ void define_clevel()
         }
     }
 
-    if(caster->is_class("versatile_arcanist") && sizeof(immune))
+    if(spell_type == "sorcerer")
     {
-        if(member_array(caster->query("elementalist"), immune) >= 0)
-            clevel += 3;
+        if(caster->is_class("versatile_arcanist") && sizeof(immune))
+        {
+            if(member_array(caster->query("elementalist"), immune) >= 0)
+                clevel += 3;
+        }
+        
+        if(caster->query_bloodline() == "aberrant")
+        {
+            if(spell_name == "shapechange" ||
+               spell_name == "greater polymorph" ||
+               spell_name == "polymorph" ||
+               spell_name == "polymorph self" ||
+               spell_name == "alter self")
+               clevel += 1;
+        }
+        
+        if(caster->query("subrace") == "tiefling")
+        {
+            if(caster->query_bloodline() == "abyssal" || caster->query_bloodline() == "infernal")
+                clevel += 1;
+        }
+        
+        if(caster->query_race() == "kobold")
+        {
+            if(caster->query_bloodline() == "kobold")
+                clevel += 1;
+        }
     }
     
     if(sizeof(immune) && strsrch(caster->query_race(), "genasi") >= 0)
@@ -2645,16 +2670,6 @@ void define_clevel()
             break;
         }
     }        
-    
-    if(caster->query_bloodline() == "aberrant")
-    {
-        if(spell_name == "shapechange" ||
-           spell_name == "greater polymorph" ||
-           spell_name == "polymorph" ||
-           spell_name == "polymorph self" ||
-           spell_name == "alter self")
-           clevel += 1;
-    }
     
     if(caster->query("subrace") == "trixie")
         if(spell_sphere == "illusion" || spell_sphere == "enchantment_charm")
