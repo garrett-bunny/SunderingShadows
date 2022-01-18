@@ -35,4 +35,12 @@
     "/d/islands/argentrock/obj/shd_glassy", \
     "/d/islands/argentrock/obj/shd_gskeletal", \
     "/d/shadow/room/githyanki/obj/obsidion_vambraces", \
+    "/d/islands/common/obj/new/e_chain", \
+    "/d/islands/common/obj/new/flameguards", \
+    "/d/islands/common/obj/new/p_mail", \
+    "/d/islands/common/obj/new/shield", \
+    "/d/islands/common/obj/new/shimmeringcape2", \
+    "/d/islands/common/obj/new/snakebracers", \
+    "/d/islands/common/obj/new/waveguards", \
+    "/d/islands/common/obj/new/windguards", \
 })
