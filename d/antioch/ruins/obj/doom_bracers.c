@@ -38,8 +38,7 @@ void create() {
 		" Wizards - Hedwig Bigsbee");
 	set_property("lore",15);
     	set_value(3000);
-      set_property("enchantment",3);
-	set_item_bonus("strength",-1);
+        set_property("enchantment",3);
 	set_item_bonus("magic resistance",2);
    	set_wear((:TO,"wearme":));
    	set_remove((:TO,"removeme":));
