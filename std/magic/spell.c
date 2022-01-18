@@ -2227,13 +2227,16 @@ void spell_successful() //revoked exp bonuses from casting. This function seems 
     }
 
     if(sizeof(bonus_type))
-    {
+    {   
         if(!target)
             target = caster;
-
+  
         foreach(string type in bonus_type)
         {
-            target && target->set_property("spell_bonus_type", ({type}));
+            if(target->query_property("spell_bonus_type"))
+                target->add_property_value("spell_bonus_type", ({type}));
+            else
+                target->set_property("spell_bonus_type", ({ type }));
         }
     }
 

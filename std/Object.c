@@ -979,6 +979,14 @@ int remove_property_value(string prop, mixed val)
     return 0;
 }
 
+int add_property_value(string prop, mixed val)
+{       
+    if(props[prop] && !catch(props[prop] += val))
+        return 1;
+    
+    return 0;
+}
+    
 string* regexp_query_property(string pattern)
 {
     string* vars, * prop;
