@@ -2234,7 +2234,7 @@ void spell_successful() //revoked exp bonuses from casting. This function seems 
         foreach(string type in bonus_type)
         {
             if(target->query_property("spell_bonus_type"))
-                target->add_property_value("spell_bonus_type", ({type}));
+                target->add_property_value("spell_bonus_type", ({ type }));
             else
                 target->set_property("spell_bonus_type", ({ type }));
         }
@@ -2273,6 +2273,8 @@ void before_cast_dest_effect()
 
 void dest_effect()
 {
+    string *buffs;
+    
     if (query_aoe_spell() &&
         objectp(caster) &&
         caster->has_aoe(query_spell_name())) {
@@ -2286,6 +2288,15 @@ void dest_effect()
     if(sizeof(bonus_type))
         foreach(string type in bonus_type)
             target && target->remove_property_value("spell_bonus_type", ({type}));
+            
+    
+    if(target && objectp(target))
+    {
+        buffs = target->query_property("spell_bonus_type");
+    
+        if(!pointerp(buffs) || !sizeof(buffs))
+            target->remove_property("spell_bonus_type");
+    }
 
     before_cast_dest_effect();
     return;
