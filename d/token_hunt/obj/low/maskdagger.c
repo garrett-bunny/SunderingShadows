@@ -73,10 +73,9 @@ int hit_func(object target) {
          case 6..7:
             if(ETO->query_character_level()<20) return 0;
             tell_room(environment(ETO),"%^BOLD%^%^BLACK%^The blade in "+ETO->query_cap_name()+"'s hand suddenly darkens as the shadows begin to swirl and take on a humanoid form!");
-            ob=new("/d/islands/common/new/smon.c");
+            ob = new("/d/islands/common/obj/new/smon.c");
+            ob->setup_shadow(ETO);
             ob->move(environment(ETO));
-            ob->force_me("protect "+ETO->query_name());
-            ETO->add_follower(ob);
             break;
          case 8..9:
             if(ETO->query_character_level()<25) return 0;
