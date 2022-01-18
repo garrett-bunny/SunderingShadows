@@ -43,4 +43,10 @@
     "/d/islands/common/obj/new/snakebracers", \
     "/d/islands/common/obj/new/waveguards", \
     "/d/islands/common/obj/new/windguards", \
+    "/d/attaya/obj/aut_armor", \
+    "/d/attaya/obj/azure", \
+    "/d/attaya/obj/shimmeringcape", \
+    "/d/attaya/obj/silkdrape", \
+    "/d/attaya/obj/silkvest", \
+    "/d/attaya/senund/obj/darkrobe", \
 })
