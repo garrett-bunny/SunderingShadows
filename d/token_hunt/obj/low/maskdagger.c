@@ -1,5 +1,5 @@
 #include <std.h>
-inherit "/d/common/obj/weapon/dagger.c";
+inherit "/d/common/obj/weapon/waveblade.c";
 object ob;
 
 void create() {
@@ -17,7 +17,6 @@ void create() {
 " a strange %^BOLD%^g%^RESET%^l%^BOLD%^%^BLACK%^e%^RESET%^a%^BOLD%^m %^RESET%^manages to catch your eye."
 "  It's as if the %^BOLD%^%^BLACK%^bl%^RESET%^a%^BOLD%^%^BLACK%^de %^RESET%^is just waiting to slice its way through something.%^RESET%^");
    set_lore("%^BOLD%^%^BLACK%^Little is known about this blade or its type.  Some say it is truly a gift from the Lord of the Shadows himself.%^RESET%^");
-   set_weapon_prof("exotic");
    set_value(0);
    set_cointype("gold");
    set_wield((:this_object(),"wield_func":));
