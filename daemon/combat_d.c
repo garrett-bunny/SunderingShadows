@@ -3435,7 +3435,7 @@ void internal_execute_attack(object who)
             else
                 ench = current->query_property("enchantment") + current->query_property("effective_enchantment");
             
-            if(res < ench)
+            if(res > ench)
             {
                 tell_object(who, "Your attack passes harmlessly through " + victim->query_cap_name());
                 return;
