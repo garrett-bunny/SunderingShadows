@@ -1252,6 +1252,8 @@ void wizard_interface(object user, string type, string targ)
     define_clevel();
     define_base_spell_level_bonus();
     define_base_damage(0);
+    
+
 
     msg = caster->get_static("spell interrupt");
     if (stringp(msg)) {
@@ -2150,18 +2152,13 @@ void check_fizzle(object ob)
         this_object()->remove();
         return;
     }
-
-    if (objectp(target)) {
-        if (!(spell_type == "warlock" ||
-              spell_type == "monk")) {
-            if ((int)target->query_property("spell invulnerability") > query_spell_level(spell_type)) {
-                tell_object(caster, "%^CYAN%^Your " + whatsit + " f%^BOLD%^i%^RESET%^%^CYAN%^zzles harmlessly.");
-                tell_room(place, "%^CYAN%^" + caster->QCN + "'s " + whatsit + " f%^BOLD%^i%^RESET%^%^CYAN%^zzles harmlessly .", caster);
-                caster->removeAdminBlock();
-                TO->remove();
-                return;
-            }
-        }
+    
+    if (checkMagicResistance(target, 0))
+    {
+        sendDisbursedMessage(target);
+        caster->removeAdminBlock();
+        this_object()->remove();
+        return;
     }
 
     if (fizzle || place->query_property("no magic")) {
@@ -2170,16 +2167,6 @@ void check_fizzle(object ob)
         caster->removeAdminBlock();
         TO->remove();
         return;
-    }
-
-    if (place->query_property("antimagic field")) {
-        if (place->query_property("antimagic field") > clevel) {
-            tell_object(caster, "%^CYAN%^Your " + whatsit + " fails to gather power in the anitmagic field.");
-            tell_room(place, "%^CYAN%^" + caster->QCN + "'s " + whatsit + " dissipates harmlessly.");
-            caster->removeAdminBlock();
-            TO->remove();
-            return;
-        }
     }
 
     prof = TO->calculate_prof_state();
@@ -2403,41 +2390,7 @@ varargs int do_spell_damage(object victim, string hit_limb, int wound, string da
         sendDisbursedMessage(victim);
         return 1;
     }
-
-    //spmod = ((caster->query_base_character_level() - victim->query_base_character_level()) / 10);
-    //spmod = clevel;     // spmod = base spell penetration
-    spmod = 0;
-    //if (!spmod) {
-    //    spmod = 1;
-    //}
-    spmod += (int)caster->query_property("spell penetration");     // add spell pen to base caster level
-
-    if (checkMagicResistance(victim, spmod)) {
-        sendDisbursedMessage(victim);
-        return 1;
-    }
-
-    if (!(spell_type == "warlock" ||
-          spell_type == "monk")) {
-        if (victim->query_property("spell invulnerability") > query_spell_level(spell_type)) {
-            tell_object(caster, "%^B_BLUE%^%^BOLD%^Your spell dissipates around " + victim->QCN + ".");
-            tell_room(place, "%^B_BLUE%^%^BOLD%^" + caster->QCN + "'s spell dissipates around " + victim->QCN + ".", caster);
-            TO->remove();
-            return 1;
-        }
-    }
-
-    if (objectp(place)) {
-        if (place->query_property("antimagic field")) {
-            if (place->query_property("antimagic field") > clevel) {
-                tell_object(caster, "%^B_BLUE%^%^BOLD%^Your spell dissipates around " + victim->QCN + ".");
-                tell_room(place, "%^B_BLUE%^%^BOLD%^" + caster->QCN + "'s spell dissipates around " + victim->QCN + ".", caster);
-                TO->remove();
-                return 1;
-            }
-        }
-    }
-
+    
     if (!stringp(damage_type) || damage_type == "" || damage_type == " ") {
         damage_type = "untyped";
     }
@@ -2655,6 +2608,29 @@ void define_clevel()
         if(member_array(caster->query("elementalist"), immune) >= 0)
             clevel += 3;
     }
+    
+    if(sizeof(immune) && strsrch(caster->query_race(), "genasi") >= 0)
+    {
+        switch(caster->query_race())
+        {
+            case "air genasi":
+            if(member_array("electricity", immune) >= 0)
+                clevel += 1;
+            break;
+            case "water genasi":
+            if(member_array("cold", immune) >= 0)
+                clevel += 1;
+            break;
+            case "fire genasi":
+            if(member_array("fire", immune) >= 0)
+                clevel += 1;
+            break;
+            case "earth genasi":
+            if(member_array("acid", immune) >= 0)
+                clevel += 1;
+            break;
+        }
+    }        
     
     if(caster->query_bloodline() == "aberrant")
     {
@@ -3085,7 +3061,7 @@ int thaco(object target, int bonus)
 
 varargs int checkMagicResistance(object victim, int mod)
 {
-    int res = 0;
+    int res = 0, antimagic;
     int dieroll = 0;
 
     /*
@@ -3093,12 +3069,30 @@ varargs int checkMagicResistance(object victim, int mod)
         mod = 1;
     }
     */
+    
+    mod += (int)caster->query_property("spell penetration");
+    
     if (!objectp(victim)) {
         return 0;
     }
 
     if (victim == caster) {
         return 0;
+    }
+    
+    if (!(spell_type == "warlock" ||
+          spell_type == "monk")) {
+        if (victim->query_property("spell invulnerability") > query_spell_level(spell_type)) {
+            return 1;
+        }
+    }
+
+    antimagic = place->query_property("antimagic field");
+    
+    if(antimagic && antimagic > roll_dice(1, 100))
+    {
+        tell_room(place, "%^CYAN%^The spell fails to power through the antimagic field.%^RESET%^");
+        return 1;
     }
 
     if (spell_name == "eldritch blast" || spell_name == "eldritch chain" || spell_name == "eldritch burst") {
@@ -3111,19 +3105,9 @@ varargs int checkMagicResistance(object victim, int mod)
         return 0;
     }
 
-    if (victim->query_property("magic resistance")) {
-        res = (int)victim->query_property("magic resistance");
-    }
+    res = (int)victim->query_property("magic resistance");
 
     dieroll = roll_dice(1, 20);
-
-    /*
-    if ((dieroll + mod) > res) {
-        if (FEATS_D->usable_feat(target, "spellcasting harrier")) {
-            dieroll = roll_dice(1, 20);
-        }
-    }
-    */
 
     if ((dieroll + mod) > res) {
         return 0;
@@ -3464,10 +3448,6 @@ varargs int do_save(object targ, int mod, int get_dc)
         if (targ->query("subrace") == "shield dwarf" || targ->query("subrace") == "gold dwarf")
             DC -= 2;
     }
-    if (targ->query_race() == "orc" || targ->query_race() == "half-orc")
-    {
-        DC -= 1;
-    }
     if (targ->query_race() == "human")
     {
         if (targ->query("subrace") == "heartlander")
@@ -3634,7 +3614,7 @@ object *target_selector()
     object * foes = caster->query_attackers();
     object * everyone = all_living(place);
     object * slctd = ({});
-    int aff, max, statbonus, enlarge;
+    int aff, max, statbonus, enlarge, spmod;
     int slevel = query_spell_level(spell_type);
 
     everyone = target_filter(everyone);
@@ -3679,6 +3659,26 @@ object *target_selector()
 
     caster->remove_property("enlarge spell");
     slctd = distinct_array(slctd);
+
+    if(sizeof(slctd))
+    {        
+        foreach(object ob in slctd)
+        {
+            if(checkMagicResistance(ob, 0))
+            {
+                sendDisbursedMessage(ob);
+                slctd -= ({ ob });
+            }
+        }
+        
+        if(!sizeof(slctd))
+        {
+            tell_object(caster, "%^YELLOW%^All of your targets resisted your magic!%^RESET%^");
+            this_object()->remove();
+            return ({  });
+        }
+    }
+            
     return slctd;
 }
 
@@ -4012,7 +4012,6 @@ void help()
             }
         }
     }
-
     write("%^BOLD%^%^RED%^Class:%^RESET%^ " + (affixed_level ? ("(L" + affixed_level + " fixed) ") : "") + printclass);
 
     if (spell_sphere) {

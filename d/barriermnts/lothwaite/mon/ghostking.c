@@ -201,7 +201,7 @@ void reply_func(string msg, object who){
          force_me("emote lifts the intricate staff from the pile.");
 //         force_me("give staff to "+name+"");
          force_me("emoteat "+who->query_name()+" presents $N with a grand staff.");
-         if (ob->move(who) != MOVE_OK){
+         if ((int)(ob->move(who)) != MOVE_OK){
             force_me("say Hmm...it seems you cannot carry this, so I will "+
                "rest it at your feet.");
             ob->move(ETP);
@@ -223,7 +223,7 @@ void reply_func(string msg, object who){
             force_me("put sword in sheath");
          }
          ob = present("frost sheath");
-         if (ob->move(who) != MOVE_OK){
+         if ((int)(ob->move(who)) != MOVE_OK){
             force_me("say %^CYAN%^Hmm...it seems you cannot carry this, so I will "+
                "rest it at your feet.");
             ob->move(ETP);

@@ -72,6 +72,14 @@ void spell_effect(int prof)
     string myname, yourname;
     int mylevel;
     
+    ::spell_effect();
+    
+   if(target->query_property("castspellresist") || target->query_property("fiery body"))
+   {
+      tell_object(caster, caster == target ? "You" : "They" + " already have protection of this nature!");
+      return 0;
+   }
+    
     myname = target->query_cap_name();
   
     if(target == caster)
