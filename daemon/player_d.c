@@ -156,6 +156,9 @@ int add_kill(string str)
 
 string query_monster(int x)
 {
+    if(x < 0)
+        return "unknown";
+    
     if (x <= sizeof(monsters)) {
         if (!monsters[x]) {
             return "unknown";
