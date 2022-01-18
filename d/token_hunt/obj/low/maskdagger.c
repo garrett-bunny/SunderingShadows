@@ -46,7 +46,7 @@ int unwield_func(){
 }
 int hit_func(object target) {
    if(!objectp(target)) return 0;
-   if(random(600) < 50){
+   if(random(600) < 100){
       switch(random(10)){
          case 0..1:
   	      tell_room(environment(ETO),"%^BOLD%^%^WHITE%^"+ETO->query_cap_name()+" quickly spins around and slashes deeply into "+target->query_cap_name()+"!%^RESET%^",({target,ETO}));
