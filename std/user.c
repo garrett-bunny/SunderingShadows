@@ -1114,7 +1114,8 @@ void break_all_spells()
                 spell_ob->removeSpellFromCaster();
                 if(objectp(spell_ob))
                 {
-                    spell_ob->dest_effect();
+                    if(catch(spell_ob->dest_effect()))
+                        spell_ob->remove();                   
                 }
             }
             remove_property("dispellable spells");
