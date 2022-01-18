@@ -987,7 +987,9 @@ int quit()
                 "You be well now!",
         });
 
-    break_all_spells();
+    if(catch(break_all_spells()))
+        message("environment", "Error breaking spells.", this_object());
+    
     set_hidden(0);
     set_magic_hidden(0);
     //YUCK_D->save_inventory(TO);

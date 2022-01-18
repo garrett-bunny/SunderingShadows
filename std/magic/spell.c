@@ -2637,7 +2637,21 @@ void define_clevel()
             if(caster->query_bloodline() == "abyssal" || caster->query_bloodline() == "infernal")
                 clevel += 1;
         }
-        
+        if(caster->query("subrace") == "feytouched")
+        {
+            if(caster->query_bloodline() == "fey")
+                clevel += 1;
+        }
+        if(caster->query("subrace") == "dhampir")
+        {
+            if(caster->query_bloodline() == "ghoul")
+                clevel += 1;
+        }
+        if(caster->query("subrace") == "aasimar")
+        {
+            if(caster->query_bloodline() == "celestial")
+                clevel += 1;
+        }        
         if(caster->query_race() == "kobold")
         {
             if(caster->query_bloodline() == "kobold")
