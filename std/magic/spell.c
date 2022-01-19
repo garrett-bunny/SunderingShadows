@@ -1252,8 +1252,6 @@ void wizard_interface(object user, string type, string targ)
     define_clevel();
     define_base_spell_level_bonus();
     define_base_damage(0);
-    
-
 
     msg = caster->get_static("spell interrupt");
     if (stringp(msg)) {
@@ -2287,12 +2285,7 @@ void dest_effect()
         if(!target || !objectp(target))
             target = caster;
         
-        target->remove_property_value("spell_bonus_type", bonus_type);
-        
-        buffs = target->query_property("spell_bonus_type");
-        
-        if(!sizeof(buffs))
-            target->remove_property("spell_bonus_type");
+        target && target->remove_property_value("spell_bonus_type", bonus_type);
     }
 
     before_cast_dest_effect();
@@ -2312,6 +2305,14 @@ int remove()
     if (query_traveling_aoe_spell() &&
         objectp(caster)) {
         caster->remove_property("travaoe");
+    }
+    
+    if(sizeof(bonus_type))
+    {
+        if(!target || !objectp(target))
+            target = caster;
+        
+        target && target->remove_property_value("spell_bonus_type", bonus_type);
     }
 
     return ::remove();
