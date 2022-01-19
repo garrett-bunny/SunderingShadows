@@ -4,6 +4,7 @@ inherit SPELL;
 
 #define ALIGNS ({"lawful good","neutral good","chaotic good","lawful neutral","true neutral","chaotic neutral","lawful evil","neutral evil","chaotic evil"})
 #define NATURES ({"living","undead"})
+#define DEITIES keys(DIETIES) + ({"godless"})
 
 string mask_type, mask_quality;
 
@@ -23,7 +24,7 @@ Instead of your true action or nature, divinations resolve as if you will experi
 
 The choices for alignment are: " + implode(ALIGNS, ", ") + "
 
-The choices for deities are: " + implode(keys(DIETIES), ", ")+ "
+The choices for deities are: " + implode(DEITIES, ", ")+ "
 
 The choices for nature are: " + implode(NATURES, ", ") + "
 ");
@@ -58,7 +59,7 @@ int preSpell(){
                 tell_object(caster, "You already have a deity altering affect.");
                 return 0;
             }
-            if(member_array(mask_quality, keys(DIETIES)) == -1) {
+            if(member_array(mask_quality, DEITIES) == -1) {
                 tell_object(caster, "That is not a valid deity!");
                 return 0;
             }
