@@ -52,5 +52,5 @@
     "/d/deku/hhouse/ob/azloths_blessing", \
     "/d/deku/hhouse/ob/heart_of_talos", \
     "/d/deku/hhouse/ob/lathanders_dawn", \
-    "/d/deku/hhouse/ob/shroud_of_the_impale", \
+    "/d/deku/hhouse/ob/shroud_of_the_impaler", \
 })
