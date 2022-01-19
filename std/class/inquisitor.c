@@ -51,7 +51,7 @@ mapping class_featmap(string myspec) {
 
 string *class_skills()
 {
-    return ({ "perception","survival","athletics","academics","influence" });
+    return ({ "perception","survival","athletics","spellcraft","influence" });
 }
 
 int skill_points() { return 6; }
