@@ -92,7 +92,7 @@ spell_effect(int prof) {
     tell_room(environment(caster),"The power of "+caster->QCN+"'s spell flows through the area as "+caster->QS+" "
         "tries to bring "+targ->QCN+" back to life!",caster);
 
-    targ->set("RaisingPriestGod",caster->query_diety());
+    targ->set("RaisingPriestGod",caster->query_property("hidden deity")||caster->query_diety());
     targ->set("RaisingPriestAlignment",caster->query_alignment());
     targ->set("RaisingRoom",base_name(environment(caster)));
     targ->set("RaisingExpLoss",(-5));
