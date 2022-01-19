@@ -9,7 +9,7 @@ void create()
     set_spell_sphere("invocation_evocation");
     set_syntax("cast CLASS serac on TARGET");
     set_damage_desc("half cold half bludgeoning");
-    set_description("With this spell the caster summons a platform of ice and popells it towards the enemy with force.");
+    set_description("With this spell the caster summons a platform of ice and propels it towards the enemy with force.");
     set_verbal_comp();
     set_somatic_comp();
     set_target_required(1);
