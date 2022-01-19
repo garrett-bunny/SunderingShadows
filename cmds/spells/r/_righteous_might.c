@@ -11,6 +11,7 @@ void create()
     set_spell_name("righteous might");
     set_spell_level(([ "cleric" : 5, "inquisitor" : 5, "oracle" : 5 ]));
     set_mystery("battle");
+    set_bonus_type("size");
     set_spell_sphere("alteration");
     set_domains("strength");
     set_syntax("cast CLASS righteous might");
@@ -51,7 +52,7 @@ void spell_effect(int prof)
     target->add_stat_bonus("dexterity",-2);
     target->set_property("spelled", ({TO}) );
     target->set_property("enlarged",1);
-    spell_duration = (clevel + roll_dice(1, 20)) * ROUND_LENGTH;
+    spell_duration = (ROUND_LENGTH * 20) * clevel;
     set_end_time();
     call_out("dest_effect",spell_duration);
     addSpellToCaster();
@@ -70,7 +71,7 @@ void dest_effect()
         target->add_stat_bonus("dexterity",2);
         tell_object(target, "%^RED%^You shrink back to normal!");
         tell_room(environment(target),"%^RED%^"+target->QCN+" shrinks back to normal size.", target );
-        target->remove_property("added short",({"%^RED%^ (giant)%^RESET%^"}));
+        target->remove_property_value("added short",({"%^RED%^ (giant)%^RESET%^"}));
         target->remove_property("enlarged");
     }
     ::dest_effect();

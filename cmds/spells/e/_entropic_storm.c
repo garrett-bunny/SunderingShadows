@@ -15,7 +15,7 @@ void create()
     set_spell_level(([ "mage":9, "cleric":9]));
     set_spell_sphere("necromancy");
     set_syntax("cast CLASS entropic storm");
-    set_damage_desc("untyped");
+    set_damage_desc("void");
     set_description("You create a gateway to the destructive void between the realm of shadows and realm of the death itself on the Shadow Plane, causing everyone in the area to die.");
     set_verbal_comp();
     set_somatic_comp();
@@ -25,13 +25,13 @@ void create()
 
 string query_cast_string()
 {
-    tell_room(place,"%^MAGENTA%^You feel unnatural %^BOLD%^%^BLACK%^pa%^RESET%^%^MAGENTA%^nic as " +caster->QCN+" begins to chant, invoking the very %^BOLD%^%^BLACK%^death %^RESET%^%^MAGENTA%^itself.%^WHITE%^");
+    tell_room(place,"%^MAGENTA%^You feel unnatural %^BOLD%^%^BLACK%^pa%^RESET%^%^MAGENTA%^nic as " +caster->QCN+" begins to chant, invoking the very %^BOLD%^%^BLACK%^Void %^RESET%^%^MAGENTA%^itself.%^WHITE%^");
     return "display";
 }
 
 void spell_effect(int prof)
 {
-    tell_room(place,"%^BOLD%^%^BLACK%^Colors of the world disappear as the death answers " +caster->QCN+"'s call.%^RESET%^");
+    tell_room(place,"%^BOLD%^%^BLACK%^Colors of the world disappear as the void answers " +caster->QCN+"'s call.%^RESET%^");
     counter = clevel * 3;
     addSpellToCaster();
     spell_successful();
@@ -66,7 +66,7 @@ void execute_attack()
         }
 
         tell_object(targ, "%^BOLD%^%^BLACK%^You feel at an ebb as you slowly die.%^RESET%^");
-        damage_targ(targ, targ->return_target_limb(), sdamage, "untyped");
+        damage_targ(targ, targ->return_target_limb(), sdamage, "void");
 
     }
     counter--;

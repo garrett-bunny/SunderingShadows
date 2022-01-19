@@ -24,7 +24,7 @@ mapping stat_requirements() {
     return ([ "wisdom" : 14, ]);
 }
 
-int *saving_throws() { return ({ 1,0,1 }); }
+int *saving_throws() { return ({ 1,-1,1 }); }
 
 string *combat_styles() {
     return ({});
@@ -40,13 +40,18 @@ string *class_feats(string myspec)
                 "shield proficiency"});
 }
 
+mapping query_cantrip_spells(object ob)
+{
+    return ([ "create water" : 1, "detect magic" : 1, "detect poison" : 1, "guidance" : 1, "resistance" : 1, "light" : 1, "mending" : 1, "disrupt undead" : 1, "acid splash" : 1 ]);
+}
+
 mapping class_featmap(string myspec) {
-    return ([ 1 : class_feats()+({"judgement","monster lore", }), 2 : ({ "track" }), 3:({"force of personality"}), 5: ({"bane"}), 6: ({"leadership"}), 8: ({"second judgement"}), 11: ({"stalwart"}), 14: ({"exploit weakness"}),16 : ({"third judgement"}), 17 : ({"slayer"}), 20 : ({"true judgement"})]);
+    return ([ 1 : class_feats()+({"judgement","monster lore", }), 2 : ({ "track" }), 5: ({"bane"}), 6: ({"leadership"}), 8: ({"second judgement"}), 11: ({"stalwart"}), 14: ({"exploit weakness"}),16 : ({"third judgement"}), 17 : ({"slayer"}), 20 : ({"true judgement"}), 31 : ({ "chains of justice" }) ]);
 }
 
 string *class_skills()
 {
-    return ({ "perception","survival","athletics","academics","influence" });
+    return ({ "perception","survival","athletics","spellcraft","influence" });
 }
 
 int skill_points() { return 6; }

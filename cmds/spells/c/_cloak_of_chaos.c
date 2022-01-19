@@ -10,9 +10,9 @@ void create()
 {
     ::create();
     set_spell_name("cloak of chaos");
-    set_spell_level(([ "cleric" : 8, "mage" : 8]));
+    set_spell_level(([ "cleric" : 8 ]));
+    set_bonus_type(({ "resistance", "deflection" }));
     set_spell_sphere("abjuration");
-    set_domains("chaos");
     set_syntax("cast CLASS cloak of chaos");
     set_damage_desc("divine damage, 4 AC, 4 to all saves");
     set_description("You are surrounded by a cloak of random colors that will harm all your opponents and will slightly protect you. This is nimbus-family spell that won't work with other nimbuses. Like other numbuses it requires a certain alignment from caster.");
@@ -25,6 +25,10 @@ int preSpell()
     int align = caster->query_true_align();
     if (caster->query_property("nimbus")) {
         tell_object(caster, "You are still affected by cloak of chaos or another nimbus spell.");
+        return 0;
+    }
+    if (caster->query_property("protection from spells")) {
+        tell_object(caster, "You are already affected by similar magic.");
         return 0;
     }
     if (!(align == 7 || align == 8 || align == 9)) {
@@ -44,6 +48,7 @@ void spell_effect(int prof)
 
     caster->set_property("spelled", ({ TO }));
     caster->set_property("nimbus", 1);
+    caster->set_property("protection from spells", 1);
     caster->set_property("added short", ({ "%^BOLD%^%^WHITE%^ %^RED%^(%^ORANGE%^i%^CYAN%^n %^BOLD%^%^RED%^a %^ORANGE%^r%^CYAN%^a%^RESET%^%^ORANGE%^n%^BOLD%^%^GREEN%^d%^RED%^o%^RESET%^%^CYAN%^m %^BOLD%^%^BLUE%^p%^GREEN%^a%^RESET%^%^RED%^t%^GREEN%^t%^BOLD%^%^CYAN%^e%^RED%^r%^RESET%^%^ORANGE%^n %^BOLD%^o%^RESET%^%^RED%^f %^ORANGE%^c%^BOLD%^%^MAGENTA%^o%^ORANGE%^l%^GREEN%^o%^RESET%^%^RED%^r%^GREEN%^s%^RED%^)%^RESET%^" }));
     addSpellToCaster();
     spell_successful();
@@ -94,9 +99,6 @@ void execute_attack()
         tell_room(place, "%^BOLD%^%^CYAN%^The primal chaos around " + caster->QCN + " falls upon " + caster->QP + " enemies!", ({ caster, target }));
         tell_object(caster, "%^BOLD%^%^CYAN%^The primal chaos around you falls upon your enemies!");
         for (i = 0; i < sizeof(attackers); i++) {
-            if (SAVING_D->saving_throw(attackers[i], "spell", 0)) {
-                continue;
-            }
             tell_object(attackers[i], "%^BOLD%^%^CYAN%^You are scorched by the primal chaos as you strike "
                         "" + caster->QCN + "!");
             damage_targ(attackers[i], attackers[i]->return_target_limb(), sdamage, "divine");
@@ -111,6 +113,7 @@ void dest_effect()
     if (objectp(caster)) {
         tell_object(caster, "%^RESET%^%^MAGENTA%^The chaos around you fades.");
         caster->remove_property("nimbus");
+        caster->remove_property("protection from spells");
         caster->add_ac_bonus(-4);
         caster->add_saving_bonus("all", -4);
         caster->remove_property_value("added short", ({ "%^BOLD%^%^WHITE%^ %^RED%^(%^ORANGE%^i%^CYAN%^n %^BOLD%^%^RED%^a %^ORANGE%^r%^CYAN%^a%^RESET%^%^ORANGE%^n%^BOLD%^%^GREEN%^d%^RED%^o%^RESET%^%^CYAN%^m %^BOLD%^%^BLUE%^p%^GREEN%^a%^RESET%^%^RED%^t%^GREEN%^t%^BOLD%^%^CYAN%^e%^RED%^r%^RESET%^%^ORANGE%^n %^BOLD%^o%^RESET%^%^RED%^f %^ORANGE%^c%^BOLD%^%^MAGENTA%^o%^ORANGE%^l%^GREEN%^o%^RESET%^%^RED%^r%^GREEN%^s%^RED%^)%^RESET%^" }));

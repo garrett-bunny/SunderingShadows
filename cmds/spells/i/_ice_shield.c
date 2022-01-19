@@ -15,8 +15,8 @@ void create() {
     set_spell_name("ice shield");
     set_spell_level(([ "cleric" : 4 ]));
     set_spell_sphere("invocation_evocation");
-    set_domains("cold");
     set_damage_desc("cold, 2 AC");
+    set_bonus_type("deflection");
     set_syntax("cast CLASS ice shield");
     set_description("This spell will protect the caster in a field of bitter cold actic air.  It gives a slight bonus to "
 "the caster's armor, additionally, any enemies attacking the caster must make a saving throw or suffer damage from the "
@@ -51,7 +51,7 @@ void spell_effect(int prof){
         "encased in a haze of arctic air.",caster);
     tell_object(caster,"%^BOLD%^%^CYAN%^You complete your prayer and are encased in the ice "
         "cold air of the arctic.");
-    caster->set_property("ice shield",1);
+    //caster->set_property("ice shield",1);
     caster->set_property("spelled", ({TO}) );
     caster->add_ac_bonus(2);
     caster->add_property("added short",({"%^BOLD%^%^CYAN%^ (enfolded in frost)"}));
@@ -83,10 +83,10 @@ void execute_attack(){
         if(do_save(attackers[i],0)) { continue; }
         //if(SAVING_D->saving_throw(attackers[i],"spell",0)) { continue; }
         tell_room(room,"%^BOLD%^"+attackers[i]->QCN+" is chilled by the bitter cold as "
-            ""+attackers[i]->QS+" strikes "+caster->QCN+"'s ice shield!",({caster,target}));
+            ""+attackers[i]->QS+" strikes "+caster->QCN+"'s ice shield!",({caster,attackers[i]}));
         tell_object(caster,"%^BOLD%^"+attackers[i]->QCN+" is chilled by the bitter "
             "cold of the ice shield as "+attackers[i]->QS+" attacks you!");
-        tell_object(target,"%^BOLD%^You are chilled by the bitter cold of the ice "
+        tell_object(attackers[i],"%^BOLD%^You are chilled by the bitter cold of the ice "
             "shield as you attack "+caster->QCN+"!");
         define_base_damage(0);
         damage_targ(attackers[i],attackers[i]->return_target_limb(),sdamage,"cold");
@@ -101,7 +101,7 @@ void dest_effect(){
         tell_room(environment(caster),"%^BOLD%^%^CYAN%^The shield of bitter cold air surrounding "
             ""+caster->QCN+" fades away, leaving "+caster->QP+" vulnerable once "
             "again.",caster);
-        caster->remove_property("ice shield");
+        //caster->remove_property("ice shield");
         caster->add_ac_bonus(-2);
 	    caster->remove_property_value("added short",({"%^BOLD%^%^CYAN%^ (enfolded in frost)"}));
     }

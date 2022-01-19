@@ -18,12 +18,14 @@ int *stat_mods(string subrace) { return ({ 4, 0, 4, -2, 0, -4}); }
 
 int is_restricted() { return 1; } // restricted races by approval
 
+int is_rollable() { return 1; } // rollable in creation
+
 mapping skill_mods(string subrace) { return ([ "perception" : 2 ]); }
 
 
 int natural_AC(string subrace) { return 0; }
 
-int sight_bonus(string subrace) { return -1; }
+int sight_bonus(string subrace) { return -2; }
 
 mapping daily_uses(string subrace) { return ([]); }
 
@@ -154,4 +156,10 @@ int is_pk_race()
 string *query_languages(string subrace)
 {
     return (["required":({"giant","undercommon"}),"optional":({"orcish","goblin","sylvan"})]);
+}
+
+//Should overwrite common as the default for monster races
+string query_default_language()
+{
+    return "undercommon";
 }

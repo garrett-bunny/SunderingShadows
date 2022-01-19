@@ -19,6 +19,7 @@ string* masteredspells;
 int* masterable;
 int mypp, mymax, myneeded;
 mapping InnateAbilities;
+mapping Cantrips;
 
 int magic_arsenal_feat(int num)
 {
@@ -336,8 +337,8 @@ int query_memorized(string myclass, string spell)
 
 int can_memorize(string myclass, string spell)
 {
-    int lvl, max, curr, class_level;
-    string mystat, subrace;
+    int lvl, max, curr, class_level, success;
+    string mystat, subrace, *domains;
 
     if (!spells_memorized) {
         resetMemorized();
@@ -352,6 +353,7 @@ int can_memorize(string myclass, string spell)
         }
     }else {
         lvl = MAGIC_D->query_spell_level(myclass, spell);
+        
         if (!lvl) {
             return 0;
         }
@@ -457,6 +459,7 @@ mixed* query_all_memorized(string myclass)
     if (!mapp(spells_memorized[myclass])) {
         add_mem_class(myclass);
     }
+    
     return spells_memorized[myclass];
 }
 
@@ -743,7 +746,7 @@ mapping query_mastered_bonus()
         }
     }
 
-
+    /*
     if (TO->is_class("shadow_adept")) {
         if (FEATS_D->usable_feat(TO, "gift of the shadows")) {
             string baseclass = TO->query("base_class");
@@ -753,9 +756,10 @@ mapping query_mastered_bonus()
             tmp[baseclass] += MAGIC_SS_D->query_class_special_spells("shadow_adept", "all");
         }
     }
+    */
 
     if (TO->is_class("chronicler")) {
-        if (FEATS_D->usable_feat(TO, "timeweaver")) {
+        if (FEATS_D->usable_feat(TO, "epic tales")) {
             string baseclass = "bard";
             if (!arrayp(tmp[baseclass])) {
                 tmp[baseclass] = ({});
@@ -888,9 +892,10 @@ void reset_mastered()
     mastered = ([]);
 }
 
-void prepare(string str, int temp, string myclass, int num)
+void prepare(string str, int temp, string myclass, int num, int flag)
 {
     object obt;
+
     if (!objectp(obt = TO->query_property("memorizing")) && (obt != TO)) {
         return;
     }
@@ -923,6 +928,12 @@ void prepare(string str, int temp, string myclass, int num)
             tell_object(TO, "The arcane power hums through your body.");
             tell_room(ETO, TO->QCN + " focusses intently.", TO);
             break;
+        
+        case "mage":
+            tell_object(this_object(), "You flip to the next page in your book and study the arcane script.");
+            tell_room(environment(this_object()), this_object()->query_cap_name() + " flips to the next page in " + this_object()->query_possessive() + " book and studies the arcane script.", this_object());
+            
+            break;
 
         default:
             tell_object(TO, "You concentrate carefully on committing the spell to memory.");
@@ -933,6 +944,9 @@ void prepare(string str, int temp, string myclass, int num)
     temp -= 2;
 
     if (myclass == "psywarrior" || myclass == "psion") {
+        
+        int focus, avail;
+        
         mymax = TO->query_max_mp();
         if (!mymax) {
             if (objectp(TO)) {
@@ -952,6 +966,13 @@ void prepare(string str, int temp, string myclass, int num)
         if (num > myneeded) {
             num = myneeded;
         }
+        
+        //Psion can regain focus on FULL prepare to max
+        if(num == myneeded && num > mymax / 10)
+            focus = 1;
+        else
+            focus = 0;
+        
         if (num > 5) {
             TO->add_mp(5); // began as 17 (points required for 9th level power), was way too fast. Trying 5, may need to be adjusted
             num = num - 5;
@@ -959,7 +980,23 @@ void prepare(string str, int temp, string myclass, int num)
             return 1;
         }else {
             TO->add_mp(num);
-            prepare2();
+            
+            avail = this_object()->query("available focus");
+            
+            if(focus)
+            {
+                if(avail < this_object()->query("maximum focus"))
+                {
+                    this_object()->set("available focus", avail + 1);
+                    
+                    if(avail + 1 == 2)
+                        tell_object(this_object(), "%^BOLD%^You become firmly focused.%^RESET%^");
+                    else
+                        tell_object(this_object(), "%^BOLD%^You regain your psionic focus.%^RESET%^");
+                }
+                focus = 0;
+            }           
+            prepare2(myclass);
             return 1;
         }
     }
@@ -969,7 +1006,7 @@ void prepare(string str, int temp, string myclass, int num)
             set_memorized(myclass, str, 1);
             num--;
         }
-        call_out("prepare", 2, str, temp, myclass, num);
+        call_out("prepare", 2, str, temp, myclass, num, 1);
     }else {
         if (num > 1) {
             while (num--) {
@@ -982,17 +1019,22 @@ void prepare(string str, int temp, string myclass, int num)
                 set_memorized(myclass, str, 1);
             }
         }
-        prepare2();
+        prepare2(myclass);
         return 1;
     }
 }
 
-void prepare2()
+void prepare2(string myclass)
 {
     if (TO->query_property("memorizing")) {
         TO->remove_property("memorizing");
     }
-    tell_room(ETO, TO->QCN + " completes " + TO->QP + " preparations.", TO);
+    
+    if(myclass == "mage")
+        tell_room(environment(this_object()), this_object()->query_cap_name() + " finishes studying and closes " + this_object()->query_possessive() + " spell book.", this_object());
+    else
+        tell_room(ETO, TO->QCN + " completes " + TO->QP + " preparations.", TO);
+    
     tell_object(TO, "%^BOLD%^%^GREEN%^You have finished preparing your spells.");
 }
 
@@ -1055,6 +1097,35 @@ void clear_targeted_spells()
 
 void reset_racial_innate() { TO->delete("racial innate"); }
 
+void InitCantrips()
+{
+    mapping cantrip_spells = ([  ]);
+    string *classes, MyClassFile;
+    
+    //Class Cantrips will be drawn from the class files here.
+    classes = this_object()->query_classes();
+    
+    if(sizeof(classes))
+    {
+        mapping testclass;
+        
+        foreach(string cur in classes)
+        {
+            MyClassFile = DIR_CLASSES + "/" + cur + ".c";
+            
+            if(!file_exists(MyClassFile))
+                continue;
+            
+            testclass = MyClassFile->query_cantrip_spells(this_object());
+            
+            if(sizeof(testclass))
+                cantrip_spells += testclass;
+        }
+    }
+    
+    Cantrips = cantrip_spells;
+}
+    
 void InitInnate()
 {
     string MyRaceFile,*oldmap,*newmap, MyClassFile, *classes;
@@ -1190,27 +1261,6 @@ void InitInnate()
                 feat_spells += testclass;
         }
     }
-    
-    /* This code moving to class file
-    
-    if(TO->is_class("cleric"))
-    {
-        if(member_array("cold", TO->query_divine_domain()) >= 0)
-            feat_spells += ([ "ice bolt" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), ]);
-        if(member_array("fire", TO->query_divine_domain()) >= 0)
-            feat_spells += ([ "fire bolt" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), ]);
-        if(member_array("air", TO->query_divine_domain()) >= 0)
-            feat_spells += ([ "lightning blast" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), ]);
-        if(member_array("earth", TO->query_divine_domain()) >= 0)
-            feat_spells += ([ "acid dart" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), ]);
-        if(member_array("darkness", TO->query_divine_domain()) >= 0)
-            feat_spells += ([ "touch of darkness" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), ]);
-        if(member_array("moon", TO->query_divine_domain()) >= 0)
-            feat_spells += ([ "moonfire" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), ]);
-        if(member_array("plant", TO->query_divine_domain()) >= 0)
-            feat_spells += ([ "bramble armor" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), ]);
-    }
-    */
 
     // to add new classes or reasons for innates, simply add to feat_spells here before this line.
     newmap = keys(feat_spells);
@@ -1293,13 +1343,28 @@ void add_bonus_innate(mapping BonusInnate)
     InnateAbilities += BonusInnate;
 }
 
+mixed query_cantrip_spells()
+{
+    string *tmp;
+    
+    InitCantrips();
+    
+    if(!mapp(Cantrips))
+        return;
+    
+    tmp = keys(Cantrips);
+    
+    return tmp;
+}
 
 mixed query_innate_spells()
 {
     string *tmp, *tmp2;
     int x;
     if(!objectp(TO)) return 0;
-    if(!mapp(InnateAbilities)) InitInnate();
+    
+    InitInnate();
+    //if(!mapp(InnateAbilities)) InitInnate();
     if(!mapp(InnateAbilities)) return;
     if(!sizeof(keys(InnateAbilities))) return 0;
     tmp2 = keys(InnateAbilities);

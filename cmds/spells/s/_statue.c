@@ -8,10 +8,8 @@ void create()
 {
     ::create();
     set_spell_name("statue");
-    set_spell_level(([ "oracle" : 7, "mage" : 7, "cleric" : 7 ]));
+    set_spell_level(([ "mage" : 7 ]));
     set_spell_sphere("alteration");
-    set_domains("cavern");
-    set_mystery( ({ "stone", "metal" }) );
     set_syntax("cast CLASS statue on TARGET");
     set_description("You attempt to turn your target into stone. For the duration of the spell they will be a stone statue, able to hear and understand everything, but being unable to act. They'll have resilience that of a stone statue and will retain their hp.");
     set_verbal_comp();
@@ -37,9 +35,9 @@ spell_effect()
         dest_effect();
         return;
     }
-    tell_object(target, "%^BOLD%^%^WHITE%^With horror you realize your body is not a piece of marble.");
+    tell_object(target, "%^BOLD%^%^WHITE%^With horror you realize your body is now a piece of marble.");
     tell_room(place, "%^BOLD%^%^%^WHITE%^" + target->QCN + " turns into a marble statue!", target);
-    target->set_paralyzed(duration * 8, "%^WHITE%^%^BOLD%^You are a piece of marble and cannot do a thing!");
+    target->set_paralyzed(duration * 6, "%^WHITE%^%^BOLD%^You are a piece of marble and cannot do a thing!");
     power = clevel * 3 / 2;
     target->set_property("damage resistance", -power);
     target->set_property("spell damage resistance", -power * 5);

@@ -218,7 +218,9 @@ void set_missChance(int i)
 
 int query_missChance()
 {
-    return missChance;
+    int sub_chance = 0;
+
+    return missChance + sub_chance;
 }
 
 void set_shieldMiss(int i)
@@ -584,7 +586,12 @@ int query_max_hp_base()
 
     if (TO->is_undead()) {
         num = "/daemon/bonus_d.c"->query_con_bonus((int)TO->query_stats("charisma"));
-    }else {
+    }
+    else if(FEATS_D->has_feat(this_object(), "natures gift"))
+    {
+        num = BONUS_D->query_con_bonus(this_object()->query_stats("wisdom"));
+    }
+    else {
         num = "/daemon/bonus_d.c"->query_con_bonus((int)TO->query_stats("constitution"));
     }
 
@@ -600,6 +607,12 @@ int query_max_hp_base()
 
     if (FEATS_D->usable_feat(TO, "epic toughness")) {
         num += TO->query_level();
+    }
+
+    //Represents the Unholy Fortitude Feat for Agent of the Grave
+    if(FEATS_D->usable_feat(this_object(), "negative energy conduit"))
+    {
+        num += this_object()->query_prestige_level(this_object()->query("base_class"));
     }
 
     if (FEATS_D->usable_feat(TO, "psionic body")) {
@@ -693,11 +706,13 @@ void set_resistance_percent(string res, int num)
 int query_resistance(string res)
 {
     int myres;
-    string *domains;
-    
+    string *domains, myrace, mysubrace;
+
     if (!valid_resistance(res)) {
         return 0;                        // to avoid throwing errors on any invalid queries. N, 8/15.
     }
+    myrace = this_object()->query_race();
+    mysubrace = this_object()->query("subrace");
     myres = resistances["resistance"][res];
     if (((string)TO->query("subrace") == "aasimar" || (string)TO->query("subrace") == "feytouched") && (res == "acid" || res == "cold" || res == "electricity")) {
         myres += 5;
@@ -715,7 +730,7 @@ int query_resistance(string res)
         if ((string)TO->query("warlock heritage") == "demonic" && res == "electricity") {
             myres += 10;
         }
-		if((string)TO->query("warlock heritage") == "star" && res == "psychic") {
+        if((string)TO->query("warlock heritage") == "astral" && res == "psychic") {
             myres += 10;
         }
         if ((string)TO->query("warlock heritage") == "gloom" && res == "cold") {
@@ -723,6 +738,29 @@ int query_resistance(string res)
         }
         if ((string)TO->query("warlock heritage") == "infernal" && res == "fire") {
             myres += 10;
+        }
+    }
+
+    if(strsrch(myrace, "genasi") >= 0)
+    {
+        switch(myrace)
+        {
+            case "air genasi":
+            if(res == "electricity")
+                myres += 5;
+            break;
+            case "fire genasi":
+            if(res == "fire")
+                myres += 5;
+            break;
+            case "water genasi":
+            if(res == "cold")
+                myres += 5;
+            break;
+            case "earth genasi":
+            if(res == "acid")
+                myres += 5;
+            break;
         }
     }
 
@@ -736,10 +774,24 @@ int query_resistance(string res)
             }
         }
     }
-    
+
+    if(FEATS_D->usable_feat(this_object(), "infused form"))
+    {
+        switch(res)
+        {
+            case "fire":
+            case "cold":
+            case "electricity":
+            case "acid":
+            case "sonic":
+            myres += 10;
+            break;
+        }
+    }
+
     //Cleric domain-specific resistances
     domains = TO->query_divine_domain();
-    
+
     if(sizeof(domains))
     {
         switch(res)
@@ -748,32 +800,46 @@ int query_resistance(string res)
             if(member_array("fire", domains) >= 0)
                 myres += TO->query_class_level("cleric");
             break;
-            
+
             case "cold":
             if(member_array("cold", domains) >= 0)
                 myres += TO->query_class_level("cleric");
             break;
-            
+
             case "acid":
             if(member_array("earth", domains) >= 0)
                 myres += TO->query_class_level("cleric");
             break;
-            
+
             case "electricity":
             if(member_array("air", domains) >= 0)
                 myres += TO->query_class_level("cleric");
         }
-    }              
+    }
 
-    if (TO->query_race() == "shade") {
-        if (res == "cold" || res == "electricity") {
-            myres += 5;
+    if(this_object()->query_mystery() == "spellscar")
+    {
+        if(this_object()->query_class_level("oracle") >= 5)
+        {
+            if(res == "fire" || res == "electricity" || res == "acid" || res == "cold")
+                myres += this_object()->query_prestige_level("oracle") / 2;
         }
     }
 
+
     if (FEATS_D->usable_feat(TO, "no fear of the flame") && res == "fire") {
-        myres += 10;
+        myres += 30;
     }
+
+    if(this_object()->is_class("barbarian"))
+    {
+        if(FEATS_D->usable_feat(this_object(), "unstoppable") && this_object()->query_property("raged"))
+        {
+            if(res != "positive energy")
+                myres += (this_object()->query_guild_level("barbarian") - 10) / 6 + 4;
+        }
+    }
+
     return (myres + EQ_D->gear_bonus(TO, res));
 }
 
@@ -784,6 +850,34 @@ int query_resistance_percent(string res)
     if (!valid_resistance(res)) {
         return 0;
     }
+    if(this_object()->is_shade())
+    {
+        if(res == "radiant")
+            mod -= 25;
+        if(res == "void")
+            mod += 50;
+        if(res == "cold")
+            mod += 50;
+    }
+
+    if(this_object()->is_deva())
+    {
+        if(res == "divine")
+            mod += 25;
+        if(res == "acid")
+            mod += 25;
+        if(res == "electricity")
+            mod += 25;
+    }
+	
+	if(this_object()->is_feyborn())
+    {
+        if(res == "silver")
+            mod += -25;
+		if(res == "sonic")
+            mod += 10;
+    }
+
     if (TO->is_undead()) {
         if (res == "fire") {
             mod += -25;
@@ -795,7 +889,7 @@ int query_resistance_percent(string res)
             if (res == "electricity") {
                 mod += 50;
             }
-            if (res == "divine") {
+            if (res == "radiant") {
                 mod += -25;
             }
             if (res == "silver") {
@@ -807,22 +901,116 @@ int query_resistance_percent(string res)
     if (res == "fire" && TO->query_race() == "troll") {
             mod += -15;
     }
-    
+
     if(FEATS_D->usable_feat(TO, "perfection"))
     {
         if(res == "electricity" || res == "cold" || res == "acid")
             mod = 100;
     }
 
-    if(TO->is_class("cleric"))
+    if(FEATS_D->usable_feat(this_object(), "apotheosis"))
     {
-        if(res == "fire" || res == "cold" || res == "acid" || res == "electricity")
+        if(res == "divine")
+            mod += 20;
+    }
+
+    if(FEATS_D->usable_feat(this_object(), "master of elements"))
+    {
+        if(this_object()->query("elementalist") == res)
+            mod += 30;
+    }
+
+    if(this_object()->is_class("oracle"))
+    {
+        if(this_object()->query_mystery() == "shadow")
         {
-            if(member_array("elements", TO->query_divine_domain()) >= 0 )
-                mod += 25;
+            if(this_object()->query_class_level("oracle") >= 10 && res == "void")
+                mod += 10;
+
+            if(this_object()->query_class_level("oracle") > 30 && res == "cold" && total_light(environment(this_object())) < 2)
+                mod += 10;
+        }
+
+        if(this_object()->query_mystery() == "heavens")
+        {
+            if(this_object()->query_class_level("oracle") >= 10 && res == "void")
+                mod += 10;
+
+            if(this_object()->query_class_level("oracle") > 30 && res == "radiant")
+                mod += 10;
+        }
+
+        if(this_object()->query_mystery() == "battle")
+        {
+            if(this_object()->query_class_level("oracle") >= 21 && res == "force")
+                mod += 20;
+        }
+
+        if(this_object()->query_mystery() == "dragon")
+        {
+            if(this_object()->query_class_level("oracle") >= 31)
+            {
+                switch(this_object()->query("dragon_affinity"))
+                {
+                    case "black": case "copper":
+                    if(res == "acid")
+                        mod = 100;
+                    break;
+                    case "red": case "brass": case "gold":
+                    if(res == "fire")
+                        mod = 100;
+                    break;
+                    case "blue": case "bronze":
+                    if(res == "electricity")
+                        mod = 100;
+                    break;
+                    case "silver": case "white":
+                    if(res == "cold")
+                        mod = 100;
+                    break;
+                }
+            }
+        }
+
+    }
+
+    if(this_object()->is_class("sorcerer") && this_object()->query_class_level("sorcerer") > 30)
+    {
+        int sorc_level = this_object()->query_class_level("sorcerer");
+
+        switch(this_object()->query_bloodline())
+        {
+            case "stormborn":
+            if(res == "sonic" || res == "electricity")
+                mod = 30 + sorc_level * 2;
+            break;
+
+            case "celestial":
+            if(res == "acid")
+                mod = 20 + sorc_level * 2;
+            break;
+
+            case "abyssal":
+            if(res == "electricity")
+                mod = 20 + sorc_level * 2;
+            break;
+
+            case "infernal":
+            if(res == "fire")
+                mod = 20 + sorc_level * 2;
+            break;
+
+            case "boreal":
+            if(res == "cold")
+                mod = 20 + sorc_level * 2;
+            break;
         }
     }
     
+    //Psion mental mastery capstone
+    if(this_object()->is_class("psion") && this_object()->query("available focus") == 2 && res == "mental")
+        mod = 100;
+
     //Mage is invulnerable for duration of prismatic sphere
     if(TO->query_property("prismatic sphere"))
         mod = 100;
@@ -864,7 +1052,16 @@ int cause_typed_damage(object targ, string limb, int damage, string type)
     int amt;
     if (!objectp(attacker = targ->query_property("beingDamagedBy"))) {
         attacker = previous_object();
+        if(attacker->is_feat() && objectp(attacker->query_caster())) {
+            attacker = attacker->query_caster();
+        }
     }
+    
+    if(damage <= 0)
+    {
+        log_file("reports/negative_damage", "Negative or zero damage value passed : " + base_name(previous_object()) + "\n");
+    }
+        
     damage = (int)COMBAT_D->typed_damage_modification(attacker, targ, limb, damage, type);
     return targ->cause_damage_to(targ, limb, damage);
 }
@@ -1018,7 +1215,7 @@ int query_ac()
 {
     int myac, raceac, shifted_ac, myLev;
     string myfile, myrace, mysubrace;
-    object shape, attacker;
+    object shape, attacker, weapon;
 
     if (!userp(TO) && !TO->query_property("full ac")) {
         return monster_ac;
@@ -1037,20 +1234,40 @@ int query_ac()
         !TO->query_tripped() && !TO->query_bound() && TO->is_ok_armour("thief")) {
         myac += 4;
     }
-    
-    /*
-    if(TO->is_class("cleric"))
-        if(member_array("protection", TO->query_divine_domain()) >= 0)
-            myac += 4;
-    */
+
+    if(FEATS_D->usable_feat(this_object(), "shield focus"))
+    {
+        if(this_object()->validate_combat_stance("weapon and shield") || this_object()->validate_combat_stance("unarmed and shield"))
+            myac += (1 + this_object()->query_base_character_level() / 10);
+    }
+
+    if(FEATS_D->usable_feat(this_object(), "defensive weapon training"))
+    {
+        weapon = this_object()->query_wielded();
+
+        if(sizeof(weapon))
+            myac += weapon[0]->query_property("enchantment");
+    }
+
+    if(FEATS_D->usable_feat(this_object(), "armored juggernaut") && !this_object()->is_ok_armour("thief"))
+        myac += (BONUS_D->query_stat_bonus(this_object(), "strength") / 2);
 
     if(FEATS_D->usable_feat(TO, "canny defense") && !TO->query_paralyzed() &&
        !TO->query_tripped() && !TO->query_bound() && TO->is_ok_armour("thief"))
            myac += BONUS_D->query_stat_bonus(TO, "intelligence");
-       
+
     if(FEATS_D->usable_feat(TO, "spiritual body") && !TO->query_paralyzed() &&
        !TO->query_tripped() && !TO->query_bound())
            myac += BONUS_D->query_stat_bonus(TO, "charisma");
+
+    if(FEATS_D->usable_feat(this_object(), "kinetic aura"))
+        myac += (1 + this_object()->query_prestige_level("psion") / 11);
+
+    if(this_object()->is_class("mage"))
+    {
+        if(PLAYER_D->check_familiar(this_object(), "armadillo"))
+            myac += 1;
+    }
 
     if (TO->query_blind() || TO->query_temporary_blinded()) {
         myac -= TO->query_level() / 12 + 1;
@@ -1706,7 +1923,6 @@ void check_armor_active_feats(object wornBy, string type, string limb, string ac
    int i, j;
    int num, holdac, hold;
    object *tmp;
-
    num = 0;
    holdac = -10;
    hold = -1;
@@ -2218,6 +2434,12 @@ int query_blind()
 
 void set_blind(int i)
 {
+    if(PLAYER_D->immunity_check(this_object(), "blindness"))
+    {
+        tell_object(this_object(), "%^YELLOW%^You are immune to blindness.%^YELLOW%^");
+        return;
+    }
+
     if (i) {
         blindness += i;
     }else {

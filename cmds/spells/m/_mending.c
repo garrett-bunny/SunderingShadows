@@ -7,10 +7,8 @@ void create()
     ::create();
     set_author("nienne");
     set_spell_name("mending");
-    set_spell_level(([ "bard" : 1, "druid" : 1, "cleric" : 1, "mage" : 1, "oracle" : 1, "psion" : 1, "warlock" : 1, "magus" : 1 ]));
+    set_spell_level(([ "cantrip" : 1, "mage" : 1, "warlock" : 1, "magus" : 1 ]));
     set_affixed_spell_level(3);
-    set_mystery(({ "life", "metal" }));
-    set_domains("renewal");
     set_spell_sphere("alteration");
     set_syntax(
         "cast CLASS mending on OBJECT
@@ -50,16 +48,19 @@ void spell_effect(int prof)
         who = 0;
     }
 
-    if (!who) {
+    if (!who)
+    {
         ob = present(what, caster);
         if (!objectp(ob)) {
             ob = present(what, place);
         }
-    }   else {
+    }
+    else
+    {
         if ((string)caster->realName(who) != "") {
             who = (string)caster->realName(who);
         }
-        if (!ob2 = present(who, place)) {
+        if (place && who && !ob2 = present(who, place)) {
             tell_object(caster, "That person isn't here.");
             dest_effect();
             return;

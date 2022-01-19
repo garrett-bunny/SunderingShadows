@@ -12,7 +12,7 @@ void create()
     ::create();
     set_spell_name("dominate monster");
     set_spell_level(([ "mage" : 9, "cleric" : 9 ]));
-    set_domains(({ "charm", "law" }));
+    set_domains("charm");
     set_spell_sphere("enchantment_charm");
     set_syntax("cast CLASS dominate monster on TARGET");
     set_description("This spell works exactly as domination, except it works on all creatures.");
@@ -40,7 +40,8 @@ int query_domination_duration(object targ)
 
 int cant_be_dominated(targ)
 {
-    return do_save(target, -2) ||
+    return do_save(target, 2) ||
+           PLAYER_D->immunity_check(targ, "charm") ||
            mind_immunity_damage(targ, "default");
 }
 

@@ -16,7 +16,8 @@ int is_curse()
 void create() {
     ::create();
     set_spell_name("eyebite");
-    set_spell_level(([ "mage" : 6, "bard" : 6, "oracle" : 6 ]));
+    set_spell_level(([ "mage" : 6, "bard" : 6, "oracle" : 6, "cleric" : 6 ]));
+    set_domains("evil");
     set_spell_sphere("necromancy");
     set_syntax("cast CLASS eyebite on TARGET");
     set_damage_desc("sickened, panicked and comatose");
@@ -41,7 +42,7 @@ void spell_effect(int prof) {
         TO->remove();
         return;
     }
-    if(do_save(target)){
+    if(do_save(target) || PLAYER_D->immunity_check(target, "fear")){
         tell_object(target,"%^CYAN%^You manage to endure the dark aura that starts to grow around you, and it fades "
 "away to nothing!%^RESET%^");
         tell_room(place,"%^CYAN%^A mirroring aura starts to grow around "+target->QCN+", but then it fades away to "

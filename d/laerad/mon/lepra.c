@@ -3,9 +3,9 @@
 inherit WEAPONLESS;
 void create(){
     ::create();
-    set_id(({"leprachaun","Leprachaun"}));
-    set_name("Leprachaun");
-    set_short("A little Leprachaun");
+    set_id(({"leprachaun","Leprachaun","leprechaun","Leprechaun"}));
+    set_name("Leprechaun");
+    set_short("A little Leprechaun");
     set_long(
 	"A small green man stands before you.  Dressed in a green "+
 	"suit covered in clovers he hops merrily around the room.  "+

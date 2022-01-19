@@ -44,7 +44,7 @@ string choose_protection()
     int x;
     string myprot;
     string *possible_protections;
-    possible_protections = ({"fire resistance", "magic resistance", "cold resistance", "sonic resistance ", "acid resistance", "negative energy resistance", "positive energy resistance", "mental resistance"});   
+    possible_protections = ({"fire resistance", "electricity resistance", "cold resistance", "sonic resistance ", "acid resistance", "negative energy resistance", "positive energy resistance", "mental resistance"});   
     x = sizeof(possible_protections);
     myprot = possible_protections[random(x)];
     return myprot;

@@ -71,7 +71,7 @@ void reset(){
                new(MON+"fisherman.c")->move(TO);
                break;
             case 7..8:
-               new(MON+"guard2.c")->move(TO);
+               new(MON+"guard.c")->move(TO);
                break;
             case 9:
                new(MON+"vbarbarian.c")->move(TO);

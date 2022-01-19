@@ -46,18 +46,14 @@ int unwield_func(){
 
 
 int hit_func(object targ){
-   if(!objectp(targ)) return 0;
-   if(!objectp(ETO)) return 0;
-   targ = ETO->query_current_attacker();
-   if(random(1000) < 350){
-     tell_room(EETO,"%^BOLD%^%^WHITE%^The crystalline axe wielded by "+ETOQCN+" %^YELLOW%^glows %^WHITE%^an "
-"icy %^CYAN%^blue%^WHITE%^ as it sinks into "+targ->QCN+"'s flesh, causing "+targ->QO+" to shiver!%^RESET%^",({ETO,targ}));
-     tell_object(ETO,"%^BOLD%^%^WHITE%^Your crystalline axe %^YELLOW%^glows %^WHITE%^an icy %^CYAN%^blue "
-"%^WHITE%^as it sinks into "+targ->QCN+"'s flesh, causing "+targ->QO+" to shiver!%^RESET%^");
-     tell_object(targ,"%^BOLD%^%^WHITE%^"+ETOQCN+"'s crystalline axe %^YELLOW%^glows %^WHITE%^an icy%^CYAN%^ "
-"blue%^WHITE%^ as it sinks into your flesh, causing a deathly cold chill to run through your body!%^RESET%^");
-     ETO->cause_typed_damage(ETO, 0, roll_dice(2, 10), "cold");
-   }
+    if(!objectp(targ)) return 0;
+    if(!objectp(ETO)) return 0;
+
+    if(random(1000) < 350){
+        tell_room(EETO,"%^BOLD%^%^WHITE%^The crystalline axe wielded by "+ETOQCN+" %^YELLOW%^glows %^WHITE%^an icy %^CYAN%^blue%^WHITE%^ as it sinks into "+targ->QCN+"'s flesh, causing "+targ->QO+" to shiver!%^RESET%^",({ETO,targ}));
+        tell_object(ETO,"%^BOLD%^%^WHITE%^Your crystalline axe %^YELLOW%^glows %^WHITE%^an icy %^CYAN%^blue %^WHITE%^as it sinks into "+targ->QCN+"'s flesh, causing "+targ->QO+" to shiver!%^RESET%^");
+        tell_object(targ,"%^BOLD%^%^WHITE%^"+ETOQCN+"'s crystalline axe %^YELLOW%^glows %^WHITE%^an icy%^CYAN%^ blue%^WHITE%^ as it sinks into your flesh, causing a deathly cold chill to run through your body!%^RESET%^");
+        targ->cause_typed_damage(targ, targ->return_target_limb(), roll_dice(2, 10), "cold");
+    }
 }
-             
 

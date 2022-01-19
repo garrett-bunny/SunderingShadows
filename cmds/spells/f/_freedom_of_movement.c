@@ -11,7 +11,6 @@ void create()
     set_spell_name("freedom of movement");
     set_spell_level(([ "cleric" : 4, "bard" : 4, "ranger" : 4, "mage" : 4,"druid" : 4, "assassin" : 4, "psion" : 4, "psywarrior" : 4, "paladin" : 4, "inquisitor" : 4, "magus" : 4 ]));
     set_spell_sphere("abjuration");
-    set_domains(({"renewal", "magic"}));
     set_syntax("cast CLASS freedom of movement");
     set_description("This spell will protect the caster with an aura of freedom, granting her freedom from the next "
         "paralyzation effect upon her.  The power of this spell is such that it will cause a brief delay once activated "
@@ -39,14 +38,14 @@ int preSpell()
 
 string query_cast_string()
 {
-    if(member_array(spell_type,({"mage","sorcerer","bard"}))!=-1)
+    if(member_array(spell_type,({"mage","sorcerer","bard","magus"}))!=-1)
     {
         tell_object(caster,"%^BOLD%^%^GREEN%^You call upon the weave, "+
             "drawing upon it as you murmur the words of a spell.%^RESET%^");
         tell_room(place,"%^BOLD%^%^GREEN%^"+caster->QCN+" whispers a "+
             "soft murmur to the winds.%^RESET%^",caster);
     }
-    if(member_array(spell_type,({"cleric","ranger","paladin"}))!=-1)
+    if(member_array(spell_type,({"cleric","ranger","paladin","inquisitor","oracle"}))!=-1)
     {
         tell_object(caster,"%^BOLD%^%^GREEN%^You call upon the power of "+
             ""+capitalize(caster->query_diety())+" to grant you a "+

@@ -14,7 +14,6 @@ void create()
     set_spell_name("stormrage");
     set_spell_level(([ "cleric" : 8 ]));
     set_spell_sphere("invocation_evocation");
-    set_domains("storms");
     set_syntax("cast CLASS stormrage");
     set_description("In using this spell, the caster calls upon the might of the weather, creating a powerful storm in an "
                     "area.  The storm takes several rounds to develop and a few more to recede.  With it comes stinging winds, hail, and "
@@ -64,7 +63,7 @@ void do_storm()
         dest_effect();
         return;
     }
-    if (caster->query_ghost() || caster->query_unconscious()) {
+    if (caster->query_ghost() || caster->query_unconscious() || place != environment(caster)) {
         tell_room(place, "%^BOLD%^%^BLACK%^The swirling mass of clouds dies down and dissipates.%^RESET%^", caster);
         dest_effect();
         return;

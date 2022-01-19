@@ -8,7 +8,7 @@ void create()
 {
     ::create();
     set_spell_name("nightmare maw");
-    set_spell_level(([ "mage" : 8 ]));
+    set_spell_level(([ "innate" : 8 ]));
     set_spell_sphere("conjuration_summoning");
     set_syntax("cast CLASS nightmare maw on TARGET");
     set_damage_desc("slashing");

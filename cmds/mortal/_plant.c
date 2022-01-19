@@ -1,46 +1,15 @@
-/*  _steal.c
- *  Rogue ability
- *  coded by Descartes of Borg October 1992
- *  small modifications by Hanse November 1992
- *  changed to make stealing harder for non-rogues and to allow
- *  the stealing of wielded/worn objects by powerful rogues
- *  by Gregon October 1993
- *  Heavily revised by Bohemund March 1994
- *    - check for available light
- *    - removed useless variables
- *    - added a function to handle the moving of the stolen object
- *    - cleaned up messages
- *    - checked weight of item being stolen (heavier = harder)
- *    - revised the way wielded/worn items are stolen (monster now
- *      attacks when the player fails)
- *    - alignment is calculated (randomly 1-10) depending on the
- *      alignment of the victim (i.e. stealing from good beings
- *      makes you more evil and stealing from evil beings makes
- *      you good)
- *    - added defines for easier configuration
- *  Slightly modified by Bohemund March 1994
- *    - check if monster does not allow stealing
- *    - neaten up a string or two
- */
-
 #include <std.h>
-#define WEIGHT_PENALTY 20
-#define INVIS_PENALTY 75
-#define WIELD_PENALTY 50
-#define WORN_PENALTY 75
+#define THIEVERY_D "/daemon/thievery_d.c"
 
-#define INVIS_CHECK_DIE 20
 inherit DAEMON;
 
-void check_caught(int roll, object target, object ob, int sLevel);
-void do_caught(object victim);
-
 int cmd_plant(string str) {
+    mapping results;
     object *inv, victim, ob;
     string what, whom;
-    int i, skip, which, steal, x, align_formula,sLevel;
+    int i, skip, which, thief_roll, victim_roll;
 
-/* Various checking */
+    /* Various checking */
     if (TP->query_ghost()) {
         notify_fail("You cannot do that in your immaterial state.\n");
         return 0;
@@ -51,16 +20,14 @@ int cmd_plant(string str) {
         return 1;
     }
 
-/*   if(!TP->is_class("thief") && !TP->is_class("bard")) {
-      notify_fail("Too bad you don't know how to do that.\n");
-      return 0;
-   }*/
-
     if (!str) {
         notify_fail("Plant what on whom?\n");
         return 0;
     }
-    if (TP->query_disable()) return 1;
+    if (TP->query_disable()) {
+        write("You are still finishing a previous attempt.");
+        return 1;
+    }
 
     if (sscanf(str, "%s on %s", what, whom) != 2) {
         notify_fail("Plant what on whom?\n");
@@ -86,8 +53,6 @@ int cmd_plant(string str) {
 
     if (!TP->ok_to_kill(victim)) return notify_fail("Super natural forces prevent you.\n");
 
-//    TP->set_disable();
-
     if (wizardp(victim)) {
         tell_object(victim,TPQCN+" just tried to plant something on you... break "+TP->query_possessive()+" arms.\n");
         notify_fail(victim->query_cap_name()+" is going to hurt you when "+victim->query_subjective()+" gets this message.\n");
@@ -106,7 +71,7 @@ int cmd_plant(string str) {
 
 //    if ((total_light(TP)+TP->query_sight_bonus()) < -1) {
    if (TP->light_blind(-1)) {
-  notify_fail(TP->light_blind_fail_message(TP->light_blind(-1))+"\n");
+        notify_fail(TP->light_blind_fail_message(TP->light_blind(-1))+"\n");
         return 0;
     }
 
@@ -131,41 +96,27 @@ int cmd_plant(string str) {
         return 1;
     }
 
-/* Calculations */
-    steal = TP->query_skill("thievery") + roll_dice(1,20);
-    if(sizeof(TP->query_armour("torso"))) steal += TP->skill_armor_mod(TP->query_armour("torso"));
-
-    if (victim->query_invis()) steal -= INVIS_PENALTY;
-    if ((int)ob->query_weight() > 50 ) steal -= WEIGHT_PENALTY;
-
     if (ob->query_wielded() || ob->query_worn()) {
-        notify_fail("That would be impossible!\n");
+        notify_fail("Remove the item before trying to plant it.\n");
         return 0;
     }
 
-  if (!TP->is_singleClass()) {
-     TP->set_disable(15,victim);
-   } else {
-     TP->set_disable(5,victim);
-   }
-/* Display messages */
-    x = victim->query_skill("perception") + roll_dice(1,20);
-    if (x<steal && (!TP->get_static("caught") ||  time() - (int)((mapping)TP->get_static("caught"))[victim] > 150)) {
-        write("You successfully plant "+ob->query_name()+" on "+victim->query_cap_name()+".\n You are not sure if anyone noticed.");
+    results = THIEVERY_D->initiate_thievery(TP, victim, ob);
+    thief_roll = results["thief_roll"];
+    victim_roll = results["victim_roll"];
+
+    if (victim_roll < thief_roll) {
+        write("You successfully plant "+ob->query_name()+" on "+victim->query_cap_name()+".\nYou are not sure if anyone noticed.");
         if (ob->move(victim)) {
             write(victim->query_cap_name()+" cannot carry that!\nThe plant fails.");
         }
-        check_caught(x,victim,ob,steal);
-        if (interactive(victim))
-            log_file("player/theft", TPQN+"("+TP->query_level()+") planted "+ob->query_short()+" on "+victim->query_name()+"("+victim->query_lowest_level()+") on "+ctime(time())+"\n");
+        THIEVERY_D->check_caught(victim_roll, victim, thief_roll, TP, ob);
+        if (interactive(victim)) log_file("player/theft", TPQN+"("+TP->query_level()+") planted "+ob->query_short()+" on "+victim->query_name()+"("+victim->query_lowest_level()+") on "+ctime(time())+"\n");
         return 1;
 
     } else {
-        if (TP->get_static("caught") && (int)((mapping)TP->get_static("caught"))[victim] - time() < 150) {
-            x=0;
-        }
         write("You fail to plant the "+ob->query_name()+" on "+victim->query_cap_name()+", but you are unsure if it went unnoticed.");
-        check_caught(x,victim,ob,steal);
+        THIEVERY_D->check_caught(victim_roll, victim, thief_roll, TP, ob);
         return 1;
     }
 
@@ -190,65 +141,4 @@ Plant gives a thief the ability to stealthily plant an item on another person. S
 
 stealth, give, spy, steal, pp, pkilling
 ");
-}
-void check_caught(int roll, object target, object ob, int sLevel){
-    int test;
-    int weight;
-    int intox,condition,busy,bonus;
-    string *pkills;
-
-
-    intox = (((int)target->query_intox())/35) - ((int)TP->query_intox())/35;
-    condition = (100- (int)target->query_condition_percent()) - (100- (int)TP->query_condition_percent());
-    busy = (5 * ( sizeof(all_living(ETP)) -2) ) - 10;
-    bonus = intox + condition + busy + sLevel;
-    //write("bonus = "+bonus);
-    test = 50 + ((int)target->query_highest_level() - bonus);
-    //write("test = "+test);
-    if ((100 - roll)<test) {
-        TP->set_hidden(0);
-      if(TP->query_magic_hidden()) {
-if ((TP->is_thief()) && TP->is_singleClass())
-  bonus = 5;
-else
-  bonus = 0;
-if ((int)target->query_stats("wisdom") > (random(INVIS_CHECK_DIE) + bonus))
-        {
-	  TP->force_me("appear");
-	  TP->set_magic_hidden(0);
-	}
-      }
-        tell_object(target,"You catch "+TPQCN+" with "+TP->query_possessive()+" hand in your pocket.\n");
-        //tell_object(target,capitalize(TP->query_subjective())+" was stealing from you.\n");
-        tell_object(TP,"You get caught.");
-        tell_room(environment(TP),"You see "+target->query_cap_name()+" catch "+TPQCN+" with a hand in "+target->query_possessive()+" pocket.",({TP,target}));
-
-        if (!interactive(target)) {
-            target->kill_ob(TP, 0);
-        }else {
-            log_file("player/theft", TPQN + "(" + sLevel + ") was caught stealing " + ob->query_short() + " from " + target->query_name() + "(" + target->query_lowest_level() + ") on " + ctime(time()) + "\n");
-        }
-        if (ob->query_weight() < 1)
-            weight = 1;
-        else
-            weight = ob->query_weight();
-        if (environment(ob) == TP && (int)TP->query_stats("dexterity") < (random(20) + weight/10)) {
-            TP->force_me("drop "+((string *)ob->query_id())[0]);
-        }
-        TP->set_paralyzed(2,"You have been caught!");
-        if (interactive(TP)) {
-            pkills = TP->query_pkilled();
-            if (member_array(target->query_name(),pkills) == -1) {
-                pkills += ({target->query_name()});
-                TP->set_pkilled(pkills);
-            }
-        }
-        do_caught(target);
-    }
-}
-
-void do_caught(object victim){
-
-    TP->set_static("caught",([victim:time()]));
-
 }

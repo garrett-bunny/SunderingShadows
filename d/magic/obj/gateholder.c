@@ -46,7 +46,7 @@ int cmd(string str){
 }
 	
 int dismiss(string str){
-	if(!str || !mon->id(str)) return 0;
+	if(!str || !objectp(mon) || !mon->id(str)) return 0;
 	tell_room(environment(caster),"%^BOLD%^"+caster->query_cap_name()+" dismisses the outsider!",caster);
 	if(objectp(caster)) { caster->remove_property("has_elemental"); }
 	tell_object(caster,"%^BOLD%^You dismiss the outsider!\n");

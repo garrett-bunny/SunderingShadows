@@ -72,6 +72,16 @@ int cmd_kill(string str)
     if (!objectp(victim)) {
         return 1;
     }
+    if(this_player()->is_deva())
+    {
+        //Cannot initiate combat against a non-evil enemy unless they are attacking a non-evil character themselves
+        if(victim->query_true_align() % 3 &&
+          (victim->query_current_attacker())->query_true_align() % 3)
+        {
+            tell_object(this_player(), "Your very nature resists causing harm to that being.");
+            return 1;
+        }
+    }
     write("%^RED%^%^BOLD%^You attack " + (string)victim->query_cap_name() + "!");
     tell_room(ETP, this_player()->query_cap_name() + " attacks " +
               victim->query_cap_name() + "!", ({ victim, TP }));
@@ -102,7 +112,7 @@ kill [%^ORANGE%^%^ULINE%^TARGET%^RESET%^]
 
 %^CYAN%^DESCRIPTION%^RESET%^
 
-This sommand turns combat on for you and %^ORANGE%^%^ULINE%^TARGET%^RESET%^.
+This command turns combat on for you and %^ORANGE%^%^ULINE%^TARGET%^RESET%^.
 
 To kill yourself just use %^ORANGE%^<kill %^ORANGE%^%^ULINE%^YOURNAME%^RESET%^%^ORANGE%^>%^RESET%^.
 

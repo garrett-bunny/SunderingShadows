@@ -13,7 +13,7 @@ int metal;
 
 void create(){
     ::create();
-    set_id(({"bracers"}));
+    set_id(({"bracers", "bracers", "armor"}));
     set_name("bracers");
    set_limbs(({"left arm", "right arm"}));
    set_ac(1);

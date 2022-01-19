@@ -21,7 +21,7 @@ void create() {
     ::create();
     set_spell_name("frozen breath");
     set_spell_level(([ "cleric" : 5 ]));
-    set_spell_sphere("combat");
+    set_spell_sphere("invocation_evocation");
     set_syntax("cast CLASS frozen breath on TARGET");
     set_description("This spell will call forth a breath of ice to chill your foes.  It can be used in two ways - when "
 "used before combat begins, it will engulf a single foe; when cast during combat, it is particularly devastating, as it "
@@ -30,7 +30,7 @@ void create() {
     set_verbal_comp();
     set_somatic_comp();
     set_target_required(1);
-    set_immunities( ({ "ice", "spell_immunity"}) );
+    set_immunities( ({ "cold", "spell_immunity"}) );
     set_save("reflex");
     splash_spell(1);
 }

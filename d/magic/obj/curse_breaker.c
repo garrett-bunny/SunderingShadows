@@ -80,7 +80,7 @@ void break_em(string str){
    spell = TO->query_spell();
    if(sscanf(str,"%s on %s",what, who) != 2){
       tell_object(ETO,"Error: you must name the object and location, e.g., 'sword on me'.");
-      spell->dest_effect();
+      spell && spell->dest_effect();
       TO->dest_effect();
       return;
    }

@@ -66,9 +66,9 @@ void create() {
       TO->remove_property("enchantment");
       TO->set_property("enchantment",5);
     }
-    set_item_bonus("attack bonus",3);
-    set_item_bonus("damage bonus",3);
-    set_item_bonus("sight bonus",3);
+    set_item_bonus("attack bonus",4);
+    set_item_bonus("damage bonus",4);
+    set_item_bonus("sight bonus",4);
     set_value(17600);
     set_hit((:TO,"hit_func":));
     set_wield((:TO,"wield_func":));
@@ -106,6 +106,7 @@ int wield_func(){
      tell_object(ETO,"You are not experienced enough to use this weapon.");
      return 0;
    }
+   /*
    if(ETO->query_property("master weapon")) { //preventing stack up with other "top" weapons
      tell_object(ETO,"%^BOLD%^%^WHITE%^You reach out to grasp the blade, and the weapon already in your hand "
 "seems to radiate with denial.  You find yourself unwilling even to lift the second weapon!");
@@ -113,6 +114,7 @@ int wield_func(){
 "stops.",ETO);
      return 0;
    }
+   */
    tell_object(ETO,"%^BOLD%^%^WHITE%^A gentle %^RESET%^%^RED%^war%^MAGENTA%^mt%^RED%^h %^BOLD%^%^WHITE%^runs through your "
 "veins as you lift the surprisingly light blade.%^RESET%^");
    tell_room(EETO,"%^BOLD%^%^WHITE%^Light glints off the edge of the %^YELLOW%^go%^RESET%^%^ORANGE%^ld%^YELLOW%^en "
@@ -160,7 +162,8 @@ int hit_func(object targ){
 	tell_room(EETO,"%^BOLD%^%^YELLOW%^Go%^RESET%^%^ORANGE%^ld%^YELLOW%^en energy races along "+ETO->QCN+"'s blade as "
 "its %^BOLD%^%^BLACK%^ra%^WHITE%^z%^YELLOW%^o%^BLACK%^r-s%^RED%^h%^BLACK%^arp %^YELLOW%^edge bites into "+targ->QCN+
 "!%^RESET%^",({ETO,targ}));
-      targ->do_damage("torso",roll_dice(3,10));
+      //targ->do_damage("torso",roll_dice(3,10));
+      targ->cause_typed_damage(targ, targ->return_target_limb(), roll_dice(3,10), "divine");
       COUNTER--;
     }
 

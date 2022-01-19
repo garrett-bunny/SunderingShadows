@@ -7,3 +7,5 @@ inherit "/std/user/trace";
 inherit "/std/user/bitflags";
 inherit "/std/user/refs";
 inherit "/std/user/more";
+inherit "/std/user/cooldowns";
+inherit "/std/user/gmcp";

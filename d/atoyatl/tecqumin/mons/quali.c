@@ -100,7 +100,7 @@ void init(){
       if (interactive(people[i])){
         quests = people[i]->query_mini_quests();
         if (member_array("Discovered the Madness of Quali", quests)==-1){
-          people[i]->set_mini_quest("Discovered the Madness of Quali");
+          people[i]->set_mini_quest("Discovered the Madness of Quali",10000000,"%^BOLD%^%^BLACK%^Discovered the madness of Quali");
         }
       }
     }
@@ -212,10 +212,10 @@ void heal3(object healer){
   if (!objectp(healer)||!objectp(room)||!present(healer, room)){return;}
   tell_object(healer, "As you extend the %^BOLD%^%^BLACK%^jetstone%^RESET%^"
                      +" toward %^GREEN%^Quali%^RESET%^, a low humming sound"
-                     +" emmanates from it.");
+                     +" emanates from it.");
   tell_room(room, "As " + healer->QCN + " %^RESET%^extends the"
                  +" %^BOLD%^%^BLACK%^jetstone%^RESET%^ toward"
-                 +" %^GREEN%^Quali%^RESET%^, a low humming sound emmanates"
+                 +" %^GREEN%^Quali%^RESET%^, a low humming sound emanates"
                  +" from it", healer);
   call_out("heal4", 4, healer);
 }
@@ -344,7 +344,7 @@ void reply_func(string msg, object speaker){
       if (!userp(people[i])) continue;
       quests = people[i]->query_mini_quests();
       if (member_array("Knows of the Heart of the Jungle", quests, 1)==-1){
-        people[i]->set_mini_quest("Knows of the Heart of the Jungle");
+        people[i]->set_mini_quest("Knows of the Heart of the Jungle",10000000,"%^BOLD%^Knows of the Heart of the Jungle!");
       }
     } 
     return;
@@ -424,7 +424,7 @@ void reply_func(string msg, object speaker){
      force_me("say If you are willing to help protect these Realms from"
             +" the threat of the return of the %^MAGENTA%^Unfettered"
             +" %^RESET%^, just ask me and I will give you the%^GREEN%^."
-            +" Heart of the Jungle%^RESET%^. It contains a sizeable amount"
+            +" Heart of the Jungle%^RESET%^. It contains a sizable amount"
             +" of my power and you could use it to strengthen the seal"
             +" which imprisons the abomination's spirit. Or, if you have"
             +" the power, you could open the seal and take the risk of"
@@ -441,7 +441,7 @@ void reply_func(string msg, object speaker){
         if (member_array("Knows of the Heart of the Jungle",quests)!=-1){
           continue;
         }
-        people[i]->set_mini_quest("Knows of the Heart of the Jungle");
+        people[i]->set_mini_quest("Knows of the Heart of the Jungle",10000000,"%^BOLD%^Knows of the Heart of the Jungle!");
       }
       call_out("destroy_crystal2",2);
     }
@@ -804,7 +804,7 @@ void unfettered2(){
   room = ETO;
   force_me("say I cannot understand. But what seems clear to me now is that"
           +" the world will not be safe from the Unfettered while its"
-          +" spirit survives here. What is needed is for someome to find"
+          +" spirit survives here. What is needed is for someone to find"
           +" entrance to the chamber, %^BOLD%^%^RED%^open the seal%^RESET%^"
           +" and defeat the Unfettered. Perhaps if this is done, the curse"
           +" on the%^CYAN%^ Tecqumin%^RESET%^ might be lifted.");
@@ -819,7 +819,7 @@ void unfettered2(){
     if (member_array("Secret of the Chamber",quests)!=-1){
       continue;
     }
-    people[i]->set_mini_quest("Secret of the Chamber");
+    people[i]->set_mini_quest("Secret of the Chamber",10000000,"%^BOLD%^Secret of the Chamber");
   }
 }
 
@@ -839,7 +839,7 @@ void destruction2(){
            +" %^BOLD%^%^BLACK%^the d%^YELLOW%^e%^BOLD%^%^BLACK%^str"
            +"%^RESET%^o%^BOLD%^%^WHITE%^y%^BOLD%^%^BLACK%^er%^RESET%^,"
            +" who brought this end to the %^CYAN%^Tecqumin%^RESET%^ and"
-           +" %^BOLD%^%^RE%^L%^RESET%^%^RED%^o%^BOLD%^%^BLACK%^v%^BOLD%^"
+           +" %^BOLD%^%^RED%^L%^RESET%^%^RED%^o%^BOLD%^%^BLACK%^v%^BOLD%^"
            +"%^RED%^i%^WHITE%^a%^RED%^t%^RESET%^%^RED%^a%^BOLD%^%^BLACK%^r"
            +"%^RESET%^, who cursed their spirits to wander the world in"
            +" suffering.");
@@ -870,7 +870,7 @@ void destruction3(){
     if (member_array("Heard of the Unfettered",quests)){
       return;
     }
-    people[i]->set_mini_quest("Heard of the Unfettered");
+    people[i]->set_mini_quest("Heard of the Unfettered",10000000,"%^BOLD%^Heard of the Unfettered!");
   }
 }
 

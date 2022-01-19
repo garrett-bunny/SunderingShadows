@@ -11,7 +11,6 @@ void create() {
     ::create();
     set_spell_name("teleport");
     set_spell_level(([ "mage" : 5, "magus" : 5 ]));
-    set_domains("travel");
     set_spell_sphere("conjuration_summoning");
     set_syntax("cast CLASS teleport on LOCATION");
     set_description("The teleport spell will move the caster from his current location to a specified 'remembered "
@@ -38,7 +37,7 @@ void spell_effect(int prof) {
     int power, prob;
 
     power = clevel>50?50:clevel;
-    prob = to_int(25.0 + 65.0*(power/50.0));
+    prob = to_int(25.0 + 65.0*(power/40.0));
 
     if (roll_dice(1, 100) > prob) {
         if (!objectp(endplace = TELEPORT->scatter_destination(caster->query_rem_room(arg)))) {
@@ -58,7 +57,7 @@ void spell_effect(int prof) {
     {
         tell_object(caster,"You sense something is wrong with your spell and it backfires.");
         tell_room(place,caster->QCN+" "+"looks startled.",caster);
-        damage_targ(caster, caster->return_target_limb(), sdamage / 4, "mental");
+        //damage_targ(caster, caster->return_target_limb(), sdamage / 4, "mental");
         dest_effect();
 
     }

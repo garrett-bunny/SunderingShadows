@@ -32,7 +32,7 @@ void create(){
 		"- Gazing Through the Crystal Ball:Famous Diviners in"+
 		" History - Valant Ro");
 	set_property("lore difficulty",16);
-	set_property("enchantment",2);
+	set_property("enchantment",3);
 	set_ac(0);
         set_max_internal_encumbrance(21);
 	set_wear((:TO,"wear_func":));
@@ -40,7 +40,7 @@ void create(){
 	set_struck((:TO,"strike_func":));
 }
 int wear_func(){
-	if((string)ETO->query_diety() == "mystra") {
+	if((string)ETO->query_diety() == "kismet") {
       	tell_object(ETO,"%^BOLD%^%^BLUE%^Sliding into"+
 			" the velvet robes, the %^WHITE%^s%^RESET%^"+
 			"t%^BOLD%^a%^RESET%^r%^BOLD%^s %^BLUE%^shimmer"+
@@ -50,7 +50,7 @@ int wear_func(){
 			" the %^BOLD%^%^WHITE%^s%^RESET%^t%^BOLD%^a%^RESET%^r"+
 			"%^BOLD%^s%^RESET%^%^BLUE%^ on "+ETO->QP+" robes "+
 			"shimmer briefly.",ETO);
-				ETO->set_property("magic resistance",10);
+				ETO->set_property("magic resistance",2);
 
       return 1;
    	}
@@ -60,12 +60,12 @@ int wear_func(){
 		tell_object(ETO,"%^BLUE%^You slip on the plush blue"+
 			" velvet robe and can't help but feel a bit"+
 			" %^WHITE%^special%^RESET%^");
-				ETO->set_property("magic resistance",5);
+				ETO->set_property("magic resistance",1);
 	return 1;
 	}
 }
 int remove_func(){
-	if((string)ETO->query_diety() == "mystra") {
+	if((string)ETO->query_diety() == "kismet") {
       	tell_object(ETO,"%^BOLD%^%^BLUE%^Sliding out of"+
 			" the velvet robes, the %^WHITE%^s%^RESET%^"+
 			"t%^BOLD%^a%^RESET%^r%^BOLD%^s %^BLUE%^shimmer"+
@@ -75,7 +75,7 @@ int remove_func(){
 			" the %^BOLD%^%^WHITE%^s%^RESET%^t%^BOLD%^a%^RESET%^r"+
 			"%^BOLD%^s%^RESET%^%^BLUE%^ on "+ETO->QP+" robes "+
 			"shimmer briefly before fading.",ETO);
-				ETO->set_property("magic resistance",-10);
+				ETO->set_property("magic resistance",-2);
 	return 1;
 	}
 	else{
@@ -83,7 +83,7 @@ int remove_func(){
 			"out of a blue velvet robe.",ETO);
 		tell_object(ETO,"%^BLUE%^You slip out of the robes"+
 			" and can't help but feel ordinary now!");
-				ETO->set_property("magic resistance",-5);
+				ETO->set_property("magic resistance",-1);
 	return 1;
 	}
 }
@@ -102,6 +102,7 @@ int strike_func(int damage, object what, object who){
 		" shuriken%^RESET%^%^BLUE%^ which they hurl at you!");
 			who->do_damage("torso",random(4)+3);
 	}
+	return damage;
 }
 void init()
 {

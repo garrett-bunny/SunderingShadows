@@ -166,7 +166,8 @@ int prerequisites(object player)
     if (!player->is_class(base)) {
         return 0;
     }
-    if ((player->query_class_level(base)) < 20) {
+    //if ((player->query_class_level(base)) < 20) {
+    if(player->query_base_character_level() < 20) {
         write("Fail levels.");
         return 0;
     }
@@ -197,13 +198,15 @@ int caster_level_calcs(object player, string the_class)
 {
     int level;
     string base;
-    if (!objectp(player)) {
-        return 0;
-    }
+    if(!objectp(player)) { return 0; }
     base = player->query("base_class");
 
-    level = player->query_class_level(base);
-    level += player->query_class_level("vampire_lord");
+    //level = player->query_class_level(base);
+    level = player->query_class_level(the_class);
+    
+    if(base == the_class)
+        level += player->query_class_level("vampire_lord");
+    
     return level;
 }
 

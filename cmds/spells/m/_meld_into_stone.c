@@ -14,10 +14,8 @@ object invisob;
 void create() {
     ::create();
     set_spell_name("meld into stone");
-    set_spell_level(([ "cleric" : 3,
-                       "druid":3]));
+    set_spell_level(([ "cleric" : 3, "druid":3]));
     set_spell_sphere("alteration");
-    set_mystery("stone");
     set_syntax("cast CLASS meld into stone");
     set_description("This spell allows the caster to meld with nearby stone, rendering him invisible to most viewers.  "
 "The spell likewise confers the ability to move while invisible, so long as the caster does not pass out of the "

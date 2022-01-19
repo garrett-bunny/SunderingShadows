@@ -12,6 +12,7 @@ void create()
     feat_classes(({"paladin", "cleric"}));
     feat_desc("This power allows divine caster to channel primal energies (negative or positive) at their allies and foes. The type of energy will depend on your affinity, e.g. undead will channel negative energy while living will channel positive energy. This feat will auto determine which type of energy is appliable to allies and enemies. This feat costs one Divine Grace point to use.");
     feat_syntax("channel");
+    set_required_for(({"improved channel","extra grace","channel smite"}));
     set_target_required(0);
 }
 
@@ -58,13 +59,13 @@ void execute_feat()
         dest_effect();
         return;
     }
-    
+
     if(!(int)USER_D->spend_pool(TP, 1, "grace"))
     {
         tell_object(caster, "You don't have the Divine Grace to Channel Energy!");
         return;
     }
-    /*    
+    /*
     else if ((int)caster->query_property("using channel") > time() &&
         !FEATS_D->usable_feat(caster, "supreme healer")) {
         tell_object(caster, "It's too soon to use channel again yet!");
@@ -75,8 +76,8 @@ void execute_feat()
 
     ::execute_feat();
 
-    tell_object(caster,"%^BOLD%^%^WHITE%^You waver unevenly as you prepare to channel primal energies through yourself.");
-    tell_room(place,"%^BOLD%^%^WHITE%^Closes their eyes an look distant for a split second.",caster);
+    tell_object(caster,"%^BOLD%^%^WHITE%^You waver unevenly as you prepare to channel primal energies through yourself.%^RESET%^");
+    tell_room(place,"%^BOLD%^%^WHITE%^"+caster->QCN+" %^BOLD%^%^WHITE%^softly murmurs a prayer with arms held aloft.%^RESET%^",caster);
 
     caster->set_property("using instant feat",1);
     return;
@@ -98,7 +99,7 @@ void execute_attack()
     caster->remove_property("using instant feat");
 
     caster->remove_property("using channel");
-    
+
     if(caster->query_class_level("cleric"))
     {
         caster->set_property("using channel",(time() + 35));
@@ -118,7 +119,7 @@ void execute_attack()
     allies = distinct_array(allies);
 
     dam = flevel + (FEATS_D->usable_feat(caster, "improved channel") * 2);
-    dam = roll_dice(dam, 6) + (member_array("sun", caster->query_divine_domain()) >= 0 ? caster->query_class_level("cleric") : 0);
+    dam = roll_dice(dam, 10) + (member_array("sun", caster->query_divine_domain()) >= 0 ? caster->query_class_level("cleric") : 0);
 
     if (caster->query_property("negative energy affinity")) {
         energy_type = "negative energy";

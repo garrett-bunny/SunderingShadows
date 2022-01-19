@@ -145,6 +145,8 @@ int *stat_adj() { return ({ 0, 0, 0, 1, -1, 0 }); }
 
 int is_restricted() { return 0; } // restricted races by approval
 
+int is_rollable() { return 1; } // rollable in creation
+
 // Stuff needed to replace what was in the old race database
 
 string race_name() { return "gnome"; }
@@ -269,10 +271,10 @@ string* query_eye_colors(string subrace)
 string* query_subraces(object who)
 {
     string* subraces;
-    subraces = ({ "rock gnome", "forest gnome" });
-    if (OB_ACCOUNT->is_experienced(who->query_true_name()) || avatarp(who) || who->query("is_valid_npc")) {
-        subraces += ({ "deep gnome", "trixie" });
-    }
+    subraces = ({ "rock gnome", "forest gnome", "deep gnome", "trixie" });
+    // if (OB_ACCOUNT->is_experienced(who->query_true_name()) || avatarp(who) || who->query("is_valid_npc")) {
+    //     subraces += ({ "deep gnome", "trixie" });
+    // }
     return subraces;
 }
 

@@ -16,10 +16,9 @@ void create()
     ::create();
     set_author("ares");
     set_spell_name("windstorm");
-    set_spell_level(([ "druid":8, "oracle" : 8, "cleric" : 8 ]));
+    set_spell_level(([ "druid":8, "oracle" : 8 ]));
     set_mystery("wind");
     set_spell_sphere("invocation_evocation");
-    set_domains("air");
     set_syntax("cast CLASS windstorm");
     set_description("This spell calls on the power of the plane of air to unleash a terrible gale of wind that sends "
         "debris whipping around the caster's enemies.  It has a chance to blind them with sand, and even knock them from their "
@@ -43,7 +42,7 @@ string query_cast_string()
 
 void spell_effect(int prof)
 {
-    duration = (ROUND_LENGTH * clevel)/2;
+    duration = (ROUND_LENGTH * clevel) * 2;
     tell_room(place,"%^BOLD%^"+caster->QCN+" whispers a soft chant into the winds "
         "and a gale force wind howls into the area!");
     tell_object(caster,"%^BOLD%^You whisper a soft chant into the winds and a "

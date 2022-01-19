@@ -186,7 +186,7 @@ void flurry_hit()
     if((crit = (int)BONUS_D->process_hit(caster, myVic, 1, 0, 0, 1)))
     {
         dam = calculate_my_dam(myVic, crit);
-        dam_type = "bludgeoning";
+        dam_type = "force";
         tell_object(caster, "%^BOLD%^%^BLACK%^You strike "+myVic->QCN+
         " with a sudden ferocity!%^RESET%^");
         tell_object(myVic, caster->QCN+"%^BOLD%^%^BLACK%^ strikes you with "+
@@ -198,7 +198,7 @@ void flurry_hit()
         }
         if(myWay == "way of the fist" && !random(5))
         {
-            if(do_save(myVic,DC) || myVic->query_property("no paralyze") || myVic->query_property("no death"))
+            if(do_save(myVic,DC) || myVic->query_property("no paralyze"))
             {
                 tell_object(myVic, "%^BOLD%^%^RED%^Your body shudders violently for "+
                 "a brief instant but you manage to shake off most of the strike.%^RESET%^");
@@ -227,7 +227,7 @@ void flurry_hit()
         {
             tell_object(caster, "%^BOLD%^%^BLACK%^T%^BOLD%^%^WHITE%^e%^BOLD%^"+
             "%^BLACK%^n%^BOLD%^%^WHITE%^d%^BOLD%^%^BLACK%^r%^BOLD%^%^WHITE%^"+
-            "l%^BOLD%^%^BLACK%^l%^BOLD%^%^WHITE%^s%^BOLD%^%^BLACK%^ of "+
+            "i%^BOLD%^%^BLACK%^l%^BOLD%^%^WHITE%^s%^BOLD%^%^BLACK%^ of "+
             "sh%^BOLD%^%^WHITE%^a%^BOLD%^%^BLACK%^d%^BOLD%^%^WHITE%^o"+
             "%^BOLD%^%^BLACK%^w lash out at "+myVic->query_cap_name()+
             "%^BOLD%^%^BLACK%^!%^RESET%^");
@@ -237,7 +237,7 @@ void flurry_hit()
 
             tell_object(myVic, "%^BOLD%^%^BLACK%^T%^BOLD%^%^WHITE%^e%^BOLD%^"+
             "%^BLACK%^n%^BOLD%^%^WHITE%^d%^BOLD%^%^BLACK%^r%^BOLD%^%^WHITE%^"+
-            "l%^BOLD%^%^BLACK%^l%^BOLD%^%^WHITE%^s%^BOLD%^%^BLACK%^ of "+
+            "i%^BOLD%^%^BLACK%^l%^BOLD%^%^WHITE%^s%^BOLD%^%^BLACK%^ of "+
             "sh%^BOLD%^%^WHITE%^a%^BOLD%^%^BLACK%^d%^BOLD%^%^WHITE%^o"+
             "%^BOLD%^%^BLACK%^w lash out at you from "+caster->QCN+
             "%^BOLD%^%^BLACK%^!%^RESET%^");
@@ -246,7 +246,7 @@ void flurry_hit()
             {
                 tell_room(environment(caster), "%^BOLD%^%^BLACK%^T%^BOLD%^%^WHITE%^e%^BOLD%^"+
                 "%^BLACK%^n%^BOLD%^%^WHITE%^d%^BOLD%^%^BLACK%^r%^BOLD%^%^WHITE%^"+
-                "l%^BOLD%^%^BLACK%^l%^BOLD%^%^WHITE%^s%^BOLD%^%^BLACK%^ of "+
+                "i%^BOLD%^%^BLACK%^l%^BOLD%^%^WHITE%^s%^BOLD%^%^BLACK%^ of "+
                 "sh%^BOLD%^%^WHITE%^a%^BOLD%^%^BLACK%^d%^BOLD%^%^WHITE%^o"+
                 "%^BOLD%^%^BLACK%^w lash out at "+myVic->QCN+"%^BOLD%^%^BLACK%^ "+
                 "from "+caster->QCN+"%^BOLD%^%^BLACK%^!%^RESET%^", ({caster, myVic}));
@@ -437,7 +437,12 @@ void check()
         {
             tell_room(environment(caster), caster->QCN+"%^BOLD%^%^CYAN%^ launches an attack!%^RESET%^", caster);
         }*/
-        flurry_hit();
+        for(int y = 0; y < (1 + caster->query_class_level("monk") / 15); y++)
+        {
+            flurry_hit();
+            caster->spend_ki(1);
+        }
+        
         //redesigning so that extra hits are successful if
         //making a touch attack - do not use weapon at all - bare hands/tendrils
         //higher chance of second hit for way of the shadow monks with shadow opportunist feat
@@ -460,7 +465,6 @@ void check()
             }*/
             flurry_hit();
         }
-        caster->spend_ki(1);
         //making it simply not function when out of ki - Saide
         /* if(!(int)"/daemon/user_d.c"->can_spend_ki(caster, 1))
         {

@@ -13,7 +13,7 @@ void create()
     ::create();
     set_author("tlaloc");
     set_spell_name("lunar veil");
-    set_spell_level(([ "mage" : 7 ]));
+    set_spell_level(([ "mage" : 7, "cleric" : 7 ]));
     set_domains("moon");
     set_spell_sphere("illusion");
     set_syntax("cast CLASS lunar veil");
@@ -64,9 +64,11 @@ void remove_were()
 
 void dest_effect()
 {
-    tell_room(place, "The dispelling magics seem to dissapate and the darkness subsides.");
-    
-    place->set_light(olight);
+    if(objectp(place))
+    {
+        tell_room(place, "The dispelling magics seem to dissapate and the darkness subsides.");
+        place->set_light(olight);
+    }
     
     if(find_call_out("remove_were") >= 0)
         remove_call_out("remove_were");

@@ -42,6 +42,7 @@ string school_of_opposition;
 string sorc_bloodline;
 string oracle_mystery;
 string psion_discipline;
+string inquisition;
 //by Circe, for psions 7/16/05
 string* divine_domain = ({}); // For cleric domains -Ares 4/7/07
 string* quest_spells = ({}); // For priest quest spells - Ares 4/8/08
@@ -245,11 +246,25 @@ void set_parrying(int i)
     parrying = i;
 }
 
-int query_parrying()
+int query_parrying(object att)
 {
-    object* weapons;
+    object* weapons, *eweapons;
     weapons = TO->query_wielded();
+    
+    objectp(att) && eweapons = att->query_wielded();
+    
+    //can't parry if both weapons ranged
+    if(sizeof(eweapons) && eweapons[0]->is_lrweapon() && !FEATS_D->usable_feat(this_object(), "deflect arrows"))
+    {
+        if(sizeof(eweapons) == 1)
+            return 0;
+            
+        if(sizeof(eweapons) > 1 && eweapons[1]->is_lrweapon())
+            return 0;
+    }
+    
     if (sizeof(weapons) && !weapons[0]->is_lrweapon()) {
+            
         if (FEATS_D->usable_feat(TO, "parry")) {
             return 1;
         }
@@ -311,6 +326,7 @@ void reinit_path()
 void heart_beat()
 {
     int myskill, mylevel, i;
+    object attacker;
 
     if (!objectp(TO)) {
         return;
@@ -341,6 +357,11 @@ void heart_beat()
     if (TO->is_class("paladin") || TO->is_class("cleric")) {
         USER_D->regenerate_pool(TO, 1, 1, "grace");
     }
+    if (this_object()->is_class("psion") || this_object()->is_class("psywarrior"))
+    {
+        USER_D->regenerate_pool(this_object(), 1, 1, "focus");
+    }
+
     //enhancement effects
     "/cmds/mortal/_enhance.c"->run_enhances_timer(TO, "weapon");
     "/cmds/mortal/_enhance.c"->run_enhances_timer(TO, "armor");
@@ -376,7 +397,10 @@ void heart_beat()
     }
 
     if (!(living_ticker % 3)) {
-        // change help status effects when adjusting this
+        //Central way to remove instant feat locks when out of combat
+        if(!this_object()->query_current_attacker())
+            this_object()->remove_property("using instant feat");
+        
         if (FEATS_D->usable_feat(TO, "regeneration")) {
             if (query_hp() < query_max_hp()) {
                 add_hp(roll_dice(1, TO->query_level()) / 2 + 1);
@@ -387,6 +411,97 @@ void heart_beat()
                 add_hp(query_property("fast healing") * roll_dice(1, TO->query_level() / 2 + 1));
             }
         }
+
+        if(this_object()->is_class("metamind"))
+        {
+            if(this_object()->query("available focus"))
+                add_mp(1);
+        }
+
+        if(FEATS_D->usable_feat(this_object(), "psychic vampire") && !avatarp(this_object()) && !wizardp(this_object()) && !this_object()->query("no pk"))
+        {
+            object targs = all_inventory(environment(this_object()));
+            targs = filter_array(targs, (: userp($1) :));
+            targs -= ({ this_object() });
+
+            foreach(object ob in targs)
+            {
+                if(ob->query("no pk"))
+                    continue;
+
+                if(ob->query_mp() && !ob->query("no pk") && !wizardp(ob) && !avatarp(ob))
+                {
+                    /*
+                    if(!random(5))
+                        tell_object(ob, "%^MAGENTA%^You feel something pull on your mind.");
+                    ob->add_mp(-1);
+                    */
+                }
+            }
+
+            add_mp(sizeof(targs));
+        }
+        
+        if(this_object()->is_shade() &&
+        !random(8) &&
+        !avatarp(this_object()) &&
+        !wizardp(this_object()) &&
+        !this_object()->query_hidden() &&
+        !this_object()->query_property("altered") &&
+        !this_object()->query_invis())
+        {
+            object room = environment(this_object());
+            
+            switch(total_light(room))
+            {
+                case 0..1:
+                tell_object(this_object(), "%^BLACK%^BOLD%^Whisps of darkness coalesce from the shadows around you.%^RESET%^");
+                tell_room(room, "%^BOLD%^BLACK%^Whisps of darkness coalesce from the shadows around " + this_object()->query_cap_name(), this_object());
+                break;
+                case -5..-1:
+                tell_object(this_object(), "%^BOLD%^BLACK%^You feel your body meld with the darkness around you.");
+                tell_room(room, "%^BOLD%^BLACK%^" + this_object()->query_cap_name() + "'s body seems to meld with the darkness around " + this_object()->query_objective() + ".", this_object());
+                break;
+                case -10..-6:
+                tell_object(this_object(), "%^BOLD%^BLACK%^You are engulfed in a miasma of shadowy energy.");
+                tell_room(room, "%^BOLD%^BLACK%^" + this_object()->query_cap_name() + " is engulfed in a miasma of shadowy energy.", this_object());
+                break;
+            }
+        }
+        
+        //Screen Reader Support. Tells screen reader users in the room, briefly, what we are attacking.
+        attacker = this_object()->query_current_attacker();
+        
+        if(attacker && userp(this_object()))
+        {
+            object *readers;
+            
+            readers = filter_array(all_inventory(environment(this_object())), (: $1->query("reader") :));
+            
+            foreach(object person in readers)
+                tell_object(person, this_object()->QCN + " is fighting " + attacker->QCN + ".");
+        }   
+
+        if(this_object()->is_undead())
+            this_object()->remove_property("rend");
+        
+        if(PLAYER_D->immunity_check(this_object(), "rend"))
+            this_object()->remove_property("rend");
+
+        if(this_object()->query_property("rend"))
+        {
+            tell_room(environment(this_object()), "%^RED%^BOLD%^" + this_object()->QCN + "'s wounds bleed profusely!%^RESET%^", ({ this_object() }));
+            tell_object(this_object(), "%^RED%^BOLD%^Your wounds bleed profusely!%^RESET%^");
+            this_object()->cause_typed_damage(this_object(), "torso", roll_dice(query_property("rend"), this_object()->query_level() / 5 + 1), "untyped");
+            this_object()->set_property("rend", -1);
+            if(this_object()->query_property("rend") <= 0)
+            {
+                tell_room(environment(this_object()), "%^WHITE%^BOLD%^" + this_object()->QCN + "'s wounds stop bleeding.%^RESET%^", ({ this_object() }));
+                tell_object(this_object(), "%^WHITE%^BOLD%^Your wounds stop bleeding.%^RESET%^");
+                this_object()->remove_property("rend");
+            }
+        }
+
         if (is_vampire()) {
             if (TO->is_in_sunlight()) {
                 int todamage = query_max_hp() / 4 + 1;
@@ -544,16 +659,19 @@ nomask protected int cmd_hook(string cmd)
         return 1;
     }
 
-    if (objectp(shapeshift_restricted_commands = find_object_or_load("/std/races/shapeshifted_races/restricted_commands"))) {
-        if (!shapeshift_restricted_commands->allow_shifted_command(TO, verb, cmd)) {
-            if (!TO->query("no_commands_allowed")) {
-                if (cmd) {
-                    tell_object(TO, "You can't " + verb + " " + cmd + " while shapeshifted.");
-                }else {
-                    tell_object(TO, "You can't " + verb + " while shapeshifted.");
+    if(this_object()->query_property("shapeshifted"))
+    {
+        if (objectp(shapeshift_restricted_commands = find_object_or_load("/std/races/shapeshifted_races/restricted_commands"))) {
+            if (!shapeshift_restricted_commands->allow_shifted_command(TO, verb, cmd)) {
+                if (!TO->query("no_commands_allowed")) {
+                    if (cmd) {
+                        tell_object(TO, "You can't " + verb + " " + cmd + " while shapeshifted.");
+                    }else {
+                        tell_object(TO, "You can't " + verb + " while shapeshifted.");
+                    }
                 }
+                return 1;
             }
-            return 1;
         }
     }
 
@@ -636,6 +754,18 @@ string* query_divine_domain()
         return ({});
     }
     return divine_domain;
+}
+
+string set_inquisition(string str)
+{
+    inquisition = str;
+
+    return inquisition;
+}
+
+string query_inquisition()
+{
+    return inquisition;
 }
 
 void set_acquired_template(string str)
@@ -1198,7 +1328,10 @@ string query_long(string unused)
     }
     stuff = "";
     extra = "";
-    stuff = describe_item_contents(({}));
+    
+    if(!this_object()->query_property("hidden inventory"))
+        stuff = describe_item_contents(({}));
+    
     if (stuff == "") {
         reg += sub + " are empty handed.\n";
     } else {
@@ -1322,7 +1455,11 @@ int query_stats(string stat)
     {
         if(stat == "strength" && member_array("strength", TO->query_divine_domain()) >= 0)
             res += 2;
-        if(stat == "charisma" && member_array("charm", TO->query_divine_domain()) >= 0)
+    }
+    
+    if(this_object()->query_class_level("oracle") >= 10)
+    {
+        if(stat == "strength" && this_object()->query_mystery() == "dragon")
             res += 2;
     }
 
@@ -1504,7 +1641,21 @@ string query_al_title()
 
 int query_sight_bonus()
 {
-    return (EQ_D->gear_bonus(TO, "sight bonus") + sight_bonus);
+    string temp;
+    object file;
+    int temp_bonus = 0;
+    
+    temp = this_object()->query_acquired_template();
+    
+    if(temp)
+    {
+        file = find_object("/std/acquired_template/" + temp + ".c");
+        
+        if(objectp(file))
+            temp_bonus = file->sight_bonus();
+    }          
+    
+    return (EQ_D->gear_bonus(TO, "sight bonus") + sight_bonus + temp_bonus);
 }
 
 int query_age()
@@ -1655,6 +1806,9 @@ int query_attack_bonus()
         ret += 1;
     }
 
+    if(this_object()->is_class("psywarrior") && this_object()->query("available focus"))
+        ret += 1;
+
     attacker = TO->query_current_attacker();
 
     //Added by Tlaloc to handle favored enemies for Rangers
@@ -1677,6 +1831,34 @@ int query_attack_bonus()
             FEATS_D->usable_feat(TO, "improved quarry") && ret += 2;
         }
     }
+    
+    if(attacker && this_object()->query_race() == "dwarf")
+    {
+        if(this_object()->query("subrace") != "gray dwarf")
+        {
+            if(USER_D->is_valid_enemy(attacker->query_race(), "orcs") || USER_D->is_valid_enemy(attacker->query_race(), "goblins"))
+                ret += 1;
+        }
+        else
+        {
+            if(attacker->query_race() == "drow")
+                ret += 1;
+        }
+    }
+    
+    if(attacker && this_object()->query_race() == "gnome")
+    {
+        if(this_object()->query("subrace") == "forest gnome" || this_object()->query_race() == "rock gnome")
+        {
+            if(USER_D->is_valid_enemy(attacker->query_race(), "lizardfolk") || USER_D->is_valid_enemy(attacker->query_race(), "goblins"))
+                ret += 1;
+        }
+        else if(this_object()->query("subrace") == "deep gnome")
+        {
+            if(USER_D->is_valid_enemy(attacker->query_race(), "dwarves") || USER_D->is_valid_enemy(attacker->query_race(), "lizardfolk"))
+                ret += 1;
+        }        
+    }
 
     //Inquisitor Bane
     if(this_object()->query_property("bane weapon") && sizeof(weap) && attacker)
@@ -1697,6 +1879,9 @@ int query_attack_bonus()
         if(valid)
             ret += 2;
     }
+    
+    //Paladin capstone
+    ret += this_object()->query_property("hand of the gods");
 
     if (FEATS_D->usable_feat(TO, "true strikes") &&
         TO->validate_combat_stance("one hander")) {
@@ -1705,6 +1890,9 @@ int query_attack_bonus()
 
     if(FEATS_D->usable_feat(TO, "slay the undead") && attacker && attacker->is_undead())
         ret += 2;
+    
+    if(this_object()->query_race() == "nightwing" && total_light(environment(this_object())) > -1)
+        ret -= 4;
 
     return ret;
 }
@@ -1735,6 +1923,9 @@ int query_damage_bonus()
         ret += 2;
     }
 
+    if(this_object()->is_class("psywarrior") && this_object()->query("available focus"))
+        ret += 1;
+
     attacker = TO->query_current_attacker();
 
     //Added by Tlaloc to handle favored enemies for Rangers
@@ -1750,6 +1941,9 @@ int query_damage_bonus()
             FEATS_D->usable_feat(TO, "third favored enemy") && ret += 2;
         }
     }
+    
+    if(FEATS_D->is_active(this_object(), "rending blows"))
+        ret -= 5;
 
     if(FEATS_D->usable_feat(TO, "slay the undead") && attacker && attacker->is_undead())
         ret += 2;
@@ -1784,6 +1978,9 @@ int query_damage_bonus()
                 ret += 2;
         }
     }
+    
+    if(this_object()->query_race() == "nightwing" && total_light(environment(this_object())) > -1)
+        ret -= 4;
 
     return ret;
 }
@@ -1892,6 +2089,9 @@ void set_detecting_invis(int xx)
 
 int true_seeing()
 {
+    if(!objectp(TO) || !objectp(ETO))
+        return 0;
+    
     return true_seeing || ETO->query_property("no invis") || avatarp(TO);
 }
 
@@ -2225,9 +2425,10 @@ int is_undead()
     return (query("undead") ||
             query_property("undead") ||
             query_race() == "undead" ||
-            member_array("undead", query_id()) != -1 ||
+            query_race() == "nightwing" ||
+            member_array("undead", this_object()->query_id()) != -1 ||
             query_acquired_template() == "undead" ||
-            query_acquired_template() == "vampire") || 0;
+            query_acquired_template() == "vampire");
 }
 
 /**
@@ -2256,6 +2457,41 @@ int is_were()
     if (query_acquired_template() == "weretiger" || query_acquired_template() == "werewolf" || query_acquired_template() == "wererat") {
         return 1;
     }
+    return 0;
+}
+
+int is_shade()
+{
+    if(query_acquired_template() == "shade")
+        return 1;
+
+    return 0;
+}
+
+int is_feyborn()
+{
+    if(query_acquired_template() == "feyborn")
+        return 1;
+
+    return 0;
+}
+
+int is_deva()
+{
+    if(query_acquired_template() == "deva")
+        return 1;
+
+    return 0;
+}
+
+int is_feared()
+{
+    if(TO->query_property("effect_cowering") ||
+       TO->query_property("effect_frightened") ||
+       TO->query_property("effect_panicked") ||
+       TO->query_property("effect_shaken"))
+        return 1;
+
     return 0;
 }
 

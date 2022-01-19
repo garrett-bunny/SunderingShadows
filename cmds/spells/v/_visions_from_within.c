@@ -16,12 +16,13 @@ void create()
     set_spell_sphere("illusion");
     set_discipline("telepath");
     set_syntax("cast CLASS visions from within");
-    set_damage_desc("mental");
-    set_description("With this spell the caster shares own nightmares with everyone in the area.");
+    set_damage_desc("mental damage and cowering on failed save");
+    set_description("With this spell the caster shares own nightmares with everyone in the area. All affected targets take mental damage and are left cowering if they fail a saving throw. Those that succeed on their save will take half damage and are left shaken.");
     set_verbal_comp();
     set_somatic_comp();
+    mental_spell();
     set_save("will");
-    set_components((["mage":(["rose petals":3,"slug":1])]));
+    //set_components((["mage":(["rose petals":3,"slug":1])]));
     aoe_spell(1);
     set_aoe_message("%^BOLD%^%^BLUE%^(%^BLACK%^populated with %^BLACK%^n%^BLUE%^i%^BLACK%^ght%^BLUE%^m%^BLACK%^ar%^BLUE%^i%^BLACK%^s%^BLUE%^h%^BLACK%^ horrors%^BLUE%^)%^RESET%^");
 }
@@ -66,16 +67,22 @@ void execute_attack()
     for(i=0;i<sizeof(foes);i++) {
         if(!objectp(targ = foes[i]))
             continue;
-        if(do_save(targ,4))
+        
+        if(targ->query_property("effect_cowering") || targ->query_property("effect_shaken"))
+            continue;
+        
+        if(do_save(targ, 0) || PLAYER_D->immunity_check("fear"))
         {
-            tell_object(targ,"%^RESET%^%^BOLD%^%^BLACK%^Nigh%^BLUE%^t%^BLACK%^mar%^BLUE%^e%^BLACK%^s%^BLACK%^ pierce into your mind, but you manage to shrug some of them.%^RESET%^%^RESET%^");
+            tell_object(targ,"%^RESET%^%^BOLD%^%^BLACK%^Nigh%^BLUE%^t%^BLACK%^mar%^BLUE%^e%^BLACK%^s%^BLACK%^ pierce into your mind, but you manage to shrug some of them off.%^RESET%^%^RESET%^");
             damage_targ(targ,targ->return_target_limb(),sdamage/2,"mental");
+            "/std/effect/status/shaken"->apply_effect(targ, roll_dice(1, 4));
         }
         else
         {
             tell_object(targ,"%^RESET%^%^BOLD%^%^BLACK%^Nigh%^BLUE%^t%^BLACK%^mar%^BLUE%^e%^BLACK%^s%^BLACK%^ pierce into your mind!%^RESET%^%^RESET%^");
             tell_room(place,"%^BOLD%^%^GREEN%^"+targ->QCN+"%^BOLD%^%^BLACK%^'s mind is %^BLACK%^ravag%^BLUE%^e%^BLUE%^d%^BLACK%^ by the %^BLUE%^n%^BLACK%^i%^BLUE%^g%^BLUE%^h%^BLACK%^tma%^BLUE%^r%^BLUE%^e%^BLUE%^s%^BLACK%^!%^RESET%^%^RESET%^",({targ}));
-            targ->set_paralyzed(1,"%^RESET%^%^BLUE%^No! No! NO! I must run away! This can't be real!%^RESET%^");
+            //targ->set_paralyzed(1,"%^RESET%^%^BLUE%^No! No! NO! I must run away! This can't be real!%^RESET%^");
+            "/std/effect/status/cowering"->apply_effect(targ, roll_dice(1, 4));
             damage_targ(targ,targ->return_target_limb(),sdamage,"mental");
         }
     }

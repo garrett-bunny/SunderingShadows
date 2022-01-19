@@ -134,7 +134,7 @@ int prerequisites(object player)
 
 mapping stat_requirements(object ob) { return base_class_ob(ob)->stat_requirements(); }
 
-int *saving_throws(object ob) { return ({0,1,1}); }
+int *saving_throws(object ob) { return base_class_ob(ob)->saving_throws(); }
 
 string *combat_styles() { return ({}); }
 
@@ -170,7 +170,7 @@ string new_save_type(object ob) { return base_class_ob(ob)->new_save_type(); }
 // unsure on this one, will have to investigate
 void advanced_func(object player) { return base_class_ob(player)->advance_func(player); }
 
-int hit_dice(object ob) { return 4; }  // hit dice rolled for hitpoints each level
+int hit_dice(object ob) { return base_class_ob(ob)->hit_dice(); }
 
 int default_hitpoints(object ob) { return base_class_ob(ob)->default_hitpoints(); } // hitpoints per level above level 20
 

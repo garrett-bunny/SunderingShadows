@@ -39,14 +39,14 @@ void spell_effect(int prof) {
     tell_room(place,"%^GREEN%^An e%^BOLD%^%^GREEN%^e%^BOLD%^%^CYAN%^r%^BOLD%^%^GREEN%^i%^RESET%^%^GREEN%^e g%^BOLD%^%^GREEN%^l%^BOLD%^%^CYAN%^o%^RESET%^%^GREEN%^w lights "+caster->QCN+"'s eyes.%^RESET%^",caster);
     tell_object(caster,"%^GREEN%^The world around you snaps into stark clarity, an e%^BOLD%^%^GREEN%^e%^BOLD%^%^CYAN%^r%^BOLD%^%^GREEN%^i%^RESET%^%^GREEN%^e g%^BOLD%^%^GREEN%^l%^BOLD%^%^CYAN%^o%^RESET%^%^GREEN%^w outlining each and every detail.%^RESET%^");
 
-    if(member_array((string)caster->query_race(),LIVING_D->night_races()) != -1) modifier = -10;
+    if(member_array((string)caster->query_race(),PLAYER_D->night_races()) != -1) modifier = -10;
     else modifier = 8;
     caster->set_detecting_invis(1);
     caster->add_sight_bonus(modifier);
     spell_successful();
     addSpellToCaster();
     caster->set_property("spelled", ({TO}) );
-    spell_duration = (clevel + roll_dice(1, 20)) * ROUND_LENGTH * 4;
+    spell_duration = (10 + clevel / 2 * roll_dice(1, 4)) * ROUND_LENGTH;
     set_end_time();
     call_out("dest_effect",spell_duration);
 }

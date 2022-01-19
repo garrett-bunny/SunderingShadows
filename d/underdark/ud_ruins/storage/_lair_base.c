@@ -110,7 +110,7 @@ void find_nothing(object player) {
         "find anything."
     );
     tell_room(TO,
-        "%^ORANGE%^+player->QCN+ digs around in the gravel for a while."
+        "%^ORANGE%^"+player->QCN+" digs around in the gravel for a while."
     ,({player}));
 }
 

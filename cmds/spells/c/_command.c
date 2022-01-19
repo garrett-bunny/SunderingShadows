@@ -6,7 +6,7 @@ void create()
 {
     ::create();
     set_spell_name("command");
-    set_spell_level(([ "paladin" : 1, "cleric" : 1, "inquisitor" : 1, "psion" : 1, "warlock" : 1 ]));
+    set_spell_level(([ "paladin" : 1, "cleric" : 1, "inquisitor" : 1, "bard" : 1, "warlock" : 1, "mage" : 1 ]));
     set_spell_sphere("enchantment_charm");
     set_discipline("telepath");
     set_syntax("cast CLASS command on TAGET to COMMAND");
@@ -34,6 +34,11 @@ void spell_effect()
     {
         tell_object(caster,"That is not here!");
         dest_effect();
+        return;
+    }
+
+    if (!caster->ok_to_kill(target)) {
+        if(objectp(TO)) TO->remove();
         return;
     }
 

@@ -80,11 +80,11 @@ void bite(object targ)
     if(targ->reflex_save(10))
     {
         tell_object(targ, "%^BOLD%^%^BLACK%^The hell hounds leaps at "+
-        "you, its teeth gnashing, and you narrowly avoid its vicious mawl!"+
+        "you, its teeth gnashing, and you narrowly avoid its vicious maw!"+
         "%^RESET%^");
         tell_room(environment(targ), "%^BOLD%^%^BLACK%^The hell hound "+
         "leaps at "+targ->query_cap_name()+" and "+
-        targ->query_subjective()+" narrowly avoids its vicious mawl!"+
+        targ->query_subjective()+" narrowly avoids its vicious maw!"+
         "%^RESET%^", ({targ}));
         return;
     }

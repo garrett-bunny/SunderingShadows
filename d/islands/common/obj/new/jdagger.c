@@ -59,13 +59,13 @@ int hit_func(object targ)
     int i;
 
     if (!objectp(TO)) {
-        return 1;
+        return 0;
     }
     if (!objectp(ETO)) {
-        return 1;
+        return 0;
     }
     if (!objectp(targ)) {
-        return 1;
+        return 0;
     }
 
     if (random(1000) < 500) {
@@ -113,7 +113,8 @@ int hit_func(object targ)
 
             for (i = 0; i < 13; i++) {
                 tell_object(targ, "%^BOLD%^%^RED%^You feel a stabbing sensation in your head!");
-                targ->do_damage("torso", roll_dice(6, 10));
+                targ->cause_typed_damage(targ, "head", roll_dice(6, 10), "mental");
+                //targ->do_damage("torso", roll_dice(6, 10));
             }
 
             set_property("magic", -1);

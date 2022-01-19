@@ -6,7 +6,7 @@ void create() {
 	::create();
 	set_name("leather coif");
 	set_short("A leather coif");
-	set_id(({"helm","helmet","A leather coif","leather coif","coif"}));
+	set_id(({"helm","helmet","A leather coif","leather coif","coif", "armor"}));
 	set_long(
 	"This coif has been made from leather that has been boiled to be especially"+
 	" hard.  It is round in shape, fitting closely to one's head.  It looks"+
@@ -17,7 +17,7 @@ void create() {
 	set_type("leather");
 // Must be type leather for thiefs to sneak in.
 	set_limbs(({"head"}));
-//        set_ac(1);
+    set_ac(1);
     set_armor_prof("light");
 }
 

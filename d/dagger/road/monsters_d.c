@@ -69,7 +69,7 @@ void do_guard(){
 
     //return; // Temporary fix for guards being pulled off dagger road.
     numguards = sizeof(children(GUARD))-1;
-    num = random(10)+1;
+    num = random(2)+1;
 
     if(num <= numguards) return;
 

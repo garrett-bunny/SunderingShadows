@@ -12,7 +12,7 @@ void create(){
    set_property("no teleport",1);
    set_property("indoors",1);
    set_short("%^BLUE%^An immense cavern%^RESET%^");
-   set_terrain(CEMETERY);
+   set_terrain(NAT_TUNNEL);
    set_travel(FOOT_PATH);
    set_smell("default","%^ORANGE%^The dank smell of %^BOLD%^%^BLACK%^sto%^RESET%^n%^BOLD%^%^BLACK%^e %^RESET%^%^ORANGE%^"
 "is tainted by a hint of %^GREEN%^a%^BOLD%^c%^RESET%^%^GREEN%^rid %^ORANGE%^air.%^RESET%^");

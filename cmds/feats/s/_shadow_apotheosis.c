@@ -5,6 +5,7 @@
 inherit FEAT;
 
 object* exclude = ({});
+int caster_stat;
 
 void create()
 {
@@ -15,6 +16,7 @@ void create()
     feat_prereq("Shadow adept L7");
     feat_syntax("shadow_apotheosis");
     feat_desc("A shadow adept with shadow apotheosis is able to project an aura of shadows about himself that will lash out at nearby enemies. The shadows will sometimes inflict damage on his enemies and sometimes harm them in other ways.");
+    allow_blind(1);
 }
 
 int allow_shifted()
@@ -83,6 +85,8 @@ void execute_feat()
     caster->set_property("added short", ({ "%^RESET%^%^BOLD%^%^BLACK%^ (surrounded by a vortex of shadows)%^RESET%^" }));
 
     caster->set_property("active_feats", ({ TO }));
+    
+    caster_stat = max( ({ BONUS_D->query_stat_bonus(caster, "intelligence"), BONUS_D->query_stat_bonus(caster, "charisma"), BONUS_D->query_stat_bonus(caster, "wisdom") }) );
 
     ::execute_feat();
     return;
@@ -150,8 +154,10 @@ void shadow_effects(object obj)
     case 0: // trip
 
         tell_object(obj, cm("A shadowy tendril lashes out from " + caster->QCN + "'s vortex of shadows and tries to grasp you!"));
-        if (!obj->reflex_save(clevel) && !obj->query_property("no trip")) {
+        set_save("reflex");
+        if (!do_save(obj, caster_stat)  && !obj->query_property("no trip")) {
             tell_object(obj, cm("The shadowy tendril wraps around your ankle and pulls you from your feet!"));
+            obj->set_tripped(roll_dice(1, 4) * 4, cm("You are trying to regain your feet"));
         }else {
             tell_object(obj, cm("You managed to sidestep the grasping tendril!"));
         }
@@ -160,7 +166,8 @@ void shadow_effects(object obj)
     case 1..3: // stun
 
         tell_object(obj, cm("A streak of darkness flies from " + caster->QCN + "'s shadow vortex and flies towards your head!"));
-        if (!obj->reflex_save(clevel) && !obj->query_property("no stun")) {
+        set_save("reflex");
+        if (!do_save(obj, caster_stat) && !obj->query_property("no stun")) {
             tell_object(obj, cm("You try to dodge but to no avail, the streak of darkness hits you in the head, staggering you with intense pain!"));
             obj->set_paralyzed(roll_dice(1, 4) * 4, cm("You are trying to recover your senses!"));
         }else {
@@ -171,7 +178,8 @@ void shadow_effects(object obj)
     case 4..7: // blind
 
         tell_object(obj, cm("An inky black shadow flies towards you, threatening to envelop you!"));
-        if (!obj->will_save(clevel) && !obj->query_property("no blind")) {
+        set_save("will");
+        if (!do_save(obj, caster_stat) && !obj->query_property("no blind")) {
             tell_object(obj, cm("The shadowy figure wraps about you like a dense blanket of smoke, making it impossible to see!"));
             obj->set_temporary_blinded(clevel / 20 + 1);
         }else {
@@ -181,14 +189,16 @@ void shadow_effects(object obj)
 
     case 8..14: //damage
 
-        damage = roll_dice(clevel, 2);
-        if (obj->fort_save(clevel)) {
+        damage = roll_dice(clevel, 6);
+        set_save("fort");
+        
+        if (do_save(obj, caster_stat)) {
             damage = damage / 2;
         }
 
         tell_object(obj, cm("A bolt of black lightning strikes out from the vortex surrounding " + caster->QCN + " striking you painfully!"));
         obj->cause_typed_damage(obj, obj->return_target_limb(), damage, "untyped");
-        caster->add_hp(damage / 6);
+        caster->add_hp(damage / 5);
         break;
     }
     return;

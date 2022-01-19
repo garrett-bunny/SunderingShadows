@@ -1,4 +1,6 @@
 #include "/d/dagger/road/short.h"
+#include <std.h>
+#include <security.h>
 
 #define ROADEND "/d/dagger/road/road2b"
 #define TONOVI1 "/d/dagger/tonovi/1path1"
@@ -31,6 +33,7 @@ void move_around() {
       exits = (string *)environment(this_object())->query_exits();
     else
       exits = 0;
+    seteuid(UID_SYSTEM);
     if(sizeof(exits)){
       exit = exits[random(sizeof(exits))];
       (environment(this_object())->query_exit(exit))->init();

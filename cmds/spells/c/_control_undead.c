@@ -26,7 +26,7 @@ If the will save suceeds or the target is not undead they will be outraged at yo
 
 Intelligent undead creatures remember that you controlled them, and they may be slightly upset they were under your power.
 
-%^BOLD%^%^RED%^N.B.%^RESET%^ If used on players this spell provide you with a limited subset of allowed commands.");
+%^BOLD%^%^RED%^N.B.%^RESET%^ This spell is not useable on players.");
     set_verbal_comp();
     set_somatic_comp();
     set_target_required(1);

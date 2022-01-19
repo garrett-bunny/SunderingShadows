@@ -1,6 +1,7 @@
 #include <std.h>
 #include <magic.h>
 #include <skills.h>
+#include <daemons.h>
 
 #pragma strict_types
 
@@ -29,6 +30,12 @@ void status_effect()
         TO->remove();
         return;
     }
+    
+    if (PLAYER_D->immunity_check(target, "confusion")) {
+        tell_object(target, "%^YELLOW%^You are immune to confusion.%^RESET%^");
+        TO->remove();
+        return;
+    }
 
     if (target->query_property("mind_immunity")) {
         int roll = roll_dice(1, 20);
@@ -46,31 +53,31 @@ void status_effect()
     }
 
     counter = duration;
-    maintain_confusion();
+    maintain_confusion(target);
 }
 
-void maintain_confusion()
+void maintain_confusion(object ob)
 {
     if (!objectp(caster) ||
-        !objectp(target)) {
-        dest_effect();
+        !objectp(ob)) {
+        dest_effect(ob);
     }
 
     if (counter < 0) {
-        dest_effect();
+        dest_effect(ob);
     }
 
-    CONFUSION->confuse(caster, target);
-    call_out("maintain_confusion", ROUND_LENGTH);
+    CONFUSION->confuse(caster, ob);
+    call_out("maintain_confusion", ROUND_LENGTH, ob);
     counter--;
 }
 
-void dest_effect()
+void dest_effect(object ob)
 {
     int i;
-    if (objectp(target)) {
-        tell_object(target, "%^ORANGE%^You are no longer confused.%^RESET%^");
-        target->remove_property("effect_confused");
+    if (objectp(ob)) {
+        tell_object(ob, "%^ORANGE%^You are no longer confused.%^RESET%^");
+        ob->remove_property("effect_confused");
     }
     ::dest_effect();
 }

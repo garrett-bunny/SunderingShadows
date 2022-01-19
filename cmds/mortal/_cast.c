@@ -68,17 +68,8 @@ int cmd_cast(string str)
     } else {
         healharm = 0;
     }
-    
-    /*
-    if (regexp(str, "as [a-z]+ domain")) {
-        domain = 1;
-        sscanf(str, "%s as %s domain", str2, domain_name);
 
-        str = replace_string(str, "as " + domain_name + " domain", "", 1);
-    }
-    */
-    
-    if (regexp(str, implode(LIVING_D->list_classes(), "|") + "|innate")) {
+    if (regexp(str, implode(PLAYER_D->list_classes(), "|") + "|innate|cantrip")) {
         if (!sscanf(str, "%s %s", type, str2)) {
             return notify_fail("Syntax: <cast CLASS CAST_STRING>\n");
         }
@@ -97,7 +88,7 @@ int cmd_cast(string str)
         }
     }
 
-    if (!TP->is_class(type) && !avatarp(TP) && type != "innate") {
+    if (!TP->is_class(type) && !avatarp(TP) && type != "innate" && type != "cantrip") {
         return notify_fail("You can't cast spells as a " + type + "!\n");
     }
 
@@ -145,6 +136,15 @@ int cmd_cast(string str)
     if (type == "bard") {
         if (TP->is_wearing_type("armor") && !avatarp(TP)) {
             tell_object(TP, "You can't cast in all that armor.");
+            return 1;
+        }
+    }
+    
+    if(type == "druid")
+    {
+        if(this_player()->query_property("negative energy affinity"))
+        {
+            tell_object(this_player(), "Your negative energy affinity has severed your tie to nature.");
             return 1;
         }
     }
@@ -224,7 +224,7 @@ int cmd_cast(string str)
 
     if (TP->query("relationship_profile")) {
         if (strsrch((string)TP->query("relationship_profile"), "druid_") >= 0) {
-            if (TP->query_property("shapeshifted") && type != "innate" && type != "druid") {
+            if (TP->query_property("shapeshifted") && type != "innate" && type != "cantrip" && type != "druid") {
                 tell_object(TP, "You can only cast druid spells or innate abilities while in druidic form.");
                 return 1;
             }
@@ -297,12 +297,16 @@ int cmd_cast(string str)
         targ->set_silent_casting(1);
     }
 
-    if (type != "innate") {
+    if (type != "innate" && type != "cantrip") {
         targ->wizard_interface(TP, type, tar);
     }
     if (type == "innate") {
         targ->use_spell(TP, tar, (int)TP->query_innate_ability_level(str2), 100, "innate");
     }
+    if (type == "cantrip") { //this should really use wizard interface somehow to pick up the proper clevels, might need to define cantrips differently
+        targ->use_spell(this_player(), tar, TP->query_base_character_level(), 100, "cantrip");
+    }
+
     return 1;
 }
 
@@ -362,6 +366,11 @@ Some spells are innate.   They can be cast without preparing them.
 EX:   cast innate undeath ward
 
 Would cast undeath ward if you are a crypt stalker with enough levels for that ability.
+
+%^CYAN%^CANTRIP CASTING%^RESET%^
+Casting classes also get a few cantrip spells, which can be cast without preparation.
+EX:   cast cantrip acid splash
+
 
 %^CYAN%^SEE ALSO%^RESET%^
 

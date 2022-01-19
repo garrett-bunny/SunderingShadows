@@ -18,8 +18,7 @@ create()
 {
     ::create();
     set_spell_name("sleep");
-    set_spell_level(([ "mage" : 1, "bard" : 1, "cleric" : 1, "psion" : 1, "oracle" : 1, "cleric" : 1 ]));
-    set_domains("charm");
+    set_spell_level(([ "mage" : 1, "bard" : 1, "psion" : 1, "oracle" : 1 ]));
     set_mystery("lunar");
     set_spell_sphere("enchantment_charm");
     set_syntax("cast CLASS sleep on TARGET");
@@ -81,7 +80,7 @@ spell_effect(int prof)
         if (do_save(this_target, 0) == 1 ) {
             resisted = 1;
         }
-        if (LIVING_D->immunity_check(this_target, "sleep") == 1) {
+        if (PLAYER_D->immunity_check(this_target, "sleep") == 1) {
             resisted = 1;
         }
         if (mind_immunity_check(this_target, "default") == 1) {

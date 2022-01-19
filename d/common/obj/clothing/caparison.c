@@ -5,7 +5,7 @@ inherit ARMOUR;
 void create() {
      ::create();
      set_name("caparison");
-     set_id(({ "caparison", "linen caparison" }));
+     set_id(({ "caparison", "linen caparison", "clothing" }));
      set_short("linen caparison");
      set_long("This simple caparison is crafted from linen.  Such a garment "
 "usually serves as a decorative drape for a mount, though some sturdier ones "

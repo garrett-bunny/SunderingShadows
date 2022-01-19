@@ -40,13 +40,15 @@ int wearme()
         return 0;
     }
 
-    if(!(TP->is_class("mage") || TP->is_class("sorcerer")) || ((int)ETO->query_guild_level("mage") < 35 && (int)ETO->query_guild_level("sorcerer") < 35)) 
+    if(this_player()->query_guild_level("mage") < 35 &&
+       this_player()->query_guild_level("sorcerer") < 35 &&
+       this_player()->query_guild_level("magus") < 35)
     {
-        tell_object(ETO,"You have not yet powerful enough to make use of this item.");
+        tell_object(ETO,"You are not yet powerful enough to make use of this item.");
         return 0;
     }
 
-    if(ETO->is_class("mage")) {
+    if(ETO->is_class("mage") || ETO->is_class("magus")) {
         TO->set_item_bonus("intelligence",4);
         TO->set_item_bonus("charisma",0);
     }

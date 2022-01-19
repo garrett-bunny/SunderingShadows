@@ -61,12 +61,15 @@ void create()
    set_ac(0);
    set_value(5000);
    set_property("enchantment",3);
-   set_item_bonus("magic resistance",1);
+   set_item_bonus("magic resistance",2);
    set_wear((:TO,"wearme":));
 }
 
 int wearme()
 {
+   if(ETO->is_monster()){
+      return 1;
+   }
    if(ETO->query_lowest_level() < 19) {
       tell_object(ETO,"You're not experienced enough to utilize this equipment.");
       return 0;

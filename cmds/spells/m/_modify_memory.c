@@ -6,18 +6,29 @@ create()
 {
     ::create();
     set_spell_name("modify memory");
-    set_spell_level(([ "assassin" : 4, "bard" : 4, "psion" : 4, "oracle" : 4]));
-    set_mystery("lore");
-    set_domains(({ "mentalism" }));
+    set_spell_level(([ "assassin" : 4, "bard" : 4, "psion" : 4 ]));
     set_spell_sphere("enchantment_charm");
     set_syntax("cast CLASS modify memory on TARGET");
     set_description("This spell alters victim's memory so they won't remember who you are. Should their will falter they will forget your name and will be momentarily dazed.");
     mental_spell();
+    diminish_returns();
     set_verbal_comp();
     set_somatic_comp();
     set_target_required(1);
     set_silent_casting(1);
     set_save("will");
+}
+
+int preSpell()
+{
+    /*
+    if(caster->cooldown("modify memory"))
+    {
+        tell_object(caster, "You have to wait to cast this spell again.");
+        return 0;
+    }
+    */
+    return 1;
 }
 
 string query_cast_string()
@@ -48,13 +59,17 @@ void spell_effect(int prof)
         }
 
         spell_successful();
+        
         tell_object(caster, "%^BLUE%^You sense your memory attempt succeeded, and your victim is momentarily dazed.%^RESET%^");
         target->set_paralyzed(roll_dice(1, 3) * 8, "%^RESET%^%^BLUE%^You feel oblivious and momentarily distracted... As if you have forgotten something.%^RESET%^");
         target->remove_relationship_profile(caster->query_true_name(), caster_profile);
         caster->set_time_delay("modify_memory");
     }else {
-        tell_object(caster, "%^BLUE%^You sense your memory altering attempt failed.%^RESET%^");
+        tell_object(caster, "%^BLUE%^You sense your memory altering attempt failed. You will have to wait before using modify memory again.%^RESET%^");
+        tell_object(target, "You feel someone trying to invade your mind, but you shrug it off.");
+        //caster->add_cooldown("modify memory", 60);
     }
+
     dest_effect();
 }
 

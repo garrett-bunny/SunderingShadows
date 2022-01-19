@@ -32,6 +32,7 @@ void create(){
    set_max_internal_encumbrance(21);
    set_struck((:TO,"strike_func":));
    set_overallStatus(220);
+   set_property("no disenchant",1);
 }
 
 int wearme(){
@@ -41,7 +42,7 @@ int wearme(){
 }
 
 int strike_func(int damage, object what, object who){
-    if(random(1000) < 200){
+    if(!random(5)){
     //thanks to Cythera for the code to follow and the describes.  Super cool and needs to be recognized
       tell_room(environment(query_worn()),"%^BOLD%^%^BLUE%^"+ETOQCN+" tears"+
         " off a %^RESET%^star %^BOLD%^%^BLUE%^from "+ETO->QP+" robe that forms into a "+
@@ -56,4 +57,5 @@ int strike_func(int damage, object what, object who){
          " shuriken %^BLUE%^which they hurl at you!");
         who->cause_typed_damage(who, "torso", roll_dice(1, 8) + 5, "piercing");
    }
+   return damage;
 }

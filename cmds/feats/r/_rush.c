@@ -3,7 +3,7 @@
 #include <magic.h>
 inherit FEAT;
 
-int FEATTIMER = 25;
+int FEATTIMER = (25 - (FEATS_D->usable_feat(caster, "abundant tactics") * 5));
 //check time in magic.h
 
 int allow_shifted() { return 1; }
@@ -11,10 +11,10 @@ int allow_shifted() { return 1; }
 void create() {
     ::create();
     feat_type("instant");
-    feat_category("MeleeDamage");
+    feat_category("CombatManeuvers");
     feat_syntax("rush [TARGET]");
     feat_prereq("Strength 13");
-    feat_desc("The character can attempt to rush at a foe with their weapon, throwing as much force as they can behind it in the hope of dealing damage and knocking them over. Missing, however, will send the character sprawling. This will only work while shapeshifted, or using a standard melee weapon, unless the character has an aptitude in unarmed combat.
+    feat_desc("The character can attempt a combat maneuver to rush at a foe with their weapon, throwing as much force as they can behind it in the hope of dealing damage and knocking them over. This combat maneuver causes an attack of opportunity from the victim unless the character also has the improved rush feat. This will only work while shapeshifted, or using a standard melee weapon. Monks or characters with the unarmed combat feat can also use this feat without a weapon.
 
 If used without an argument this feat will pick up a random attacker.
 
@@ -32,6 +32,14 @@ int prerequisites(object ob)
         dest_effect();
         return 0;
     }
+    
+    /*
+    if((ob->is_class("monk")) && (!FEATS_D->usable_feat(ob, "unarmed combat")))
+    {
+        return 0;
+    }
+    */
+    
     return ::prerequisites(ob);
 }
 
@@ -43,7 +51,8 @@ int cmd_rush(string str) {
     return 1;
 }
 
-void execute_feat() {
+void execute_feat()
+{
     object *myweapon;
     mapping tempmap;
     int rtime;
@@ -90,7 +99,7 @@ void execute_feat() {
         dest_effect();
         return;
     }
-    if(!sizeof(caster->query_wielded()) && !caster->query_property("shapeshifted")) {
+    if(!sizeof(caster->query_wielded()) && !caster->query_property("shapeshifted") && !caster->is_class("monk") && !FEATS_D->usable_feat(caster, "unarmed combat")) {
         tell_object(caster,"How can you rush at anyone without a weapon?");
         dest_effect();
         return;
@@ -117,7 +126,7 @@ void execute_feat() {
 }
 
 void execute_attack() {
-    int damage, timerz, i, enchant, res;
+    int damage, timerz, i, enchant, res, improved;
     object *weapon, *keyz,shape, *myweapon;
     mapping tempmap, newmap;
     string damtype;
@@ -138,7 +147,14 @@ void execute_attack() {
         dest_effect();
         return;
     }
+    /*
     if(!sizeof(caster->query_wielded()) && !caster->query_property("shapeshifted") && !FEATS_D->usable_feat(caster,"unarmed combat")) {
+        tell_object(caster,"How can you rush at anyone without a weapon?");
+        dest_effect();
+        return;
+    }
+    */
+    if(!sizeof(caster->query_wielded()) && !caster->query_property("shapeshifted") && !caster->is_class("monk") && !FEATS_D->usable_feat(caster, "unarmed combat")) {
         tell_object(caster,"How can you rush at anyone without a weapon?");
         dest_effect();
         return;
@@ -171,16 +187,29 @@ void execute_attack() {
 // combat daemon now has a calc which picks up monk, unarmed & shifted enchantment. Plz to use! N, 1/3/20.
         enchant = COMBAT_D->unarmed_enchantment(caster);
     }
-
-    if(!(res = thaco(target,enchant)))
+    
+    improved = FEATS_D->usable_feat(caster, "improved rush");
+    
+    //Improved Rush gives +2 bonus
+    enchant += (improved * 2);
+    
+    //Attack of opportunity from target
+    if(!improved)
+        target->execute_attack();
+        
+    //if(!(res = thaco(target,enchant)))
+    if(!(res = BONUS_D->combat_maneuver(target, caster, improved * 2)))
     {
         miss_mess(caster,target);
+        /*
         if (!FEATS_D->usable_feat(caster, "improved rush")) {
             caster->set_tripped(4, "You're recovering from your missed rush!", 4);
         }
+        */
         dest_effect();
         return;
     }
+    /*
     else if(res == -1)
     {
         if(stringp(caster->query("featMiss")))
@@ -196,7 +225,11 @@ void execute_attack() {
         dest_effect();
         return;
     }
-    damage = roll_dice(clevel,8); // up to d8 on a trial basis
+    */
+    
+    //+2 dice to damage for improved rush
+    clevel += (improved * 2);
+    damage = roll_dice(clevel,6); // up to d8 on a trial basis
 
     if(sizeof(myweapon))
     {
@@ -212,7 +245,7 @@ void execute_attack() {
     {
       damtype = "bludgeoning";
     }
-    damage += "/daemon/bonus_d"->damage_bonus(caster->query_stats("strength"));
+    damage += "/daemon/bonus_d"->query_stat_bonus(caster, "strength");
     damage += (int)caster->query_damage_bonus();
 
     if(target->query_property("weapon resistance"))

@@ -276,12 +276,13 @@ void daemonic_surprise(object vic)
               "a short phase.");
     tell_room(ETO, "%^RED%^As he finishes the chant, a red shadowy thing " +
               "flashes across your eyes.");
-    if (!vic->will_save(20 + roll_dice(1, 25))) {
+    if (!vic->will_save(60 + roll_dice(1, 25))) {
         tell_object(vic, "%^RED%^You suddenly feel tremedous pain and " +
                     "scream! An image of a demon appears and vanishes.");
         tell_room(ETO, "%^RED%^" + vic->query_cap_name() + " suddenly screams " +
                   "in pain!", vic);
-        vic->do_damage(vic->return_target_limb(), roll_dice(5, 20));
+        //vic->do_damage(vic->return_target_limb(), roll_dice(5, 20));
+        vic->cause_typed_damage(vic, vic->return_target_limb(), roll_dice(5, 20), "mental");
     }
 }
 
@@ -300,12 +301,13 @@ void energy_strike(object vic)
               "a short phase.");
     tell_room(ETO, "%^BLUE%^As he finishes the chant, you sense tremedous " +
               "flow of energy in the room.");
-    if (!vic->will_save(30 + roll_dice(1, 20))) {
+    if (!vic->will_save(60 + roll_dice(1, 20))) {
         tell_object(vic, "%^BLUE%^A bundle of energy strikes you like a " +
                     "sword. You scream in pain!");
         tell_room(ETO, "%^BLUE%^" + vic->query_cap_name() + " suddenly screams " +
                   "in pain!", vic);
-        vic->do_damage(vic->return_target_limb(), roll_dice(5, 20));
+        //vic->do_damage(vic->return_target_limb(), roll_dice(5, 20));
+        vic->cause_typed_damage(vic, vic->return_target_limb(), roll_dice(5, 20), "force");
     }
 }
 
@@ -323,14 +325,15 @@ void mind_blast(object vic)
     tell_room(ETO, "%^BOLD%^CYAN%^Batlin gathers some reagents and chants " +
               "a short phase.");
     tell_room(ETO, "%^CYAN%^Batlin concentrates for a moment.");
-    if (!vic->will_save(30 + roll_dice(1, 20))) {
+    if (!vic->will_save(60 + roll_dice(1, 20))) {
         tell_object(vic, "%^CYAN%^You feel a strange assult on your brain, " +
                     "an awfully strong power grows in your head, you start to lose " +
                     "control of your mind and your body!");
         tell_room(ETO, "%^CYAN%^" + vic->query_cap_name() + " suddenly looks " +
                   "odd, " + vic->query_possessive() + "+ face looks twisted, some " +
                   "expression of extreme pain appears.", vic);
-        vic->do_damage(vic->return_target_limb(), roll_dice(4, 20));
+        //vic->do_damage(vic->return_target_limb(), roll_dice(4, 20));
+        vic->cause_typed_damage(vic, vic->return_target_limb(), roll_dice(4, 20), "mental");
         vic->set_paralyzed(random(20) + 10, "%^CYAN%^Your mind is in chaos.");
     }
 }
@@ -395,7 +398,9 @@ void do_it()
         }
         living[i]->add_attacker(TO);
         living[i]->continue_attack();
-        switch (random(50)) {
+        switch (random(50))
+        {
+        /*
         case 0:
             tell_object(living[i], "%^BOLD%^RED%^Your god has abandoned " +
                         "you. Your soul has been taken over to the demon princes.\n\n" +
@@ -406,12 +411,13 @@ void do_it()
             living[i]->do_damage("torso", 100);
             living[i]->continue_attack();
             break;
+        */
 
-        case 1..20:
+        case 0..20:
             tell_object(living[i], "%^BOLD%^BLUE%^Your god decided to " +
                         "assist you in your fight with the demonic power.\n\n" +
                         "Batlin grins evilly.");
-            living[i]->set_hp(1);
+            living[i]->set_hp(100);
             living[i]->do_damage("torso", -19);
             living[i]->add_attacker(TO);
             living[i]->continue_attack();
@@ -420,7 +426,7 @@ void do_it()
         case 21..49:
             tell_object(living[i], "%^BOLD%^CYAN%^Your prayers go unanswered" +
                         ".\n\n%^BOLD%^CYAN%^Batlin grins evilly.");
-            living[i]->set_hp(1);
+            living[i]->set_hp(100);
             living[i]->do_damage("torso", -4);
             living[i]->add_attacker(TO);
             living[i]->continue_attack();
@@ -481,7 +487,7 @@ void die(object ob)
         tell_room(ETO, "%^MAGENTA%^Batlin whispers%^RESET%^: Be cursed forever...");
         start_event();
         if (objectp(attackers[0])) {
-            attackers[0]->set_mini_quest(qst, 2000000, qst);
+            attackers[0]->set_mini_quest(qst, 10000000, qst);
         }
     } else {
         tell_room(ETO, "Batlin chuckles with a smug grin...");

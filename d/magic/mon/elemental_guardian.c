@@ -17,7 +17,8 @@ void create()
     set_body_type("humanoid");
     set_size(1);
     set_base_damage_type("bludgeoning");
-    set_exp(1);      
+    set_exp(1);
+    set_monster_feats( ({ "perfect caster" }) );    
 }
 
 void heart_beat()
@@ -189,6 +190,12 @@ void setup_guardian(object caster, string myType)
     setup_as(myType);
     duration = (num*4) + 20;
     myMaster = caster;
+    set_property("minion", myMaster);
+    set_monster_feats(({
+        "spell focus",
+        "spell penetration",
+        "perfect caster",
+        }));
     return;
 }
 

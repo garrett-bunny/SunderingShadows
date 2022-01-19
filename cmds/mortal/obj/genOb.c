@@ -2,7 +2,7 @@
 #include <move.h>
 #include <objects.h>
 #define VMATERIALTYPES (["leatherworker" : ({ "leather" }), \
-                         "jeweller" : ({ "metal", "wood" }), \
+                         "jeweller" : ({ "metal" }), \
                          "armorsmith" : ({ "metal" }), \
                          "weaponsmith" : ({ "metal" }), \
                          "woodworker" : ({ "wood" }), \
@@ -727,7 +727,7 @@ int final_check()
 
 void finish_object()
 {
-    string fileName, l, subtype, * broken_sections;
+    string fileName, l, subtype, * broken_sections, repairtype;
     int quality, num, hops, extra, i, pocketsize;
     object ob;
 
@@ -832,6 +832,16 @@ void finish_object()
         write_file(fileName, "\tset_property(\"lore difficulty\"," + quality + ");\n");
     }
 
+    switch (skill) {
+        case "armorsmith": repairtype = "armorsmith"; break;
+        case "weaponsmith": repairtype = "weaponsmith"; break;
+        case "woodworker": repairtype = "woodwork"; break;
+        case "jeweller": repairtype = "jewel"; break;
+        case "tailor": repairtype = "tailor"; break;
+        case "leatherworker": repairtype = "leatherwork"; break;
+    }
+    write_file(fileName, "\tset_property(\"repairtype\", ({\""+repairtype+"\"}));\n");
+
     if (quality <= 16) { //modify weight, value, etc
         write_file(fileName, "\tplaceholder = (::query_weight() * 2) - ((::query_weight() * " + quality + ") \/16);\n");
         write_file(fileName, "\tset_weight(placeholder);\n");
@@ -881,6 +891,9 @@ void finish_object()
     tell_room(EETO, ETO->QCN + " pauses from working on the new item.", ETO);
     tell_object(ETO, "You pause from working on the new item.");
     ob = new(fileName);
+    if(ob->query_property("treasure_type")) { //prevent crafted items from adding themselves to random treasure table
+      ob->remove_property("treasure_type");
+    }
     if (ob->move(TP) != MOVE_OK) {
         ob->move(ETP);
     }

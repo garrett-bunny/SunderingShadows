@@ -75,11 +75,19 @@ void reset(){
 	}
 }
 
-clean_up()
-{
-    if (member_array("up", query_exits()) != -1) {
+clean_up(){
+    int i;
+    
+    if (member_array("up", query_exits()) != -1){
         (query_exit("up"))->remove_exit("down");
     }
-
+    if(sizeof (all_living(ETO)) > 0){
+        for(i=0;i < sizeof(all_living(ETO)); i++){
+            remove(all_living(ETO)[i]);
+        }
+    }
+    ::clean_up();
+    destruct(this_object());
     return 1;
 }
+

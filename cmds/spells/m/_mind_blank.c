@@ -13,36 +13,38 @@ void create()
 {
     ::create();
     set_spell_name("mind blank");
-    set_spell_level(([ "psywarrior" : 6, "psion" : 7, "mage" : 8,]));
-    set_domains(({"plant", "protection"}));
+    set_spell_level(([  "mage" : 8 ]));
     set_spell_sphere("abjuration");
-    set_syntax("cast CLASS mind blank");
+    set_syntax("cast CLASS mind blank on TARGET");
+    set_damage_desc("protection from mental spells, scry protection");
+    set_bonus_type("resistance");
     set_description("This power shields the character's mind. The mental fortress provides the same benefits as the Escape Detection or Protection from scrying power as well as offering additional protection against mind-affecting spells and powers.");
     set_helpful_spell(1);
+    set_target_required(1);
 }
 
 
 int preSpell()
 {
-    if(temp2 = caster->query_property("mind blank"))
+    if(temp2 = target->query_property("mind blank"))
     {
         if(!objectp(temp))
         {
-            caster->remove_property("mind blank");
+            target->remove_property("mind blank");
         }
         else
         {
-            tell_object(caster,"%^BOLD%^%^MAGENTA%^You are already "
+            tell_object(caster,"%^BOLD%^%^MAGENTA%^That target is already "
                 "protected by mind blank!%^RESET%^");
         }
         return 0;
     }
 
-    if(temp = caster->query_property("block scrying"))
+    if(temp = target->query_property("block scrying"))
     {
         if(!objectp(temp))
         {
-            caster->remove_property("block scrying");
+            target->remove_property("block scrying");
         }
         else
         {
@@ -81,11 +83,11 @@ void spell_effect(int prof)
     string *TmpFeats;
     ::spell_effect();
 
-    if(temp = caster->query_property("block scrying"))
+    if(temp = target->query_property("block scrying"))
     {
         if(!objectp(temp))
         {
-            caster->remove_property("block scrying");
+            target->remove_property("block scrying");
         }
         else
         {
@@ -102,37 +104,37 @@ void spell_effect(int prof)
         "%^CYAN%^rl%^BOLD%^i%^WHITE%^n%^RESET%^g %^MAGENTA%^crystals blossom into a "
         "brilliant expanse of %^BOLD%^%^BLACK%^n%^RESET%^i%^CYAN%^g%^BOLD%^ht %^RESET%^"
         "%^CYAN%^s%^RESET%^k%^BOLD%^%^BLACK%^y %^RESET%^%^MAGENTA%^before coalescing "
-        "around "+caster->QCN+", bathing "+caster->QO+" in %^CYAN%^i%^BOLD%^%^CYAN%^r%^RESET%^"
+        "around "+target->QCN+", bathing "+target->QO+" in %^CYAN%^i%^BOLD%^%^CYAN%^r%^RESET%^"
         "%^CYAN%^id%^RESET%^e%^CYAN%^s%^BOLD%^c%^BLACK%^e%^RESET%^%^CYAN%^n%^RESET%^c"
         "%^CYAN%^e %^MAGENTA%^before winking out of existence.%^RESET%^",caster);
     tell_object(caster,"%^RESET%^%^MAGENTA%^The %^RESET%^s%^BOLD%^w%^CYAN%^i%^RESET%^"
         "%^CYAN%^rl%^BOLD%^i%^WHITE%^n%^RESET%^g %^MAGENTA%^crystals blossom into a "
         "brilliant expanse of %^BOLD%^%^BLACK%^n%^RESET%^i%^CYAN%^g%^BOLD%^ht %^RESET%^"
         "%^CYAN%^s%^RESET%^k%^BOLD%^%^BLACK%^y %^RESET%^%^MAGENTA%^before coalescing "
-        "around you, bathing you in %^CYAN%^i%^BOLD%^%^CYAN%^r%^RESET%^"
+        "around " + target->QCN + ", bathing " + target->QO + " in %^CYAN%^i%^BOLD%^%^CYAN%^r%^RESET%^"
         "%^CYAN%^id%^RESET%^e%^CYAN%^s%^BOLD%^c%^BLACK%^e%^RESET%^%^CYAN%^n%^RESET%^c"
         "%^CYAN%^e %^MAGENTA%^before winking out of existence.%^RESET%^");
 
-    TmpFeats = caster->query_temporary_feats();
+    TmpFeats = target->query_temporary_feats();
     if(!sizeof(TmpFeats)) TmpFeats = ({});
 
-    if(member_array("unyielding soul",TmpFeats) != -1 || FEATS_D->usable_feat(caster,"unyielding soul") ||
-    member_array("presence of mind",TmpFeats) != -1 || FEATS_D->usable_feat(caster,"presence of mind") ||
-    member_array("mind partition",TmpFeats) != -1 || FEATS_D->usable_feat(caster,"mind partition"))
+    if(member_array("unyielding soul",TmpFeats) != -1 || FEATS_D->usable_feat(target,"unyielding soul") ||
+    member_array("presence of mind",TmpFeats) != -1 || FEATS_D->usable_feat(target,"presence of mind") ||
+    member_array("mind partition",TmpFeats) != -1 || FEATS_D->usable_feat(target,"mind partition"))
     {
         FLAG = 0;
     }
     else
     {
-        tell_object(caster,"%^BOLD%^%^CYAN%^You feel the fortification of your mind "
+        tell_object(target,"%^BOLD%^%^CYAN%^You feel the fortification of your mind "
             "slide into place.%^RESET%^");
-        caster->add_temporary_feat("unyielding soul");
+        target->add_temporary_feat("unyielding soul");
         FLAG = 1;
     }
 
     caster->set_property("spelled",({TO}));
-    caster->set_property("mind blank",1);
-    blocker = SCRY_D->add_block_scrying(caster);
+    target->set_property("mind blank",1);
+    blocker = SCRY_D->add_block_scrying(target);
 
     if(!objectp(blocker))
     {
@@ -142,8 +144,7 @@ void spell_effect(int prof)
         return;
     }
 
-    int_bonus = caster->query_stats(casting_stat);
-    int_bonus = int_bonus-8; //bonus of +2 because this is much higher level than other scry blocks, including the other one for psywarriors
+    int_bonus = calculate_bonus(caster->query_stats(get_casting_stat()));
     power = mylevel + int_bonus + random(6);
     blocker->set_block_power(power);
     duration = 5 * mylevel * ROUND_LENGTH;
@@ -157,15 +158,15 @@ void spell_effect(int prof)
 
 void dest_effect() {
     if(objectp(blocker)) blocker->self_destruct();
-    if(objectp(caster))
+    if(objectp(target))
     {
-        caster->remove_property_value("spelled", ({TO}) );
+        target->remove_property_value("spelled", ({TO}) );
         if(FLAG)
         {
-           caster->remove_temporary_feat("unyielding soul");
+           target->remove_temporary_feat("unyielding soul");
         }
-        caster->remove_property("mind blank");
-        tell_object(caster,"%^RESET%^%^MAGENTA%^Your mind blank fades away, "
+        target->remove_property("mind blank");
+        tell_object(target,"%^RESET%^%^MAGENTA%^Your mind blank fades away, "
         "leaving you vulnerable to prying eyes.%^RESET%^");
     }
     ::dest_effect();

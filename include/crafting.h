@@ -4,6 +4,7 @@
 
 #define COMMONFILE "/d/common/obj/"
 
+
 mapping ARMORSMITH = ([]);
 ARMORSMITH = ([
                   "banded mail":(["file":COMMONFILE"armour/banded","units":6]),
@@ -19,6 +20,7 @@ ARMORSMITH = ([
                   "gauntlets":(["file":COMMONFILE"armour/gauntlets","units":1]),
                   "greaves":(["file":COMMONFILE"armour/greaves","units":1]),
                   "helm":(["file":COMMONFILE"armour/helm","units":2]),
+                  "horseshoes":(["file":COMMONFILE"armour/horseshoes","units":2]),
                   "plate mail":(["file":COMMONFILE"armour/plate","units":7]),
                   "ring mail":(["file":COMMONFILE"armour/ring","units":3]),
                   "scale mail":(["file":COMMONFILE"armour/scale","units":4]),
@@ -51,6 +53,8 @@ LEATHERWORK = ([
                    "padded":(["file":COMMONFILE"armour/padded","units":2,"type":"armor"]),
                    "shield strap":(["file":COMMONFILE"sheath/shieldstrap","units":2,"type":"sheath"]),
                    "small sheath":(["file":COMMONFILE"sheath/sheath_small","units":1,"type":"sheath"]),
+				   "shuriken holster":(["file":COMMONFILE"lrweapon/shurikens","units":1]),
+				   "dart pouch":(["file":COMMONFILE"lrweapon/dart","units":1]),
                    "studded":(["file":COMMONFILE"armour/studded","units":3,"type":"armor"]),
                    "whip":(["file":COMMONFILE"weapon/whip","units":2,"type":"weapon"]),
                    "sling":(["file":COMMONFILE"lrweapon/sling","units":1,"type":"weapon"]),
@@ -81,6 +85,8 @@ JEWEL = ([
              "circlet":(["file":COMMONFILE"jewelry/circlet","units":2]),
              "necklace":(["file":COMMONFILE"jewelry/necklace","units":2]),
              "ring":(["file":COMMONFILE"jewelry/ring","units":2]),
+             "pin":(["file":COMMONFILE"jewelry/pin","units":2]),
+			 "statue":(["file":COMMONFILE"rand/statue","units":1]),
              ]);
 
 mapping WEAPONSMITH = ([]);
@@ -123,8 +129,8 @@ WEAPONSMITH = ([
                    "rapier":(["file":COMMONFILE"weapon/rapier","units":2]),
                    "scimitar":(["file":COMMONFILE"weapon/scimitar","units":2]),
                    "scythe":(["file":COMMONFILE"weapon/scythe","units":3]),
-                   "shurikens":(["file":COMMONFILE"lrweapon/shurikens","units":1]),
-                   "darts":(["file":COMMONFILE"lrweapon/darts","units":1]),
+                   "shuriken":(["file":COMMONFILE"lrweapon/shuriken","units":1]),
+                   "dart":(["file":COMMONFILE"lrweapon/dart","units":1]),
                    "small hammer":(["file":COMMONFILE"weapon/hammer_sm","units":2]),
                    "two-handed sword":(["file":COMMONFILE"weapon/two_hand_sword","units":4]),
                    "small axe":(["file":COMMONFILE"weapon/handaxe","units":2]),
@@ -175,6 +181,15 @@ WOODWORK = ([
                 "pipe":(["file":COMMONFILE"misc/pipe","units":1,"type":"carving"]),
                 "wand":(["file":COMMONFILE"weapon/wand","units":1,"type":"weapon"]),
                 "scroll case":(["file":COMMONFILE"misc/scroll_case","units":3,"type":"carving"]),
+				"statue":(["file":COMMONFILE"rand/statue","units":1,"type":"carving"]),
+
+                "anklet":(["file":COMMONFILE"jewelry/anklet","units":2]),
+                "bracelet":(["file":COMMONFILE"jewelry/bracelet","units":2]),
+                "bracers":(["file":COMMONFILE"armour/bracers","units":3]),
+                "circlet":(["file":COMMONFILE"jewelry/circlet","units":2]),
+                "necklace":(["file":COMMONFILE"jewelry/necklace","units":2]),
+                "ring":(["file":COMMONFILE"jewelry/ring","units":2]),
+                "pin":(["file":COMMONFILE"jewelry/pin","units":2]),
                 ]);
 
 #define CRAFT_TO_CHECK ([ "woodworker" : WOODWORK, "weaponsmith" : WEAPONSMITH, "jeweller" : JEWEL, \

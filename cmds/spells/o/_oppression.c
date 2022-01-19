@@ -16,7 +16,6 @@ void create()
     set_spell_name("oppression");
     set_spell_level(([ "cleric" : 2 ]));
     set_spell_sphere("alteration");
-    set_domains("tyranny");
     set_syntax("cast CLASS oppression");
     set_description("This spell will surround the caster with a dark aura of oppression.  Any creature caught in the aura "
                     "that is not in the caster's party must make a saving throw or cower in fear from the caster.  Targets that are so "
@@ -129,7 +128,7 @@ void execute_attack()
         }
         tell_object(inven[i], "%^RED%^You feel the oppressive force of the aura surrounding "
                     "" + caster->QCN + ".");
-        if (!do_save(inven[i], 0)) {
+        if (!do_save(inven[i], 0) && !PLAYER_D->immunity_check(inven[i], "fear") && !inven[i]->query("no pk")) {
             //if(!SAVING_D->saving_throw(inven[i],"spell",0)){
             tell_object(inven[i], "%^GREEN%^You cower away from " + caster->QCN + "!");
             tell_object(caster, "%^GREEN%^" + inven[i]->QCN + " cowers in fear of your "

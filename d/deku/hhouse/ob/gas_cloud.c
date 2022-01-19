@@ -142,7 +142,7 @@ void do_my_effect()
                         TO->query_short()+"%^BOLD%^%^RED%^ and jets toward "+vics[x]->QCN+
                         "%^BOLD%^%^RED%^!%^RESET%^", vics[x]);
 
-                        if(vics[x]->reflex_save(20+(potency*5))) 
+                        if(vics[x]->reflex_save(10+(potency*5))) 
 						{
                             tell_object(vics[x], "%^BOLD%^%^RED%^You quickly move out of the way just "+
                             "in time and the massive ball of fire explodes in the distance!%^RESET%^");
@@ -159,8 +159,8 @@ void do_my_effect()
                         " and %^BOLD%^%^YELLOW%^E%^BOLD%^%^RED%^X%^BOLD%^%^YELLOW%^P%^BOLD%^%^RED%^L%^BOLD%^%^YELLOW%^"+
                         "O%^BOLD%^%^RED%^D%^BOLD%^%^YELLOW%^E%^BOLD%^%^RED%^S!%^RESET%^", vics[x]);
                         tmp = potency;
-                        while(tmp--) dam += roll_dice(8, 6);
-                        vics[x]->cause_typed_damage(vics[x], 0, dam, "fire");
+                        while(tmp--) dam = roll_dice(8, 6);
+                        vics[x]->cause_typed_damage(vics[x], 0, dam, "electricity");
                         continue;
                     case 1:
                         tell_object(vics[x], "%^BOLD%^%^YELLOW%^A massive bolt of lightning zaps from "+
@@ -170,7 +170,7 @@ void do_my_effect()
                         TO->query_short()+"%^BOLD%^%^YELLOW%^ and streaks toward "+vics[x]->QCN+
                         "%^BOLD%^%^YELLOW%^!%^RESET%^", vics[x]);
 			
-                        if(vics[x]->reflex_save(12 + (potency*5))) 
+                        if(vics[x]->reflex_save(10 + (potency*5))) 
                         {
                             tell_object(vics[x], "%^BOLD%^%^YELLOW%^You quickly move out of the way just "+
                             "in time and the massive bolt of lightning slams into something in the distance!%^RESET%^");
@@ -187,7 +187,7 @@ void do_my_effect()
                         "%^BOLD%^%^YELLOW%^'s chest with a %^BOLD%^%^WHITE%^BRILLIANT%^BOLD%^%^YELLOW%^ flash of "+
                         "%^BOLD%^%^WHITE%^LIGHT%^BOLD%^%^YELLOW%^!%^RESET%^", vics[x]);
                         tmp = potency;
-                        while(tmp--) dam += roll_dice(8, 8);
+                        while(tmp--) dam = roll_dice(8, 8);
                         vics[x]->cause_typed_damage(vics[x], 0, dam, "electricity");
                         continue;
                 }

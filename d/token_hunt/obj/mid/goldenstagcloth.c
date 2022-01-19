@@ -32,7 +32,8 @@ void create(){
 	set_wear((:TO,"wear_func":));
 	set_remove((:TO,"remove_func":));
 	set_struck((:TO,"strike_func":));
-   set_overallStatus(220);
+    set_overallStatus(220);
+    set_property("no disenchant",1);
 }
 
 int wear_func(){
@@ -46,9 +47,11 @@ int remove_func(){
 }
 
 int strike_func(int damage, object what, object who){
-	if(random(1000) < 300){
+    if(random(1000) < 300){
 	tell_room(environment(query_worn()),"%^BOLD%^%^BLUE%^A sheet of pure darkness billows about "+ETOQCN+" deflecting "+who->QCN+"'s attack.%^RESET%^",({ETO,who}));
 	tell_object(ETO,"%^BOLD%^%^BLUE%^Cloth crafted from the %^RESET%^%^BLUE%^essence of darkness %^BOLD%^flutters about you, concealing you for a moment from "+who->QCN+"'s view.  The protection lasts but a moment, but within that moment the image of a %^RESET%^%^MAGENTA%^woman %^BOLD%^%^BLUE%^surges into your vision.  Her pale, perfect hands extended toward you, reaching toward you for her freedom, or to draw you into the %^BLACK%^void %^BLUE%^forever.%^RESET%^");
 	tell_object(who,"%^BOLD%^%^BLUE%^A sheet of pure darkness billows about "+ETOQCN+" deflecting your attack.%^RESET%^");
-return (damage*-100)/100;	}
+        return 0;	
+    }
+    return damage;
 }

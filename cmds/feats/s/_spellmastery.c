@@ -45,7 +45,7 @@ void create() {
 
 %^BOLD%^N.B.%^RESET%^ Spellmastery is not connected to <master> in any way. It just allows you to cast the spell without memorization. You still have to know the spell to cast it, have it in your spellbook, mastered or in your spell list.
 
-%^BOLD%^N.B.%^RESET%^ Psions, Monks and Warlocks spells are not affected by this feat.");
+%^BOLD%^N.B.%^RESET%^ Psions, Psywarriors, Monks and Warlocks are not affected by this feat.");
 
     permanent(1);
     allow_tripped(1);
@@ -97,12 +97,23 @@ int prerequisites(object ob){
     int i;
     if(!objectp(ob)) { return 0; }
 
+    //Single-class warlocks or warlocks + prestige have no use for this feat.
+    //Also true of psion/psywarrior
+    if(ob->query_level() == ob->query_prestige_level("warlock") ||
+       ob->query_level() == ob->query_prestige_level("psion") ||
+       ob->query_level() == ob->query_prestige_level("psywarrior"))
+    {
+        dest_effect();
+        return 0;
+    }
+
     classes = (string *)ob->query_classes();
     for(i=0;i<sizeof(classes);i++)
     {
         file = DIR_CLASSES+"/"+classes[i]+".c";
         if(file->caster_class()) { return ::prerequisites(ob); }
     }
+    
     return 0;
 }
 

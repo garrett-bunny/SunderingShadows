@@ -15,7 +15,7 @@ void create()
     feat_desc("A monk specialized in the way of the fist, that is unarmored and unarmed, or wielding small weapons, may attempt a quivering palm attack on a target. In order for the attempt to be successful the monk must have at least 3 available Ki and must land a touch attack on the target. If successful a brief period of time later the target must roll a successful fortitude saving throw or be set to 0 health. Against certain monsters or if the saving throw is successful the target will take 1d8 damage per monk level.
 
 If used without an argument this feat will pick up a random attacker.");
-    set_save("fort");
+    set_save("fortitude");
 }
 
 int allow_shifted() { return 1; }
@@ -80,7 +80,7 @@ int check_can_use()
         tell_object(caster,"You cannot use quivering palm while mounted!");
         return 0;
     }
-    if(!(int)USER_D->can_spend_ki(caster, 3))
+    if(!(int)USER_D->can_spend_ki(caster, 20))
     {
         tell_object(caster, "%^CYAN%^You lack the needed ki to attempt "+
         "quivering palm.%^RESET%^");
@@ -92,191 +92,173 @@ int check_can_use()
 void execute_feat()
 {
     mapping tempmap;
-    object *weapons;
     int x;
+    int damage, timerz, i, bonusdc;
+    object *keyz, qob;
     ::execute_feat();
 
     tempmap = caster->query_property("using quivering palm");
-
-    if(!objectp(target))
-    {
-        object * attackers = caster->query_attackers();
-        if(mapp(tempmap))
-        {
-            attackers = filter_array(attackers,(:$2[$1] < time():),tempmap);
+    if (!objectp(target)) {
+        object* attackers = caster->query_attackers();
+        if (mapp(tempmap)) {
+            attackers = filter_array(attackers, (: $2[$1] < time() :), tempmap);
         }
-        if(!sizeof(attackers))
-        {
-            tell_object(caster,"%^BOLD%^Nobody to affect.%^RESET%^");
+        if (!sizeof(attackers)) {
+            tell_object(caster, "%^BOLD%^Nobody to hit.%^RESET%^");
             dest_effect();
             return;
         }
         target = attackers[random(sizeof(attackers))];
     }
-    if(!objectp(caster))
-    {
+    if (!objectp(caster)) {
         dest_effect();
         return;
     }
-    if(caster->query_bound() || caster->query_tripped() || caster->query_paralyzed())
-    {
-        caster->send_paralyzed_message("info",caster);
+    if (caster->query_bound() || caster->query_tripped() || caster->query_paralyzed()) {
+        caster->send_paralyzed_message("info", caster);
         dest_effect();
         return;
     }
-    if((int)caster->query_property("using instant feat"))
-    {
-        tell_object(caster,"You are already in the middle of using a feat!");
+    if ((int)caster->query_property("using instant feat")) {
+        tell_object(caster, "You are already in the middle of using a feat!");
         dest_effect();
         return;
     }
-    if(caster->query_casting())
-    {
-        tell_object(caster,"%^BOLD%^You are already in the middle of casting a spell.%^RESET%^");
+    if (caster->query_casting()) {
+        tell_object(caster, "%^BOLD%^You are already in the middle of casting a spell.%^RESET%^");
         dest_effect();
         return;
     }
-    if(target == caster)
-    {
-        tell_object(caster,"You cannot use quivering palm on yourself!");
+    if (target == caster) {
+        tell_object(caster, "There are better ways to kill yourself!");
         dest_effect();
         return;
     }
-    if(!present(target, place))
-    {
+    if (!objectp(target)) {
         tell_object(caster, "That is not here!");
         dest_effect();
         return;
     }
-    if(mapp(tempmap))
-    {
-        if(tempmap[target] > time())
-        {
-            tell_object(caster,"That target is still wary of such an attack!");
-            dest_effect();
-            return;
-        }
-    }
-    if(!check_can_use())
-    {
+    if (!present(target, place)) {
+        tell_object(caster, "That is not here!");
         dest_effect();
         return;
     }
-    caster->use_stamina(roll_dice(1,6));
-    caster->set_property("using instant feat",1);
-    spell_kill(target,caster);
-
-    tell_object(caster, "%^BOLD%^%^CYAN%^You focus intently on manipulating the ki in "+
-    target->QCN+"%^BOLD%^%^CYAN%^'s body!%^RESET%^");
-
-    tell_object(target, caster->QCN+"%^BOLD%^%^CYAN%^ begins focusing intently on "+
-    "you!%^RESET%^");
-
-    if(objectp(place))
-    {
-        tell_room(place, caster->QCN+"%^BOLD%^%^CYAN%^ begins focusing intently "+
-        "on "+target->QCN+"%^BOLD%^%^CYAN%^!%^RESET%^", ({caster, target}));
-    }
-    return;
-}
-
-void execute_attack()
-{
-    int damage, timerz, i, DC;
-    object *keyz, shape, *weapons, myweapon, qob;
-    mapping tempmap;
-
-    if(!objectp(caster))
-    {
-        dest_effect();
-        return;
-    }
-    caster->remove_property("using instant feat");
-    ::execute_attack();
-
-    if(caster->query_unconscious())
-    {
-        dest_effect();
-        return;
-    }
-    if(!objectp(target) || !present(target,place))
-    {
-        tell_object(caster,"Your target has eluded you!");
-        dest_effect();
-        return;
-    }
-    if(!check_can_use())
-    {
-        dest_effect();
-        return;
-    }
-
-    if(!caster->spend_ki(8))
+    if(!caster->spend_ki(20))
     {
         tell_object(caster, "%^CYAN%^You lack the needed ki to attempt "+
         "quivering palm!%^RESET%^");
         dest_effect();
         return;
     }
+	
+    if (mapp(tempmap)) {
+        if (tempmap[target] > time()) {
+            tell_object(caster, "The target is still cannot be impacted by that yet!");
+            dest_effect();
+            return;
+        }
+    }
 
+    caster->set_property("using instant feat",1);
 
-    if(!mapp(tempmap)) tempmap = ([]);
-    if(tempmap[target]) map_delete(tempmap,target);
+    tell_object(caster, "%^BOLD%^%^CYAN%^You focus intently on manipulating the ki in "+
+    target->QCN+"%^BOLD%^%^CYAN%^'s body!%^RESET%^");
+
+    tell_object(target, caster->QCN+"%^BOLD%^%^CYAN%^ begins focusing intently on "+
+    "you!%^RESET%^");
+    
+    if (!mapp(tempmap)) {
+        tempmap = ([]);
+    }
+    if (tempmap[target]) {
+        map_delete(tempmap, target);
+    }
     keyz = keys(tempmap);
-    for(i=0;i<sizeof(keyz);i++)
-    {
-        if(!objectp(keyz[i])) map_delete(tempmap, keyz[i]);
+    for (i = 0; i < sizeof(keyz); i++) {
+        if (!objectp(keyz[i])) {
+            map_delete(tempmap, keyz[i]);
+        }
         continue;
     }
     timerz = time() + 120;
-    delay_subject_msg(target,120,"%^BOLD%^%^WHITE%^"+target->QCN+" can be %^CYAN%^quivered palm%^WHITE%^ again.%^RESET%^");
+    delay_subject_msg(target,120,"%^BOLD%^%^WHITE%^"+target->QCN+" can be hit with %^CYAN%^quivering palm%^WHITE%^ again.%^RESET%^");
     tempmap += ([ target : timerz ]);
     caster->remove_property("using quivering palm");
     caster->set_property("using quivering palm",tempmap);
 
-    weapons = caster->query_wielded();
-    if(sizeof(weapons)) myweapon = weapons[0];
+    tell_object(caster, "%^BOLD%^%^CYAN%^You slam your palm into "+
+    target->QCN+" 's chest!%^RESET%^");
+    tell_object(target, caster->QCN+"%^BOLD%^%^RED%^ drives their fist into your chest and your body begins violently vibrating!!!%^RESET%^");
+	tell_room(place, "%^BOLD%^%^RED%^You see " + target->QCN + "'s body begin violently vibrating!", ({ target, caster }));
 
-    if(!(int)BONUS_D->process_hit(caster, target, 1, myweapon, 0, 1))
-    {
-        tell_object(caster, "%^BOLD%^%^CYAN%^You miss your quivering palm attack on "+target->QCN+
-        "%^BOLD%^%^CYAN%^!%^RESET%^");
-        tell_object(target, caster->QCN+"%^BOLD%^%^CYAN%^ launches a focused strike at you, "+
-        "but you manage to avoid it just in time!%^RESET%^");
-        if(objectp(environment(caster)))
-        {
-            tell_room(environment(caster), caster->QCN+"%^BOLD%^%^CYAN%^ launches a focused "+
-            "strike at "+target->QCN+"%^BOLD%^%^CYAN%^ but "+target->QS+" manages to avoid it, "+
-            "just in time!%^RESET%^", ({caster, target}));
+    bonusdc = BONUS_D->query_stat_bonus(caster, "wisdom");
+
+    spell_kill(target, caster);
+    if (target->query_property("no death") ||
+        target->is_undead() ||
+        do_save(target, bonusdc)) {
+        int todamage;
+        tell_object(target, "%^BOLD%^%^BLACK%^An excrutiating %^BOLD%^%^RED%^PAIN"+
+        "%^BOLD%^%^BLACK%^ radiates throughout your entire body and "+
+        "you %^GREEN%^S%^BOLD%^%^BLACK%^H%^GREEN%^"+
+        "R%^BOLD%^%^BLACK%^I%^GREEN%^E%^BOLD%^%^BLACK%^K as "+
+        "the vibrations finally stop!%^RESET%^");
+		
+		tell_room(place, "%^BOLD%^%^WHITE%^You see " + target->QCN + " %^BOLD%^%^GREEN%^S%^BOLD%^%^BLACK%^H%^BOLD%^%^GREEN%^"+
+            "R%^BOLD%^%^BLACK%^I%^BOLD%^%^GREEN%^E%^BOLD%^%^BLACK%^K%^BOLD%^%^GREEN%^S%^BOLD%^%^BLACK%^ in "+
+            "%^BOLD%^%^RED%^PAIN%^BOLD%^%^BLACK%^ suddenly as the vibrations "+
+            "in " + target->QCN + "'s body finally stop!%^RESET%^", ({ target, caster }));
+		
+		tell_object(caster, "%^BOLD%^%^WHITE%^You see " + target->QCN + " %^BOLD%^%^GREEN%^S%^BOLD%^%^BLACK%^H%^BOLD%^%^GREEN%^"+
+            "R%^BOLD%^%^BLACK%^I%^BOLD%^%^GREEN%^E%^BOLD%^%^BLACK%^K%^BOLD%^%^GREEN%^S%^BOLD%^%^BLACK%^ in "+
+            "%^BOLD%^%^RED%^PAIN%^BOLD%^%^BLACK%^ suddenly as the vibrations "+
+            "in " + target->QCN + "'s body finally stop!%^RESET%^", ({ target, caster }));
+			
+        if (target->query_max_hp() < caster->query_max_hp()) {
+            todamage = roll_dice(flevel, 10);
+        } else{
+            todamage = roll_dice(flevel + BONUS_D->query_stat_bonus(caster, "wisdom"), 10);
         }
+        target->cause_typed_damage(target, target->return_target_limb(), todamage, "divine");
+    } else {
+        tell_object(target, "%^BOLD%^%^BLACK%^An excrutiating %^BOLD%^%^RED%^PAIN"+
+        "%^BOLD%^%^BLACK%^ radiates throughout your entire body and "+
+        "you %^BOLD%^%^GREEN%^S%^BOLD%^%^BLACK%^H%^BOLD%^%^GREEN%^"+
+        "R%^BOLD%^%^BLACK%^I%^BOLD%^%^GREEN%^E%^BOLD%^%^BLACK%^K%^BOLD%^%^BLACK%^ as "+
+        "you collapse in a heap!%^RESET%^");
+        
+		tell_room(place, "%^BOLD%^%^WHITE%^You see " + target->QCN + " %^BOLD%^%^GREEN%^S%^BOLD%^%^BLACK%^H%^BOLD%^%^GREEN%^"+
+            "R%^BOLD%^%^BLACK%^I%^BOLD%^%^GREEN%^E%^BOLD%^%^BLACK%^K%^BOLD%^%^GREEN%^S in "+
+            "%^BOLD%^%^RED%^PAIN%^BOLD%^%^BLACK%^ suddenly before collapsing in "+
+            "a heap!%^RESET%^", ({ target, caster }));
+		
+		tell_object(caster, "%^BOLD%^%^WHITE%^You see " + target->QCN + " %^BOLD%^%^GREEN%^S%^BOLD%^%^BLACK%^H%^BOLD%^%^GREEN%^"+
+            "R%^BOLD%^%^BLACK%^I%^BOLD%^%^GREEN%^E%^BOLD%^%^BLACK%^K%^BOLD%^%^GREEN%^S in "+
+            "%^BOLD%^%^RED%^PAIN%^BOLD%^%^BLACK%^ suddenly before collapsing in "+
+            "a heap!%^RESET%^", ({ target, caster }));
+			
+		target->cause_typed_damage(target, target->return_target_limb(), target->query_max_hp() * 2, "divine");
+    }
+    spell_kill(target,caster);
+    return;
+}
+
+void execute_attack()
+{
+    if (!objectp(caster)) {
         dest_effect();
         return;
     }
-    tell_object(caster, "%^BOLD%^%^CYAN%^Your quivering palm slams into "+target->QCN+
-    "!%^RESET%^");
+    ::execute_attack();
 
-    tell_object(target, caster->QCN+"%^BOLD%^%^CYAN%^ launches a focused strike, "+
-    "connecting squarely with you!%^RESET%^");
-
-    if(objectp(environment(caster)))
-    {
-        tell_room(environment(caster), caster->QCN+"%^BOLD%^%^CYAN%^ launches a focused strike "+
-        "on "+target->QCN+"%^BOLD%^%^CYAN%^ connecting squarely with "+target->QO+
-        "!%^RESET%^", ({caster, target}));
-    }
-
-    qob = new("/cmds/feats/obj/quivering_object");
-    DC = flevel;
-    DC += "/daemon/bonus_d.c"->query_stat_bonus(caster, "wisdom");
-    DC += 10;
-    qob->set_dc(DC);
-    qob->set_caster(caster);
-    qob->move(target);
+    caster->remove_property("using instant feat");
     dest_effect();
     return;
 }
 
-void dest_effect(){
+void dest_effect()
+{
     ::dest_effect();
     remove_feat(TO);
     return;

@@ -2,8 +2,6 @@
 #include <priest.h>
 #include <daemons.h>
 
-#define ALIGN_D "/daemon/alignment_d.c"
-
 void create() {
     ::create();
     set_spell_name("detect law");
@@ -13,6 +11,8 @@ void create() {
     set_description("Detect chaos will detect the presence of law in players or monsters.");
     set_verbal_comp();
     set_somatic_comp();
+    set_save("will");
+    diminish_returns();
     set_arg_needed();
     set_non_living_ok(1);
 }
@@ -24,8 +24,7 @@ int preSpell() {
         tell_object(caster,"You need either a target or <room> for this spell.");
         return 0;
     }
-//    if(!ALIGN_D->is_chaotic(caster)) {
-    if((int)caster->query_true_align() < 7 || (int)caster->query_true_align() > 9) {
+    if(!is_chaotic(caster)) {
         tell_object(caster,"Only casters of chaotic alignment may use this spell.");
         return 0;
     }
@@ -50,7 +49,7 @@ void spell_effect(int prof)
         alive = all_living(environment(CASTER));
         for (i=0;i<sizeof(alive);i++) 
         {
-            if (ALIGN->is_lawful(alive[i]) && !alive[i]->query_invis()) 
+            if (is_lawful(alive[i]) && !alive[i]->query_invis() && !do_save(alive[i], 0)) 
             {
                 hits ++;
                 tell_object(caster,"%^BOLD%^%^GREEN%^You detect law in "+alive[i]->QCN+".");
@@ -76,7 +75,7 @@ void spell_effect(int prof)
     } 
     else 
     {
-        if (ALIGN->is_lawful(ob)) 
+        if (is_lawful(ob) && !do_save(alive[i], 0)) 
         {
             tell_object(caster, "%^BOLD%^%^GREEN%^You detect law in "+ob->QCN+".");
         } 

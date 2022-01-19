@@ -36,7 +36,7 @@ void create(){
             +" curve from the back of the lodge to the front, supporting"
             +" the sloping, curved ceiling.",
 
-        "celing": "The ceiling is high and curved and slopes inwards from"
+        "ceiling": "The ceiling is high and curved and slopes inwards from"
            +" the south wall at its lowest point to the north wall at its"
            +" highest. Massive rib bones support it and the overall"
            +" effect is not unlike the shape of an open clam shell. But"

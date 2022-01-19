@@ -13,9 +13,7 @@ void create() {
     feat_syntax("invisible_thief, step");
     feat_desc("An arcane trickster continues to merge her understanding of stealthy and arcane arts. She learns to become invisible like under greater invisibility spell as a free action.
 
-To become visible again she must use the %^ORANGE%^<step>%^RESET%^ command.
-
-In addition, this feat gives the Arcane Trickster a passive +5 adjustment to their stab levels.");
+To become visible again she must use the %^ORANGE%^<step>%^RESET%^ command.");
     set_target_required(0);
 }
 
@@ -41,15 +39,31 @@ int cmd_invisible_thief(string str) {
 
 void execute_feat()
 {
-    object invisob;
+    object invisob, *attackers;
     int total;
     ::execute_feat();
+    
+    if(this_player()->cooldown("invisible thief"))
+    {
+        tell_object(this_player(), "You need to wait to use invisible thief.");
+        dest_effect();
+        return;
+    }
+    
     tell_object(caster,"%^CYAN%^You simply disappear from plain sight!%^RESET%^");
     total = caster->query_skill("spellcraft") + caster->query_skill("stealth");
+    
+    attackers = this_player()->query_attackers();
+    attackers->remove_attacker(this_player());
+    
+    foreach(object attacker in attackers)
+        this_player()->remove_attacker(attacker);
+
     invisob=new("/d/magic/obj/invisobgreater.c");
     invisob->set_player_name(caster->query_name());
     invisob->set_mychance(total);
     invisob->move(caster);
+    this_player()->add_cooldown("invisible thief", 30);
     dest_effect();
     return;
 }

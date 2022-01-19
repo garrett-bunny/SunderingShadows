@@ -42,12 +42,12 @@ int strikeme(int damage, object what, object who){
       	tell_room(environment(query_worn()),"%^BOLD%^%^RED%^The diamond of"+
 			" "+ETO->QCN+"'s shield rapidly grow in side, blocking "+
                  ""+who->QCN+"'s attack, before they shrink.",({ETO,who}));
-      	 tell_object(ETO,"%^BOLD%^%^RED%^The diamond in the shield rapidly"+
+      	tell_object(ETO,"%^BOLD%^%^RED%^The diamond in the shield rapidly"+
                   " grow in size, blocking "+who->QCN+"'s attack, before they"+
                   " shrink.");
       	tell_object(who,"%^BOLD%^%^RED%^The diamond of "+ETO->QCN+"'s shield"+
                   " rapidly grow in size, blocking your attack!");
-      		return (-1)*damage;
-      	return 1;
-   }
+      	return 0;
+    }
+    return damage;
 }

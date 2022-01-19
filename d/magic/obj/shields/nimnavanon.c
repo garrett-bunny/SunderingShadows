@@ -30,11 +30,11 @@ int strikeme(int damage, object what, object who){
       	tell_room(environment(query_worn()),"%^CYAN%^The spectral energy of"+
 			" "+ETO->QCN+"'s shield hardens, repelling "+
                   ""+who->QCN+"'s attack.",({ETO,who}));
-      	 tell_object(ETO,"%^CYAN%^The spectral energy of your shield"+
+      	tell_object(ETO,"%^CYAN%^The spectral energy of your shield"+
 			"hardens, repelling "+who->QCN+"'s attack.");
       	tell_object(who,"%^CYAN%^The spectral energy of "+ETO->QCN+"'s"+
 			" shield hardens, repelling your attack!");
-      		return (-1)*damage;
-      	return 1;
-   }
+      	return 0;
+    }
+    return damage;
 }

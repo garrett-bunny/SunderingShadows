@@ -17,6 +17,7 @@
     "light", \
     "sight bonus", \
     "magic resistance", \
+    "spell resistance", \
     "spell damage resistance",\
     "damage resistance", \
     "caster level", \
@@ -50,6 +51,8 @@
     "divine resistance",           "divine resistance percent", \
     "untyped resistance",          "untyped resistance percent", \
     "mental resistance",           "mental resistance percent", \
+    "radiant resistance",          "radiant resistance percent", \
+    "void resistance",             "void resistance percent", \
     "strength", \
     "dexterity", \
     "constitution", \

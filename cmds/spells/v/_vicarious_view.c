@@ -15,9 +15,8 @@ void create(){
     ::create();
     set_author("ares");
     set_spell_name("vicarious view");
-    set_spell_level(([ "cleric" : 4, "paladin" : 4, "bard":4, "mage":4, "psion":4]));
+    set_spell_level(([ "paladin" : 4, "bard":4, "mage":4, "psion":4]));
     set_spell_sphere("divination");
-    set_domains(({"vigilance"}));
     set_syntax("cast CLASS vicarious view on TARGET");
     set_description("This spell allows the caster to attempt to plant a mark of justice on the target.  This mark is mostly inconspicuous, being more an outpouring of the caster's energy than a physical mark.  It will allow the caster to <observe mark> once while the spell is in effect, giving the caster a means to scry the target.  It is often used in investigations of suspicious persons, and as such, it has been developed to be somewhat quietly cast.");
     set_verbal_comp();
@@ -32,8 +31,14 @@ int preSpell(){
         tell_object(caster,"This spell requires a target.");
         return 0;
     }
+    if(caster->query("no pk")){
+        tell_object(caster,"%^YELLOW%^You are unable to target another player while you have a %^MAGENTA%^NoPK %^YELLOW%^flag.");
+        dest_effect();
+        return;
+    }
     if(target->query_property("justice marked")){
         tell_object(caster,"That target already wears the mark of justice!");
+        dest_effect();
         return 0;
     }
     if(caster->query_property("justice marker")){
@@ -105,9 +110,9 @@ void dest_effect()
         tell_room(environment(marked), "%^YELLOW%^" + marked->QCN + " " +
                   "suddenly seems relieved for some reason.%^RESET%^", marked);
         marked->remove_property("justice marked");
-        caster->remove_property("justice marker");
-        rune->remove();
     }
+    if(objectp(caster)) caster->remove_property("justice marker");
+    if(objectp(rune)) rune->remove();
     ::dest_effect();
     if (objectp(TO)) {
         TO->remove();

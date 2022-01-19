@@ -73,13 +73,12 @@ int unwearme(){
 }
 
 int strikeme(int damage, object who,object what){
-   // this shouldn'tbe here who = ETO->query_current_attacker();
     if(!objectp(who)) return damage;
-   if(who->is_weapon()){
-      who = environment(who);
-      if(!living(who)) return 1;
-   }
-   if(!random(2)){
+    if(who->is_weapon()){
+        who = environment(who);
+        if(!living(who)) return damage;
+    }
+    if(!random(3)){
          tell_room(EETO,"%^BLUE%^"+ETOQCN+" suddenly grows hideous "+
             "and scowls angrily!",ETO);
          tell_object(ETO,"%^BLUE%^You suddenly feel a rising anger "+
@@ -99,5 +98,6 @@ int strikeme(int damage, object who,object what){
          tell_room(EETO,"%^BLUE%^"+who->QCN+" looks frightened but "+
             "stands "+who->QP+" ground!",who);
          return damage;
-   }
+    }
+    return damage;
 }

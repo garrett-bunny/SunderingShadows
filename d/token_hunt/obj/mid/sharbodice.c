@@ -21,7 +21,7 @@ void create(){
    set_lore("Such garments as these are well prized among roguish women, for "
 "their unremarkable appearance and ease of movement. They are often made with "
 "stronger reinforcements to offer better protection in combat, and usually "
-"dyed a dark blue or gray so as better to meld in with the shadows. They are "
+"dyed a dark blue or gray so as better to meld in with the shadows. They were "
 "well favored among the faithful of Mask and Shar, with a few such pieces "
 "known by greater reputation as special magical items. This piece is such a "
 "one, once specifically made for a Sharran assassin known to most as only the "
@@ -37,6 +37,7 @@ void create(){
    set_wear((:TO,"wear_fun":));
    set_remove((:TO,"remove_fun":));
    set_overallStatus(220);
+   set_property("no disenchant",1);
 }
 
 int wear_fun() {

@@ -17,6 +17,7 @@
 inherit FEAT;
 
 #define FEATTIMER 40
+#define ROUNDS 5
 
 void finish_smite(object you, object me);
 
@@ -26,9 +27,10 @@ void create()
     feat_type("insant");
     feat_name("smite");
     feat_category("Presence");
-    feat_syntax("smite");
+    feat_syntax("smite [TARGET]");
     feat_prereq("Paladin L1");
     feat_classes("paladin");
+    set_save("fort");
     feat_desc("With this feat, the paladin calls out to the powers of her beliefs to aid her in battle against those who oppose those beliefs. This results in an initial burst of divine damage against her primary attacker. If that enemy is of an opposed alignment, the damage is increased and the enemy becomes vulnerable to the paladin's attacks. For a few rounds, the paladin's attacks do additional damage based on her charisma modifier. Smite costs one Divine Grace point to use.");
 }
 
@@ -69,10 +71,17 @@ void execute_feat()
         tell_object(caster,"You are already in the middle of using a feat!");
         dest_effect();
         return;
-    }   
+    }
+    if(caster->cooldown("smite"))
+    {
+        tell_object(caster, "You can't use smite yet.");
+        dest_effect();
+        return;
+    }
     if(!(int)USER_D->spend_pool(TP, 1, "grace"))
     {
         tell_object(caster, "You don't have the Divine Grace to Smite your foe!");
+        dest_effect();
         return;
     }
     
@@ -80,8 +89,6 @@ void execute_feat()
     
     tell_object(caster, "%^BOLD%^You prepare to smite your foe with divine energy.%^RESET%^");
     
-    //delay = time() + FEATTIMER;
-    //delay_messid_msg(FEATTIMER,"%^BOLD%^%^WHITE%^You can %^CYAN%^smite%^WHITE%^ again.%^RESET%^");
     caster->set_property("using instant feat",1);
     caster->remove_property("using smite");
     caster->set_property("using smite",delay);
@@ -101,7 +108,9 @@ void execute_attack()
     caster->remove_property("using instant feat");
     ::execute_attack();
     
-    target = caster->query_current_attacker();
+    if(!target)
+        target = caster->query_current_attacker();
+    
     if(!target)
         return;
     
@@ -110,8 +119,8 @@ void execute_attack()
     
     glvl = caster->query_guild_level("paladin");
     mod = BONUS_D->query_stat_bonus(caster, "charisma");
-    dam = 5 + glvl + mod;
-    opposed = LIVING_D->opposed_alignment(caster, target);
+    dam = 5 + roll_dice(glvl / 2, 8) + mod;
+    opposed = opposed_alignment(caster, target);
     
     //Does double damage against opposed, triple damage against polar opposite
     //Opposed alignment also gets smite debuff that adds CHA bonus to this paladin's
@@ -125,7 +134,8 @@ void execute_attack()
         if(FEATS_D->usable_feat(caster, "champion"))
         {
             if(member_array(target->query_race(), VALID_ENEMY["outsiders"]) >= 0 && 
-            !userp(target) && 
+            !userp(target) &&
+            !do_save(target, 0) && 
             caster->query_level() + 10 >= target->query_level())
             {
                 tell_object(caster, "You smite your opponent, banishing their soul back to their home plane!");
@@ -134,19 +144,40 @@ void execute_attack()
                 return;
             }
         }
+        
+        if(FEATS_D->usable_feat(caster, "searing smite") && dam)
+            call_out("searing_smite", ROUND_LENGTH, target, dam);
     }
     
+    caster->add_cooldown("smite", FEATTIMER);
     caster->set_property("magic", 1);
     tell_object(caster, "%^BOLD%^CYAN%^With a shout of your convictions, you unleash divine energy upon your foe!%^RESET%^");
     tell_room(place, "%^BOLD%^CYAN%^" + caster->QCN + " lets out a shout and strikes down " + caster->query_possessive() + " foe with divine energy!%^RESET%^", ({ caster }));
     caster->cause_typed_damage(target, "head", dam, "divine");
     caster->set_property("magic", -1);
     
-    call_out("finish_smite", ROUND_LENGTH * 5, target, caster);
+    call_out("finish_smite", ROUND_LENGTH * ROUNDS, target, caster);
 }
 
+void searing_smite(object ob, int dam)
+{
+    if(!objectp(ob))
+        return;
+    
+    if(!ob->query_property("paladin smite"))
+        return;
+    
+    tell_object(ob, "%^CYAN%^BOLD%^You feel the sizzling divine energy burn to your very soul!%^RESET%^");
+    tell_room(environment(ob), "%^CYAN%^BOLD%^Sizzling divine energies burn " + ob->query_cap_name() + " with searing power!%^RESET%^", ob);
+    ob->cause_typed_damage(ob, "torso", dam / 2, "divine");
+    
+    call_out("searing_smite", ROUND_LENGTH, ob, dam);
+}
+    
 void finish_smite(object you, object me)
 {
+    remove_call_out("searing_smite");
+    
     if(you)
     {
         if(you->query_property("paladin smite"))

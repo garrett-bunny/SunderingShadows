@@ -447,7 +447,7 @@ void epithon3(){
 }
 
 void reply_func(string msg, object speaker){
-  msg = "/daemon/stripper_d"->stripcolors(msg);
+  msg = strip_colors(msg);
   msg = lower_case(msg);
   if (interact("quali", msg)){
     if (interact("kill", msg)||interact("slay", msg)||
@@ -533,7 +533,7 @@ void receive_spirit3(string spirit_name, object giver){
     quests = party[i]->query_mini_quests();
     if (member_array("Delivered justice to " + spirit_name, quests)==-1){
       party[i]->set_mini_quest("Delivered justice to " + spirit_name);
-      party[i]->add_exp(200000);
+      party[i]->add_exp(20000000);
     }
   }
 }

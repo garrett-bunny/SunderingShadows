@@ -1,13 +1,14 @@
 #include <spell.h>
 #include <magic.h>
 #include <priest.h>
+#include <daemons.h>
 inherit SPELL;
 
 void create() {
     ::create();
     set_author("nienne");
     set_spell_name("daze");
-    set_spell_level(([ "mage" : 1, "bard" : 1, "inquisitor":1, "psion" : 1, "magus" : 1 ]));
+    set_spell_level(([ "inquisitor":1, "cantrip" : 1 ]));
     set_spell_sphere("enchantment_charm");
     set_syntax("cast CLASS daze on TARGET");
     set_description("%^RESET%^This spell attempts to dazzle a creature into immobility. %^RESET%^%^BOLD%^N.B.%^RESET%^:
@@ -43,7 +44,7 @@ void spell_effect(int prof) {
     tell_room(place,"%^BOLD%^"+caster->QCN+" flicks "+caster->QP+" fingers suddenly open, and coruscating motes of light "
 "are cast forth directly into "+target->QCN+"'s face!%^RESET%^",({caster,target}));
     targlevel = (int)target->query_level();
-    if(do_save(target) || target->query_property("no paralyze")) {
+    if(do_save(target) || PLAYER_D->immunity_check(target, "paralysis")) {
         tell_object(target, "%^BOLD%^You manage to shake off the hypnotic effects of the light.%^RESET%^");
         tell_room(place,"%^BOLD%^"+target->QCN+" manages to shake off the light's hypnotic effects!%^RESET%^",target);
         dest_effect();

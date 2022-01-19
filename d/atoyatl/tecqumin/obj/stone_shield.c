@@ -12,12 +12,13 @@ void create()
              + " it should be too heavy to lift, but the powerful enchantments cast upon it make it"
              + " light enough to wield. Staps of leather serve to hold it on the wearer's arm.");
     set_value(22950);
-    while ((int)TO->query_property("enchantment") != 6) {
+    while ((int)TO->query_property("enchantment") != 7) {
         TO->remove_property("enchantment");
-        TO->set_property("enchantment", 6);
+        TO->set_property("enchantment", 7);
     }
-    set_item_bonus("damage resistance", 5);
-    set_item_bonus("shieldMiss", 20);
+    set_item_bonus("damage resistance", 10);
+    set_item_bonus("spell damage resistance", 25);
+    set_item_bonus("shieldMiss", 30);
     set_wear((: TO, "wear_it" :));
     set_lore("The stone shields of the %^CYAN%^Tecqumin%^RESET%^ were carefully shaped."
              + " Mostly they were thin enough to be liftable, which significantly reduced their"
@@ -32,7 +33,7 @@ int wear_it()
         tell_object(ETO, "You can't seem to settle the shield properly on your arm.");
         return 0;
     }
-    if (member_array("Fettered the %^MAGENTA%^U%^BLUE%^nf%^MAGENTA%^e%^BLUE%^tt%^MAGENTA%^e%^BLUE%^r%^MAGENTA%^e%^BLUE%^d", ETO->query_quests()) == -1 && member_array("Drove %^MAGENTA%^The %^BLUE%^U%^MAGENTA%^nf%^BLUE%^e%^MAGENTA%^tt%^BLUE%^e%^MAGENTA%^r%^BLUE%^e%^MAGENTA%^d %^RESET%^back into the %^BOLD%^%^BLACK%^vo%^RESET%^i%^BOLD%^%^BLACK%^d%^RESET%^!", ETO->query_quests()) == -1 && member_array("%^RED%^Defeated %^RESET%^%^BLUE%^The%^MAGENTA%^ U%^BLUE%^n%^MAGENTA%^f%^BLUE%^e%^MAGENTA%^tt%^BLUE%^e%^MAGENTA%^r%^BLUE%^e%^MAGENTA%^d", ETO->query_quests()) == -1) {
+    if (member_array("Fettered the %^MAGENTA%^U%^BLUE%^nf%^MAGENTA%^e%^BLUE%^tt%^MAGENTA%^e%^BLUE%^red", ETO->query_quests()) == -1 && member_array("Drove %^MAGENTA%^The %^BLUE%^U%^MAGENTA%^nf%^BLUE%^e%^MAGENTA%^tt%^BLUE%^e%^MAGENTA%^r%^BLUE%^e%^MAGENTA%^d %^RESET%^back into the %^BOLD%^%^BLACK%^vo%^RESET%^i%^BOLD%^%^BLACK%^d%^RESET%^!", ETO->query_quests()) == -1 && member_array("%^RED%^Defeated %^RESET%^%^BLUE%^The%^MAGENTA%^ U%^BLUE%^n%^MAGENTA%^f%^BLUE%^e%^MAGENTA%^tt%^BLUE%^e%^MAGENTA%^r%^BLUE%^e%^MAGENTA%^d", ETO->query_quests()) == -1) {
         tell_object(ETO, "%^BOLD%^%^WHITE%^You have not earned the right to use this item!%^RESET%^");
         return 0;
     }

@@ -43,7 +43,7 @@ void create()
 		"  To have armor made from her scales is a glorious feat indeed!");
 	set_property("lore",13);
 	set_property("enchantment",3);
-	set_item_bonus("magic resistance",7);
+	set_item_bonus("magic resistance",2);
 	set_value(12000);
 	set_wear((:TO,"wearme":));
 	set_remove((:TO,"removeme":));

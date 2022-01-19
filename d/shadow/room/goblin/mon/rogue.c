@@ -81,6 +81,10 @@ void heart_beat()
         return;
     }
     here = ETO;
+    
+    if(!here || !objectp(here))
+        return;
+    
 /***********************************
    removed & have them using thief steal code
 

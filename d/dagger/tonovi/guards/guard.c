@@ -79,7 +79,7 @@ void create()
     }));
     set_func_chance(35);
     set_property("full attacks", 1);
-    set_property("magic resistance", random(60) + 10);
+    set_mob_magic_resistance("average");
     rank = set_ranks(([
                           18 : "rookie",
                           20 : "sergeant",
@@ -91,7 +91,7 @@ void create()
     add_id(capitalize(rank));
     set_short("%^RESET%^%^RED%^A " + query("hair") + " haired, " + query("eye") + " eyed"
               " " + query_gender() + " " + query_race() + " in a %^WHITE%^Tonovi guard uniform");
-    set_ac(2 - random(10));
+    set_ac(-50);
     set_detecting_invis(random(2));
     set_exp(1);
     set_long("This " + query_gender() + " guard wears the standard uniform of "
@@ -272,7 +272,7 @@ void blow_horn(object ob)
     if (horn) {
         return;
     }
-    broadcast_area("/d/tonovi/town", "%^BOLD%^%^RED%^The warning horn blows, alerting the city guards!");
+    broadcast_area("/d/dagger/tonovi/town", "%^BOLD%^%^RED%^The warning horn blows, alerting the city guards!");
     horn = 1;
 }
 

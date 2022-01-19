@@ -1,5 +1,7 @@
 #include <std.h>
 #include <mysteries.h>
+#include <daemons.h>
+
 inherit DAEMON;
 
 void create() { ::create(); }
@@ -23,7 +25,7 @@ mapping stat_requirements() {
 }
 
 // strong & weak saving throws. Fort, Ref, Will
-int *saving_throws() { return ({ 0,0,1 }); }
+int *saving_throws() { return ({ -1,-1,1 }); }
 
 string *combat_styles() {
     return ({});
@@ -35,13 +37,134 @@ string *class_feats(string myspec)
               "simple weapon proficiency" });
 }
 
-mapping class_featmap(string myspec) {
+mapping class_featmap(string myspec, object player) {
+    
+    if(player->query_mystery() == "battle")
+    {
+        return ([
+                 1: ({ "light armor proficiency", "medium armor proficiency", "heavy armor proficiency", "simple weapon proficiency", "martial weapon proficiency", "shield proficiency", "spell focus" }),
+                 5 : ({ "indomitable" }),
+                 10: ({ "force of personality" }),
+                 15: ({ "leadership" }),
+                 21: ({ "weapon focus", "weapon specialization" }),
+               ]);
+    }
+    
+    if(player->query_mystery() == "dragon")
+    {
+        return ([
+                 1: ({ "light armor proficiency", "medium armor proficiency", "simple weapon proficiency", "shield proficiency", "spell focus", "dragon affinity", "dragon aspect" }),
+                 5 : ({ "indomitable" }),
+                 10: ({ "force of personality" }),
+                 15: ({ "leadership", "blindfight" }),
+               ]);
+    }
+    
+    if(player->query_mystery() == "bones")
+    {
+        return ([
+                 1: ({ "light armor proficiency", "medium armor proficiency", "simple weapon proficiency", "shield proficiency", "spell focus" }),
+                 5 : ({ "indomitable", "raise the dead" }),
+                 10: ({ "force of personality" }),
+                 15: ({ "leadership" }),
+               ]);
+    }
+    
+    if(player->query_mystery() == "life")
+    {
+        return ([
+                 1: ({ "light armor proficiency", "medium armor proficiency", "simple weapon proficiency", "shield proficiency", "spell focus", "blindfight" }),
+                 5 : ({ "indomitable" }),
+                 10: ({ "force of personality" }),
+                 15: ({ "leadership" }),
+                 31: ({ "deathward" }),
+               ]);
+    }
+    
+    if(player->query_mystery() == "spellscar")
+    {
+        return ([
+                 1: ({ "light armor proficiency", "medium armor proficiency", "simple weapon proficiency", "shield proficiency", "spell focus" }),
+                 5 : ({ "indomitable" }),
+                 10: ({ "force of personality" }),
+                 15: ({ "leadership" }),
+                 31: ({ "primal scar" }),
+               ]);
+    }
+    
     return ([
         1: ({ "light armor proficiency", "medium armor proficiency", "simple weapon proficiency", "shield proficiency", "spell focus" }),
         5 : ({ "indomitable" }),
         10: ({ "force of personality" }),
         15: ({ "leadership" }),
     ]);
+}
+
+mapping query_cantrip_spells(object ob)
+{
+    return ([ "create water" : 1, "detect magic" : 1, "detect poison" : 1, "guidance" : 1, "resistance" : 1, "light" : 1, "mending" : 1 ]);
+}
+
+mapping query_innate_spells(object player)
+{   
+    mapping innate_spells;
+    int olevel;
+    
+    if(!objectp(player))
+        return ([  ]);
+    
+    innate_spells = ([  ]);
+    olevel = player->query_class_level("oracle");
+    
+    switch(player->query_mystery())
+    {
+        case "shadow":
+        innate_spells += ([ "cloak of darkness" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), ]);
+        if(olevel >= 5)
+            innate_spells += ([ "wings of darkness" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), ]);
+        break;
+        
+        case "heavens":
+        innate_spells += ([ "coat of many stars" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), ]);
+        if(olevel >= 5)
+            innate_spells += ([ "lure of the cosmos" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), ]);
+        if(olevel >= 15)
+            innate_spells += ([ "interstellar void" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), ]);
+        break;
+        case "nature":
+        innate_spells += ([ "erosion touch" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), ]);
+        if(olevel >= 15)
+            innate_spells += ([ "natural divination" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), ]);
+        if(olevel >= 31)
+            innate_spells += ([ "cocoon" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), ]);
+        break;
+        
+        case "battle":
+        if(olevel >= 5)
+            innate_spells += ([ "battlecry" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), ]);
+        break;
+        
+        case "life":
+        if(olevel >= 5)
+            innate_spells += ([ "life link" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), ]);
+        if(olevel >= 21)
+            innate_spells += ([ "energy body" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), ]);
+        break;
+
+        case "bones":
+        if(olevel >= 1)
+            innate_spells += ([ "armor of bones" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), ]);
+        break;
+        
+        case "spellscar":
+        if(olevel >= 1)
+            innate_spells += ([ "mystic bolt" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), ]);
+        if(olevel >= 10)
+            innate_spells += ([ "conjure elemental" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), ]);
+        break;
+    }
+    
+    return innate_spells;
 }
 
 string *class_skills()

@@ -205,14 +205,15 @@ int cmd_wear(string str)
         }else {
             message("my_action", "You wear " + ob->query_short() + ".", this_player());
         }
-    }  
+    }
 
     if (itembonuses = ob->query_item_bonuses()) {
         ob->run_item_bonuses("equip", TP, itembonuses);
     }
 
     if (!quiet && objectp(ETP)) {
-        message("other_action", (string)this_player()->query_cap_name() + " wears " + ob->query_short() + ".", environment(this_player()), ({ this_player() }));
+        string short_desc = ob->query_obvious_short() ? ob->query_obvious_short() : ob->query_short();
+        message("other_action", (string)this_player()->query_cap_name() + " wears " + short_desc + ".", environment(this_player()), ({ this_player() }));
     }
 
     if (interactive(TP)) {
@@ -245,7 +246,7 @@ This command will attempt to equip the given item_name.
 
 %^CYAN%^SEE ALSO%^RESET%^
 
-wearall, remove, wield, unwield, limbs, inv, eq, look
+wearall, remove, wield, unwield, limbs, inv, eq, look, limbs
 
 ");
 }

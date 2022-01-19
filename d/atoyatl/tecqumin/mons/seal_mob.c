@@ -30,6 +30,7 @@ void create()
     set_race("seal");
     set_property("not random monster", 1);
     set_short("octagonal stone seal");
+    set_obvious_short("octagonal stone seal");
     set_weight(5);
     set_id(({ "seal", "stone seal", "octagonal seal", "octagonal stone seal" }));
     set_max_hp(3000);

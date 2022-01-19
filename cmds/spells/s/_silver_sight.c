@@ -19,9 +19,9 @@ void create(){
     ::create();
     set_author("circe");
     set_spell_name("silver sight");
-    set_spell_level(([ "cleric" : 8, "oracle" : 8 ]));
+    set_spell_level(([ "cleric" : 8 ]));
     set_spell_sphere("divination");
-    set_mystery("metal");
+    set_domains("moon");
     set_syntax("cast CLASS silver sight on TARGET");
     set_description("This spell will invoke the power of the moon to grant the caster far-reaching sight, allowing her to "
 "watch what goes on in the target room.");
@@ -31,18 +31,22 @@ void create(){
 }
 
 int preSpell(){
-   if(caster->query_property("remote scrying")){
-      tell_object(caster,"You have already focused your "+
-         "sight elsewhere!");
-      return 0;
-   }
-   if(avatarp(caster)) return 1; // let avatars use to follow players regardless of timer.
-   if((int)caster->query_property("remote scrying time")+DELAY > time()){
-      tell_object(caster,"You cannot invoke your moon-touched "+
-         "sight again so soon.");
-      return 0;
-   }
-   return 1;
+    if(caster->query_property("remote scrying")){
+        tell_object(caster,"You have already focused your "+
+            "sight elsewhere!");
+        return 0;
+    }
+    if(avatarp(caster)) return 1; // let avatars use to follow players regardless of timer.
+    if((int)caster->query_property("remote scrying time")+DELAY > time()){
+        tell_object(caster,"You cannot invoke your moon-touched "+
+            "sight again so soon.");
+        return 0;
+    }
+    if(caster->query("no pk")){
+        tell_object(caster,"%^YELLOW%^You are unable to scry while you have a %^MAGENTA%^NoPK %^YELLOW%^flag.%^RESET%^");
+        return 0;
+    }
+    return 1;
 }
 
 string query_cast_string(){
@@ -68,10 +72,7 @@ void spell_effect(int prof){
          dest_effect();
          return;
       }
-//new power stuff by ~Circe~ 6/20/08 to be in line with
-//other scry spells
-      bonus = caster->query_stats("wisdom");
-      bonus = bonus - 10;
+      bonus = calculate_bonus(caster->query_stats(get_casting_stat()));
       power = clevel + bonus + random(6);
       if(blockobj = present("blockerx111", place)){
         if(power < blockobj->query_block_power()){
@@ -107,10 +108,7 @@ void spell_effect(int prof){
             dest_effect();
             return;
          }
-//new power stuff by ~Circe~ 6/20/08 to be in line with
-//other scry spells
-         bonus = caster->query_stats("wisdom");
-         bonus = bonus - 10;
+         bonus = calculate_bonus(caster->query_stats(get_casting_stat()));
          power = clevel + bonus + random(6);
          if(blockobj = present("blockerx111", environment(ob)) || blockobj = present("blockerx111",ob)){
             if(power < blockobj->query_block_power()){

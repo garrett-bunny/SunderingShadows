@@ -156,7 +156,9 @@ int struck(int damage, object what, object who)
     string *ids;
     if(!objectp(ETO) || !objectp(EETO) || !living(ETO)) { return 0; }
 
-
+    if(random(4))
+        return damage;
+    
     switch(random(6))
     {
     case 0:
@@ -166,7 +168,7 @@ int struck(int damage, object what, object who)
             tell_object(ETO,""L"A surge of energy leaps from your "DQ" "AR" as "+who->QCN+" "L"hits you with "+who->QP+" "+desc+""L", nearly knocking the "+desc+" "L"from "+who->QP+" "L"hands!"S"");
             tell_room(EETO,""L"A surge of energy leaps from "+ETO->QCN+"'s "DQ" "AR" and hits "+who->QCN+""L", nearly knocking "+who->QP+" "L" "+desc+" from "+who->QP+" "L"hands!"S"",({who,ETO}));
             
-            if(!who->fort_save(ETO->query_level()))
+            if(!who->fort_save(80))
             {
                 tell_object(who,""L"A surge of energy leaps from "+ETO->QCN+"'s "DQ" "AR""L", knocking your "+desc+" "L"from your hand!"S"");
                 ids = what->query_id();
@@ -176,7 +178,6 @@ int struck(int damage, object what, object who)
                     who->remove_property("disarm time");
                     who->set_property("disarm time",time()+ (ROUND_LENGTH * roll_dice(1,4)));
                 }
-                return 0;
             }
             else
             {
@@ -198,15 +199,15 @@ int struck(int damage, object what, object who)
             tell_room(EETO,""L"One of the "SH" "L"from "+ETO->QCN+""L"'s "DQ" "AR" "L"leaps free and dives into "+who->QCN+""L"'s forehead!"S"",({who,ETO}));
             tell_object(who,""L"One of the "SH" "L"from "+ETO->QCN+""L"'s "DQ" "AR" "L"leaps free and dives into your forehead!"S"");
             
-            if(!who->will_save(ETO->query_level()))
+            if(!who->will_save(80))
             {                
                 tell_object(who,""R "You feel soul crushing pain as your mind is assaulted from the inside!"S"");
-                who->do_damage("head", roll_dice(1,6) * damage);
+                who->cause_typed_damage(who, "head", damage, "mental");
                 who->set_paralyzed(roll_dice(1,6),""M"Your mind is being assaulted from the inside!"S"");
                 return 0;
             }
             tell_object(who,""C"You painfully drive the foreign invader from your mind!"S"");
-            who->do_damage("head",damage);
+            who->cause_typed_damage(who, "head", damage / 2, "mental");
             return 0;
         }
         // This falls through intentionally, if no valid attacker then do the next special
@@ -214,9 +215,11 @@ int struck(int damage, object what, object who)
     default:
     
         tell_object(ETO,""L"Your "DQ" "AR" "L"absorbs the force of the attack and sends it to your body in the form of healing energy!"S"");
-        ETO->add_hp(damage * roll_dice(1,6));
+        ETO->add_hp(damage);
         return 0;
     }
+    
+    return damage;
 
 }
 

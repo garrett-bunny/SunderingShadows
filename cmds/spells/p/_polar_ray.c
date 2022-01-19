@@ -99,7 +99,7 @@ spell_effect(int prof)
 
     roll = BONUS_D->process_hit(caster, target, 1, bonus, 0, 1);
 
-    if(!roll || roll == -1 && ! caster->query_property("spectral_hand"))
+    if(!roll || roll == -1)
     {
         tell_object(caster,""+mycolor+"You aim a ray at "+target->QCN+"'s "+target_limb+" from a "+myhue+" hand, but miss!");
         tell_object(target,""+mycolor+caster->QCN+"'s "+myhue+" ray shoots toward your "+target_limb+" unsuccessfully.");

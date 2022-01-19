@@ -123,7 +123,7 @@ void create()
          "Seed %^GREEN%^dressing.%^RESET%^\n",
       "%^ORANGE%^Turkey %^CYAN%^and %^BOLD%^%^RED%^roasted %^RESET%^"+
          "%^RED%^red %^BOLD%^peppers %^RESET%^%^CYAN%^are wrapped in"+
-         "%^WHITE%^flatbread %^CYAN%^with %^BOLD%^cheese%^RESET%^"+
+         "%^WHITE%^ flatbread %^CYAN%^with %^BOLD%^cheese%^RESET%^"+
          "%^CYAN%^, %^ORANGE%^watercress%^CYAN%^, %^BOLD%^%^GREEN%^"+
          "spinach leaves %^RESET%^%^CYAN%^and a touch of %^ORANGE%^"+
          "horseradish%^CYAN%^. Served with some %^ORANGE%^fried potato "+

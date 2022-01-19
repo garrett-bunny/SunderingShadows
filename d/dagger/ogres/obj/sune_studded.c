@@ -62,7 +62,7 @@ int remove_func(){
 }
 
 int strike_func(int damage, object what, object who){
-	if(random(1000) < 100){
+    if(random(1000) < 100){
 	tell_room(EETO,"%^RESET%^%^GREEN%^As "+who->QCN+"%^RESET%^%^GREEN%^ str"+
 "ikes "+ETOQCN+"%^RESET%^%^GREEN%^, "+ETOQCN+"%^RESET%^%^GREEN%^ moves quick"+
 "ly, striking them! %^RESET%^",({ETO,who}));
@@ -70,6 +70,7 @@ int strike_func(int damage, object what, object who){
 "blow is about to strike you, you take the opportunity to strike them soundly!%^RESET%^");
 	tell_object(who,"%^RESET%^%^GREEN%^As you strike "+ETOQCN+"%^RESET%^"+
 "%^GREEN%^ they spin and strike you soundly!%^RESET%^");
-		who->set_paralyzed(random(2));
-return damage;	}
+	who->set_paralyzed(roll_dice(1,4));
+    }
+    return damage;
 }

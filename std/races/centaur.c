@@ -9,7 +9,7 @@ int *age_brackets() { return ({ 12, 35, 46, 70 }); }
 int *restricted_alignments(string subrace) { return ({ 3, 6, 9 }); }
 
 string *restricted_classes(string subrace) {
-    return ({ "thief", "cleric", "mage", "magus",  "psion", "psywarrior", "paladin", "sorcerer", "monk", "warlock", "inquisitor" });
+    return ({ "thief", "cleric", "mage", "magus", "psion", "psywarrior", "paladin", "sorcerer", "monk", "warlock", "inquisitor" });
 }
 
 // this only affects rolling in creation; does not prevent dedication to a deity in-game, to allow for character evolution. N, 3/16.
@@ -18,7 +18,7 @@ string *restricted_deities(string subrace) {
 }
 
 // stats in order: str, dex, con, int, wis, cha
-int *stat_mods(string subrace) { return ({ 4, 2, 2, -2, -2, -2 }); }
+int *stat_mods(string subrace) { return ({ 4, 2, 2, -2, 2, -2 }); }
 
 mapping skill_mods(string subrace) { return ([ "endurance" : 2 ]); }
 
@@ -39,7 +39,9 @@ int *min_stats() { return ({ 11, 6, 11, 3, 3, 3 }); }
 int *max_stats() { return ({ 19, 17, 18, 18, 18, 18 }); }
 int *stat_adj() { return ({ 1, -1, 0, 0, 0, 0 }); }
 
-int is_restricted() { return 1; } // restricted races by approval
+int is_restricted() { return 0; } // restricted races by approval
+
+int is_rollable() { return 1; } // rollable in creation
 
 // Stuff needed to replace what was in the old race database
 

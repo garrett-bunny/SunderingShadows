@@ -7,14 +7,15 @@ int lower;
 void create() {
     ::create();
     set_spell_name("protection from spells");
-    set_spell_level(([ "mage" : 8,"inquisitor":5,"oracle":6 ]));
+    set_spell_level(([ "mage" : 8,"inquisitor":5,"oracle":6,"cleric":6 ]));
     set_spell_sphere("abjuration");
     set_mystery("dragon");
+    set_bonus_type("resistance");
     set_domains("magic");
-    set_damage_desc("clevel / 6 + 2 but no more than 8 to all saves");
+    set_damage_desc("+6 to all saves");
     set_syntax("cast CLASS protection from spells on TARGET");
     set_description("Using this power will allow a mage or sorcerer to temporarily raise the target's "
-"resistance to spells of all kinds.  This is only a temporary state, however, and will fade after a "
+"resistance to spells.  This is only a temporary state, however, and will fade after a "
 "short while.");
     set_verbal_comp();
     set_somatic_comp();
@@ -73,9 +74,11 @@ void spell_effect(int prof) {
         return;
     }
 
-    lower = clevel / 6 + 2;
-    lower = lower > 8 ? 8 : lower;
+    lower = 6;
+    //lower = clevel / 6 + 2;
+    //lower = lower > 8 ? 8 : lower;
     target->add_saving_bonus("all",lower);
+    //target->set_property("spell damage resistance", lower); 
     target->set_property("protection from spells", 1);
     addSpellToCaster();
     spell_duration = (clevel + roll_dice(1, 20)) * ROUND_LENGTH * 2;
@@ -88,6 +91,7 @@ void dest_effect(){
     if(objectp(target))
     {
         target->add_saving_bonus("all",-lower);
+        //target->set_property("spell damage resistance", -lower);
         target->remove_property("protection from spells");
         tell_room(environment(target),"%^RESET%^%^CYAN%^The air suddenly seems to grow dull as "
         "a wave of energy dissipates from the air around "+target->QCN+".%^RESET%^",target);

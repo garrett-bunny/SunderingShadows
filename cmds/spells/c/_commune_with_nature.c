@@ -6,7 +6,8 @@ void create(){
     ::create();
     set_author("nienne");
     set_spell_name("commune with nature");
-    set_spell_level(([ "ranger" : 4 ]));
+    set_spell_level(([ "ranger" : 4, "druid" : 4, "cleric" : 4 ]));
+    set_domains("animal");
     set_spell_sphere("divination");
     set_syntax("cast CLASS commune with nature");
     set_description("This spell allows the ranger to become one with nature, sensing abnormal presences within their "

@@ -245,7 +245,7 @@ void write_wheel(int ansi)
 {
   if(ansi)
     write(CLS);
-  say( TP->query_cap_name() +" stares at the chest, and tries to solve it's "
+  say( TP->query_cap_name() +" stares at the chest, and tries to solve its "
       "riddle.");
   write("There is a little inscription on the plaque, and a set of rolling "
 	"letters below. You figure that you turn the letters to form the "

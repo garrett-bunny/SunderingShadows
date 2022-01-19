@@ -15,9 +15,8 @@ void create()
     set_spell_name("airbolt");
     set_spell_level(([ "cleric" : 5 ]));
     set_spell_sphere("invocation_evocation");
-    set_domains("air");
     set_syntax("cast CLASS airbolt on TARGET");
-    set_damage_desc("bludgeoning");
+    set_damage_desc("force");
     set_description("This spell enables a priest to concentrate the air around him into a powerful gust of wind. The "
         "priest chooses the target of the spell, and there is a chance that the target is knocked off balance and will drop what "
         "he or she is holding.  In addition, the gale force winds may hit others who are standing near the target.");
@@ -111,7 +110,7 @@ void spell_effect(int prof)
                         target->set_tripped(random(2)+1,"%^BOLD%^"+
                             "%^BLUE%^You are knocked flat by the gale winds.");
                     }
-                    if(objectp(attackers[i])) damage_targ(attackers[i],"torso",dam,"bludgeoning");
+                    if(objectp(attackers[i])) damage_targ(attackers[i],"torso",dam,"force");
                 }
                 else
                 {
@@ -121,7 +120,7 @@ void spell_effect(int prof)
                         ""+target->QCN+" is able to retrain "+
                         ""+target->QP+" footing amidst the gale "+
                         "blast.%^RESET%^",target);
-                    if(objectp(attackers[i])) damage_targ(attackers[i],"torso",dam/2,"bludgeoning");
+                    if(objectp(attackers[i])) damage_targ(attackers[i],"torso",dam/2,"force");
                 }
             }
             else
@@ -133,7 +132,7 @@ void spell_effect(int prof)
                         "sheer into you as they pass by.%^RESET%^");
                     tell_room(environment(attackers[i]),"%^BOLD%^%^CYAN%^"+
                         ""+attackers[i]->QCN+" is sheered by the winds!%^RESET%^",attackers[i]);
-                    damage_targ(attackers[i],"torso",dam,"bludgeoning");
+                    damage_targ(attackers[i],"torso",dam,"force");
                 }
                 else
                 {
@@ -142,7 +141,7 @@ void spell_effect(int prof)
                     tell_room(environment(attackers[i]),"%^CYAN%^Twisting, "+
                         ""+attackers[i]->QCN+" avoids the brunct of the "+
                         "winds.%^RESET%^");
-                    damage_targ(attackers[i],"torso",dam/2,"bludgeoning");
+                    damage_targ(attackers[i],"torso",dam/2,"force");
                 }
             }
         }

@@ -9,6 +9,7 @@
 #include <monks.h>
 #include <favored_types.h>
 #define ANSI(p) sprintf("%c["+(p)+"m", 27)
+#define ANSI2(p) sprintf("%c[38;5;"+(p)+"m", 27)
 #define ESC(p) sprintf("%c"+(p), 27)
 
 inherit DAEMON;
@@ -173,6 +174,7 @@ void init_ki(object ob)
 
 //Resource Functions, Wedex October 2020
 //pool_type: ki, arcana, grace
+//added focus for psionics, Tlaloc 2021
 int spend_pool(object ob, int amount, string pool_type)
 {
     int avail;
@@ -187,6 +189,10 @@ int spend_pool(object ob, int amount, string pool_type)
         return 0;
     }
     avail -= amount;
+    
+    if(pool_type == "focus" && avail < 1)
+        tell_object(ob, "%^BOLD%^You lose your psionic focus.%^RESET%^");
+    
     ob->set("available " + pool_type, avail);
     return 1;
 }
@@ -276,6 +282,15 @@ varargs void regenerate_pool(object ob, int amount, int pass, string pool_type)
                 }
             }
             break;
+        //Focus is either 1 or 0
+        case "focus":
+            if(ob->is_class("psion") || ob->is_class("psywarrior"))
+            {
+                delay = 90;
+                delay -= BONUS_D->query_stat_bonus(ob, "intelligence");
+            }
+            break;
+
         }
         ob->set("last " + pool_type + " regen", time() + delay);
     }
@@ -331,8 +346,20 @@ void init_pool(object ob, string pool_type)
         }
         else {
             newmax = 2 + (int)ob->query_class_level("paladin") / 10 + ob->query_class_level("cleric") / 10;
+            newmax += (FEATS_D->usable_feat(ob, "extra grace") * 2);
         }
         break;
+    case "focus":
+        if(!ob->is_class("psion") && !ob->is_class("psywarrior"))
+        {
+            ob->delete("available " + pool_type);
+            ob->delete("maximum " + pool_type);
+            return;
+        }
+        else
+        {
+            newmax = 1 + FEATS_D->usable_feat(ob, "mental mastery");
+        }
     }
     if (!intp(avail = (int)ob->query("available " + pool_type))) avail = newmax;
     if (intp(oldmax = (int)ob->query("maximum " + pool_type)))
@@ -776,12 +803,7 @@ string* determine_lines(object who)
     mychannels = ({ "newbie", "ooc", "wiz" });
 
     if (avatarp(who)) {
-        mychannels += ({ "discuss", });
-    }
-
-    if (avatarp(who) &&
-        !wizardp(who)) {
-        mychannels += ({ "telepathy", "petition", "plot" });
+        mychannels += ({ "discuss", "petition", "telepathy", "avatar" });
     }
 
     if (member_group(who->query_true_name(), "law_c")) {
@@ -815,6 +837,12 @@ int is_valid_enemy_cat(string str)
 
 int is_valid_enemy(string id, string cat)
 {
+    if(!strlen(id))
+        return 0;
+    
+    if(!pointerp(VALID_ENEMY[cat]))
+        return 0;
+    
     if (member_array(id, VALID_ENEMY[cat]) != -1) {
         return 1;
     }

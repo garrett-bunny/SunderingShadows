@@ -438,7 +438,7 @@ varargs int thaco(object targ, int mod, int flag)
         weap = weaps[0];
     }
     //get bonus as if it was their first attack - Saide
-    roll = BONUS_D->process_hit(caster, targ, 0, weap, 0, flag);
+    roll = BONUS_D->process_hit(caster, targ, 0, weap, 0, flag, mod);
     //20 is a hit that ignores shieldmiss and deflection - Saide
     if(roll == 20) return 1;
     if(!roll) return 0;
@@ -505,28 +505,28 @@ varargs int thaco(object targ, int mod, int flag)
     return 1;
 }*/
 
+//Tlaloc changed this to standardize with spell.c do_save
+//Please only send stat bonuses as mod except in very rare circumstances
 varargs int do_save(object ob,int mod)
 {
     string save;
-    int num;
+    int num, DC, mylvl;
+    object daemon;
 
     if(!objectp(ob)) { return 0; }
     save = query_save_type();
 
-    switch(save)
-    {
-    case "fort":
-    case "fortitude":
-        num = (int)"/daemon/saving_throw_d"->fort_save(ob,mod);
-        break;
-    case "will":
-    case "willpower":
-        num = (int)"/daemon/saving_throw_d"->will_save(ob,mod);
-        break;
-    case "reflex":
-        num = (int)"/daemon/saving_throw_d"->reflex_save(ob,mod);
-        break;
-    }
+    mylvl = max( ({ flevel, caster->query_level() - 10 }) );
+
+    DC = mylvl + 19;
+    //MOD should include whatever stat mod you're using for the feat
+    DC += mod;
+    
+    if(catch(daemon = load_object("/daemon/saving_throw_d")))
+        return 0;
+    
+    num = daemon->do_save(ob, DC, save);
+
     return num;
 }
 
@@ -560,18 +560,28 @@ void define_flevel()
     if (!feat_clss || !sizeof(feat_clss) || !userp(caster)) {
         flevel = clevel;
     } else {
-        string s;
-        int mlvl;
+        object class_ob;
+        string s, *my_classes;
 
         flevel = 0;
 
         if (feat_clss[0] == "base_class") {
             flevel = caster->query_guild_level(caster->query("base_class"));
-        } else {
-            foreach(s in feat_clss) {
-                mlvl = caster->query_guild_level(s);
-                if (mlvl > flevel) {
-                    flevel = mlvl;
+        }
+        else { // full levels from feat classes, 1/2 levels for others
+            my_classes = caster->query_classes();
+
+            foreach(s in my_classes) {
+                class_ob = find_object_or_load(DIR_CLASSES + "/" + s + ".c");
+
+                if(class_ob->is_prestige_class() && member_array(caster->query("base_class"), feat_clss) != -1) {
+                    continue;
+                }
+                if(member_array(s,feat_clss) != -1) {
+                    flevel += caster->query_prestige_level(s);
+                }
+                else {
+                    flevel += (caster->query_class_level(s) / 2);
                 }
             }
         }
@@ -723,6 +733,8 @@ object query_active_feat(string name)
 }
 
 int allow_shifted() {return 0;};
+
+int is_feat() { return 1; }
 
 void delay_msg(int delay, string message)
 {

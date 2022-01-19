@@ -1,6 +1,7 @@
 #include <std.h>
 #include <priest.h>
 #include <party.h>
+#include <daemons.h>
 
 inherit SPELL;
 
@@ -15,7 +16,8 @@ void create()
     set_spell_level(([ "cleric" : 8, "druid" : 8, "mage" : 8]));
     set_syntax("cast CLASS frightful aspect");
     set_spell_sphere("alteration");
-    set_description("You become a larger, awful version of yourself. You grow in size, and take on features that horrify your enemies. You gain the following abilities: a +6 size bonus to Strength, a +4 size bonus to Constitution, a +6 natural armor bonus, 5 damage resistance, and spell resistance equal to 10 + half your caster level. You also emit an aura that emanates 30 feet from you. Enemy creatures within the aura are shaken. This spell won't work together with iron body, stoneskin and other such spells.\n\n%^BOLD%^%^RED%^See also:%^RESET%^ status effects");
+    set_bonus_type(({ "size", "resistance" }));
+    set_description("You become a larger, awful version of yourself. You grow in size, and take on features that horrify your enemies. You gain the following abilities: a +6 size bonus to Strength, a +4 size bonus to Constitution, a +6 natural armor bonus, 5 damage resistance, +2 to save against spells, and spell damage resistance equal to 10 + half your caster level. You also emit an aura that emanates 30 feet from you. Enemy creatures within the aura are shaken. This spell won't work together with iron body, stoneskin and other such spells.\n\n%^BOLD%^%^RED%^See also:%^RESET%^ status effects");
     set_verbal_comp();
     set_somatic_comp();
     splash_spell(2);
@@ -49,11 +51,13 @@ void spell_effect(int prof)
     caster->set_property("added short", ({ "%^RED%^ (giant)%^RESET%^" }));
     caster->set_size_bonus(1);
     caster->add_ac_bonus(6);
-    if (!caster->query_property("raised resistance")) {
-        caster->set_property("magic resistance", mrbonus);
-        caster->set_property("raised resistance", 1);
-        mrflag = 1;
-    }
+    caster->add_saving_bonus("all", 2);
+    //if (!caster->query_property("raised resistance")) {
+        //caster->set_property("magic resistance", mrbonus);
+    caster->set_property("spell damage resistance", mrbonus);
+        //caster->set_property("raised resistance", 1);
+        //mrflag = 1;
+    //}
     spell_successful();
     addSpellToCaster();
     environment(caster)->addObjectToCombatCycle(TO, 1);
@@ -82,7 +86,7 @@ void execute_attack()
         foreach(ppl in inven)
         {
             if (!ppl->query_property("effect_shaken")) {
-                if (!mind_immunity_check(ppl)) {
+                if (!mind_immunity_check(ppl) && !PLAYER_D->immunity_check(ppl, "fear")) {
                     "/std/effect/status/shaken"->apply_effect(ppl, clevel / 6 + 1);
                     tell_object(ppl, "%^RED%^You shake in fear in sight of " + caster->QCN);
                     tell_room(room, "%^RED%^" + ppl->QCN + " shakes in fear in sight of " + caster->QCN, ({ ppl }));
@@ -98,18 +102,20 @@ void dest_effect()
 {
     if (objectp(caster)) {
         caster->set_size_bonus(0);
-        caster->remove_property("added short", ({ "%^RED%^ (giant)%^RESET%^" }));
+        caster->remove_property_value("added short", ({ "%^RED%^ (giant)%^RESET%^" }));
         caster->remove_property("iron body");
         caster->add_stat_bonus("strength", -6);
         caster->add_stat_bonus("constitution", -4);
         caster->set_property("damage resistance", -5);
         caster->add_ac_bonus(-6);
+        caster->add_saving_bonus("all", -2);
         caster->remove_property("frightful_aspect");
-        if (mrflag) {
-            caster->set_property("magic resistance", -mrbonus);
-            caster->set_property("raised resistance", 0);
-            mrflag = 0;
-        }
+        //if (mrflag) {
+        //    caster->set_property("magic resistance", -mrbonus);
+        caster->set_property("spell damage resistance", -mrbonus);
+        //    caster->set_property("raised resistance", 0);
+        //    mrflag = 0;
+        //}
         tell_object(target, "%^RED%^You shrink back to normal!");
         tell_room(environment(caster), "%^RED%^" + caster->QCN + " shrinks back to normal size.", target);
     }

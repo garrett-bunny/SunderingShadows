@@ -334,9 +334,11 @@ int confirm_add_type(string str, object ob, string feat, string extradata, strin
         if (feat == "spellmastery" || feat == "archmage" || feat == "greater spell mastery") {
             ob->set("spellmastery_spell", extradata);
         }
+        /*
         if (feat == "skill focus") {
             ob->set("skill_focus", extradata);
         }
+        */
         FEATS_D->add_my_feat(ob, feattype, feat);
         //moved this down - otherwise feats that require a specific level will
         //never get added if the exp cost would cause you to lose a level - Saide
@@ -368,9 +370,11 @@ int confirm_add_type(string str, object ob, string feat, string extradata, strin
             if (feat == "spellmastery") {
                 ob->set("spellmastery_spell", extradata);
             }
+            /*
             if (feat == "skill focus") {//racial only
                 ob->set("skill_focus", extradata);
             }
+            */
         }
         FEATS_D->add_my_feat(ob, feattype, feat);
         tell_object(ob, "%^YELLOW%^Congratulations, you have successfully added "
@@ -436,7 +440,7 @@ int confirm_remove(string str, object ob, string feat, string extradata)
 int cmd_feats(string str)
 {
     object ob;
-    string tmp, feat, * info = ({}), * required, * my_required = ({}), * my_tmp_feats = ({}), category, * subset = ({}), * feats = ({}), * melee_retool = ({}), * feat_types, feat_types_labels;
+    string tmp, feat, * info = ({}), * required, * my_required = ({}), * my_tmp_feats = ({}), category, * subset = ({}), * feats = ({}), * melee_retool = ({}), * feat_types, feat_types_labels, *racefeats;
     int i, j, MAX_ALLOWED, BONUS_ALLOWED, num_feats, allowed, num_bonus, bonus, my_lev, * featkeys;
     mapping classfeats, otherfeats, bonus_feats;
 
@@ -478,6 +482,8 @@ int cmd_feats(string str)
         case "hybrid":
         case "general":
         case "arcana":
+        //case "talent":
+        case "rage":
         case "divinebond":
             FEATS_D->display_feats(TP, TP, info[0]);
             return 1;
@@ -506,6 +512,7 @@ int cmd_feats(string str)
             if (!TP->query("free_feat_wipe")) {
                 TP->set("free_feat_wipe", 1);
                 TP->clear_feats();
+                TP->set_divine_domain(({}));
                 num_feats = ((int)TP->query_level() / 3) + 1;
                 TP->set("free_feats", num_feats);
                 if (!avatarp(TP)) {
@@ -540,6 +547,29 @@ int cmd_feats(string str)
         for (i = 0; i < sizeof(featkeys); i++) {
             feats += otherfeats[featkeys[i]];
         }
+        
+        //Racial feats check
+        racefeats = FEATS_D->race_feat_array(this_player()->query_race(), this_player()->query("subrace"), this_player());
+        
+        if(pointerp(racefeats))
+        {
+            foreach(string rfeat in racefeats)
+            {
+                if(!FEATS_D->has_feat(this_player(), rfeat))
+                {
+                    FEATS_D->add_feat(this_player(), "racial", rfeat, 1);
+                    tell_object(this_player(), "%^YELLOW%^Adding racial feat %^BLUE%^" + rfeat + ".%^RESET%^");
+                }
+                else
+                {
+                    if(FEATS_D->get_feat_type(this_player(), rfeat) != "bonus")
+                    {
+                        tell_object(this_player(), "%^YELLOW%^Moving %^BLUE%^" + rfeat + "%^YELLOW%^ feat to racial feats.%^RESET%^");
+                        num_feats++;
+                    }
+                }
+            }
+        }       
 
         // now run addition of any missing class feats; remove from bought
         // feats first if they already did
@@ -550,7 +580,8 @@ int cmd_feats(string str)
                 continue;
             }
             tmp = (string)TP->query_combat_spec(required[bonus]);         // new combat spec code, N 1/14.
-            classfeats = category->class_featmap(tmp);
+            classfeats = category->class_featmap(tmp, TP);
+            
             if (!mapp(classfeats)) {
                 continue;
             }
@@ -660,7 +691,19 @@ int cmd_feats(string str)
                 BONUS_ALLOWED = FEATS_D->number_feats(TP, feat_types[i], ({ "paladin" }));
                 num_bonus = (int)TP->query_divinebond_feats_gained();
                 feat_types_labels = "divine";
+                break;           
+            case "rage":
+                BONUS_ALLOWED = FEATS_D->number_feats(TP, feat_types[i], ({ "barbarian" }));
+                num_bonus = (int)TP->query_rage_feats_gained();
+                feat_types_labels = feat_types[i];
                 break;
+            /*
+            case "talent":
+                BONUS_ALLOWED = FEATS_D->number_feats(TP, feat_types[i], ({ "bard", "thief" }));
+                num_bonus = (int)TP->query_divinebond_feats_gained();
+                feat_types_labels = feat_types[i];
+                break;
+            */
             default:
                 BONUS_ALLOWED = 0;
                 num_bonus = 0;
@@ -686,6 +729,11 @@ int cmd_feats(string str)
     case "active":
         FEATS_D->display_feats(TP, TP, "active");
         return 1;
+        break;
+    case "known":
+        FEATS_D->display_feats(this_player(), this_player(), "known");
+        return 1;
+        break;
 
     case "add":
     case "racial":
@@ -693,6 +741,8 @@ int cmd_feats(string str)
     case "spellcraft":
     case "hybrid":
     case "arcana":
+    //case "talent":
+    case "rage":
     case "divinebond":
         if (sscanf(str, "%s %s", category, tmp) != 2) {
             tell_object(TP, "See <help feats> for syntax.");
@@ -840,6 +890,22 @@ int validation_messages(object obj, string group, string feat_name) {
         can_gain = FEATS_D->can_gain_type_feat(obj, feat_name, "divinebond");
         group_2 = group;
         break;
+    case "rage":
+        valid_classes = ({ "barbarian" });
+        valid_categories = RAGEFEATS;
+        num_bonus = (int)obj->query_rage_feats_gained();
+        can_gain = FEATS_D->can_gain_type_feat(obj, feat_name, "rage");
+        group_2 = group;
+        break;
+    /*
+    case "talent":
+        valid_classes = ({ "thief", "bard" });
+        valid_categories = TALENTFEATS;
+        num_bonus = (int)obj->query_divinebond_feats_gained();
+        can_gain = FEATS_D->can_gain_type_feat(obj, feat_name, "talent");
+        group_2 = group;
+        break;
+    */
     case "add"://class
         valid_classes = ({ });
         valid_categories = ({ });
@@ -914,6 +980,19 @@ int validation_messages(object obj, string group, string feat_name) {
                 "This feat can only be selected as a divinebond feat.%^RESET%^");
             return 1;
         }
+
+        if ((string)FEATS_D->get_category(feat_name) == "RagePower") {
+            tell_object(obj, "%^RESET%^%^BOLD%^This is a barbarian class feat. "
+                "This feat can only be selected as a rage feat.%^RESET%^");
+            return 1;
+        }
+/*
+        if ((string)FEATS_D->get_category(feat_name) == "RogueTalent") {
+            tell_object(obj, "%^RESET%^%^BOLD%^This is a bard or thief class feat. "
+                "This feat can only be selected as a talent feat.%^RESET%^");
+            return 1;
+        }
+*/
     }
     else {
         if ((string)FEATS_D->get_category(feat_name) == "EpicFeats") {
@@ -969,6 +1048,7 @@ int validation_messages(object obj, string group, string feat_name) {
         }
     }
     if (group == "racial" || group == "add") {
+        /*
         if (feat_name == "skill focus") {
             tell_object(obj, "%^YELLOW%^In order to gain the skill focus feat, you must "
                 "select a skill that you wish to learn as a class-skill.  You can pick "
@@ -978,6 +1058,7 @@ int validation_messages(object obj, string group, string feat_name) {
             input_to("skill_focus_setting", obj, feat_name, group_2);
             return 1;
         }
+        */
     }
 
     if (group == "add") {
@@ -1027,9 +1108,10 @@ feats - manipulate or view your feats
 %^CYAN%^SYNOPSIS%^RESET%^
 
 feats allowed
+feats known
 feats check|add|remove %^ULINE%^%^ORANGE%^FEAT_NAME%^RESET%^
-feats racial|martial|spellcraft|hybrid|arcana|divinebond %^ULINE%^%^ORANGE%^FEAT_NAME%^RESET%^
-feats list [martial|spellcraft|hybrid|arcana|divinebond|general]
+feats racial|martial|spellcraft|hybrid|arcana|divinebond|rage %^ULINE%^%^ORANGE%^FEAT_NAME%^RESET%^
+feats list [martial|spellcraft|hybrid|arcana|divinebond|rage|general]
 feats fix
 feats active
 
@@ -1037,21 +1119,23 @@ feats active
 
 Feats represents specialized techniques or powers a character can learn throughout its career. Some feats are class-specific (usually gained for free with class-levels), while others are generic and must be paid for by adding to your exp tax (see <help exp tax>). A character gains 1 generic feat every 3. level which can be bought in such a way. Feats awarded by character class are added automatically. Some classes gain additional free feats known as bonus feats. When you level your character, you will get notified if you are allowed new feats.
 
-Feats are divided into types (martial, spellcraft, hybrid, arcana, generic, epic) and organized in feat trees.  Some feats have prerequisites as specified in their individual help files.
+Feats are divided into types (martial, spellcraft, hybrid, arcana, rage, generic, epic) and organized in feat trees.  Some feats have prerequisites as specified in their individual help files.
 
 The following commands apply:
 
 %^ORANGE%^<feats allowed>%^RESET%^
     Tells you how many feats you are allowed at your current level.
+%^ORANGE%^<feats known>%^RESET%^
+    Tells you which feats you already have.
 %^ORANGE%^<feats check %^ORANGE%^%^ULINE%^FEAT%^RESET%^%^ORANGE%^>%^RESET%^
     Tells you if you meet all the requirements to take this feat.
 %^ORANGE%^<feats add %^ORANGE%^%^ULINE%^FEAT%^RESET%^%^ORANGE%^>%^RESET%^
     Will add the feat if you have any remaining levelling feats.
 %^ORANGE%^<feats remove %^ORANGE%^%^ULINE%^FEAT%^RESET%^%^ORANGE%^>%^RESET%^
     Will remove the feat if you no longer want to retain it.
-%^ORANGE%^<feats racial|martial|spellcraft|hybrid|arcana|divinebond %^ORANGE%^%^ULINE%^FEAT%^RESET%^%^ORANGE%^>%^RESET%^
+%^ORANGE%^<feats racial|martial|spellcraft|hybrid|arcana|divinebond|rage %^ORANGE%^%^ULINE%^FEAT%^RESET%^%^ORANGE%^>%^RESET%^
     Will add the feat of given category if you have any bonus feats in it.
-%^ORANGE%^<feats list martial|spellcraft|hybrid|arcana|divinebond|general|epic>%^RESET%^
+%^ORANGE%^<feats list martial|spellcraft|hybrid|arcana|divinebond|rage|general|epic>%^RESET%^
     Displays the specified feat trees.
 %^ORANGE%^<feats fix>%^RESET%^
     Will attempt to fix your feat tree. If your feats seem incorrect, use this command.
@@ -1072,7 +1156,7 @@ If your terminal supports color, you may benefit from color coding of the feats 
 The numbers listed before the feats indicate which level the feats were gained at:
   %^BOLD%^%^CYAN%^00%^RESET%^: The feat has been bought normally.
   %^BOLD%^%^MAGENTA%^00%^RESET%^: The feat has been granted for free (class feats).
-  %^YELLOW%^00%^RESET%^: The feat has been bought with bonus racial, combat, magic, hybrid, arcana or dvinebond feats.
+  %^YELLOW%^00%^RESET%^: The feat has been bought with bonus racial, combat, magic, hybrid, arcana, rage or dvinebond feats.
 
 Adding and removing normal feats will add to your character improvement tax (see %^ORANGE%^<help exp tax>%^RESET%^) and slow your level advancement. This is to simulate the extra training that it requires to learn the new abilities or to forget your previous training.
 

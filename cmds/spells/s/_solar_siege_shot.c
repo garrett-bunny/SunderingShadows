@@ -8,7 +8,7 @@ void create() {
     set_mystery("solar");
     set_spell_sphere("invocation_evocation");
     set_syntax("cast CLASS solar siege shot on TARGET");
-    set_damage_desc("divine, 4/3 times more to undead");
+    set_damage_desc("radiant, 4/3 times more to undead");
     set_description("With this spell conjures a ballista made out of solar energy, and then it takes a shot at your target. Undead take extra damage.");
     set_verbal_comp();
     set_somatic_comp();
@@ -28,7 +28,7 @@ spell_effect(int prof)
     spell_successful();
     tell_room(place,"%^BOLD%^%^WHITE%^The ballista makes a shot at "+target->QCN+" and then disappears!");
     tell_room(place,"%^BOLD%^%^ORANGE%^A bolt made of light pierces "+target->QCN+"!");
-    damage_targ(target, target->return_target_limb(), dam,"divine");
+    damage_targ(target, target->return_target_limb(), dam,"radiant");
     TO->dest_effect();
 }
 

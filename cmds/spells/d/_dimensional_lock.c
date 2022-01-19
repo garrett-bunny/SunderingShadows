@@ -10,8 +10,8 @@ void create() {
     ::create();
     set_author("nienne");
     set_spell_name("dimensional lock");
-    set_spell_level(([ "mage" : 6, "cleric" : 6,]));
-    set_domains("protection");
+    set_spell_level(([ "mage" : 8, "cleric" : 8,]));
+    set_domains("travel");
     set_spell_sphere("abjuration");
     set_syntax("cast CLASS dimensional lock");
     set_description("By means of this spell, the wizard blocks all teleportation attempts both into and out of the area, "

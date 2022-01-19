@@ -1,6 +1,7 @@
 #include <std.h>
 #include <magic.h>
 #include <skills.h>
+#include <daemons.h>
 
 #pragma strict_types
 
@@ -21,6 +22,13 @@ void status_effect()
         TO->remove();
         return;
     }
+    
+    if(PLAYER_D->immunity_check(target, "dazzled"))
+    {
+        tell_object(target, "%^YELLOW%^You are immune to being dazzled.%^RESET%^");
+        this_object()->remove();
+        return;
+    }
 
     target->set_property("effect_dazzled", 1);
 
@@ -32,17 +40,17 @@ void status_effect()
     target->add_skill_bonus("thievery", -power);
     target->add_attack_bonus(-power);
 
-    call_out("dest_effect", ROUND_LENGTH * duration);
+    call_out("dest_effect", ROUND_LENGTH * duration, target);
 }
-void dest_effect()
+void dest_effect(object ob)
 {
     int i;
-    if (objectp(target)) {
-        tell_object(target, "%^ORANGE%^You no longer are dazzled.%^RESET%^");
-        target->add_skill_bonus("perception", power);
-        target->add_skill_bonus("thievery", power);
-        target->add_attack_bonus(power);
-        target->remove_property("effect_shaken");
+    if (objectp(ob)) {
+        tell_object(ob, "%^ORANGE%^You no longer are dazzled.%^RESET%^");
+        ob->add_skill_bonus("perception", power);
+        ob->add_skill_bonus("thievery", power);
+        ob->add_attack_bonus(power);
+        ob->remove_property("effect_dazzled");
     }
 
     ::dest_effect();

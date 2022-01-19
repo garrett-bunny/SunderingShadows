@@ -1,9 +1,9 @@
 /*
   acompanion.c
-  
+
   Animal companion for rangers. Will be fleshed
   out more over time.
-  
+
   -- Tlaloc --
 */
 
@@ -43,13 +43,13 @@ void create(){
 void init()
 {
     ::init();
-    
+
     if(this_player() != owner)
         return;
-    
+
     saved_short = read_file(SAVEDIR + "short");
     saved_long = read_file(SAVEDIR + "long");
-    
+
     //Used read_file here - don't want to save whole object for 2 variables
     if(!strlen(saved_short) && !strlen(saved_long))
     {
@@ -61,44 +61,83 @@ void init()
         set_short(saved_short);
         set_long(saved_long);
     }
-    
+
     add_action("animal_command", "animal");
+	add_action("sic", "sic");
 }
 
+int sic(string str) {
+
+ string tname, aname, mess;
+ object room, target;
+
+  if(!str) {
+    write("What would you like your companion to attack!");
+    return 1;
+  }
+  
+  if(this_player() != owner) return 0;
+
+str = lower_case(str);
+target = present(str, environment(this_player()));
+
+    if(!target || !objectp(target))
+        return;
+
+    tname = target->query_name();
+    aname = capitalize(this_object()->query_name());
+    room = environment(this_object());
+
+    if(environment(target) != room)
+        return;
+
+   if(owner->cooldown("sic")) {
+        tell_object(owner, "You can't try to knock someone down yet!");
+        return 1;
+    }
+  force_me("kill "+str);
+  tell_room(room, "%^BOLD%^" + sprintf("%s responds to the whistle and leaps into the air, knocking %s to the ground!", aname, tname));
+            target && target->set_tripped(2, "%^WHITE%^You are struggling to regain your footing! %^RESET%^");
+				owner->set_property("sic", 1);
+                owner->add_cooldown("sic", 30);
+  return 1;
+} 
+
+	
 int animal_command(string str)
 {
     string *input;
-    
+
     if(this_player() != owner)
         return 0;
-    
+
     input = explode(str, " ");
-    
+
     if(sizeof(input) < 1)
     {
         tell_object(this_player(), "Syntax : animal [long/short/follow].");
         return 1;
     }
-    
+
     if(sizeof(input) < 2 && (input[0] == "long" || input[0] == "short"))
     {
         tell_object(this_player(), "Syntax : animal [long/short] [input].");
         return 1;
     }
-    
+
     switch(input[0])
     {
         case "short":
         this_object()->set_short(implode(input[1..], " "));
         tell_object(this_player(), "Your Animal Companion will now be seen as: \n" + query_short());
         rm(SAVEDIR + "short");
-        write_file(SAVEDIR + "short", query_short());
+        write_file(SAVEDIR + "short", implode(input[1..], " "));
         break;
         case "long":
         this_object()->set_long(implode(input[1..], " "));
         tell_object(this_player(), "Your Animal Companion will now be described as: " + query_long());
         rm(SAVEDIR + "long");
-        write_file(SAVEDIR + "long", query_long());
+        write_file(SAVEDIR + "long", implode(input[1..], " "));
         break;
         case "command":
         command(implode(input[1..], " "));
@@ -106,39 +145,43 @@ int animal_command(string str)
         case "follow":
         tell_object(this_player(), "Your Animal Companion is now following you.");
         this_player()->add_follower(this_object());
+        return 1;
         default:
         tell_object(this_player(), "Please select 'long', 'short', 'follow' or 'command' as options.");
         return 1;
         break;
     }
-    
+
     return 1;
 }
-    
+
 
 void heart_beat()
 {
 
     object *attackers,
            room;
-           
+
     ::heart_beat();
-    
+
     room = environment(this_object());
-    
-    if(!objectp(owner) || owner->query_property("animal_companion") != this_object())
+
+    if(!room || !objectp(room))
+        return;
+
+    if(!objectp(owner) || owner->query_property("animal_companion") != this_object() || owner->query_ghost())
     {
         this_object()->remove();
         return;
     }
-    
+
     //Faithful companion finds his master
     if(objectp(owner) && room != environment(owner))
     {
         this_object()->move(environment(owner));
         owner->add_follower(this_object());
     }
-    
+
     //Companion hides if master is hiding
     if(!this_object()->query_invis())
     {
@@ -153,17 +196,17 @@ void heart_beat()
         if(!owner->query_hidden() && !owner->query_invis())
             this_object()->set_invis(0);
     }
-    
+
     attackers = owner->query_attackers();
-    
+
     this_object()->add_damage_bonus(-bonus);
     this_object()->add_attack_bonus(-bonus);
-    
+
     if(sizeof(attackers))
     {
         foreach(object ob in attackers)
             this_object()->kill_ob(ob);
-            
+
         if(FEATS_D->usable_feat(owner, "hunters bond") &&
         owner->is_favored_enemy(this_object()->query_current_attacker()))
         {
@@ -177,13 +220,13 @@ void heart_beat()
         add_hp(query_max_hp() / 20);
         bonus = 0;
     }
-    
+
     if(query_hp() < query_max_hp() / 2 && present("vial", this_object()))
         command("drink vial");
-    
+
     this_object()->add_damage_bonus(bonus);
     this_object()->add_attack_bonus(bonus);
-    
+
     //Do the specials if the attacker is valid
     if(this_object()->query_current_attacker() && !random(3))
         special_attack(this_object()->query_current_attacker());
@@ -195,20 +238,20 @@ void special_attack(object target)
     object room;
     int scale;
     mapping attacks;
-    
+
     if(!target || !objectp(target))
         return;
-    
+
     tname = target->query_name();
     aname = capitalize(this_object()->query_name());
     room = environment(this_object());
-    
+
     if(environment(target) != room)
         return;
-    
+
     scale = 1 + this_object()->query_level() / 10;
     attacks = ([  ]);
-    
+
     switch(query_name())
     {
         case "ape":
@@ -235,6 +278,12 @@ void special_attack(object target)
         if(!random(5))
             target && "/std/effect/status/sickened"->apply_effect(target,2);
         break;
+        case "fox":
+        tell_room(room, "%^BOLD%^" + sprintf("%s bites and trips %s.", aname, tname));
+        attacks += ([ "one" : ({ (scale * roll_dice(1, 4)), "piercing" }) ]);
+        if(!random(5))
+            target && target->set_tripped(1, "%^WHITE%^You are struggling to regain your footing! %^RESET%^");
+        break;        
         case "lion":
         tell_room(room, "%^BOLD%^" + sprintf("%s bites %s.", aname, tname));
         tell_room(room, "%^BOLD%^" + sprintf("%s claws %s twice.", aname, tname));
@@ -291,19 +340,19 @@ void special_attack(object target)
     {
         if(!target)
             return;
-        
+
         if(sizeof(attacks[str]) < 2)
             return;
-        
+
         if(FEATS_D->usable_feat(owner, "silverclaw"))
             target->cause_typed_damage(target, "torso", attacks[str][0], "silver");
         else
             target->cause_typed_damage(target, "torso", attacks[str][0], attacks[str][1]);
     }
-    
+
     return;
 }
-    
+
 void die(object ob)
 {
     //"/daemon/yuck_d"->save_inventory(this_object(), SAVEDIR + "acompanion");

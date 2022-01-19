@@ -13,8 +13,8 @@ int current;
 void create() {
     ::create();
     set_spell_name("powerword stun");
-    set_spell_level(([ "mage" : 8,]));
-    set_domains(({"knowledge", "war", "creation"}));
+    set_spell_level(([ "mage" : 8, "cleric" : 8 ]));
+    set_domains("suffering");
     set_spell_sphere("enchantment_charm");
     set_syntax("cast CLASS powerword stun on TARGET");
     set_description("When the powerword stun spell is uttered, any creature of the caster's choice is stunned, reeling "
@@ -61,17 +61,17 @@ void spell_effect(int prof) {
       tell_object(caster,"%^BOLD%^"+target->QCN+" reels backward, slightly dazed by the power of your spell!");
       tell_object(target,"%^BOLD%^You reel backward, slightly dazed by the power of "+caster->QCN+"'s spell!");
       tell_room(place,"%^BOLD%^"+target->QCN+" reels backward, slightly dazed by the power of "+caster->QCN+"'s spell!",({caster, target}));
-      target->set_paralyzed(roll_dice(1,2)*8,"The force of the spell has left you stunned.");
+      target->set_paralyzed(roll_dice(1,4)*6,"The force of the spell has left you stunned.");
    }else if(x>50){
       tell_object(caster,"%^BOLD%^"+target->QCN+" reels backward, stunned by the power of your spell!");
       tell_object(target,"%^BOLD%^You reel backward, stunned by the power of "+caster->QCN+"'s spell!");
       tell_room(place,"%^BOLD%^"+target->QCN+" reels backward, stunned by the power of "+caster->QCN+"'s spell!",({caster, target}));
-      target->set_paralyzed(roll_dice(1,4)*8,"The force of the spell has left you stunned.");
+      target->set_paralyzed(roll_dice(2,4)*6,"The force of the spell has left you stunned.");
    }else{
       tell_object(caster,"%^BOLD%^"+target->QCN+" reels backward, completely stunned by the power of your spell!");
       tell_object(target,"%^BOLD%^You reel backward, completely stunned by the power of "+caster->QCN+"'s spell!");
       tell_room(place,"%^BOLD%^"+target->QCN+" reels backward, completely stunned by the power of "+caster->QCN+"'s spell!",({caster, target}));
-      target->set_paralyzed(roll_dice(1,8)*8,"The force of the spell has left you stunned.");
+      target->set_paralyzed(roll_dice(4,4)*6,"The force of the spell has left you stunned.");
    }
    spell_successful();
    dest_effect();

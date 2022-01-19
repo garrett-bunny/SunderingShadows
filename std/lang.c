@@ -187,10 +187,28 @@ int set_spoken(string str)
 
 string query_spoken()
 {
-    if (choice == 0) {
-        choice = "common";
-    }
-    return choice;
+    object file;
+    string d_lang;
+    
+    if(strlen(choice))
+        return choice;
+    
+    if(!strlen(this_object()->query_race()))
+        return "common";
+    
+    if(catch(file = find_object("/std/races/" + this_object()->query_race() + ".c")))
+        return "common";
+    
+    if(!objectp(file))
+        return "common";
+   
+    if(function_exists("query_default_language", file))
+        d_lang = file->query_default_language();
+    
+    if(!strlen(d_lang))
+        return "common";
+    
+    return d_lang;
 }
 
 void remove_lang(string str)

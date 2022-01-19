@@ -5,18 +5,20 @@ inherit FEAT;
 
 int FLAG, fired;
 
-#define FEATTIMER 35
+int FEATTIMER = (35 - (FEATS_D->usable_feat(caster, "abundant tactics") * 7));
+//#define FEATTIMER 35
 
 void create() {
     ::create();
     feat_type("instant");
-    feat_category("MeleeAccuracy");
+    feat_category("CombatManeuvers");
     feat_name("daze");
-    feat_desc("The character can attempt to daze a foe, with a blow to the side of the head, in an attempt to addle them sufficiently that they cannot cast spells for a time. It will also interrupt any spells being cast.
+    feat_desc("The character can attempt to daze a foe, with a blow to the side of the head, in an attempt to addle them sufficiently that they cannot cast spells for a time. It will also interrupt any spells being cast. The target will get an attack of opportunity before the attempt is made.
 
 %^BOLD%^See also:%^RESET%^ daze *spells");
     feat_syntax("daze TARGET");
-    feat_prereq("Knockdown, Disarm");
+    //feat_prereq("Knockdown, Disarm");
+    feat_prereq("Powerattack");
     set_target_required(1);
     set_save("fort");
 }
@@ -25,9 +27,16 @@ int allow_shifted() { return 1; }
 
 int prerequisites(object ob){
     if(!objectp(ob)) return 0;
+    /*
     if(!FEATS_D->has_feat(ob,"disarm") || !FEATS_D->has_feat(ob,"knockdown")) {
       dest_effect();
       return 0;
+    }
+    */
+    if(!FEATS_D->has_feat(ob, "powerattack"))
+    {
+        dest_effect();
+        return 0;
     }
     return ::prerequisites(ob);
 }
@@ -120,7 +129,8 @@ void execute_attack() {
     caster->remove_property("using daze");
     caster->set_property("using daze",newmap);
 
-    if(!(res = thaco(target)))
+    //if(!(res = thaco(target)))
+    if(!BONUS_D->combat_maneuver(target, caster))
     {
         tell_object(caster,"%^RED%^"+target->QCN+" dodges to the side and "
             "you're thrown off balance!%^RESET%^");
@@ -128,7 +138,7 @@ void execute_attack() {
             +caster->QCN+" off balance!%^RESET%^");
         tell_room(place,"%^BOLD%^"+target->QCN+" dodges to the side, throwing "
             ""+caster->QCN+" off balance!%^RESET%^",({target,caster}));
-        caster->set_paralyzed(roll_dice(2,6),"%^MAGENTA%^You're getting back into position.%^RESET%^");
+        //caster->set_paralyzed(roll_dice(2,6),"%^MAGENTA%^You're getting back into position.%^RESET%^");
         dest_effect();
         return;
     }
@@ -148,9 +158,7 @@ void execute_attack() {
         return;
     }
 
-    mod = clevel;
-    mod += clevel - (int)target->query_level();
-    mod = mod * -1;
+    mod = max( ({ BONUS_D->query_stat_bonus(caster, "dexterity"), BONUS_D->query_stat_bonus(caster, "strength") }) );
 
     if(!do_save(target,mod)) {
         if(fired) {

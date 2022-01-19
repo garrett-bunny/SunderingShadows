@@ -5,7 +5,7 @@ void create()
 {
   object ob;
   ::create();
-  set_property("magic resistance", 50);
+  set_mob_magic_resistance("very high");
   set_name("Crystal Scorpion");
   set_id( ({"crystal scorpion", "Crystal Scorpion", "scorpion"}) );
   set_short("%^RESET%^%^GREEN%^The Crystal Scorpion%^RESET%^");

@@ -37,7 +37,7 @@ void reset(){
   ::reset();
   if(!(query_night())) {
      if(!present("torm guard",TO)) {
-        new(MON+"guard4.c")->move(TO);
+        new(MON+"guard.c")->move(TO);
      }
   }
 }

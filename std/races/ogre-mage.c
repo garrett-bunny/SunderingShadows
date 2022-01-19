@@ -77,6 +77,13 @@ int is_restricted()
     return 1;
 }                                 // restricted races by approval
 
+int is_rollable() { return 1; } // rollable in creation
+
+int is_pk_race()
+{
+    return 1;
+}
+
 // Stuff needed to replace what was in the old race database
 
 string race_name()
@@ -209,7 +216,7 @@ string* query_eye_colors(string who)
 }
 
 string *query_subraces(object who) {
-    return ({"fire", "water", "kuwa", "void"});
+    return ({"fire oni", "water oni", "kuwa oni", "void oni"});
 }
 
 string* query_languages(string subrace)

@@ -64,8 +64,8 @@ void reset(){
    object ob;
    ::reset();
    if(!(query_night())){
-      if(!present("archer")){
-         ob=new(MON+"guard3.c");
+      if(!present("guard")){
+         ob=new(MON+"guard.c");
          ob->move(TO);
       }
    }

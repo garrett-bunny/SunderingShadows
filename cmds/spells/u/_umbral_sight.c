@@ -9,7 +9,7 @@ void create() {
     ::create();
     set_author("nienne");
     set_spell_name("umbral sight");
-    set_spell_level(([ "mage" : 2 ]));
+    set_spell_level(([ "innate" : 2 ]));
     set_spell_sphere("alteration");
     set_syntax("cast CLASS umbral sight");
     set_description("This spell will imbue the caster's vision with the stuff of darkness, allowing them to see easily "
@@ -37,7 +37,7 @@ void spell_effect(int prof) {
     int duration;
     duration = (ROUND_LENGTH * 20) * (clevel + roll_dice(1, 20));
 
-    if(member_array((string)caster->query_race(),LIVING_D->night_races()) != -1) modifier = -10;
+    if(member_array((string)caster->query_race(),PLAYER_D->night_races()) != -1) modifier = -10;
     else modifier = 8;
     tell_room(place,"%^MAGENTA%^"+caster->QCN+"'s pupils dilate, their blackness overwhelming all color in the irises.%^RESET%^",caster);
     tell_object(caster,"%^MAGENTA%^The world around you drains of color and snaps into crystalline clarity.%^RESET%^");

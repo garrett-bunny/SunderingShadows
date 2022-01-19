@@ -12,7 +12,7 @@ void create()
     feat_type("instant");
     feat_category("WeaponAndShield");
     feat_name("shieldwall");
-    feat_prereq("Shieldbash");
+    feat_prereq("Shield Focus or Shieldbash");
     feat_syntax("shieldwall offensive|defensive|min|max|check");
     feat_desc("The Shieldwall feat allows you to fight defensively using your shield to help deflect attacks and avoid incoming damage. The more defensively that you fight with your shield, the fewer melee attacks that you will get. You may increase your defensive ability with your shield until you have only one melee attack remaining. Using shieldwall defensively will also reduce the power of your spells. Using shieldwall defensively when you have the counter feat will also increase the damage of your attacks.");
     set_target_required(0);
@@ -25,7 +25,7 @@ int allow_shifted() { return 0; }
 int prerequisites(object ob)
 {
     if(!objectp(ob)) { return 0; }
-    if(!FEATS_D->has_feat(ob, "shieldbash"))
+    if(!FEATS_D->has_feat(ob, "shield focus") && !FEATS_D->has_feat(ob, "shieldbash"))
     {
         dest_effect();
         return 0;
@@ -39,11 +39,10 @@ void end_feat(object ob)
     if(!objectp(ob)) { return; }
     num = (int)ob->query_property("shieldwall_bonus");
     if(!num) { return; }
-    num = num * -1;
 
     //ob->add_ac_bonus(num); // doesn't give ac anymore, it increases block chance
-    ob->set_property("empowered",num * -2);
-    ob->set_property("damage resistance",num);
+    ob->set_property("empowered",num);
+    ob->set_property("damage resistance",-num * 2);
     ob->remove_property("shieldwall_bonus");
     ob->remove_property("shieldwall");
     ob->remove_property("number_of_attacks");
@@ -144,7 +143,7 @@ void execute_feat()
 
         caster->set_property("shieldwall",1);
         //caster->add_ac_bonus(2); 
-        caster->set_property("damage resistance",1);
+        caster->set_property("damage resistance",2);
         caster->set_property("shieldwall_bonus",1);
         caster->set_property("empowered",-1);
         break;
@@ -164,7 +163,7 @@ void execute_feat()
 
         caster->set_property("shieldwall",-1);
         //caster->add_ac_bonus(-2);
-        caster->set_property("damage resistance",-1);
+        caster->set_property("damage resistance",-2);
         caster->set_property("shieldwall_bonus",-1);
         caster->set_property("empowered",1);
         break;
@@ -177,7 +176,7 @@ void execute_feat()
             + caster->QP + " shield to better defend against all attacks!%^RESET%^",caster);
 
         caster->set_property("shieldwall",MAX-bonus);
-        caster->set_property("damage resistance",MAX-bonus);
+        caster->set_property("damage resistance",(MAX-bonus) * 2);
         caster->set_property("shieldwall_bonus",MAX-bonus);
         caster->set_property("empowered",bonus-MAX);
         break;
@@ -189,7 +188,7 @@ void execute_feat()
         tell_room(place,"%^BOLD%^%^YELLOW%^"+caster->QCN+" shifts "+caster->QP+" stance, moving from " +
             "behind "+caster->QP+" shield and into a better position to attack!%^RESET%^", caster);
         caster->set_property("shieldwall",-bonus);
-        caster->set_property("damage resistance",-bonus);
+        caster->set_property("damage resistance",-bonus * 2);
         caster->set_property("shieldwall_bonus",-bonus);
         caster->set_property("empowered",bonus);
         break;

@@ -1,4 +1,5 @@
 #include <std.h>
+#include <daemons.h>
 #include "../kildare.h"
 inherit MON "peryton";
 
@@ -31,7 +32,7 @@ void create()
     set_max_hp(query_hp());
     set_exp(10000);
     set_max_level(15); // added by *Styx* 9/24/06
-    set_mob_magic_resistance("average");
+    // set_mob_magic_resistance("average");
     set_attacks_num(2);
     set_funcs(({ "gore", "screech" }));
     ob = new("/d/common/obj/brewing/herb_special_inherit");
@@ -41,7 +42,7 @@ void create()
 
 void screech(object targ)
 {
-    if (!"daemon/saving_d"->saving_throw(targ, "spell", -2)) {
+    if ((!"daemon/saving_d"->saving_throw(targ, "spell", -2)) && (!PLAYER_D->immunity_check(targ, "fear"))){
         tell_object(targ, "%^MAGENTA%^The peryton screeches with rage, freezing you in place!");
         tell_room(ETO, "%^MAGENTA%^You cringe in terror as the peryton screeches and " +
                   "" + targ->query_cap_name() + " freezes in place!%^RESET%^", targ);

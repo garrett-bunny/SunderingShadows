@@ -209,8 +209,8 @@ mapping query_parties_full(){
 }
 
 object *query_party_members(string group) {
-    if(!party) return 0;
-    if(!party[group]) return 0;
+    if(!party) return ({  });
+    if(!party[group]) return ({  });
     manage_party(group);
     return party[group];
 }
@@ -231,7 +231,7 @@ void message_party(string str, string what) {
     sz = sizeof(party[str]);
 
     for(i=0; i<sz; i++) {
-           message("party","%^RESET%^"+capitalize(this_player()->query_name())+"  %^BOLD%^%^RED%^"+"<"+str+" info>: "+what+"\n",party[str][i]);
+           message("party","%^RESET%^"+this_player()->query_cap_name()+"  %^BOLD%^%^RED%^"+"<"+str+" info>: "+what+"\n",party[str][i]);
     }
 }
 

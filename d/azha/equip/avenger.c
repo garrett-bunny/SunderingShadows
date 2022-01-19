@@ -60,7 +60,7 @@ int extra_wield(){
             remove_property("enchantment");
             set_property("enchantment",5);
             }
-            TP->set_property("magic resistance",50);
+            TP->set_property("magic resistance",3);
             ETO->set_property("holy",1);
         }
         write("%^CYAN%^The avenger blazes with holy power in your hands!%^RESET%^");
@@ -91,7 +91,7 @@ int extra_unwield(){
         set_property("enchantment",2);
     }
     if(ETO->query_property("holy")){
-        ETO->set_property("magic resistance",-50);
+        ETO->set_property("magic resistance",-3);
         ETO->remove_property("holy");
     }
     return 1;

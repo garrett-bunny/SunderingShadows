@@ -169,7 +169,7 @@ void electrify(object targ)
     
     if(!random(3)) absorb(targ);
     if(!objectp(targ)) return;
-    if(targ->reflex_save(28))
+    if(targ->reflex_save(60))
     {
         tell_object(targ, "%^BOLD%^%^WHITE%^You duck out of the way just in time and your "+tlim+" is only partially "+
         "%^BOLD%^%^CYAN%^electrified%^BOLD%^%^WHITE%^ by the "+bolt_string+" bolts!%^RESET%^");

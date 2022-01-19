@@ -257,7 +257,7 @@ int cmd_prepare(string str)
 
     if(cl > 9)
     {
-	    lvadj = 375/cl; //was lvadj = 1000/cl; lowering for testing - Octothorpe 10/5/17
+	    lvadj = 550/cl; //Tlaloc changed this from 375/cl -> which yields negative results....(this way there's always SOME delay);
 	    if(!lvadj) lvadj = 1;   // they say dividing by zero is reserved for god...
         {
             temp = temp - ((temp * 10) / lvadj);
@@ -294,7 +294,13 @@ int cmd_prepare(string str)
         tell_object(TP, "%^BOLD%^%^GREEN%^You turn your focus inwards, harnessing the power to invoke spells of " + str + ".  (" + times + " attempt(s) - Any action you take will interrupt your focusing.)%^RESET%^");
         tell_room(ETP, TPQCN + " turns " + TP->QP + " focus inwards.", TP);
         break;
-
+        
+    case "mage":
+    
+        tell_object(TP, "%^BOLD%^%^GREEN%^You open your spell book and begin memorizing "+spellname+".  ("+times+" attempt(s) - Any action you take will interrupt your memorizing...");
+        tell_room(environment(this_player()), this_player()->query_cap_name() + " opens up " + this_player()->query_possessive() + " spell book and begins studying intensely.", this_player());
+        break;
+        
     default:
 
         tell_object(TP, "%^BOLD%^%^GREEN%^You focus your thoughts upon preparing the spell of " + spellname + "  (" + times + " attempt(s) - Any action you take will interrupt your preparations....");
@@ -319,13 +325,15 @@ int prep_power_points(string myclass, int times)
 
     sl = times;
     if (sl < 1) { sl = 1; }
-    temp = sl * MEMORIZE_DELAY;
+    temp = sl * MEMORIZE_DELAY; //100 PP = 100 * 3 = 300
 
     cl = TP->query_guild_level(myclass);
     if (cl > 9)
     {
-        lvadj = 375/cl; //was lvadj = 1000/cl; lowering for testing - Octothorpe 10/5/17
+        //=600 / 50 = 12
+        lvadj = 550/cl; //Tlaloc changed this from 375/cl -> yields negative delays
         if (!lvadj) { lvadj = 1; }   // they say dividing by zero is reserved for god...
+        //temp = 300 - ((300 * 10) / 11) = 27s (compared to negative before)
         temp = temp - ((temp * 10) / lvadj);
         if (!temp) { temp = 1; }
     }
@@ -668,7 +676,7 @@ void prepare_listed_spells(object obj, string list, string myclass)
 
     if (class_level > 9)
     {
-        adjustment = 375 / class_level; //Attempting to lower delay Octothorpe 10/5/17
+        adjustment = 550 / class_level; //Tlaloc changed from 375/class_level -> yields negative delays.
         if (!adjustment) { adjustment = 1; }
         delay = delay - ((delay * 10) / adjustment);
         if (delay < 1) { delay = 1; }

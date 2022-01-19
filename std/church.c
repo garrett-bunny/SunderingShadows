@@ -246,11 +246,6 @@ int pray()
             TP->clear_feats();
             TP->delete("free_feat_wipe");
             TP->set_general_exp(myclass, total_exp_for_level(6));
-        } else if (TP->query("pk_trial")) {
-            if (thelevel > 11) {
-                TP->set_general_exp(myclass, total_exp_for_level(((thelevel - 1) / 10) * 10));
-            }
-            TP->delete("pk_trial");
         } else {
             if (exp - exploss <= total_exp_for_level(6)) {
                 exploss = exp - total_exp_for_level(6);
@@ -464,8 +459,13 @@ int select_domain(string str)
                         "a specialized way.");
             return 1;
         }
+        if (sizeof(info) != 5) {
+            tell_object(TP, "Syntax: <pick way> <way of the fist/elements/shadow>.");
+            return 1;
+        }
+        str = info[1]+" "+info[2]+" "+info[3]+" "+info[4];
         if (str != "way of the fist" && str != "way of the elements" && str != "way of the shadow") {
-            tell_object(TP, "A monk can only pick %^YELLOW%^way of the fists%^RESET%^, " +
+            tell_object(TP, "A monk can only pick %^YELLOW%^way of the fist%^RESET%^, " +
                         "%^YELLOW%^way of the elements%^RESET%^, or %^YELLOW%^way of the shadow" +
                         "%^RESET%^!");
             return 1;
@@ -513,7 +513,7 @@ int select_domain(string str)
         }
 
         if (TP->is_class("druid")) {
-            possible_domains += ({ "air", "animal", "earth", "fire", "plant", "water", "storms" });
+            possible_domains += ({ "air", "animal", "earth", "fire", "plant", "cold", "renewal" });
         }
 
         possible_domains = distinct_array(possible_domains);
@@ -525,7 +525,7 @@ int select_domain(string str)
             return 1;
         }
 
-        if (is_alignment_domain(selection)) {
+        /*if (is_alignment_domain(selection)) {
             string tmpdom;
 
             foreach(tmpdom in player_domains)
@@ -535,7 +535,7 @@ int select_domain(string str)
                     return 1;
                 }
             }
-        }
+        }*/
 
         if (FEATS_D->usable_feat(TP, "divine domain")) {
             if (!sizeof(player_domains)) {

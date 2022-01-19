@@ -73,12 +73,12 @@ int unwearme(){
 }
 
 int strikeme(int damage, object what, object who){
-        if(random(1000) < 250){
+    if(random(1000) < 250){
         tell_room(environment(query_worn()),"%^CYAN%^"+
            ""+ETOQCN+" suddenly looks more energetic.",ETO);
         tell_object(ETO,"%^CYAN%^You feel a strange burst of energy "+
            "that seems to be coming from your shoes!");
         ETO->do_damage("torso",-1*random(10)+5);
-//return damage;  }
-return 0;  }
+    }
+    return damage;
 }

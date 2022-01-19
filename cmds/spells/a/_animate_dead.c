@@ -14,7 +14,7 @@ void create()
 {
     ::create();
     set_spell_name("animate dead");
-    set_spell_level(([ "mage" : 4, "cleric" : 3, "paladin" : 3, "inquisitor" : 3, "oracle" : 3 ]));
+    set_spell_level(([ "mage" : 4, "cleric" : 3, "paladin" : 3, "oracle" : 3 ]));
     set_mystery("bones");
     set_spell_sphere("necromancy");
 
@@ -49,7 +49,7 @@ void spell_effect(int prof)
     object* targs = ({}), * temp = ({}), * inven = ({}), undead, controller;
     int i, j, lvl, flag;
 
-    if (target && !target->is_room()) {
+    if (target && objectp(target) && !target->is_room()) {
         if (!target->is_corpse()) {
             fail();
             return;

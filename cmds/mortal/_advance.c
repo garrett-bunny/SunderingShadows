@@ -304,7 +304,7 @@ int add_class_feats(object ob,string myclass)
 
     myspec = (string)ob->query_combat_spec(myclass); // new combat spec code, N 1/14.
     if(myclass == "monk") myspec = (string)ob->query("monk way");
-    featsmap = (mapping)file->class_featmap(myspec);
+    featsmap = (mapping)file->class_featmap(myspec, ob);
     mapkeys = keys(featsmap);
     feats = ({});
     mylev = (int)ob->query_base_class_level(myclass);
@@ -416,10 +416,10 @@ int pick_warlock_heritage(string str,object ob) {
     align = ob->query_alignment();
     switch(align) {
       case 7: heritages = (({ "celestial", "fey" })); break;
-      case 8: heritages = (({ "celestial", "fey", "abyssal", "star" })); break;
+      case 8: heritages = (({ "celestial", "fey", "abyssal", "astral" })); break;
       case 9: heritages = (({ "fey", "abyssal", "gloom" })); break;
-      case 5: heritages = (({ "star", "gloom", "fey" })); break;
-      case 6: heritages = (({ "abyssal", "gloom", "infernal", "star" })); break;
+      case 5: heritages = (({ "astral", "gloom", "fey" })); break;
+      case 6: heritages = (({ "abyssal", "gloom", "infernal", "astral" })); break;
       case 3: heritages = (({ "gloom", "infernal" })); break;
       default: tell_object(ob,"You have an alignment that does not work for a warlock! Please contact a wiz."); return 1; break;
     }
@@ -427,7 +427,7 @@ int pick_warlock_heritage(string str,object ob) {
       case "celestial":  heritage = "celestial";  break;
       case "fey":        heritage = "fey";        break;
       case "abyssal":    heritage = "abyssal";    break;
-	  case "star":      heritage = "occult";      break;
+      case "astral":     heritage = "occult";      break;
       case "gloom":      heritage = "gloom";      break;
       case "infernal":   heritage = "infernal";   break;
       case "abort": return 1;
@@ -571,8 +571,8 @@ int pick_human_subrace(string str,object ob) {
       tell_object(ob,"  %^YELLOW%^Human ethnicities");
       tell_object(ob,"  %^BLUE%^-----------------");
       tell_object(ob,"\n   heartlander\n   zin'charu\n   aesatri\n   attayan\n   tsarven\n   morinnen\n   tonaz'tlacar\n   senzokuan\n   maalish\n" );
-      tell_object(ob,"%^RED%^Type <abort> to exit if you need to spend more time before making your choice. "
-        "Descriptions can be found at the shadowgate.org website. <help advance> will return you here when you are ready.");
+	tell_object(ob,"%^RED%^Type <abort> to exit if you need to spend more time before making your choice. ");
+       // "Descriptions can be found at the shadowgate.org website. <help advance> will return you here when you are ready.");
       tell_object(ob,"%^BOLD%^Please enter your ethnicity:");
       input_to("pick_human_subrace",ob);
       return 1;
@@ -786,7 +786,7 @@ int cmd_advance(string myclass){
                   }
                   TP->move(newbroom);
                   write("%^BOLD%^%^GREEN%^Congratulations, you are now a full-fledged player.\nYou may exit through the portal in this "
-                     "room when you are ready to adventure into the greater realm of ShadowGate!%^RESET%^");
+                     "room when you are ready to adventure into the greater realm of Sundering Shadows!%^RESET%^");
                   TP->force_me("look");
                   while(objectp(present("charactercreationsetterobject", TP))){
                      tell_object(TP, "The powerful object unattaches from you and fades away!");
@@ -838,7 +838,7 @@ int cmd_advance(string myclass){
                   }
                   TP->move(newbroom);
                   write("%^BOLD%^%^GREEN%^Congratulations, you are now a full-fledged player.\nYou may exit through the portal in this "
-                     "room when you are ready to adventure into the greater realm of ShadowGate!%^RESET%^");
+                     "room when you are ready to adventure into the greater realm of Sundering Shadows!%^RESET%^");
                   TP->force_me("look");
                }
                return 1;
@@ -867,7 +867,7 @@ int cmd_advance(string myclass){
                }
                TP->move(newbroom);
                write("%^BOLD%^%^GREEN%^Congratulations, you are now a full-fledged player.\nYou may exit through the portal in this "
-                  "room when you are ready to adventure into the greater realm of ShadowGate!%^RESET%^");
+                  "room when you are ready to adventure into the greater realm of Sundering Shadows!%^RESET%^");
                TP->force_me("look");
             }
 	      return 1;
@@ -930,26 +930,16 @@ void help()
 
     write("
 %^CYAN%^NAME%^RESET%^
-
 advance - increase your level
-
 %^CYAN%^SYNOPSIS%^RESET%^
-
 advance [%^ORANGE%^%^ULINE%^CLASS_NAME%^RESET%^]
 advance class special
-
 %^CYAN%^DESCRIPTION%^RESET%^
-
 This is the command used to advance your character. Advancement may only occur in a designated training area. You will also need to have enough experience for that next level! Designated training areas include, but are not limited to: churches, rooms with boards
-
 When your character has enough experience to advance to levels 10, 20, 30 and 40 you may instead choose to advance in another class. You will retain all of the abilities of your current class and you will get any new abilities that your new class allows. Only certain class and race combinations are allowed. Please see the individual help files for your race and the class that you would like to become for more information.
-
 %^CYAN%^MULTICLASSING%^RESET%^
-
 If you're multiclassing, abandoning, or are ancient character that has no specific mage school, sorcerer bloodline, warlock heritage, oracle mystery or another class specific flavor set you might use %^ORANGE%^<advance class special>%^RESET%^ to fix missing class special settings.
-
 %^CYAN%^SEE ALSO%^RESET%^
-
 abandon, score, classes
 ");
 }

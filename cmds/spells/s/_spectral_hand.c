@@ -19,7 +19,7 @@ void create()
     set_mystery("reaper");
     set_spell_sphere("necromancy");
     set_syntax("cast CLASS spectral hand");
-    set_description("This spell will allow the caster to succeed making spell-based touch attack such as chill touch.");
+    set_description("This spell will gives a +1 attack bonus to touch attack and ranged touch attack spells.");
     set_verbal_comp();
     set_somatic_comp();
     set_components(([ "mage" : ([ "drop of blood" : 1, ]), ]));
@@ -31,7 +31,7 @@ void spell_effect(int prof)
 {
     if (caster->query_property("spectral_hand"))
     {
-        tell_object(caster,"The spell is repelled by its own magic.");
+        tell_object(caster,"You are already gaining a bonus to touch attack spells.");
         TO->remove();
     }
     spell_successful();

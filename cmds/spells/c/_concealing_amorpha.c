@@ -12,7 +12,7 @@ void create() {
     ::create();
     set_spell_name("concealing amorpha");
     set_spell_level(([ "psion" : 2, "psywarrior" : 2 ]));
-    set_spell_sphere("conjuration_summoning");
+    set_spell_sphere("metacreativity");
     set_syntax("cast CLASS concealing amorpha");
     set_description("When a psionic character manifests concealing amorpha, he draws ectoplasm from the Astral Plane to create a sort "
 "of armor.  While it does not offer any physical protection, the translucent armor does make it more difficult to see "
@@ -45,7 +45,7 @@ int preSpell() {
 void spell_effect(int prof) {
     int armor, mylevel;
 
-    if(FEATS_D->usable_feat(caster,"armored manifester")){
+    if(FEATS_D->usable_feat(caster,"armored manifester") || FEATS_D->usable_feat(caster,"eldritch conditioning")){
        armor = 0;
     }else if(!caster->is_ok_armour("mage") && !FEATS_D->usable_feat(caster,"armored caster")){
        armor = 1;
@@ -87,7 +87,7 @@ void test(){
     int armor;
     if (!objectp(TO) || !objectp(caster))
         return;
-    if(FEATS_D->usable_feat(caster,"armored manifester")){
+    if(FEATS_D->usable_feat(caster,"armored manifester") || FEATS_D->usable_feat(caster,"eldritch conditioning")){
        armor = 0;
     }else if(!caster->is_ok_armour("mage") && !FEATS_D->usable_feat(caster,"armored caster")){
        armor = 1;

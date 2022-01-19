@@ -16,16 +16,14 @@ int is_curse()
 void create() {
     ::create();
     set_spell_name("sands of time");
-    set_spell_level(([ "mage" : 3, "oracle" : 3, "bard" : 2 ]));
+    set_spell_level(([ "mage" : 3 ]));
     set_spell_sphere("necromancy");
-    set_mystery("reaper");
     set_syntax("cast CLASS sands of time on TARGET");
     set_damage_desc("-2 to physical stats to living, untyped to undead");
     set_description("You temporarily age the target, immediately advancing it two age categories further. The target immediately takes the age penalties to Strength, Dexterity, and Constitution for its new age category, but does not gain the bonuses for that category. Undead creatures instead recieve untyped damage.");
     set_verbal_comp();
     set_somatic_comp();
     set_target_required(1);
-    set_feats_required(([ "bard" : "timeweaver" ]));
 }
 
 string query_cast_string() {

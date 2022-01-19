@@ -14,9 +14,8 @@ void create() {
     ::create();
     set_author("cythera");
     set_spell_name("lightning touch");
-    set_spell_level(([ "cleric" : 2, "cleric":2]));
+    set_spell_level(([ "cleric" : 2 ]));
     set_spell_sphere("invocation_evocation");
-    set_domains("storms");
     set_syntax("cast CLASS lightning touch on TARGET");
     set_description("Wrapping their hand with crackling bolts of lightning, with this spell the caster tries to deliever "
 "a shocking attack onto a foe.  If the caster fails to touch the target, the lighting dispurses into a flashy, but "
@@ -63,9 +62,8 @@ spell_effect(int prof)
         return;
     }
 
-    if(caster->Thaco(1,target,0) <= roll_dice(1,20) && ! caster->query_property("spectral_hand")) {
-//changed check to hit to above - it never seemed to hit before
-//~Circe~ 5/12/08
+    if(!BONUS_D->process_hit(caster, target, 1, 0, 0, 1))
+    {
 	    tell_object(caster,"%^YELLOW%^The crackling lightning around your hand"+
 		    " flashes and fades away as"+
 		    " you fail to touch "+target->QCN+".%^RESET%^");

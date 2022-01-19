@@ -1,15 +1,19 @@
 %^BOLD%^%^BLUE%^Half-orc:
 
 %^BOLD%^%^BLUE%^Stat adjustments: %^RESET%^+2 strength
-%^BOLD%^%^BLUE%^Skill adjustments: %^RESET%^+2 endurance
-%^BOLD%^%^BLUE%^Misc bonuses: %^RESET%^+1 saves vs spells
 %^BOLD%^%^BLUE%^Innate spells: %^RESET%^none
 %^BOLD%^%^BLUE%^Size: %^RESET%^medium
 
 %^BOLD%^%^BLUE%^Standard alignments: %^RESET%^any
-%^BOLD%^%^BLUE%^Classes restricted: %^RESET%^mage, magus,  bard,  paladin, monk
+%^BOLD%^%^BLUE%^Classes restricted: %^RESET%^mage, bard
 %^BOLD%^%^BLUE%^Normal adventuring starting age: %^RESET%^12-16
 %^BOLD%^%^BLUE%^Average life span: %^RESET%^70
+
+%^BOLD%^%^BLUE%^Racial Traits:
+%^CYAN%^Orc Ferocity%^RESET%^     - Can periodically recover from a fatal blow
+%^CYAN%^Intimidating%^RESET%^     - +2 to intimidation checks
+%^CYAN%^Low Light Vision%^RESET%^ - +2 to sight bonus to see in the dark
+%^CYAN%^Perserverance%^RESET%^    - +2 to endurance skill
 
 %^BOLD%^%^BLUE%^Description:
 Half-orcs are a cross of orcs and human, or other human half-races. They usually take after their orcish heritage, although some can pass as strange looking humans. Their appearance varies depending on their heritage, but tends to lean toward more powerful, muscular builds of the body.

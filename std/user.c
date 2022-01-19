@@ -42,6 +42,7 @@
 //int quitAllow; // For disabling quits, usually during shutdown.
 int dying;
 int logon_notify;  /* for belphy's logon notification system */
+int reader;     //Additional screen reader support options
 int level,ghost;// , crash_money, verbose_moves, verbose_combat;
 int start_time, quit_time, down_time;  // For user timing -- Thorn 950420
 // Stolen by Garrett for 1 week downtime if they've been gone for two weeks.
@@ -63,6 +64,7 @@ private string position, primary_start;
 string *restricted_channels;
 string *favored_enemy = ({ "none", "none", "none" }),
        *favored_terrain = ({ "none", "none", "none" });
+nosave mapping diminish_returns = ([]);
 string mastered_terrain;
 string chosen_animal;
 string dedication;
@@ -355,7 +357,7 @@ void redo_my_languages() {
       set_lang("common", 100);
       set_lang(LANGS[race][0], 100);
   }else {
-      if (member_array(race, LIVING_D->night_races()) == -1) {
+      if (member_array(race, PLAYER_D->night_races()) == -1) {
           set_lang("common", 100);
       }else {
           set_lang("undercommon", 100);
@@ -482,6 +484,10 @@ void cull_levels()
     player_position = query_position();
     if(OB_ACCOUNT->is_high_mortal(query_true_name())) { player_position = "high mortal"; }
 
+    cap = CHARACTER_LEVEL_CAP + 1;
+    delete("no advance");
+    
+    /*
     switch(player_position)
     {
     case "high mortal":
@@ -503,6 +509,7 @@ void cull_levels()
     default:
         return;
     }
+    */
 
     for(i=0;i<sizeof(classes);i++)
     {
@@ -520,6 +527,7 @@ void cull_levels()
     info = CMD_NOTE->format_checkpoint(query_name(),"%^RESET%^%^BOLD%^"+query_name()+" lost "+implode(display,"and")+" total lost: "+total_lost+"");
     TS_D->add_value_to_array("notes",query_name(),capitalize(query_name())+", "+ctime(time())+" "+info+"");
 
+    /*
     switch(player_position)
     {
     case "player":
@@ -530,6 +538,7 @@ void cull_levels()
             "a wiz immediately.");
         break;
     }
+    */
     return;
 }
 
@@ -641,7 +650,7 @@ void describe_current_room(int verbose)
     if ((light = light_blind(0)) || TO->query_blind()) {
         if (TO->query_blind()) {
             borg += "You have been blinded and cannot see anything.";
-        }else if (member_array(query_race(), (string)LIVING_D->night_races()) != -1) {
+        }else if (member_array(query_race(), (string)PLAYER_D->night_races()) != -1) {
             if (light >= 1) {
                 borg += "It is too dark to see.";
             }else if (light >= -1) {
@@ -926,6 +935,7 @@ void create() {
   enable_commands();
   set_max_internal_encumbrance(MAX_ENCUMBRANCE[7]);
   set("id",({"player"}));
+  delete("no advance");
   init_feats();
 
   static_user = ([
@@ -941,6 +951,7 @@ void create() {
 		  "time_of_login":0,
 		  "autosave":500,
 		  "stage":0,
+          "emaciated":0,
 		  "protectors":({}),
 		  "blinking":0,
 		  ]);
@@ -954,7 +965,7 @@ void remove()
     log_file("player/player_object_removal","removed: "+TO->query_name()+
 	" "+file_name(previous_object())+".\n");
   }
-  else if (query_verb() != "quit" && TP != TO) return;
+  //else if (query_verb() != "quit" && TP != TO) return;
   quit_time = time();
   destroy_autoload_obj();
   CHAT_D->remove_user();
@@ -976,7 +987,9 @@ int quit()
                 "You be well now!",
         });
 
-    break_all_spells();
+    if(catch(break_all_spells()))
+        message("environment", "Error breaking spells.", this_object());
+    
     set_hidden(0);
     set_magic_hidden(0);
     //YUCK_D->save_inventory(TO);
@@ -1103,7 +1116,8 @@ void break_all_spells()
                 spell_ob->removeSpellFromCaster();
                 if(objectp(spell_ob))
                 {
-                    spell_ob->dest_effect();
+                    if(catch(spell_ob->dest_effect()))
+                        spell_ob->remove();                   
                 }
             }
             remove_property("dispellable spells");
@@ -1361,6 +1375,7 @@ void setup()
         sight_bonus = (int)RACE_D->query_sight_bonus(query("race"));
 
         if(member_array("cavern", TO->query_divine_domain()) >= 0 ||
+           member_array("moon", this_object()->query_divine_domain()) >= 0 ||
            member_array("darkness", TO->query_divine_domain()) >= 0)
             sight_bonus += 2;
 
@@ -1428,6 +1443,10 @@ void setup()
                 {
                     USER_D->init_pool(TO, "grace");
                 }
+                if(this_object()->is_class("psion") || this_object()->is_class("psywarrior"))
+                {
+                    USER_D->init_pool(this_object(), "focus");
+                }
             }
         }
 
@@ -1494,6 +1513,7 @@ void setup()
         TO->set_sphere(0);
         TO->set_divine_domain(({}));
     }
+    delete("no advance");
     force_me("look");
 }
 
@@ -1641,24 +1661,30 @@ void heart_beat()
                 !TO->query_property("inactive") &&
                 !TO->is_undead() &&
                 !TO->query_ghost() &&
-                !TO->query_race() == "soulforged" &&
+                !(TO->query_race() == "soulforged") &&
                 random(2)){
                 if (!TO->query_stuffed())
                 {
-                    do_damage("torso",roll_dice(2,6));
+                    static_user["emaciated"]++;
+                    do_damage("torso",roll_dice((static_user["emaciated"]+1),6));
                     message("environment","You are getting weaker from Starvation!",TO);
                 }
                 if (!TO->query_quenched())
                 {
-                    do_damage("torso",roll_dice(2,6));
+                    static_user["emaciated"]++;
+                    do_damage("torso",roll_dice((static_user["emaciated"]+1),6));
                     message("environment","You are getting weaker from Thirst!",TO);
                 }
-                if(!(TO->query_stuffed()&&TO->query_quenched()))
+
+                if(!(TO->query_stuffed()&&TO->query_quenched())) {
                     if(TO->query_hp()<-(TO->query_max_hp()*4/5))
                     {
                         TO->add_death("Emaciation");
                         die();
                     }
+                } else {
+                    static_user["emaciated"] = 0;
+                }
             }
             if (TO->query_poisoning()) {
                 ob2->set_name("Poison");
@@ -1698,6 +1724,7 @@ void heart_beat()
             set_parrying(0);
         }
     }
+
     if (query_property("dodging") && !sizeof(query_attackers())) {
         write("With combat over, you have no one to dodge.");
         remove_property("dodging");
@@ -1733,10 +1760,10 @@ void heart_beat()
         if ((query_idle(TO) > 600) && (!avatarp(TO)) && (!TO->query("test_character")) && (!TO->query_property("inactive")))
         {
             if(TO && TO->query_forced()) return 1;
-            tell_object(TP, wrap("%^WHITE%^%^BOLD%^You haven't been doing anything and fall into slumber.\n Press RETURN to wake up."));
+            tell_object(TP, wrap("%^WHITE%^%^BOLD%^You haven't been doing anything and go inactive.\n Press RETURN to go active."));
             TO->set_property("inactive", 1);
             TO->force_me("save");
-            tell_room(environment(TO), TPQCN+" falls into slumber.\n",
+            tell_room(environment(TO), TPQCN+" goes inactive.\n",
                       ({ TO }) );
             input_to("reactivate",1,time());
         }
@@ -1767,6 +1794,8 @@ void heart_beat()
         else static_user["stance"] = 0;
     }
 
+    this_object()->remove_property("cleaving");
+
     //There are 3 heart beats per round. Adjust values accordingly.
     if(objectp(TO))
     {
@@ -1781,6 +1810,16 @@ void heart_beat()
         {
             TO->set_property("stab_resilience",(TO->query_level()+9)/20);
         }
+    }
+
+    if (sizeof(cooldowns)) {
+        foreach(string key in(keys(cooldowns)))
+        {
+            process_cooldowns(key, cooldowns[key]);
+        }
+    }
+    else {
+        cooldowns = ([]);
     }
 
     //Once per round
@@ -1950,6 +1989,34 @@ nomask void die()
         TO->set("rage death avoided", time() + 7200);
         return;
     }
+    
+    if(this_object()->query_mystery() == "heavens" && this_object()->query_class_level("oracle") > 30 && !this_object()->cooldown("star child"))
+    {
+        tell_object(this_object(), "%^BOLD%^%^RED%^With the last blow you feel the darkness beginning to flow inwards from the edge of your vision...Suddenly you're on your knees in a pool of your  own%^RESET%^%^RED%^blood %^BOLD%^%^RED%^with your extremities going numb.");
+        tell_room(ETO, "%^BOLD%^%^RED%^" + this_object()->query_cap_name() + " falls to the ground in a bloody mess.", this_object());
+        tell_object(this_object(), "%^BOLD%^A beam of starlight illuminates your fallen form, expanding as it engulfs your entire being.%^RESET%^");
+        tell_object(this_object(), "%^BOLD%^The energy fills your soul, and you feel yourself reborn.....a star child. You stand and continue to fight!%^RESET%^");
+        tell_room(environment(this_object()), "%^BOLD%^A beam of starlight illuminates " + this_object()->query_cap_name() + ". " + this_object()->query_pronoun() + " stands once more, reborn and ready to fight!", this_object());
+        this_object()->set_hp(query_max_hp());
+        this_object()->add_cooldown("star child", 7200);
+        return;
+    }
+    
+    if((this_object()->query_race() == "half-orc" || this_object()->query_race() == "orc") && !this_object()->cooldown("orc ferocity"))
+    {
+        if(this_object()->query("subrace") != "tanarukk" && this_object()->query("subrace") != "orog")
+        {
+            tell_object(TO, "%^BOLD%^%^RED%^As you are struck down, you find the will in your blood to continue the fight.");
+            tell_object(TO, "%^BOLD%^You stand u and brush yourself up, ready to stick it out to the very end!!");
+            tell_room(ETO, "%^RESET%^%^RED%^" + TO->query_cap_name() + " stands and continues to fight!", TO);
+            TO->set_hp(query_max_hp());
+            this_object()->add_cooldown("orc ferocity", 7200);
+            return;
+        }
+    }
+   
+    if(this_object()->query_property("raged"))
+        command("rage");
 
     klr = TO->query_current_attacker();
     if ( (objectp(klr)) && (klr->is_guardsman()) ) // Added to remove local bounties if a guard kills the player -Ares 8/29/05
@@ -1973,7 +2040,17 @@ nomask void die()
         }
 
         return;
-    }
+    }   
+    
+    if(this_object()->query_property("effect_fatigued"))
+        find_object("/std/effect/status/fatigued")->dest_effect(this_object());
+    if(this_object()->query_property("effect_dazzled"))
+        find_object("/std/effect/status/dazzled")->dest_effect(this_object());
+    if(this_object()->query_property("effect_exhausted"))
+        find_object("/std/effect/status/exhausted")->dest_effect(this_object());
+    if(this_object()->query_property("effect_sickened"))
+        find_object("/std/effect/status/sickened")->dest_effect(this_object());
+       
     ghost = 1;
     ob = TO;
     add_stuffed(25);
@@ -2340,10 +2417,10 @@ string query_short() {
     descr = descr + ")";
   }
   if(query_property("inactive")) {
-    descr = descr + " %^BOLD%^%^RED%^*slumbering*%^RESET%^";
+    descr = descr + " %^BOLD%^%^RED%^*inactive*%^RESET%^";
   }
   if (in_edit() || in_input() && !query_property("inactive")) {
-      descr = descr + " %^BOLD%^%^CYAN%^*daydreaming*%^RESET%^";
+      descr = descr + " %^BOLD%^%^CYAN%^*in edit*%^RESET%^";
   }
   if (query_property("working")) {
       descr = descr + " %^CYAN%^(" + query_property("working") + ")%^RESET%^";
@@ -2779,7 +2856,7 @@ void obey_command(string command, object commander){
     if (!objectp(commander)){
         return;
     }
-    command = (string)"/daemon/stripper_d"->stripcolors(command);
+    command = strip_colors(command);
     count = sscanf(command, "%s  %s, %s",lang, name, comm);
     if (count < 3){
       count = sscanf(command, " %s, %s", name, command);
@@ -3186,13 +3263,13 @@ void hide(int x) {
 varargs int set_mini_quest(string str, int x, string desc)
 {
     object player, room;
-    
+
     player = this_player();
     player && room = environment(player);
-    
+
     if(!player || !room)
         return 0;
-    
+
     if (!mini_quests) {
         mini_quests = ([]);
     }
@@ -3561,11 +3638,11 @@ void remove_all_pets() {
 }
 
 void reduce_my_skills(string myclass) {
-  
+
   object player;
-  
+
   player = this_object();
-  
+
   if (myclass == "thief" || myclass == "bard") {
     player->set_thief_skill("pick pockets",query_base_thief_skill("pick pockets")-3);
     player->set_thief_skill("detect noise",query_base_thief_skill("detect noise")-3);
@@ -4211,6 +4288,12 @@ int isKnown(string who)
         profile = "default";
     }
     profiles = relationships[who];
+
+    if(!mapp(profiles)) {
+        convert_relationships();
+        return 0;
+    }
+
     profile_names = keys(profiles);
     if (member_array(profile, profile_names) == -1) {
         return 0;
@@ -4243,6 +4326,9 @@ string knownAs(string who)
 
 string realName(string who)
 {
+    if(!strlen(who))
+        return "";
+
     foreach(string str in keys(relationships))
     {
         if (relationships[str]["default"] == lower_case(who)) {
@@ -4256,20 +4342,23 @@ string realName(string who)
  */
 string realNameVsProfile(string who)
 {
-    string * names, name;
+    string * names;
     string * profiles, profile;
     string * outnames = ({});
     object peep;
 
     mapping tmp = ([]);
 
-    if (!sizeof(keys(relationships))) {
+    if(!strlen(who))
         return "";
-    }
 
     names = keys(relationships);
 
-    foreach(name in names)
+    if (!pointerp(names) || !sizeof(names)) {
+        return "";
+    }
+
+    foreach(string name in names)
     {
         tmp = relationships[name];
 
@@ -4293,17 +4382,18 @@ string realNameVsProfile(string who)
     if (sizeof(outnames) == 1) {
         return outnames[0];
     } else {
-        foreach(name in outnames) {
+        foreach(string name in outnames) {
             if (present(name, environment(this_object()))) {
                 return name;
             }
         }
-        foreach(name in outnames) {
+        foreach(string name in outnames) {
             if (objectp(find_player(name))) {
                 return name;
             }
         }
-        return outnames[random(sizeof(outnames))];
+
+        return sizeof(outnames) ? outnames[random(sizeof(outnames))] : "";
     }
 
     return "";
@@ -4553,6 +4643,12 @@ int light_blind_remote(int actionbonus, object whichroom, int distance) {
   if (whichroom->query_property("ooc room")) {
       return 0;
   }
+  if(this_object()->query_property("darkvision"))
+      return 0;
+
+  if(FEATS_D->has_feat(this_object(), "devils sight"))
+      return 0;
+
   if (geteuid(whichroom) == "Shadowgate") {
       return 0;
   }
@@ -4572,7 +4668,7 @@ int light_blind_remote(int actionbonus, object whichroom, int distance) {
       tell_object(this_object(), "calc = " + calc);
   }
 
-  if (member_array(query_race(), LIVING_D->night_races()) != -1) {
+  if (member_array(query_race(), PLAYER_D->night_races()) != -1) {
       calc *= -1;
       _total_light *= -1;
   }
@@ -4609,12 +4705,12 @@ int light_blind_remote(int actionbonus, object whichroom, int distance) {
 int light_blind(int actionbonus)
 {
     object room;
-    
+
     if (!objectp(this_object()))
         return 0;
-    
+
     room = environment(this_object());
-    
+
     if (!objectp(room))
         return 0;
 
@@ -4626,7 +4722,7 @@ string light_blind_fail_message(int blindlight)
     if (blindlight == 0) {
         return "";
     }
-    if (member_array(query_race(), (string)LIVING_D->night_races()) != -1) {
+    if (member_array(query_race(), (string)PLAYER_D->night_races()) != -1) {
         if (blindlight < 0) {
             return "The bright light burns your eyes too much to see!";
         }else {
@@ -4704,6 +4800,8 @@ void clear_feats()
     set_hybrid_feats_gained(0);
     set_arcana_feats_gained(0);
     set_divinebond_feats_gained(0);
+    set_rage_feats_gained(0);
+    set_talent_feats_gained(0);
     set_other_feats_gained(0);
     set_epic_feats_gained(0);
     return;
@@ -4791,6 +4889,30 @@ int query_divinebond_feats_gained()
 {
     if (!intp(__FEAT_DATA["divinebond_feats_gained"])) { __FEAT_DATA["divinebond_feats_gained"] = 0; }
     return __FEAT_DATA["divinebond_feats_gained"];
+}
+
+void set_rage_feats_gained(int num)
+{
+    __FEAT_DATA["rage_feats_gained"] = num;
+    return;
+}
+
+int query_rage_feats_gained()
+{
+    if(!intp(__FEAT_DATA["rage_feats_gained"])) { __FEAT_DATA["rage_feats_gained"] = 0; }
+    return __FEAT_DATA["rage_feats_gained"];
+}
+
+void set_talent_feats_gained(int num)
+{
+    __FEAT_DATA["talent_feats_gained"] = num;
+    return;
+}
+
+int query_talent_feats_gained()
+{
+    if(!intp(__FEAT_DATA["talent_feats_gained"])) { __FEAT_DATA["talent_feats_gained"] = 0; }
+    return __FEAT_DATA["talent_feats_gained"];
 }
 
 void set_other_feats_gained(int num)
@@ -4929,6 +5051,38 @@ mapping query_divinebond_feats()
     return __FEAT_DATA["divinebond"];
 }
 
+void set_rage_feats(mapping feats)
+{
+    if(!mapp(__FEAT_DATA["rage"])) { __FEAT_DATA["rage"] = ([]); }
+    if(mapp(feats))
+    {
+        __FEAT_DATA["rage"] = feats;
+    }
+    return;
+}
+
+mapping query_rage_feats()
+{
+    if(!mapp(__FEAT_DATA["rage"])) { __FEAT_DATA["rage"] = ([]); }
+    return __FEAT_DATA["rage"];
+}
+
+mapping query_talent_feats()
+{
+    if(!mapp(__FEAT_DATA["talent"])) { __FEAT_DATA["talent"] = ([]); }
+    return __FEAT_DATA["talent"];
+}
+
+void set_talent_feats(mapping feats)
+{
+    if(!mapp(__FEAT_DATA["talent"])) { __FEAT_DATA["talent"] = ([]); }
+    if(mapp(feats))
+    {
+        __FEAT_DATA["talent"] = feats;
+    }
+    return;
+}
+
 void set_other_feats(mapping feats)
 {
     if(!mapp(__FEAT_DATA["other"])) { __FEAT_DATA["other"] = ([]); }
@@ -5038,6 +5192,22 @@ string *query_player_feats() {
         }
         testmap = ([]);
     }
+    if (mapp(__FEAT_DATA["rage"])) {
+        testmap = __FEAT_DATA["rage"];
+        mykeys = keys(testmap);
+        if (sizeof(mykeys)) {
+            for (i = 0;i < sizeof(mykeys);i++) myreturn += testmap[mykeys[i]];
+        }
+        testmap = ([]);
+    }
+    if (mapp(__FEAT_DATA["talent"])) {
+        testmap = __FEAT_DATA["talent"];
+        mykeys = keys(testmap);
+        if (sizeof(mykeys)) {
+            for (i = 0;i < sizeof(mykeys);i++) myreturn += testmap[mykeys[i]];
+        }
+        testmap = ([]);
+    }
     if(mapp(__FEAT_DATA["other"])) {
       testmap = __FEAT_DATA["other"];
       mykeys = keys(testmap);
@@ -5104,7 +5274,7 @@ string query_real_age_cat()
 {
     string myfile, myrace;
     int* agecats;
-    
+
     if (!objectp(this_object()))
         return 0;
 
@@ -5168,11 +5338,12 @@ int age_mod(string stat) {
    VENERABLE = ({ -3, -3, -3,  3,  3,  3 });
    agebracket = query_real_age_cat();
 
-   if (this_object()->is_undead())
+   if (this_object()->is_undead() || this_object()->is_deva() || this_object()->is_shade())
        return 0;
 
    if (this_object()->query_race() == "soulforged")
        return 0;
+
 
     switch(stat)
     {
@@ -5188,17 +5359,17 @@ int age_mod(string stat) {
     {
         case "child": return CHILD[i]; break;
         case "middle":
-            if((FEATS_D->usable_feat(this_object(), "timeless body")) &&
+            if((FEATS_D->usable_feat(this_object(), "timeless body") || this_object()->query_property("rewind age")) &&
                MIDDLE[i] < 1)
                 return 0;
             return MIDDLE[i]; break;
         case "old":
-            if((FEATS_D->usable_feat(this_object(), "timeless body")) &&
+            if((FEATS_D->usable_feat(this_object(), "timeless body") || this_object()->query_property("rewind age")) &&
                OLD[i] < 1)
                 return 0;
             return OLD[i]; break;
         case "venerable":
-            if((FEATS_D->usable_feat(this_object(), "timeless body")) &&
+            if((FEATS_D->usable_feat(this_object(), "timeless body") || this_object()->query_property("rewind age")) &&
                VENERABLE[i] < 1)
                 return 0;
             return VENERABLE[i]; break;
@@ -5270,12 +5441,12 @@ int race_mod(string stat)
 
 int reactivate(string str,int when){
         this_object()->remove_property("inactive");
-        tell_object(this_object(), "You wake up from the slumber.\n");
+        tell_object(this_object(), "You go active.\n");
         if((time()-when) <= 60)
-           tell_object(this_object(),"You have been napping for "+(time()-when)+" seconds.");
+           tell_object(this_object(),"You have been inactive for "+(time()-when)+" seconds.");
         else
-           tell_object(this_object(),"You have been napping for "+((time()-when)/60)+" minutes.");
-        tell_room(environment(this_object()), TPQCN+" wakes up.\n", ({ this_object() }) );
+           tell_object(this_object(),"You have been inactive for "+((time()-when)/60)+" minutes.");
+        tell_room(environment(this_object()), TPQCN+" goes active.\n", ({ this_object() }) );
         return 1;
    return 1;
 }
@@ -5285,14 +5456,11 @@ int test_passive_perception()
     object* living, targ, player, room;
     int i, numnotvisible, ishidden, ismagic;
     int perception, stealth, spellcraft;
-    
+
     player = this_object();
     player && room = environment(player);
-  
-    if (!player || !room)
-        return;
 
-    if (player->query_watched() < 1)
+    if (!player || !room)
         return;
 
     if (FEATS_D->usable_feat(player, "spot"))
@@ -5443,6 +5611,9 @@ int is_favored_enemy(object ob)
         ids += ({ "undead" });
     }
 
+    if(ob->is_deva() || ob->is_shade())
+        ids += ({ "outsider" });
+
     foreach(string favored_type in favored_enemy)
     {
         if (strlen(favored_type) && favored_type != "none") {
@@ -5479,7 +5650,7 @@ int is_favored_terrain(object room)
     foreach(string terrain in favored_terrain)
     {
         if (strlen(terrain) && terrain != "none") {
-            if (USER_D->is_valid_terrain(type, "caves")) {
+            if (USER_D->is_valid_terrain(type, terrain)) {
                 return 1;
             }
         }
@@ -5508,4 +5679,65 @@ string set_dedication(string str)
 string query_dedication()
 {
     return dedication;
+}
+
+//Diminishing returns against spam spells with a certain effect
+mapping query_diminish_returns()
+{
+    return diminish_returns;
+}
+
+int is_diminish_return(string spell, object source)
+{
+    if(!spell || !source)
+        return 0;
+
+    if(member_array(spell, keys(diminish_returns)) < 0)
+        return 0;
+
+    if(!sizeof(diminish_returns[spell]))
+        return 0;
+
+    if(member_array(source, diminish_returns[spell]) < 0)
+        return 0;
+
+    return 1;
+}
+
+int add_diminish_return(string spell, object source)
+{
+    if(!spell || !source)
+        return 0;
+
+    if(is_diminish_return(spell, source))
+    {
+        remove_call_out("remove_diminish_return");
+        call_out("remove_diminish_return", 30, spell, source);
+        return 1;
+    }
+
+    if(member_array(spell, keys(diminish_returns)) < 0)
+        diminish_returns += ([ spell : ({ source }) ]);
+    else
+        diminish_returns[spell] += ({ source });
+
+    call_out("remove_diminish_return", 30, spell, source);
+
+    return 1;
+}
+
+int remove_diminish_return(string spell, object source)
+{
+    if(!spell || !source)
+        return 0;
+
+    if(!is_diminish_return(spell, source))
+        return 0;
+
+    diminish_returns[spell] -= ({ source });
+
+    if(!sizeof(diminish_returns[spell]))
+        map_delete(diminish_returns, spell);
+
+    return 1;
 }

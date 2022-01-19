@@ -66,14 +66,19 @@ concerning water transportation.
 	sell boat --------------  Will sell boat
 		
 	You will be interested to know that:
-                    Laerad is located at 20,36.
-                    Shadow is located at 0,36.
-                    Deku is located at 20,16.
-                    Dagger Straits are at 5,18. 
-                    The Ocean is at 24,10 on the Dagger Sea.
-                    Torm is located at 1,5 on the Dagger Sea.
-                    Attaya is located at 28,43.
-		 There are more islands that we have yet to map.
+    
+            On the Seakrune Sea:
+                Laerad is located at 20,36.
+                Shadow is located at 0,36.
+                Deku is located at 20,16.
+                Attaya is located at 28,43.
+                The Seakrune Sea connects to the Dagger Straits are at 5,18. 
+                
+            On the Dagger Sea:
+                The Dagger Sea connects to the Seakrune Sea at 24,10.
+                Torm is located at 1,5 on the Dagger Sea.
+                
+		There are more islands that we have yet to map.
 		
 OLI
     );

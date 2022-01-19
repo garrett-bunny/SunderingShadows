@@ -28,8 +28,8 @@ void create(){
 }
 void reset(){
   ::reset();
-  if(!present("guard")) new(MON+"guard2")->move(TO);
-  if(!present("guard 2")) new(MON+"guard4")->move(TO);
+  if(!present("guard")) new(MON+"guard")->move(TO);
+  if(!present("guard 2")) new(MON+"guard")->move(TO);
   }
 int block(){
   if(avatarp(TP))return 1;

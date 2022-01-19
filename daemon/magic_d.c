@@ -28,7 +28,9 @@ inherit DAEMON;
 
 void index_spells();
 mapping allSpells;
+mapping domain_spells;
 mapping spellIndex;
+mapping tracked_spells = ([   ]);
 
 mapping quick_names;
 
@@ -80,15 +82,19 @@ int can_cast(object target, int spell_level, string spell_type, string spell_nam
             if (FEATS_D->usable_feat(target, "supreme healer") && member_array(spell_name, supreme_healer_spells) != -1) {
                 return 1;
             }
+            /*
             if (FEATS_D->usable_feat(target, "natures gift") && member_array(spell_name, MAGIC_SS_D->query_class_special_spells("archdruid", "all")) != -1) {
                 return 1;
             }
+            */
             if (FEATS_D->usable_feat(target, "raging healer") && member_array(spell_name, raging_healer_spells) != -1) {
                 return 1;
             }
+            /*
             if (FEATS_D->usable_feat(target, "inspired necromancy") && spell_level < 7 && spellIndex[spell_name]["sphere"] == "necromancy") {
                 return 1;
             }
+            */
         }
     }
 
@@ -286,6 +292,7 @@ void build_index()
     mapping level, spelltable;
 
     spellIndex = ([]);
+    domain_spells = ([]);
 
     quick_names = ([]);
 
@@ -314,7 +321,11 @@ void build_index()
                         spelltable["way"] = str2->query_monk_way();
                         spelltable["discipline"] = str2->query_discipline();
                         spelltable["feats"] = str2->query_feats_required();
-                        spelltable["divine_domain"] = str2->query_domains();
+                        if(sizeof(str2->query_domains()))
+                        {                          
+                            spelltable["divine_domain"] = str2->query_domains();
+                            domain_spells += ([ all_spells[x] : spelltable ]);
+                        }
                         spellIndex += ([ all_spells[x] : spelltable]);
                     }
                 }
@@ -330,6 +341,24 @@ void build_index()
 mapping query_index_row(string spell)
 {
     return spellIndex[spell];
+}
+
+string *query_domain_spells(string str)
+{
+    string *requested;
+    
+    requested = keys(domain_spells);
+    
+    if(strlen(str))
+    {
+        foreach(string what in requested)
+        {
+            if(pointerp(spellIndex[what]["divine_domain"]) && member_array(str, spellIndex[what]["divine_domain"]) < 0)
+                requested -= ({ what });
+        }
+    }
+    
+    return requested;
 }
 
 /**
@@ -386,9 +415,10 @@ mapping index_castable_spells(object player, string myclass)
             }
         }
         
-        if(pclass == "cleric")
+        if(pclass == "cleric" || pclass == "druid")
         {   
             int success = 0;
+            int exclude = 0;
             
             domain = spellIndex[spellfile]["divine_domain"];
             
@@ -398,6 +428,13 @@ mapping index_castable_spells(object player, string myclass)
                 {
                     if(member_array(str, player->query_divine_domain()) >= 0)
                         success++;
+                    
+                    if(pclass == "druid")
+                    {
+                        //Druids have sun domain built in
+                        if(str == "sun")
+                            success++;
+                    }
                 }
                 
                 if(!success)
@@ -405,6 +442,7 @@ mapping index_castable_spells(object player, string myclass)
             }
         }
         
+        /*
         if(pclass == "druid")
         {   
             int success = 0;
@@ -423,6 +461,7 @@ mapping index_castable_spells(object player, string myclass)
                     continue;
             }
         }
+        */
         
             
         if (pclass == "monk" &&
@@ -445,10 +484,16 @@ mapping index_castable_spells(object player, string myclass)
  */
 mapping index_masterable_spells(object player, string myclass)
 {
+    
     mapping all_spells, tmp;
     string* all_spell_names, spellfile, featneeded, domain, pclass;
     int lvl;
-
+    
+    {
+    return index_castable_spells(player, myclass);
+    }
+    
+    /*
     pclass = myclass;
     if (pclass == "sorcerer") {
         pclass = "mage";
@@ -489,6 +534,8 @@ mapping index_masterable_spells(object player, string myclass)
         tmp[spellfile] = lvl;;
     }
     return tmp;
+    
+    */
 }
 
 /**
@@ -808,4 +855,112 @@ string get_spell_file_name(string spell)
 	spell = DIR_SPELLS + "/"+ explode(spell, "")[0] + "/_" + replace_string(spell, " ", "_") + ".c";
 	if(!file_exists(spell)) return "";
 	return spell;
+}
+
+//This section tracks cast spells.
+//Tied into spell.c
+mapping tracked_spells()
+{
+    return tracked_spells;
+}
+
+//tracked_spells ([ spell_name : ({ num casts, max clevel, average clevel }) ])
+int track_spell(string spell_name, int clevel)
+{
+    int max_clevel, num, avg;
+    
+    if(!strlen(spell_name) || !clevel)
+        return 0;
+/*   
+    if(!pointerp(tracked_spells))
+        tracked_spells = ([  ]);
+*/    
+    if(member_array(spell_name, keys(tracked_spells)) < 0)
+    {
+        tracked_spells += ([ spell_name : ({ 1, clevel, clevel }), ]);
+        save_object(MAGIC_D_SAVE);
+        return 1;
+    }
+    
+    if(!pointerp(tracked_spells[spell_name]))
+    {
+        tracked_spells[spell_name] = ({ 1, clevel, clevel });
+        return 1;
+    }
+    
+    max_clevel = max( ({ clevel, tracked_spells[spell_name][1] }) );
+    num = tracked_spells[spell_name][0] + 1;
+    avg = (tracked_spells[spell_name][2] + clevel) / num;
+    
+    tracked_spells[spell_name] = ({ num, max_clevel, avg });
+    /*
+    tracked_spells[spell_name][0] = num;
+    tracked_spells[spell_name][1] = max_clevel;
+    tracked_spells[spell_name][2] = avg;
+    */
+    
+    save_object(MAGIC_D_SAVE);
+    
+    return 1;
+}
+
+void spell_usage_data(string spell_name)
+{
+    string *top_ten;
+    
+    if(!sizeof(tracked_spells))
+    {
+        write("No spells have been tracked.");
+        return;
+    }
+    
+    if(!strlen(spell_name))
+    {
+        top_ten = keys(tracked_spells);
+        top_ten = sort_array(top_ten, "compare_spells", this_object());
+        top_ten = top_ten[0..9];
+        
+        write("%^RED%^BOLD%^Top Ten Used Spells:%^RESET%^");
+        
+        foreach(string str in top_ten)
+        {
+            printf("%-22s : %6d\n", capitalize(str), tracked_spells[str][0]);
+        }
+        
+        return 1;
+    } 
+    
+    if(member_array(spell_name, keys(tracked_spells)) < 0)
+    {
+        write("No data for that spell.");
+        return;
+    }
+    
+    if(!pointerp(tracked_spells[spell_name]))
+    {
+        write("Invalid spell data.");
+        return;
+    }
+    
+    write("%^RED%^BOLD%^" + capitalize(spell_name) + "%^RESET%^");
+    printf("Total number of casts : %d\n", tracked_spells[spell_name][0]);
+    printf("Maximum caster level  : %d\n", tracked_spells[spell_name][1]);
+    printf("Average caster level  : %d\n", tracked_spells[spell_name][2]);
+}
+
+int compare_spells(string one, string two)
+{
+    if(tracked_spells[one][0] > tracked_spells[two][0]) return -1;
+    if(tracked_spells[one][0] < tracked_spells[two][0]) return 1;
+    
+    return 0;
+}
+
+int clear_tracking_data()
+{
+    write("Clearing tracking data...");
+    tracked_spells = ([  ]);
+    save_object(MAGIC_D_SAVE);
+    
+    return 1;
 }

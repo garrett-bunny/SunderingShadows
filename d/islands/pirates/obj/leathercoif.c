@@ -1,5 +1,5 @@
 #include <std.h>
-inherit ARMOUR;
+inherit "/d/common/obj/armour/coif_leather.c";
 
 void create(){
    ::create();
@@ -32,11 +32,9 @@ void create(){
 "comfortably cushion the head.");
      break;
    }
-   set_ac(0);
    set_type("leather");
    set_limbs(({"head"}));
    set_property("enchantment",2);
-   set_weight(3);
    set_value(20);
    set_size(2);
    set_lore("%^WHITE%^%^BOLD%^The distinctive style of the coif marks this as a commonly-used pirate coif.  "

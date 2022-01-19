@@ -4,11 +4,10 @@
 %^RESET%^%^CYAN%^Alignments allowed:%^RESET%^ any
 %^RESET%^%^CYAN%^Hitdice:%^RESET%^ d8
 %^RESET%^%^CYAN%^Saving throws:%^RESET%^ fort/will strong, reflex weak
-%^RESET%^%^CYAN%^Class Skills:%^RESET%^ perception, survival, athletics, academics, influence
+%^RESET%^%^CYAN%^Class Skills:%^RESET%^ perception, survival, athletics, spellcraft, influence
 %^RESET%^%^CYAN%^Class Feats:%^RESET%^
  %^RESET%^L1: simple weapon proficiency, exotic weapon proficiency, light armor proficiency, medium armor proficiency, spell focus, shield proficiency, judgement, monster lore
  %^RESET%^L2: track
- %^RESET%^L3: force of personality
  %^RESET%^L5: bane
  %^RESET%^L6: leadership
  %^RESET%^L8: second judgment
@@ -17,13 +16,20 @@
  %^RESET%^L16: third judgement
  %^RESET%^L17: slayer
  %^RESET%^L20: true judgement
+ %^RESET%^L31: chains of justice
  %^RESET%^Also: one bonus hybrid feat at L21, and every five class levels thereafter
 
-Grim and determined, the inquisitor roots out enemies of the faith, using trickery and guile when righteousness and purity is not enough. Although inquisitors are dedicated to a deity, they are above many of the normal rules and conventions of the church. They answer to their deity and their own sense of justice alone, and are willing to take extreme measures to meet their goals.
+Grim and determined, the inquisitor roots out enemies of the faith, using trickery and guile when righteousness and purity is not enough. Although inquisitors are dedicated to a deity, they are above many of the normal rules and conventions of the church. They answer to their deity and their own sense of justice alone and are willing to take extreme measures to meet their goals.
 
 Inquisitors tend to move from place to place, chasing down enemies and researching emerging threats. As a result, they often travel with others, if for no other reason than to mask their presence. Inquisitors work with members of their faith whenever possible, but even such allies are not above suspicion.
 
-Inquisitors are spontaneous casters that use %^ORANGE%^<master>%^RESET%^ command to learn new spells from inquisitor list you can view with %^ORANGE%^<spells inquisitor>%^RESET%^. They %^ORANGE%^<cast>%^RESET%^ any of spell they learned by expending spell slot prepared with %^ORANGE%^<prepare>%^RESET%^ command. They can see how many slots per level you have prepared with %^ORANGE%^<recall inquisitor spells>%^RESET%^. They base their casting and slot bonuses on the wisdom stat.
+Inquisitors are spontaneous casters that use %^ORANGE%^<master>%^RESET%^ command to learn new spells from the inquisitor spell list. See %^ORANGE%^<spells inquisitor (by level)>%^RESET%^. They can %^ORANGE%^<cast>%^RESET%^ any mastered spell by expending a spell slot, which is prepared with the %^ORANGE%^<prepare>%^RESET%^ command. To see how many spell slots you can prepare, use %^ORANGE%^<recall inquisitor spells>%^RESET%^. They base their casting abilities on the wisdom stat.
 
-%^RESET%^%^CYAN%^See also: %^RESET%^ feats, stats, skills, spells, cast, buff, prepare, master, prestige classes
+Inquisitors also gain the following cantrips (type 'recall cantrip spells'):
+Create Water, Detect Magic, Detect Poison, Guidance, Resistance, Light, Mending, Disrupt Undead, Acid Splash
 
+They can cast in any armor they can wear, but not while wielding anything.
+
+Inquisitors use Wisdom as opposed to Charisma for their Influence skill.
+
+%^RESET%^%^CYAN%^See also: %^RESET%^ feats, stats, skills, spells, cast, buff, prepare, master, prestige classes, new caster, recall

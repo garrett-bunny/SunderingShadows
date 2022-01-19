@@ -28,7 +28,8 @@ AVATAR
 	set_wear((:TO,"wear_func":));
 	set_remove((:TO,"remove_func":));
 	set_struck((:TO,"strike_func":));
-   set_overallStatus(220);
+    set_overallStatus(220);
+    set_property("no disenchant",1);
 }
 int wear_func(){
 	tell_room(environment(ETO),"",ETO);
@@ -41,10 +42,11 @@ int remove_func(){
 	return 1;
 }
 int strike_func(int damage, object what, object who){
-	if(random(1000) < 500){
-	tell_room(environment(query_worn()),"%^RESET%^%^CYAN%^With a deft swing of the leg, "+ETOQCN+"%^RESET%^%^CYAN%^ lands a solid kick making "+who->QCN+"%^RESET%^%^CYAN%^ double over in pain.%^RESET%^",({ETO,who}));
+    if(random(1000) < 500){
+        tell_room(environment(query_worn()),"%^RESET%^%^CYAN%^With a deft swing of the leg, "+ETOQCN+"%^RESET%^%^CYAN%^ lands a solid kick making "+who->QCN+"%^RESET%^%^CYAN%^ double over in pain.%^RESET%^",({ETO,who}));
 	tell_object(ETO,"%^RESET%^%^CYAN%^Turning to deflect "+who->QCN+"'s%^RESET%^%^CYAN%^ attack, you swing your leg around, landing a solid blow.%^RESET%^");
 	tell_object(who,"%^RESET%^%^CYAN%^A quick kick sends you reeling in pain.%^RESET%^");
-		who->set_paralyzed(random(12));
-return damage;	}
+	who->set_paralyzed(random(12));
+    }
+    return damage;
 }

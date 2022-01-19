@@ -42,7 +42,7 @@ add_money("gold", 50 + random(100));
   set_overall_ac(-8);
 
   set_property("no bows",1);
-  set_property("magic resistance",50);
+  set_mob_magic_resistance("very high");
   set_property("no dominate",1);
   set_moving(100);
   new(OBJ+"fullplateb.c")->move(TO);

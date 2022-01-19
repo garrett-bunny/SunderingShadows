@@ -8,10 +8,10 @@ void create()
 {
     ::create();
     feat_type("permanent");
-    feat_category("WeaponAndShield");
+    feat_category("CombatManeuvers");
     feat_name("improved shieldbash");
     feat_prereq("Shieldbash");
-    feat_desc("With this feat you are able avoid being staggered on the missed shieldbash.");
+    feat_desc("With this feat you are able avoid the attack of opportunity when performing a shieldbash. Your shieldbash also gets a +2 modifier to its attack roll, and +2 damage dice.");
     permanent(1);
 }
 

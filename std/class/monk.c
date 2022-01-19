@@ -59,6 +59,7 @@ string* combat_styles()
 string* class_feats(string myspec)
 {
     return ({ "simple weapon proficiency",
+	          "exotic weapon proficiency",
               "unarmored defense",
               "evasion",
               "dodge",
@@ -75,7 +76,7 @@ string* class_feats(string myspec)
 mapping class_featmap(string myspec)
 {
     mapping myMap;
-    myMap = ([ 1 : ({ "simple weapon proficiency", "unarmored defense", "spell focus" }),
+    myMap = ([ 1 : ({ "simple weapon proficiency", "unarmored defense", "spell focus", "exotic weapon proficiency" }),
                2 : ({ "dodge", "flurry of blows" }),
                5 : ({ "stunning strike" }),
                7 : ({ "evasion", "stillness of mind" }),
@@ -85,7 +86,8 @@ mapping class_featmap(string myspec)
                18 : ({ "empty body" }),
                19 : ({ "tongue of the sun and moon" }),
                20 : ({ "perfect self" }),
-               21 : ({ "defensive roll" }), ]);
+               21 : ({ "defensive roll" }),
+               31 : ({ "unchained" }), ]);
 
     switch (myspec) {
     case "way of the fist":
@@ -143,8 +145,11 @@ void advanced_func(object player)
     return;
 }
 
-int hit_dice()
+int hit_dice(object ob)
 {
+    if(FEATS_D->has_feat(ob, "unchained"))
+        return 10;
+    
     return 8;
 }                             // hit dice rolled for hitpoints each level
 
@@ -180,6 +185,10 @@ int attack_bonus(object player)
     
     full_level = to_float(player->query_base_character_level());
     class_level = to_float(player->query_prestige_level("monk"));
+    
+    //Full BAB with unchained capstone
+    if(FEATS_D->has_feat(player, "unchained"))
+        return class_level;
     
     if(full_level < 20.00)
     {
@@ -220,24 +229,27 @@ int unarmed_damage(object player)
     }
     myLev = (int)player->query_guild_level("monk");
     switch (myLev) {
-    case 0..10:
+    case 0..9:
         amt = roll_dice(1, 6);
         break;
 
-    case 11..20:
+    case 10..19:
         amt = roll_dice(1, 8);
         break;
 
-    case 21..30:
+    case 20..29:
         amt = roll_dice(1, 10);
         break;
 
-    case 31..40:
-        amt = roll_dice(1, 12);
+    case 30..39:
+        amt = roll_dice(2, 6);
         break;
 
-    case 41..50:
-        amt = roll_dice(1, 14);
+    case 40..49:
+        amt = roll_dice(2, 8);
+        break;
+    case 50:
+        amt = roll_dice(2, 10);
         break;
         /*     break;
            case 26..30:
@@ -253,8 +265,11 @@ int unarmed_damage(object player)
              return (roll_dice(1, 12) + roll_dice(1, 10));*/
     }
     if (FEATS_D->usable_feat(player, "fists of fury")) {
-        amt += roll_dice(1, 2);
+        amt += 2;
     }
+    if(FEATS_D->usable_feat(player, "unchained"))
+        amt += 2;
+    
     return amt;
 }
 

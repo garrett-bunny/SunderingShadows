@@ -1,6 +1,7 @@
 #include <std.h>
 #include <magic.h>
 #include <skills.h>
+#include <daemons.h>
 
 inherit STATUS;
 
@@ -15,6 +16,13 @@ void create()
 int status_effect()
 {
     int i;
+    
+    if(PLAYER_D->immunity_check(target, "negative_level"))
+    {
+        tell_object(target, "%^YELLOW%^You are immune to negative levels.%^RESET%^");
+        this_object()->remove();
+        return;
+    }
 
     if (target->query_property("effect_negative_level") > 4) {
         TO->remove();
@@ -39,29 +47,29 @@ int status_effect()
     target->add_saving_bonus("all", -power);
     target->set_property("empowered", -power);
 
-    call_out("dest_effect", ROUND_LENGTH * duration);
+    call_out("dest_effect", ROUND_LENGTH * duration, target);
     return 1;
 }
 
-int dest_effect()
+int dest_effect(object ob)
 {
     int i;
-    if (objectp(target)) {
-        target->set_property("effect_negative_level", -power);
+    if (objectp(ob)) {
+        ob->set_property("effect_negative_level", -power);
 
-        if (target->query_property("effect_negative_level")) {
-            tell_object(target, "%^BLUE%^You feel less weakened.");
+        if (ob->query_property("effect_negative_level")) {
+            tell_object(ob, "%^BLUE%^You feel less weakened.");
         } else {
-            tell_object(target, "%^BLUE%^You no longer feel weakened.%^RESET%^");
+            tell_object(ob, "%^BLUE%^You no longer feel weakened.%^RESET%^");
         }
 
         for (i = 0; i < sizeof(CORE_SKILLS); i++) {
-            target->add_skill_bonus(CORE_SKILLS[i], power);
+            ob->add_skill_bonus(CORE_SKILLS[i], power);
         }
 
-        target->add_attack_bonus(power);
-        target->add_saving_bonus("all", power);
-        target->set_property("empowered", power);
+        ob->add_attack_bonus(power);
+        ob->add_saving_bonus("all", power);
+        ob->set_property("empowered", power);
     }
     ::dest_effect();
     return 1;

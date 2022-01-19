@@ -6,7 +6,7 @@ inherit SPELL;
 create() {
     ::create();
     set_spell_name("breath of life");
-    set_spell_level(([ "cleric" : 5,"oracle":5, "psion" : 5 ]));
+    set_spell_level(([ "cleric" : 5,"oracle":5, "psion" : 5, "druid": 5 ]));
     set_mystery("life");
     set_domains("renewal");
     set_affixed_spell_level(5);
@@ -93,7 +93,7 @@ spell_effect(int prof) {
         }
         tell_object(caster,"%^ORANGE%^You can feel the power of magic flow out to "+target->QCN+"'s soul, and know that "+target->QP+" life is in "+target->QP+" own hands now.");
         tell_room(environment(caster),"The power of "+caster->QCN+"'s spell flows through the area as "+caster->QS+" tries to bring "+target->QCN+" back to life!",caster);
-        target->set("RaisingPriestGod",caster->query_diety());
+        target->set("RaisingPriestGod",caster->query_property("hidden deity")||caster->query_diety());
         target->set("RaisingPriestAlignment",caster->query_alignment());
         target->set("RaisingRoom",base_name(environment(caster)));
         target->set("RaisingExpLoss",(-10+(random(2)+random(3)+1)));

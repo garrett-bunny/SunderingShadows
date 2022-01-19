@@ -1,4 +1,5 @@
 #include <magic.h>
+#include <daemons.h>
 
 inherit SPELL;
 
@@ -8,9 +9,8 @@ void create()
 {
     ::create();
     set_spell_name("demand");
-    set_spell_level(([ "cleric" : 8, "mage" : 8, ]));
+    set_spell_level(([ "mage" : 8, ]));
     set_spell_sphere("enchantment_charm");
-    set_domains("charm");
     set_syntax("cast CLASS demand on TAGET to COMMAND");
     set_description("This spell acts like sending and command merged together. There is a delay between attempts and your target will be aware where you are.");
     set_save("will");
@@ -66,6 +66,7 @@ void spell_effect()
 
     if (do_save(target, 0) ||
         target->query_property("no dominate", 1) ||
+        PLAYER_D->immunity_check(target, "charm") ||
         mind_immunity_damage(target, "default")) {
         tell_object(caster, "%^BOLD%^" + target->QCN + " resisted your attempt!");
         spell_kill(target, caster);

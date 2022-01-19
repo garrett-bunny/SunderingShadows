@@ -12,6 +12,8 @@ void create()
     ::create();
     set_spell_name("aegis of fate");
     set_spell_level(([ "cleric" : 6 ]));
+    set_domains("fate");
+    set_bonus_type(({ "resistance", "shield" }));
     set_spell_sphere("enchantment_charm");
     set_syntax("cast CLASS aegis of fate on TARGET");
     set_description("This spell alters the fate of the target, creating an ever-fluctuating shield about the target.  The "
@@ -86,7 +88,7 @@ void execute_attack()
         prevAc = random(clevel / 8) + 1;
         target->add_ac_bonus(prevAc);
         target->set_property("magic resistance", (-1 * magRes));
-        magRes = random(clevel / 3) + 1;
+        magRes = random(clevel / 24) + 1;
         target->set_property("magic resistance", (magRes));
         counter++;
     }

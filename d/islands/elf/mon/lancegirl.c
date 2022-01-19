@@ -33,7 +33,7 @@ void create()
   set_stats("constitution",12);
   setenv("MIN", "$N flies in elegantly");
   setenv("MOUT", "$N flies $D elegantly");
-  set_property("magic resistance",30);
+  set_mob_magic_resistance("average");
   set_property("damage resistance",2);
   set_property("magic",1);   
   set_funcs(({"sing"}));

@@ -23,7 +23,7 @@ mapping stat_requirements() {
 }
 
 // strong & weak saving throws. Fort, Ref, Will
-int *saving_throws() { return ({ 0,0,1 }); }
+int *saving_throws() { return ({ -1,-1,1 }); }
 
 string *combat_styles() {
     return ({});
@@ -36,7 +36,12 @@ string *class_feats(string myspec)
 }
 
 mapping class_featmap(string myspec) {
-    return ([ 1 : ({ "simple weapon proficiency", "spell focus", "magic school"}), ]);
+    return ([ 1 : ({ "simple weapon proficiency", "spell focus", "magic school", "scribe", "arcane bond" }), ]);
+}
+
+mapping query_cantrip_spells(object ob)
+{
+    return ([ "acid splash" : 1, "detect magic" : 1, "daze" : 1, "dancing lights" : 1, "disrupt undead": 1, "resistance" : 1, "ray of frost" : 1 ]);
 }
 
 string *class_skills()
@@ -129,8 +134,10 @@ void newbie_func(object who)
         ob2->move(ob);
     }
     ob->move(who);
+    /*
     tell_object(who, "%^BOLD%^%^WHITE%^You are given a spell tome, a bag for components, and a sack of scrolls "+
     "to help you out in the world of ShadowGate.%^RESET%^");
+    */
 }
 
 int caster_level_calcs(object player, string the_class)

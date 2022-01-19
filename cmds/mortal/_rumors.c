@@ -105,6 +105,8 @@ arealist = ({
             ({"Kinaro Underdark (Beneath Kinaro)" ,30,35,}),
             ({"Muln's Lair (Ice Island)" ,30,35,}),
             ({"Oubliette (Crystal Tower)",30,35,}),
+            ({"The Hound Mercenary Camp (Serakii - 44 41)",30,35,}),
+            ({"The White Tower (Serakii - 44 41)",30,35,}),
             ({"Lava Tubes (Tonerra)",33,42,}),
             ({"QUEST: Shar's Failed Deed (Tonerra)",33,42,}),
             ({"Arkhon's Lair" ,35,40,}),
@@ -130,6 +132,7 @@ areas = ([
              "/d/azha/town/" : "Azha",
              "/d/darkwood/camps/rooms/town/" : "Synoria",
              "/d/tharis/newtharis/rooms" : "Tharis",
+             "/d/tharis/newtharis/hotel_tharis" : "Tharis",
              "/d/antioch/antioch2/rooms" : "Antioch",
              "/d/dagger/tonovi/town" : "Tonovi",
              "/d/dagger/Torm/city" : "Torm",
@@ -140,6 +143,11 @@ areas = ([
              "/d/darkwood/room/rhapsody" : "the Rhapsody inn",
              "/d/dagger/exchange" : "the Exchange",
              "/d/player_houses/innaeli/rooms/bsb1" : "the Bloody Scourge inn",
+             "/d/player_houses/lizabelle/ghall" : "The Pearl Necklace",
+             "/d/player_houses/lizabelle/dining" : "The Pearl Necklace",
+             "/d/player_houses/lizabelle/pearlbar" : "The Pearl Necklace",
+             "/d/player_houses/lizabelle/library" : "The Pearl Necklace",
+             "/d/player_houses/lizabelle/patio" : "The Pearl Necklace",
              ]);
 
 
@@ -164,6 +172,11 @@ int cmd_rumors(string args)
             searchlist = keys(areas);
             foreach(peep in peeps)
             {
+                    
+                if (peep == TP) {
+                    continue;
+                }
+
                 if(!objectp(ENV(peep)))
                     continue;
                 fn = base_name(environment(peep));

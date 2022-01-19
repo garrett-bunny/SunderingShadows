@@ -17,7 +17,7 @@ void create() {
     ::create();
     set_spell_name("remote view trap");
     set_spell_level(([ "psion" : 6 ]));
-    set_spell_sphere("divination");
+    set_spell_sphere("clairsentience");
     set_syntax("cast CLASS remote view trap");
     set_description("When manifesting this power, the psion attunes his mind to the detection of magical and psionic "
 "abilities that attempt to scry him in some form.  The power remains strong in the psion's mind, allowing him to move and "
@@ -34,7 +34,7 @@ void create() {
 }
 
 int preSpell() {
-    if (!query_arg()) { 
+    if (!query_arg()) {
         target = caster;
         return 1;
     }
@@ -79,15 +79,7 @@ void spell_effect(int prof) {
         dest_effect();
         return;
     }
-/*new bonus and power stuff by ~Circe~ to match other scry spells 6/20/08
-//updated again by ~Circe~ 9/16/11 to use bonuses correctly
-    bonus = caster->query_stats(casting_stat);
-    int_bonus = (int_bonus - 15) / 2;
-    blocker->set_block_power(CLEVEL + int_bonus);
-*/
-//updated again by ~Circe~ 9/16/11 to use bonuses correctly
-    int_bonus = caster->query_stats(casting_stat);
-    int_bonus = int_bonus-10;
+    int_bonus = calculate_bonus(caster->query_stats(get_casting_stat()));
     power = CLEVEL + int_bonus + random(6);
     blocker->set_block_power(power);
     blocker->set_psi_damager(CLEVEL);

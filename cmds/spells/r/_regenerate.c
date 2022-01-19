@@ -7,9 +7,9 @@ int ticker;
 void create() {
     ::create();
     set_spell_name("regenerate");
-    set_spell_level(([ "cleric" : 7, "druid" : 9, "oracle":7 ]));
+    set_spell_level(([ "cleric" : 7, "oracle":7, "druid" : 7 ]));
     set_mystery("life");
-    set_spell_sphere("healing");
+    set_spell_sphere("conjuration_summoning");
     set_damage_desc("positive energy over clevel / 6 rounds");
     set_syntax("cast CLASS regenerate on TARGET");
     set_description("This spell cures substantial amount of damage over several rounds and removes all exhaustion, fatigue or confusion from the target, and all other cleansing effects that heal clears. Targets with negative energy affinity, such as undead, can't be affected by this spell.");
@@ -102,10 +102,7 @@ void regenerate_target()
         damage_targ(target, target->return_target_limb(), sdamage, "positive energy");
     }
 
-    if (target->query_property("effect_fatigued") ||
-        target->query_property("effect_exhausted")) {
-        "/std/magic/cleanse"->regenerate(target);
-    }
+    "/std/magic/cleanse"->regenerate(target);
 
     call_out("regenerate_target", ROUND_LENGTH);
     ticker--;

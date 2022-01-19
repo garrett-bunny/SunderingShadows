@@ -33,8 +33,11 @@ string query_cast_string()
 
 void spell_effect(int prof)
 {
-    caster = CASTER;
-    place = PLACE;
+    if(caster->query_magic_hidden())
+    {
+        tell_object(caster, "You are already invisible.");
+        return;
+    }
     tell_object(caster, "%^MAGENTA%^You let out a gentle %^CYAN%^t%^GREEN%^r%^CYAN%^i%^GREEN%^l%^CYAN%^l%^MAGENTA%^, and "
                 "as the sound escapes your lips you feel yourself %^RESET%^fading %^MAGENTA%^away!%^RESET%^");
     tell_room(place, "%^MAGENTA%^" + caster->QCN + " lets out a gentle %^CYAN%^t%^GREEN%^r%^CYAN%^i%^GREEN%^l%^CYAN%^l%^MAGENTA%^. "
@@ -46,7 +49,7 @@ void spell_effect(int prof)
 void targ_vanish()
 {
     int num;
-    num = (clevel / 2);
+    num = clevel;
     spell_successful();
     invisob = new("/d/magic/obj/invisobgreater.c");
     invisob->set_property("spell", TO);

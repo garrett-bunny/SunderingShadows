@@ -64,10 +64,11 @@ void do_finish()
         TO->remove();
         return;
     }
-    ETO->remove_property_value("spelled", ({TO}));
+    
+	ETO->remove_property_value("spelled", ({TO}));
     if(!myDC) myDC = 17;
-    if(SAVING_THROW_D->fort_save(ETO, myDC) || ETO->query_property("no death"))
-    {
+    if(SAVING_THROW_D->fort_save(ETO, myDC) || ETO->query_property("no death")){
+   
         tell_object(ETO, "%^BOLD%^%^BLACK%^An excrutiating %^BOLD%^%^RED%^PAIN"+
         "%^BOLD%^%^BLACK%^ radiates throughout your entire body and "+
         "you %^GREEN%^S%^BOLD%^%^BLACK%^H%^GREEN%^"+

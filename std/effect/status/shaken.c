@@ -22,6 +22,12 @@ void status_effect()
         return;
     }
 
+    if (PLAYER_D->immunity_check(target, "fear")) {
+        tell_object(target, "%^YELLOW%^You are immune to fear.%^RESET%^");
+        TO->remove();
+        return;
+    }
+
     if (target->query_property("mind_immunity")) {
         int roll = roll_dice(1, 20);
         if (roll < target->query_property("mind_immunity") && roll != 20) {
@@ -45,20 +51,20 @@ void status_effect()
     target->add_attack_bonus(-power);
     target->add_saving_bonus("all", -power);
 
-    call_out("dest_effect", ROUND_LENGTH * duration);
+    call_out("dest_effect", ROUND_LENGTH * duration, target);
 }
-void dest_effect()
+void dest_effect(object ob)
 {
     int i;
-    if (objectp(target)) {
-        tell_object(target, "%^ORANGE%^You no longer feel shaken.%^RESET%^");
-        tell_room(ENV(target), "%^ORANGE%^" + target->QCN + " no longer looks shaken.", target);
+    if (objectp(ob)) {
+        tell_object(ob, "%^ORANGE%^You no longer feel shaken.%^RESET%^");
+        tell_room(ENV(ob), "%^ORANGE%^" + ob->QCN + " no longer looks shaken.", ob);
         for (i = 0; i < sizeof(CORE_SKILLS); i++) {
-            target->add_skill_bonus(CORE_SKILLS[i], power);
+            ob->add_skill_bonus(CORE_SKILLS[i], power);
         }
-        target->add_attack_bonus(power);
-        target->add_saving_bonus("all", power);
-        target->remove_property("effect_shaken");
+        ob->add_attack_bonus(power);
+        ob->add_saving_bonus("all", power);
+        ob->remove_property("effect_shaken");
     }
 
     ::dest_effect();

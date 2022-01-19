@@ -18,7 +18,7 @@ void create()
   set_long(
       "%^GREEN%^You have entered a small underground room hidden away from the "
       "prying eyes of the Drow elves. Upon further inspection you realize this "
-      "elven elder is here the hopes that he can aid brave heros who have come "
+      "elven elder is here the hopes that he can aid brave heroes who have come "
       "defeat the evil Drow. However, the smuggling of potions to this area and "
       "the cost of keeping it secret forces him to charge gold for his services."
       "%^RESET%^"	 		

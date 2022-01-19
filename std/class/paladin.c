@@ -33,7 +33,7 @@ mapping stat_requirements() {
 }
 
 // strong & weak saving throws. Fort, Ref, Will
-int *saving_throws() { return ({ 1,0,0 }); }
+int *saving_throws() { return ({ 1,-1,1 }); }
 
 int skill_points() { return 4; }
 
@@ -42,7 +42,7 @@ string *class_feats(string myspec) {
 }
 
 mapping class_featmap(string myspec) {
-    return ([ 1 : ({ "light armor proficiency", "medium armor proficiency", "heavy armor proficiency", "shield proficiency", "simple weapon proficiency", "martial weapon proficiency", "parry", "smite" }), 2 : ({ "layonhands" }), 3 : ({ "divine health", "aura of courage" }), 4 : ({ "channel" }), 6 : ({ "indomitable" }), 7 : ({ "force of personality" }), 8 : ({ "aura of resolve" }), 11 : ({ "aura of fury" }), 13 : ({ "dedication" }), 17 : ({ "aura of justification" }), 20 : ({ "champion" }) ]);
+    return ([ 1 : ({ "light armor proficiency", "medium armor proficiency", "heavy armor proficiency", "shield proficiency", "simple weapon proficiency", "martial weapon proficiency", "parry", "smite" }), 2 : ({ "layonhands" }), 3 : ({ "divine health", "aura of courage" }), 4 : ({ "channel" }), 6 : ({ "indomitable" }), 7 : ({ "divine grace" }), 8 : ({ "aura of resolve" }), 11 : ({ "aura of fury" }), 13 : ({ "dedication" }), 14: ({ "leadership" }), 17 : ({ "aura of justification" }), 20 : ({ "champion" }), 31 : ({ "searing smite" }), ]);
 }
 
 string *class_skills()

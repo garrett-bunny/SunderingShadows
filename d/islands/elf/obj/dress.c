@@ -38,4 +38,5 @@ int remove_fun(){
 tell_room(EETO,"%^BOLD%^"+ETO->QCN+" removes the "+
 "tattered dress and oddly it doesn't fall apart.%^RESET%^",ETO);
 tell_object(ETO,"%^BOLD%^You remove the tattered dress and feel much better..%^RESET%^");
+return 1;
 }

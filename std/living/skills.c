@@ -194,7 +194,7 @@ int query_max_skills()
 
 // finally if necessary, add in human bonus of 4 skillpoints if not planetouched.
     if (myrace == "human") {
-        if (!subrace || subrace == "" || (subrace != "tiefling" && subrace != "aasimar" && subrace != "feytouched")) {
+        if (!subrace || subrace == "" || (subrace != "tiefling" && subrace != "aasimar" && subrace != "feytouched" && subrace != "dhampir") ) {
             num = num + 4; //extra 4 skill points at L1 for human non-plane-touched
         }
     }
@@ -312,6 +312,10 @@ int query_skill(string skill)
                 mydisc = TO->query_mystery();
                 myclassskills = (string*)(DIR_CLASSES + "/oracle.c")->mystery_skills(mydisc);
             }
+            if (myclasses[i] == "sorcerer" || (TO->is_class("sorcerer") && (int)file->is_prestige_class())) {
+                mydisc = TO->query_bloodline();
+                myclassskills = (string*)(DIR_CLASSES + "/sorcerer.c")->bloodline_skills(mydisc);
+            }
             if (member_array(skill, myclassskills) != -1 ||
                 (FEATS_D->usable_feat(TO, "surprise spells") && (skill == "spellcraft" || skill == "stealth")) ||
                 (FEATS_D->usable_feat(TO, "skill focus") && ((string)this_object()->query("skill_focus") == skill))) {
@@ -327,7 +331,7 @@ int query_skill(string skill)
     file = "/std/races/" + myrace + ".c";
 
     if (file_exists(file)) {
-        myraceskills = file->skill_mods(mysubrace);
+        myraceskills = file->skill_mods(mysubrace, this_object());
         if (myraceskills) {
             if (myraceskills[skill]) {
                 x += myraceskills[skill];
@@ -335,11 +339,22 @@ int query_skill(string skill)
         }
     }
 
-    mystat = SKILL_STATS[skill];
+    if(skill == "athletics")
+    {
+        if(this_object()->query_stats("strength") > this_object()->query_stats("dexterity"))
+            mystat = "strength";
+        else mystat = "dexterity";
+    }
+    else
+        mystat = SKILL_STATS[skill];
     // override various stats for epic feats
 
     if ((skill == "perception" || skill == "stealth") && FEATS_D->usable_feat(TO, "shadow perception")) {
         x += 5;
+    }
+    
+    if(skill == "perception" && FEATS_D->usable_feat(this_object(), "danger sense")){
+        x += ((this_object()->query_class_level("barbarian") / 10)  + (this_object()->query_class_level("thief") / 10) + 1);
     }
 
     if(skill == "endurance" && FEATS_D->usable_feat(TO, "rangers endurance"))
@@ -362,6 +377,64 @@ int query_skill(string skill)
             x += (FEATS_D->usable_feat(TO, "third favored terrain") * 2);
             x += (FEATS_D->usable_feat(TO, "resist undead") * 2);
         }
+    }
+    
+    if(this_object()->query_class_level("fighter") > 20)
+    {
+        if(skill == "craft, weaponsmith" && FEATS_D->usable_feat(this_object(), "master weaponsmith"))
+            x += 10;
+        
+        if(skill == "craft, armorsmith" && FEATS_D->usable_feat(this_object(), "master armorsmith"))
+            x += 10;
+    }
+    
+    if(this_object()->is_class("mage"))
+    {
+        switch(PLAYER_D->check_familiar(this_object()))
+        {
+            case "goat":
+            if(skill == "survival")
+                x += 3;
+            break;
+            
+            case "cat":
+            if(skill == "stealth")
+                x += 3;
+            break;
+            
+            case "owl":
+            if(skill == "perception")
+                x += 3;
+            break;
+            
+            case "monkey":
+            if(skill == "athletics")
+                x += 3;
+            break;
+            
+            case "raccoon":
+            if(skill == "thievery")
+                x += 3;
+            break;
+            
+            case "peacock":
+            if(skill == "influence")
+                x += 3;
+            break;
+        }
+    }
+    
+    //Represents the Jack of All Trades feature in tabletop which gives +1 to all skill checks
+    if(this_object()->is_class("bard"))
+        x += 1;
+    
+    //Inquisitors use wisdom instead of cha for influence
+    //Stern gaze feat in pathfinder
+    //Save this for inquisition
+    if(skill == "influence")
+    {
+        if(this_object()->is_class("inquisitor"))
+            mystat = "wisdom";
     }
 
     mymod = ((int)this_object()->query_stats(mystat) - 10) / 2;
@@ -470,7 +543,7 @@ string query_old_class()
 
 string* query_classes()
 {
-    if (!classes) {
+    if (!classes || !pointerp(classes)) {
         classes = ({});
     }
     if (!classes || classes == ({}) && myclass) {

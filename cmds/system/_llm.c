@@ -7,6 +7,8 @@
    write() changed to message() by Valodin, August 19, 1993
    Borrowed with permission from Dragonsrest, by Soulcatcher.
 */
+
+//This command is objectively WORSE than ls. I don't understand the need for this....Tlaloc
 #include <std.h>
 
 inherit DAEMON;

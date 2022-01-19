@@ -1,9 +1,9 @@
 /*
   _bramble_armor.c
-  
+
   Innate spell for Clerics with the Plant Domain.
   Travelling AOE. Reskin of Sacred Nimbus.
-  
+
   -- Tlaloc --
 */
 
@@ -19,7 +19,7 @@ int flag;
 void create()
 {
     ::create();
-    
+
     set_spell_name("bramble armor");
     set_spell_level( ([ "innate" : 5 ]) );
     set_domains("plant");
@@ -52,7 +52,7 @@ void spell_effect(int prof)
     int duration;
     duration = (ROUND_LENGTH * 10) * clevel;
 
-    tell_object(caster,"%^GREEN%^You feel a host of thorns burst forth from your skin!%^RESE%^");
+    tell_object(caster,"%^GREEN%^You feel a host of thorns burst forth from your skin!%^RESET%^");
     tell_room(place,"%^GREEN%^"+caster->QCN+" is suddenly covered by a host of thorns!",caster);
 
     caster->set_property("spelled", ({TO}));
@@ -107,7 +107,7 @@ void dest_effect()
     remove_call_out("room_check");
     if(objectp(caster))
     {
-        tell_object(caster,"%^RESET%^%^BOLD%^The thorns covering you fall to the grown and wilt away.");
+        tell_object(caster,"%^RESET%^%^BOLD%^The thorns covering you fall to the ground and wilt away.");
         caster->remove_property("nimbus");
         caster->remove_property_value("added short",({"%^GREEN%^BOLD%^ (covered with thorns)%^RESET%^"}));
     }

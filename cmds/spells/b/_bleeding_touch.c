@@ -47,7 +47,7 @@ int preSpell()
     
     if(!(int)USER_D->spend_pool(this_player(), 1, "grace"))
     {
-        tell_object(caster, "You don't have the Divine Grace to cast Fire Bolt!");
+        tell_object(caster, "You don't have the Divine Grace to cast Bleeding Touch!");
         return 0;
     }
     
@@ -67,19 +67,20 @@ void spell_effect(int prof)
         tell_object(caster, "You try to reach out and touch " + target->QCN + " but miss!");
         return;
     }
-    
-    spell_successful();
-    
+   
     tell_object(caster, "%^BLACK%^BOLD%^Your hand becomes enveloped in darkness as you grab " + target->QCN + " with your wounding grasp!%^RESET%^");
     tell_room(place, "%^BLACK%^BOLD%^" + caster->QCN + " reaches out with " + caster->QP + " hand, striking " + target->QCN + " with a wounding grasp!%^RESET%^", ({ caster })); 
     if(!target->is_undead())
         tell_object(target, "%^RED%^BOLD%^You begin to bleed profusely as negative energy works its way into the wound!%^RESET%^");
-    target->cause_typed_damage(target, target->return_target_limb(), sdamage / 2, "negative energy");
+    target->cause_typed_damage(target, target->return_target_limb(), (sdamage * 3) / 4, "negative energy");
     spell_kill(target, caster);
     
     num = clevel / 8 + 1;
     
-    call_out("touch_bleed", ROUND_LENGTH - 1);
+    if(!target->query_property("rend"))
+        target->set_property("rend", num); 
+    
+    //call_out("touch_bleed", ROUND_LENGTH - 1);
 }
 
 void touch_bleed()

@@ -37,7 +37,7 @@ void create() {
 "%^ORANGE%^provide more then enough illumination. A giant sign dominates "+
 "one wall, listing commodities. %^RESET%^");
     set_exits(([
-        "up" : ROOMS"cafe",
+//      "up" : ROOMS"cafe",
         "south" : ROOMS"foyer",
     ]));
     set_items(([

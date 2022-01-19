@@ -15,7 +15,7 @@ void create() {
     ::create();
     set_spell_name("energy current");
     set_spell_level(([ "psion" : 5 ]));
-    set_spell_sphere("invocation_evocation");
+    set_spell_sphere("psychokinesis");
     set_syntax("cast CLASS energy current as <type>");
     set_description("Upon manifesting this power, the kineticist generates a "
        "current of energy that lashes out at those around him. Feats such as "
@@ -97,7 +97,7 @@ void execute_attack() {
        }
     }
     colorings = MYCOLOR[element];
-    if (time>clevel*profs/100) {
+    if (time > clevel * 3) {
         dest_effect();
     } else {
        tell_room(place,""+colorings+"Crackling bolts of %^BOLD%^"+element+" energy"+colorings+" lash out wildly, striking all those in range!%^RESET%^");

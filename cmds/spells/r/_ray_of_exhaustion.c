@@ -51,10 +51,10 @@ void spell_effect(int prof)
         if(target->query_property("effect_fatigued")||
            do_save(target,0))
         {
-            "/std/effect/status/fatigued"->apply_effect(target,clevel/6+1);
+            "/std/effect/status/fatigued"->apply_effect(target,clevel/6+1, caster);
         }
         else
-            "/std/effect/status/exhausted"->apply_effect(target,clevel/6+1);
+            "/std/effect/status/exhausted"->apply_effect(target,clevel/6+1, caster);
 
         spell_kill(target,caster);
     }

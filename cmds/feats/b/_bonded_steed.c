@@ -122,8 +122,8 @@ void execute_feat()
     companion->set_hd(comp_hd, 14);
     companion->set_attacks_num(2 + class_level / 10);
     companion->set_mlevel("fighter", comp_hd);
-    companion->set_max_hp(14 + (14 * comp_hd));
-    companion->set_hp(14 * comp_hd + 14);
+    companion->set_max_hp(14 + (25 * comp_hd));
+    companion->set_hp(25 * comp_hd + 14);
     companion->set_alignment(caster->query_alignment());
     companion->set_owner(caster);
        
@@ -143,7 +143,7 @@ void execute_feat()
     companion->set_stats("wisdom", 8);
     companion->set_stats("charisma", 14);
     companion->set_size(3);
-    companion->set_property("spell resistance", class_level);
+    companion->set_property("spell damage resistance", class_level);
     companion->set_overall_ac(0 - comp_ac - 10);
     
     caster->force_me("mount bonded steed");

@@ -26,7 +26,7 @@ void create() {
     set_author("pator");
     set_spell_name("limb attack");
     set_spell_level(([ "cleric" : 2 ]));
-    set_spell_sphere("combat");
+    set_spell_sphere("invocation_evocation");
     set_syntax("cast CLASS limb attack on TARGET");
     set_description("This spell will attack some random limb of the target.  You will try to tear that limb off, so your "
 "strength is very important here as is your casting level for extra damage.");
@@ -75,11 +75,11 @@ spell_effect(int prof) {
     string *limbs,*wielders,limb,message;
     int which_limb,clevel,damage,number,i,j;
 
-   // if ((caster->is_class("cleric")&&sizeof((string *)caster->query_classes())==1)?(int)caster->Thaco(0,target,0) <= roll_dice(1,20)+5:(int)caster->Thaco(0,target,0) <= roll_dice(1,20)) 
-    
+   // if ((caster->is_class("cleric")&&sizeof((string *)caster->query_classes())==1)?(int)caster->Thaco(0,target,0) <= roll_dice(1,20)+5:(int)caster->Thaco(0,target,0) <= roll_dice(1,20))
+
     if(thaco(target,5))
     {
-        if (living(target)) 
+        if (living(target))
         {
             limbs = target->query_limbs();
             wielders = target->query_wielding_limbs();
@@ -99,7 +99,7 @@ spell_effect(int prof) {
             tell_object(target,"%^CYAN%^"+YOU+" fails in attacking you!!");
             tell_room(HERE,"%^CYAN%^"+YOU+" fails in attacking "+HIM+"!!",({ caster, target}) );
         }
-    } 
+    }
     else
     {
         tell_object(caster,"%^BOLD%^You fail to take hold of a limb.");
@@ -108,7 +108,7 @@ spell_effect(int prof) {
 }
 
 
-void dest_effect() 
+void dest_effect()
 {
     ::dest_effect();
     if(objectp(TO)) TO->remove();

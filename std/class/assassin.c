@@ -13,6 +13,7 @@ void create()
 /*
  * base_class is used in _crit.c and for clevel calculations
  */
+ /*
 object base_class_ob(object ob)
 {
     object class_ob;
@@ -32,6 +33,20 @@ object base_class_ob(object ob)
         class_ob = find_object_or_load(DIR_CLASSES + "/thief.c");
     }
     return class_ob;
+}
+*/
+
+object base_class_ob(object ob)
+{
+    object class_ob;
+    if(!objectp(ob) || !ob->query("base_class"))
+        class_ob = find_object_or_load(DIR_CLASSES+"/fighter.c");
+    else
+        class_ob = find_object_or_load(DIR_CLASSES+"/"+ob->query("base_class")+".c");
+    if(!objectp(class_ob))
+        class_ob = find_object_or_load(DIR_CLASSES+"/fighter.c");
+    return
+        class_ob;
 }
 
 
@@ -86,9 +101,6 @@ int set_base_class(object obj, string choice)
     if (member_array(choice, classes) == -1) {
         return 0;
     }
-    if (member_array(choice, ({"psion", "psywarrior"})) != -1) {
-        return 0;
-    }
     obj->set("base_class", choice);
     return 1;
 }
@@ -140,7 +152,7 @@ int prerequisites(object player)
         return 0;
     }
     skills = player->query_skills();
-    if (skills["stealth"] < 10) {
+    if (!skills["stealth"] || skills["stealth"] < 10) {
         write("failed skill");
         return 0;
     }
@@ -156,6 +168,12 @@ int prerequisites(object player)
     if (!player->is_class(base)) {
         return 0;
     }
+    /*
+    if(player->query("no pk")){
+        tell_object(player,"%^YELLOW%^You are unable to pick this class while you have a %^MAGENTA%^NoPK %^YELLOW%^flag.%^RESET%^");
+        return 0;
+    }
+    */
     return 1;
 }
 
@@ -174,8 +192,12 @@ int caster_level_calcs(object player, string the_class)
     if(!objectp(player)) { return 0; }
     base = player->query("base_class");
 
-    level = player->query_class_level(base);
-    level += player->query_class_level("assassin");
+    //level = player->query_class_level(base);
+    level = player->query_class_level(the_class);
+    
+    if(base == the_class)
+        level += player->query_class_level("assassin");
+    
     return level;
 }
 

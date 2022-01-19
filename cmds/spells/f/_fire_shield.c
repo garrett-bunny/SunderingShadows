@@ -13,7 +13,6 @@ void create(){
     set_spell_name("fire shield");
     set_spell_level(([ "mage" : 4, "magus" : 4 ]));
     set_spell_sphere("invocation_evocation");
-    set_domains("fire");
     set_syntax("cast CLASS fire shield [on chill|warm]");
     set_damage_desc("fire or cold");
     set_description("This spell will surround the caster's body in a roaring shield of flames. Any opponent striking the caster will take damage from the blistering heat. You can manipulate base element of the spell, casting it either on chill or warm.");
@@ -107,9 +106,13 @@ void execute_attack(){
 
         define_base_damage(0);
         for(i=0;i<sizeof(foes);i++){
+            
+            if(!objectp(foes[i]))
+                continue;
+            
             tell_object(foes[i],"%^BOLD%^"+scolor+"You are burned by the shield of flames as you strike "
                         ""+caster->QCN+"!");
-            if(do_save(foes[i], 0))
+            if(foes[i] && do_save(foes[i], 0))
             {
                 damage_targ(foes[i],foes[i]->return_target_limb(),sdamage / 2,element);
             } else {

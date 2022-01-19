@@ -32,6 +32,7 @@ spell_effect(int prof)
 {
     string mycolor, myhue, myhue2, myfeeling;
     int bonus, roll;
+    object stagger;
 
     if (!objectp(caster) || !objectp(target)) {
         target = 0;
@@ -52,7 +53,7 @@ spell_effect(int prof)
 
     roll = BONUS_D->process_hit(caster, target, 1, bonus, 0, 1);
 
-    if (!roll || roll == -1 && !caster->query_property("spectral_hand")) {
+    if (!roll) {
         tell_object(caster, "" + mycolor + "You try and touch " + target->QCN + "'s " + target_limb + " with a " + myhue + " hand, but miss!");
         tell_object(target, "" + mycolor + caster->QCN + "'s " + myhue + " hand gropes for your " + target_limb + " unsuccessfully.");
         tell_room(place, "" + mycolor + caster->QCN + " reaches out for " + target->QCN + "'s " + target_limb + " with a " + myhue + " hand and misses!", ({ caster, target }));
@@ -73,8 +74,10 @@ spell_effect(int prof)
     spell_successful();
 
     damage_targ(target, target->return_target_limb(), sdamage, "cold");
-    target->set_tripped(roll_dice(1, 6), "%^BOLD%^%^CYAN%^You are staggered by the cold!%^RESET%^");
-    target->use_stamina(sdamage / 6);
-
-    dest_effect();
+    
+    if(catch(stagger = load_object("/std/effect/status/staggered")))
+        return;
+    
+    stagger->apply_effect(target, roll_dice(1, 6), caster);
+    ::dest_effect();
 }

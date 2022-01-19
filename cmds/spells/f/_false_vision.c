@@ -16,10 +16,10 @@ object blocker;
 void create() {
     ::create();
     set_spell_name("false vision");
-    set_spell_level(([ "bard" : 5, "mage" : 5,"oracle":5,]));
+    set_spell_level(([ "bard" : 5, "mage" : 5,"oracle":5, "cleric" : 5]));
     set_mystery("whimsy");
     set_spell_sphere("illusion");
-    set_domains(({"knowledge", "trickery"}));
+    set_domains("illusion");
     set_syntax("cast CLASS false vision [on TARGET]");
     set_description("This illusion is designed to foil the attempts of scrying upon the caster. While active, anyone scrying out the caster will have to contest their strength. Should they succeed, the scrying will continue as normal.If they fail, they will instead be met with a vision designed to touch at their innermost fears, to disrupt their scrying attempt and encourage them not to try again.");
     set_verbal_comp();
@@ -80,8 +80,7 @@ target->QCN+" as though it were the solid strings of a lute, leaving heavy silen
         dest_effect();
         return;
     }
-    cha_bonus = caster->query_stats("charisma");
-    cha_bonus = cha_bonus-10;
+    cha_bonus = calculate_bonus(caster->query_stats(get_casting_stat()));
     power = CLEVEL + cha_bonus + random(6);
     blocker->set_block_power(power);
     blocker->set_bard_damager(CLEVEL);
@@ -89,6 +88,7 @@ target->QCN+" as though it were the solid strings of a lute, leaving heavy silen
     spell_duration = duration;
     set_end_time();
     call_out("dest_effect",spell_duration);
+    addSpellToCaster();
     return;
 }
 

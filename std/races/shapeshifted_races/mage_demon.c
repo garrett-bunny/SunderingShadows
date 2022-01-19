@@ -23,18 +23,18 @@ void create()
     set_new_damage_type("piercing");
     set_limbs( ({ "maw","head","torso","right claw", "left claw", "right arm","right arm","left leg","right leg","tail","right wing","left wing" }) );
     set_attack_functions(([ "right claw" : (:TO,"claw_attack":), "left claw" : (:TO,"claw_attack":) ]));
-    set_ac_bonus(-6);
+    set_ac_bonus(-3);
     set_base_attack_num(4);
     set_castable(1);
     set_can_talk(1);
     set_shape_race("demon");
     set_shape_profile("mage_demon_999");
-    set_shape_bonus("spellcraft",4);
-    set_shape_bonus("perception",2);
+    set_shape_bonus("spellcraft",2);
+    set_shape_bonus("stealth", 2);
     set_shape_bonus("sight bonus",3);
-    set_shape_bonus("damage bonus",3);
-    set_shape_bonus("attack bonus",3);
-    set_shape_bonus("spell damage resistance",30);
+    set_shape_bonus("damage bonus",4);
+    set_shape_bonus("attack bonus",4);
+    set_shape_bonus("spell damage resistance",20);
     set_shape_height(180+random(10));
     set_shape_weight(4000+random(500));
 }
@@ -98,7 +98,7 @@ int claw_attack(object tp, object targ)
 {
     int rand;
     rand = random(10);
-    if(rand)
+    if(rand > 5)
     {
         tell_object(tp,"%^RED%^You %^BOLD%^%^BLACK%^rake%^RESET%^%^RED%^ your massive claws into "+targ->QCN+"'s flesh!");
         tell_object(targ,"%^RED%^"+tp->QCN+" %^BOLD%^%^BLACK%^rakes%^RESET%^%^RED%^ its massive claws into your flesh!");
@@ -113,7 +113,7 @@ int claw_attack(object tp, object targ)
         targ->cause_typed_damage(targ,targ->return_target_limb(),roll_dice(clevel/3,6),"piercing");
     }
 
-    return roll_dice(2,6);
+    return roll_dice(1,6);
 
     //2d6+13
 }

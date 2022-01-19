@@ -32,7 +32,7 @@ void create() {
   set_smell("default","A fresh %^BOLD%^%^CYAN%^breeze%^RESET%^"
     +"%^ORANGE%^ reaches you from above the trees.");
   set_listen("default","The sounds of the jungle drift up to the"
-   +" platorm.");
+   +" platform.");
   set_climb_exits(([ "descend" : ({JUNG_ROOM6 + "bungee_room",2,0,100}), ]));  
 }
 void init() {
@@ -142,14 +142,14 @@ void jump2(object ob){
     }
   }
   tell_object(ob, "You %^BOLD%^%^RED%^crash%^RESET%^ into the"
-    +" %^ORANGE%^ground%^RESET%^ with an agonising %^BOLD%^%^BLUE%^"
+    +" %^ORANGE%^ground%^RESET%^ with an agonizing %^BOLD%^%^BLUE%^"
     +"thump%^RESET%^!");
   tell_room(TO, ob->QCN + " %^BOLD%^%^RED%^crashes%^RESET%^ into the"
-    +" %^ORANGE%^ground%^RESET with an agonising %^BOLD%^%^BLUE%^"
+    +" %^ORANGE%^ground%^RESET%^ with an agonizing %^BOLD%^%^BLUE%^"
     +"thump%^RESET%^!", ob);
   if (objectp(bottom_room)){
     tell_room(bottom_room, ob->QCN + " %^BOLD%^%^RED%^crashes"
-      +"%^RESET%^ into the %^ORANGE%^ground%^RESET with an agonising"
+      +"%^RESET%^ into the %^ORANGE%^ground%^RESET with an agonizing"
       +" %^BOLD%^%^BLUE%^thump%^RESET%^!", ob);
   }
   hp = (int)ob->query_max_hp()/2;

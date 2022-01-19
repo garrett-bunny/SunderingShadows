@@ -43,7 +43,7 @@ void create()
              "may <%^BOLD%^%^CYAN%^review%^BOLD%^%^WHITE%^> to see a list " +
              "of current options that this object affords you. It has " +
              "attached itself to you and will be with you for as long as you " +
-             "are a newbie character in the world of ShadowGate.%^RESET%^");
+             "are a newbie character in the world of Sundering Shadows.%^RESET%^");
     set_property("no drop", 1);
     set_property("death keep", 1);
     set_id(({ "setter object", "object", "charactercreationsetterobject" }));
@@ -185,7 +185,7 @@ seen. It seems to be dormant at the time.");
 
     tell_object(ETO, "
 
-%^BOLD%^  Entering the world of ShadowGate!
+%^BOLD%^  Entering the world of Sundering Shadows!
 
 ");
 
@@ -359,7 +359,7 @@ string *generate_class()
 hint_class()
 {
     write("
-%^BOLD%^Your character class defines core of your game play and responds to what your character does as an adventurer. Different classes have different mechanics and can behave very unlike others. Difficulty of your game play will depend on your class, so if you're unsure what to pick, it is highly recommended no to select caster classes for your first time on the ShadowGate.
+%^BOLD%^Your character class defines core of your game play and responds to what your character does as an adventurer. Different classes have different mechanics and can behave very unlike others. Difficulty of your game play will depend on your class, so if you're unsure what to pick, it is highly recommended not to select caster classes for your first time on the Sundering Shadows.
 
 %^BOLD%^To overview all available classes look at %^ORANGE%^<help classes>%^WHITE%^.
 %^BOLD%^To see what embodies class of your choice see %^ORANGE%^<help %^ULINE%^CLASSNAME%^RESET%^%^ORANGE%^%^BOLD%^>%^WHITE%^, for example %^ORANGE%^<help fighter>%^RESET%^.");
@@ -392,6 +392,8 @@ string *generate_race()
     if (!unrestricted_player(ETO)) {
         choices = filter_array(choices, (:!(("/std/races/") + $1)->is_restricted():));
     }
+
+    choices = filter_array(choices, (:(("/std/races/") + $1)->is_rollable():));
 
     {
         string choice;
@@ -463,6 +465,8 @@ string *generate_template()
     {
         choices = map(filter_array(map(get_dir("/std/acquired_template/*.c"),(:"/std/acquired_template/" + $1:)), (:member_array($2, arrayp($1->races_allowed()) ? $1->races_allowed() : ({$2})) != -1:), char_sheet["race"]), (: replace_string(replace_string($1, "/std/acquired_template/", ""), ".c", "") :));
     }
+
+    choices = filter_array(choices, (:(("/std/acquired_template/") + $1)->is_rollable():));
 
     choices += ({"none"});
     choices = distinct_array(choices);
@@ -1149,6 +1153,7 @@ build_race()
 build_subrace()
 {
     ETO->set("subrace", char_sheet["subrace"]);
+    ETO->init_lang();
 }
 
 build_template()

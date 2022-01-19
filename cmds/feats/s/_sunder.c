@@ -6,15 +6,16 @@ inherit FEAT;
 int mod, fired, in_shapeshift;
 void refix();
 
-#define FEATTIMER 35
+//#define FEATTIMER 35
+int FEATTIMER = (35 - (FEATS_D->usable_feat(caster, "abundant tactics") * 7));
 
 void create() {
     ::create();
     feat_type("instant");
-    feat_category("MeleeDamage");
+    feat_category("CombatManeuvers");
     feat_name("sunder");
     feat_prereq("Powerattack");
-    feat_desc("The character can attempt to disrupt or damage the armor of their opponent, making them more vulnerable to melee attacks. This will only work while shapeshifted, or using a weapon, unless the character has an aptitude in unarmed combat.
+    feat_desc("The character can attempt a combat manuever to disrupt or damage the armor of their opponent, making them more vulnerable to melee attacks. This will only work while shapeshifted, or using a weapon, unless the character has an aptitude in unarmed combat. This feat will prompt an attack of opportunity from the target.
 
 A druid with the 'mastery of fang and claw' feat may also use this feat while in bear form, even if it has not been purchased directly.");
     set_target_required(1);
@@ -62,6 +63,7 @@ void execute_feat() {
           return;
         }
     }
+    
     if(caster->query_property("shapeshifted") && !caster->query_property("altered")) in_shapeshift = 1;
     else in_shapeshift = 0;
     if(!sizeof(caster->query_wielded()) && !in_shapeshift) {
@@ -69,6 +71,13 @@ void execute_feat() {
         dest_effect();
         return;
     }
+    
+    if(target->query_property("sundered"))
+    {
+        tell_object(caster, "That target is already sundered.");
+        return;
+    }
+    
     if(sizeof(weapons) && weapons[0]->is_lrweapon() && !in_shapeshift) {
         ammo = present(weapons[0]->query_ammo(),caster);
         if(FEATS_D->usable_feat(caster,"point blank shot") && objectp(ammo) && ammo->use_shots()) fired = 1;
@@ -101,6 +110,13 @@ void execute_attack() {
         dest_effect();
         return;
     }
+    
+    if(target->query_property("sundered"))
+    {
+        tell_object(caster, "That target is already sundered.");
+        return;
+    }
+    
     if(caster->query_property("shapeshifted") && !caster->query_property("altered")) in_shapeshift = 1;
     else in_shapeshift = 0;
     if(!sizeof(caster->query_wielded()) && !in_shapeshift) {
@@ -121,6 +137,16 @@ void execute_attack() {
     delay_subject_msg(target, FEATTIMER,"%^BOLD%^%^WHITE%^"+target->QCN+" can be %^CYAN%^sundered%^WHITE%^ again.%^RESET%^");
     caster->remove_property("using sunder");
     caster->set_property("using sunder",newmap);
+    
+    target->execute_attack();
+    
+    if(!BONUS_D->combat_maneuver(target, caster))
+    {
+        tell_object(caster, "You try to sunder your opponent but fail miserably.");
+        tell_room(place, caster->query_cap_name() + " tries to sunder " + target->query_cap_name() + " but fails.", caster);
+        dest_effect();
+        return;
+    }
 
     tell_object(caster,"%^BOLD%^%^GREEN%^You damage "+target->QCN+"'s armor and "
         "knock it askew, leaving a hole in "+target->QP+" defenses!");
@@ -139,15 +165,17 @@ void execute_attack() {
         }
     }
     mod = clevel/5 + sunder_bonus;
-    target->add_ac_bonus((-1)*mod);
-    call_out("refix",(ROUND_LENGTH*roll_dice(3,2)));
+    //target->add_ac_bonus((-1)*mod);
+    target->set_property("sundered", -mod);
+    call_out("refix",(ROUND_LENGTH*(roll_dice(1,6) + 1)));
 }
 
 void refix() {
     if(objectp(target)) {
         tell_object(target,"%^BOLD%^%^GREEN%^You manage to get your armor back into place.");
         tell_room(place,"%^BOLD%^%^GREEN%^"+target->QCN+" settles "+target->QP+" armor back into place.",target);
-        target->add_ac_bonus(mod);
+        //target->add_ac_bonus(mod);
+        target->remove_property("sundered");
     }
     dest_effect();
 }

@@ -32,6 +32,7 @@ void create(){
    set_remove((:TO,"remove_fun":));
    set_struck((:TO,"struck_fun":));
    set_overallStatus(220);
+   set_property("no disenchant",1);
 }
 
 int wear_fun(){
@@ -60,4 +61,5 @@ int struck_fun(int damage,object what,object who){
 +ETO->QS+" launches another attack at you!%^RESET%^");
      ETO->execute_attack();
    }
+   return damage;
 }

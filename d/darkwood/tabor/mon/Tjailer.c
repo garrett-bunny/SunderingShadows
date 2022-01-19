@@ -40,7 +40,7 @@ void create(){
     set_attack_limbs(({"right hand","left hand","right foot","left foot"}));
     set_attacks_num(5);
     set_damage(2,5);
-    set_property("magic resistance",40);
+    set_mob_magic_resistance("average");
     set_property("no bows", 1);  	
     set_property("no dominate", 1);  	
     set_funcs(({"headlock","key_swipe", "key_swipe"}));

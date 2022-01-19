@@ -7,7 +7,6 @@ create() {
     ::create();
     set_spell_name("inspiring recovery");
     set_spell_level(([ "cleric" : 6, "ranger" : 4, "paladin" : 4, "inquisitor" : 6 ]));
-    set_domains("vigilance");
     set_affixed_spell_level(6);
     set_spell_sphere("healing");
     set_syntax("cast CLASS inspiring recovery on TARGET");
@@ -91,7 +90,7 @@ spell_effect(int prof) {
         }
         tell_object(caster,"%^ORANGE%^You can feel the power of magic flow out to "+target->QCN+"'s soul, and know that "+target->QP+" life is in "+target->QP+" own hands now.");
         tell_room(environment(caster),"The power of "+caster->QCN+"'s spell flows through the area as "+caster->QS+" tries to bring "+target->QCN+" back to life!",caster);
-        target->set("RaisingPriestGod",caster->query_diety());
+        target->set("RaisingPriestGod",caster->query_property("hidden deity")||caster->query_diety());
         target->set("RaisingPriestAlignment",caster->query_alignment());
         target->set("RaisingRoom",base_name(environment(caster)));
         target->set("RaisingExpLoss",(-10+(random(2)+random(3)+1)));

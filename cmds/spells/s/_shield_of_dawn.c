@@ -28,7 +28,9 @@ void spell_effect(int prof)
     caster->set_property("added short", ({ "%^BOLD%^%^BLACK%^(%^RESET%^%^RED%^e%^BOLD%^n%^RESET%^%^RED%^cir%^BOLD%^c%^RESET%^%^RED%^led by f%^BOLD%^l%^ORANGE%^a%^RED%^m%^RESET%^%^RED%^e%^BOLD%^s%^BLACK%^)%^RESET%^" }));
     addSpellToCaster();
     spell_successful();
-    counter = 2 * clevel;
+    counter = (2 * clevel) + 10;
+    spell_duration - counter * ROUND_LENGTH;
+    set_end_time();
     execute_attack();
     call_out("room_check", ROUND_LENGTH);
 }
@@ -76,7 +78,8 @@ void execute_attack(){
                 continue;
             }
             tell_object(foes[i], "%^RED%^Y%^BOLD%^o%^RESET%^%^RED%^u a%^BOLD%^%^BLACK%^r%^RESET%^%^RED%^e b%^BOLD%^u%^RESET%^%^RED%^r%^BOLD%^%^BLACK%^n%^RESET%^%^RED%^e%^BOLD%^d %^RESET%^%^RED%^by t%^BOLD%^h%^RESET%^%^RED%^e fl%^BOLD%^a%^ORANGE%^m%^RED%^e%^RESET%^%^RED%^s as %^BOLD%^%^BLACK%^y%^RESET%^%^RED%^ou s%^BOLD%^%^BLACK%^t%^RESET%^%^RED%^ri%^BOLD%^%^BLACK%^k%^RESET%^%^RED%^e %^WHITE%^" + caster->QCN + "!");
-            damage_targ(foes[i], foes[i]->return_target_limb(), sdamage, "fire");
+            //damage_targ(foes[i], foes[i]->return_target_limb(), sdamage, "fire");
+            foes[i]->cause_typed_damage(foes[i], foes[i]->return_target_limb(), sdamage, "fire");
         }
     }
     prepend_to_combat_cycle(place);

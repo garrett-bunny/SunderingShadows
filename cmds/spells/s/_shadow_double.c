@@ -14,7 +14,7 @@ void create() {
     ::create();
     set_author("nienne");
     set_spell_name("shadow double");
-    set_spell_level(([ "mage" : 7, "monk" : 13, "psion" : 8 ]));
+    set_spell_level(([ "innate" : 7, "monk" : 13, "psion" : 8, ]));
     set_spell_sphere("illusion");
     set_discipline("egoist");
     set_monk_way("way of the shadow");

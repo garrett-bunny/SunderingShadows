@@ -18,8 +18,7 @@ void create(){
     ::create();
     set_spell_name("unholy orb");
     set_spell_level(([ "cleric" : 6 ]));
-    set_spell_sphere("combat");
-    set_domains("evil");
+    set_spell_sphere("invocation_evocation");
     set_syntax("cast CLASS unholy orb");
     set_description("The orb is a spell normally prepared by a priest who expects to encounter enemies whose alignment "
 "opposes her own.  When cast, the spell streaks from the caster's hand to the desired point of effect, where a sphere "
@@ -27,6 +26,7 @@ void create(){
 "the alignment of the caster with respect to the target.\n\nNOTE: This spell will damage all attackers regardless of "
 "alignment, but the damage will very if the attackers are players based on each individual's alignment.  The damage done "
 "to mobs is consistent no matter the mob's alignment.");
+    evil_spell(1);
     set_verbal_comp();
     set_somatic_comp();
     splash_spell(2);

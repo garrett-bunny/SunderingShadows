@@ -45,8 +45,8 @@ void create()
     set_struck((: TO, "strike_func" :));
 
     set_lore("This set of bracers was made by the mage only known as " +
-             "Tornado, a follower of Akadi. Facinated with the power and grace" +
-             " of the elements for everday and combat use, he thought he would" +
+             "Tornado, a follower of Akadi. Fascinated with the power and grace" +
+             " of the elements for everyday and combat use, he thought he would" +
              " honor them with bracers. He made a set of each element he thought" +
              " worthy, it is no accident no guards of the earth were never made.");
 
@@ -58,7 +58,7 @@ int wear_func()
 {
     ::check();
     tell_room(EETO, "%^CYAN%^Beads of condensation appear on " + ETOQCN + "'s bracers as " + ETO->QS + " secures them. %^RESET%^", ETO);
-    tell_object(ETO, "%^CYAN%^You feel a cooling senation as you secure the bracers on.%^RESET%^");
+    tell_object(ETO, "%^CYAN%^You feel a cooling sensation as you secure the bracers on.%^RESET%^");
     return 1;
 }
 
@@ -71,7 +71,7 @@ int remove_func()
 
 int strike_func(int damage, object what, object who)
 {
-    if (random(1000) < 750) {
+    if (!random(2)) {
         tell_room(environment(query_worn()), "%^CYAN%^Droplets of water drip off of " +
                   "" + ETO->QCN + "'s bracers as " + ETO->QS + " surges forward to parry " +
                   "" + who->QCN + "'s attack.%^RESET%^", ({ ETO, who }));
@@ -79,6 +79,7 @@ int strike_func(int damage, object what, object who)
                     " wave as parry " + who->QCN + "%^CYAN%^%^BOLD%^'s wild thrust with your bracers.%^RESET%^");
         tell_object(who, "%^CYAN%^" + ETO->QCN + " surges forward to parry your attack as" +
                     "droplets of water drip off " + ETO->QP + " bracers.%^RESET%^");
-        return (-1) * (damage);
+        return 0;
     }
+    return damage;
 }

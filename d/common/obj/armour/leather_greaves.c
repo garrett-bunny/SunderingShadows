@@ -6,7 +6,7 @@ inherit ARMOUR;
 void create(){
      ::create();
      set_name("leather greaves");
-     set_id(({ "greaves", "leather greaves" }));
+     set_id(({ "greaves", "leather greaves", "armor" }));
      set_short("leather greaves");
      set_long("These greaves are formed from several hardened leather plates stitched onto "
          "a softer leather lining.  They are light enough to offer little restriction to "

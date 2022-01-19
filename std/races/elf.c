@@ -71,7 +71,7 @@ int* stat_mods(string subrace)   // stats in order: str, dex, con, int, wis, cha
     case "sildruath": return ({ 0, 4, -4, 0, 2, 0 }); break;
     case "szarkai": return ({ 0, 2, -2, 2, 0, 0 }); break;
     case "wild elf": return ({ 2, 2, 0, 0, 0, -2 }); break;
-    case "wood elf": return ({ 2, 2, 0, -2, 0, 0 }); break;
+    case "wood elf": return ({ 0, 2, -2, 0, 2, 0 }); break;
 
     default: return ({ 0, 2, -2, 2, 0, 0 }); break;   //moon elf default
     }
@@ -199,6 +199,8 @@ int is_restricted()
     return 0;
 }                                 // restricted races by approval
 
+int is_rollable() { return 1; } // rollable in creation
+
 // Stuff needed to replace what was in the old race database
 
 string race_name()
@@ -319,7 +321,7 @@ mapping weight_values(string gender, int height)
 string* query_hair_colors(string subrace)
 {
     string* choices = ({});
-    if (!stringp(subrace) || subrace == "moon elf" || subrace = "aquatic elf") {
+    if (!stringp(subrace) || subrace == "moon elf" || subrace == "aquatic elf") {
         choices += ({ "silver", "platinum", "ebony" });
         choices += ({ "blue" });
         choices += ({ "black" });
@@ -346,7 +348,7 @@ string* query_hair_colors(string subrace)
 string* query_eye_colors(string subrace, int cha)
 {
     string* choices = ({});
-    if (!stringp(subrace) || subrace == "moon elf" || subrace = "aquatic elf") {
+    if (!stringp(subrace) || subrace == "moon elf" || subrace == "aquatic elf") {
         choices += ({ "sapphire", "azure", "cyan" });
         choices += ({ "emerald" });
         choices += ({ "green", "blue" });
@@ -374,12 +376,13 @@ string* query_eye_colors(string subrace, int cha)
 string* query_subraces(object who)
 {
     string* subraces;
-    subraces = ({ "moon elf", "wood elf", "sun elf" });
+    subraces = ({ "moon elf", "wood elf", "sun elf", "wild elf" });
     if (OB_ACCOUNT->is_experienced(who->query_true_name()) ||
         OB_ACCOUNT->is_high_mortal(who->query_true_name()) ||
         avatarp(who) ||
         who->query("is_valid_npc")) {
-        subraces += ({ "wild elf", "fey'ri", "szarkai", "aquatic elf", "sildruath"});
+        //subraces += ({"fey'ri", "szarkai", "aquatic elf", "sildruath"}); //remove subraces without game world lore yet
+        subraces += ({ "fey'ri", "szarkai"});
     }
     return subraces;
 }

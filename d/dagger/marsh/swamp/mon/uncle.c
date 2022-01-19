@@ -25,7 +25,7 @@ void create()
     level = roll_dice(1,6) + 30;
 
     set_hd(level,12);
-    set_property ("magic resistance",level);
+    set_mob_magic_resistance("high");
     set_level(level);
     set_body_type("human");
     set_wielding_limbs(({"right hand","left hand"}));

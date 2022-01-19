@@ -1,5 +1,6 @@
 //changed the experience from 9k to 3k + 1500 as the area is getting cycled way too much
 #include <std.h>
+#include <daemons.h>
 #include "../lothwaite.h"
 inherit MONSTER;
 
@@ -152,7 +153,7 @@ int aggfunc(){
 int check_vis(){
    if(TP->query_invis()){
       if(!random(3)){
-         tell_object(TP,"%^RED%^The firbolg's transluscent face turns "+
+         tell_object(TP,"%^RED%^The firbolg's translucent face turns "+
             "straight toward you!");
          force_me("kill "+TPQN+"");
       }
@@ -209,7 +210,7 @@ int drain(object targ)
 
 int scare(object targ)
 {
-		if(!"daemon/saving_d"->saving_throw(targ,"spell")) {
+		if((!"daemon/saving_d"->saving_throw(targ,"spell")) && (!PLAYER_D->immunity_check(targ, "fear"))){
 			tell_object(targ,"%^BOLD%^%^BLUE%^The ghost "+
                      "stares into your eyes and you feel yourself "+
                      "frozen in fear!");

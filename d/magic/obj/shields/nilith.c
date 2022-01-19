@@ -70,7 +70,7 @@ int strikeme(int damage, object what, object who)
                     " in the center of "+ETO->QCN+"'s shield comes to life, reaching"
                     " out to sway away your attack before returning to its "
                     "resting place!");
-        return -damage;
+        return 0;
     }
+    return damage;
 }
-

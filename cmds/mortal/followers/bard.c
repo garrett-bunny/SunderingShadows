@@ -1,4 +1,4 @@
-// plot follower granted to Sadhara, Jan 2018 - N.
+// plot follower granted tdo Sadhara, Jan 2018 - N.
 #include <std.h>
 #include <daemons.h>
 inherit "/cmds/mortal/followers/follower.c";

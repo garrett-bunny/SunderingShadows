@@ -2,8 +2,6 @@
 #include <priest.h>
 #include <daemons.h>
 
-#define ALIGN_D "/daemon/alignment_d.c"
-
 void create() {
     ::create();
     set_spell_name("detect good");
@@ -13,6 +11,8 @@ void create() {
     set_description("Detect good will detect the presence of good in players or monsters.");
     set_verbal_comp();
     set_somatic_comp();
+    set_save("will");
+    diminish_returns();
     set_arg_needed();
     set_non_living_ok(1);
 }
@@ -27,8 +27,7 @@ int preSpell(){
         tell_object(caster,"You need either a target or <room> for this spell.");
         return 0;
     }
-//    if(!ALIGN_D->is_lawful(caster)) {
-    if((int)caster->query_true_align() != 3 && (int)caster->query_true_align() != 6 && (int)caster->query_true_align() != 9 ) {
+    if(!is_lawful(caster)) {
         tell_object(caster,"Only casters of evil alignment may use this spell.");
         return 0;
     }
@@ -54,7 +53,7 @@ void spell_effect(int prof)
         for (i=0;i<sizeof(alive);i++) {
             if(alive[i]->query_invis()) continue;
             hits++;
-            if (ALIGN->is_evil(alive[i])) 
+            if (is_good(alive[i]) && !do_save(alive[i], 0)) 
             {
                 tell_object(CASTER,"%^BOLD%^%^RED%^You detect good in "+alive[i]->QCN+".");
             }else {
@@ -80,7 +79,7 @@ void spell_effect(int prof)
     } 
     else 
     {
-        if (ALIGN->is_evil(ob)) 
+        if (is_good(ob) && !do_save(alive[i], 0)) 
         {
             tell_object(CASTER, "%^BOLD%^%^RED%^You detect good in "+ob->QCN+".");
         } 

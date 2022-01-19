@@ -10,15 +10,12 @@
 
 inherit SPELL;
 
-#define ALIGN_D "/daemon/alignment_d.c"
-
 void create(){
     ::create();
     set_spell_name("holy word");
     set_spell_level(([ "cleric" : 7,"inquisitor":6 ]));
     set_spell_sphere("enchantment_charm");
-    set_domains("good");
-    set_syntax("cast CLASS holy word");
+    set_syntax("cast CLASS holy word on [TARGET]");
     set_description("This spell channels holy magic directly to the caster and releases it at a target in the form of a silent "
 "explosion.  Those of evil hearts have the additional chance to be blinded and/or stunned, while those of neutral bent may be "
 "stunned briefly.");
@@ -29,8 +26,7 @@ void create(){
 }
 
 int preSpell(){
-//   if(!ALIGN_D->is_good(caster)){
-   if((int)caster->query_true_align()%3 != 1) {
+   if(!is_good(caster)) {
       tell_object(caster,"Only those of good heart may use this spell.");
       return 0;
    }
@@ -59,7 +55,7 @@ void spell_effect(int prof){
       "holy power %^CYAN%^radiates out from "+caster->QCN+
       ", centred upon "+target->QCN+"!%^RESET%^",({caster,target}));
 
-if (interactive(target) && target->query_alignment()%3 ==1){
+if (interactive(target) && is_good(target)){
       tell_object(caster,"%^BOLD%^%^BLUE%^The power of your spell "+
          "thunders through the area with no effect.%^RESET%^");
       dest_effect();
@@ -90,7 +86,7 @@ if (interactive(target) && target->query_alignment()%3 ==1){
       }
    }
    else{
-      if(ALIGN->is_evil(target)) {
+      if(is_evil(target)) {
          tell_object(target,"%^BOLD%^The force of "+CASTER->QCN+"'s "+
             "spell blasts into you!"+
             "%^RESET%^",({target,CASTER}));
@@ -118,7 +114,7 @@ if (interactive(target) && target->query_alignment()%3 ==1){
             }
          }
       }
-      else if (ALIGN->is_neutral(target)){
+      else if (is_neutral(target)){
          tell_object(target,"%^BOLD%^The force of "+CASTER->QCN+"'s "+
             "spell strikes you!%^RESET%^",({target,CASTER}));
          tell_object(CASTER,"%^BOLD%^The purity of your spell "+
@@ -137,7 +133,7 @@ if (interactive(target) && target->query_alignment()%3 ==1){
             }
          }
       }
-      else if(ALIGN->is_good(target)){
+      else if(is_good(target)){
          tell_object(target,"%^BOLD%^The force of "+CASTER->QCN+"'s "+
             "spell strikes you!%^RESET%^",({target,CASTER}));
          tell_object(CASTER,"%^BOLD%^The purity of your spell "+

@@ -11,10 +11,11 @@ int mychance;
 void create() {
     ::create();
     set_spell_name("ghostform");
-    set_spell_level(([ "classless" : 8 ]));
-    set_spell_sphere("conjuration_summoning");
-    set_spell_domain("repose");
+    set_spell_level(([ "cleric" : 8 ]));
+    set_spell_sphere("alteration");
+    set_domains( ({ "repose" }) ); 
     set_syntax("cast CLASS ghostform");
+    set_damage_desc("clevel + 10 to misschance (max 50)");
     set_description("Drawing forth the power of his deity, the caster is imbued with a spectral presence, causing him to "
 "be harder to see and therefore more difficult to hit.  This spell will last for a time depending upon the caster's "
 "level.");
@@ -60,7 +61,7 @@ void spell_effect(int prof) {
     caster->set_property("added short",({"%^BOLD%^%^WHITE%^ (ghostly)%^RESET%^"}));
     spell_successful();
     addSpellToCaster();
-    spell_duration = (clevel / 2 + roll_dice(1, 20)) * ROUND_LENGTH;
+    spell_duration = (clevel + roll_dice(1, 20)) * ROUND_LENGTH;
     set_end_time();
     call_out("dest_effect",spell_duration);
     return;

@@ -15,7 +15,6 @@ void create()
     set_spell_level(([ "mage" : 3, "magus" : 3 ]));
     set_spell_sphere("conjuration_summoning");
     set_syntax("cast CLASS stinking cloud");
-    set_domains("water");
     set_description("This spell creates a cloud of sickening fumes that perpetually causes everyone in the area to be sickened.");
     set_verbal_comp();
     set_somatic_comp();

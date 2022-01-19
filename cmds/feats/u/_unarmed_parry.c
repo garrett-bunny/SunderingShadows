@@ -14,6 +14,7 @@ void create()
 
 %^BOLD%^N.B.%^RESET%^ This feat is not subsituting parry family of feats, as it works only when you're unarmed.");
     permanent(1);
+    set_required_for(({ "deflect arrows" }));
 }
 
 int allow_shifted() { return 0; }

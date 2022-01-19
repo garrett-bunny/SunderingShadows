@@ -40,7 +40,8 @@ int cmd_master(string args)
 
     if (!args || args == "map") {
         int mylvl = TP->query_prestige_level(myclass);
-        mapping spell_index = MAGIC_D->query_index(myclass);
+        //mapping spell_index = MAGIC_D->query_index(myclass);
+        mapping spell_index = MAGIC_D->index_castable_spells(this_player(), myclass);
         int i;
         int bonuslimit, max_spells, spell_access;
         int* spelllevels = allocate(9);
@@ -67,6 +68,11 @@ int cmd_master(string args)
                 write("%^CYAN%^Level " + (i + 1) + ": %^RESET%^" + spelllevels[i] + " of " + max_spells);
             }
         }
+        if(TP->is_class("sorcerer"))
+        {
+            if(TP->query_bloodline() == "arcane")
+                bonuslimit += 1;
+        }
         if (FEATS_D->usable_feat(TP, "spell knowledge")) {
             bonuslimit += 2;
         }
@@ -77,14 +83,15 @@ int cmd_master(string args)
             bonuslimit += 5;
         }
         if (bonuslimit) {
-            write("%^CYAN%^You can learn " + bonuslimit + " spells above limit due to your spell knowledge feat.");
+            write("%^CYAN%^You can learn " + bonuslimit + " spells above limit due to your spell knowledge feats.");
         }
 
         return 1;
     }
 
     if (args == "list") {
-        mapping spell_index = MAGIC_D->query_index(myclass);
+        //mapping spell_index = MAGIC_D->query_index(myclass);
+        mapping spell_index = MAGIC_D->index_castable_spells(this_player(), myclass);
         string* myspells = TP->query_mastered_base()[myclass];
         string spell;
         mixed* spellist = allocate(9);
@@ -153,8 +160,8 @@ int cmd_master(string args)
                 return 1;
             }
 
-            if (forgettime > time() - 108000) {
-                write("%^ORANGE%^You can forget a spell %^RED%^%^BOLD%^once per thirty hours%^RESET%^%^ORANGE%^.%^RESET%^");
+            if (forgettime > time() - 32400) {
+                write("%^ORANGE%^You can forget a spell %^RED%^%^BOLD%^once per nine hours%^RESET%^%^ORANGE%^.%^RESET%^");
                 return 1;
             }
         }
@@ -318,7 +325,7 @@ This command is an extensive interface to your knowledge of spells. Some caster 
   With this command you will commit to learning a %^ORANGE%^%^ULINE%^SPELL%^RESET%^.
 
 %^ORANGE%^<master forget %^ORANGE%^%^ULINE%^SPELL%^RESET%^%^ORANGE%^>%^RESET%^
-  Once per 30 hours you can forget a %^ORANGE%^%^ULINE%^SPELL%^RESET%^ and learn a new one.
+  Once per 9 hours you can forget a %^ORANGE%^%^ULINE%^SPELL%^RESET%^ and learn a new one.
 
 %^CYAN%^SEE ALSO%^RESET%^
 

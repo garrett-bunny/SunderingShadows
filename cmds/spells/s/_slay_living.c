@@ -10,7 +10,6 @@ void create()
     set_spell_name("slay living");
     set_spell_level(([ "cleric" : 5, ]));
     set_spell_sphere("necromancy");
-    set_domains(({ "evil", "repose" }));
     set_mystery(({ "reaper", "bones" }));
     set_syntax("cast CLASS slay living on TARGET");
     set_description("This spell is necromantic in nature and allows the caster to call forth beings from the land of the "
@@ -29,7 +28,6 @@ string query_cast_string()
 
 void spell_effect(int prof)
 {
-    int x, damage;
 
     if (!objectp(target) || !objectp(caster)) {
         if (objectp(TO)) {
@@ -42,12 +40,11 @@ void spell_effect(int prof)
 
     spell_successful();
 
-    if (combat_death_save(target, 6)) {
+    if (combat_death_save(target, 0)) {
         tell_object(target, "%^BOLD%^The struggle is won, yet at a price.");
         tell_room(place, "%^BOLD%^The soul survives, yet at a price.", target);
-        damage = roll_dice(clevel, 6);
-        damage_targ(target, target->return_target_limb(), damage, "negative energy");
-        target->set_property("no_slay", ({ caster->query_name() }));
+        damage_targ(target, target->return_target_limb(), sdamage, "negative energy");
+        //target->set_property("no_slay", ({ caster->query_name() })); should be handled in combat_death_save
     } else {
         tell_room(place, "%^BOLD%^%^BLUE%^The soul is cleaved from its body and left to drift homelessly!");
         tell_room(place, "%^BOLD%^%^MAGENTA%^The lifeless, soulless, body of " + target->QCN + " drops to the ground!", target);

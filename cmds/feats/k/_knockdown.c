@@ -11,11 +11,12 @@ void create()
 {
     ::create();
     feat_type("instant");
-    feat_category("MeleeAccuracy");
+    feat_category("CombatManeuvers");
     feat_name("knockdown");
-    feat_prereq("Expertise");
+    feat_prereq("Powerattack OR Mastery of Fang and Claw");
     feat_syntax("knockdown TARGET");
-    feat_desc("Knockdown is an instant combat feat that can be used to try to knock an opponent off of his or her feet. The command requires a target to work, and will use a small amount of stamina.
+    set_save("reflex");
+    feat_desc("Knockdown is a combat maneuver that can be used to try to knock an opponent off of his or her feet.  The target gets an attack of opportunity before the attempt is made. The command requires a target to work, and will use a small amount of stamina.
 
 A druid with the 'mastery of fang and claw' feat may also use this feat while in wolf form, even if it has not been purchased directly.");
     set_target_required(1);
@@ -26,10 +27,18 @@ int allow_shifted() { return 1; }
 
 int prerequisites(object ob){
     if(!objectp(ob)) return 0;
+    /*
     if(!FEATS_D->has_feat(ob,"expertise")) {
       dest_effect();
       return 0;
+    }*/
+    
+    if(!FEATS_D->has_feat(ob, "powerattack") && !FEATS_D->has_feat(ob, "mastery of fang and claw"))
+    {
+        dest_effect();
+        return 0;
     }
+    
     return ::prerequisites(ob);
 }
 
@@ -45,9 +54,11 @@ int cmd_knockdown(string str)
 
 void execute_feat()
 {
-    object ammo, *weapons;
+    object ammo, *weapons, mod;
 
-    if ((int)caster->query_property("using knockdown") > time()) {
+    //if ((int)caster->query_property("using knockdown") > time()) {
+    if(caster->cooldown("knockdown"))
+    {
         tell_object(caster, "You can't try to knock someone down yet!");
         dest_effect();
         return;
@@ -104,14 +115,14 @@ void execute_feat()
     caster->set_property("using instant feat",1);
     caster->remove_property("using knockdown");
     delay_msg(30,"%^BOLD%^%^WHITE%^You can %^CYAN%^knockdown%^WHITE%^ again.%^RESET%^");
-    caster->set_property("using knockdown",time() + 30);
+    caster->add_cooldown("knockdown", 30 - (FEATS_D->has_feat(caster, "abundant tactics") * 6));
     spell_kill(target,caster);
     return;
 }
 
 void execute_attack()
 {
-    int myskill, yourskill;
+    int myskill, yourskill, mod;
     if(!objectp(caster)) {
         dest_effect();
         return;
@@ -141,8 +152,16 @@ void execute_attack()
     }
     if(target->query_in_vehicle()) myskill += 15;
     yourskill += random(20);
+    
+    mod = max( ({ BONUS_D->query_stat_bonus(caster, "dexterity"), BONUS_D->query_stat_bonus(caster, "strength") }) );
+    
+    //attack of opportunity
+    target->execute_attack();
+    
 //    if(!thaco(target) || target->query_property("no knockdown"))
-    if( myskill < yourskill || target->query_property("no knockdown"))
+    //if( myskill < yourskill || target->query_property("no knockdown"))
+    //if(do_save(target, mod))
+    if(!BONUS_D->combat_maneuver(target, caster))
     {
         tell_object(caster,"%^RED%^"+target->QCN+" twists at the last instant, avoiding "
             "your knockdown attempt!%^RESET%^");
@@ -150,7 +169,7 @@ void execute_attack()
             "avoiding "+caster->QCN+"'s knockdown attempt!%^RESET%^");
         tell_room(place,"%^BOLD%^"+target->QCN+" twists away at the last instant, avoiding "
             ""+caster->QCN+"'s knockdown attempt!%^RESET%^",({target,caster}));
-        caster->set_paralyzed(roll_dice(2,6),"%^MAGENTA%^You're getting back into position.%^RESET%^");
+        //caster->set_paralyzed(roll_dice(2,6),"%^MAGENTA%^You're getting back into position.%^RESET%^");
         dest_effect();
         return;
     }

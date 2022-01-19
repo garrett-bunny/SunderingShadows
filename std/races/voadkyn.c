@@ -9,7 +9,7 @@ int *age_brackets() { return ({ 75, 125, 167, 250 }); }
 int *restricted_alignments(string subrace) { return ({ 3, 6, 9 }); }
 
 string *restricted_classes(string subrace) {
-    return ({ "cleric", "bard", "psion", "psywarrior",  "paladin", "mage", "magus",  "monk", "warlock","inquisitor" });
+    return ({ "cleric", "bard", "psion", "psywarrior",  "paladin", "mage", "magus",  "monk", "warlock","inquisitor", "oracle" });
 }
 
 // this only affects rolling in creation; does not prevent dedication to a deity in-game, to allow for character evolution. N, 3/16.
@@ -18,12 +18,12 @@ string *restricted_deities(string subrace) {
 }
 
 // stats in order: str, dex, con, int, wis, cha
-int *stat_mods(string subrace) { return ({ 2, 4, -2, 0, -2, 0 }); }
+int *stat_mods(string subrace) { return ({ 4, -2, 2, -2, 0, 0 }); }
 
-mapping skill_mods(string subrace) { return ([ "stealth" : 2, "survival" : 2  ]); }
+mapping skill_mods(string subrace) { return ([ "stealth" : 2, "survival" : 2, "perception" : 2  ]); }
 
 
-int natural_AC(string subrace) { return 2; }
+int natural_AC(string subrace) { return 4; }
 
 int sight_bonus(string subrace) { return 2; }
 
@@ -39,7 +39,9 @@ int *min_stats() { return ({ 11, 13, 8, 11, 3, 3 }); }
 int *max_stats() { return ({ 19, 20, 16, 17, 16, 18 }); }
 int *stat_adj() { return ({ 1, 2, -1, 0, -2, 0 }); }
 
-int is_restricted() { return 1; } // restricted races by approval
+int is_restricted() { return 0; } // restricted races by approval
+
+int is_rollable() { return 1; } // rollable in creation
 
 // Stuff needed to replace what was in the old race database
 
@@ -125,7 +127,7 @@ mapping weight_values(string gender, int height)
     return map;
 }
 
-string *query_hair_colors(string who) { return ({"bald"}); }
+string *query_hair_colors(string who) { return ({"bald", "brown", "black", "auburn", "green", "ebony", "blonde"}); }
 
 string *query_eye_colors(string subrace) {
     string *choices = ({});
@@ -140,4 +142,12 @@ string *query_eye_colors(string subrace) {
 string *query_languages(string subrace)
 {
     return (["required":({"common","elven",}),"optional":({"giant","orcish","gnomish","halfling",})]);
+}
+
+mapping query_racial_innate(string subrace) {
+	return ([
+                    "ghost step" : (["type" : "spell", "daily uses" : -1,"level required" : 0,]),
+                    "speak with animals" : (["type" : "spell", "daily uses" : -1,"level required" : 0,]),
+                    "treeshape" : (["type" : "spell", "daily uses" : -1,"level required" : 0,]),
+                    ]);
 }

@@ -23,7 +23,7 @@ create(){
     set_spells(({ "magic missile", "lightning bolt","web","scorcher",
     "meteor swarm","cone of cold","lower resistance","fireball" }));
     set_max_hp(250 + random(101));
-    set_property("magic resistance",75);
+    set_mob_magic_resistance("high");
     set_property("no rush",1);
     set_property("no dominate",1);
     set_property("no death",1);

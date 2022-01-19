@@ -151,7 +151,8 @@ void execute_attack()
 
         if (party[i]->query_hp_percent() < 100) {
             // token amount of healing while in combat and below full health
-            party[i]->cause_typed_damage(party[i], party[i]->return_target_limb(), -(roll_dice(clevel, 2) + 10), "untyped");
+            //party[i]->cause_typed_damage(party[i], party[i]->return_target_limb(), -(roll_dice(clevel, 2) + 10), "untyped");
+            party[i]->add_hp(roll_dice(clevel, 2) + 10);
             if (party[i] != caster) {
                 tell_object(party[i], "%^RESET%^%^BOLD%^%^GREEN%^You feel inspired by " + caster->QCN + "'s "
                             "extraodinary defense and your courage lends strength to your wounds!%^RESET%^");

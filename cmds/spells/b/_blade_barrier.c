@@ -10,8 +10,7 @@ void create(){
     ::create();
     set_author("ares");
     set_spell_name("blade barrier");
-    set_spell_level(([ "cleric" : 6, "inquisitor" : 6, "oracle" : 6 ]));
-    set_mystery("metal");
+    set_spell_level(([ "cleric" : 6, "inquisitor" : 6 ]));
     set_spell_sphere("invocation_evocation");
     set_syntax("cast CLASS blade barrier");
     set_description("This spell surrounds the caster in a protective whirlwind of spinning, razor sharp blades.  The "
@@ -19,7 +18,6 @@ void create(){
 "blades in the air depends on the level of the caster.");
     set_property("magic",1);
     set_casting_time(1);
-    set_helpful_spell(1);
     traveling_aoe_spell(1);
 }
 
@@ -109,12 +107,11 @@ void execute_attack(){
 
         tell_object(caster, "%^BOLD%^%^BLACK%^Your spinning blades tear into your enemies as they get too close!");
         tell_room(place, "%^BOLD%^%^BLACK%^" + caster->QCN + "'s spinning blades tear into " + caster->QP + " enemies as they get too close!", caster);
-        define_base_damage(0);
         for (i = 0; i < sizeof(foes); i++) {
             if (!objectp(foes[i])) {
                 continue;
             }
-            damage_targ(foes[i], foes[i]->return_target_limb(), sdamage, "fire");
+            damage_targ(foes[i], foes[i]->return_target_limb(), sdamage, "slashing");
         }
     }
     prepend_to_combat_cycle(place);

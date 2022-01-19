@@ -1,4 +1,5 @@
 #include <std.h>
+#include <daemons.h>
 inherit MONSTER;
 void create() {
     ::create();
@@ -69,7 +70,7 @@ int aggfunc() {
 }
 void fire(object targ) {
     string dam;
-    if("daemon/saving_d"->saving_throw(targ,"petrification_polymorph")) {
+    if(SAVING_THROW_D->fort_save(targ, 55)){
 	dam="hurts";
     } else {
 	dam="blasts";
@@ -83,13 +84,13 @@ void fire(object targ) {
       ,targ);
     set_property("magic",1);
     if(dam=="blasts") {
-	targ->do_damage("torso",roll_dice(4,20));
+    targ->cause_typed_damage(targ, "torso", roll_dice(4,20), "force");
 	remove_property("magic");
 	tell_object(targ,
 	  "%^RED%^A bone-shattering wave of energy tears through you!\n"
 	);
     } else {
-	targ->do_damage("torso",roll_dice(4,16));
+    targ->cause_typed_damage(targ, "torso", roll_dice(4,16), "force");
     }
     return 1;
 }

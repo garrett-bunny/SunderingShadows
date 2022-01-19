@@ -100,6 +100,8 @@ int ankheg(){
         object ob;
 
         verb = query_verb();
+        
+        if(!userp(TP)) return 0;
 
         tell_room(TO,"As "+TPQCN+" wanders "+verb+" the ground below "+TP->query_objective()+"
 shudders and opens.",TP);
@@ -127,6 +129,9 @@ int tasloi(){
         int i,j,k,l;
 
         verb = query_verb();
+        
+        if(!userp(TP)) return 0;
+        
         if(TP->query_invis()) return 0;
         tell_room(TO,"As "+TPQCN+" wanders "+verb+" the trees above "+TP->query_objective()+" come
 alive as a net is thrown down.",TP);
@@ -178,6 +183,9 @@ int native()
     int i,j,k,l;
 
     verb = query_verb();
+    
+    if(!userp(TP)) return 0;
+    
     if(TP->query_invis()) return 0;
     tell_room(TO,"As "+TPQCN+" wanders "+verb+" the bushes around "+TP->query_objective()+" come alive and spears fly through the air.",TP);
     tell_object(TP,"As you walk "+verb+" the bushes around you come alive and spears fly through the air!");

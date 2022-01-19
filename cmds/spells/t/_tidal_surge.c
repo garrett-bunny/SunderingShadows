@@ -13,10 +13,8 @@ void create()
 {
     ::create();
     set_spell_name("tidal surge"); // Tsunami
-    set_spell_level(([ "druid" : 9, "mage" : 9, "oracle" : 9 ]));
-    set_mystery("waves");
+    set_spell_level(([ "druid" : 9 ]));
     set_spell_sphere("conjuration_summoning");
-    set_domains(({ "water", "destruction" }));
     set_syntax("cast CLASS tidal surge on TARGET");
     set_description("This spell will draw all of the water in the atmosphere for miles and miles around to a place above "
                     "and behind the caster.  The water is condensed into the form of a massive wave that is directed at the target.  The wave "

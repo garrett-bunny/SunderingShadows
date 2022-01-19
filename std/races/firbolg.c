@@ -10,25 +10,25 @@ int *age_brackets() { return ({ 40, 100, 133, 200 }); }
 int *restricted_alignments(string subrace) { return ({ 3, 6, 9 }); }
 
 string *restricted_classes(string subrace) {
-  return ({ "thief", "mage", "magus",  "psion", "psywarrior",  "paladin", "sorcerer", "monk", "warlock" });
+  return ({ "thief", "mage", "magus", "psion", "psywarrior", "paladin", "sorcerer", "monk", "warlock", "inquisitor" });
 }
 
 // this only affects rolling in creation; does not prevent dedication to a deity in-game, to allow for character evolution. N, 3/16.
 string *restricted_deities(string subrace) {
-    return ({ "auril","bane","beshaba","cyric","helm","malar","shar","talos" });
+    return ({ "the faceless one", "lord shadow", "nilith", "khyron" });
 }
 
 // stats in order: str, dex, con, int, wis, cha
 int *stat_mods(string subrace) { return ({ 4, -2, 0, 0, 0, 0 }); }
 
-mapping skill_mods(string subrace) { return ([ "survival" : 2 ]); }
+mapping skill_mods(string subrace) { return ([ "survival" : 2, "perception" : 2 ]); }
 
 
-int natural_AC(string subrace) { return 0; }
+int natural_AC(string subrace) { return 4; }
 
 int sight_bonus(string subrace) { return 0; }
 
-mapping daily_uses(string subrace) { return ([ "project image" : 1 ]); }
+mapping daily_uses(string subrace) { return ([ "reduce person" : 1, "alter self" : 1, "detect magic" : 1, ]); }
 
 int misc_bonuses(string subrace, string bonus) { return 0; }
 
@@ -41,6 +41,8 @@ int *max_stats() { return ({ 20, 15, 18, 18, 18, 14 }); }
 int *stat_adj() { return ({ 2, 0, 0, 0, 0, -2 }); }
 
 int is_restricted() { return 0; } // restricted races by approval
+
+int is_rollable() { return 1; } // rollable in creation
 
 // Stuff needed to replace what was in the old race database
 
@@ -57,15 +59,13 @@ mapping monster_stat_rolls() { return ([ "str" : 2, "con" : 0, "int" : 0, "wis" 
 
 int size() { return 3; }
 
-mapping query_racial_innate(string subrace)
-{
-	return (["project image" : (["type" : "spell", "casting level" : 0.5,
-				   "daily uses" : 1, "delay" : 1, "uses left" : 1,
-				   "refresh time" : -1, "level required" : 0,
-				   "class specific" : 0])]);
-
+mapping query_racial_innate(string subrace) {
+	return ([
+                    "alter self" : (["type" : "spell", "daily uses" : -1,"level required" : 0,]),
+                    "reduce person" : (["type" : "spell", "daily uses" : -1,"level required" : 0,]),
+                    "detect magic" : (["type" : "spell", "daily uses" : -1,"level required" : 0,]),
+                    ]);
 }
-
 
 string *limbs() {
     return ({  "head",

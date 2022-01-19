@@ -42,7 +42,7 @@ void create(){
     set_value(1000);
     set_size(2);
     set_property("enchantment",3);
-    set_item_bonus("magic resistance",1);
+    set_item_bonus("magic resistance",2);
     set_remove((:TO,"remove_func":));
     set_wear( (:TO,"check":) );
     set_struck((:TO,"strike_func":));
@@ -95,3 +95,5 @@ int strike_func(int damage, object what, object who){
         return (damage*-1);
  }
 }
+
+int is_metal() { return 0; }

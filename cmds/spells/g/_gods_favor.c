@@ -43,7 +43,7 @@ void spell_effect(int prof) {
   favor=new("/cmds/priest/obj/godsfavor");
   favor->set_property("creating_spell",TO);
   favor->move(caster);
-  tell_object(caster,"Type, <now> to call upon the aid of "+capitalize(CASTER->query_diety())+".");
+  tell_object(caster,"Type <now> to call upon the aid of "+capitalize(CASTER->query_diety())+".");
   addSpellToCaster();
   spell_successful();
   CASTER->set_property("spelled",({TO}));

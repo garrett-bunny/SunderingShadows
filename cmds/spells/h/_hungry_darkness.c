@@ -9,12 +9,12 @@ void create() {
     ::create();
     set_author("nienne");
     set_spell_name("hungry darkness");
-    set_spell_level(([ "warlock" : 2 ]));
-    set_spell_sphere("necromancy");
+    set_spell_level(([ "mage" : 7, "warlock" : 4 ]));
+    set_spell_sphere("invocation_evocation");
     set_syntax("cast CLASS hungry darkness");
     set_description("This invocation calls a supernatural darkness down within the area, blurring the line between the "
 "prime material plane and the planes beyond. What lies beyond will ignore the warlock, but will reach out, biting and "
-"clawing at anything close enough...");
+"clawing at anything close enough...Enemies that fail a save will suffer bleeding wounds.");
     set_verbal_comp();
     set_somatic_comp();
     set_save("reflex");
@@ -48,11 +48,11 @@ void execute_attack() {
     foes = target_selector();
 
 
-    if (time>clevel) {
+    if (time>clevel * 2) {
         dest_effect();
     }
     else {
-        define_base_damage(0);//lazy re-roll.
+        //define_base_damage(0);//lazy re-roll.
         damage = sdamage;
         tell_room(place,"%^BOLD%^%^BLACK%^The darkness moves around you like a living thing, writhing and muttering.%^RESET%^");
         event = roll_dice(1,3);
@@ -105,11 +105,13 @@ void execute_attack() {
                     damage_targ(foes[i], target_limb, damage,"sonic");
                     break;
                 }
+                
+                foes[i]->set_property("rend", 2);
             }
         }
-        time+=1;
-        if (present(caster,place) && caster != target && !caster->query_unconscious()) {
-            environment(CASTER)->addObjectToCombatCycle(TO,1);
+        time++;;
+        if (present(caster,place) && !caster->query_unconscious()) {
+            place->addObjectToCombatCycle(this_object(),1);
         }
         else {
             dest_effect();

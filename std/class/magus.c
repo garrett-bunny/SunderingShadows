@@ -26,7 +26,7 @@ mapping stat_requirements() {
     return ([ "intelligence" : 14, ]);
 }
 
-int *saving_throws() { return ({ 1,0,1 }); }
+int *saving_throws() { return ({ 1,-1,1 }); }
 
 string *combat_styles() {
     return ({});
@@ -42,6 +42,11 @@ string *class_feats(string myspec)
 
 mapping class_featmap(string myspec) {
     return ([ 1 : class_feats() + ({"arcane pool", "spell combat", "magus armor"}), 2 : ({"spellstrike"}), 4 : ({"spell recall"}), 7 : ({"medium armor proficiency"}), 10 : ({"fighter training"}), 11 : ({"improved spell recall"}), 13 : ({"heavy armor proficiency"}), 16 : ({"spell counterstrike"}), 19 : ({ "greater spell access" }), 20 : ({"legendary blade"})]);
+}
+
+mapping query_cantrip_spells(object ob)
+{
+    return ([ "acid splash" : 1, "detect magic" : 1, "daze" : 1, "dancing lights" : 1, "resistance" : 1, "ray of frost" : 1, "disrupt undead" : 1 ]);
 }
 
 string *class_skills()

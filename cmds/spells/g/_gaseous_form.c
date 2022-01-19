@@ -9,8 +9,7 @@ void create()
 {
     ::create();
     set_spell_name("gaseous form");
-    set_spell_level(([ "monk" : 9, "assassin" : 1, "magus" : 3, "bard" : 3, "psion" : 3, "mage" : 3, "cleric" : 3, "druid" : 3 ]));
-    set_domains("air");
+    set_spell_level(([ "monk" : 9, "assassin" : 1, "magus" : 3, "bard" : 3, "psion" : 3, "mage" : 3 ]));
     set_spell_sphere("alteration");
     set_monk_way("way of the elements");
     set_syntax("cast CLASS gaseous form");
@@ -43,7 +42,7 @@ void spell_effect(int prof)
     int bonus = prof/10 - 10;
     if (!caster->is_ok_armour("barbarian"))
     {
-        if(!FEATS_D->usable_feat(caster,"armored caster"))
+        if(!FEATS_D->usable_feat(caster,"armored caster") && !FEATS_D->usable_feat(caster,"armored manifester") && !FEATS_D->usable_feat(caster,"eldritch conditioning"))
         {
             tell_object(caster,"The spell can not offer protection to those wearing armor.");
             TO->remove();
@@ -77,7 +76,7 @@ void test()
         return;
     if (!caster->is_ok_armour("barbarian"))
     {
-        if(!FEATS_D->usable_feat(caster,"armored caster"))
+        if(!FEATS_D->usable_feat(caster,"armored caster") && !FEATS_D->usable_feat(caster,"armored manifester") && !FEATS_D->usable_feat(caster,"eldritch conditioning"))
         {
             tell_object(caster,"The spell can not offer protection to those wearing armor.");
             TO->dest_effect();

@@ -12,7 +12,7 @@ void create() {
     ::create();
     set_spell_name("mylight");
     set_spell_level(([ "psion" : 1, "psywarrior" : 1 ]));
-    set_spell_sphere("alteration");
+    set_spell_sphere("psychometabolism");
     set_syntax("cast CLASS mylight on TARGET");
     set_description("When the psionic character manifests this power, "
        "the target receives a sight bonus to help him see. Races with "
@@ -44,7 +44,7 @@ spell_effect(int prof) {
        }
     }
     if(objectp(target)){
-       if(member_array(target->query_race(),LIVING_D->night_races()) == -1){
+       if(member_array(target->query_race(),PLAYER_D->night_races()) == -1){
           target->add_sight_bonus(3);
        }else{
           target->add_sight_bonus(-3);
@@ -64,7 +64,7 @@ void dest_effect()
     {
        tell_object(target,"%^RESET%^%^ORANGE%^Your vision returns to normal "
        "as the psionic power fades from your sight.%^RESET%^");
-       if(member_array(target->query_race(),LIVING_D->night_races()) == -1){
+       if(member_array(target->query_race(),PLAYER_D->night_races()) == -1){
           target->add_sight_bonus(-3);
        }else
        {

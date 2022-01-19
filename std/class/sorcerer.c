@@ -25,7 +25,7 @@ mapping stat_requirements() {
 }
 
 // strong & weak saving throws. Fort, Ref, Will
-int *saving_throws() { return ({ 0,0,1 }); }
+int *saving_throws() { return ({ -1,-1,1 }); }
 
 string *combat_styles() {
     return ({});
@@ -37,15 +37,58 @@ string *class_feats(string myspec)
               "spell focus" });
 }
 
-mapping class_featmap(string myspec) {
+mapping query_cantrip_spells(object ob)
+{
+    return ([ "acid splash" : 1, "detect magic" : 1, "daze" : 1, "dancing lights" : 1, "disrupt undead" : 1, "resistance" : 1, "ray of frost" : 1 ]);
+}
+
+mapping class_featmap(string myspec, object player)
+{
+    myspec = player->query_bloodline();
+    
+    if(myspec == "arcane")
+        return ([ 1 : ({ "simple weapon proficiency", "spell focus", "arcane bond" }) ]);
+    
     return ([ 1 : ({ "simple weapon proficiency", "spell focus", }) ]);
 }
 
-string *class_skills()
+string *class_skills(object ob)
 {
     return ({ "academics","perception","influence","spellcraft" });
 }
 
+string *bloodline_skills(string bloodline)
+{
+    string *skills;
+    
+    skills = ({ "academics", "perception", "influence", "spellcraft" });
+    
+    switch(bloodline)
+    {
+        case "abyssal":
+        skills += ({ "athletics" });
+        break;
+        
+        case "celestial":
+        skills += ({ "healing" });
+        break;
+        
+        case "stormborn": case "boreal": case "fey":
+        skills += ({ "survival" });
+        break;
+        
+        case "kobold": case "aberrant":
+        skills += ({ "dungeoneering" });
+        break;
+        
+        case "ghoul": case "infernal":
+        skills += ({ "stealth" });
+        break;
+    }
+    
+    return skills;
+}
+        
 int skill_points() { return 4; }
 
 string old_save_type() { return "mage"; }
@@ -139,11 +182,13 @@ void newbie_func(object who)
     int i;
     if(!objectp(who)) return;
 
+/*
     ob = new("/d/magic/comp_bag");
     ob->move(who);
 
     tell_object(who, "%^BOLD%^%^WHITE%^You are given a bag for components "+
     "to help you out in the world of ShadowGate.%^RESET%^");
+*/
 }
 
 int caster_level_calcs(object player, string the_class)

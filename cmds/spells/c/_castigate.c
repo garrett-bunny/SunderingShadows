@@ -51,13 +51,13 @@ void spell_effect(int prof){
         tell_object(target, "%^RESET%^%^RED%^You fight the compulsion to fall onto your knees.%^RESET%^");
         tell_room(place,"%^RESET%^%^RED%^"+target->QCN+" grimaces and shakes "+target->QP+" head, fighting off the mental attack.%^RESET%^",target);
 
-        "/std/effect/status/shaken"->apply_effect(target,roll_dice(1,6));
+        "/std/effect/status/shaken"->apply_effect(target,roll_dice(1,6), caster);
     }
     else
     {
         tell_object(target,"%^BOLD%^%^RED%^You drop to your knees, cowering, and beg for forgiveness.%^RESET%^");
         tell_room(place, "%^BOLD%^%^RED%^Sheer horror contorts "+target->QCN+"'s face as "+target->QS+" drops to the floor and begs for forgiveness.%^RESET%^",target);
-      "/std/effect/status/cowering"->apply_effect(target,roll_dice(1,6));
+      "/std/effect/status/cowering"->apply_effect(target,roll_dice(1,6), caster);
     }
 
     dest_effect();

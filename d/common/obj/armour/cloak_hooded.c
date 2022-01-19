@@ -7,7 +7,7 @@ inherit "/std/armour";
 void create() {
     ::create();
     set_name("hooded cloak");
-    set_id( ({ "cloak", "hooded cloak" }) );
+    set_id( ({ "cloak", "hooded cloak", "clothing", "armor" }) );
     set_short("A hooded cloak");
     set_long("This is a hooded cloak woven from a dark, dense, soft cloth "	
 	"that does not reflect much light.  The cloth is tightly woven "

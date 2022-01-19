@@ -37,11 +37,11 @@ int *stat_mods(string subrace) { // stats in order: str, dex, con, int, wis, cha
 }
 
 mapping skill_mods(string subrace) {
-    if(!subrace || subrace == "") return ([ "stealth" : 2, "athletics" : 2 ]);
+    if(!subrace || subrace == "") return ([ "stealth" : 2, "athletics" : 2, "perception" : 2 ]);
     switch(subrace) {
-      case "strongheart halfling": return ([ "stealth" : 2, "survival" : 2 ]); break;
-      case "ghostwise halfling": return ([ "stealth" : 2 ]); break;
-      default: return ([ "stealth" : 2, "athletics" : 2 ]); break; // lightfoot halfling default
+      case "strongheart halfling": return ([ "stealth" : 2, "survival" : 2, "perception" : 2 ]); break;
+      case "ghostwise halfling": return ([ "stealth" : 2, "perception" : 2 ]); break;
+      default: return ([ "stealth" : 2, "athletics" : 2, "perception" : 2 ]); break; // lightfoot halfling default
     }
 }
 
@@ -69,6 +69,8 @@ int *max_stats() { return ({ 17, 19, 18, 18, 17, 18 }); }
 int *stat_adj() { return ({ -1, 1, 0, 0, 0, 0 }); }
 
 int is_restricted() { return 0; } // restricted races by approval
+
+int is_rollable() { return 1; } // rollable in creation
 
 // Stuff needed to replace what was in the old race database
 

@@ -12,17 +12,18 @@ inherit FEAT;
 
 int fired, unarmed;
 
-#define FEATTIMER 35
+//#define FEATTIMER 35
+int FEATTIMER = (35 - (FEATS_D->usable_feat(caster, "abundant tactics") * 7));
 
 void create()
 {
     ::create();
     feat_type("instant");
-    feat_category("MeleeDamage");
+    feat_category("CombatManeuvers");
     feat_name("shatter");
     feat_syntax("shatter TARGET");
     feat_prereq("powerattack");
-    feat_desc("The character can attempt to shatter an opponent's magical defenses, including stoneskin, iron body & similar variants. This will only work while shapeshifted, or using a weapon, unless the character has an aptitude in unarmed combat. Success is reliant on not only connecting with the target, but being able to overcome their agility to successfully disrupt their protective spell/s.
+    feat_desc("The character can attempt a combat maneuver to shatter an opponent's magical defenses, including stoneskin, iron body & similar variants. This will only work while shapeshifted, or using a weapon, unless the character has an aptitude in unarmed combat. Success is reliant on not only connecting with the target, but being able to overcome their agility to successfully disrupt their protective spell/s. Using this feat will prompt an attack of opportunity from the target.
 
 %^BOLD%^See also:%^RESET%^ shatter *spells");
     set_target_required(1);
@@ -190,20 +191,26 @@ void execute_attack()
     delay_subject_msg(target, FEATTIMER, "%^BOLD%^%^WHITE%^" + target->QCN + " can be %^CYAN%^shattered%^WHITE%^ again.%^RESET%^");
     caster->remove_property("using shatter");
     caster->set_property("using shatter", newmap);
+    
+    target->execute_attack();
 
-    if (!thaco(target)) {
+    //if (!thaco(target)) {
+    if(!BONUS_D->combat_maneuver(target, caster))
+    {
         tell_object(caster, "%^RED%^" + target->QCN + " twists away quickly, leaving "
                     "you off balance!%^RESET%^");
         tell_object(target, "%^BOLD%^%^GREEN%^You twist away quickly, leaving "
                     + caster->QCN + " off balance!%^RESET%^");
         tell_room(place, "%^BOLD%^" + target->QCN + " twists away quickly, leaving "
                   "" + caster->QCN + " off balance!%^RESET%^", ({ target, caster }));
-        caster->set_paralyzed(roll_dice(2, 6), "%^MAGENTA%^You're getting back into position.%^RESET%^");
+        //caster->set_paralyzed(roll_dice(2, 6), "%^MAGENTA%^You're getting back into position.%^RESET%^");
         dest_effect();
         return;
     }
 
-    if (do_save(target, clevel)) { // new will save. N, 1/3/20
+    mod = max( ({ BONUS_D->query_stat_bonus(caster, "strength"), BONUS_D->query_stat_bonus(caster, "dexterity") }) );
+    
+    if (do_save(target, mod)) { // new will save. N, 1/3/20
         tell_object(caster, "%^BOLD%^%^CYAN%^You rain down a hail of light blows upon "
                     + target->QCN + ", but " + target->QS + " holds up under the onslaught!");
         tell_object(target, "%^BOLD%^%^CYAN%^" + caster->QCN + " rains down a hail of light "
@@ -241,7 +248,7 @@ void execute_attack()
     }*/
 // new setup to simply remove related spells directly. Should've been doing this already but was not configured correctly!
 // please add any new iron-body type spells to the array below & should automatically work. N, 1/3/20
-    currentspells = (({ "stoneskin", "iron body", "dark discorporation", "resilience", "oak body", "stone body", "form of doom", "night armor" }));
+    currentspells = (({ "stoneskin", "iron body", "dark discorporation", "resilience", "oak body", "stone body", "form of doom", "night armor", "shadow body" }));
     if (target->query_property("spelled")) {
         for (i = 0; i < sizeof(currentspells); i++) {
             if (objectp(myspl = MAGIC_D->get_spell_from_array(target->query_property("spelled"), currentspells[i]))) {

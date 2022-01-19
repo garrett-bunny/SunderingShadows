@@ -29,7 +29,8 @@ void create(){
    set_smell("default","The salty sea air carries an occasional whiff of incense and oil.");
    set_listen("default","The distant sound of the ocean is obscured by the clash of weapons and the murmur of voices.");
    set_exits(([
-      "out": "/d/dagger/road/road15"
+      "out" : "/d/dagger/road/road15",
+	  "east" : "/d/magic/temples/cevahir/cevahir_training",
    ]));
 }
 

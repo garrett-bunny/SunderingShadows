@@ -233,7 +233,7 @@ void execute_attack()
         adjust_combat_mapps("static vars", "attack count", 1, 1);
     }
     return;
-}
+}   
 
 // this shouldn't get called by anything besides execute_attack.
 protected void internal_execute_attack() { return COMBAT_D->internal_execute_attack(TO); }
@@ -508,6 +508,35 @@ mixed query_combat_mapps(string type, string which)
     }
     return 0;
 }
+
+//Vulnerability for things like sneak attack
+int is_vulnerable_to(object source)
+{
+    object attacker;
+    
+    if(!source)
+        return 0;
+    
+    if(environment(this_object()) != environment(source))
+        return 0;
+    
+    if(this_object()->query_property("quarry") == source && FEATS_D->is_active(this_object(), "wild hunter"))
+        return 0;
+    
+    if(this_object()->query_paralyzed() || this_object()->query_bound())
+        return 1;
+    
+    if(this_object()->query_blind() && !FEATS_D->usable_feat(this_object(), "blindfight") && !this_object()->true_seeing())
+        return 1;
+    
+    attacker = this_object()->query_current_attacker();
+    
+    if(attacker && attacker != source)
+        return 1;
+    
+    return 0;
+}    
+    
 
 mapping query_combat_vars() { return combat_vars; }
 mapping query_combat_messages() { return combat_messages; }

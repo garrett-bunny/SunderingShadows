@@ -33,7 +33,7 @@ void create()
     set_damage(3,8);
     add_attack_bonus(15);
 	set_property("damage resistance",6); 
-	set_property("spell resistance",30);
+	set_property("spell damage resistance",30);
     set_property("no dominate",1);
     set_alignment(5);
     set_base_damage_type("bludgeoning");

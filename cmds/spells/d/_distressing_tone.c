@@ -10,7 +10,6 @@ void create() {
     ::create();
     set_spell_name("distressing tone");
     set_spell_level(([ "bard" : 2, "inquisitor" : 2,]));
-    set_domains("strength");
     set_spell_sphere("invocation_evocation");
     set_syntax("cast CLASS distressing tone");
     set_damage_desc("mass sickening");
@@ -37,7 +36,7 @@ void spell_effect(int prof){
     {
         if(!objectp(attackers[i]))
             continue;
-        if(!do_save(attackers[i],2))
+        if(!do_save(attackers[i], -2))
             "/std/effect/status/sickened"->apply_effect(attackers[i],clevel/6 + 1);
     }
     spell_successful();

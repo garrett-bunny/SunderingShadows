@@ -147,7 +147,7 @@ int prerequisites(object player)
         return 0;
     }
     
-    if(player->query_race() != "deva" && player->query("subrace") != "sildruath")
+    if(player->query_race() != "deva" && !player->is_deva())
     {
         write("fail race");
         return 0;
@@ -171,14 +171,15 @@ int caster_level_calcs(object player, string the_class)
 {
     int level;
     string base;
-
-    if (!objectp(player)) {
-        return 0;
-    }
+    if(!objectp(player)) { return 0; }
     base = player->query("base_class");
 
-    level = player->query_class_level(base);
-    level += player->query_class_level("risen_martyr");
+    //level = player->query_class_level(base);
+    level = player->query_class_level(the_class);
+    
+    if(base == the_class)
+        level += player->query_class_level("risen_martyr");
+    
     return level;
 }
 

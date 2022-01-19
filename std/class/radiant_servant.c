@@ -85,8 +85,14 @@ int set_base_class(object obj, string choice)
         tell_object(obj, "%^BOLD%^%^RED%^It looks like you don't have a class:%^RESET%^ " + choice);
         return 0;
     }
-    if (member_array(choice, ({"cleric", "oracle", "inquisitor", "druid"})) == -1) {
+    if (member_array(choice, ({"cleric", "oracle", "druid"})) == -1) {
         tell_object(obj, "%^BOLD%^%^RED%^You can't choose this class.%^RESET%^ ");
+        return 0;
+    }
+    
+    if(obj->query_mystery() != "life" && member_array("renewal", obj->query_divine_domain()) < 0)
+    {
+        tell_object(obj, "You need to either have the Life Mystery or Renewal Domain.");
         return 0;
     }
 
@@ -218,14 +224,15 @@ int caster_level_calcs(object player, string the_class)
 {
     int level;
     string base;
-
-    if (!objectp(player)) {
-        return 0;
-    }
+    if(!objectp(player)) { return 0; }
     base = player->query("base_class");
 
-    level = player->query_class_level(base);
-    level += player->query_class_level("radiant_servant");
+    //level = player->query_class_level(base);
+    level = player->query_class_level(the_class);
+    
+    if(base == the_class)
+        level += player->query_class_level("radiant_servant");
+    
     return level;
 }
 

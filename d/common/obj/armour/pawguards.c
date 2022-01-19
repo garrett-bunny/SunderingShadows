@@ -4,7 +4,7 @@ inherit ARMOUR;
 void create() {
    ::create();
    set_name("pawguards");
-   set_id(({"pawguards","leather pawguards"}));
+   set_id(({"pawguards","leather pawguards", "armor"}));
    set_short("leather pawguards");
    set_long("A pair of leather pawguards, simple but sturdy.  Each of the two "
 "forms a sturdy protection, fitted to cover a pair of lion-size paws with an "

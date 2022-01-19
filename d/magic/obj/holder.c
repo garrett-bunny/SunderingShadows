@@ -180,7 +180,6 @@ int dismiss(string str){
 	if(freed)
 		return notify_fail("You have no power over this being any more.\n");
 
-	tell_room(environment(caster),"%^BOLD%^"+caster->query_cap_name()+" dismisses the "+mon->query_name()+"!",caster);
     if(objectp(caster)) { caster->remove_property("has_elemental"); }
 	tell_object(caster,"%^BOLD%^You dismiss the "+mon->query_name()+"!\n");
 	call_out("timed",1);

@@ -11,7 +11,7 @@ void create() {
     ::create();
     set_spell_name("call armor");
     set_spell_level(([ "psywarrior" : 1 ]));
-    set_spell_sphere("combat");
+    set_spell_sphere("metacreativity");
     set_syntax("cast CLASS call armor on <light|medium|heavy>");
     set_description("This power allows the psywarrior to create a "
        "suit of armor using only her mental prowess. The armor is "

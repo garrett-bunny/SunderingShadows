@@ -166,7 +166,7 @@ mmap %^ORANGE%^%^ULINE%^DISTANCE%^RESET%^
 
 Attempts to display a minimap on a grid, based on your peer data.
 
-Numbers display how many exits a room has, red color indicates room has non-standart exits.
+Numbers display how many exits a room has, red color indicates room has non-standard exits.
 
 %^CYAN%^SEE ALSO%^RESET%^
 

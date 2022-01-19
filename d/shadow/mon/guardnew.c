@@ -72,7 +72,7 @@ void create() {
 	add_search_path("/cmds/fighter");
 	set_fighter_style("soldier");
     set_property("full attacks",1);
-    set_property("magic resistance",random(30)+10);
+    set_mob_magic_resistance("average");
     rank = set_ranks(([
         18 : "rookie",
         20 : "sergeant",

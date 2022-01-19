@@ -18,7 +18,7 @@ string *restricted_deities(string subrace) {
 }
 
 // stats in order: str, dex, con, int, wis, cha
-int *stat_mods(string subrace) { return ({ 2, 0, 2, 0, 0, -2 }); }
+int *stat_mods(string subrace) { return ({ 4, 0, 2, -2, 0, -2 }); }
 
 mapping skill_mods(string subrace) { return ([ "endurance" : 2 ]); }
 
@@ -40,6 +40,8 @@ int *max_stats() { return ({ 19, 12, 19, 12, 12, 8 }); }
 int *stat_adj() { return ({ 1, 0, 1, -1, 0, -1 }); }
 
 int is_restricted() { return 1; } // restricted races by approval
+
+int is_rollable() { return 1; } // rollable in creation
 
 // Stuff needed to replace what was in the old race database
 

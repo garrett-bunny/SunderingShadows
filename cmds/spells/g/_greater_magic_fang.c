@@ -11,7 +11,8 @@ void execute_me();
 void create() {
     ::create();
     set_spell_name("greater magic fang");
-    set_spell_level(([ "ranger" : 3 ]));
+    set_spell_level(([ "ranger" : 3, "cleric" : 3, "druid" : 3 ]));
+    set_domains("animal");
     set_spell_sphere("alteration");
     set_syntax("cast CLASS greater magic fang");
     set_description("This spell lets the caster siphon some of his own will into his creatures, giving them bonuses in "
@@ -42,24 +43,17 @@ void spell_effect(int prof) {
         dest_effect();
         return;
     }
+    
+    pets = caster->query_protectors();
+    pets = filter_array(pets, (: !userp($1) :));
 
-    minions = all_living(place);
-    if(!sizeof(minions)){
+    if(!pointerp(pets) || !sizeof(pets))
+    {
       tell_object(caster,"You have no creatures by your side.");
       dest_effect();
       return;
     }
-    pets = ({});
-    myshort = caster->query_name()+"'s ally";
-    for(i=0;i<sizeof(minions);i++) {
-      if(minions[i]->id(myshort)) pets += ({ minions[i] });
-    }
-    if(!sizeof(pets)){
-      tell_object(caster,"You have no creatures by your side.");
-      dest_effect();
-      return;
-    }
-
+    
     spell_successful();
     tell_object(caster,"%^BOLD%^You close your eyes and concentrate, letting your will lend strength to your "
 "creatures.%^RESET%^");

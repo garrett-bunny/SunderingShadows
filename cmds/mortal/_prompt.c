@@ -53,10 +53,13 @@ Available codes:
   %^MAGENTA%^$X%^WHITE%^ maximum encumbrance level
   %^MAGENTA%^$T%^WHITE%^ time of day (word)
   %^MAGENTA%^$t%^WHITE%^ time of day (clock)
+  %^MAGENTA%^$_LL%^WHITE%^ light level
   %^MAGENTA%^$d%^WHITE%^ drunkeness
 
 Additional codes:
-  %^MAGENTA%^$_EW%^WHITE%^ Eldritch Warfare
+  %^MAGENTA%^$_EW%^WHITE%^ eldritch warfare
+  %^MAGENTA%^$_PF%^WHITE%^ psionic focus
+  %^MAGENTA%^$_BI%^WHITE%^ bardic inspiration
   %^MAGENTA%^$r%^WHITE%^ rage status
   %^MAGENTA%^$E%^WHITE%^ eldritch essence
   %^MAGENTA%^$k%^WHITE%^ available ki

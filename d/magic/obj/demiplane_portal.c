@@ -84,7 +84,7 @@ void start_magic(object entry, string room) {
 
    rt_room->set_had_players();
    rt_room->remove_property("teleport proof");
-   rt_room->set_property("teleport proof",spellobj->query_clevel());
+   rt_room->set_property("teleport proof",spellobj->query_spell_DC());
    rt_room->set_castname(caster->query_name());
    rt_room->restore_space();
    rt_room->add_exit(file_name(entry), "door");

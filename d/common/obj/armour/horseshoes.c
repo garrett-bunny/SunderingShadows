@@ -4,7 +4,7 @@ inherit ARMOUR;
 void create() {
    ::create();
    set_name("horseshoes");
-   set_id(({"horseshoes","steel horseshoes"}));
+   set_id(({"horseshoes","steel horseshoes", "shoes", "armor"}));
    set_short("steel horseshoes");
    set_long("A pair of steel horseshoes, simple but sturdy.  Each of the pair "
 "forms a neat arc, the ends slightly parted to allow fitting below the front of "

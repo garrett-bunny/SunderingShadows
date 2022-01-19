@@ -20,7 +20,7 @@ mapping stat_requirements() {
 }
 
 // strong & weak saving throws. Fort, Ref, Will
-int *saving_throws() { return ({ 1,0,0 }); }
+int *saving_throws() { return ({ 1,-1,-1 }); }
 
 string *combat_styles() {
     return ({});
@@ -31,7 +31,7 @@ string *class_feats(string myspec) {
 }
 
 mapping class_featmap(string myspec) {
-    return ([ 1 : ({ "light armor proficiency", "medium armor proficiency", "heavy armor proficiency", "shield proficiency", "simple weapon proficiency", "martial weapon proficiency", }), 2 : ({ "bravery" }), 3 : ({ "armor training" }), 5 : ({ "weapon training" }), 19 : ({ "armor mastery" }), 20 : ({ "weapon mastery" })]);
+    return ([ 1 : ({ "light armor proficiency", "medium armor proficiency", "heavy armor proficiency", "shield proficiency", "simple weapon proficiency", "martial weapon proficiency", }), 2 : ({ "bravery" }), 3 : ({ "armor training" }), 5 : ({ "weapon training" }), 19 : ({ "armor mastery" }), 20 : ({ "weapon mastery" }), 21 : ({ "advanced training" }), 31 : ({ "second wind" })]);
 }
 
 string *class_skills()

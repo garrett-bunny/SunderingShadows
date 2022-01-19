@@ -30,11 +30,11 @@ int strikeme(int damage, object what, object who){
       	tell_room(environment(query_worn()),"%^BOLD%^The wolf on"+
 			""+ETO->QCN+"'s shield growls as it swats back "+
                   ""+who->QCN+"'s attack.",({ETO,who}));
-      	 tell_object(ETO,"%^BOLD%^The wolf on your shield"+
+      	tell_object(ETO,"%^BOLD%^The wolf on your shield"+
 			" growls as it swats back "+who->QCN+"'s attack.");
       	tell_object(who,"%^BOLD%^The wolf on "+ETO->QCN+"'s shield"+
 			" growls as it swats back your attack!");
-      		return (-1)*damage;
-      	return 1;
+      	return 0;
    }
+   return damage;
 }

@@ -269,7 +269,7 @@ void heart_beat()
     if ((ob = present("healingchalice", ETO)) && living(ETO) && ob != TO) {
         tell_object(ETO, "The white gold chalices start to interact and shake and quiver.");
         tell_room(environment(ETO), "The chalices held by " + ETO->query_cap_name() + " quiver and shake.", ETO);
-        tell_room(environment(ETO), "%^BOLD%^%^CYAN%^They explode in a blilliant burst of light and fire.%^RESET%^");
+        tell_room(environment(ETO), "%^BOLD%^%^CYAN%^They explode in a brilliant burst of light and fire.%^RESET%^");
         ETO->do_damage("torso", roll_dice(3, 50));
         ETO->add_attacker(TO);
         ETO->continue_attack();

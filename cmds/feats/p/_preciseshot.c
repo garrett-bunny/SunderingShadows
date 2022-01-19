@@ -160,20 +160,15 @@ void execute_attack()
         return;
     }
     weapons = caster->query_wielded();
-    if (!weapons[0]->is_lrweapon() && !weapons[1]->is_lrweapon()) {
-        tell_object(caster, "%^YELLOW%^You lower your weapon too soon, and the shot skitters uselessly along the ground!\n");
-        dest_effect();
-        return;
-    }
-    /*if (sizeof(weapons) > 1 && weapons[0] != weapons[1]) {
-        tell_object(caster, "%^YELLOW%^You lower your weapon too soon, and the shot skitters uselessly along the ground!\n");
-        dest_effect();
-        return;
-       }*/
-    if (caster->query_property("shapeshifted")) {
-        tell_object(caster, "%^YELLOW%^You lower your weapon too soon, and the shot skitters uselessly along the ground!\n");
-        dest_effect();
-        return;
+    
+    if(!weapons[0]->is_lrweapon())
+    {
+        if(sizeof(weapons) < 2 || (sizeof(weapons) > 1 && !weapons[1]->is_lrweapon()))
+        {
+            tell_object(caster, "You need a ranged weapon to use precise shot.\n");
+            dest_effect();
+            return;
+        }
     }
 
     tempmap = caster->query_property("using preciseshot"); // adding per-target tracking. -N, 9/10.
@@ -201,7 +196,8 @@ void execute_attack()
     if (!(res = thaco(target))) {
         tell_object(caster, "%^BOLD%^%^YELLOW%^You overextend your shot and fumble with your weapon!");
         tell_room(environment(caster), "%^BOLD%^%^YELLOW%^" + caster->QCN + " overextends " + caster->QP + " shot and fumbles with " + caster->QP + " weapon!", caster);
-        caster->set_tripped(4, "You're still trying to recover from your fumbled shot!", 4);
+        if(!FEATS_D->usable_feat(caster, "improved preciseshot"))
+            caster->set_tripped(4, "You're still trying to recover from your fumbled shot!", 4);
         dest_effect();
         return;
     }else if (res == -1) {
@@ -224,6 +220,7 @@ void execute_attack()
       weapon = weapons[1];
     }
 
+    clevel += (FEATS_D->usable_feat(caster, "improved preciseshot") * 2);
     damage = roll_dice(clevel, 8); // up to d8 on a trial basis
 
     damage += weapon->query_damage();

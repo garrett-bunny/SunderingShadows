@@ -10,7 +10,7 @@ int *age_brackets() { return ({ 14, 30, 40, 60 }); }
 int *restricted_alignments(string subrace) { return ({}); }
 
 string *restricted_classes(string subrace) {
-  return ({ "mage", "magus",  "bard",  "paladin", "monk" });
+  return ({ "mage", "bard" });
 }
 
 string *restricted_deities(string subrace) { return ({}); }
@@ -23,7 +23,7 @@ mapping skill_mods(string subrace) { return ([ "endurance" : 2 ]); }
 
 int natural_AC(string subrace) { return 0; }
 
-int sight_bonus(string subrace) { return 0; }
+int sight_bonus(string subrace) { return 2; }
 
 mapping daily_uses(string subrace) { return ([]); }
 
@@ -38,6 +38,8 @@ int *max_stats() { return ({ 19, 17, 19, 17, 17, 12 }); }
 int *stat_adj() { return ({ 1, 0, 1, 0, 0, -2 }); }
 
 int is_restricted() { return 0; } // restricted races by approval
+
+int is_rollable() { return 1; } // rollable in creation
 
 // Stuff needed to replace what was in the old race database
 

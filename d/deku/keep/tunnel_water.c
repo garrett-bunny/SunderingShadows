@@ -17,7 +17,7 @@ void create()
     "identifiable, %^RESET%^%^RED%^debris%^RESET%^%^YELLOW%^ float around with "+
     "you as you move about.  Perhaps by only some strange luck does this "+
     "%^RESET%^%^RED%^tunnel%^RESET%^%^YELLOW%^ "+
-    "keep from collasping around you, trapping you in its muddy depths forever.  You "+
+    "keep from collapsing around you, trapping you in its muddy depths forever.  You "+
     "can barely make out the %^RESET%^%^RED%^structure%^RESET%^%^YELLOW%^ of this "+
     "murky place and unfortunately what you can discern offers you little comfort "+
     "about your safety.  The %^BOLD%^%^BLACK%^darkness%^RESET%^%^YELLOW%^ "+

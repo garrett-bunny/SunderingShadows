@@ -143,7 +143,7 @@ void die(object ob){
    for(i=0;i<sizeof(attackers);i++){
       if(!objectp(attackers[i])) { continue; }
       if(member_array("Life force of the Kinnesaruda has faded, Intruder and Autarkis are defeated",attackers[i]->query_mini_quests()) == -1){
-	     attackers[i]->set_mini_quest("Life force of the Kinnesaruda has faded, Intruder and Autarkis are defeated",100000,"%^BOLD%^%^BLACK%^Life force of the Kinnesaruda has faded, Intruder and Autarkis are defeated%^RESET%^");
+	     attackers[i]->set_mini_quest("Life force of the Kinnesaruda has faded, Intruder and Autarkis are defeated",10000000,"%^BOLD%^%^BLACK%^Life force of the Kinnesaruda has faded, Intruder and Autarkis are defeated%^RESET%^");
       }
    }
 
@@ -194,7 +194,7 @@ void impaler(object targ){
    string dam;
    if(!objectp(targ)) return;
    if(!objectp(TO)) return;
-   if(!"/daemon/saving_d.c"->fort_save(targ,-25)){
+   if(SAVING_THROW_D->fort_save(targ, 55)){
       dam="hurts";
    }
    else{
@@ -205,12 +205,12 @@ void impaler(object targ){
    tell_room(ETO,"%^MAGENTA%^Autarkis charges with his forearm-"+
       "mounted blades and impales "+targ->QCN+"!%^RESET%^",targ);
    if(dam=="impales"){
-      targ->do_damage("torso",roll_dice(30,10));
-      tell_object(targ,"%^RED%^You feel intense pain and your abillity "+
+      targ->cause_typed_damage(targ, "torso", roll_dice(30,10), "piercing");
+      tell_object(targ,"%^RED%^You feel intense pain and your ability "+
          "to fight has been compromised!%^RESET%^");
    }
    else{
-      targ->do_damage("torso",roll_dice(20,10));
+      targ->cause_typed_damage(targ, "torso", roll_dice(20,10), "piercing");
    }
 }
 
@@ -222,7 +222,7 @@ void annihilate(object targ){
          "with a foul incantation!%^RESET%^",targ);
       tell_object(targ,"%^BOLD%^%^BLACK%^A foul incantation rips through "+
          "you!%^RESET%^");
-      targ->do_damage("torso",125+random(75));
+      targ->cause_typed_damage(targ, "torso", random(75)+125, "untyped");
       return;
    }
    else{
@@ -236,7 +236,7 @@ void fire(object targ){
    string dam;
    if(!objectp(targ)) return;
    if(!objectp(TO)) return;
-   if(SAVING_D->saving_throw(targ,"spell")){
+   if(SAVING_THROW_D->reflex_save(targ, 55)){
       dam="hurts";
    }
    else {
@@ -249,14 +249,14 @@ void fire(object targ){
       "f%^BOLD%^%^RED%^i%^YELLOW%^r%^RESET%^%^RED%^e %^YELLOW%^on "+
       ""+targ->QCN+"!",targ);
    if(dam=="singes"){
-      targ->do_damage("torso",145+random(70));
+      targ->cause_typed_damage(targ, "torso", random(70)+145, "fire");
       tell_object(targ,"%^YELLOW%^You are blinded by a brilliant light "+
          "and intense heat!%^RESET%^");
       targ->set_paralyzed(random(10)+15,"%^YELLOW%^You cannot see your "+
          "opponent and stumble around blindly!%^RESET%^");
    }
    else{
-      targ->do_damage("torso",80+random(80));
+      targ->cause_typed_damage(targ, "torso", random(80)+80, "fire");
    }
    return;
 }
@@ -266,7 +266,7 @@ void circle(object targ){
    if(!objectp(TO)) return;
    if(random(50) > targ->query_stats("intelligence")){
       tell_object(targ,"%^RED%^Autarkis stabs you in the back!%^RESET%^");
-      targ->do_damage("torso", random(200)+50);
+      targ->cause_typed_damage(targ, "torso", random(200)+50, "piercing");
       return;
    }
    else{
@@ -288,7 +288,7 @@ void freeze(object targ){
       tell_object(targ,"%^BOLD%^Autarkis's dagger %^CYAN%^i%^WHITE%^"+
          "c%^CYAN%^e %^BOLD%^%^WHITE%^rips into you and the surrounding "+
          "blood freezes!%^RESET%^");
-      targ->do_damage("torso",random(80)+40);
+      targ->cause_typed_damage(targ, "torso", random(80)+40, "piercing");
       targ->set_paralyzed(roll_dice(1, 2) * 4,"%^BOLD%^You are frozen "+
          "solid!%^RESET%^");
       return;
@@ -309,7 +309,7 @@ void fireball(object targ){
       tell_object(targ,"%^ORANGE%^Autarkis hurls a f%^BOLD%^%^RED%^i"+
          "%^YELLOW%^r%^RESET%^%^RED%^eb%^ORANGE%^a%^RED%^ll "+
          "%^ORANGE%^at you!");
-      targ->do_damage("torso",random(150)+50);
+      targ->cause_typed_damage(targ, "torso", random(150)+50, "fire");
       return;
    }
    else{
@@ -332,7 +332,7 @@ void bolt(object targ){
          "%^RESET%^%^BLUE%^from his talons and blasts "+targ->QCN+"!",targ);
       tell_object(targ,"%^BLUE%^Autarkis shoots %^YELLOW%^lightning "+
          "%^RESET%^%^BLUE%^from his talons and blasts you!");
-      targ->do_damage("torso", random(120)+80);
+      targ->cause_typed_damage(targ, "torso", random(120)+80, "electricity");
       return;
    }
    else{
@@ -343,6 +343,7 @@ void bolt(object targ){
          "%^RESET%^%^BLUE%^from his talons and it strikes all around "+
          ""+targ->QCN+"!%^RESET%^",targ);
       targ->do_damage("torso",random(60)+40);
+      targ->cause_typed_damage(targ, "torso", random(60)+40, "electricity");
    }
 }
 
@@ -358,7 +359,7 @@ void tornado(object targ){
          "thrusts you upwards against the %^BOLD%^%^BLACK%^obisd"+
          "%^RESET%^i%^BOLD%^%^BLACK%^an %^RESET%^%^MAGENTA%^"+
          "ceiling!%^RESET%^");
-      targ->do_damage("torso", random(100)+25);
+      targ->cause_typed_damage(targ, "torso", random(100)+25, "bludgeoning");
       return;
    }
    else{
@@ -386,7 +387,7 @@ void light(object targ){
       tell_object(targ,"%^BOLD%^Autarkis lowers his hands and blasts "+
          "you with a beam of %^BOLD%^%^BLACK%^dark %^WHITE%^"+
          "energy!%^RESET%^");
-      targ->do_damage("torso",random(200)+130);
+      targ->cause_typed_damage(targ, "torso", random(200)+130, "void");
       return;
    }
    else{
@@ -397,7 +398,7 @@ void light(object targ){
       tell_object(targ,"%^BOLD%^Autarkis grabs you by the throat and "+
          "slams you against the %^BOLD%^%^BLACK%^obisd%^RESET%^i"+
          "%^BOLD%^%^BLACK%^an %^WHITE%^wall!%^RESET%^");
-        targ->do_damage("torso",random(50)+100);
+        targ->cause_typed_damage(targ, "torso", random(50)+100, "bludgeoning");
    }
 }
 
@@ -412,14 +413,14 @@ void poison(object targ){
          "%^RESET%^%^RED%^slashes %^GREEN%^you across the "+
          "chest!%^RESET%^");
       tell_object(targ,"%^BOLD%^%^BLACK%^You have been poisoned severely!%^RESET%^");
-      targ->do_damage("torso",random(50)+42);
+      targ->cause_typed_damage(targ, "torso", random(50)+42, "slashing");
       targ->add_poisoning(100);
       return;
    }
    else{
       tell_object(targ,"%^BOLD%^Autarkis cleaves you with his forearm"+
          "-mounted blades!%^RESET%^");
-      targ->do_damage("torso",random(100)+50);
+      targ->cause_typed_damage(targ, "torso", random(100)+50, "slashing");
       tell_room(ETO,"%^BOLD%^Autarkis cleaves "+targ->QCN+" with his "+
          "forearm-mounted blades.%^RESET%^",targ);
    }
@@ -459,28 +460,28 @@ void desoul(object targ){
          "%^GREEN%^.%^RESET%^");
       tell_object(targ,"%^BOLD%^Autarkis %^RED%^slices %^WHITE%^your "+
          "flesh with quick talon strikes!");
-      targ->do_damage("torso", random(15)+5);
+      targ->cause_typed_damage(targ, "torso", random(15)+5, "slashing");
       tell_object(targ,"%^BOLD%^Autarkis %^RED%^slices %^WHITE%^your "+
          "flesh with quick talon strikes!");
-      targ->do_damage("torso", random(15)+5);
+      targ->cause_typed_damage(targ, "torso", random(15)+5, "slashing");
       tell_object(targ,"%^BOLD%^Autarkis %^RED%^slices %^WHITE%^your "+
          "flesh with quick talon strikes!");
-      targ->do_damage("torso", random(15)+5);
+      targ->cause_typed_damage(targ, "torso", random(15)+5, "slashing");
       tell_object(targ,"%^BOLD%^Autarkis %^RED%^slices %^WHITE%^your "+
          "flesh with quick talon strikes!");
-      targ->do_damage("torso", random(15)+5);
+      targ->cause_typed_damage(targ, "torso", random(15)+5, "slashing");
       tell_object(targ,"%^BOLD%^Autarkis %^RED%^slices %^WHITE%^your "+
          "flesh with quick talon strikes!");
-      targ->do_damage("torso", random(15)+5);
+      targ->cause_typed_damage(targ, "torso", random(15)+5, "slashing");
       tell_object(targ,"%^BOLD%^Autarkis %^RED%^slices %^WHITE%^your "+
          "flesh with quick talon strikes!");
-      targ->do_damage("torso", random(15)+5);
+      targ->cause_typed_damage(targ, "torso", random(15)+5, "slashing");
       tell_object(targ,"%^BOLD%^Autarkis %^RED%^slices %^WHITE%^your "+
          "flesh with quick talon strikes!");
-      targ->do_damage("torso", random(15)+5);
+      targ->cause_typed_damage(targ, "torso", random(15)+5, "slashing");
       tell_object(targ,"%^BOLD%^Autarkis %^RED%^slices %^WHITE%^your "+
          "flesh with quick talon strikes!");
-      targ->do_damage("torso", random(15)+5);
+      targ->cause_typed_damage(targ, "torso", random(15)+5, "slashing");
       tell_room(ETO,"%^BOLD%^Autarkis's talons %^YELLOW%^glow and he "+
          "furiously tears at "+targ->QCN+"!%^RESET%^",targ);
    }
@@ -522,3 +523,4 @@ void heart_beat()
         }
     }
 }
+

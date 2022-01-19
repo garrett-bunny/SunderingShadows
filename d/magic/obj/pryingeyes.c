@@ -32,6 +32,7 @@ void create(){
     set_body_type("eye");
 
     add_limb("body","",0,0,0);
+    set_property("no_random_treasure",1);
 }
 
 set_eye_color(string eyecolor)

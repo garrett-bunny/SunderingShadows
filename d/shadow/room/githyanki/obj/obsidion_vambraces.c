@@ -62,12 +62,13 @@ int remove_func(){
 }
 
 int strike_func(int damage, object what, object who){
-        if(random(1000) < 100){
+    if(random(1000) < 100){
         tell_room(EETO,"%^BLACK%^%^BOLD%^Spirits and ghosts pour out"+
 " of "+ETOQCN+"%^BLACK%^%^BOLD%^'s vambraces, enveloping "+who->QCN+"%^RESET%^"+
 "%^BOLD%^.");
         tell_object(who,"%^BLACK%^%^BOLD%^The ghosts from "+ETOQCN+"'s "+
 "vambraces envelop you!");
-                who->set_paralyzed(random(2)+ 1);
-       }
+        who->set_paralyzed(random(2)+ 1);
+    }
+    return damage;
 }

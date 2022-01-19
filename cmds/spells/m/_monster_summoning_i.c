@@ -64,11 +64,27 @@ int spell_effect(int prof)
         monster->set_new_exp(1, "low");
         monster->set_property("minion", caster);
         monster->move(environment(caster));
+        
+        if(caster->is_class("sorcerer") && (caster->query_bloodline() == "abyssal"))
+        {
+            monster->set_property("damage resistance", 1 + clevel / 10);
+            monster->set_property("spell damage resistance", 1 + clevel / 10);
+            monster->set_short("%^BOLD%^%^BLACK%^Dark w%^RESET%^%^MAGENTA%^i%^BOLD%^%^BLACK%^ng%^RESET%^%^MAGENTA%^e%^BOLD%^%^BLACK%^d d%^RESET%^%^MAGENTA%^e%^BOLD%^%^BLACK%^m%^RESET%^%^MAGENTA%^o%^BOLD%^%^BLACK%^n%^RESET%^");
+            monster->set_long("%^BOLD%^%^BLACK%^Flapping in the air, this horrifying demon is a %^CYAN%^chilling %^BLACK%^sight to behold. Its eyes are glowing %^RESET%^%^MAGENTA%^v%^BOLD%^i%^RESET%^%^MAGENTA%^ol%^BOLD%^e%^RESET%^%^MAGENTA%^t %^BOLD%^o%^RESET%^%^MAGENTA%^rbs %^BOLD%^%^BLACK%^and its lupine snout is wrinkled in a perpetual snarl, revealing rows of %^RESET%^%^RED%^jagged %^WHITE%^teeth%^BOLD%^%^BLACK%^. Pitch black skin shot through with v%^RESET%^%^MAGENTA%^e%^BOLD%^%^BLACK%^ins of %^RESET%^%^MAGENTA%^v%^BOLD%^i%^RESET%^%^MAGENTA%^ol%^BOLD%^e%^RESET%^%^MAGENTA%^t %^BOLD%^%^BLACK%^is stretched over a lean muscular body. Large m%^RESET%^%^MAGENTA%^e%^BOLD%^%^BLACK%^mbr%^RESET%^%^MAGENTA%^a%^BOLD%^%^BLACK%^no%^RESET%^%^MAGENTA%^u%^BOLD%^%^BLACK%^s w%^RESET%^%^MAGENTA%^i%^BOLD%^%^BLACK%^ngs hold it aloft while wicked claws tip its fingers and toes which it rends at the air with, its hunger for %^RED%^v%^RESET%^%^RED%^i%^BOLD%^ol%^RESET%^%^RED%^e%^BOLD%^nc%^RESET%^%^RED%^e %^BOLD%^%^BLACK%^palpable. %^RESET%^");
+
+            tell_room(place, "%^BLACK%^BOLD%^Reality rips and an abyssal creature claws its way through to protect " + caster->QCN + "!%^RESET%^", caster);
+            tell_object(caster, "%^BLACK%^BOLD%^Reality rips and an abyssal creature claws its way through to protect you!%^RESET%^");
+            monster->set_race("demon");
+            monster->add_id("demon");
+        }
+        else
+        {
+            tell_room(place, "%^CYAN%^Reality rips and astral prism manifests itself to protect " + caster->QCN + "!%^RESET%^", caster);
+            tell_object(caster, "%^CYAN%^Reality rips and astral prism manifests itself to protect you!%^RESET%^");
+        }
+        
         caster->add_follower(monster);
         caster->add_protector(monster);
-
-        tell_room(place, "%^CYAN%^Reality rips and astral prism manifests itself to protect " + caster->QCN + "!%^RESET%^", caster);
-        tell_object(caster, "%^CYAN%^Reality rips and astral prism manifests itself to protect you!%^RESET%^");
     }
 
     spell_duration = (clevel + roll_dice(1, 20)) * ROUND_LENGTH + 300;
@@ -133,7 +149,7 @@ void dest_effect()
 
     if (objectp(caster)) {
         removeSpellFromCaster();
-        tell_object(caster, "%^ORANGE%^%^BOLD%^Summoned prisms vanish!");
+        tell_object(caster, "%^ORANGE%^%^BOLD%^Summoned creatures vanish!");
     }
 
     if (sizeof(monsters)) {

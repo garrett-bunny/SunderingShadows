@@ -54,11 +54,17 @@ void spell_effect(int prof)
 {
     int roll;
        
+    if(!objectp(target))
+    {
+        tell_object(caster, "Your target is no longer here.");
+        return;
+    }
+    
     spell_successful();
     
     roll = (int)BONUS_D->process_hit(caster, target, 1, 0, 0, 1);
     
-    if(roll < 1 && !caster->query_property("spectral_hand"))
+    if(roll < 1)
     {
         tell_object(caster, "You fire a fire bolt at " + target->QCN + " but miss!");
         return;

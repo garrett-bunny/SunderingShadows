@@ -39,6 +39,7 @@ void create(){
    set_remove((:TO,"remove_fun":));
    set_struck((:TO,"struck_fun":));
    set_overallStatus(220);
+   set_property("no disenchant",1);
 }
 
 int check(){
@@ -67,7 +68,7 @@ int struck_fun(int damage, object what, object target) {
      tell_room(EETO,"%^CYAN%^"+ETO->QCN+"'s bracelets %^ORANGE%^chime "
 "%^CYAN%^gently as "+ETO->QS+" dodges aside from "+target->QCN+"'s "
 "blow!%^RESET%^",({ETO,target}));
-     return (-1)*damage;
+     return 0;
    }
-   return 1;
+   return damage;
 }

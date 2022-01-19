@@ -175,7 +175,7 @@ int query_stance_bonus(object victim)
     int fnord = 0;
 
     fnord -= (int)victim->query_defensive_bonus();
-    fnord += (int)PO->query_offensive_bonus();
+    fnord += (int)previous_object()->query_offensive_bonus();
     return fnord;
 }
 
@@ -285,6 +285,13 @@ varargs ac_bonus(object who, object attacker)
 
     dexb = query_dex_bonus(who);
     dexb = -dexb;
+    
+    //Nature oracle feature
+    if(who->query_mystery() == "nature")
+    {
+        if(who->query_class_level("oracle") > 20)
+            dexb = query_stat_bonus(who, "charisma");
+    }
 
     if (who->query_temporary_blinded() || who->query_blind()) {
         if (!FEATS_D->usable_feat(who, "blindfight")) {
@@ -305,7 +312,7 @@ varargs ac_bonus(object who, object attacker)
     return MyBonus;
 }
 
-varargs int hit_bonus(object who, object targ, int attack_num, object current)
+varargs int hit_bonus(object who, object targ, int attack_num, object current, int touch)
 {
     int th, to_hit, tmp;
     int i, j, min, hold, mysize, fired, bab_scale, pen;
@@ -368,9 +375,20 @@ varargs int hit_bonus(object who, object targ, int attack_num, object current)
                 mysize++;           //run small creatures as normal size please.
             }
             mysize -= (int)current->query_size();
-            if (FEATS_D->usable_feat(who, "weapon finesse") && ((mysize >= 0) || current->query_property("finesse"))) { // if has-feat & weapon is smaller/same size as user - Odin 5/24/2020 or weapon has the property - Venger dec20
+            //if (FEATS_D->usable_feat(who, "weapon finesse") && ((mysize >= 0) || current->query_property("finesse") || touch == 1)) { // if has-feat & weapon is smaller/same size as user - Odin 5/24/2020 or weapon has the property - Venger dec20
+            //Or it's a ranged touch attack (uses dex)
+            if (FEATS_D->usable_feat(who, "weapon finesse") && ((mysize >= 0) || touch == 1)) {
                 to_hit += (query_dex_bonus(who) * -1);
-            }else {
+            }
+            else if(FEATS_D->usable_feat(who, "fighter finesse"))
+            {
+                to_hit += (query_dex_bonus(who) * -1);
+            }
+            else if(FEATS_D->usable_feat(who, "cunning insight"))
+            {
+                to_hit += query_stat_bonus(who, "charisma");
+            }
+            else {
                 to_hit += query_stat_bonus(who, "strength");
             }
         }
@@ -379,9 +397,26 @@ varargs int hit_bonus(object who, object targ, int attack_num, object current)
     else {
         if (FEATS_D->usable_feat(who, "weapon finesse")) {
             to_hit += (query_dex_bonus(who) * -1);
-        }else {
+        }
+        else if(FEATS_D->usable_feat(who, "cunning insight"))
+        {
+            to_hit += query_stat_bonus(who, "charisma");
+        }
+        else {
             to_hit += query_stat_bonus(who, "strength");
         }
+    }
+    
+    //Point blank shot gives +1 to ranged touch attacks
+    //Spectral hand gives a further +1 bonus to touch attacks
+    if(touch == 1)
+    {
+        to_hit += FEATS_D->usable_feat(who, "point blank shot");
+        to_hit += who->query_property("spectral_hand");
+    }
+    if(touch == 2)
+    {
+        to_hit += who->query_property("spectral_hand");
     }
     
     //Paladin smite against opposed alignment adds cha mod to attack rolls
@@ -427,10 +462,11 @@ varargs int hit_bonus(object who, object targ, int attack_num, object current)
 }
 
 //flag = 1 for a touch attack - Saide
-varargs int process_hit(object who, object targ, int attack_num, mixed current, object DebugOb, int flag)
+varargs int process_hit(object who, object targ, int attack_num, mixed current, object DebugOb, int flag, int mod)
 {
     object PlayerBoss;
     int attack_roll, bon, AC = 0, pFlag;
+    int ac_excess;
     if (!objectp(who)) {
         return 0;
     }
@@ -444,6 +480,16 @@ varargs int process_hit(object who, object targ, int attack_num, mixed current, 
         AC += effective_ac(targ);
     }
     AC += ac_bonus(targ, who);
+    
+    //Tlaloc added this cap 9/2/21 to address super high AC
+    //Diminished returns above 80
+    if(AC > 80)
+        AC = 80 + (AC - 80) / 2;
+    //If it's still above 90, even more diminished
+    if(AC > 90)
+        AC = 90 + (AC - 90) / 4;
+    
+    AC += targ->query_property("sundered");
 
     if (!userp(who)) {
         if (objectp(PlayerBoss = who->query_property("minion"))) {
@@ -454,12 +500,12 @@ varargs int process_hit(object who, object targ, int attack_num, mixed current, 
         if (who->query_static_bab() && !pFlag) { // giving monsters a static base attack bonus to see if this helps armor classes vs monsters -Ares
             bon = (int)who->query_static_bab();
             bon += ((int)who->query_max_hp() / 250); // give some extra chance to hit based on monster health, so bosses don't miss as often
-            bon += ((int)hit_bonus(who, targ, attack_num, current) / 2);
+            bon += ((int)hit_bonus(who, targ, attack_num, current) / 2, flag);
         }else {
-            bon = hit_bonus(who, targ, attack_num, current);
+            bon = hit_bonus(who, targ, attack_num, current, flag);
         }
     }else {
-        bon = hit_bonus(who, targ, attack_num, current);
+        bon = hit_bonus(who, targ, attack_num, current, flag);
     }
 
     if (intp(current)) {
@@ -475,8 +521,12 @@ varargs int process_hit(object who, object targ, int attack_num, mixed current, 
     if (attack_roll == 20) {
         return 20;
     }
+    
+    attack_roll += mod;
+    
     //if(attack_roll == 1) return -1;
     //does this change make AC less OP? - Saide, August 2017
+    //Might have to reconsider this since I added the change above to diminished returns - Tlaloc
     if ((bon + 15) < AC) {
         if (random(bon + AC + attack_roll) >= AC) {
             return attack_roll;
@@ -535,3 +585,114 @@ int new_damage_bonus(object attacker, int str)
     dbonus += ((str - 10) / 2);
     return dbonus;
 }
+
+//Combat Maneuvers Calcs
+int query_combat_maneuver_bonus(object ob)
+{
+    int cmb, mysize;
+    
+    if(!objectp(ob))
+        return 0;
+    
+    mysize = ob->query_size();
+    
+    cmb = new_bab(ob->query_level(), ob);  
+    if(FEATS_D->has_feat(ob, "agile maneuvers"))
+        cmb += query_stat_bonus(ob, "dexterity");
+    else
+        cmb += query_stat_bonus(ob, "strength");
+    
+    cmb += (mysize - 2);
+    
+    return cmb;
+}
+
+int query_combat_maneuver_defense(object ob)
+{
+    int cmd, mysize;
+    
+    if(!objectp(ob))
+        return 0;
+    
+    mysize = ob->query_size();
+    cmd = new_bab(ob->query_level(), ob);
+
+    cmd += max( ({ query_stat_bonus(ob, "strength"), query_stat_bonus(ob, "dexterity") }) );
+    
+    cmd += (mysize - 2);
+    
+    if(ob->query_race() == "dwarf")
+        cmd += 4;
+    
+    return cmd;
+}
+
+int combat_maneuver(object victim, object attacker, int mod)
+{
+    int result, CMB, CMD, diff;
+    
+    if(victim->query_paralyzed() || victim->query_bound() || victim->query_unconscious())
+        return 1;
+    
+    result = roll_dice(1, 20);
+    
+    if(result == 1)
+        return 0;
+    if(result == 20)
+        return 1;
+    
+    result += mod;
+    
+    if(!userp(victim))
+        CMD = attacker->query_level() + 10;
+    else
+        CMD = query_combat_maneuver_defense(victim);
+
+    if(!userp(attacker))
+        CMB = victim->query_level() + 10;
+    else
+        CMB = query_combat_maneuver_bonus(attacker);
+    
+    CMB += result;
+    CMD += 10;
+    
+    CMD += (FEATS_D->usable_feat(victim, "unmoving") * 3);
+    
+    result = CMB >= CMD ? 1 : 0;
+    
+    return result;
+}
+    
+int intimidate_check(object victim, object attacker, int mod)
+{
+    int DC, result, influence, diminish;
+    
+    if(!objectp(victim) || !objectp(attacker))
+        return 0;
+    
+    DC = min( ({ 50, victim->query_level() }) );
+    DC += (10 + query_stat_bonus(victim, "wisdom"));
+    
+    result = roll_dice(1, 20);
+    influence = attacker->query_skill("influence");
+    diminish = attacker->query_level() + 10;
+    
+    if(influence > diminish)
+        influence = diminish + (influence - diminish) / 2;
+    
+    if(result == 1)
+        return 0;
+    if(result == 20)
+        return 1;
+    
+    if(attacker->query_race() == "half-orc" || attacker->query_race() == "orc")
+        mod += 2;
+    
+    result = influence + result;
+    result += mod;
+    
+    result = result >= DC ? 1 : 0;
+    
+    return result;
+}
+    

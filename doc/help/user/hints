@@ -6,7 +6,7 @@
 %^CYAN%^Command %^ORANGE%^<con>%^CYAN%^ can display condition of all your attackers if entered without arguments, %^ORANGE%^<con party>%^CYAN%^ will display condition of your party members, and %^ORANGE%^<con all>%^CYAN%^ will display everything.
 %^CYAN%^Crafters rejoice! Material vendors are out and about to sell you whatever sort of fabric, metal, wood, etc., that you need. You might even find a settled shop or two to buy quality materials to complete your projects.
 %^CYAN%^Customize your prompt however you would like! See %^GREEN%^<help prompt> %^CYAN%^to learn how!
-%^CYAN%^Did you know there's a visual color editor to make adding colors to your descriptions easier? Find it here: %^GREEN%^http://shadowgate.org/wiki/color_editor
+%^CYAN%^Did you know there's a visual color editor to make adding colors to your descriptions easier? Find it on the Wiki at http://sunderingshadows.com/doku.php?id=trillet_s_color_editor!
 %^CYAN%^Do you want to contact someone in game, but don't have the money or spellpower to do so magically? The city of Shadow has a mail service, and it will send a message imp to that person with your letter. Ask your friends to come help you adventure! This place is several blocks north of the central square.
 %^CYAN%^Do you want to see all of the available hints at once? Just type in %^GREEN%^<help hints>%^CYAN%^, and you can look over them all at your convinience. This is great for if you missed a message or have a question that you think that a hint might cover!
 %^CYAN%^Do you want to see all of the available hints at once? Just type in %^GREEN%^<help hints>%^CYAN%^, and you can look over them all at your convinience. This is great for if you missed a message or have a question that you think that a hint might cover!
@@ -31,7 +31,6 @@
 %^CYAN%^Keep your health above zero.
 %^CYAN%^Kill your enemies to avoid being killed.
 %^CYAN%^Knocked out a bad guy (or a good guy, if YOU are the bad guy)? Use some rope to %^GREEN%^<bind> %^CYAN%^them before they regain consciousness! See %^GREEN%^<help bind> %^CYAN%^for more information and inspiration!
-%^CYAN%^Love Sundering Shadows and want to help us grow and thrive??! Please vote for us! Type %^GREEN%^<vote> %^RESET%^%^CYAN%^for information on how you can help. We truly appreciate it!
 %^CYAN%^Low on funds and can't afford to rent or buy a boat? Sea ferries are available with stops at the Mainland, Laerad, Deku and Graez. Look for the local seaports to view your options.
 %^CYAN%^Magical equipment has a chance of being cursed! Be sure to have it identified or evaluated at any of the local churches.
 %^CYAN%^Make your own maps using the %^GREEN%^<map> %^RESET%^%^CYAN%^command! See %^GREEN%^<help map> %^CYAN%^to learn more.

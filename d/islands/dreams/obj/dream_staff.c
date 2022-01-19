@@ -24,7 +24,8 @@ void create()
         TO->set_property("enchantment", 4);
     }
     set_item_bonus("spell penetration", 1);
-    set_item_bonus("magic resistance", 1);
+    set_item_bonus("spell damage resistance", 10);
+    set_property("able to cast", 1);
     set_value(3000);
     set_wield((: TO, "wieldme" :));
     set_unwield((: TO, "unwieldme" :));

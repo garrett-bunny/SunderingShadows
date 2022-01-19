@@ -20,7 +20,7 @@ mapping stat_requirements() {
 }
 
 // strong & weak saving throws. Fort, Ref, Will
-int *saving_throws() { return ({ 1,0,0 }); }
+int *saving_throws() { return ({ 1,-1,-1 }); }
 
 string *combat_styles() {
     return ({});
@@ -41,7 +41,7 @@ string *class_feats(string myspec)
 }
 /*Added unarmored defense - Octothorpe 1/15/16*/
 mapping class_featmap(string myspec) {
-    return ([ 1 : ({ "light armor proficiency", "medium armor proficiency", "shield proficiency", "simple weapon proficiency", "martial weapon proficiency", "rage", "powerattack", "unarmored defense" }), 2 : ({ "dodge" }), 7 : ({ "damage resistance" }), 10: ({"damage reduction"}), 11 : ({ "greater rage"}), 14 : ({ "mobility" }), 17:({"tireless rage"}), 20 : ({ "mighty rage"}) ]);
+    return ([ 1 : ({ "light armor proficiency", "medium armor proficiency", "shield proficiency", "simple weapon proficiency", "martial weapon proficiency", "rage", "powerattack", "unarmored defense" }), 2 : ({ "dodge" }), 5 : ({ "danger sense" }), 7 : ({ "damage resistance" }), 10: ({"damage reduction"}), 11 : ({ "greater rage"}), 13 : ({ "improved damage resistance" }), 14 : ({ "mobility" }), 16: ({ "indomitable will" }), 17:({"tireless rage"}), 20 : ({ "mighty rage"}), 31 : ({ "unstoppable" }) ]);
 }
 
 string *class_skills()

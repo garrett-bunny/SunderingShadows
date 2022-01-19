@@ -473,10 +473,10 @@ void set_inventory(string level)
                 "/d/deku/armors/ring_p",
                 "/d/islands/common/obj/shimmeringcape2",
                 "/d/antioch/ruins/obj/neutralgloves",
-                "/d/azha/obj/gmr_ring",});
+    }); 
     HIGH_H = ({ "/d/common/obj/armour/fullplate",
                 "/d/common/obj/armour/helm",
-                "/d/islands/common/obj/obj-old-nienne/shield",
+                "/d/islands/argentrock/obj/shd_bskeletal",
                 "/d/common/obj/armour/greaves",
                 "/d/common/obj/armour/gauntlets", });
     HIGH_L =  ({ "/d/common/obj/armour/hide",
@@ -485,7 +485,6 @@ void set_inventory(string level)
 
     MID_G =  ({ "/d/barriermnts/ruins/obj/sash",
                 "/d/dagger/derro/obj/noblemanspants",
-                "/d/azha/obj/gmr_ring",
                 "/d/deku/keep/obj/obsidianrobe",
                 "/d/deku/armours/ring_p",
                 "/d/deku/armours/boots_of_twilight",
@@ -500,8 +499,7 @@ void set_inventory(string level)
                 "/d/common/obj/armour/coif_leather",
                 "/d/common/obj/armour/bracers", });
 
-    LOW_G =  ({ "/d/azha/obj/mr_ring",
-                "/d/common/obj/armour/robe",
+    LOW_G =  ({ "/d/common/obj/armour/robe",
                 "/d/laerad/parnelli/asgard/sewer/obj/lsboots",
                 "/d/shadow/obj/clothing/silkcloak", });
     LOW_H =  ({ "/d/common/obj/armour/fullplate",

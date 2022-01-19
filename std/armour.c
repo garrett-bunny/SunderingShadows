@@ -140,7 +140,8 @@ void unwear()
 
     wornBy->remove_armour_from_limb(this_object(), actualLimbs);
     if (objectp(environment(wornBy))) {
-        message("other_action", (string)wornBy->query_cap_name() + " removes " + (string)wornBy->query_possessive() + " " + query_name() + ".", environment(wornBy), ({ wornBy }));
+        string short_desc = query_obvious_short() ? query_obvious_short() : query_short();
+        message("other_action", (string)wornBy->query_cap_name() + " removes " + (string)wornBy->query_possessive() + " " + short_desc + ".", environment(wornBy), ({ wornBy }));
     }
 
     wornBy = 0;
@@ -479,17 +480,17 @@ int do_struck(int damage, object weapon, object attacker)
 {
     object who = query_worn();
     if (!objectp(who)) {
-        return 0;
+        return damage;
     }
     if (query_property("struck")) {
         return call_other(TO, "property_special", damage, weapon, attacker);
     }
     if (!stringp(struck)) {
-        return 0;
+        return damage;
     }
     if (!query_property("fstruck")) {
         message("combat", struck, environment(who));
-        return 0;
+        return damage;
     }
     return call_other(TO, struck, damage, weapon, attacker);
 }

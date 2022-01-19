@@ -57,7 +57,7 @@ int wieldme()
 				" %^GREEN%^emerald"+
 				"%^BOLD%^%^BLACK%^ on the hilt of"+
 				" "+ETO->QCN+"'s sword flashes briefly.",ETO);
-			TP->set_property("magic resistance",10);
+			TP->set_property("magic resistance",2);
          ETO->set_property("evil item",1);
 			return 1;
 
@@ -69,7 +69,7 @@ int wieldme()
 				"The smaller %^GREEN%^emeralds%^BLACK%^ "+
 				"on the hilt of "+ETO->QCN+"'s"+
 				" sword glow faintly.",ETO);
-			set_property("magic resistance",5);
+			set_property("magic resistance",1);
          ETO->set_property("evil item",1);
 			return 1;
 
@@ -82,7 +82,7 @@ int wieldme()
 				"The %^GREEN%^emeralds%^BLACK%^ on the "+
 				"hilt of "+ETO->QCN+"'s"+
 				" sword flash briefly.",ETO);
-			set_property("magic resistance",-10);
+			set_property("magic resistance",-2);
 			//set_ac(-2);
          ETO->set_property("evil item",1);
 			return 1;
@@ -103,7 +103,7 @@ int removeme()
 		case 3: case 6: case 9:
 			tell_object(ETO,"%^BOLD%^%^BLACK%^You feel less "+
 			"protected as you release your grip on the sword.");
-	ETO->set_property("magic resistance",-10);
+	ETO->set_property("magic resistance",-2);
         ETO->set_property("evil item",-1);
 			return 1;
 
@@ -116,14 +116,14 @@ int removeme()
 				"small %^GREEN%^emeralds%^BOLD%^%^BLACK%^"+
 				"in the hilt of "+ETO->QCN+"'s"+
 				" sword glow faintly.",ETO);
-	ETO->set_property("magic resistance",-5);
+	ETO->set_property("magic resistance",-1);
         ETO->set_property("evil item",-1);
 			return 1;
 
 		case 1: case 4: case 7:
 			tell_object(ETO,"%^BOLD%^%^BLACK%^The sword seems"+
 			" very happy to be rid of you.");
-	ETO->set_property("magic resistance",10);
+	ETO->set_property("magic resistance",2);
         ETO->set_property("evil item",-1);
 			return 1;
 

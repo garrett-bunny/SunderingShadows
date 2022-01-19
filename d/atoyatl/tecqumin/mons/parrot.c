@@ -140,7 +140,7 @@ void squawk(){
         saylias = als["say"];
         if (stringp(saylias) && strlen("saylias")>0)
         {
-          saylias = "/daemon/stripper_d"->stripcolors(saylias);
+          saylias = strip_colors(saylias);
           saylias = saylias[4..strlen(saylias)-1];
           report ("sscanffing saylias: " + saylias);
           num = sscanf(saylias, "%s$*%s", saylias_start, saylias_end);
@@ -233,7 +233,9 @@ void catch_say(string str){
   if (sizeof(sayings)>310) trim_sayings();
   else ks = ({});
   language = TP->query_language();
-  if (catch(  str = "/daemon/stripper_d.c"->stripcolors(str))) return;
+  if(catch(str = strip_colors(str)))
+      return;
+  
   if (interactive(TP))
   {
     report("TP is interactive");
@@ -246,7 +248,9 @@ void catch_say(string str){
       {
         report("TP has an alias for 'say'");
         saylias = als["say"];
-        if (catch( saylias = "/daemon/stripper_d.c"->stripcolors(saylias))) return;
+        if(catch(saylias = strip_colors(saylias)))
+            return;
+        
         report("Colour stripped saylias: " + saylias);
         while (str[0]==" ") str = str[1..strlen(str)-1];
         report("Colour stripped heard string: " + str);
@@ -319,7 +323,10 @@ void catch_say(string str){
     if (strlen(str)>1 && str[0..0] == " "){
       str = str[1..strlen(str)-1]; //remove any starting space from sentence
     }
-    if (catch(str = FILTERS_D->filter_colors(str))) return;
+    //if (catch(str = FILTERS_D->filter_colors(str))) return;
+    if(catch(str = strip_colors(str)))
+        return;
+    
     if (sizeof(ks)>0 &&  member_array(str, ks)!= -1){
       num = sayings[str][0];
       num++;
@@ -328,6 +335,10 @@ void catch_say(string str){
     }
     if (!stringp(str) || strlen(str)<1) return;
     details = ({num, language, speech, describe});
+    
+    if(!sizeof(details))
+        return;
+    
     sayings[str] = details;
   }
   return;

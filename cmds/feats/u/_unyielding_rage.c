@@ -6,10 +6,10 @@ void create()
 {
    ::create();
    feat_type("permanent");
-   feat_category("Rampage");
+   feat_category("RagePower");
    feat_name("unyielding rage");
    feat_prereq("Barbarian L20");
-   feat_desc("This feat allows the barbarian to avoid death's door whilst raging. After avoiding mortal death the barbarian will be unable to do so again for some time.");
+   feat_desc("This feat allows the barbarian to avoid death's door whilst raging. After avoiding mortal death the barbarian will be unable to do so again for some time. Half-orcs, mountain orcs, and gray orcs already have Orc Ferocity and thus cannot take this feat.");
    permanent(1);
    allow_blind(1);
    set_required_for(({}));
@@ -23,6 +23,13 @@ int prerequisites(object ob)
         dest_effect();
         return 0;
     }
+    
+    if(ob->query_race() == "half-orc" || ob->query("subrace") == "gray orc" || ob->query("subrace") == "mountain orc")
+    {
+        dest_effect();
+        return 0;
+    }
+    
     return ::prerequisites(ob);
 }
 

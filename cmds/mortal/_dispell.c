@@ -6,11 +6,12 @@ int help();
 
 int cmd_dispell(string str)
 {
-    object* spells;
+    object* spells, buffs;
 
     TP->clear_targeted_spells();
 
     spells = TP->query_property("dispellable spells");
+    buffs = this_player()->query_property("spell_bonus_type");
 
     if (pointerp(spells)) {
         spells = filter_array(spells, (: objectp($1) :));
@@ -34,6 +35,8 @@ int cmd_dispell(string str)
                 message("info", "%^BOLD%^%^BLUE%^" + sprintf("%2d", i) + ". " + spells[i]->query_spell_display(), TP);
             }
         }
+        message("info", "\n\%^RESET%^%^BOLD%^%^BLUE%^--==%^RESET%^%^BOLD%^%^CYAN%^< %^RESET%^%^BOLD%^ Active buff types  %^RESET%^%^BOLD%^%^CYAN%^>%^RESET%^%^BOLD%^%^BLUE%^==--%^RESET%^", TP);
+        message("info", "  %^YELLOW%^" + implode(buffs, ", ") + "%^RESET%^", this_player());
         return 1;
     }
 

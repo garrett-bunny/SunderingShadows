@@ -1,6 +1,6 @@
 %^CYAN%^NAME%^RESET%^
 
-A Quick List of Color Codes on Shadowgate.
+A Quick List of Color Codes on Sundering Shadows.
 
 
 %^CYAN%^DESCRIPTION%^RESET%^
@@ -19,6 +19,9 @@ The following color codes and their associated colors are available:
      %%%^^^BOLD%%%^^^          Sets all text following this code to its %^BOLD%^bold value%^RESET%^.
      %%%^^^ULINE%%%^^^         Sets all text following this code to its %^ULINE%^underlined value%^RESET%^.     
      %%%^^^RESET%%%^^^         Resets all colors and modifiers and sets color back to white.
+
+
+You can also use ANSI color codes, using the format of %%%^^^CXXX%%%^^^, where XXX is the three digit color code. %%%^^^CRST%%%^^^ can be used to return to the default text formatting, similar to the way %%%^^^RESET%%%^^^ works.
 
 
 %^CYAN%^SEE ALSO%^RESET%^

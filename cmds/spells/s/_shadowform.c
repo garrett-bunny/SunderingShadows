@@ -7,7 +7,7 @@ void create()
 {
     ::create();
     set_spell_name("shadowform");
-    set_spell_level(([ "paladin" : 4, "bard" : 4, "psion" : 4, "mage" : 4, "magus" : 4 ]));
+    set_spell_level(([ "paladin" : 4, "bard" : 4, "mage" : 4, "magus" : 4 ]));
     set_spell_sphere("illusion");
     set_syntax("cast CLASS shadowform");
     set_damage_desc("a chance to reduce damage to 1/5 for clevel / 5 rounds");
@@ -37,7 +37,7 @@ spell_effect()
     tell_object(caster, "%^BLUE%^You turn into shadow.%^RESET%^");
 
     target->set_property("spelled", ({ TO }));
-    target->set_property("shadowform", clevel);
+    target->set_property("shadowform", TO);
     target->set_property("added short", ({ "%^RESET%^%^BLUE%^ (a shadow)%^RESET%^" }));
     addSpellToCaster();
     spell_duration = (clevel / 5 + roll_dice(1, 20)) * ROUND_LENGTH;

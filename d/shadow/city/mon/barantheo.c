@@ -5,7 +5,7 @@
 
 #include <std.h>
 #include "../defs.h"
-inherit "/std/comp_vend.c";
+inherit VENDOR;
 
 void buff_up(object myself, object target, int stage);
 
@@ -40,12 +40,12 @@ void create()
    set_guild_level("mage",40);
    set_body_type("gnome");
    set_property("no bump",1);
-   set_components(100);
    set_spell_chance(100);
    set_spells(({
       "fireball","lightning bolt","acid arrow","powerword stun","incendiary cloud","magic missile"
    }));
    set_property("strength","spells");
+   set_storage_room("/d/shadow/city/mon/barantheo_storage.c");
 }
 
 void buff_up(object myself, object target, int stage)

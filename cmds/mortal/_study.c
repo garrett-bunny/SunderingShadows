@@ -37,9 +37,15 @@ int cmd_study(string str)
                 tell_object(TP, "There is no " + what + " in your general area.");
                 return 1;
             }
-            tell_object(TP, "You carefully begin studying the " + what + " here.");
-            tell_room(ETP, TPQCN + " seems to be carefully studying the " +
-                      what + " here.", TP);
+			if(obj->query_obvious_short()==0)
+			{
+			tell_object(TP, "You carefully begin studying the " + str + " here.");
+            tell_room(ETP, TPQCN + " seems to be carefully studying the " + str +" here.", TP);	
+			}
+			else{
+            tell_room(ETP, TPQCN + " seems to be carefully studying the " + obj->query_obvious_short() +" here.", TP);	
+            tell_object(TP, "You carefully begin studying the " + obj->query_obvious_short() + " here.");
+			}
             TP->set_time_delay("studying");
             do_room_study(TP, what);
             return 1;
@@ -122,7 +128,7 @@ int cmd_study(string str)
             }
             continue;
         }
-        if (FEATS_D->usable_feat(TP, "skill focus"))
+        /*if (FEATS_D->usable_feat(TP, "skill focus"))
         {
             myclassskills += ({ ((string)TP->query("skill_focus")) });
         }
@@ -130,7 +136,7 @@ int cmd_study(string str)
 
         if (member_array("academics", myclassskills) == -1 && !TP->is_favored_enemy(monster)) {
             return notify_fail("You need training in academics to study this monster.\n");
-        }
+        }*/
         
         if (!TP->query_time_delay("studying_monster", 5) && !avatarp(TP)) {
             write("You need more time to reflect on your knowledge and " +
@@ -165,7 +171,15 @@ int cmd_study(string str)
     }
     ids = obj->query_id();
     if (!TP->query_invis()) {
-        tell_room(ETP, TPQCN + " seems to be studying the " + str + " carefully.", TP);
+		if(obj->query_obvious_short()==0)
+		{
+		tell_object(TP, "You carefully begin studying the " + str + " here.");
+        tell_room(ETP, TPQCN + " seems to be carefully studying the " + str +" here.", TP);	
+		}
+		else{
+        tell_room(ETP, TPQCN + " seems to be carefully studying the " + obj->query_obvious_short() +" here.", TP);
+        tell_object(TP, "You carefully begin studying the " + obj->query_obvious_short() + " here.");
+		}
     }
     TP->set_time_delay("studying");
     if ((int)obj->is_brewed()) {

@@ -1,6 +1,7 @@
 //magman.c
 
 #include <std.h>
+#include <daemons.h>
 #include "/d/islands/tonerra/areadefs.h"
 
 inherit WEAPONLESS;
@@ -107,5 +108,5 @@ int burnem(object targ)
     tell_room(ETO, "%^RED%^The touch of the magman burns"
               + targ->query_cap_name() + "severely.", targ);
     tell_object(targ, "%^RED%^You are burned severely by the magman's touch.\n");
-    targ->do_damage(("torso"), random(50) + 25);
+    targ->cause_typed_damage(targ, "torso", random(50) + 25, "fire");
 }

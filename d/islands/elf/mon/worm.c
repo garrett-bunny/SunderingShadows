@@ -34,7 +34,7 @@ create() {
    set_funcs( ({"spray"}) );
    set_func_chance(10);
    set_property("weapon resistance",2);
-   set_property("spell resistance",20);
+   set_property("spell damage resistance",20);
    set_property("no death",1);
    set_property("magic",1);
    set_overall_ac(-18);

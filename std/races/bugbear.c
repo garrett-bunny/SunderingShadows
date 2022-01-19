@@ -41,6 +41,8 @@ int *stat_adj() { return ({ 1, 0, 0, -1, 0, -1 }); }
 
 int is_restricted() { return 1; } // restricted races by approval
 
+int is_rollable() { return 1; } // rollable in creation
+
 // Stuff needed to replace what was in the old race database
 
 string race_name() { return "bugbear"; }
@@ -144,3 +146,5 @@ string *query_languages(string subrace)
 {
     return (["required":({"goblin","undercommon"}),"optional":({"orcish","drow","giant"})]);
 }
+
+string query_default_language() { return "undercommon"; }

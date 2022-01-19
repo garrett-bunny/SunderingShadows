@@ -40,6 +40,7 @@ mapping daily_uses(string subrace) { return ([ "shadow travel" : 1,]); }
 mapping query_racial_innate(string subrace) {
 	return ([
                     "shadow travel" : (["type" : "spell", "daily uses" : -1,"level required" : 0,]),
+                    "shadow stride" : (["type" : "spell", "daily uses" : -1,"level required" : 0,]),
                     ]);
 }
 
@@ -54,6 +55,8 @@ int *max_stats() { return ({ 18, 18, 18, 18, 18, 18 }); }
 int *stat_adj()  { return ({ 0, 0, 0, 0, 0, 0 }); }
 
 int is_restricted() { return 1; } // restricted races by approval
+
+int is_rollable() { return 0; } // rollable in creation
 
 // Stuff needed to replace what was in the old race database
 

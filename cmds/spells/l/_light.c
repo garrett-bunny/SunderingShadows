@@ -13,13 +13,11 @@ create()
 {
     ::create();
     set_spell_name("light");
-    set_spell_level(([ "mage" : 1, "cleric" : 1, "paladin" : 1, "assassin" : 1, "inquisitor" : 1, "magus" : 1 ]));
+    set_spell_level(([ "cantrip" : 1, "paladin" : 1, "assassin" : 1 ]));
     set_spell_sphere("alteration");
-    set_syntax("cast CLASS light on TARGET");
-    set_description("This will create a small ball of light, which will light your way. You can cast it on an object or "
-                    "player which it will follow, instead of the caster.");
+    set_syntax("cast CLASS light");
+    set_description("This will create a small ball of light, which will light your way. You may only possess one ball of light at a time.");
     set_non_living_ok();
-    set_target_required(1);
     set_helpful_spell(1);
 }
 
@@ -35,12 +33,20 @@ spell_effect(int prof)
     int level;
     int duration;
 
+    if(present("ball of light", caster))
+    {
+        tell_object(caster, "You already possess a ball of light.");
+        return;
+    }
+    
     if (interactive(caster)) {
         tell_object(caster, "You create a mystical light source.");
-        tell_room(place, caster->QCN + " makes a mystical light source.", ({ caster, target }));
+        tell_room(place, caster->QCN + " makes a mystical light source.", ({ caster }));
+        /*
         if (interactive(target) && !(caster == target)) {
             tell_object(target, caster->QCN + " touches you and a light appears.\n");
         }
+        */
     } else {
         tell_room(place, caster->QCN + " creates a mystical light source.", caster);
     }
@@ -55,11 +61,8 @@ spell_effect(int prof)
     ob->set_property("spell", TO);
     ob->set_property("spelled", ({ TO }));
 
-    if (!target) {
-        ob->move((TP));
-    }else {
-        ob->move((target));
-    }
+    ob->move(caster, 1);
+    
     spell_successful();
 }
 

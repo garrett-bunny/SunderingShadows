@@ -13,7 +13,7 @@ void create()
         set_short("%^GREEN%^A %^BOLD%^l%^RESET%^%^ORANGE%^i%^BOLD%^%^GREEN%^v"+
         "%^RESET%^%^GREEN%^i%^ORANGE%^n%^BOLD%^%^GREEN%^g %^RESET%^%^GREEN%^o%^ORANGE%^a"+
         "%^GREEN%^k %^YELLOW%^c%^GREEN%^u%^RED%^d%^GREEN%^g%^RED%^e%^ORANGE%^l%^RESET%^");
-        set_id(({"cudgal","staff","living oak","weapon"}));
+        set_id(({"cudgel","staff","living oak","weapon"}));
         set_long("%^RESET%^%^GREEN%^This short staff looks as though it grew "+
 "naturally from the t%^ORANGE%^r%^BOLD%^%^GREEN%^u%^RESET%^%^ORANGE%^n%^GREEN%^k of "+
 "an %^ORANGE%^o%^GREEN%^a%^ORANGE%^k%^GREEN%^-t%^ORANGE%^r%^GREEN%^e%^ORANGE%^e%^GREEN%^. "+
@@ -28,6 +28,7 @@ void create()
 "%^BOLD%^%^BLACK%^w%^WHITE%^o%^BLACK%^l%^WHITE%^f%^BLACK%^'s %^RESET%^%^GREEN%^pawprint upon "+
 "a circle of %^BOLD%^g%^RESET%^%^GREEN%^r%^BOLD%^a%^RESET%^%^GREEN%^s%^BOLD%^s%^RESET%^");
         set_value(0);
+        set_damage_type("bludgeoning");
         set_hit((:TO,"hit_func":));
         set_property("able to cast",1);
 }
@@ -39,17 +40,17 @@ int hit_func(object targ){
         tell_object(ETO,"%^GREEN%^V%^BOLD%^i%^RESET%^%^GREEN%^n%^BOLD%^e"+
 "%^RESET%^%^GREEN%^s from the staff %^BOLD%^g%^ORANGE%^r%^GREEN%^o%^ORANGE%^w "+
 "%^RESET%^%^GREEN%^and %^ORANGE%^l%^BOLD%^%^GREEN%^as%^RESET%^%^ORANGE%^h %^GREEN%^around"+
-        "%^BOLD%^%^ORANGE%^ "+targ->QCN+"'s%^GREEN%^body and start to %^BOLD%^%^RED%^c"+
-"%^RESET%^%^RED%^rus%^BOLD%^h %^BOLD%^%^ORANGE%^"+targ->QP+"!%^RESET%^");
+        "%^BOLD%^%^ORANGE%^ "+targ->QCN+"'s %^GREEN%^body and start to %^BOLD%^%^RED%^c"+
+"%^RESET%^%^RED%^rus%^BOLD%^h %^BOLD%^%^ORANGE%^them!%^RESET%^");
         tell_object(targ,"%^BOLD%^%^GREEN%^V%^RESET%^%^ORANGE%^in"+
 "%^BOLD%^%^GREEN%^es %^RESET%^%^GREEN%^from %^BOLD%^%^RED%^ "+ETO->QCN+"'s %^YELLOW%^s"+
 "%^GREEN%^t%^ORANGE%^a%^GREEN%^f%^ORANGE%^f %^GREEN%^lash %^RESET%^%^GREEN%^around your "+
 "body and begin to %^RED%^c%^BOLD%^rus%^RESET%^%^RED%^h %^GREEN%^you!%^RESET%^");
         tell_room(environment(ETO),"%^BOLD%^%^GREEN%^V%^RESET%^%^ORANGE%^ine"+
-"%^BOLD%^%^GREEN%^s %^RESET%^%^GREEN%^from %^BOLD%^%^RED%^"+ETO->QCN+"'s%^BOLD%^s%^ORANGE%^t"+
-"%^GREEN%^a%^ORANGE%^f%^GREEN%^f %^RESET%^%^GREEN%^wrap around %^YELLOW%^"+targ->QCN+"'s"
-    "body and begin to %^BOLD%^%^RED%^c%^RESET%^%^RED%^rus%^BOLD%^h%^YELLOW%^"+targ->QP+"!%^RESET%^",({ETO,targ}));
-       
+"%^BOLD%^%^GREEN%^s %^RESET%^%^GREEN%^from %^BOLD%^%^RED%^"+ETO->QCN+"'s %^BOLD%^s%^ORANGE%^t"+
+"%^GREEN%^a%^ORANGE%^f%^GREEN%^f %^RESET%^%^GREEN%^wrap around %^YELLOW%^"+targ->QCN+"'s "
+    "body and begin to %^BOLD%^%^RED%^c%^RESET%^%^RED%^rus%^BOLD%^h%^YELLOW%^them!%^RESET%^",({ETO,targ}));
+
         return random(4)+8;
    }
 }

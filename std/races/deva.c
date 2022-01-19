@@ -61,7 +61,8 @@ mapping daily_uses(string subrace)
 
 mapping query_racial_innate(string subrace)
 {
-    return (["light" : (["type" : "spell", "daily uses" : -1, "level required" : 0, ])
+    return (["light" : (["type" : "spell", "daily uses" : -1, "level required" : 0, ]),
+             "dimension door" : (["type" : "spell", "daily uses" : -1, "level required" : 0, ])
     ]);
 }
 
@@ -89,6 +90,8 @@ int is_restricted()
 {
     return 1;
 }                                 // restricted races by approval
+
+int is_rollable() { return 0; } // rollable in creation
 
 string race_name()
 {

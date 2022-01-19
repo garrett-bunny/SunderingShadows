@@ -32,6 +32,7 @@ void create(){
    set_remove((:TO,"remove_fun":));
    set_struck((:TO,"struck_fun":));
    set_overallStatus(220);
+   set_property("no disenchant",1);
 }
 
 int wear_fun() {
@@ -59,5 +60,7 @@ int struck_fun(int damage,object what,object who){
      tell_object(who,"%^BOLD%^%^RED%^"+ETO->QCN+" seems to sense a weakness in your defenses, and lashes out "
 "at you with one of "+ETO->QP+" spiked gauntlets!%^RESET%^");
      ETO->execute_attack();
+     return 0;
    }
+   return damage;
 }

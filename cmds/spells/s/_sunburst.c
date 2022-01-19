@@ -9,16 +9,17 @@ void create(){
     ::create();
     set_author("ares");
     set_spell_name("sunburst");
-    set_spell_level(([ "druid" : 8, "mage" : 8,"oracle":8 ]));
+    set_spell_level(([ "cleric" : 8, "mage" : 8,"oracle":8, "druid" : 8 ]));
     set_mystery(({"heavens","solar"}));
     set_spell_sphere("invocation_evocation");
     set_domains("sun");
     set_syntax("cast CLASS sunburst");
-    set_damage_desc("divine, 4/3 times more to undead");
+    set_damage_desc("radiant damage");
     set_description("This spell will send the light of the sun radiating out in a circle from the caster.  Any enemies caught in the area will suffer damage from the pure light of the sun.  Undead creatures suffer more damage than normal ones, and those creatures who fail their save are blinded by the light.");
     set_verbal_comp();
     set_somatic_comp();
     set_save("reflex");
+    set_immunities( ({ "radiant" }) );
     splash_spell(3);
     set_components(([
       "mage" : ([ "sunstone" : 1, ]),
@@ -47,10 +48,13 @@ void spell_effect(int prof){
     for(i=0;i<sizeof(attackers);i++){
         if(!objectp(attackers[i])) continue;
 
+        // Changed to radiant damage.
         if(attackers[i]->is_undead())
             dmg = sdamage * 4/3;
         else
             dmg = sdamage;
+        
+        dmg = sdamage;
 
         if(do_save(attackers[i],0)) {
           if(evade_splash(attackers[i])) continue;
@@ -61,7 +65,8 @@ void spell_effect(int prof){
             attackers[i]->set_temporary_blinded(1);
         }
         tell_object(attackers[i],"%^YELLOW%^The sunlight burns as it strikes you, scorching your skin!%^RESET%^");
-        damage_targ(attackers[i],attackers[i]->return_target_limb(),dmg,"divine");
+        //damage_targ(attackers[i],attackers[i]->return_target_limb(),dmg,"divine");
+        damage_targ(attackers[i], attackers[i]->return_target_limb(), dmg, "radiant");
     }
     spell_successful();
     dest_effect();

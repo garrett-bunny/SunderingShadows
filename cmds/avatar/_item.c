@@ -1,5 +1,7 @@
 #include <std.h>
 #include <move.h>
+#include <security.h>
+
 inherit DAEMON;
 
 #define VALID_TYPES ({"weaponsmith","armorsmith","tailor","jeweller","woodworker","leatherworker","object"})
@@ -9,6 +11,7 @@ int cmd_item(string str){
    string file,name,type;
    object item;
 
+   //seteuid(UID_ROOT);
    if(!str) return notify_fail("Usage: item <name>");
    if(sscanf(str, "-f %s -n %s -t %s",file, name, type) != 3) return help();
    if(member_array(type,VALID_TYPES) == -1) return help();
@@ -16,7 +19,7 @@ int cmd_item(string str){
    file = "/d/avatars/"+TP->query_name()+"/"+file+".c";
    if(file_exists(file))
      return notify_fail("That file exists already, please choose another name, or first delete the file.\n");
-
+ 
    item = new ("/cmds/avatar/item.c");
    item->set_object_type(type);
    item->set_file_name(file);

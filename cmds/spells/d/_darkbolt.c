@@ -7,18 +7,15 @@ void create()
 {
     ::create();
     set_spell_name("darkbolt");
-    set_spell_level(([ "mage" : 5 ]));
+    set_spell_level(([ "innate" : 5 ]));
     set_spell_sphere("necromancy");
-    set_domains("darkness");
     set_syntax("cast CLASS darkbolt on TARGET");
-    set_damage_desc("half cold, half electricity");
-    set_description("This spell will hurl a bolt of pure evil at the target.  If the target is able to move in time, then "
-                    "they will only suffer some of the damage.  This spell may also hit some of those who are standing near the target.");
+    set_damage_desc("void damage on ranged touch attack");
+    set_description("This spell will hurl a bolt of pure evil at the target, and those enemies near that target, attempting a ranged touch attack.");
     set_verbal_comp();
     set_somatic_comp();
     set_target_required(1);
     splash_spell(1);
-    set_save("reflex");
 }
 
 int preSpell()
@@ -63,18 +60,13 @@ void spell_effect(int prof)
 
     foreach(object ob in targets)
     {
-        dam = sdamage;
-
         if (objectp(ob) && environment(ob) == room) {
-            if (do_save(ob, 0)) {
-                dam /= 2;
-                tell_room(room, "%^BLUE%^" + sprintf("The beam of darkness grazes %s.", ob->QCN));
-            }else {
+            if(BONUS_D->process_hit(caster, target, 1, 0, 0, 1) < 1)
+                tell_room(room, "%^BLUE%^" + sprintf("The beam of darkness misses %s.", ob->QCN));
+            else {
                 tell_room(room, "%^BLUE%^" + sprintf("The beam of darkness strikes %s!", ob->QCN));
+                ob->cause_typed_damage(ob, "torso", sdamage, "void");
             }
-
-            damage_targ(ob, ob->return_target_limb(), dam / 2, "cold");
-            damage_targ(ob, ob->return_target_limb(), dam / 2, "electricity");
         }
     }
 

@@ -13,7 +13,7 @@ void create(){
     ::create();
     set_spell_name("maw of stone");
     set_spell_level(([ "cleric" : 5 ]));
-    set_spell_sphere("elemental earth");
+    set_spell_sphere("conjuration_summoning");
     set_syntax("cast CLASS maw of stone on TARGET");
     set_description("This spell conjures stone from the earth to surround the target, causing damage to all those "
 "attacking the caster initially.  Afterwards, it continues to gnaw on the target for a limited time.");

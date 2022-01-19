@@ -2,10 +2,11 @@
 %^RESET%^%^CYAN%^Assassin:
 
 %^RESET%^%^CYAN%^Requirements:
+%^RESET%^ 20 Levels
 %^RESET%^ 16 Base Intelligence
 %^RESET%^ 10 Ranks in Stealth
 
-%^RESET%^%^CYAN%^Classes allowed:%^RESET%^ any but psionic
+%^RESET%^%^CYAN%^Classes allowed:%^RESET%^ any
 %^RESET%^%^CYAN%^Class Feats:%^RESET%^
  %^RESET%^L1: crit
  %^RESET%^L4: hide in plain sight
@@ -17,4 +18,4 @@ Assassins are arcane casters and are granted a subset of arcane utility spells b
 
 Assassins can cast their spells in any armor, but they must not wield while doing so as they rely both on speaking and gesturing while casting.
 
-%^RESET%^%^CYAN%^See also: %^RESET%^feats, skills, prepare, prestige classes
+%^RESET%^%^CYAN%^See also: %^RESET%^feats, skills, prepare, prestige classes, make

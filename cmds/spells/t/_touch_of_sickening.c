@@ -16,7 +16,6 @@ create()
     set_spell_name("touch of sickening");
     set_spell_level(([ "mage" : 1, "cleric":1, "druid":1, "magus" : 1 ]));
     set_spell_sphere("necromancy");
-    set_domains(({"water"}));
     set_syntax("cast CLASS touch of sickening on TARGET");
     set_damage_desc("sickened for clevel/4+1 rounds");
     set_description("With this spell you touch the victim, channeling negative energy through your hand and sickening them.");
@@ -55,7 +54,7 @@ spell_effect(int prof)
 
     roll = BONUS_D->process_hit(caster, target, 1, bonus, 0, 1);
 
-    if(!roll || roll == -1 && ! caster->query_property("spectral_hand"))
+    if(!roll)
     {
         tell_object(caster,""+mycolor+"You try and touch "+target->QCN+"'s "+target_limb+" with a "+myhue+" hand, but miss!");
         tell_object(target,""+mycolor+caster->QCN+"'s "+myhue+" hand gropes for your "+target_limb+" unsuccessfully.");

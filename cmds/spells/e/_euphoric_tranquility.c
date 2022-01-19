@@ -1,4 +1,5 @@
 #include <spell.h>
+#include <daemons.h>
 inherit SPELL;
 
 void create() {
@@ -28,7 +29,7 @@ spell_effect(int prof)
     tell_room(place,"%^MAGENTA%^"+caster->QCN+" throws the pattern at "+target->QCN+".%^RESET%^",({caster,target}));
     tell_object(target,"%^MAGENTA%^"+caster->QCN+" throws the pattern into your face.%^RESET%^");
 
-    if(!(do_save(target,-2)||mind_immunity_damage(target, "default")))
+    if(!(do_save(target,0)||mind_immunity_damage(target, "default")||PLAYER_D->immunity_check(target, "charm")))
     {
         object attackers = target->query_attackers();
         object attacker;

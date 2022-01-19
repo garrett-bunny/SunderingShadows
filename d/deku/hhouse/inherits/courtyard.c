@@ -24,7 +24,7 @@ void create()
 
     set_long("%^BOLD%^%^WHITE%^You find yourself standing in a "+
     "massive courtyard surrounding an %^BOLD%^%^BLACK%^ancient "+
-    "%^BOLD%^%^WHITE%^and %^RESET%^%^ORANGE%^delapidated%^BOLD%^"+
+    "%^BOLD%^%^WHITE%^and %^RESET%^%^ORANGE%^dilapidated%^BOLD%^"+
     "%^WHITE%^ house. The house towers high in the air and you can "+
     "tell that the western half of the upper levels of it have "+
     "collapsed, almost as if something %^BOLD%^%^RED%^enormous"+
@@ -57,7 +57,7 @@ void create()
     "to be concealed.");
 
     set_items(([
-    ({"house", "delapidated house", "haunted house", 
+    ({"house", "dilapidated house", "haunted house", 
     "ancient house"}) : "%^BOLD%^%^BLACK%^The house "+
     "before you is enormous. It must have been majestic "+
     "beyond simple words at one point in time but that time "+
@@ -77,7 +77,7 @@ void create()
     ({"moss", "thick moss"}) : "%^RESET%^%^GREEN%^This "+
     "thick stiff moss grows all over the road, tarnishing "+
     "the once beautiful stones upon which you walk, and has "+
-    "even claimed much of the outter walls of the house. "+
+    "even claimed much of the outer walls of the house. "+
     "It looks as if it will continue to spread.%^RESET%^",
         
     ({"vine", "vines"}) : "%^RESET%^%^GREEN%^These "+

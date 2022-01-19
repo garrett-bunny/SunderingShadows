@@ -8,13 +8,14 @@ void create()
 {
     ::create();
     set_spell_name("fear");
-    set_spell_level(([ "bard" : 3, "mage" : 4, "psion" : 6, "inquisitor":4, "oracle":5 ]));
+    set_spell_level(([ "bard" : 3, "mage" : 4, "psion" : 6, "inquisitor":4, "oracle":5, "cleric" : 4 ]));
     set_spell_sphere("necromancy");
-    set_domains("destruction");
+    set_domains("evil");
     set_mystery("dragon");
     set_syntax("cast CLASS fear");
     set_description("Fear sends a wave of horrid thoughts and images out toward the foes around the caster, possibly terrifying them. An invisible cone of terror causes each living creature in the area to become panicked unless it succeeds on a Will save. If cornered, a panicked creature begins cowering. If the Will save succeeds, the creature is shaken for 1 round.");
     mental_spell();
+    evil_spell(1);
     splash_spell(3);
     set_verbal_comp();
     set_somatic_comp();
@@ -79,7 +80,7 @@ void spell_effect(int prof)
         if(bonus < 0) bonus = 0;
         bonus = bonus*(-1);
 
-        if(race_immunity_check(inven[i], "fear"))
+        if(race_immunity_check(inven[i], "fear") || PLAYER_D->immunity_check(inven[i], "fear"))
         {
             spell_kill(target, caster);
             continue;
@@ -98,7 +99,7 @@ void spell_effect(int prof)
             tell_room(place,"%^BLUE%^You see "+inven[i]->QCN+" wince and shudder, "
                       "before regaining composure.",inven[i]);
 
-            "/std/effect/status/shaken"->apply_effect(inven[i],2);
+            "/std/effect/status/shaken"->apply_effect(inven[i],2, caster);
 
         }
         else
@@ -109,7 +110,7 @@ void spell_effect(int prof)
             tell_room(place, "%^BLUE%^Sheer horror contorts "+
                       ""+inven[i]->QCN+"'s face. "+inven[i]->QS+" breaks in "+
                       "fear and trembles.",inven[i]);
-            "/std/effect/status/panicked"->apply_effect(inven[i],roll_dice(1,6));
+            "/std/effect/status/panicked"->apply_effect(inven[i],roll_dice(1,6), caster);
         }
 
     }

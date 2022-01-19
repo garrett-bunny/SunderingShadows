@@ -25,8 +25,8 @@ void create()
 {
     ::create();
     set_spell_name("hideous laughter");
-    set_spell_level(([ "mage" : 2, "oracle" :2 ]));
-    set_mystery("whimsy");
+    set_spell_level(([ "mage" : 2, "cleric" : 2, "bard" : 1, ]));
+    set_domains("chaos");
     set_spell_sphere("enchantment_charm");
     set_syntax("cast CLASS hideous laughter on TARGET");
     set_description("Hideous Laughter, when cast, will force the target to laugh at anything that comes to mind.  The "
@@ -53,13 +53,6 @@ void spell_effect(int prof)
     modifier = 0;
     intelligence = target->query_stats("intelligence");
 
-    if(checkMagicResistance(target))
-    {
-        sendDisbursedMessage(target);
-        dest_effect();
-        return;
-    }
-
     if (!spell_kill(target,caster))
     {
         dest_effect();
@@ -71,7 +64,7 @@ void spell_effect(int prof)
     if ((intelligence >= 13) && (intelligence <= 14)) modifier = -2;
     if ((intelligence >= 15) && (intelligence <= 16)) modifier = -1;
 
-    if ((target->query_stats("intelligence") < 4) || (do_save(target,modifier)))
+    if ((target->query_stats("intelligence") < 4) || (do_save(target,modifier)) || PLAYER_D->immunity_check(target, "charm"))
     {
         // Some additional code put in for the result of the target making its save. Now set so that
         // The target will attack if it makes its save. Lujke September 25 1005

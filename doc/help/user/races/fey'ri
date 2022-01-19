@@ -1,8 +1,6 @@
 %^BOLD%^%^BLUE%^Fey'ri (sun elf):
 
 %^BOLD%^%^BLUE%^Stat adjustments: %^RESET%^+2 dexterity, +2 intelligence, -2 constitution
-%^BOLD%^%^BLUE%^Skill adjustments: %^RESET%^+2 perception
-%^BOLD%^%^BLUE%^Misc bonuses: %^RESET%^+2 saves vs charm spells, sleep immunity, flight ability, low light vision 2
 %^BOLD%^%^BLUE%^Innate spells: %^RESET%^alter self at will
 %^BOLD%^%^BLUE%^Size: %^RESET%^medium
 
@@ -11,9 +9,18 @@
 %^BOLD%^%^BLUE%^Normal adventuring starting age: %^RESET%^101-130
 %^BOLD%^%^BLUE%^Average life span: %^RESET%^550
 
+%^BOLD%^%^BLUE%^Racial Traits:
+%^CYAN%^Elven Magic%^RESET%^         - +2 spell penetration
+%^CYAN%^Elven Immunities%^RESET%^    - +2 to saves vs charm spells, sleep immunity
+%^CYAN%^Fiendish Resistance%^RESET%^ - +1 to spell resistance
+%^CYAN%^Low Light Vision%^RESET%^    - +2 to sight bonus to see in the dark
+%^CYAN%^Keen Senses%^RESET%^         - +2 perception
+
 %^BOLD%^%^BLUE%^Description:
 %^RESET%^Fey'ri are to elves as tieflings are to humans, distant descendents of the union between a sun elf and a fiend. Unlike tieflings, all fey'ri can trace their ancestry back to a few specific sun-elf houses in history - Heasirretyn and its allies - who were outcast from Selu'havessthor during the Purge. As such, they retain the ancient history and attitudes of the sun elves of this once-great civilisation, coupled with a longstanding superiority complex and a grudge for being cast out and abandoned by their kin.
 
 Physically, fey'ri retain a similar appearance to their sun elf ancestors, but all also sport wings that clearly set them apart. They also carry one or more additional traits to mark their fiendish heritage. These may include fiery red eyes, fine scales all over the skin, a long pointed tail, batlike ears, or deep red skin. While this would usually be a dead giveaway as to their nature, they have learned over time to take on an alternative form as a normal elf, hiding their fiendish traits from view. In this way, many take on missions of espionage amongst normal elves, gathering information to support their own evil ends.
 
-%^BOLD%^%^BLUE%^See also: %^RESET%^help elf
+%^RED%^Warning:%^RESET%^ This is an advanced race, known as a PK-race. It imposes disadvantages on your gameplay: If revealed, you may be attacked on sight and shunned in cities throughout the realm. You start with your NOPK-flag turned off and other players may attack you because of your race. You may not, however, attack a player of a standard race without additional provocation. 
+
+%^BOLD%^%^BLUE%^See also: %^RESET%^elf, races, pk rules

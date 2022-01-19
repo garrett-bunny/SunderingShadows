@@ -25,4 +25,6 @@ AVATAR
 	  set_property("lore",11);
 }
 
+int is_metal() { return 0; }
+
 

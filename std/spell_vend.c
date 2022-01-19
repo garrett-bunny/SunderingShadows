@@ -368,7 +368,7 @@ mapping gen_spells_sold(int maxrand)
         if (catch(spell = new(spellfile)))
             continue;
         if (lvl = spell->query_spell_level("mage"))
-            if (spell->query_feat_required("mage") == "me")
+            if (spell->query_feat_required("mage") == "me" && lvl < 10)
                 all_spells[spell->query_spell_name()] =
                     (2132 * lvl * lvl - 3522 * lvl + 3870 +
                      roll_dice(lvl, 100));

@@ -10,7 +10,7 @@ void create() {
     ::create();
     set_author("nienne");
     set_spell_name("darkvision");
-    set_spell_level(([ "mage" : 2, "ranger" : 3, "monk" : 3, "assassin": 3]));
+    set_spell_level(([ "mage" : 2, "ranger" : 3, "monk" : 3, "assassin": 3, "magus": 3]));
     set_spell_sphere("alteration");
     set_monk_way("way of the shadow");
     set_syntax("cast CLASS darkvision");
@@ -58,7 +58,7 @@ int preSpell() {
 void spell_effect(int prof) {
     int duration;
     target = caster;
-    if(member_array((string)target->query_race(),LIVING_D->night_races()) != -1) modifier = -10;
+    if(member_array((string)target->query_race(),PLAYER_D->night_races()) != -1) modifier = -10;
     else modifier = 8;
     if(spell_type == "ranger")
     {

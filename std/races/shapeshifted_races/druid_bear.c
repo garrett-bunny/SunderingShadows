@@ -15,8 +15,8 @@ void create()
     set_new_damage_type("piercing");
     set_limbs( ({ "mouth","head","torso","right claw", "left claw", "right foreleg","right forepaw","left foreleg","left forepaw","right rear leg","right rear paw","left rear leg","left rear paw" }) );
     set_attack_functions(([ "maw" : (:TO,"bite_attack":), "right claw" : (:TO,"claw_attack":), "left claw" : (:TO,"claw_attack":) ]));
-    set_ac_bonus(5); // ac bonus is different from the other bonuses because of the way ac is calculated with different body types -Ares
-    set_base_attack_num(1);
+    set_ac_bonus(-20); // ac bonus is different from the other bonuses because of the way ac is calculated with different body types -Ares
+    set_base_attack_num(3);
     set_castable(0);
     set_can_talk(0);
     set_shape_race("bear");
@@ -24,10 +24,10 @@ void create()
     set_shape_profile("druid_bear_999"); // needs to be something the player is unlikely to name one of their profiles when disguise goes in
     set_shape_bonus("perception",2);
     set_shape_bonus("survival",4);
-    set_shape_bonus("constitution",2);
+    set_shape_bonus("constitution",4);
     set_shape_bonus("cold resistance",10);
     set_shape_bonus("sight bonus",2);
-    set_shape_bonus("damage resistance",5);
+    set_shape_bonus("damage resistance",20);
     set_shape_height(150+random(40));
     set_shape_weight(4000+random(1000));
     set_shape_mastery_feat("sunder");
@@ -114,9 +114,9 @@ int bite_attack(object tp, object targ) // bear bite attack significantly more l
     chance = (int)tp->query_guild_level("druid");
 
     if(chance > 60) { chance = 60; }
-    if(chance > 29 && !FEATS_D->usable_feat(TP,"savage instincts iii")) { chance = 29; }
-    if(chance > 19 && !FEATS_D->usable_feat(TP,"savage instincts ii")) { chance = 19; }
-    if(chance > 9 && !FEATS_D->usable_feat(TP,"savage instincts i")) { chance = 9; }
+    if(chance > 39 && !FEATS_D->usable_feat(TP,"savage instincts iii")) { chance = 39; }
+    if(chance > 29 && !FEATS_D->usable_feat(TP,"savage instincts ii")) { chance = 29; }
+    if(chance > 19 && !FEATS_D->usable_feat(TP,"savage instincts i")) { chance = 19; }
 
     dice = ( chance / 4) + 2;
 
@@ -218,9 +218,9 @@ int claw_attack(object tp, object targ)
     chance = (int)tp->query_guild_level("druid");
 
     if(chance > 60) { chance = 60; }
-    if(chance > 29 && !FEATS_D->usable_feat(TP,"savage instincts iii")) { chance = 29; }
-    if(chance > 19 && !FEATS_D->usable_feat(TP,"savage instincts ii")) { chance = 19; }
-    if(chance > 9 && !FEATS_D->usable_feat(TP,"savage instincts i")) { chance = 9; }
+    if(chance > 39 && !FEATS_D->usable_feat(TP,"savage instincts iii")) { chance = 39; }
+    if(chance > 29 && !FEATS_D->usable_feat(TP,"savage instincts ii")) { chance = 29; }
+    if(chance > 19 && !FEATS_D->usable_feat(TP,"savage instincts i")) { chance = 19; }
 
     dice = ( chance / 3) + 2;
 

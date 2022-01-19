@@ -39,7 +39,7 @@ void create() {
 "paperweight.%^RESET%^",
      "papers" : "%^RESET%^%^BOLD%^Several large stacks of papers domintate the desk. They "
 "are obviously in some order, but its a mystery to you as to what means what.%^RESET%^ ",
-     "registry" : "%^YELLOW%^Bound in soft leather, this is the master record of all the "
+        ({"registry","book"}) : "%^YELLOW%^Bound in soft leather, this is the master record of all the "
 "accounts at the guild. The entire thing however has been written in a complicated code "
 "that only guildmasters and a handfull of others understand. This has been done to "
 "protect the identity of the 'members'.%^RESET%^",

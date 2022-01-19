@@ -12,7 +12,7 @@ void create()
     ::create();
     set_author("ares");
     set_spell_name("entangle");
-    set_spell_level(([ "ranger" : 1, "druid" : 1, "mage" : 1, "oracle" : 1]));
+    set_spell_level(([ "ranger" : 1, "druid" : 1, "mage" : 1, "oracle" : 1, "cleric" : 1 ]));
     set_spell_sphere("conjuration_summoning");
     set_domains("plant");
     set_syntax("cast CLASS entangle");
@@ -104,7 +104,7 @@ void execute_attack()
 void dest_effect()
 {
     int i;
-    tell_room(place, "%^GREEN%^The vegeation in the area shrinks as all returns to normal.");
+    tell_room(place, "%^GREEN%^The vegetation in the area shrinks as all returns to normal.");
     for (i = 0; i < sizeof(inven); i++) {
         if (!objectp(inven[i])) {
             continue;

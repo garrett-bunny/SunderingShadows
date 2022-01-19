@@ -20,10 +20,10 @@ string *restricted_deities(string subrace) {
 // stats in order: str, dex, con, int, wis, cha
 int *stat_mods(string subrace) { return ({ 0, 2, 0, 0, -2, 2 }); }
 
-mapping skill_mods(string subrace) { return ([ "rope trick" : 2, "stealth" : 2 ]); }
+mapping skill_mods(string subrace) { return ([ "rope use" : 2, "stealth" : 2 ]); }
 
 
-int natural_AC(string subrace) { return 0; }
+int natural_AC(string subrace) { return 1; }
 
 int sight_bonus(string subrace) { return 2; }
 
@@ -33,7 +33,9 @@ int misc_bonuses(string subrace, string bonus) { return 0; }
 
 mapping query_racial_innate(string subrace){
    return ([
-   "viper form" : (["type" : "spell", "casting level" : 0.5, "daily uses" : -1, "delay" : 1, "uses left" : -1, "refresh time" : -1, "level required" : 0, "class specific" : 0]),]);
+   "viper form" : (["type" : "spell", "casting level" : 1, "daily uses" : -1, "delay" : 1, "uses left" : -1, "refresh time" : -1, "level required" : 0, "class specific" : 0]),
+   "detect poison" : (["type" : "spell", "casting level" : 1, "daily uses" : -1, "delay" : 1, "uses left" : -1, "refresh time" : -1, "level required" : 0, "class specific" : 0]),
+   ]);
 }
 
 // ---------------------------------------------------------------------------------------------------
@@ -45,6 +47,8 @@ int *max_stats() { return ({ 18, 18, 18, 18, 18, 18 }); }
 int *stat_adj()  { return ({ 0, 0, 0, 0, 0, 0 }); }
 
 int is_restricted() { return 1; } // restricted races by approval
+
+int is_rollable() { return 1; } // rollable in creation
 
 // Stuff needed to replace what was in the old race database
 

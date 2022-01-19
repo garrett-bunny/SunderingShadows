@@ -73,6 +73,7 @@ void create(){
 
   	set_exits(([
     "south" : TCITY+"c5",
+    "north" : "/d/dagger/Torm/city/jail_main",
 	]));
 	set_property("knock unconscious",1);
     HUNG = 0;
@@ -562,7 +563,7 @@ void hanging(object tp,int num){
 
 void reset() {
     ::reset();
-    if(!present("sergeant")) new(MON+"guardse")->move(TO);
-    if(!present("guard 2")) new(MON+"guard2")->move(TO);
-    if(!present("guard 3")) new(MON+"guard4")->move(TO);
+    if(!present("guard")) new(MON+"guard")->move(TO);
+    if(!present("guard 2")) new(MON+"guard")->move(TO);
+    if(!present("guard 3")) new(MON+"guard")->move(TO);
 }

@@ -6,9 +6,11 @@ inherit SPELL;
 void create() {
     ::create();
     set_spell_name("wave of pain");
-    set_spell_level(([ "mage" : 3, "bard":3]));
+    set_spell_level(([ "mage" : 3, "bard":3, "cleric" : 3 ]));
+    set_domains("suffering");
     set_spell_sphere("illusion");
     set_syntax("cast CLASS wave of pain");
+    set_damage_desc("Mental damage. Paralyzed on failed save");
     set_description("Through this spell, the caster sends out a great wave of pain that can harm, kill, and/or paralyze "
 "all in its path.");
     set_verbal_comp();
@@ -46,7 +48,8 @@ void spell_effect(int prof)
     for (i=0;i<j;i++) {
         if (!objectp(inven[i])) continue;
         tell_object(inven[i],"%^RED%^You are struck with a horrible pain.");
-        damage_targ(inven[i],"torso",sdamage,"untyped");
+        inven[i]->cause_typed_damage(inven[i], inven[i]->return_target_limb(), sdamage, "mental");
+        //damage_targ(inven[i],"torso",sdamage,"mental");
 
         if(!do_save(inven[i],0)) {
             tell_object(inven[i],"%^RED%^The pain is too much, forcing you to your knees then "

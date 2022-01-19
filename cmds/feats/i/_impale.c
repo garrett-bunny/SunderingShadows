@@ -10,11 +10,11 @@ void create()
 {
     ::create();
     feat_type("instant");
-    feat_category("TwoHandedWeapons");
+    feat_category("CombatManeuvers");
     feat_name("impale");
     feat_syntax("impale TARGET");
     feat_prereq("Sweeping Blow, Blade block or Parry");
-    feat_desc("The Impale feat has a chance of impaling your target or staggering them back into another attacker. Both targets will take damage and have a chance to be stunned.
+    feat_desc("The Impale feat is a combat maneuver that has a chance of impaling your target or staggering them back into another attacker. Both targets will take damage and have a chance to be stunned.
 
 If used without an argument this feat will pick up a random attacker. Be aware that this power affects multiple targets.
 
@@ -91,7 +91,7 @@ void execute_feat()
         in_shapeshift = 0;
     }
     if (!in_shapeshift) {
-        if (!caster->validate_combat_stance("two hander")) {
+        if (!caster->validate_combat_stance("two hander") || !sizeof(weapons)) {
             tell_object(caster, "You need to be wielding a two handed weapon to use this feat.");
             dest_effect();
             return;
@@ -241,15 +241,22 @@ void execute_attack()
     delay_subject_msg(target, FEATTIMER, "%^BOLD%^%^WHITE%^" + target->QCN + " can be %^CYAN%^impaled%^WHITE%^ again.%^RESET%^");
     caster->remove_property("using impale");
     caster->set_property("using impale", newmap);
-    if (!(res = thaco(target, enchant))) {
+    
+    //attack of opportunity
+    target->execute_attack();
+    
+    //if (!(res = thaco(target, enchant))) {
+    if(!(res = BONUS_D->combat_maneuver(target, caster, 0)))
+    {
         tell_object(caster, "%^BOLD%^%^MAGENTA%^" + target->QCN + " sidesteps your thrust at the "
                     "last instant, leaving you open to attack!%^RESET%^");
         tell_object(target, "%^BOLD%^%^MAGENTA%^You sidestep " + caster->QCN + "'s attack at the "
                     "last instant, leaving " + caster->QO + " open to attack!%^RESET%^");
         tell_room(place, "%^BOLD%^%^MAGENTA%^" + target->QCN + " sidesteps " + caster->QCN + "'s attack "
                   "at the last instant, leaving " + caster->QP + " open to attack!%^RESET%^", ({ caster, target }));
-        caster->set_paralyzed(roll_dice(1, 6), "%^YELLOW%^You are trying to get back into "
-                              "position!%^RESET%^");
+        //caster->set_paralyzed(roll_dice(1, 6), "%^YELLOW%^You are trying to get back into "
+        //                      "position!%^RESET%^");
+        target->execute_attack();
         dest_effect();
         return;
     }else if (res == -1) {
@@ -263,13 +270,11 @@ void execute_attack()
         dest_effect();
         return;
     }
+    
+    mult = 6;
+    
     if (FEATS_D->usable_feat(caster, "the reaping")) {
-        reaping = 1;
-    }
-
-    mult = 8; // this was 4, which was average damage of about 60 hitpoints at level 50, average of about 24 damage at level 20...
-    if (reaping) {
-        mult = 16;
+        mult = 10;
     }
 
 // picking up 12 as a benchmark for druid shift, two-hand sword equiv
@@ -278,15 +283,13 @@ void execute_attack()
     }else {
         dam = 12;
     }
-    dam = ((clevel - 1) / 10 + 1) * (dam / 2); //let it scale properly in 10-level blocks. -N, 9/10
-    if (sizeof(weapons)) {
-        dam += roll_dice(mult, dam) + weapons[0]->query_wc();
-    }else {
-        dam += roll_dice(mult, dam) + 12;
-    }
-    dam += "/daemon/bonus_d"->damage_bonus(caster->query_stats("strength"));
-    dam += (int)caster->query_damage_bonus();
-    mod = dam * -1;
+
+    mod = BONUS_D->query_stat_bonus(caster, "strength");
+    clevel += enchant;
+    
+    //dam = ((clevel - 1) / 10 + 1) * (dam / 2); //let it scale properly in 10-level blocks. -N, 9/10
+    dam += clevel;
+    dam = roll_dice(dam, mult) + mod + caster->query_damage_bonus();
 
     if (!in_shapeshift) {
         theweapon = weapons[0]->query_short();
@@ -315,7 +318,7 @@ void execute_attack()
         break;
     }
 
-    if (!do_save(target, mod)) {
+    //if (!do_save(target, mod)) {
         tell_object(caster, "%^BOLD%^%^GREEN%^Your attack leaves " + target->QCN + " stunned and "
                     "unable to move!%^RESET%^");
         tell_object(target, "%^BOLD%^%^GREEN%^" + caster->QCN + "'s attack leaves you stunned and "
@@ -323,7 +326,7 @@ void execute_attack()
         tell_room(place, "%^BOLD%^%^GREEN%^" + caster->QCN + "'s attack leaves " + target->QCN + " stunned "
                   "and unable to move!%^RESET%^", ({ target, caster }));
         target->set_paralyzed(roll_dice(2, 4), "%^YELLOW%^You are struggling to move!%^RESET%^");
-    }
+    //}
 
     if (objectp(target_two)) {
         switch (type) {

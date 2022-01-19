@@ -33,10 +33,16 @@ OLI
 	set_gender("female");
 }
 
-int constrict(object targ){
+int constrict(object targ)
+{
 	string capname;
+    
+    if(!targ || !objectp(targ))
+        return 0;
+    
 	capname = targ->query_cap_name();
-	if(targ->query_property("caught")) {	
+	if(targ->query_property("caught"))
+    {	
 /*  	  return execute_attack();  
  changing to do damage since was bugging and I think was looping from already being in attack round, could have maybe changed to be a special instead, but requiring a hit seems like a fair enough alternative - *Styx*, 11/11/02
 */
@@ -51,11 +57,16 @@ int constrict(object targ){
 	targ->set_property("caught",1);
 	flag = 1;
 	targ->set_disabled(20);
-	}
+    
+    return 0;
+}
 	
 	
 void release(object targ){
     int str, need;
+    
+    if(!targ || !objectp(targ))
+        return;
 
 	if(flag){
 		if(caught && objectp(caught)){

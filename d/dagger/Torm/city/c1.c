@@ -52,7 +52,14 @@ void reset() {
   ::reset();
   if(!(query_night())) {
      if(!present("torm guard",TO)) {
-        new(MON+"guard4")->move(TO);
+        new(MON+"guard")->move(TO);
      }
+  }
+  else
+  {
+    if(!present("torm guard",TO))
+        new(MON+"guard")->move(TO);
+    if(!present("torm guard 2", TO))
+        new(MON+"guard")->move(TO);
   }
 }

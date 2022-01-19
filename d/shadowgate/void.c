@@ -1,5 +1,9 @@
+//this is a room where stuff ends up after something errors out
+//it also cleans itself so some things go here to be removed.
 #include <config.h>
 #include <std.h>
+#include <security.h>
+
 #define PRISON_D ("/adm/daemon/prison_d")
 #define JAIL ("/d/shadowgate/jail")
 void check_my_inventory();
@@ -16,6 +20,9 @@ void create()
     set_property("light", 1);
     call_out("check_my_inventory", 20);
     set_property("no teleport", 1);
+    set_property("indoors", 1);
+    set_terrain(WOOD_BUILDING);
+    set_travel(DIRT_ROAD);
     set_no_clean(1);
     return;
 }
@@ -79,6 +86,8 @@ void clean_inventory()
         return;
     }
 
+    seteuid(UID_ROOT);
+    
     foreach(ob in deep_inventory(TO))
     {
         if (!objectp(ob)) {

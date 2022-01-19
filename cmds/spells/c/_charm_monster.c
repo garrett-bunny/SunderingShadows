@@ -17,11 +17,10 @@ void end_charmed(object target,object caster);
 void create() {
     ::create();
     set_spell_name("charm monster");
-    set_spell_level(([ "bard" : 3, "mage" : 1, "ranger" : 2, "psion" : 2, "oracle" : 3, "druid" : 3, "cleric" : 3 ]));
+    set_spell_level(([ "bard" : 3, "mage" : 3, "psion" : 2, "oracle" : 3 ]));
     set_spell_sphere("enchantment_charm");
     set_discipline("telepath");
     set_mystery("nature");
-    set_domains(({"animal", "charm"}));
     set_syntax("cast CLASS charm monster on TARGET");
     set_description("Casting this divine prayer will allow a priest to attempt to charm a mob.  If the mob falls prey to "
 "the charm, they will stand in defense of the caster, and follow them around.  Caution should be exercised, for if you "

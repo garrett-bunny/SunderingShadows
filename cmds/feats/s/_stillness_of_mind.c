@@ -128,7 +128,7 @@ void execute_feat()
         dest_effect();
         return;
     }
-    tell_object(caster, "%^BOLD%^%^CYAN%^You focus intenting, stilling your "+
+    tell_object(caster, "%^BOLD%^%^CYAN%^You focus intently, stilling your "+
     "mind and envisioning yourself free to move about at will!%^RESET%^");
     if(objectp(environment(caster)))
     {
@@ -136,8 +136,10 @@ void execute_feat()
         "intently and you watch as "+caster->QS+" envisions himself free to "+
         "move at will!%^RESET%^", caster);
     }
-    caster->set_tripped(0);
-    caster->set_paralyzed(0);
+    //caster->set_tripped(0);
+    //caster->set_paralyzed(0);
+	caster && caster->remove_paralyzed();
+    caster && caster->set_tripped(0);
     delay_messid_msg(90,"%^BOLD%^%^WHITE%^You can %^CYAN%^stillness of mind%^WHITE%^ again.%^RESET%^");
     caster->remove_property("using stillness of mind");
     caster->set_property("using stillness of mind", time());

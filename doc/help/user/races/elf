@@ -2,8 +2,13 @@
 
 %^BOLD%^%^BLUE%^Playable Subraces: %^RESET%^moon elf, sun elf, wood elf, wild elf, fey'ri, aquatic elf
 
-%^BOLD%^%^BLUE%^Misc bonuses: %^RESET%^sleep immunity, +2 to saves vs charm spells, low light vision 2
 %^BOLD%^%^BLUE%^Innate Spells: %^RESET%^commune (except fey'ri)
+
+%^BOLD%^%^BLUE%^Racial Traits:
+%^CYAN%^Elven Magic%^RESET%^      - +2 spell penetration
+%^CYAN%^Elven Immunities%^RESET%^ - +2 to saves vs charm spells, sleep immunity
+%^CYAN%^Low Light Vision%^RESET%^ - +2 to sight bonus to see in the dark
+%^CYAN%^Keen Senses%^RESET%^      - +2 perception
 
 %^BOLD%^%^BLUE%^Description:
 Elves are one of the most ancient races and existed before The Creation in the world far away. Their history is steeped in magic and learning. This age they are a decadent, fading race that prefers to live in seclusion, clinging onto the past glory. They are usually beautiful creatures possessed of unearthly grace, that grow slowly and are extremely longlived, up to more than 500 years old. They reach physical maturity at approximately 25, and emotional maturity by 125. Elves do not scar save by magical injuries, and they tend to be immune to normal illnesses, as only magical ailments seem to trouble them.

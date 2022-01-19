@@ -11,7 +11,7 @@ void create() {
     ::create();
     set_spell_name("wall of ectoplasm");
     set_spell_level(([ "psion" : 4 ]));
-    set_spell_sphere("invocation_evocation");
+    set_spell_sphere("metacreativity");
     set_syntax("cast CLASS wall of ectoplasm on <exit>");
     set_description("Wall of ectoplasm is a potent power in the hands "
        "of a practiced psion.  The power calls into being a field of "
@@ -63,7 +63,7 @@ void spell_effect(int prof) {
             wall2->move(outside);
             wall2->block(caster,ins[i]);
             tell_room(outside,"%^CYAN%^A shimmering field suddenly "+
-                      "spring up, blocking the "+
+                      "springs up, blocking the "+
                       ins[i]+"!%^RESET%^");
 /*
             tell_room(outside,"%^CYAN%^A shimmering field suddenly "+

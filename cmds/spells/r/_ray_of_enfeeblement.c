@@ -64,7 +64,7 @@ void spell_effect(int prof)
 
     spell_kill(target, caster);
     roll = BONUS_D->process_hit(caster, target, 1, 0, 0, 1);
-    if (!roll || roll == -1 && !caster->query_property("spectral_hand")) {
+    if (!roll || roll == -1) {
         tell_object(target, "You are narrowly missed by a ray emanating from " + caster->QCN + ".\n");
         tell_room(place, target->QCN + " is narrowly missed by a ray emanating from " + caster->QCN + ".\n", ({ caster, target }));
         tell_object(caster, "Your ray of enfeeblement missed " + target->QCN + ".\n");

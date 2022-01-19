@@ -1,3 +1,4 @@
+//Supposed to be AOE phantasmal killer. Noted for future changes.
 #include <std.h>
 #include <daemons.h>
 #include <spell.h>
@@ -10,21 +11,42 @@ void create()
 {
     ::create();
     set_spell_name("weird");
-    set_spell_level(([ "mage" : 9, "oracle" : 9 ]));
-    set_mystery("whimsy");
+    set_spell_level(([ "mage" : 9 ]));
     set_spell_sphere("illusion");
     set_syntax("cast CLASS weird");
-    set_damage_desc("mental, cowering");
-    set_description("With this spell, caster extends fears and horrors of own mind into material plane, causing pain and suffering to everything in sight. Only a strong will can withstand this power, and only to avoid some of the suffering..");
+    set_damage_desc("mental damage, phantasmal killer, and cowering on failed save");
+    set_description("With this spell, the caster extends fears and horrors from their own mind into the material plane, causing pain and suffering to everything in sight. The phantasmal killer spell is cast on all enemies and their minds assaulted with visions of horror. Only a strong will can withstand this power, and even then will only avoid some of the suffering.");
     set_verbal_comp();
     set_somatic_comp();
-    splash_spell(2);
+    splash_spell(3);
     set_save("will");
 }
 
 string query_cast_string()
 {
     return "%^CYAN%^" + caster->QCN + " speaks words of arcane horror.";
+}
+
+int preSpell()
+{
+    object nspell, *enemies;
+    
+    enemies = target_selector();
+    
+    if(!sizeof(enemies))
+    {
+        tell_object(caster, "You aren't fighting anyone.");
+        return 0;
+    }
+    
+    foreach(object ob in enemies)
+    {
+        nspell = new("/cmds/spells/p/_phantasmal_killer");
+        nspell->set_silent_casting(1);
+        nspell->use_spell(caster, ob, clevel, 100, "mage");
+    }
+    
+    return 1;
 }
 
 void spell_effect(int prof)
@@ -44,12 +66,8 @@ void spell_effect(int prof)
         if (!objectp(attackers[i])) {
             continue;
         }
-        define_base_damage(0);
         admg = sdamage;
-        if (do_save(target) || random(3)) {
-            if (evade_splash(attackers[i])) {
-                continue;
-            }
+        if (do_save(attackers[i])) {
             admg = admg / 2;
         }else {
             "/std/effect/status/cowering"->apply_effect(attackers[i], clevel / 18 + 1);

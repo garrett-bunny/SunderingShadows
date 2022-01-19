@@ -111,6 +111,7 @@ string requirements() // string version, maybe we'll need this, maybe not, can r
     str = "Prerequisites:\n"
         "    Level 20 Martial or Hybrid except Druid\n"
         "    14 Base Intelligence\n"
+        "    20 Base Dexterity\n"
         "    10 Ranks spent in Athletics Skill\n";
 
     return str;
@@ -183,8 +184,12 @@ int caster_level_calcs(object player, string the_class)
     }
     base = player->query("base_class");
 
-    level = player->query_class_level(base);
-    level += player->query_class_level("duelist");
+    //level = player->query_class_level(base);
+    level = player->query_class_level(the_class);
+    
+    if(base == the_class)
+        level += player->query_class_level("duelist");
+    
     return level;
 }
 

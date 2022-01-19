@@ -65,6 +65,7 @@ void create(){
    set_struck((:TO,"struck_fun":));
    con = 100;
    set_overallStatus(220);
+   set_property("no disenchant",1);
 }
 
 void heart_beat(){
@@ -159,7 +160,7 @@ int remove_fun(){
 }
 
 int struck_fun(int damage, object what, object who){
-   if(random(1000) < 400){
+   if(!random(3)){
       tell_room(EETO,"%^BOLD%^%^BLACK%^The %^BOLD%^%^WHITE%^sp"+
 	     "%^RESET%^i%^BOLD%^derw%^RESET%^e%^BOLD%^b %^BOLD%^"+
 		 "%^BLACK%^design on the mail flares with an angry "+
@@ -175,8 +176,9 @@ int struck_fun(int damage, object what, object who){
 		 "%^BLACK%^design on your mail flares an angry %^RESET%^"+
 		 "%^RED%^red %^BOLD%^%^BLACK%^as you are struck by "+
 		 "a blow.%^RESET%^");
-      return (damage*-1);
+      return 0;
    }
+   return damage;
 }
 
 int reset_counter(){

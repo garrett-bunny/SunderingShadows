@@ -23,8 +23,8 @@ void create()
     set_new_damage_type("piercing");
     set_limbs( ({ "head","torso","right hand", "left hand", "right arm","right arm","left leg","right leg",}) );
     set_attack_functions(([ "right hand" : (:TO,"hand_attack":), "left hand" : (:TO,"hand_attack":) ]));
-    set_ac_bonus(-6);
-    set_base_attack_num(4);
+    set_ac_bonus(-12);
+    set_base_attack_num(3);
     set_castable(1);
     set_can_talk(1);
     set_shape_race("golem");
@@ -33,7 +33,7 @@ void create()
     set_shape_bonus("sight bonus",3);
     set_shape_bonus("damage bonus",3);
     set_shape_bonus("attack bonus",3);
-    set_shape_bonus("spell damage resistance",30);
+    set_shape_bonus("damage resistance",20);
     set_shape_height(900+random(100));
     set_shape_weight(5000+random(500));
 }
@@ -70,7 +70,7 @@ int change_into_message(object obj)
     tell_object(obj,"%^RESET%^%^BLUE%^Your stomp, sending a waves of rolling thunder. You are a GOLEM!");
     tell_room(environment(obj),"%^RESET%^%^BOLD%^"+obj->QCN+" grows very still and appears to concentrate deeply.",obj);
     tell_room(environment(obj),"%^RESET%^%^YELLOW%^"+obj->QCN+" begins to change in front of your very eyes!",obj);
-    tell_room(environment(obj),"%^RED%^Where "+obj->QCN+" once stood, now stands a DEMON!",obj);
+    tell_room(environment(obj),"%^RED%^Where "+obj->QCN+" once stood, now stands a GOLEM!",obj);
     return 1;
 }
 
@@ -107,13 +107,13 @@ int hand_attack(object tp, object targ)
         tell_object(tp,"%^BLUE%^You swing at "+targ->QCN+" with your mighty fists, the blows connecting solidly!");
         tell_object(targ,"%^BLUE%^"+tp->QCN+" swings at you with its mighty fists, the blows connecting solidly!");
         tell_room(ENV(tp),"%^BLUE%^"+tp->QCN+" swings at "+targ->QCN+" with its mighty fists, the blows connecting solidly!",({tp,targ}));
-        targ->cause_typed_damage(targ,targ->return_target_limb(),roll_dice(clevel,6),"bludgeoning");
+        targ->cause_typed_damage(targ,targ->return_target_limb(),roll_dice(1 + clevel / 3,6),"bludgeoning");
         break;
     case 3:
         tell_object(tp,"%^BOLD%^%^BLUE%^You grasp your hands together above the head before bringing them down in unison at "+targ->QCN+"!");
         tell_object(targ,"%^BOLD%^%^BLUE%^"+tp->QCN+"grasps its hands together above the head before bringing them down in unison at you!");
         tell_room(ENV(tp),"%^BOLD%^%^BLUE%^"+tp->QCN+" grasps its hands together above the head before bringing them in unison at "+targ->QCN+"!",({tp,targ}));
-        targ->cause_typed_damage(targ,targ->return_target_limb(),roll_dice(clevel,12),"bludgeoning");
+        targ->cause_typed_damage(targ,targ->return_target_limb(),roll_dice(1 + clevel / 3,8),"bludgeoning");
     }
     return roll_dice(1,12);
 }

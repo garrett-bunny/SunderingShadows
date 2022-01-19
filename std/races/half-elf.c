@@ -12,7 +12,7 @@ int *restricted_alignments(string subrace) {
     return ({});
 }
 
-string *restricted_classes(string subrace) { return ({  "paladin" }); }
+string *restricted_classes(string subrace) { return ({}); }
 
 string *restricted_deities(string subrace) { return ({}); }
 
@@ -29,6 +29,11 @@ int is_statmod_race(string subrace)
 
 mapping skill_mods(string subrace) {
     return ([ "influence" : 2 ]);
+}
+
+mapping race_featmap(string subrace, object player)
+{
+    return ([ 1 : ({ "skill focus" }) ]);
 }
 
 int natural_AC(string subrace) { return 0; }
@@ -57,6 +62,8 @@ int *max_stats() { return ({ 18, 18, 18, 18, 18, 18 }); }
 int *stat_adj() { return ({ 0, 0, 0, 0, 0, 0 }); }
 
 int is_restricted() { return 0; } // restricted races by approval
+
+int is_rollable() { return 1; } // rollable in creation
 
 // Stuff needed to replace what was in the old race database
 string race_name() { return "half-elf"; }
@@ -168,5 +175,5 @@ int is_pk_race(string subrace)
 
 string *query_languages(string subrace)
 {
-    return (["required":({"common","elven"}),"optional":({"abyssal","aklo","auran","aquan","beast","celestial","draconic","drow","dwarvish","giant","gnomish","halfling","ignan","infernal","orcish","saurian","tengu","sylvan","terran","undercommon","yuan-ti"})]);
+    return (["required":({"common","elven"}),"optional":({"abyssal","aklo","auran","aquan","beast","celestial","draconic","drow","dwarvish","giant","gnomish","halfling","ignan","infernal","orcish","saurian","sylvan","terran","undercommon","yuan-ti"})]);
 }

@@ -58,6 +58,13 @@ int *stat_adj() { return ({ 0, 0, 2, 0, 0, 2 }); }
 
 int is_restricted() { return 1; } // restricted races by approval
 
+int is_rollable() { return 1; } // rollable in creation
+
+int is_pk_race()
+{
+    return 1;
+}
+
 // Stuff needed to replace what was in the old race database
 
 string race_name() { return "kitsune"; }
@@ -146,5 +153,5 @@ string *query_eye_colors(string subrace) {
 
 string *query_languages(string subrace)
 {
-    return (["required":({"common","sylvan",}),"optional":({"elven","aklo", "celestial", "gnomish", "tengu"})]);
+    return (["required":({"common","sylvan",}),"optional":({"elven","aklo", "celestial", "gnomish"})]);
 }

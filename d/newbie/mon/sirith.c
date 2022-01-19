@@ -18,7 +18,7 @@ void create(){
    set_long("%^CYAN%^Sirith seems to be getting on in age, with %^WHITE%^gray hair %^CYAN%^and a few wrinkles "
 "upon his face.  Despite this, his %^ORANGE%^hazel %^CYAN%^eyes are bright and sharp, always alert as he "
 "watches people pass him by on the street.  He is garbed in a %^BOLD%^%^BLACK%^simple robe%^RESET%^%^CYAN%^ "
-"tied at the waist, and carries with him some sort of %^ORANGE%^old tome%^CYAN%^.%^RESET%^");
+"tied at the waist, and carries with him some sort of %^ORANGE%^old tome%^CYAN%^. Maybe you should say 'hello' to him.%^RESET%^");
    set_gender("male");
    set_race("human");
    set_body_type("human");

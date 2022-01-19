@@ -117,7 +117,7 @@ int stuff(string str)
        str != "title") { return 0; }
     write("Enter the "+str+" for the book");
     write("Enter ** to abort");
-    input_to("set_stuff",str);
+    input_to("set_stuff", str);
     return 1;
 }
 
@@ -131,9 +131,11 @@ void set_stuff(string str,string stuff)
     {
         write("%^BOLD%^%^WHITE%^This is the first time this book has been altered.%^RESET%^");
         write("%^BOLD%^%^WHITE%^Please enter the author's alias for this book%^RESET%^");
+        write("%^BOLD%^%^WHITE%^NOTE : You will need to <set title> again after this.%^RESET%^");
         write("%^BOLD%^%^WHITE%^Enter <none> without the <>'s for no alias%^RESET%^");
         write("%^BOLD%^%^WHITE%^Enter ** to abort%^RESET%^");
-        input_to("set_author",str);
+        input_to("set_author");
+        return;
     }
 
     switch(stuff)
@@ -161,7 +163,7 @@ void set_stuff(string str,string stuff)
                 }
             }
         }
-        if(!invalid_character_check(str,TP)) { return 1; }
+        if(!invalid_character_check(str,this_player())) { return 1; }
         __Title = str;
         set_title(__Title);
         tell_object(TP,"%^BOLD%^Title changed to:\n %^RESET%^"+__Title+"");
@@ -176,7 +178,7 @@ void set_author(string alias)
     if(alias == "")     { return; }
     if(!check_status()) { return; }
 
-    if(!invalid_character_check(alias,TP)) { return 1; }
+    if(!invalid_character_check(alias,this_player())) { return; }
     if(strlen(alias) > 25)
     {
         tell_object(TP,"The author alias may not be more than 25 characters long.");
@@ -196,7 +198,7 @@ void set_author(string alias)
         tell_object(TP,"%^RESET%^%^BOLD%^Author's alias set to:\n %^RESET%^"+__AuthorAlias+"");
         break;
     }
-    return 1;
+    return;
 }
 
 int remove_page(string str)
@@ -213,10 +215,12 @@ int remove_page(string str)
 
     chapters = query_chapters();
     chap_keys = keys(chapters);
+    chap_keys = sort_array(chap_keys, 1);
     for(i=0;i<sizeof(chap_keys);i++)
     {
         pages = chapters[chap_keys[i]];
         page_keys = keys(pages);
+        page_keys = sort_array(page_keys, 1);
         for(j=0;j<sizeof(pages);j++)
         {
             numbers = pages[page_keys[j]];
@@ -378,10 +382,12 @@ mapping get_page(int page)
 
     chapters = query_chapters();
     chap_keys = keys(chapters);
+    chap_keys = sort_array(chap_keys, 1);
     for(i=0;i<sizeof(chap_keys);i++)
     {
         pages = chapters[chap_keys[i]];
         page_keys = keys(pages);
+        page_keys = sort_array(page_keys, 1);
         for(j=0;j<sizeof(pages);j++)
         {
             numbers = pages[page_keys[j]];
@@ -400,6 +406,7 @@ int chapter_start_page(string chapter)
     chapters = query_chapters();
     pages = chapters[chapter];
     page_keys = keys(pages);
+    page_keys = sort_array(page_keys, 1);
     if(!sizeof(page_keys)) { return -1; }
     numbers = pages[page_keys[0]];
     return numbers["page"][0];
@@ -441,8 +448,8 @@ void read_page(int page)
 
 void add_page(string chapter,object page)
 {
-    mapping chapters=([]),page_data=([]);
-    string *languages=({}),*writings=({});
+    mapping chapters=([]),page_data=([]), new_chapters=([]);
+    string *languages=({}),*writings=({}), *chap_keys;
     int i;
 
     if(!page->query("language list")) { return notify_fail("No blank pages allowed.\n"); }
@@ -466,6 +473,8 @@ void add_page(string chapter,object page)
     }
 
     chapters += ([ set_chapter_page_number(chapter) : page_data ]);
+    __BookData[chapter] = chapters;
+    
     set_page_numbers();
 
     tell_room(ETP,"%^BOLD%^"+TP->QCN+" adds a page to "+__Title+".%^RESET%^",TP);
@@ -486,20 +495,27 @@ void set_page_numbers()
     string *chap_keys=({}),*page_keys=({});
     int i,j,count;
 
+    count = 0;
     chapters = query_chapters();
     chap_keys = keys(chapters);
+    chap_keys = sort_array(chap_keys, 1);
     for(i=0;i<sizeof(chap_keys);i++)
     {
         pages = chapters[chap_keys[i]];
         page_keys = keys(pages);
+        page_keys = sort_array(page_keys, 1);
         for(j=0;j<sizeof(page_keys);j++)
         {
             count++;
             numbers = pages[page_keys[j]];
             numbers["page"] = ({ count });
+            chapters[chap_keys[i]][page_keys[j]]["page"] = ({ count });
         }
         set_last_page(count);
     }
+    
+    __BookData = chapters;
+    
     return;
 }
 
@@ -537,6 +553,28 @@ void set_title(string title)
     return;
 }
 
+int invalid_character_check(string str, object player)
+{
+    string *invalid = ({ "*", "-", "=", "_", "'", "~", "^", "&", "%", "$", "#", ".", ",", "/", "\\" });
+    
+    if(!objectp(player) || !stringp(str))
+        return 0;
+    
+    str = strip_colors(str);
+    
+    foreach(string tmp in invalid)
+    {
+        if(strsrch(str, tmp) >= 0)
+        {
+            tell_object(player, "The characters " + implode(invalid, " ") + " are not valid in the titles or author aliases of books.");
+            return 0;
+        }
+    }
+    
+    return 1;
+}
+
+/*   
 int invalid_character_check(string str,object player)
 {
     string *bad_chars,chars;
@@ -545,7 +583,7 @@ int invalid_character_check(string str,object player)
     if(!objectp(player))    { return 0; }
     chars = "* / \ , . # $ % ^ & ~ ' _ = -";
     bad_chars = explode(chars," ");
-    str = FILTERS_D->filter_colors(str);
+    str = strip_colors(str);
     for(i=0;i<sizeof(bad_chars);i++)
     {
         if(strsrch(str,bad_chars[i]) != -1)
@@ -557,6 +595,7 @@ int invalid_character_check(string str,object player)
     }
     return 1;
 }
+*/
 
 int help(string str)
 {

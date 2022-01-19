@@ -14,7 +14,8 @@ void dest_effect();
 create() {
     ::create();
     set_spell_name("ghoul touch");
-    set_spell_level(([ "mage" : 2, "magus" : 2 ]));
+    set_spell_level(([ "mage" : 2, "magus" : 2, "cleric" : 2 ]));
+    set_domains("undeath");
     set_spell_sphere("necromancy");
     set_syntax("cast CLASS ghoul touch on TARGET");
     set_damage_desc("sickened on living, or paralyzed on living and sickened on everyone");
@@ -49,7 +50,7 @@ spell_effect(int prof) {
     env = environment(caster);
 
     roll = BONUS_D->process_hit(caster, target, 1, 0, 0, 1);
-    if (!roll || roll == -1 && ! caster->query_property("spectral_hand"))
+    if (!roll)
     {
         tell_object(target,"%^BOLD%^%^CYAN%^"+caster->QCN+" fails to touch you!");
         tell_room(place,"%^BOLD%^%^CYAN%^"+caster->QCN+" fails to touch "+target->QCN+"!", ({target, caster}));

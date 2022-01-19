@@ -54,6 +54,7 @@ void create(){
    set_struck((:TO,"struck":));
    set_heart_beat(1);
    set_overallStatus(220);
+   set_property("no disenchant",1);
 }
 
 void init(){
@@ -73,7 +74,7 @@ int wear_it(string str){
 	  "itself about "+ETO->query_objective()+" like a dark halo.%^RESET%^",ETO);
    myrace = ETO->query_race();
    if(myrace != "shade") { // adding this as it makes no RP sense for a cloak of shadows to bother a shadow-shrouded shade. N, 1/16.
-     if(member_array(ETO->query_race(),LIVING_D->night_races()) != -1) set_item_bonus("sight bonus",3);
+     if(member_array(ETO->query_race(),PLAYER_D->night_races()) != -1) set_item_bonus("sight bonus",3);
      else set_item_bonus("sight bonus",-3); // conveys the darkening effect regardless of race. N, 11/12
    }
    ETO->set_property("added short",({" %^BOLD%^%^BLACK%^(shrouded by shadows)%^RESET%^"}));
@@ -94,7 +95,7 @@ void drop(){
 
 int struck(int damage, object what, object who){
    if(query_worn()){
-      if(!random(2)){
+      if(!random(3)){
          switch(random(3)){
             case 0:
                tell_room(EETO,"%^BLUE%^A serpentine tendril lances "+
@@ -123,14 +124,14 @@ int struck(int damage, object what, object who){
 			      "unfurl suddenly from your back, whipping around to "+
 				  "parry "+who->query_cap_name()+"'s strike!%^RESET%^");
               break;
-            case 3:
+            case 2:
                tell_room(EETO,"%^BOLD%^%^BLACK%^"+ETO->query_cap_name()+""+
 			      "'s form suddenly flickers as "+who->query_cap_name()+""+
 				  "'s strike passes through "+ETO->query_objective()+" "+
 				  "as harmlessly as if "+ETO->query_subjective()+" "+
 				  "were a shadow.%^RESET%^",({who,ETO}));
-               tell_object(who,"%^BOLD%^%^BLACK%^"+ETO->query_cap_name()+"+
-			      ""'s form suddenly flickers as your strike passes "+
+               tell_object(who,"%^BOLD%^%^BLACK%^"+ETO->query_cap_name()+""+
+			      "'s form suddenly flickers as your strike passes "+
 				  "through "+ETO->query_objective()+" as harmlessly "+
 				  "as if "+ETO->query_subjective()+" were a shadow.%^RESET%^");
                tell_object(ETO,"%^BOLD%^%^BLACK%^Your form suddenly "+
@@ -139,9 +140,10 @@ int struck(int damage, object what, object who){
                   "a shadow.%^RESET%^");
                break;
          }
+         return 0;
       }
-   return(-1)*(damage);
    }
+   return damage;
 }
 
 void heart_beat(){

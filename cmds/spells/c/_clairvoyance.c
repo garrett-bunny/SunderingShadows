@@ -16,10 +16,8 @@ void create()
 {
     ::create();
     set_spell_name("clairvoyance");
-    set_spell_level(([ "psion" : 2, "mage" : 2, "bard" : 3, "assassin" : 4, "inquisitor" : 3, "oracle" : 2, "druid" : 3, "warlock" : 1, "magus" : 3 ]));
-    set_discipline("seer");
-    set_domains(({"travel", "mentalism"}));
-    set_mystery("lore");
+    //On way fewer spell lists in SRD...
+    set_spell_level(([ "mage" : 2, "bard" : 3, "assassin" : 4, "inquisitor" : 3, "warlock" : 1, "magus" : 3 ]));
     set_spell_sphere("divination");
     set_syntax("cast CLASS clairvoyance on TARGET");
     set_description("A skilled seer can attempt to gain a brief image of a target. All they will see is a second's "
@@ -105,10 +103,15 @@ void spell_effect(int prof)
         dest_effect();
         return;
     }
+    
+    if(caster->query("no pk")){
+        tell_object(caster,"%^YELLOW%^You are unable to scry while you have a %^MAGENTA%^NoPK %^YELLOW%^flag.");
+        dest_effect();
+        return;
+    }
 
-    bonus = caster->query_stats(casting_stat);
-    bonus = bonus-10;
-    scrypower = CLEVEL + bonus + query_spell_level(spell_type) * 2;
+    bonus = calculate_bonus(caster->query_stats(get_casting_stat()));
+    scrypower = CLEVEL + bonus + random(query_spell_level(spell_type) * 2); //this is here so the vision spell is more powerful
 
     if(blockobj = present("blockerx111", environment(mytarg)) || blockobj = present("blockerx111",mytarg))
     {

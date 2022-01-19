@@ -82,7 +82,7 @@ void execute_attack()
 {
     int amount;
     string dedication;
-    object *effects;
+    object *effects, *attackers;
     
     if(!objectp(caster))
     {
@@ -109,15 +109,17 @@ void execute_attack()
     if(target != caster)
         tell_object(target,"%^BOLD%^%^CYAN%^"+caster->QCN+" touches you and concentrates for a moment.%^RESET%^");
     
-    amount = caster->query_guild_level("paladin");
-    amount = 30 + roll_dice(amount, 6) + BONUS_D->query_stat_bonus(caster, "charisma");
+    amount = (caster->query_guild_level("paladin") * 2) + BONUS_D->query_stat_bonus(caster, "charisma");
+    amount = 200 + roll_dice(amount, 6);
     dedication = caster->query_dedication();
+    attackers = caster->query_attackers();
     
     //If used offensively, has to pass touch attack test
-    if(member_array(target, caster->query_attackers()) >= 0 && BONUS_D->process_hit(caster, target, 1, 0, 0, 1) <= 0)
+    if(member_array(target, attackers) >= 0 && BONUS_D->process_hit(caster, target, 1, 0, 0, 1) <= 0)
     {
         tell_object(caster, "You attempt to lay hands on your opponent but miss!");
         tell_object(target, caster->QCN + " attempts to lay hands on you but misses!");
+        dest_effect();
         return;
     }
     
@@ -127,7 +129,13 @@ void execute_attack()
     else
         caster->cause_typed_damage(target, target->return_target_limb(), amount, "positive energy");
     
-    if(dedication && target != caster->query_current_attacker())
+    if(!objectp(target) || member_array(target, attackers) >= 0)
+    {
+        dest_effect();
+        return;
+    }
+    
+    if(dedication)
     {
         string ename;
         
@@ -145,7 +153,7 @@ void execute_attack()
             if(POISON_D->clear_poisons_by_dc(target, clevel, 0))
                 tell_object(caster, "You are able to cleanse the poison and it fades away.");
             else
-                tell_object(caster, "You were not able to cleanse the poison.");
+                tell_object(caster, "You were not able to cleanse any poison.");
             
             dest_effect();
             return;

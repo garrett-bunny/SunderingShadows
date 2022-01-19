@@ -49,7 +49,7 @@ void spell_effect(int prof)
         if(!do_save(attackers[i],0))
         {
 
-            attackers[i]->set_tripped(roll_dice(1,4));
+            attackers[i]->set_tripped(roll_dice(1,4) * 6);
             tell_object(attackers[i],"%^BOLD%^%^BLACK%^You are stuck in the tar.%^RESET%^");
             tell_room(attackers[i],"%^BOLD%^%^BLACK%^"+attackers[i]->QCN+" is stuck in the tar.%^RESET%^",attackers[i]);
         }

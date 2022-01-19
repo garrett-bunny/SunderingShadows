@@ -13,11 +13,11 @@ void create(){
 }
 
 int strikeme(int damage, object what, object who){
-   if(!random(10)) {
-      tell_room(environment(query_worn()),"%^BOLD%^%^WHITE%^A pulse of energy from "+ETOQCN+"'s shield envelops "+ETO->QO+" in a faintly %^RESET%^%^MAGENTA%^pu%^BOLD%^r%^RESET%^%^MAGENTA%^ple %^BOLD%^glow%^RESET%^%^BOLD%^, absorbing "+who->QCN+"'s attack.%^RESET%^",({ETO,who}));
-      tell_object(ETO,"%^BOLD%^%^WHITE%^A pulse of energy from your shield envelops you in a faintly %^RESET%^%^MAGENTA%^pu%^BOLD%^r%^RESET%^%^MAGENTA%^ple %^BOLD%^glow%^RESET%^%^BOLD%^, absorbing "+who->QCN+"'s attack.%^RESET%^");
-      tell_object(who,"%^BOLD%^%^WHITE%^A pulse of energy from "+ETOQCN+"'s shield envelops "+ETO->QO+" in a faintly %^RESET%^%^MAGENTA%^pu%^BOLD%^r%^RESET%^%^MAGENTA%^ple %^BOLD%^glow%^RESET%^%^BOLD%^, absorbing your attack.%^RESET%^");
-      return (-1)*damage;
-      return 1;
-   }
+    if(!random(10)) {
+        tell_room(environment(query_worn()),"%^BOLD%^%^WHITE%^A pulse of energy from "+ETOQCN+"'s shield envelops "+ETO->QO+" in a faintly %^RESET%^%^MAGENTA%^pu%^BOLD%^r%^RESET%^%^MAGENTA%^ple %^BOLD%^glow%^RESET%^%^BOLD%^, absorbing "+who->QCN+"'s attack.%^RESET%^",({ETO,who}));
+        tell_object(ETO,"%^BOLD%^%^WHITE%^A pulse of energy from your shield envelops you in a faintly %^RESET%^%^MAGENTA%^pu%^BOLD%^r%^RESET%^%^MAGENTA%^ple %^BOLD%^glow%^RESET%^%^BOLD%^, absorbing "+who->QCN+"'s attack.%^RESET%^");
+        tell_object(who,"%^BOLD%^%^WHITE%^A pulse of energy from "+ETOQCN+"'s shield envelops "+ETO->QO+" in a faintly %^RESET%^%^MAGENTA%^pu%^BOLD%^r%^RESET%^%^MAGENTA%^ple %^BOLD%^glow%^RESET%^%^BOLD%^, absorbing your attack.%^RESET%^");
+        return 0;
+    }
+    return damage;
 }
