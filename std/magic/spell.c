@@ -2225,19 +2225,16 @@ void spell_successful() //revoked exp bonuses from casting. This function seems 
         }
         mycost = 0; // on the off chance something calls spell_successful() more than once, don't charge them twice
     }
-
+    
     if(sizeof(bonus_type))
-    {   
+    {
         if(!target)
             target = caster;
-  
-        foreach(string type in bonus_type)
-        {
-            if(target->query_property("spell_bonus_type"))
-                target->add_property_value("spell_bonus_type", ({ type }));
-            else
-                target->set_property("spell_bonus_type", ({ type }));
-        }
+        
+        if(target->query_property("spell_bonus_type"))
+            target->add_property_value("spell_bonus_type", bonus_type);
+        else
+            target->set_property("spell_bonus_type", bonus_type);
     }
 
     return 1;
@@ -2287,11 +2284,15 @@ void dest_effect()
     
     if(sizeof(bonus_type))
     {
-        if(!target)
+        if(!target || !objectp(target))
             target = caster;
         
-        foreach(string type in bonus_type)
-            target && target->remove_property_value("spell_bonus_type", ({ type }) );
+        target->remove_property_value("spell_bonus_type", bonus_type);
+        
+        buffs = target->query_property("spell_bonus_type");
+        
+        if(!sizeof(buffs))
+            target->remove_property("spell_bonus_type");
     }
 
     before_cast_dest_effect();
