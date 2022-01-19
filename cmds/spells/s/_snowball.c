@@ -8,7 +8,7 @@ void create()
     set_spell_level(([ "mage" : 1, "druid":1]));
     set_spell_sphere("conjuration_summoning");
     set_syntax("cast CLASS snowball on TARGET");
-    set_damage_desc("bludgeoning, tripping");
+    set_damage_desc("cold, tripping");
     set_description("You create a small snowball and forcefully project it on target. If hit successfully it will stagger opponents for a brief moment.");
     set_save("fort");
     set_verbal_comp();
@@ -36,7 +36,7 @@ spell_effect(int prof)
     {
         target->set_tripped(1, "You are staggered byt the painfully thrown snoball!");
     }
-    damage_targ(target, target->return_target_limb(), dam, "bludgeoning");
+    damage_targ(target, target->return_target_limb(), dam, "cold");
     TO->dest_effect();
 }
 
