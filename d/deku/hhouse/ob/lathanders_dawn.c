@@ -123,10 +123,10 @@ int strike_func(int mydamage, object what, object who)
 {
     int dam, x;
     object *foes;
-    if(!objectp(who)) return damage;
-    if(!objectp(ETO)) return damage;
+    if(!objectp(who)) return mydamage;
+    if(!objectp(ETO)) return mydamage;
 
-    if(!random(3) || !charges) return damage;
+    if(random(3) || !charges) return mydamage;
 
     if(damage >= 150)
     {
@@ -238,5 +238,5 @@ int strike_func(int mydamage, object what, object who)
             return mydamage;
             break;
     }
-    return damage;
+    return mydamage;
 }
