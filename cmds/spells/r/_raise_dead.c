@@ -89,7 +89,7 @@ spell_effect(int prof) {
     //targ->set_heart_beat(1);
     //targ->cease_all_attacks();
     //targ->move_player(environment(caster));
-    targ->set("RaisingPriestGod",caster->query_diety());
+    targ->set("RaisingPriestGod",caster->query_property("hidden deity")||caster->query_diety());
     targ->set("RaisingPriestAlignment",caster->query_alignment());
     targ->set("RaisingRoom",base_name(environment(caster)));
     targ->set("RaisingExpLoss",(-10+(random(2)+random(3)+1)));
