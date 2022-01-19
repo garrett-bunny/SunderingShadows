@@ -18,7 +18,7 @@ void create()
     set_non_living_ok(1);
 }
 
-string query_cast_string() 
+string query_cast_string()
 {
    return ""+YOU+" focuses on "+MINE+" holy symbol and chants softly.\n";
 }
@@ -27,16 +27,16 @@ void spell_effect(int prof)
 {
     object *targets;
     int hits;
-    
+
     targets = all_living(environment(caster));
     targets = filter_array(targets, "check_undead");
-    
+
     if(!sizeof(targets))
     {
         tell_object(caster, "There are no undead present here.....");
         return;
     }
-    
+
     foreach(object ob in targets)
     {
         if(!do_save(ob, 0))
@@ -46,9 +46,12 @@ void spell_effect(int prof)
 
 int check_undead(object ob)
 {
-    if(ob->is_undead() || 
-    ( member_array("undead", ob->query_id()) > -1 ) || 
-    ob->query_property("undead") || 
-    ob->query_race() == "undead")
+    if(ob->query_property("hidden nature") == "living") return 0;
+    
+    if(ob->is_undead() ||
+    ( member_array("undead", ob->query_id()) > -1 ) ||
+    ob->query_property("undead") ||
+    ob->query_race() == "undead" ||
+    ob->query_property("hidden nature") == "undead")
         return 1;
 }

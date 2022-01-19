@@ -24,8 +24,8 @@ void spell_effect(int prof)
 
     peeps = all_living(place);
     peeps = filter_array(peeps, "is_non_immortal",FILTERS_D);
-    peeps = filter_array(peeps,(:$1->query_diety()==$2:),mygod);
-    peeps -=({caster});
+    peeps = filter_array(peeps, (: ( $1->query_diety() == $2 && !($1->query_property("hidden deity")) ) || $1->query_property("hidden deity") == $2  :), mygod);
+    peeps -= ({caster});
 
     if(sizeof(peeps))
         tell_object(caster,"%^RED%^There are faithful present.%^RESET%^");
