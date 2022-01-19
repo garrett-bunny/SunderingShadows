@@ -55,4 +55,5 @@
     "/d/deku/hhouse/ob/shroud_of_the_impaler", \
     "/d/islands/common/obj/harbinger", \
     "/d/underdark/lower/dragon/obj/shadowdancer", \
+    "/d/islands/common/obj/shimmeringcape2", \
 })
