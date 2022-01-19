@@ -52,6 +52,17 @@ int preSpell(){
                 tell_object(caster, "That is not a valid alignment!");
                 return 0;
             }
+            switch(mask_quality){
+                case "lawful good": mask_quality = 1; break;
+                case "neutral good": mask_quality = 4; break;
+                case "chaotic good": mask_quality = 7; break;
+                case "lawful neutral": mask_quality = 2; break;
+                case "true neutral": mask_quality = 5; break;
+                case "chaotic neutral": mask_quality = 8; break;
+                case "lawful evil": mask_quality = 3; break;
+                case "neutral evil": mask_quality = 6; break;
+                case "chaotic evil": mask_quality = 9;break;
+            }
             break;
         }
         case "deity": {
