@@ -160,7 +160,7 @@ int strike_func(int damage, object what, object who)
                 "leaps out from it, striking you!%^RESET%^");
 
                 who->cause_typed_damage(who, "torso", roll_dice(3,4), "light");
-                return 0;
+                return damage;
                 break;
 
             case 501..995:
@@ -185,7 +185,7 @@ int strike_func(int damage, object what, object who)
                 mob->set_property("minion", who);
                 who->add_follower(mob);
                 mob->hit_em(who);
-                return 0;
+                return damage;
                 break;
 
             case 996..999:
@@ -211,7 +211,7 @@ int strike_func(int damage, object what, object who)
                 "in an ancient language!%^RESET%^");
 
                 new("/cmds/spells/s/_stoneskin")->use_spell(ETO, ETO, 25, 25, "mage");
-                return 0;
+                return damage;
                 break;
         }
     }
