@@ -2285,17 +2285,13 @@ void dest_effect()
         caster->remove_property("travaoe");
     }       
     
-    if(sizeof(bonus_type) && target && objectp(target))
+    if(sizeof(bonus_type))
     {
-        buffs = target->query_property("spell_bonus_type");
-    
-        if(!pointerp(buffs) || !sizeof(buffs))
-            target->remove_property("spell_bonus_type");
-        else
-        {
-            foreach(string type in bonus_type)
-                target->remove_property_value("spell_bonus_type", ({ type }));
-        }   
+        if(!target)
+            target = caster;
+        
+        foreach(string type in bonus_type)
+            target && target->remove_property_value("spell_bonus_type", ({ type }) );
     }
 
     before_cast_dest_effect();
@@ -2316,9 +2312,6 @@ int remove()
         objectp(caster)) {
         caster->remove_property("travaoe");
     }
-
-    if(!arrayp(bonus_type))
-        bonus_type = ({  });
 
     return ::remove();
 }
