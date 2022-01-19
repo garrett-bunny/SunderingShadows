@@ -23,7 +23,7 @@ int *stat_mods(string subrace) { return ({ 0, 2, 0, 0, -2, 2 }); }
 mapping skill_mods(string subrace) { return ([ "rope use" : 2, "stealth" : 2 ]); }
 
 
-int natural_AC(string subrace) { return 0; }
+int natural_AC(string subrace) { return 1; }
 
 int sight_bonus(string subrace) { return 2; }
 
@@ -33,7 +33,9 @@ int misc_bonuses(string subrace, string bonus) { return 0; }
 
 mapping query_racial_innate(string subrace){
    return ([
-   "viper form" : (["type" : "spell", "casting level" : 0.5, "daily uses" : -1, "delay" : 1, "uses left" : -1, "refresh time" : -1, "level required" : 0, "class specific" : 0]),]);
+   "viper form" : (["type" : "spell", "casting level" : 1, "daily uses" : -1, "delay" : 1, "uses left" : -1, "refresh time" : -1, "level required" : 0, "class specific" : 0]),
+   "detect poison" : (["type" : "spell", "casting level" : 1, "daily uses" : -1, "delay" : 1, "uses left" : -1, "refresh time" : -1, "level required" : 0, "class specific" : 0]),
+   ]);
 }
 
 // ---------------------------------------------------------------------------------------------------
