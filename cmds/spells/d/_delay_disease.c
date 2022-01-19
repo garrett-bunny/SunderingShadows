@@ -8,7 +8,7 @@ void create() {
     set_spell_level(([ "cleric":2, "druid":2, "paladin":2, "ranger":2, "inquisitor":2]));
     set_spell_sphere("conjuration_summoning");
     set_syntax("cast CLASS delay disease on TARGET");
-    set_description("On a sucessful power check will revert all deseases target experiences a stage back.");
+    set_description("On a successful power check will revert all diseases target experiences a stage back.");
 
     set_verbal_comp();
     set_somatic_comp();

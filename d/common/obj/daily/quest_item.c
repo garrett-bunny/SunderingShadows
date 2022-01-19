@@ -72,7 +72,7 @@ void reward_player(object who)
         return;
     }
     
-    tell_object(who, "You pick up the fragment and you feel the demiplane dissolve arround you.");
+    tell_object(who, "You pick up the fragment and you feel the demiplane dissolve around you.");
 
     seteuid(UID_ROOT);
     compiler->destroy_plane(who);

@@ -19,7 +19,7 @@ void create() {
 "retreat to in times of need.  The sanctified ground is accessed through an iron gate that is created when the spell is "
 "cast.
 
-Insade the space you can:
+Inside the space you can:
 
 %^ORANGE%^<close gate>%^RESET%^
   This closes the gate to the Prime Material plane, blocking anyone else from entering.
@@ -36,7 +36,7 @@ Insade the space you can:
 
 void spell_effect(int prof) {
     if (place->query_property("no pocket space")) {
-        tell_object(caster, "%^RESET%^%^CYAN%^Something is interferring with your power.");
+        tell_object(caster, "%^RESET%^%^CYAN%^Something is interfering with your power.");
         TO->remove();
         return 0;
     }
@@ -66,7 +66,7 @@ void dest_effect()
      if (objectp(portal))    portal->end_magic();
     if(!objectp(place))
 	place = find_object_or_load(roomName);
-    tell_room(place, "%^CYAN%^The gate flickers and then winks out of existance.");
+    tell_room(place, "%^CYAN%^The gate flickers and then winks out of existence.");
      if(objectp(portal))    portal->move(ROOM_VOID);
      if(objectp(portal))    portal->remove();
     ::dest_effect();
