@@ -36,7 +36,7 @@ int cmd_dispell(string str)
             }
         }
         message("info", "\n\%^RESET%^%^BOLD%^%^BLUE%^--==%^RESET%^%^BOLD%^%^CYAN%^< %^RESET%^%^BOLD%^ Active buff types  %^RESET%^%^BOLD%^%^CYAN%^>%^RESET%^%^BOLD%^%^BLUE%^==--%^RESET%^", TP);
-        message("info", "   %^YELLOW%^" + implode(buffs, ", ") + "%^RESET%^", this_player());
+        message("info", "  %^YELLOW%^" + implode(buffs, ", ") + "%^RESET%^", this_player());
         return 1;
     }
 
