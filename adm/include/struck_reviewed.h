@@ -49,4 +49,8 @@
     "/d/attaya/obj/silkdrape", \
     "/d/attaya/obj/silkvest", \
     "/d/attaya/senund/obj/darkrobe", \
+    "/d/deku/hhouse/ob/azloths_blessing", \
+    "/d/deku/hhouse/ob/heart_of_talos", \
+    "/d/deku/hhouse/ob/lathanders_dawn", \
+    "/d/deku/hhouse/ob/shroud_of_the_impale", \
 })
