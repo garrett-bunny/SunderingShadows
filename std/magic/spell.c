@@ -2235,6 +2235,10 @@ void spell_successful() //revoked exp bonuses from casting. This function seems 
             return 1;
         
         buffs = target->query_property("spell_bonus_type");
+        
+        if(!pointerp(buffs))
+            buffs = ({  });
+        
         target->remove_property("spell_bonus_type");       
         buffs = distinct_array(buffs + bonus_type);
         target->set_property("spell_bonus_type", buffs);
