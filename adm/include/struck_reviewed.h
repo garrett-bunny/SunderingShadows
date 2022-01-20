@@ -58,4 +58,5 @@
     "/d/islands/common/obj/shimmeringcape2", \
     "/d/deku/armours/brobe", \
     "/d/islands/elf/obj/shield", \
+    "/d/dagger/derro/obj/shield", \
 })
