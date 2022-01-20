@@ -4,7 +4,7 @@ inherit "/d/common/obj/weapon/hammer_lg";
 
 void create() {
     ::create();
-   set_id(({"anchor","barnacled anchorr","depth's anchor"}));
+   set_id(({"anchor","barnacled anchor","depth's anchor"}));
    set_name("Anchor");
    set_obvious_short("%^RESET%^%^BLUE%^barnacled Anchor%^RESET%^");
    set_short("%^RESET%^%^BLUE%^Depth's Anchor%^RESET%^");
@@ -28,7 +28,7 @@ void create() {
 }
 
 int wield_func(){
-      tell_room(EETO,"%^BLUE^The barnacles on "
+      tell_room(EETO,"%^BLUE%^The barnacles on "
            +ETOQCN+"'s weapon glows drip a black fluid.",ETO);
       tell_object(ETO,"%^BLUE%^The barnacles on the anchor drip a black fluid.");
       return 1;

@@ -20,7 +20,7 @@ void create()
         "of the same size would be.%^RESET%^");
 
     set_lore("%^BOLD%^%^WHITE%^Rumors tell of a ancient warrior who long "
-        "ago traveled to the plane of limbo in search of a blade which "
+        "ago traveled to the plane of limbo in search of a blade that "
         "was capable of defeating the death knight that had killed his "
         "father in battle.  The warrior was chaotic of heart, unable to "
         "control and focus his thoughts, and the plane of limbo itself "

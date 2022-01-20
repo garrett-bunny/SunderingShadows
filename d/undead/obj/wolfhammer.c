@@ -10,7 +10,7 @@ create() {
     ::create();
    set_id(({ "wolfhammer","hammer","wolf hammer","Wolf","Hammer","weapon","wolfhand","wolf hand" }));
    set_name("wolfhammer");
-   set_short("%^BOLD%^The %^BLACK%^W%^RESET%^o%^BOLD%^%^BLACK%^lf's %^CYAN%^J%^RESET%^%^CYAN%^u%^BOLD%^d%^RESET%^%^CYAN%^g%^BOLD%^e%^RESET%^%^CYAN%^m%^BOLD%^e%^RESET%^%^CYAN%^n%^BOLD%^t%^RESET%^");
+   set_short("%^BOLD%^The %^BLACK%^W%^RESET%^o%^BOLD%^%^BLACK%^lf's %^CYAN%^J%^RESET%^%^CYAN%^u%^BOLD%^d%^RESET%^%^CYAN%^g%^BOLD%^m%^RESET%^%^CYAN%^e%^BOLD%^n%^RESET%^%^CYAN%^t%^RESET%^");
    set_obvious_short("%^BOLD%^%^BLACK%^W%^RESET%^o%^BOLD%^%^BLACK%^lfh%^RESET%^ea%^BOLD%^%^BLACK%^d %^CYAN%^Warhammer%^RESET%^");
    set_long("%^BOLD%^This is a large and solid %^CYAN%^warhammer %^WHITE%^with an %^RESET%^o%^BOLD%^r%^RESET%^n%^BOLD%^a%^RESET%^m%^BOLD%^e%^RESET%^n%^BOLD%^t%^RESET%^e%^BOLD%^d "+
    "%^BLACK%^m%^RESET%^i%^BOLD%^t%^BLACK%^h%^RESET%^r%^BOLD%^i%^BLACK%^l %^WHITE%^handle. The handle have %^RESET%^%^MAGENTA%^intricate "+
@@ -27,7 +27,7 @@ create() {
    "%^CYAN%^st%^RESET%^%^CYAN%^a%^BOLD%^r%^RESET%^%^CYAN%^e%^BOLD%^%^WHITE%^. The %^CYAN%^hammer %^WHITE%^almost seems to "+
    "%^MAGENTA%^p%^RESET%^%^MAGENTA%^u%^BOLD%^l%^RESET%^%^MAGENTA%^s%^BOLD%^e %^WHITE%^from %^CYAN%^m%^RESET%^%^CYAN%^a%^BOLD%^g%^RESET%^%^CYAN%^i%^BOLD%^c%^RESET%^%^CYAN%^a%^BOLD%^l "+
    "%^WHITE%^or %^CYAN%^d%^WHITE%^i%^CYAN%^v%^WHITE%^i%^CYAN%^n%^WHITE%^e energy%^RESET%^");
-   set_lore("Looking upon the this weapon, there can be no doubt that this is indeed the fabled '%^BOLD%^%^CYAN%^Wolf's Judgement%^RESET%^'. "+
+   set_lore("Looking upon the this weapon, there can be no doubt that this is indeed the fabled '%^BOLD%^%^CYAN%^Wolf's Judgment%^RESET%^'. "+
    "Legends will tell of this weapon as being imbued with the power of the %^BOLD%^%^BLACK%^Great Wolf Fenrir%^RESET%^! A beast so powerful and "+
    "terrifying that it cost %^BOLD%^Tyr %^RESET%^his right hand trying to tame it. When he did tame %^BOLD%^%^BLACK%^Fenrir%^RESET%^. %^BOLD%^Tyr "+
    "%^RESET%^then bound the %^BOLD%^%^BLACK%^Wolfs power %^RESET%^and the the power of his lost sword-hand into one item so that the "+

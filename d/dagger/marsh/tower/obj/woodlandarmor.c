@@ -25,7 +25,7 @@ void create(){
 " Pyotr Tsnenokof in the year 620 SG.  It was lost along with its wearer to some unknown menace in the"
 " Northern Dagger Reaches some five years later.  This is supposedly Ulrich's masterwork piece of craftsmanship"
 " and is quite a prize indeed.  It is said that when wearing this armor, a person can become at one with"
-"nature and %^BOLD%^stalk %^RESET%^the wilds.");
+" nature and %^BOLD%^stalk %^RESET%^the wilds.");
 	set_property("lore difficulty",15);
 	set_size(2);
       set_property("enchantment",5);
