@@ -83,6 +83,7 @@ void init()
 int hit_func(object target)
 {
     int dam;
+    string ename, pname;
     
     if(!owner || !target)
         return 0;
@@ -91,6 +92,9 @@ int hit_func(object target)
     
     if(hit_count < HIT_INTERVAL)
         return 0;
+    
+    pname = owner->query_cap_name();
+    ename = target->query_cap_name();
     
     //This blade adds a sneak attack
     //If opponent not vulnerabe, it does a consolation special
@@ -135,9 +139,9 @@ int hit_func(object target)
     
     if(dam)
     {
-        tell_object(owner, "%^WHITE%^%^BOLD%^You hit " + target->QCN + ".%^YELLOW%^[%^CYAN%^Sneak%^YELLOW%^]%^RESET%^");
-        tell_object(target, "%^WHITE%^%^BOLD%^" + owner->QCN + " hits you.%^YELLOW%^[%^CYAN%^Sneak%^YELLOW%^]%^RESET%^");
-        tell_room(envirnonment(owner), "%^WHITE%^%^BOLD%^" + owner->QCN + " hits " + target->QCN + ".%^YELLOW%^[%^CYAN%^Sneak%^YELLOW%^]%^RESET%^");
+        tell_object(owner, "%^WHITE%^%^BOLD%^You hit " + ename + ".%^YELLOW%^[%^CYAN%^Sneak%^YELLOW%^]%^RESET%^");
+        tell_object(target, "%^WHITE%^%^BOLD%^" + pname + " hits you.%^YELLOW%^[%^CYAN%^Sneak%^YELLOW%^]%^RESET%^");
+        tell_room(envirnonment(owner), "%^WHITE%^%^BOLD%^" + pname + " hits " + ename + ".%^YELLOW%^[%^CYAN%^Sneak%^YELLOW%^]%^RESET%^");
         target->cause_typed_damage(target, target->return_target_limb(), dam, "divine");
     }
     
@@ -153,7 +157,7 @@ int wield_func()
     }
     
     tell_object(owner, color("You feel the holy warmth of the shard seep into your skin!"));
-    tell_room(environment(owner), color(owner->QCN + "'s dagger glows with divine energy!"), owner);
+    tell_room(environment(owner), color(owner->query_cap_name() + "'s dagger glows with divine energy!"), owner);
     return 1;
 }
 

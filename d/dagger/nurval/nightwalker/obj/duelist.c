@@ -9,7 +9,7 @@
 #include <std.h>
 #include <daemons.h>
 
-#define HIT_INTERVAL 4
+#define HIT_INTERVAL 3
 
 inherit "/d/common/obj/weapon/rapier.c";
 
@@ -75,7 +75,7 @@ int wield_func()
     }
     
     tell_object(owner, color("You feel the blade hum as if ready for battle!"));
-    tell_room(environment(owner), color(owner->QCN + "'s blade begins to hum with energy!"), owner);
+    tell_room(environment(owner), color(owner->query_cap_name() + "'s blade begins to hum with energy!"), owner);
     return 1;
 }
 
@@ -88,6 +88,7 @@ int unwield_func()
 int hit_func(object target)
 {
     int dam;
+    string ename, pname;
     
     if(!owner || !target)
         return 0;
@@ -101,18 +102,21 @@ int hit_func(object target)
     if(hit_count < HIT_INTERVAL)
         return 0;
     
+    pname = owner->query_cap_name();
+    ename = target->query_cap_name();
+    
     hit_count = 0;
     dam = roll_dice(12, 10) + 40;
     
-    tell_object(owner, color("Your blade seems to explode as it tears into " + target->QCN + "!"));
-    tell_object(target, color(owner->QCN + "'s blade seems to explode as it tears into you!"));
-    tell_room(environment(owner), color(owner->QCN + "'s blade seems to explode as it tears into " + target->QCN + "!"), ({ owner, target }));
+    tell_object(owner, color("Your blade seems to explode as it tears into " + ename + "!"));
+    tell_object(target, color(pname + "'s blade seems to explode as it tears into you!"));
+    tell_room(environment(owner), color(pname + "'s blade seems to explode as it tears into " + ename + "!"), ({ owner, target }));
     target->cause_typed_damage(target, target->return_target_limb(), dam, "force");
     
     if(target && !random(5))
     {
         tell_object(owner, color("You disengage and follow up with a stunning coupe!"));
-        tell_room(environment(owner), color(owner->QCN + " disengages and follows up with a stunning coupe!"), owner);
+        tell_room(environment(owner), color(pname + " disengages and follows up with a stunning coupe!"), owner);
         owner->execute_attack();
         return roll_dice(3, 6);
     }
