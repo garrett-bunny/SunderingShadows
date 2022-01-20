@@ -1276,7 +1276,8 @@ varargs void calculate_damage(object attacker, object targ, object weapon, strin
          -- Tlaloc --
         ***************************************/
 	if (damage && mod <= 0 && member_array(base_name(armor[i]), STRUCK_REVIEWED) == -1) {
-	    log_file("reports/struck_damage", "Review for malformed struck function with damage " + mod + ": " + base_name(armor[i]) + "\n");
+	    log_file("reports/struck_damage", "Review struck function returning " + mod + ": " + base_name(armor[i]) + "\n");
+	    log_file("reports/struck_damage", "Attacker " + attacker + " with weapon " + base_name(weapon) + "\n");
 	}
         if (mod < 0) {
             damage += mod;
