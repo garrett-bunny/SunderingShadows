@@ -59,4 +59,5 @@
     "/d/deku/armours/brobe", \
     "/d/islands/elf/obj/shield", \
     "/d/dagger/derro/obj/shield", \
+    "/d/dagger/marsh/tower/obj/shadowbracers", \
 })
