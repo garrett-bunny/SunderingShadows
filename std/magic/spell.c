@@ -2197,6 +2197,8 @@ void do_spell_blowup(int prof)
 void spell_successful() //revoked exp bonuses from casting. This function seems redundant now? Nienne, 06/10.
 {
     int stat;
+    string *buffs;
+    
     if (!objectp(TO) || !objectp(caster)) {
         return;
     }
@@ -2229,10 +2231,13 @@ void spell_successful() //revoked exp bonuses from casting. This function seems 
         if(!target)
             target = caster;
         
-        if(target->query_property("spell_bonus_type"))
-            target->add_property_value("spell_bonus_type", bonus_type);
-        else
-            target->set_property("spell_bonus_type", bonus_type);
+        if(!objectp(target))
+            return 1;
+        
+        buffs = target->query_property("spell_bonus_type");
+        target->remove_property("spell_bonus_type");       
+        buffs = distinct_array(buffs + bonus_type);
+        target->set_property("spell_bonus_type", buffs);
     }
 
     return 1;
