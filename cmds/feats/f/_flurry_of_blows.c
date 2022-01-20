@@ -251,7 +251,7 @@ void flurry_hit()
                 "%^BOLD%^%^BLACK%^w lash out at "+myVic->QCN+"%^BOLD%^%^BLACK%^ "+
                 "from "+caster->QCN+"%^BOLD%^%^BLACK%^!%^RESET%^", ({caster, myVic}));
             }
-            dam_type = "divine";
+            dam_type = "void";
         }
         else if(myWay == "way of the elements")
         {
