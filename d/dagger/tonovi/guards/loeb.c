@@ -22,7 +22,7 @@ void create()
     set_nogo(({ "/d/dagger/tonovi/road2", "/d/dagger/tonovi/town/street1", "/d/dagger/tonovi/town/wall1", "/d/dagger/tonovi/town/wall3" }));
     set_name("Marvin Loeb");
     set_id(({ "marvin", "marvin loeb", "loeb", "guard", "Marvin Loeb", "Marvin", "Loeb", "champion", CITYLAW }));
-    set_short("%^CYAN%^Marvin Loeb%^BLACK%^, C%^RESET%^%^CYAN%^h%^BOLD%^a%^WHITE%^m%^BLACK%^pion of the C%^RESET%^%^CYAN%^i%^BOLD%^t%^WHITE%^y %^BLACK%^G%^RESET%^%^CYAN%^u%^BOLD%^a%^WHITE%^r%^BLACK%^d%^RESET%^");
+    set_short("%^CYAN%^Marvin Loeb%^BLACK%^BOLD%^, C%^RESET%^%^CYAN%^h%^BOLD%^a%^WHITE%^m%^BLACK%^pion of the C%^RESET%^%^CYAN%^i%^BOLD%^t%^WHITE%^y %^BLACK%^G%^RESET%^%^CYAN%^u%^BOLD%^a%^WHITE%^r%^BLACK%^d%^RESET%^");
     set_gender(1);
     set_alignment(3);
     set_race("human");
@@ -130,7 +130,7 @@ void set_guard_stuff()
 {
     set_jail_location("/d/dagger/tonovi/town/jail_main");
     set_guarding("Tonovi");
-    set_bad_races(({ "elf", "half-elf", "hobgoblin", "hobgoblin", "kobold", "ogre", "orc", "gnoll", "bugbear", "minotaur", "dragon", "ratkin", "wererat", "undead", "troll" }));
+    set_bad_races(({ "hobgoblin", "hobgoblin", "kobold", "ogre", "orc", "gnoll", "bugbear", "minotaur", "dragon", "ratkin", "wererat", "undead", "troll" }));
     set_race_action("capture");
     set_race_messages(([
                            "elf"       : "Stop that elf and put it back in chains!",

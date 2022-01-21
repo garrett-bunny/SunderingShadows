@@ -142,7 +142,7 @@ void set_guard_stuff()
 {
     set_jail_location("/d/dagger/tonovi/town/jail_main");
     set_guarding("Tonovi");
-    set_bad_races(({ "elf", "half-elf", "hobgoblin", "hobgoblin", "kobold", "ogre", "orc", "gnoll", "bugbear", "minotaur", "dragon", "ratkin", "wererat", "undead", "troll" }));
+    set_bad_races(({ "hobgoblin", "hobgoblin", "kobold", "ogre", "orc", "gnoll", "bugbear", "minotaur", "dragon", "ratkin", "wererat", "undead", "troll" }));
     set_race_action("capture");
     set_race_messages(([
                            "elf"       : "Stop that elf and put it back in chains!",

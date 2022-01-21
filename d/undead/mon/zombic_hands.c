@@ -11,7 +11,7 @@ void create()
     set_short("%^YELLOW%^Zombic Hand%^RESET%^");
     set_long("This hand is all that remains of some poor soul who strayed too far "
         "from the stable paths within the bog. They were pulled under and "
-        "transformed into Zombies. Now, thier only purpose is to pull others to "
+        "transformed into Zombies. Now, their only purpose is to pull others to "
         "the same fate that befell them.");
     set_overall_ac(3);
     set_race("zombic hand");
@@ -53,8 +53,8 @@ void pull1(object targ)
     if(!objectp(targ))      { return; }
     if(!objectp(TO))        { return; }
     if(!present(targ,ETO))  { return; }    
-    tell_object(targ,"%^BLUE%^The Hands now have you firmly in thier grasp!");
-    tell_room(ETO,"%^BLUE%^The Hands have siezed "+targ->QCN+"'s ankles firmly!",targ);
+    tell_object(targ,"%^BLUE%^The Hands now have you firmly in their grasp!");
+    tell_room(ETO,"%^BLUE%^The Hands have seized "+targ->QCN+"'s ankles firmly!",targ);
     call_out("pull2",35,targ);
 }
 
