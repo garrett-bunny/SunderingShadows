@@ -48,7 +48,7 @@ create() {
     set("aggressive",0);
     set_level(12 + random(4));
     set_hd(12 + random(4),2);
-    set_hp(query_hd() * 7 + random(31));
+    set_hp(query_max_hp());
     make_me();
     set_stats("intelligence",15);
     set_stats("wisdom",12);
