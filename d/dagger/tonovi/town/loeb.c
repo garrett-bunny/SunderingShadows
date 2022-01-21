@@ -79,7 +79,7 @@ void create()
     set_func_chance(35);
     set_property("full attacks", 1);
     set_property("fast healing", 5);
-    set_property("magic resistance", random(60) + 10);
+    set_mob_magic_resistance("very high");
     set_ac(-50 - random(10));
     set_detecting_invis(1);
     set_long("This " + query_gender() + " guard wears the standard uniform of "
