@@ -2289,6 +2289,7 @@ void dest_effect()
         caster->remove_property("travaoe");
     }       
     
+    
     if(sizeof(bonus_type))
     {
         if(!target || !objectp(target))
@@ -2296,6 +2297,7 @@ void dest_effect()
         
         target && target->remove_property_value("spell_bonus_type", bonus_type);
     }
+    
 
     before_cast_dest_effect();
     return;
