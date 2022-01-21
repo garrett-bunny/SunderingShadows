@@ -29,7 +29,7 @@ create()
     set_stats("dexterity",16);
     set_stats("constitution",22);
     set_new_exp(60,"boss");
-    set_property("magic resistance",70);
+    set_mob_magic_resistance("high");
     set_property("spell damage resistance",10);
     set_max_hp(1500);
     set_hp(query_max_hp());
