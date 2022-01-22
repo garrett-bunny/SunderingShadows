@@ -9,6 +9,7 @@ void create() {
 
     set_exits(([
         "north":TOWN"street18",
+// "west" : "/d/islands/graez/rooms/city/weapons",
         "south":TOWN"street16",
         "west":TOWN"weapons",
     ]));
