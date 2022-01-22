@@ -61,4 +61,5 @@
     "/d/dagger/derro/obj/shield", \
     "/d/dagger/marsh/tower/obj/shadowbracers", \
     "/d/islands/coralsea/obj/coralscape", \
+    "/realms/nuwisha/obj/iceaura2", \
 })
