@@ -222,7 +222,7 @@ int reveal_action(string input)
 
 	if(!sizeof(MyTraps)) 
 	{
-		tell_object(TP, "You havent set any traps on "+targ+" that you can "+
+		tell_object(TP, "You haven't set any traps on "+targ+" that you can "+
 		"reveal information about.");
 		return 1;
 	}
