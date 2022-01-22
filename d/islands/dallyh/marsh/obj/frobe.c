@@ -97,7 +97,6 @@ int strike_func(int damage, object what, object who){
         		tell_object(who,"%^BOLD%^%^WHITE%^An orb of pure frost flys out"+
 				" of "+ETOQCN+"'s robe and speeds through the air towards you!");
 					new("/cmds/spells/f/_frost_orb")->use_spell(ETO,who,13,100,"mage");
-		return 1;
 		}else{
 			tell_room(environment(query_worn()),"%^BOLD%^%^WHITE%^A ray of frost"+
 				" shoots out of "+ETOQCN+"'s robe, freezing"+
@@ -108,7 +107,7 @@ int strike_func(int damage, object what, object who){
                         tell_object(who,"%^BOLD%^%^WHITE%^A ray of frost shoots out of "+
                                 ""+ETOQCN+"'s robe and freezes you!");
 					who->do_damage("torso",random(8)+2);
-		return 1;
 		}
-       }
+        }
+	return damage;
 }
