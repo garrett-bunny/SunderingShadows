@@ -22,9 +22,9 @@ void create() {
     set_property("no_random_treasure",1);
     set_currency("gold");
     set_menu(
-        ({"soup","salad","calamari","filet mignon","lamb","halibut","creme brulee","cobbler","cake","water","tea","lemonade","tequila twilight","whiskey sour","vodka martini","blood wine","chardonnay"}),
-        ({"food","food","food","food","food","food","food","food","food","water","soft drink","soft drink","alcoholic","alcoholic","alcoholic","alcoholic","alcoholic"}),
-        ({20,25,30,60,70,80,20,25,30,5,10,15,15,20,30,40,50}),
+        ({"soup","salad","calamari","filet mignon","lamb","halibut","creme brulee","cobbler","cake","water","tea","lemonade","tequila twilight","whiskey sour","vodka martini","blood wine","chardonnay","sex in the woods","moonshine float","chocolate moonshine"}),
+        ({"food","food","food","food","food","food","food","food","food","water","soft drink","soft drink","alcoholic","alcoholic","alcoholic","alcoholic","alcoholic","alcoholic","alcoholic","alcoholic"}),
+        ({20,25,30,60,70,80,20,25,30,5,10,15,15,20,30,40,50,30,30,30}),
     );
     set_my_mess(({
         "%^RESET%^%^ORANGE%^The soup is thick and %^BOLD%^%^WHITE%^creamy%^RESET%^%^ORANGE%^, filling your belly with warmth.%^WHITE%^",
@@ -43,7 +43,10 @@ void create() {
         "%^RESET%^%^ORANGE%^The fr%^BOLD%^o%^RESET%^%^ORANGE%^thy e%^BOLD%^g%^RESET%^%^ORANGE%^g %^BOLD%^%^WHITE%^white %^RESET%^%^ORANGE%^offers a %^BOLD%^%^WHITE%^richness %^RESET%^%^ORANGE%^to this %^BOLD%^sour %^RESET%^%^ORANGE%^concoction.%^WHITE%^",
         "%^BOLD%^%^WHITE%^This m%^RESET%^%^GREEN%^a%^BOLD%^%^WHITE%^rt%^RESET%^%^GREEN%^i%^BOLD%^%^WHITE%^n%^RESET%^%^GREEN%^i %^BOLD%^%^WHITE%^is, in fact, quite d%^RESET%^%^GREEN%^i%^BOLD%^%^WHITE%^rty!%^RESET%^",
         "%^RESET%^%^RED%^This rich wine has legs for days! You notice subtle flavors of %^ORANGE%^oak%^RED%^, %^BOLD%^%^WHITE%^vanilla%^RESET%^%^RED%^, and even a hint of %^BOLD%^%^BLACK%^tobacco%^RESET%^%^RED%^.%^WHITE%^",
-        "%^YELLOW%^Even the glass the ch%^WHITE%^a%^ORANGE%^rd%^WHITE%^o%^ORANGE%^nn%^WHITE%^a%^ORANGE%^y is served in has been %^CYAN%^chilled%^ORANGE%^. You detect hints of %^RED%^apple %^ORANGE%^and lemon in this crisp ch%^WHITE%^a%^ORANGE%^rd%^WHITE%^o%^ORANGE%^nn%^WHITE%^a%^ORANGE%^y.%^RESET%^"
+        "%^YELLOW%^Even the glass the ch%^WHITE%^a%^ORANGE%^rd%^WHITE%^o%^ORANGE%^nn%^WHITE%^a%^ORANGE%^y is served in has been %^CYAN%^chilled%^ORANGE%^. You detect hints of %^RED%^apple %^ORANGE%^and lemon in this crisp ch%^WHITE%^a%^ORANGE%^rd%^WHITE%^o%^ORANGE%^nn%^WHITE%^a%^ORANGE%^y.%^RESET%^",
+        "The fruity tones of peach, orange, and cranberry are delicious.",
+        "Ice cream with hints of butterscotch and root beer! So good.",
+        "All you can taste are smooth chocolate and rich cream."
     }));
     set_your_mess(({
         "%^RESET%^%^ORANGE%^enjoys a bowl of %^BOLD%^%^WHITE%^creamy %^RESET%^%^ORANGE%^pumpkin soup.%^WHITE%^",
@@ -62,7 +65,10 @@ void create() {
         "%^RESET%^%^ORANGE%^drinks a %^BOLD%^sunny %^RESET%^%^ORANGE%^c%^BOLD%^o%^RESET%^%^ORANGE%^ckta%^BOLD%^i%^RESET%^%^ORANGE%^l garnished with an orange peel.%^WHITE%^",
         "%^BOLD%^%^WHITE%^puts their pinky up as they sip their d%^RESET%^%^GREEN%^i%^BOLD%^%^WHITE%^rty m%^RESET%^%^GREEN%^a%^BOLD%^%^WHITE%^rt%^RESET%^%^GREEN%^i%^BOLD%^%^WHITE%^n%^RESET%^%^GREEN%^i%^BOLD%^%^WHITE%^. Very fancy!%^RESET%^",
         "%^RESET%^%^RED%^drinks deeply from their glass of b%^BOLD%^u%^RESET%^%^RED%^rg%^BOLD%^u%^RESET%^%^RED%^ndy w%^BOLD%^i%^RESET%^%^RED%^ne.%^WHITE%^",
-        "%^YELLOW%^enjoys a glass of %^CYAN%^chilled %^ORANGE%^ch%^WHITE%^a%^ORANGE%^rd%^WHITE%^o%^ORANGE%^nn%^WHITE%^a%^ORANGE%^y.%^RESET%^"
+        "%^YELLOW%^enjoys a glass of %^CYAN%^chilled %^ORANGE%^ch%^WHITE%^a%^ORANGE%^rd%^WHITE%^o%^ORANGE%^nn%^WHITE%^a%^ORANGE%^y.%^RESET%^",
+        "licks their lips as they finish their drink.",
+        "gets some foam stuck to their nose as they finish their drink.",
+        "eagerly drains the last of their drink."
     }));
     set_menu_short(({
         "%^RESET%^%^ORANGE%^Pumpkin Cream Soup%^WHITE%^", 
@@ -81,7 +87,10 @@ void create() {
         "%^RESET%^%^ORANGE%^Wh%^BOLD%^i%^RESET%^%^ORANGE%^sk%^BOLD%^e%^RESET%^%^ORANGE%^y %^BOLD%^S%^RESET%^%^ORANGE%^o%^BOLD%^ur%^RESET%^",
         "%^BOLD%^D%^RESET%^%^GREEN%^i%^BOLD%^%^WHITE%^rty M%^RESET%^%^GREEN%^a%^BOLD%^%^WHITE%^rt%^RESET%^%^GREEN%^i%^BOLD%^%^WHITE%^n%^RESET%^%^GREEN%^i%^WHITE%^",
         "%^BOLD%^%^RED%^B%^RESET%^%^RED%^loo%^BOLD%^d %^RESET%^%^RED%^W%^BOLD%^i%^RESET%^%^RED%^ne%^WHITE%^",
-        "%^YELLOW%^Ch%^WHITE%^a%^ORANGE%^rd%^WHITE%^o%^ORANGE%^nn%^WHITE%^a%^ORANGE%^y%^RESET%^"
+        "%^YELLOW%^Ch%^WHITE%^a%^ORANGE%^rd%^WHITE%^o%^ORANGE%^nn%^WHITE%^a%^ORANGE%^y%^RESET%^",
+        "a swirling pink and orange drink",
+        "a creamy white float topped by foam",
+        "a dark brown drink dusted with chocolate"
     }));
     set_menu_long(({
         "%^RESET%^%^ORANGE%^A thick, vibrant orange soup with sw%^BOLD%^%^WHITE%^i%^RESET%^%^ORANGE%^rls of %^BOLD%^%^WHITE%^rich cream%^RESET%^%^ORANGE%^.%^WHITE%^ ",
@@ -100,7 +109,10 @@ void create() {
         "%^RESET%^%^ORANGE%^This %^BOLD%^sunny %^RESET%^%^ORANGE%^dr%^BOLD%^i%^RESET%^%^ORANGE%^nk has a fr%^BOLD%^o%^RESET%^%^ORANGE%^thy f%^BOLD%^o%^RESET%^%^ORANGE%^am and is garnished with an orange peel.%^WHITE%^",
         "%^BOLD%^Three %^RESET%^%^GREEN%^green olives %^BOLD%^%^WHITE%^impaled on a %^RESET%^%^ORANGE%^wooden toothpick %^BOLD%^%^WHITE%^rest in a bath of unassuming clear liquid.%^RESET%^",
         "%^RESET%^%^RED%^A large, round glass of r%^BOLD%^i%^RESET%^%^RED%^ch b%^BOLD%^u%^RESET%^%^RED%^rg%^BOLD%^u%^RESET%^%^RED%^ndy w%^BOLD%^i%^RESET%^%^RED%^ne.%^WHITE%^",
-        "%^YELLOW%^A tall glass of %^CYAN%^chilled %^ORANGE%^ch%^WHITE%^a%^ORANGE%^rd%^WHITE%^o%^ORANGE%^nn%^WHITE%^a%^ORANGE%^y%^RESET%^"
+        "%^YELLOW%^A tall glass of %^CYAN%^chilled %^ORANGE%^ch%^WHITE%^a%^ORANGE%^rd%^WHITE%^o%^ORANGE%^nn%^WHITE%^a%^ORANGE%^y%^RESET%^",
+        "%^RESET%^%^CRST%^%^C214%^Or%^C208%^an%^C214%^ge %^C058%^and %^C196%^cranberry %^RESET%^%^C058%^juice have been mixed with %^C130%^m%^C137%^o%^C144%^onshi%^C137%^n%^C130%^e %^RESET%^%^C058%^and %^C215%^peach schnapps %^C058%^to make this fruity concoction. It is in a glass jar featuring a relief of a dancing skeleton.%^CRST%^",
+        "%^RESET%^%^CRST%^%^C058%^A %^C252%^f%^C255%^lu%^C252%^f%^C255%^fy wh%^C252%^i%^C255%^te f%^C252%^o%^C255%^am %^RESET%^%^C058%^tops this sugary mix of %^C253%^vanilla ice cream %^C058%^with %^C130%^rootbeer %^C058%^and %^C220%^but%^C214%^te%^C220%^rsc%^C214%^ot%^C220%^ch %^RESET%^%^C130%^m%^C137%^o%^C144%^onshi%^C137%^n%^C130%^e%^RESET%^%^C058%^. It is in a glass jar featuring a relief of a dancing skeleton.%^CRST%^",
+        "%^RESET%^%^CRST%^%^C136%^Chocolate %^C058%^and %^C144%^cream %^C058%^blend together to hide any hint of %^C130%^m%^C137%^o%^C144%^onshi%^C137%^n%^C130%^e%^RESET%^%^C058%^, and a dusting of chocolate graces the surface of the drink.%^CRST%^",
     }));
 }
 
