@@ -26,7 +26,7 @@ void create()
 
 
     set_exits(([
-        "gate"      :TOWN+"street6",
+        "west"      :TOWN+"street6",
         "east"      :BF+"room6"
              ]));
 

@@ -10,7 +10,7 @@ void create()
         "the two main city gates.\n");
 
     set_exits(([
-        "gate":BF"room5",
+        "east":BF"room5",
         "south":TOWN"street7",
         "west":TOWN"street5"
     ]));
@@ -27,10 +27,12 @@ void reset()
 {
     ::reset();
     if(query_exit("ditch")) remove_exit("ditch");
+    /*
     if(!present("guard"))
         new(MON"ogre_guard")->move(TO);
     if(!present("ditchguard"))
         new(MON"ogre_gate_guard")->move(TO);
+    */
 }
 
 void init() 

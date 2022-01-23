@@ -28,7 +28,7 @@ void create()
         "you get hurt.");
 
     set_exits(([
-        "gate"      :TOWN+"street8",
+        "north"      :TOWN+"street8",
         "east"      :BF+"room9"
             ]));
 
