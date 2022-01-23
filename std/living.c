@@ -443,7 +443,7 @@ void heart_beat()
         }
         
         if(this_object()->is_shade() &&
-        !random(8) &&
+        !random(10) &&
         !avatarp(this_object()) &&
         !wizardp(this_object()) &&
         !this_object()->query_hidden() &&
