@@ -9,7 +9,7 @@ int *age_brackets() { return ({ 14, 25, 35, 50 }); }
 int *restricted_alignments(string subrace) { return ({ 1, 4, 5, 7, 8 }); }
 
 string *restricted_classes(string subrace) {
-    return ({ "mage", "magus",  "bard",  "paladin", "sorcerer", "monk", "druid","inquisitor" });
+    return ({ "mage", "magus", "bard", "sorcerer", "druid" });
 }
 
 // this only affects rolling in creation; does not prevent dedication to a deity in-game, to allow for character evolution. N, 3/16.
@@ -18,9 +18,9 @@ string *restricted_deities(string subrace) {
 }
 
 // stats in order: str, dex, con, int, wis, cha
-int *stat_mods(string subrace) { return ({ 0, 2, 2, 0, 0, -2 }); }
+int *stat_mods(string subrace) { return ({ 0, 2, 2, 0, 0, 0 }); }
 
-mapping skill_mods(string subrace) { return ([ "stealth" : 2 ]); }
+mapping skill_mods(string subrace) { return ([ "stealth" : 4 ]); }
 
 
 int natural_AC(string subrace) { return 0; }

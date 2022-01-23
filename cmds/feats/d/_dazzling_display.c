@@ -13,7 +13,7 @@ void create()
     feat_name("dazzling display");
     feat_prereq("Weapon Focus");
 	feat_syntax("dazzling_display");
-    feat_desc("While wielding the weapon in which you have Weapon Focus, you can perform a bewildering show of prowess as a full-round action. Make an Intimidate check to demoralize all foes within 30 feet who can see your display.");
+    feat_desc("While wielding the weapon in which you have Weapon Focus, you can perform a bewildering show of prowess as a full-round action. Make an Intimidate check to demoralize all foes who can see your display. Demoralized enemies gain the shaken status effect");
 }
 
 int prerequisites(object ob)
