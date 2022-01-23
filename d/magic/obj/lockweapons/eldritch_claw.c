@@ -37,7 +37,7 @@ void weapon_setup(object caster,int clevel) {
     mycaster = caster;
     powerlevel = clevel*10; // using this to parallel standardised in-game weapons
     if(powerlevel < 100) powerlevel = 100; // 10% minimum proc rate
-    if(powerlevel < 250) powerlevel = 250; // 25% maximum proc rate to stay below dragon-drop weaponry on a 1h scale (35% on the 2h)
+    if(powerlevel > 250) powerlevel = 250; // 25% maximum proc rate to stay below dragon-drop weaponry on a 1h scale (35% on the 2h)
     mychant = clevel;
     if(mychant < 1) mychant = 1;
     if(mychant > (int)caster->query_level()) mychant = (int)caster->query_level(); // let's not let the weapon enchant & bonuses exceed what they can reasonably wield!
