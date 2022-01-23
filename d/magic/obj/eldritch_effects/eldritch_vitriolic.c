@@ -8,7 +8,7 @@ int myduration,active,dmgboost;
 void create() {
    ::create();
    set_name("");
-   set("id", ({ "eldritch_hellfire_xxx"}) );
+   set("id", ({ "eldritch_vitriolic_xxx"}) );
    set("short", "");
    set("long", "");
    set_weight(0);
