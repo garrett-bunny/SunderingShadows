@@ -42,8 +42,8 @@ void weapon_setup(object caster, int clevel)
     if (powerlevel < 100) {
         powerlevel = 100;                  // 10% minimum proc rate
     }
-    if (powerlevel < 350) {
-        powerlevel = 350;                  // 10% minimum proc rate
+    if (powerlevel > 350) {
+        powerlevel = 350;                  // 35% maximum proc rate
     }
     mychant = clevel;
     if (mychant < 1) {
