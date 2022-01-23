@@ -2289,7 +2289,7 @@ void dest_effect()
         caster->remove_property("travaoe");
     }       
     
-    
+    /*
     if(sizeof(bonus_type))
     {
         if(!target || !objectp(target))
@@ -2297,7 +2297,7 @@ void dest_effect()
         
         target && target->remove_property_value("spell_bonus_type", bonus_type);
     }
-    
+    */
 
     before_cast_dest_effect();
     return;
@@ -3521,6 +3521,9 @@ varargs int do_save(object targ, int mod, int get_dc)
                 )) {
             DC -= 2;
         }
+        
+        if(spell_sphere != "enchantment_charm" && targrace == "half-drow" && type == "will")
+            DC -= 1;
     }
     
     if(caster->query_race() == "gnome" && caster->query("subrace") != "deep gnome")
