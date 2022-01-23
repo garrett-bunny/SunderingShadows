@@ -624,6 +624,9 @@ int query_combat_maneuver_defense(object ob)
     if(ob->query_race() == "dwarf")
         cmd += 4;
     
+    if(ob->query_race() == "hobgoblin")
+        cmd += 1;
+    
     return cmd;
 }
 
@@ -685,7 +688,7 @@ int intimidate_check(object victim, object attacker, int mod)
     if(result == 20)
         return 1;
     
-    if(attacker->query_race() == "half-orc" || attacker->query_race() == "orc")
+    if(attacker->query_race() == "half-orc" || attacker->query_race() == "orc" || attacker->query_race() == "hobgoblin")
         mod += 2;
     
     result = influence + result;
