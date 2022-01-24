@@ -72,6 +72,9 @@ Prone or staggered creatures can not use most weapons for the duration of the ef
 %^CYAN%^Regeneration%^RESET%^
 A creature gets 1d(lvl/2) health points of regeneration per round as part of its innate ability to heal.
 
+%^CYAN%^Rend%^RESET%^
+Creatures with rend 
+
 %^CYAN%^Sickened%^RESET%^
 All core skills, attack bonuses, damage bonuses, and saves are reduced by lvl/12+1. The effect is cumulative but usually won't last for long.
 
