@@ -65,4 +65,5 @@
     "/d/islands/dallyh/marsh/obj/frobe", \
     "/d/islands/dallyh/forest/obj/rosebodice", \
     "/d/atoyatl/tecqumin/obj/poncho", \
+    "/d/atoyatl/tecqumin/obj/kilt", \
 })
