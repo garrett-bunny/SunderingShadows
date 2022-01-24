@@ -22,7 +22,7 @@ int high_thaco(int level)
 varargs int thaco(int level, string myclass, object ob)
 {
     string file, * classes;
-    int ret, i;
+    int ret, i, bab;
 
     if (!intp(level)) {
         return 0;
@@ -50,7 +50,8 @@ varargs int thaco(int level, string myclass, object ob)
                 if (!file_exists(file)) {
                     continue;
                 }
-                ret += file->attack_bonus(ob);
+                bab = file->attack_bonus(ob);
+                ret += (bab < 1 ? 1 : bab);
             }
 
             ret = ret - 20;
@@ -184,7 +185,7 @@ int query_stance_bonus(object victim)
 int new_bab(int level, object ob)
 {
     string* classes, file;
-    int i, ret = 0;
+    int i, ret = 0, bab = 0;
     if (objectp(ob)) {
         if ((int)ob->query_property("transformed") || (int)ob->query_property("dance-of-cuts")) { // fighter BAB under transformation/dance.
             //ret = (int)ob->query_level();
@@ -201,7 +202,8 @@ int new_bab(int level, object ob)
             if (!file_exists(file)) {
                 continue;
             }
-            ret += file->attack_bonus(ob);
+            bab = file->attack_bonus(ob);
+            ret += (bab < 1 ? 1 : bab);
             //since mobs are usually much higher level than players - Saide
             if (!userp(ob)) {
                 return ret;
