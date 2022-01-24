@@ -405,7 +405,7 @@ varargs int hit_bonus(object who, object targ, int attack_num, object current, i
             to_hit += query_stat_bonus(who, "charisma");
         }
         else {
-            to_hit += query_stat_bonus(who, "strength");
+            to_hit += (query_stat_bonus(who, "strength"));
         }
     }
     
@@ -524,17 +524,22 @@ varargs int process_hit(object who, object targ, int attack_num, mixed current, 
         return 20;
     }
     
+    if(attack_roll == 1)
+        return 1;
+    
     attack_roll += mod;
     
     //if(attack_roll == 1) return -1;
     //does this change make AC less OP? - Saide, August 2017
     //Might have to reconsider this since I added the change above to diminished returns - Tlaloc
+    /*
     if ((bon + 15) < AC) {
         if (random(bon + AC + attack_roll) >= AC) {
             return attack_roll;
         }
         return 0;
     }
+    */
     if ((attack_roll + bon) >= AC) {
         return attack_roll;
     }
