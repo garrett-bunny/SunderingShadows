@@ -133,5 +133,7 @@ int strike_func(int damage, object what, object who)
         "%^WHITE%^ seems captivating to you, as you stop to enjoy"+
         " the fragrance.");
         who->set_paralyzed(random(4),"%^RED%^You are overcome by the fragrance!");
+        return 0;
     }
+    return damage;
 }
