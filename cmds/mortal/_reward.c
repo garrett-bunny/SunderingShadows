@@ -117,6 +117,8 @@ reward %^ORANGE%^%^ULINE%^all%^RESET%^
 
 This command will allow you to reward anyone or everyone in the group with 12.5% of exp towards their next level. The reason for doing so is left to your discretion. The player won't know who rewarded them, but will see the message about the reward. They also must be present in the room with you. You can do it only once per hour.
 
+With <reward all>, after five players present the amount of experience rewarded to each person will diminish to be equal to as if there was a <reward all> chain from five players. A singular, targeted reward will give the full amount regardless.
+
 Player may opt out from receiving rewards with noreward setting in %^ORANGE%^<set>%^RESET%^ command. If they did so, your attempt to reward them won't count.
 
 %^CYAN%^SEE ALSO%^RESET%^
