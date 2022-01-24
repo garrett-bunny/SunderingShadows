@@ -29,7 +29,7 @@ int cmd_damall(string str){
     if(!objectp(room))
         return 1;
 
-    objs = all_living(room);
+    objs = all_living(room) - ({ this_player() });
     args = explode(str, " ");  
     amount = atoi(args[0]);
 
@@ -48,7 +48,10 @@ int cmd_damall(string str){
     {
         ob->cause_typed_damage(ob, "torso", amount, type);
         write("%^RED%^BOLD%^You damaged %^WHITE%^" + ob->query_cap_name() + " %^RED%^for%^WHITE%^ " + amount + " " + type + " %^RED%^damage!");
+        //ob->cease_all_attacks();
     }
+    //this_player()->cease_all_attacks();
+    
     return 1;
 }
 
