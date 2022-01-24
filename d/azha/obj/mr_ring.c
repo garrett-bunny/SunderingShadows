@@ -212,7 +212,6 @@ void mr_ring_check(){
                             deep_inv[j]->move(environment(ETO));
                         }
                     }
-                    sacks[i]->remove();
                 }
             }
         }
