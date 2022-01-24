@@ -40,6 +40,7 @@ int cmd_reward(string str)
 		thelevels = target->query_adjusted_character_level();
         expall = abs(EXP_NEEDED[thelevels + 1] - EXP_NEEDED[thelevels]) / 8;
         expall = WORLD_EVENTS_D->check_exp_events(expall, TO);
+	if(j > 4) expall = expall / (j - 4);
         target->set_property("ignore tax", 1);
         target->add_general_exp(target->query_classes()[0], expall);
         target->remove_property("ignore tax");
