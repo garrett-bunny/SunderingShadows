@@ -64,4 +64,5 @@
     "/realms/nuwisha/obj/iceaura2", \
     "/d/islands/dallyh/marsh/obj/frobe", \
     "/d/islands/dallyh/forest/obj/rosebodice", \
+    "/d/atoyatl/tecqumin/obj/poncho", \
 })
