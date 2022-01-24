@@ -387,8 +387,8 @@ varargs int typed_damage_modification(object attacker, object targ, string limb,
     }
     */
     
-    if(damage < 0)
-        damage = 0;
+    //if(damage < 0)
+    //    damage = 0;
     
     //Now ONLY works on non-physical hits
     //Occasional halving of big energy hits
@@ -441,13 +441,13 @@ varargs int typed_damage_modification(object attacker, object targ, string limb,
 
     damage = to_int(damage * percentage);
     
-    if(damage < 0)
-        damage = 0;
+    //if(damage < 0)
+    //    damage = 0;
 
     damage = damage - resist;
     
-    if(damage < 0)
-        damage = 0;
+    //if(damage < 0)
+    //    damage = 0;
 
     if ((type == "negative energy" ||
         type == "positive energy") &&
@@ -1263,8 +1263,8 @@ varargs void calculate_damage(object attacker, object targ, object weapon, strin
 
     damage += bonus_hit_damage;
     
-    if(damage <= 0);
-        return;
+    //if(damage <= 0);
+    //    return;
     
     armor = targ->query_armour(target_thing);
     j = sizeof(armor);
@@ -1295,8 +1295,8 @@ varargs void calculate_damage(object attacker, object targ, object weapon, strin
         /**************************************/
     }
     
-    if(damage <= 0)
-        return;
+    //if(damage <= 0)
+    //    return;
 
     new_struck(damage, weapon, attacker, target_thing, targ, fired, ammoname, critical_hit, cant_shot, sneak);
 
