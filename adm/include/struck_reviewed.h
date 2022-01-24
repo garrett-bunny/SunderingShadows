@@ -63,4 +63,5 @@
     "/d/islands/coralsea/obj/coralscape", \
     "/realms/nuwisha/obj/iceaura2", \
     "/d/islands/dallyh/marsh/obj/frobe", \
+    "/d/islands/dallyh/forest/obj/rosebodice", \
 })
