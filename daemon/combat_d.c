@@ -387,6 +387,9 @@ varargs int typed_damage_modification(object attacker, object targ, string limb,
     }
     */
     
+    if(damage < 0)
+        damage = 0;
+    
     //Now ONLY works on non-physical hits
     //Occasional halving of big energy hits
     if(damage > 100 && objectp(targ) && FEATS_D->usable_feat(targ, "kinetic conversion"))
@@ -399,7 +402,7 @@ varargs int typed_damage_modification(object attacker, object targ, string limb,
         }
     }
     
-    if(damage > 0 && chained = targ->query_property("chains of justice"))
+    if(chained = targ->query_property("chains of justice"))
     {
         if(objectp(chained) && environment(chained) == environment(targ))
         {
@@ -437,13 +440,14 @@ varargs int typed_damage_modification(object attacker, object targ, string limb,
     percentage = to_float((100 - resist_perc) / to_float(100));
 
     damage = to_int(damage * percentage);
+    
+    if(damage < 0)
+        damage = 0;
 
-    if (damage > 0) {
-        damage = damage - resist;
-        if (damage < 0) {
-            damage = 0;
-        }
-    }
+    damage = damage - resist;
+    
+    if(damage < 0)
+        damage = 0;
 
     if ((type == "negative energy" ||
         type == "positive energy") &&

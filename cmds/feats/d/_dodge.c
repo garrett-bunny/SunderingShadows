@@ -25,6 +25,18 @@ int prerequisites(object ob){
     return ::prerequisites(ob);
 }
 
+void permanent_effects(object ob) {
+    ::permanent_effects(ob);
+    dest_effect();
+    return;
+}
+
+void reverse_permanent_effects(object ob) {
+    ::reverse_permanent_effects(ob);
+    dest_effect();
+    return;
+}
+
 void dest_effect(){
     ::dest_effect();
     remove_feat(TO);
