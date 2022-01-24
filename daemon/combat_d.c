@@ -1259,6 +1259,9 @@ varargs void calculate_damage(object attacker, object targ, object weapon, strin
 
     damage += bonus_hit_damage;
     
+    if(damage <= 0);
+        return;
+    
     armor = targ->query_armour(target_thing);
     j = sizeof(armor);
     for (i = 0; i < j; i++) {
@@ -1288,7 +1291,7 @@ varargs void calculate_damage(object attacker, object targ, object weapon, strin
         /**************************************/
     }
     
-    if(!damage)
+    if(damage <= 0)
         return;
 
     new_struck(damage, weapon, attacker, target_thing, targ, fired, ammoname, critical_hit, cant_shot, sneak);
