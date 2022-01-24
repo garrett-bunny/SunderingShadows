@@ -94,6 +94,7 @@ int strike_func(int damage, object what, object who){
             "you strike them, and "+ETO->QS+" seems to fade for a moment!");
         return (damage*-1);
  }
+   return damage;
 }
 
 int is_metal() { return 0; }
