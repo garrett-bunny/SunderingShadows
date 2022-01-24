@@ -51,7 +51,7 @@ varargs int thaco(int level, string myclass, object ob)
                     continue;
                 }
                 bab = file->attack_bonus(ob);
-                ret += (bab < 1 ? 1 : bab);
+                ret += (bab < 0 ? 0 : bab);
             }
 
             ret = ret - 20;
@@ -203,7 +203,7 @@ int new_bab(int level, object ob)
                 continue;
             }
             bab = file->attack_bonus(ob);
-            ret += (bab < 1 ? 1 : bab);
+            ret += (bab < 0 ? 0 : bab);
             //since mobs are usually much higher level than players - Saide
             if (!userp(ob)) {
                 return ret;

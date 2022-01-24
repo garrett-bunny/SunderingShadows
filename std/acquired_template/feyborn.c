@@ -12,7 +12,7 @@ string *races_allowed()
 
 int is_rollable() { return 0; } // not rollable in creation
 
-mapping skill_mods(string subrace) { return ([ "persuasion" : 5 ]); }
+mapping skill_mods(string subrace) { return ([ "influence" : 5 ]); }
 
 mapping innate_spells()
 {

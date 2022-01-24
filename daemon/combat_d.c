@@ -970,6 +970,7 @@ int crit_damage(object attacker, object targ, object weapon, int size, int damag
     int mult, crit_dam, perc;
     string targRace, a_name, a_poss, t_name, t_poss;
     object* wielded;
+    
     if (damage <= 0) {
         return 0;
     }
