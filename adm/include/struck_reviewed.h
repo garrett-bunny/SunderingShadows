@@ -66,4 +66,5 @@
     "/d/islands/dallyh/forest/obj/rosebodice", \
     "/d/atoyatl/tecqumin/obj/poncho", \
     "/d/atoyatl/tecqumin/obj/kilt", \
+    "/d/barriermnts/lothwaite/obj/ethereal_bracers", \
 })
