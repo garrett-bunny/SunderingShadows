@@ -124,14 +124,14 @@ int attack_fun() {
       if((string)TPQCN == TARGET) {
          for(j = 0;j < i;j++) {
             if(high_mortalp(user[j])){
-               tell_object(user[j],"%^RESET%^Dryzil %^MAGENTA%^<hm>%^RESET%^ "
+               tell_object(user[j],"%^RESET%^Dryzil %^MAGENTA%^says:%^RESET%^ "
                "Lovely show "+TPQCN+"! Saved me hunting you down a second time!");
             }
          }
       } else {
          for(j = 0;j < i;j++) {
             if(high_mortalp(user[j])){
-               tell_object(user[j],"%^RESET%^Dryzil %^MAGENTA%^<hm>%^RESET%^ "
+               tell_object(user[j],"%^RESET%^Dryzil %^MAGENTA%^says: %^RESET%^ "
                "Well, well, well "+TPQCN+"...I knew I would find you among the weenies!");
             }
          }
@@ -172,7 +172,7 @@ void heart_beat() {
          ii = sizeof(user);
          for(jj = 0;jj < ii;jj++) {
             if(high_mortalp(user[jj])){
-               tell_object(user[jj],"%^RESET%^Dryzil %^MAGENTA%^<hm>%^RESET%^ Wait! "+TARGET+" come back! I am not finished with you yet!!!");
+               tell_object(user[jj],"%^RESET%^Dryzil %^MAGENTA%^says:%^RESET%^ Wait! "+TARGET+" come back! I am not finished with you yet!!!");
             }
          }
          ATTACK = 0;
