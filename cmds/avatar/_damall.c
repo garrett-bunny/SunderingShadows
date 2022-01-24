@@ -1,44 +1,61 @@
 #include <std.h>
+#include <damage_types.h>
 
 inherit DAEMON;
 
 int help();
 
 int cmd_damall(string str){
-   object * objs;
-   int amount;
-   string who;
+    object * objs;
+    object room;
+    mixed *args;
+    int amount;
+    string who, type;
 
-   string posxxx;
-   if(!objectp(TP)) { return 0; }
-   posxxx = lower_case((string)TP->query_position());
-   if(posxxx == "builder" || posxxx == "apprentice")
-   {
-       tell_object(TP,"You cannot use this command as a builder or apprentice.");
-       return 1;
-   }
+    string posxxx;
+    if(!objectp(TP)) { return 0; }
+    posxxx = lower_case((string)TP->query_position());
+    if(posxxx == "builder" || posxxx == "apprentice")
+    {
+        tell_object(TP,"You cannot use this command as a builder or apprentice.");
+        return 1;
+    }
+   
+    if(!strlen(str))
+        return help();
+    
+    room = environment(this_player());
+   
+    if(!objectp(room))
+        return 1;
 
-   //   if(!str) return notify_fail("Who do you want to do damage on?\n");
-   // if(sscanf(str,"%s %d",who,amount) != 2)
-   //   return help();
-   objs = all_inventory(ETP);;
-   //  if(!obj) return notify_fail(capitalize(str)+": not found.\n");
-   //  if(!interactive(obj))
-   //   return notify_fail("You can only use it on players who is online right now.\n");
-   amount=atoi(str);
-   if (!intp(amount))
-     return help();
-   set_property("magic",1);
-   objs->do_damage("torso",amount);
-   write("%^RED%^WARNING: Improper use of this command will be punished!");
-   write("%^YELLOW%^You damaged "+identify(objs->query_cap_name())+" for "+amount+" HP.\n");
-   return 1;
+    objs = all_living(room);
+    args = explode(str, " ");  
+    amount = atoi(args[0]);
+
+    if (!intp(amount))
+        return help();
+ 
+    if(sizeof(args) > 1)
+        type = args[1];
+   
+    if(!type || !strlen(type) || member_array(type, VALID_DAMAGE_TYPES) < 0)
+        type = "untyped";
+   
+    set_property("magic",1);
+   
+    foreach(object ob in objs)
+    {
+        ob->cause_typed_damage(ob, "torso", amount, type);
+        write("%^RED%^BOLD%^You damaged %^WHITE%^" + ob->query_cap_name() + " %^RED%^for%^WHITE%^ " + amount + " " + type + " %^RED%^damage!");
+    }
+    return 1;
 }
 
 int help(){
    write(
 @OBS
-Syntax: damall <amount of hp>
+Syntax: damall <amount of hp> <damage type>
 Warning: Always have a good reason when you use the command.
          Any abuse will lead to punishment.
 Note: Put negative values in amount, you can make it a healing command
