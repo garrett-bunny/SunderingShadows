@@ -46,8 +46,8 @@ void summon_servant()
 {
     object ob, thing;
 
-    tell_object(caster, "%^GREEN%^%^BOLD%^Small plant breaks through the floor and quickly grows into a shambling mound to stand before you and obey your commands.%^RESET%^");
-    tell_room(place, "%^GREEN%^%^BOLD%^Small plant breaks through the floor and quickly grows into a shambling mound.%^RESET%^", caster);
+    tell_object(caster, "%^GREEN%^%^BOLD%^A small plant breaks through the floor and quickly grows into a shambling mound to stand before you and obey your commands.%^RESET%^");
+    tell_room(place, "%^GREEN%^%^BOLD%^A small plant breaks through the floor and quickly grows into a shambling mound.%^RESET%^", caster);
 
     ob = new("/d/magic/mon/shambler.c");
     ob->setup_servant(caster, clevel);

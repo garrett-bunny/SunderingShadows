@@ -40,6 +40,7 @@ void init()
 {
     ::init();
     add_action("drink_func", "drink");
+    add_action("pick", "pick");
 }
 
 int drink_func(string str)

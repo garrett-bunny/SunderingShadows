@@ -16,7 +16,7 @@ void create() {
     set_spell_sphere("conjuration_summoning");
     set_syntax("cast CLASS seamantle");
     set_damage_desc("8 to AC, 4 to reflex save");
-    set_description("You surround yourself with column of water, or control currents of water you're already in, to shield yourself from harm. Such mantle is powerful shield, yet maintaining it for long periods of time is nearly impossible even for an experienced caster.");
+    set_description("You surround yourself with column of water, or control currents of water you're already in, to shield yourself from harm. It is a powerful shield, yet maintaining it for long periods of time is nearly impossible even for an experienced caster.");
     set_verbal_comp();
     set_somatic_comp();
     set_helpful_spell(1);
