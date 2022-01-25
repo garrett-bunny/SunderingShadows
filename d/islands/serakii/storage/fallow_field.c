@@ -30,7 +30,7 @@ void create() {
 
         case "spring": 
             set_long("%^C028%^These %^C220%^fields%^C028%^ at one point were planted with %^C220%^corn%^C028%^ however it looks like for several seasons the fields have %^C248%^lay fallow%^C028%^. %^C095%^Mud%^C028%^ has churned up the %^C094%^soil%^C028%^ and the remains of %^C220%^corn cobs%^C028%^ and %^C220%^stalks%^C028%^ are everywhere. With recent %^C063%^rains%^C028%^ everything is %^C058%^mucky%^C028%^ and the %^C095%^mud%^C028%^ is deep. To the east you can see a %^C022%^forest%^C028%^ shrouded in fog and a %^C248%^giant boulder%^C028%^. Far to the north you can see %^C250%^three fortresses%^C028%^.%^CRST%^\n");
-            set_mell("default","%^C060%^You smell %^C095%^mud%^C060%^ and %^C228%^straw%^CRST%^");
+            set_smell("default","%^C060%^You smell %^C095%^mud%^C060%^ and %^C228%^straw%^CRST%^");
             set_listen("default","%^C140%^You hear strange sounds coming from the %^C028%^forest%^C140%^ to the east%^CRST%^");
         break;
 
