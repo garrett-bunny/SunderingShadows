@@ -8,8 +8,8 @@ void create()
     set_name("troll scout");
     set_short("A Troll scout");
     set_long(
-        "This is a nimble troll scout.  He is covered in camoflage " +
-        "clothes.  His skin is a putred green and his eyes bulge out of his " +
+        "This is a nimble troll scout.  He is covered in camoflauge " +
+        "clothes.  His skin is a putrid green and his eyes bulge out of his " +
         "head.  He stands about 7 feet tall and moves like lightning."
         );
     set_body_type("human");

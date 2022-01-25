@@ -939,7 +939,7 @@ void wizard_interface(object user, string type, string targ)
 
     if (query_traveling_aoe_spell()) {
         if (caster->query_property("travaoe")) {
-            tell_object(caster, "You can't concentrate on that many travaoe effects!");
+            tell_object(caster, "You can't concentrate on that many traveling area effects!");
             ::remove();
             return;
         }

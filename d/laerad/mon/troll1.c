@@ -9,7 +9,7 @@ void create()
     set_short("A Troll peasant");
     set_long(
         "This is a scrawny troll peasant.  He is dressed in tattered " +
-        "rags.  His skin is a putred green and his eyes bulge out of his " +
+        "rags.  His skin is a putrid green and his eyes bulge out of his " +
         "head.  He stands nearly 6 feet tall but is small for a troll."
         );
     set_body_type("human");
@@ -50,7 +50,7 @@ void init()
         race == "dwarf" || race == "gnome" || race == "halfling" ||
         race == "horse") {
         if (interactive(TP)) {
-            force_me("say YOU DO NOT BELONG HERE OUTSIDER!");
+            force_me("say YOU DO NOT BELONG HERE, OUTSIDER!");
         }
         force_me("kill " + TPQN);
         return 1;
@@ -58,7 +58,7 @@ void init()
     if (interactive(TP)) {
         force_me("bow");
     }
-    force_me("say hello friend.");
+    force_me("say Hello friend.");
     return 1;
 }
 

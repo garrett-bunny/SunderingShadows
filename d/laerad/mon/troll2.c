@@ -9,7 +9,7 @@ void create()
     set_short("A Troll guard");
     set_long(
         "This is a rather large troll guard.  He is dressed in a hide " +
-        "cloth.  His skin is a putred green and his eyes bulge out of his " +
+        "cloth.  His skin is a putrid green and his eyes bulge out of his " +
         "head.  He stands over 7 feet tall and looks extremely fierce."
         );
     set_body_type("human");
@@ -50,7 +50,7 @@ void init()
         race == "dwarf" || race == "gnome" || race == "halfling" ||
         race == "horse") {
         if (interactive(TP)) {
-            force_me("say YOU DO NOT BELONG HERE OUTSIDER!");
+            force_me("say YOU DO NOT BELONG HERE, OUTSIDER!");
         }
         force_me("kill " + TPQN);
         return 1;
@@ -58,7 +58,7 @@ void init()
     if (interactive(TP)) {
         force_me("bow");
     }
-    force_me("say hello friend.");
+    force_me("say Hello friend.");
     return 1;
 }
 

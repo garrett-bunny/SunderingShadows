@@ -45,7 +45,7 @@ void init()
     }
     if ((string)TP->query_race() == "human" || (string)TP->query_race() == "elf" || (string)TP->query_race() == "half-elf" || (string)TP->query_race() == "dwarf" || (string)TP->query_race() == "gnome" || (string)TP->query_race() == "halfling") {
         if (interactive(TP)) {
-            force_me("say YOU DO NOT BELONG HERE OUTSIDER!");
+            force_me("say YOU DO NOT BELONG HERE, OUTSIDER!");
         }
         force_me("kill " + TPQN);
         return 1;
@@ -53,7 +53,7 @@ void init()
     if (interactive(TP)) {
         force_me("bow");
     }
-    force_me("say hello friend.");
+    force_me("say Hello friend.");
     return 1;
 }
 
