@@ -27,7 +27,7 @@ void create() {
 	"ys%^C038%^t%^C036%^al%^CRST%^ hanging from the ceiling. \n");
 
     set_items(([
-      ({"floor","rug"}) : " t.\n",
+      ({"floor","rug"}) : "The floor is covered in a %^C242%^fine gray carpet%^CRST%^.\n",
       ({"paintings"}) : "The ceiling is so far above you it is hard to "+
       "fathom exactly how high. There is a glass dome far above "+
       "you letting in light.\n",
