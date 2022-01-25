@@ -51,7 +51,7 @@ int constrict(object targ)
           targ->do_damage("torso",roll_dice(2,4));
           return 1;
         }
-	tell_room(ETO,"%^BOLD%^The constrictor successfully manages to grasp "+targ->query_cap_name()+" in it's thick coils!",targ);
+	tell_room(ETO,"%^BOLD%^The constrictor successfully manages to grasp "+targ->query_cap_name()+" in its thick coils!",targ);
 	tell_object(targ,"%^BOLD%^The constrictor successfully manages to grasp you in it's thick coils!\n");
 	caught = targ;
 	targ->set_property("caught",1);
