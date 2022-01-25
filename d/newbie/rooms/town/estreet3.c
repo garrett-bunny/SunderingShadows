@@ -15,7 +15,7 @@ void create() {
 "  The cobblestone %^ORANGE%^streets %^RESET%^are smooth beneath your feet, granting passage to the light but steady "
 "stream of %^CYAN%^traffic %^RESET%^that passes through the town on a daily basis.  The street is bordered on the north "
 "and south by a jumble of %^RED%^buildings%^RESET%^. To the north the closest of which is an odd %^MAGENTA%^dome%^RESET%^, obviously "
-"some kind of building, but it is difficult to tell from here what purpose it serves. To the south the closet of which is the scribe with its doors open to welcome "
+"some kind of building, but it is difficult to tell from here what purpose it serves. To the south the closest of which is the scribe with its doors open to welcome "
 "customers.%^RESET%^\n");
    set("night long", ""+TO->query_long()+"\n%^BOLD%^The street light glows brightly to light your way.");
    set_listen("default","You hear the sounds of metal striking metal.");

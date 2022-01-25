@@ -15,7 +15,7 @@ void create()
     set_bonus_type("sacred");
     set_spell_sphere("enchantment_charm");
     set_syntax("cast CLASS burst of glory");
-    set_damage_desc("+1 to attack, damage bonus, clevel to hp bonus on allies");
+    set_damage_desc("+1 to attack and damage bonus, +clevel bonus hp to allies");
     set_description("Allies in the place of the time of casting become blessed. This spell won't stack with bless type spells.");
     set_verbal_comp();
     set_somatic_comp();
