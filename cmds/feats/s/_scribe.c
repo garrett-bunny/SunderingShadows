@@ -124,6 +124,12 @@ void execute_feat()
     }
 
     level = tmp->query_spell_level(TP->query_class());
+    
+    if(level >= 10)
+    {
+        tell_object(caster, "The magic is too powerful and resists your attempt to put it to parchment!");
+        return 1;
+    }
 
     if (!FEATS_D->usable_feat(caster, "clone scroll") || (FEATS_D->usable_feat(caster, "clone scroll")  && (!present(str, caster) || !present(str, caster)->is_scroll()))) {
         if (MAGIC_D->is_mastering_class(TP->query_class()) && member_array(str, TP->query_mastered_spells(TP->query_class())) == -1) {

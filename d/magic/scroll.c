@@ -180,6 +180,7 @@ int transcribe(string str)
     object book;
     int prev;
     int after;
+    int spell_level;
     if (TP->light_blind(0)) {
         return notify_fail("You cannot see well enough to read this.\n");
     }
@@ -200,6 +201,12 @@ int transcribe(string str)
     if (member_array(spell, keys(MAGIC_D->query_index("mage"))) == -1) {
         notify_fail("You can only transcribe arcane spells");
     }
+    
+    spell_level = MAGIC_D->query_spell_level("mage", spell);
+    
+    if(spell_level >= 10 && !FEATS_D->has_feat(this_player(), "deep magic"))
+        return notify_fail("That spell is too powerful for you to copy correctly. You fail.\n");
+    
     write("%^ORANGE%^You carefully file " + spell + " into your spellbook.\n");
     book->set_spellbook(spell);
     TO->remove();

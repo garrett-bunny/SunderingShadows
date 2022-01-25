@@ -450,6 +450,10 @@ int recall_spells(string type, object who)
     max = WIZ_CALCS->query_max_spell_array(class_level, spell_type, who->query_stats(mystat));
     max = magic_arsenal_feat(who, max);
     max = bonus_spell_slots(who, max);
+    
+    if(FEATS_D->has_feat(who, "deep magic"))
+        max += ({ 1 });
+    
     if ((string)who->query_race() == "human") {
         subrace = (string)who->query("subrace");
         if (subrace) {
