@@ -10,7 +10,7 @@ void create(){
     set_short("Systyquah's component shop");
     set_long(
 	"%^BOLD%^Systyquah's component shop%^RESET%^
-You are standing in a magic components shop.  The stores walls are covered "+
+You are standing in a magic components shop.  The store's walls are covered "+
 	"with various sized bottles filled with everything from brains to "+
 	"dragon scales to vampire dust.  There is a desk at the northern "+
 	"end of the room where you can <help shop> to get a list of shop "+

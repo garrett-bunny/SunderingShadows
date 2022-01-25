@@ -315,7 +315,7 @@ If argument is provided, filters players by races.
 
 %^CYAN%^SEE ALSO%^RESET%^
 
-chfn, finger, mail, passwd, flag, pkilling, threaten, levelcheck, rules, notify
+chfn, finger, mail, passwd, flag, pkilling, threaten, rules, notify
 
 %^CYAN%^IMMORTALS%^RESET%^
 

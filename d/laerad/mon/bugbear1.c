@@ -17,7 +17,7 @@ void create(){
     set_long(
 	"Standing before you is a very imposing creature.  The beast stands "+
 	"nearly 9 feet tall and must weigh 500 pounds at least.  He is covered "+
-	"in scraps of armor, probably torn from his former victims bodies like "+
+	"in scraps of armor, probably torn from his former victims bodies' like "+
 	"trophies.  He wields a massive two handed sword that is slung over "+
 	"his shoulder."
     );

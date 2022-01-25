@@ -9,7 +9,7 @@ void create()
     set_short("A Troll peasant");
     set_long(
         "This is a scrawny troll peasant.  He is dressed in tattered " +
-        "rags.  His skin is a putred green and his eyes bulge out of his " +
+        "rags.  His skin is a putrid green and his eyes bulge out of his " +
         "head.  He stands nearly 6 feet tall but is small for a troll."
         );
     set_body_type("human");
