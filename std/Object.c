@@ -383,7 +383,7 @@ void set_property(string prop, mixed value)
     if (prop == "magic resistance" || prop == "spell resistance") {
 	if(TO->is_living() && value > 9) {
 	    log_file("reports/magic_resistance", "Living Object magic resistance value of " + value + " in " + TO + "\n");
-	    log_file("reports/magic_resistance", "Previous object:" + previous_object() + "\n");
+	    log_file("reports/magic_resistance", "Previous object " + previous_object() + "\n");
 	}
 	else if (!(TO->is_living()) && value > 4) {
 	    log_file("reports/magic_resistance", "Non-living Object magic resistance value of " + value + " in " + base_name(TO) + "\n");
