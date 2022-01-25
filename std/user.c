@@ -762,7 +762,7 @@ int query_verbose_combat()
     return user_vars["verbose_combat"];
 }
 
-varargs void move_player(mixed dest, string msg)
+varargs void move_player(mixed dest, string msg, int follow_flag)
 {
     object prev;
     object *inv;
@@ -858,6 +858,10 @@ varargs void move_player(mixed dest, string msg)
 	            continue;
             }
             if (query_hidden())
+                continue;
+            
+            //For screenreader support. Follow message messes up their ability to *see* room exits
+            if(inv[i]->query("reader") && follow_flag)
                 continue;
 
             if (!msg || msg == "") message("mmin",query_mmin(inv[i]),inv[i]);
