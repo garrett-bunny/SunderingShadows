@@ -818,6 +818,9 @@ varargs void move_player(mixed dest, string msg, int follow_flag)
     }
 
     reset_hidden_seen();
+    
+    if(this_object()->query("reader"))
+        describe_current_room(static_user["verbose_moves"]);
 
     if (!hiddenp(TO) && !(avatarp(TO) && query_true_invis()))
     {
@@ -861,8 +864,8 @@ varargs void move_player(mixed dest, string msg, int follow_flag)
                 continue;
             
             //For screenreader support. Follow message messes up their ability to *see* room exits
-            if(inv[i]->query("reader") && follow_flag)
-                continue;
+            //if(inv[i]->query("reader") && follow_flag)
+            //    continue;
 
             if (!msg || msg == "") message("mmin",query_mmin(inv[i]),inv[i]);
             else
@@ -879,7 +882,8 @@ varargs void move_player(mixed dest, string msg, int follow_flag)
             move_followers(prev);
     }
 
-    describe_current_room(static_user["verbose_moves"]);
+    if(!this_object()->query("reader"))
+        describe_current_room(static_user["verbose_moves"]);
 }
 
 int id(string str)
