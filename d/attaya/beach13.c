@@ -10,7 +10,7 @@ void create() {
     set_property("indoors",0);
     set_short("Narrow ledge descent");
     set_long("
-    The path decends slowly to the northeast.  In the distance, above you, you can make out a jagged ledge over the ocean.  It resembles a clawed hand from this angle!
+    The path descends slowly to the northeast.  In the distance, above you, you can make out a jagged ledge over the ocean.  It resembles a clawed hand from this angle!
 ");
 
      set_listen("default","The waves pound against the rocky coastline coating you in a fine mist of seaspray.");

@@ -63,7 +63,7 @@ int i,x;
     case "barbute":
 	TO->set_long("Crafted from "+COLOR+"%^RESET%^"+
 		", this open face barbute helm"+
-		" offers protection to ones head.  The dome shape of"+
+		" offers protection to one's head.  The dome shape of"+
 		" the helmet helps to reflect blows given to the top "+
 		"of the helm.  The helmet is made to fit low on the "+
 		"wearer's head.  A T like shape has been cut into the"+
@@ -78,7 +78,7 @@ int i,x;
 	break;
     case "morion":
       TO->set_long("Crafted from "+COLOR+"%^RESET%^, this open face "+
-		"morion helm offers protection to ones head.  The dome shape of"+
+		"morion helm offers protection to one's head.  The dome shape of"+
 		" the helmet helps to reflect blows given to the top of "+
 		"the helm.  The helmet is crafted with a metal brim that"+
 		" dips low in the back and rises up in the front.  The "+
@@ -95,7 +95,7 @@ int i,x;
     case "spangenhelm":
       TO->set_long("Crafted from "+COLOR+"%^RESET%^, this closed face"+
 		" spangenhelm "+
-		"offers protection to ones head.  The dome shape of the"+
+		"offers protection to one's head.  The dome shape of the"+
 		" helmet helps to reflect blows given to the top of the "+
 		"helm.  A face plate is attached to the helmet, adding an"+
 		" additional feeling of protection.  The convex face plate"+
@@ -113,7 +113,7 @@ int i,x;
     case "sentinel":
       TO->set_long("Crafted from "+COLOR+"%^RESET%^, this open face"+
 		" sentinel helm offers"+
-		" protection to ones head.  The dome shape of the helmet "+
+		" protection to one's head.  The dome shape of the helmet "+
 		"helps to reflect blows given to the top of the helm.  A "+
 		"metal plate has been attached over the brow of the helm, "+
 		"adding further protection to the front of the helm.  A "+
@@ -130,7 +130,7 @@ int i,x;
     case "maximilian":
       TO->set_long("Crafted from "+COLOR+"%^RESET%^, this closed face"+
 		" maximilian helm offers"+
-		" protection to ones head.  The dome shape of the helmet helps"+
+		" protection to one's head.  The dome shape of the helmet helps"+
 		" to deflect blows given to the top of the helm.  A rippling "+
 		"strip of metal is attached to the top of the helm.  The peaks"+
 		" and valleys of the ripping metal help further deflect blows.  "+
@@ -149,7 +149,7 @@ int i,x;
     case "sugarloaf":
       TO->set_long("Crafted from "+COLOR+"%^RESET%^, this closed face"+
 		" sugarloaf helm "+
-		"offers protection to ones head.  The tall cone shape of the "+
+		"offers protection to one's head.  The tall cone shape of the "+
 		"helmet helps to deflect blows given to the top of the helm. "+
 		"This seamless helm is crafted without a face plate, in hopes "+
 		"of further protection the wearer.  Contrasting metal strips "+

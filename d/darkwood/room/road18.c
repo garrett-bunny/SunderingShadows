@@ -8,7 +8,7 @@ void create() {
     ::create();
     set_short("%^RESET%^%^MAGENTA%^An %^MAGENTA%^Anc%^ORANGE%^i%^MAGENTA%^en%^ORANGE%^t %^MAGENTA%^P%^ORANGE%^l%^MAGENTA%^aza%^RESET%^");
     set_long("%^RESET%^%^MAGENTA%^An %^MAGENTA%^Anc%^ORANGE%^i%^MAGENTA%^en%^ORANGE%^t %^MAGENTA%^P%^ORANGE%^l%^MAGENTA%^aza%^RESET%^
-%^RESET%^%^GREEN%^You stand in small clearing on the %^MAGENTA%^road%^GREEN%^ in the middle of countryside. To the north spires of the great city of Shadow could be seen. To the south, a dark forest in the far distance. The road here bends around a %^ORANGE%^mon%^BOLD%^%^ORANGE%^u%^RESET%^%^ORANGE%^me%^BOLD%^%^ORANGE%^n%^ORANGE%^t%^RESET%^%^ORANGE%^,%^GREEN%^ several %^BOLD%^%^BLACK%^a%^RESET%^%^WHITE%^n%^BOLD%^%^BLACK%^cien%^RESET%^%^WHITE%^t%^BOLD%^%^BLACK%^,%^RESET%^%^GREEN%^ covered in %^MAGENTA%^v%^GREEN%^i%^MAGENTA%^ne%^GREEN%^s %^BOLD%^%^BLACK%^s%^RESET%^%^WHITE%^tone %^WHITE%^benches%^GREEN%^ stand in the place for adventurers to rest. The place is sereve and quiet.%^RESET%^
+%^RESET%^%^GREEN%^You stand in small clearing on the %^MAGENTA%^road%^GREEN%^ in the middle of countryside. To the north spires of the great city of Shadow could be seen. To the south, a dark forest in the far distance. The road here bends around a %^ORANGE%^mon%^BOLD%^%^ORANGE%^u%^RESET%^%^ORANGE%^me%^BOLD%^%^ORANGE%^n%^ORANGE%^t%^RESET%^%^ORANGE%^,%^GREEN%^ several %^BOLD%^%^BLACK%^a%^RESET%^%^WHITE%^n%^BOLD%^%^BLACK%^cien%^RESET%^%^WHITE%^t%^BOLD%^%^BLACK%^,%^RESET%^%^GREEN%^ covered in %^MAGENTA%^v%^GREEN%^i%^MAGENTA%^ne%^GREEN%^s %^BOLD%^%^BLACK%^s%^RESET%^%^WHITE%^tone %^WHITE%^benches%^GREEN%^ stand in the place for adventurers to rest. The place is serene and quiet.%^RESET%^
 ");
     set_smell("%^MAGENTA%^You smell some flowers%^RESET%^");
     set_exits(

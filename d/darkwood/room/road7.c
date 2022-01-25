@@ -23,7 +23,7 @@ void create() {
 set_long(
 @THORN
 %^BOLD%^%^GREEN%^Rha%^CYAN%^p%^GREEN%^sody %^CYAN%^C%^MAGENTA%^lear%^CYAN%^i%^MAGENTA%^ng%^RESET%^
-%^GREEN%^You are now on the edge of the forest. From what you can tell, it is rather difficult to see in the forest as it is filled with a mixture of coniferous and %^BOLD%^%^GREEN%^d%^CYAN%^e%^GREEN%^ciduious%^RESET%^%^GREEN%^ trees that seem to form a perfect canopy. This canopy is very effective at blocking out sunlight. On the east is a large wooden building. Just north of the building is a shady, grassy area set with tethering posts. There is a %^BOLD%^%^MAGENTA%^si%^MAGENTA%^g%^MAGENTA%^n%^RESET%^%^GREEN%^ for you to read planted in the ground.
+%^GREEN%^You are now on the edge of the forest. From what you can tell, it is rather difficult to see in the forest as it is filled with a mixture of coniferous and %^BOLD%^%^GREEN%^d%^CYAN%^e%^GREEN%^ciduous%^RESET%^%^GREEN%^ trees that seem to form a perfect canopy. This canopy is very effective at blocking out sunlight. On the east is a large wooden building. Just north of the building is a shady, grassy area set with tethering posts. There is a %^BOLD%^%^MAGENTA%^si%^MAGENTA%^g%^MAGENTA%^n%^RESET%^%^GREEN%^ for you to read planted in the ground.
 THORN
 );
     set_exits(
