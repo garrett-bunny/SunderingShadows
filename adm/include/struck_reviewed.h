@@ -60,6 +60,7 @@
     "/d/islands/elf/obj/shield", \
     "/d/dagger/derro/obj/shield", \
     "/d/dagger/marsh/tower/obj/shadowbracers", \
+    "/d/dagger/marsh/tower/obj/castershoes", \
     "/d/islands/coralsea/obj/coralscape", \
     "/realms/nuwisha/obj/iceaura2", \
     "/d/islands/dallyh/marsh/obj/frobe", \
