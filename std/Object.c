@@ -2664,6 +2664,9 @@ int BonusCheck(string BonusName)
 //new functionality to replace old stat bonuses with all magical bonuses
 void set_item_bonus(string bonustype, int thebonus)
 {
+    if ((bonustype == "magic resistance" || bonustype == "spell resistance") && thebonus > 4) {
+	log_file("reports/magic_resistance", "Item bonus magic resistance value of " + thebonus + " in " + base_name(TO) + "\n");
+    }
     if (!item_bonuses) {
         item_bonuses = ([]);
     }
