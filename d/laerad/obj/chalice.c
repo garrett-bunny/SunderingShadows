@@ -37,7 +37,7 @@ void create()
              "seem to spell out something.");
     set_lore("First created by the faiths of Lysara and Nim'navanon," +
              " the Chalice of Purity symbolized the main themes of both" +
-             " goddesses.  The unicorn is used to symbolize purity and" +
+             " deities.  The unicorn is used to symbolize purity and" +
              " cleansing, while the still pool is an icon of Lysara's" +
              " tranquility.");
     set_property("lore difficulty", 9);

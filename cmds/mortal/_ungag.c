@@ -94,7 +94,7 @@ This will free a gagged %^ORANGE%^%^ULINE%^TARGET%^RESET%^ allowing them to spea
 
 %^CYAN%^SEE ALSO%^RESET%^
 
-gag, bind, unbind, blindfold, unblindfold, stip, pkilling, rules
+gag, bind, unbind, blindfold, unblindfold, strip, pkilling, rules
 "
         );
 }

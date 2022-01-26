@@ -153,6 +153,6 @@ This command will attempt to steal some money from %^ORANGE%^%^ULINE%^TARGET%^RE
 
 %^CYAN%^SEE ALSO%^RESET%^
 
-stealth, steal, spy, look, glance, pkilling, flee"
+stealth, steal, spy, look, glance, pk, pk rules, flee"
         );
 }

@@ -132,7 +132,7 @@ spy TARGET
 
 %^CYAN%^DESCRIPTION%^RESET%^
 
-This will allow to survey TARGET's inventory. Without notifying them. Your success depends on your stealth and target's perception.
+This will allow you to survey TARGET's inventory without notifying them. Your success depends on your stealth and the target's perception.
 
 %^CYAN%^SEE ALSO%^RESET%^
 
