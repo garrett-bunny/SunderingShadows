@@ -24,7 +24,7 @@ void create(){
   set_items(([
 //add Nilith and Ryorik, remove Varda
     ({"alcoves","shrines"}):"There are ten alcoves around the room, each wall supporting three at "
-"equidistant spaces.  The alcoves are dedicated to the gods of the realm: "
+"equidistant spaces.  The alcoves are dedicated to the deities of the realm: "
 "%^BOLD%^%^BLUE%^Callamir%^RESET%^, %^BOLD%^%^RED%^Jarmila%^RESET%^, %^CYAN%^Kismet%^RESET%^, "
 "%^BOLD%^%^WHITE%^Kreysneothosies%^RESET%^, %^BOLD%^%^BLACK%^Lord Shadow%^RESET%^, "
 "%^BOLD%^%^MAGENTA%^Lysara%^RESET%^, %^BOLD%^%^BLACK%^Nilith%^RESET%^, %^MAGENTA%^Nimnavanon%^RESET%^, "
@@ -62,10 +62,10 @@ void create(){
 "%^BOLD%^%^WHITE%^Kreysneothosies is the God of Justice and the Home. A protector of civilisation, he bids his "
 "followers to be even-handed in their dealings, and be respectful of laws that uphold order.%^RESET%^","wizish"}),
     ({"lord shadow","Lord Shadow","lord shadow alcove"}):({"This alcove is dedicated to Lord Shadow, "
-"the god of Darkness and Tyranny.  The entire shrine has been painted %^BOLD%^%^BLACK%^jet-black%^RESET%^, with "
-"a drape displaying the %^BOLD%^%^CYAN%^azure diamond %^RESET%^that serves as his symbol.  Coins and dark "
-"gemstones gleam brightly, easier to spot against the shrine's dark backdropthan the scattering of black "
-"violets also placed as an offering.  You could %^YELLOW%^<read lord shadow> %^RESET%^to learn a bit more "
+"the god of Darkness and Tyranny. The entire shrine has been painted %^BOLD%^%^BLACK%^jet-black%^RESET%^, with "
+"a drape displaying the %^BOLD%^%^CYAN%^azure diamond %^RESET%^that serves as his symbol. Coins and dark "
+"gemstones gleam brightly, easier to spot against the shrine's dark backdrop than the scattering of black "
+"violets also placed as an offering. You could %^YELLOW%^<read lord shadow> %^RESET%^to learn a bit more "
 "about him.","%^BOLD%^%^BLACK%^Lord Shadow is the God of Darkness. Calculating and ruthless, he aims to conquer "
 "and rule over all who would oppose him. He bids his followers to spread fear and hopelessness across the realm, "
 "so that all will come to know his ways.%^RESET%^","wizish"}),
@@ -100,7 +100,7 @@ void create(){
 "%^RESET%^%^RED%^od%^ORANGE%^s%^RED%^to%^BOLD%^n%^RESET%^%^RED%^e %^RESET%^and %^BOLD%^%^RED%^r"
 "%^BLACK%^e%^RED%^d ag%^BLACK%^a%^RED%^te %^RESET%^have been left here in offering alongside "
 "what look like mummified finger bones.  You could %^YELLOW%^<read nilith> %^RESET%^to "
-"learn a bit more about her.","%^BOLD%^%^BLACK%^Nilith is the goddess of Undeath and War.  "
+"learn a bit more about her.","%^BOLD%^%^BLACK%^Nilith is the Goddess of Undeath and War.  "
 "A former tiefling general of Graez, she bids her followers to make war upon the living, ravage "
 "the land, and take what they desire. Only the elite will be rewarded with immortal undeath.%^RESET%^","wizish"}),
       ({"ryorik","Ryorik","ryorik alcove","Ryorik alcove"}):({"This alcove is dedicated "

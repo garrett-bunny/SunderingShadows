@@ -20,7 +20,7 @@ void create()
     "protruding from the top of his head. He looks much bigger than the other kobolds "+
     "you have encountered. One of his ears is actually missing, as if it has been "+
     "torn off. His scaly body is much larger, as if he has seen his fair share of "+
-    "combat and his hairless tail is tipped with a metal barb piercing. His claws "+
+    "combat and his hairless tail is tipped by a metal barb. His claws "+
     "look almost as if they have been intentionally sharped.%^RESET%^");
     set_body_type("human");
     set("aggressive",10);
