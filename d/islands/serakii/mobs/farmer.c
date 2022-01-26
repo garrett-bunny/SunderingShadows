@@ -27,7 +27,7 @@ void create()
 	"the %^C088%^wounds %^C059%^and the poor "+
 	"soul's eyes %^C163%^glow softly%^C059%^ "+
 	"with an otherworldly %^C251%^light%^C059%^. "+
-	"It's movements are slow and shambling until "+
+	"Its movements are slow and shambling until "+
 	"it sees something to kill when it leaps into "+
 	"action.\n%^CRST%^");
     
