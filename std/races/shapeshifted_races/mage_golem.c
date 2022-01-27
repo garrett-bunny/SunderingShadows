@@ -33,7 +33,7 @@ void create()
     set_shape_bonus("sight bonus",3);
     set_shape_bonus("damage bonus",3);
     set_shape_bonus("attack bonus",3);
-    set_shape_bonus("damage resistance",20);
+    set_shape_bonus("damage resistance",15);
     set_shape_height(900+random(100));
     set_shape_weight(5000+random(500));
 }
