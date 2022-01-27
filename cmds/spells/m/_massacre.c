@@ -24,7 +24,7 @@ void create()
     set_domains(({ "evil" }));
     set_spell_sphere("necromancy");
     set_syntax("cast CLASS massacre on TARGET");
-    set_damage_desc("death effect on failed save, divine damage and fester on passed save");
+    set_damage_desc("death on failed save, divine damage and fester otherwise");
     set_save("fortitude");
     set_description("You unleash a wave of necromantic energy that snuffs out the life force of those in its path. This wave pulses out from you, visibly ripping the souls from the bodies of those it passes through. All other must make a combat death save or die. Those who make the save will take full normalized divine damage, and have their healing diminished for a short time. This spell hits fewer targets than spells like Wail of the Banshee.");
     evil_spell(1);
