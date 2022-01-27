@@ -149,7 +149,7 @@ pp %^ORANGE%^%^ULINE%^TARGET%^RESET%^
 
 %^CYAN%^DESCRIPTION%^RESET%^
 
-This command will attempt to steal some money from %^ORANGE%^%^ULINE%^TARGET%^RESET%^. If %^ORANGE%^%^ULINE%^TARGET%^RESET%^ discovers you attempt, they will be upset at you.
+This command will attempt to steal some money from %^ORANGE%^%^ULINE%^TARGET%^RESET%^. If the %^ORANGE%^%^ULINE%^TARGET%^RESET%^ discovers your attempt, they will be upset with you.
 
 %^CYAN%^SEE ALSO%^RESET%^
 

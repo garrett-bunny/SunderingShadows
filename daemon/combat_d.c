@@ -3399,11 +3399,25 @@ void internal_execute_attack(object who)
     v_obj = victim->query_objective();
     v_poss = victim->query_possessive();
 
+    if(victim->query_property("prismatic sphere"))
+    {
+        victim->remove_attacker(who);
+        who->remove_attacker(victim);
+        return;
+    }
+    
+    if(who->query_property("empty body"))
+    {
+        who->remove_attacker(victim);
+        return;
+    }
+    
     if (FEATS_D->usable_feat(who, "perfect self")) {
         if (!(int)who->has_ki()) {
             who->regenerate_ki(4);
         }
     }
+    
 
     if (member_array(who, (object*)victim->query_attackers()) == -1) {
         victim->add_attacker(who);

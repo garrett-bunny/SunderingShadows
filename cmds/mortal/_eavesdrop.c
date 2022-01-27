@@ -191,11 +191,11 @@ eavesdrop [%^ORANGE%^%^ULINE%^TARGET%^RESET%^]");
     write("
 %^CYAN%^DESCRIPTION%^RESET%^
 
-This command lets you attempt to discern the whispers of another person It is a combination, depending on circumstances and your skill, of lipreading and/or managing to get in a position to overhear the whispers.
+This command lets you attempt to discern the whispers of another person. It is a combination, depending on circumstances and your skill, of lipreading and/or managing to get in a position to overhear the whispers.
 
-Success of this command depends on your and targets perception skill.
+Success of this command depends on your and target's perception skill.
 
-Without an argument, you will stop listening to other conversation.
+Without an argument, you will stop listening to other conversations.
 
 %^CYAN%^SEE ALSO%^RESET%^
 

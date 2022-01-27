@@ -1172,7 +1172,7 @@ This command manages various trap aspects. Your dungeoneering skill is essential
     Will toggle your ability to auto detect traps. Trapped exits will show in %^BOLD%^%^RED%^bold red%^RESET%^ if they aren't set by you and in %^BOLD%^%^GREEN%^bold green%^RESET%^ if they are set by you or your party. Non standard traps won't be shown this way.
 
 %^ORANGE%^<trap find on %^ORANGE%^%^ULINE%^OBJECT%^RESET%^%^ORANGE%^>%^RESET%^
-    You will attemp to find a trap place on the %^ORANGE%^%^ULINE%^OBJECT%^RESET%^.
+    You will attempt to find a trap placed on the %^ORANGE%^%^ULINE%^OBJECT%^RESET%^.
 
 %^ORANGE%^<trap disarm|remove on %^ORANGE%^%^ULINE%^OBJECT%^RESET%^%^ORANGE%^>%^RESET%^
     Will attempt to disarm the first trap on the object that you specify should you be able to find one. Failure will result in the trap being triggered.
@@ -1184,7 +1184,7 @@ This command manages various trap aspects. Your dungeoneering skill is essential
     Will attempt to recover a trap kit from the first trap on the object you specify. This is more difficult than simply disarming a trap but will result in a usuable trap kit should you succeed. Failure will result in the trap being triggered.
 
 %^ORANGE%^<trap set %^ORANGE%^%^ULINE%^KIT%^RESET%^%^ORANGE%^ on %^ORANGE%^%^ULINE%^OBJECT%^RESET%^%^ORANGE%^ [with %^ORANGE%^%^ULINE%^ACTION%^RESET%^%^ORANGE%^|triggers]>%^RESET%^
-This will attempt to set the %^ORANGE%^%^ULINE%^KIT%^RESET%^ (you must have it in your inventory) on the %^ORANGE%^%^ULINE%^OBJECT%^RESET%^ that you specify, to be triggered when someone later performs the %^ORANGE%^%^ULINE%^ACTION%^RESET%^. %^ORANGE%^<trap set %^ORANGE%^%^ULINE%^KIT%^RESET%^%^ORANGE%^ on %^ORANGE%^%^ULINE%^OBJECT%^RESET%^%^ORANGE%^ | triggers>%^RESET%^ will reveal to you valid syntaxes for setting your trap on the %^ORANGE%^%^ULINE%^OBJECT%^RESET%^ you specify.
+This will attempt to set the %^ORANGE%^%^ULINE%^KIT%^RESET%^ (you must have it in your inventory) on the %^ORANGE%^%^ULINE%^OBJECT%^RESET%^ that you specify, to be triggered when someone later performs the %^ORANGE%^%^ULINE%^ACTION%^RESET%^. %^ORANGE%^<trap set %^ORANGE%^%^ULINE%^KIT%^RESET%^%^ORANGE%^ on %^ORANGE%^%^ULINE%^OBJECT%^RESET%^%^ORANGE%^ | triggers>%^RESET%^ will reveal to you valid syntax options for setting your trap on the %^ORANGE%^%^ULINE%^OBJECT%^RESET%^ you specify.
 
 %^CYAN%^SEE ALSO%^RESET%^
 

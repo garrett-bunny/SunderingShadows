@@ -86,9 +86,9 @@ unremember location|object|monster %^ORANGE%^%^ULINE%^NAME%^RESET%^
 
 %^CYAN%^DESCRIPTION%^RESET%^
 
-This allows you to forget locations, objects and monsters you have previvously remembered or studied.
+This allows you to forget locations, objects, and monsters you have previously remembered or studied.
 
-If you're looking to how to forget preared spell check %^ORANGE%^<help forget>%^RESET%^.
+If you're looking to learn how to forget a prepared spell, check %^ORANGE%^<help forget>%^RESET%^.
 
 %^CYAN%^SEE ALSO%^RESET%^
 

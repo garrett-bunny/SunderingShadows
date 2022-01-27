@@ -13,7 +13,7 @@ void create()
    feat_name("empty body");
    feat_prereq("Monk L18");
    feat_syntax("empty_body");
-   feat_desc("This feat allows a Monk who is unarmored, unarmed, or wielding small weapons to empty her body of all vulnerabilities, excluding force damage, and to fade from view, if not already hidden, for one minute. Because of the energy that it requires from the monk it has a short delay before it can be used again.");
+   feat_desc("This feat allows a Monk who is unarmored, unarmed, or wielding small weapons to empty her body of all vulnerabilities, excluding force damage, and to fade from view, if not already hidden, for one minute. While active, this feat causes you to be unable to attack. Because of the energy that it requires from the monk it has a short delay before it can be used again.");
    set_target_required(0);
 }
 

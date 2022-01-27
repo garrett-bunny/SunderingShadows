@@ -200,7 +200,7 @@ varargs void start_rumour(string str, string inst){
       tell_object("As an Imm, you can gossip as much as you want. Otherwise, you'd be out of tries about now");
     } else
     {  
-      tell_object(TP, "You have exhausted your gossipping contacts for the time being. Try again later.");
+      tell_object(TP, "You have exhausted your gossiping contacts for the time being. Try again later.");
       return;
     }
   }
