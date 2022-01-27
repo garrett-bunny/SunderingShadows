@@ -45,8 +45,8 @@ int strikeme(int damage, object what, object who){
         tell_object(who,"%^GREEN%^You feel your flesh rip as the "+
            "barbs on "+ETOQCN+"'s shield cut you!");
         who->do_damage("left arm",roll_dice(1,8));
-        return damage;
   }
+  return damage;
 }
 
 int isMagic(){
