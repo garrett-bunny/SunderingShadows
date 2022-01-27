@@ -66,7 +66,7 @@ last types
 
 This command will print last messages of the type specified while you've been online. For example, %^ORANGE%^<last ooc>%^RESET%^ will display what had been said on ooc channel.
 
-%^ORANGE%^<last types>%^RESET%^ will list all channel types you save massages of.
+%^ORANGE%^<last types>%^RESET%^ will list all channel types you are currently saving.
 
 %^CYAN%^SEE ALSO%^RESET%^
 

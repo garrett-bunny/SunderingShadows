@@ -53,7 +53,7 @@ ditch %^ORANGE%^%^ULINE%^NAM%^RESET%^E
 
 %^CYAN%^DESCRIPTION%^RESET%^
 
-Allows you to ditch PC or NPC that is following you. A ditched player needs to be re-allowed to follow you again.
+Allows you to ditch a PC or NPC that is following you. A ditched player needs to be re-allowed to follow you again.
 
 To see who is following you use %^ORANGE%^<followers>%^RESET%^.
 

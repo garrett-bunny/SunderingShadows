@@ -105,7 +105,7 @@ This command will bind %^ORANGE%^%^ULINE%^TARGET%^RESET%^ with rope in your inve
 
 The %^ORANGE%^%^ULINE%^TARGET%^RESET%^ must be either unconcious or use %^ORANGE%^<submit>%^RESET%^ to submit to your binding.
 
-Binding will prevent them from running, but bound person can %^ORANGE%^<struggle>%^RESET%^ to get free.
+Binding will prevent them from running, but a bound person can %^ORANGE%^<struggle>%^RESET%^ to get free.
 
 %^CYAN%^SEE ALSO%^RESET%^
 

@@ -1117,7 +1117,7 @@ feats active
 
 %^CYAN%^DESCRIPTION%^RESET%^
 
-Feats represents specialized techniques or powers a character can learn throughout its career. Some feats are class-specific (usually gained for free with class-levels), while others are generic and must be paid for by adding to your exp tax (see <help exp tax>). A character gains 1 generic feat every 3. level which can be bought in such a way. Feats awarded by character class are added automatically. Some classes gain additional free feats known as bonus feats. When you level your character, you will get notified if you are allowed new feats.
+Feats represent specialized techniques or powers a character can learn throughout their career. Some feats are class-specific (usually gained for free with class levels), while others are generic and must be paid for by adding to your exp tax (see <help exp tax>). A character gains the ability to purchase one generic feat every third level. Feats awarded by character class are added automatically. Some classes gain additional free feats known as bonus feats. When you level your character, you will be notified if you are allowed new feats.
 
 Feats are divided into types (martial, spellcraft, hybrid, arcana, rage, generic, epic) and organized in feat trees.  Some feats have prerequisites as specified in their individual help files.
 

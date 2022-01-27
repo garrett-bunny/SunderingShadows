@@ -26,7 +26,7 @@ void create(){
         set_value(3000);
                 set_property("lore difficulty",25);
         set_lore("It is said that this torc was "+
-		"once made by a firbolg chieftan to show"+
+		"once made by a firbolg chieftain to show"+
 		" his leadership over the warriors of his"+
 		" tribe.  Priests enchanted it to give "+
 		"additional protections making him "+
@@ -54,7 +54,7 @@ int wear_func(){
 }
 int remove_func(){
         tell_room(environment(ETO),"%^ORANGE%^As "+ETOQCN+
-        "removes "+ETO->QP+" they look less noble.",ETO);
+        " removes "+ETO->QP+" torc, they look less noble.",ETO);
         tell_object(ETO,"%^ORANGE%^You remove your"+
 		" torc and feel a little less epic.");
                 return 1;
