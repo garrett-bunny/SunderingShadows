@@ -84,7 +84,7 @@ void make_me()
             +"%^RESET%^o%^ORANGE%^w %^RESET%^ wand. A few faint runes"
             +" are carved into the side of the wand.");
     set_short("%^ORANGE%^w%^RESET%^i%^ORANGE%^ll%^RESET%^o%^ORANGE%^w"
-             +" %^RESET%^ wand of " + spell);
+             +" %^RESET%^wand of " + spell);
     set_obvious_short("%^ORANGE%^w%^RESET%^i%^ORANGE%^ll%^RESET%^o"
                      +"%^ORANGE%^w %^RESET%^ wand");
     set_id(({"wand of "+spell,"willow wand", "slender wand","wand"}));

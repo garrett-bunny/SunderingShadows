@@ -126,7 +126,7 @@ void insane_blows(object targ)
     me = TO->query_short();
     tell_object(targ, me +"%^C077%^ flails its arms and runs towards you!%^CRST%^");
     
-    tell_room(ETO, me +"%^C077%^Runs wildly at "+targ->QCN+"%^C077%^!%^CRST%^", targ);
+    tell_room(ETO, me +"%^C077%^ runs wildly at "+targ->QCN+"%^C077%^!%^CRST%^", targ);
     hits = 2 + random(5);
     if(targ->reflex_save(60))
     {

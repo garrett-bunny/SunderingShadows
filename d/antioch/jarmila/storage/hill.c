@@ -19,7 +19,7 @@ void create(){
    set_name("narrow path on the hill");
    set_short("%^C046%^narrow %^C058%^path%^C046%^ "+
    "on the hill%^CRST%^");
-  set_long("%^C046%^Stretching arounf the hill, "+
+  set_long("%^C046%^Stretching around the hill, "+
    "this %^C058%^path%^C046%^ is narrow and "+
    "%^C254%^rocky%^C046%^. It was obviously a "+
    "%^C136%^game trail%^C046%^ that has been "+
