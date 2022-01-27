@@ -63,6 +63,9 @@ You see stars and are unable to do anything. Daze is usually only for a short du
 %^CYAN%^Fast healing%^RESET%^
 A creature with the fast healing effect regains hit points at an exceptional rate. This gives (grade)d(lvl/2) points of passive regeneration each round. For example, fast healing 2 gives 2d2 hp regeneration to a level 10 monster per round.
 
+%^CYAN%^Fester%^RESET%^
+Necrotic energy permeates the target, blocking healing abilities. The affected has the effects of healing spells and powers reduced by the strength of the source of fester. In addition, any healing provided by effects regenerative effects (such as fast healing and the regeneration feat) are halved. Fester does not affect the healing gained from the standard kits of healing vials or the heal skill.
+
 %^CYAN%^Paralysis%^RESET%^
 A paralyzed creature cannot act. Paralyzed players can not enter many commands. They loose their dexterity bonus to armor class.
 
