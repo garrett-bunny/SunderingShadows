@@ -13,6 +13,7 @@ void create()
     set_spell_name("divine power");
     set_spell_level(([ "cleric" : 4, "inquisitor":4]));
     set_domains("war");
+    set_mystery("battle");
     set_spell_sphere("invocation_evocation");
     set_syntax("cast CLASS divine power");
     set_bonus_type("luck");
