@@ -28,7 +28,8 @@ void create(){
     ::create();
     set_name("companion");
     set_id(({"companion", "greater summon", "bone golem", "golem"}));
-    set_short("%^BOLD%^%^WHITE%^Bone Golem%^RESET%^");
+    set_short("%^RESET%^%^CRST%^%^C144%^A towering %^C255%^bo%^C252%^n%^C255%^e %^C144%^golem%^CRST%^");
+    set_long("%^RESET%^%^CRST%^%^C144%^The golem is comprised of so many different skeletons, reorganized into this giant humanoid. Four arms spread from a tangled mess of %^C255%^ri%^C252%^b%^C255%^s%^C144%^, %^C250%^femurs%^RESET%^%^C144%^, and other misplaced %^C255%^bo%^C253%^n%^C255%^e%^C252%^s%^RESET%^%^C144%^, with %^C058%^antlers %^C144%^and %^C059%^horns %^RESET%^%^C144%^protruding from its limbs like vicious talons, all bound together by wisps of %^C118%^e%^C112%^ld%^C106%^r%^C118%^i%^C112%^tc%^C106%^h %^C118%^e%^C112%^ne%^C106%^r%^C118%^g%^C112%^y%^RESET%^%^C144%^. A gigantic %^C255%^minotaur skull %^C144%^tops off the monstrosity, its eye sockets aglow with sparks of %^C039%^b%^C045%^al%^C051%^e%^C039%^f%^C045%^ul %^C051%^b%^C039%^l%^C045%^ue %^C051%^f%^C039%^l%^C045%^am%^C051%^e %^RESET%^%^C144%^above a %^C244%^r%^C246%^i%^C248%^c%^C244%^t%^C246%^u%^C248%^s %^C244%^g%^C246%^r%^C248%^i%^C244%^n%^RESET%^%^C144%^.%^CRST%^");
     set_race("undead");
     set_long("");
     set_hd(4,1);
@@ -221,27 +222,19 @@ void special_attack(object target)
     if(!dam || !target)
         return;
     
-    switch(random(5))
+    switch(random(3))
     {
         case 0:
-        tell_room(room, "", ({ target }));
-        tell_object(target, "");   
+        tell_room(room, "%^RESET%^%^CRST%^%^C144%^The golem shivers, releasing a %^C196%^barrage %^C144%^of %^C255%^bone shards %^C144%^at " + tname + "%^RESET%^%^CRST%^%^C144%^!%^CRST%^", ({ target }));
+        tell_object(target, "%^RESET%^%^CRST%^%^C144%^The golem shivers, releasing a %^C196%^barrage %^C144%^of %^C255%^bone shards %^C144%^at you!%^CRST%^");   
         break;
         case 1:
-        tell_room(room, "", ({ target }));
-        tell_object(target, ""); 
-        break;
-        case 2:
-        tell_room(room, "", ({ target }));
-        tell_object(target, ""); 
-        break;
-        case 3:
-        tell_room(room, "", ({ target }));
-        tell_object(target, "");
+        tell_room(room, "%^RESET%^%^CRST%^%^C144%^Lunging forward on misshapen legs, the bone golem %^C196%^swipes %^C144%^at " + tname + "%^RESET%^%^CRST%^%^C144%^ with its %^C255%^talons%^C144%^!%^CRST%^", ({ target }));
+        tell_object(target, "%^RESET%^%^CRST%^%^C144%^Lunging forward on misshapen legs, the bone golem %^C196%^swipes %^C144%^at you with its %^C255%^talons%^C144%^!%^CRST%^"); 
         break;
         default:
-        tell_room(room, "", ({ target }));
-        tell_object(target, ""); 
+        tell_room(room, "%^RESET%^%^CRST%^%^C144%^The golem ducks low and charges, %^C196%^impaling " + tname + "%^RESET%^%^CRST%^%^C144%^ on a multitude of %^C255%^bone shards%^C144%^!%^CRST%^", ({ target }));
+        tell_object(target, "%^RESET%^%^CRST%^%^C144%^The golem ducks low and charges, %^C196%^impaling you %^RESET%^%^CRST%^%^C144%^on a multitude of %^C255%^bone shards%^C144%^!%^CRST%^"); 
         break;
     }
     
