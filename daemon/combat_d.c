@@ -557,11 +557,6 @@ varargs int typed_damage_modification(object attacker, object targ, string limb,
                             return damage;
                         }
                     }
-                    if (attacker->query_property("weapon enhancement timer"))
-                    {
-                        if(opposed_alignment(attacker, targ))
-                            return damage;
-                    }
                 }
 
                 reduction = (int)targ->query_property("damage resistance");
