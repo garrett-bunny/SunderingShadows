@@ -613,26 +613,11 @@ int now(string str){
          dest_effect();
          break;   
       case "nimnavanon":
-         tell_object(TP,"%^RESET%^%^GREEN%^As %^WHITE%^you %^GREEN%^end the spell, calling on the %^BOLD%^%^WHITE%^aid %^RESET%^%^GREEN%^of"+
-                        " %^BOLD%^Nimnavanon%^RESET%^%^GREEN%^, %^BOLD%^v%^RESET%^%^GREEN%^i%^BOLD%^n%^RESET%^%^GREEN%^e%^BOLD%^s %^RESET%^"+
-                        " %^GREEN%^and %^ORANGE%^s%^GREEN%^hr%^ORANGE%^u%^GREEN%^b%^ORANGE%^s %^GREEN%^begins to %^YELLOW%^grow %^RESET%^%^"+
-                        "GREEN%^from the %^ORANGE%^ground %^GREEN%^around you. Within seconds, you are covered in a sheltered %^WHITE%^coco"+
-                        "on %^GREEN%^of %^BOLD%^p%^RESET%^%^GREEN%^l%^BOLD%^a%^RESET%^%^GREEN%^n%^BOLD%^t%^RESET%^%^GREEN%^s and are drawn i"+
-                        "nto the ground.");
-         tell_room(environment(ETO),"%^RESET%^%^GREEN%^"+TPQCN+" calls to the %^BOLD%^%^WHITE%^aid %^RESET%^%^GREEN%^of %^BOLD%^Nimnavanon%^RESET%^%^GREEN%^"+
-                                    ", and shrubs and %^BOLD%^v%^RESET%^%^GREEN%^i%^BOLD%^n%^RESET%^%^GREEN%^e%^BOLD%^s %^RESET%^%^GREEN%^begins to %^YELLOW%"+
-                                    "^grow %^RESET%^%^GREEN%^from the %^ORANGE%^ground %^GREEN%^to cover his entire body, before they pull the p%^BOLD%^l%^RE"+
-                                    "SET%^%^GREEN%^a%^BOLD%^n%^RESET%^%^GREEN%^tl%^BOLD%^i%^RESET%^%^GREEN%^k%^BOLD%^e %^RESET%^cocoon %^GREEN%^into the %^OR"+
-                                    "ANGE%^ground.",TP);
-         tell_room(find_object_or_load(where),"%^RESET%^%^GREEN%^Suddenly, a %^WHITE%^cocoon %^GREEN%^of %^BOLD%^p%^RESET%^%^GREEN%^l%^BOLD%^a%^RESET%^%^GREEN%^n%^"+
-                                              "BOLD%^t%^RESET%^%^GREEN%^s in the shapes of different s%^ORANGE%^h%^GREEN%^ru%^ORANGE%^b%^GREEN%^s and %^BOLD%^v%^RE"+
-                                              "SET%^%^GREEN%^i%^BOLD%^n%^RESET%^%^GREEN%^es %^BOLD%^g%^RESET%^%^GREEN%^row from the %^ORANGE%^earth%^GREEN%^.  And,"+
-                                              " as they seem to withdraw, they leave "+TPQCN+" standing in front of the %^BOLD%^Altar %^RESET%^%^GREEN%^of %^BOL"+
-                                              "D%^Nimnavanon!",TP);
+         tell_object(TP,"%^RESET%^%^GREEN%^As %^WHITE%^you %^GREEN%^end the spell, calling on the %^BOLD%^%^WHITE%^aid %^RESET%^%^GREEN%^of %^BOLD%^Nimnavanon%^RESET%^%^GREEN%^, %^BOLD%^v%^RESET%^%^GREEN%^i%^BOLD%^n%^RESET%^%^GREEN%^e%^BOLD%^s %^RESET%^ %^GREEN%^and %^ORANGE%^s%^GREEN%^hr%^ORANGE%^u%^GREEN%^b%^ORANGE%^s %^GREEN%^begin to %^YELLOW%^grow %^RESET%^%^GREEN%^from the %^ORANGE%^ground %^GREEN%^around you. Within seconds, you are covered in a sheltered %^WHITE%^cocoon %^GREEN%^of %^BOLD%^p%^RESET%^%^GREEN%^l%^BOLD%^a%^RESET%^%^GREEN%^n%^BOLD%^t%^RESET%^%^GREEN%^s and are drawn into the ground.");
+         tell_room(environment(ETO),"%^RESET%^%^GREEN%^"+TPQCN+" calls to the %^BOLD%^%^WHITE%^aid %^RESET%^%^GREEN%^of %^BOLD%^Nimnavanon%^RESET%^%^GREEN%^, and shrubs and %^BOLD%^v%^RESET%^%^GREEN%^i%^BOLD%^n%^RESET%^%^GREEN%^e%^BOLD%^s %^RESET%^%^GREEN%^begin to %^YELLOW%^grow %^RESET%^%^GREEN%^from the %^ORANGE%^ground %^GREEN%^to cover his entire body, before they pull the p%^BOLD%^l%^RESET%^%^GREEN%^a%^BOLD%^n%^RESET%^%^GREEN%^tl%^BOLD%^i%^RESET%^%^GREEN%^k%^BOLD%^e %^RESET%^cocoon %^GREEN%^into the %^ORANGE%^ground.",TP);
+         tell_room(find_object_or_load(where),"%^RESET%^%^GREEN%^Suddenly, a %^WHITE%^cocoon %^GREEN%^of %^BOLD%^p%^RESET%^%^GREEN%^l%^BOLD%^a%^RESET%^%^GREEN%^n%^BOLD%^t%^RESET%^%^GREEN%^s in the shapes of different s%^ORANGE%^h%^GREEN%^ru%^ORANGE%^b%^GREEN%^s and %^BOLD%^v%^RESET%^%^GREEN%^i%^BOLD%^n%^RESET%^%^GREEN%^es %^BOLD%^g%^RESET%^%^GREEN%^rows from the %^ORANGE%^earth%^GREEN%^.  And, as they seem to withdraw, they leave "+TPQCN+" standing in front of the %^BOLD%^Altar %^RESET%^%^GREEN%^of %^BOLD%^Nimnavanon!",TP);
          TP->move_player(where);
-         tell_object(TP,"%^RESET%^%^GREEN%^As the the sh%^ORANGE%^r%^GREEN%^u%^ORANGE%^b%^GREEN%^s and %^BOLD%^"+
-                        "v%^RESET%^%^GREEN%^i%^BOLD%^n%^RESET%^%^GREEN%^e%^BOLD%^s %^RESET%^%^GREEN%^lets go of"+
-                        " your body, you find yourself in the %^BOLD%^Temple %^RESET%^%^GREEN%^of %^BOLD%^Nimnavanon!");
+         tell_object(TP,"%^RESET%^%^GREEN%^As the the sh%^ORANGE%^r%^GREEN%^u%^ORANGE%^b%^GREEN%^s and %^BOLD%^v%^RESET%^%^GREEN%^i%^BOLD%^n%^RESET%^%^GREEN%^e%^BOLD%^s %^RESET%^%^GREEN%^lets go of your body, you find yourself in the %^BOLD%^Temple %^RESET%^%^GREEN%^of %^BOLD%^Nimnavanon!");
          dest_effect();    
          break;
       case "lord_shadow":

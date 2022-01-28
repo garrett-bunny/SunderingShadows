@@ -44,7 +44,7 @@ int now(string str){
       dest_effect();
       return 0;
    }
-   tell_object(TP,"You feel the presence of your diety fill the room as you are swept away from danger and brought back to the "+temple+"!");
+   tell_object(TP,"You feel the presence of your deity fill the room as you are swept away from danger and brought back to the "+temple+"!");
    tell_room(environment(ETO), "A holy presence fills the room and "+TPQCN+" disappears from view!", ({TP}));
    TP->move_player(where);
    dest_effect();

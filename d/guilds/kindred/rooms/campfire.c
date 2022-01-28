@@ -25,7 +25,7 @@ void create()
 	" surrounding area. Old fallen logs have been placed near the camp fire"+
 	" for people to sit on while they warm up. It is common to find the"+
 	" Kindred gathered around the camp fire at nights, softly chatting while"+
-	" their dinner's slowly roast. The nearby spring provides refreshment"+
+	" their dinners slowly roast. The nearby spring provides refreshment"+
 	" and the water from the stream can be used to douse the fire if it gets"+
 	" out of control."
 	);
