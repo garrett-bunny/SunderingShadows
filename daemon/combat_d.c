@@ -1259,8 +1259,7 @@ varargs void calculate_damage(object attacker, object targ, object weapon, strin
 
     damage += bonus_hit_damage;
     
-    //if(damage <= 0);
-    //    return;
+    if(damage < 0) damage = 0; //this should solve any issues with negative damage as a result of low rolls and negative damage bonuses
     
     armor = targ->query_armour(target_thing);
     j = sizeof(armor);
