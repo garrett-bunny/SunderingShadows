@@ -46,7 +46,7 @@ unblock %^ORANGE%^%^ULINE%^EXIT%^RESET%^
 
 %^CYAN%^DESCRIPTION%^RESET%^
 
-This will remove you blocking an exit
+This command will stop you from blocking an exit.
 
 %^CYAN%^SEE ALSO%^RESET%^
 

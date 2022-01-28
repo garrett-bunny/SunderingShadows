@@ -19,8 +19,8 @@ void create()
 
 string query_cast_string()
 {
-    tell_object(caster, "%^YELLOW%^They lyrics to an ancient prayer flood" +
-                " into your mind as you begin to hum");
+    tell_object(caster, "%^YELLOW%^The lyrics to an ancient prayer flood" +
+                " into your mind as you begin to hum.");
     tell_room(place, "%^YELLOW%^" + caster->QCN + " begins to hum.", caster);
     return "display";
 }
