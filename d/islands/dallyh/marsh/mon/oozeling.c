@@ -44,14 +44,15 @@ void create()
     set_stats("dexterity", 12);
     set_stats("charisma", 6);
     set_property("full attacks", 1);
-    set_resistance("acid", 1500);
-    set_resistance("bludgeoning", 1000);
-    set_resistance("cold", -100);
+// set_resistance("acid", 1500);
+// set_resistance("bludgeoning", 1000);
+// set_resistance("cold", -100);
     set_hit_funcs((["glob" : (:TO, "acid_splash":)]));
     set_moving(1);
     set_speed(55);
 }
 
+/*
 void heart_beat()
 {
     ::heart_beat();
@@ -59,7 +60,7 @@ void heart_beat()
     DYN_UP_D->dynamic_update(TO);
     return;
 }
-
+*/
 int acid_splash(object targ)
 {
     if(!objectp(targ)) return roll_dice(4,8);
@@ -75,7 +76,5 @@ void die(object ob)
     if(!objectp(TO) || !objectp(ETO)) return ::die(ob);
     tell_room(ETO, TO->query_short()+" %^BOLD%^%^GREEN%^explodes in a shower of "+
     "thick %^YELLOW%^goo%^BOLD%^%^GREEN%^!%^RESET%^");
-    TO->move("/d/shadowgate/void");
-    if(objectp(TO)) TO->remove();
-    return;
+   ::die(ob);
 }
