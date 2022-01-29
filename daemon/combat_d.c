@@ -386,10 +386,10 @@ varargs int typed_damage_modification(object attacker, object targ, string limb,
         }
     }
     */
-    
+
     //if(damage < 0)
     //    damage = 0;
-    
+
     //Now ONLY works on non-physical hits
     //Occasional halving of big energy hits
     if(damage > 100 && objectp(targ) && FEATS_D->usable_feat(targ, "kinetic conversion"))
@@ -401,7 +401,7 @@ varargs int typed_damage_modification(object attacker, object targ, string limb,
             USER_D->spend_pool(targ, 1, "focus");
         }
     }
-    
+
     if(chained = targ->query_property("chains of justice"))
     {
         if(objectp(chained) && environment(chained) == environment(targ))
@@ -411,7 +411,7 @@ varargs int typed_damage_modification(object attacker, object targ, string limb,
             damage = (damage * 8) / 10;
         }
     }
-                 
+
 
     if (objectp(targ) && FEATS_D->usable_feat(targ, "way of the learned pupil")) {
         USER_D->regenerate_ki(targ, 1);
@@ -440,12 +440,12 @@ varargs int typed_damage_modification(object attacker, object targ, string limb,
     percentage = to_float((100 - resist_perc) / to_float(100));
 
     damage = to_int(damage * percentage);
-    
+
     //if(damage < 0)
     //    damage = 0;
 
     damage = damage - resist;
-    
+
     //if(damage < 0)
     //    damage = 0;
 
@@ -523,13 +523,13 @@ varargs int typed_damage_modification(object attacker, object targ, string limb,
             targ->set_spell_attack(1);
         }
     }
-    
+
     //Bones Mystery bleed effect on negative energy
     if(damage > 0 && type == "negative energy" && !targ->query_property("negative energy affinity"))
     {
         if(attacker->query_mystery() == "bones" && attacker->query_class_level("oracle") >= 31)
             targ && targ->set_property("rend", attacker->query_prestige_level("oracle") / 8 + 1);
-        
+
         //Ghouls bloodline heals if they deal negative energy damage
         if(attacker->query_bloodline() == "ghoul")
         {
@@ -551,10 +551,21 @@ varargs int typed_damage_modification(object attacker, object targ, string limb,
         if (member_array(type, PHYSICAL_DAMAGE_TYPES) != -1) {
             if (damage > 0) {
                 target_align = (string)targ->query_true_align();
-                if (targ->query_alignment()) {
+                if (target_align) {
                     if (arrayp(attacker->query_property("aligned_weapon"))) {
-                        if (member_array(targ->query_alignment(), attacker->query_property("aligned_weapon")) != -1) {
+                        if (member_array(target_align, attacker->query_property("aligned_weapon")) != -1) {
                             return damage;
+                        }
+                    }
+                    alignments = ({ "alignment 147", "alignment 369", "alignment 123", "alignment 789" });
+                    enemy_alignments = ({ "369", "147", "789", "123" });
+                    if (attacker->query_property("weapon enhancement timer")) {
+                        for (i = 0; i < sizeof(alignments); i++)
+                        {
+                            if (attacker->query_property(alignments[i]) &&
+                                strsrch(enemy_alignments[i], target_align + "") + 1) {
+                                return damage;
+                            }
                         }
                     }
                 }
@@ -645,7 +656,7 @@ void check_extra_abilities(object attacker, object target, object weapon, int cr
     string ename, pname, enhance_msg, target_align;
     int effect_chance, enhance_dmg, crit_mult, enhance_chance, is_main_hand, effective_level, i;
     object room, * weapons, *att;
-    string* elements, * actions, * bursts, * colors, * alignments, * enemy_alignments, * align_text, * a_colors;
+    string* elements, * actions, * bursts, * colors, * alignments, * enemy_alignments, * align_text, * a_colors, *domains;
 
     if (!objectp(attacker)) {
         return;
@@ -813,15 +824,32 @@ void check_extra_abilities(object attacker, object target, object weapon, int cr
             }
         }
 
+        alignments = ({ "alignment 147", "alignment 369", "alignment 123", "alignment 789" });
+        enemy_alignments = ({ "369", "147", "789", "123" });
         align_text = ({ "holy wrath", "unholy fury", "righteous justice", "rebellious might" });
         a_colors = ({ "ice blue", "fire red", "lightning yellow", "lightning yellow" });
+
         target_align = (string)target->query_true_align();
+        effective_level = attacker->query_prestige_level("magus");
+        effective_level += attacker->query_prestige_level("paladin");
+        if(attacker->is_class("cleric")) {
+            domains = attacker->query_divine_domain();
+
+            if(member_array("good", domains) >= 0  ||
+               member_array("evil", domains) >= 0  ||
+               member_array("chaos", domains) >= 0 ||
+               member_array("law", domains) >= 0)
+                effective_level += attacker->query_prestige_level("cleric");
+        }
+        effective_level += (attacker->query_level() - effective_level) / 2;
+        enhance_chance = 10 - effective_level / 7;
+
         for (i = 0; i < sizeof(alignments); i++)
         {
             effect_chance = !random(enhance_chance);
             if (attacker->query_property(alignments[i]) &&
                 effect_chance &&
-                opposed_alignment(attacker, target)) {
+                strsrch(enemy_alignments[i], target_align + "") + 1) {
                 enhance_msg = align_text[i];
                 enhance_dmg = weapon->query_wc() * (1 + effective_level / 10); //scaling as bane
                 tell_object(attacker, CRAYON_D->color_string("You unleash your " + enhance_msg + " at " + ename + "!", a_colors[i]));
@@ -965,7 +993,7 @@ int crit_damage(object attacker, object targ, object weapon, int size, int damag
     int mult, crit_dam, perc;
     string targRace, a_name, a_poss, t_name, t_poss;
     object* wielded;
-    
+
     if (damage <= 0) {
         return 0;
     }
@@ -1081,7 +1109,7 @@ varargs void calculate_damage(object attacker, object targ, object weapon, strin
     if (!objectp(targ)) {
         return;
     }
-    
+
     attacker_size = (int)targ->query_size();
     if (objectp(weapon) && weapon != attacker && !attacker->query_property("shapeshifted")) {
         damage = (int)weapon->query_wc();
@@ -1117,7 +1145,7 @@ varargs void calculate_damage(object attacker, object targ, object weapon, strin
             else if(FEATS_D->usable_feat(attacker, "fighter finesse"))
             {
                 damage += BONUS_D->new_damage_bonus(attacker, attacker->query_stats("dexterity"));
-            }                
+            }
             else if(FEATS_D->usable_feat(attacker, "cunning insight"))
             {
                 damage += BONUS_D->new_damage_bonus(attacker, attacker->query_stats("charisma"));
@@ -1161,7 +1189,7 @@ varargs void calculate_damage(object attacker, object targ, object weapon, strin
     if (!objectp(targ) || !objectp(attacker)) {
         return;
     }
-    
+
     if (objectp(weapon) && !attacker->query_property("shapeshifted")) {
         weapon->reaction_to_hit(targ, damage);
     }
@@ -1253,14 +1281,14 @@ varargs void calculate_damage(object attacker, object targ, object weapon, strin
         damage += roll_dice(sneak, 6);
     else
         sneak = 0;
-    
+
     //Brutalize wounds causes victim to take extra damage from physical attacks.
     bonus_hit_damage += targ->query_property("brutalized");
 
     damage += bonus_hit_damage;
-    
+
     if(damage < 0) damage = 0; //this should solve any issues with negative damage as a result of low rolls and negative damage bonuses
-    
+
     armor = targ->query_armour(target_thing);
     j = sizeof(armor);
     for (i = 0; i < j; i++) {
@@ -1289,7 +1317,7 @@ varargs void calculate_damage(object attacker, object targ, object weapon, strin
         }
         /**************************************/
     }
-    
+
     //if(damage <= 0)
     //    return;
 
@@ -1297,7 +1325,7 @@ varargs void calculate_damage(object attacker, object targ, object weapon, strin
 
     if(!targ || !attacker)
         return;
-    
+
     if(damage && attacker->query_class_level("fighter") > 20)
     {
         if(FEATS_D->is_active(attacker, "rending blows"))
@@ -1368,7 +1396,7 @@ int damage_done(object attacker, object weap, int damage, int isranged)
     if (avatarp(attacker)) {
         prof = 100;
     }
-    
+
     if(FEATS_D->usable_feat(attacker, "advanced training"))
         prof = to_int(prof * 1.10);
 
@@ -3399,19 +3427,19 @@ void internal_execute_attack(object who)
         who->remove_attacker(victim);
         return;
     }
-    
+
     if(who->query_property("empty body"))
     {
         who->remove_attacker(victim);
         return;
     }
-    
+
     if (FEATS_D->usable_feat(who, "perfect self")) {
         if (!(int)who->has_ki()) {
             who->regenerate_ki(4);
         }
     }
-    
+
 
     if (member_array(who, (object*)victim->query_attackers()) == -1) {
         victim->add_attacker(who);
@@ -3444,21 +3472,21 @@ void internal_execute_attack(object who)
             }
             return;
         }
-        
+
         if(res = victim->query_property("weapon resistance") > 0)
         {
             if(!current || current == who)
                 ench = who->query_property("effective_enchantment") + unarmed_enchantment(who);
             else
                 ench = current->query_property("enchantment") + current->query_property("effective_enchantment");
-            
+
             if(res > ench)
             {
                 tell_object(who, "Your attack passes harmlessly through " + victim->query_cap_name());
                 return;
             }
         }
-            
+
         roll = random(20) + 1;
 
         //Touch of Chaos gives disadvantage
