@@ -131,7 +131,7 @@ void die(object thing){
 	ob && room && ob->move(room);
     
     hammer = new("/d/tharis/obj/verdant_hammer");
-    hammer && hammer->move(environment(this_object());
+    hammer && hammer->move(environment(this_object()));
     
 	return ::die(thing);
 }
