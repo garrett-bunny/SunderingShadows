@@ -43,6 +43,8 @@ void create(){
     //set_func_chance(35);
 }
 
+int is_undead() { return 1; }
+
 void init()
 {
     ::init();
@@ -134,7 +136,7 @@ void heart_beat()
         return;
     
     //This should stay the same for anything using this template
-    if(!objectp(owner) || owner->query_property("bone_golem") != this_object())
+    if(!objectp(owner) || owner->query_property("animal_companion") != this_object())
     {
         this_object()->remove();
         return;
@@ -245,7 +247,7 @@ void die(object ob)
 {
     //"/daemon/yuck_d"->save_inventory(this_object(), SAVEDIR + "bonegolem");
     owner && tell_object(owner, "%^RED%^Your bone golem seems to cave in on itself into a pile of bones!%^RESET%^");
-    owner && owner->remove_property("bone_golem");
+    owner && owner->remove_property("animal_companion");
     owner && owner->remove_property("has_elemental");
     remove();
 }
@@ -254,7 +256,7 @@ int remove()
 {
     //"/daemon/yuck_d"->save_inventory(this_object(), SAVEDIR + "bonegolem");
     //all_inventory(this_object())->remove();
-    owner && owner->remove_property("bone_golem");
+    owner && owner->remove_property("animal_companion");
     owner && owner->remove_property("has_elemental");
     ::remove();
 }
