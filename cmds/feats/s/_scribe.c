@@ -241,6 +241,7 @@ void scribe(string spell, int spell_clevel, object tp, int scroll_amount, object
     scroll->move(environment(tp));
     paper->remove();
     caster->use_funds("gold", spell_clevel * 5);
+    scroll->set_value(spell_clevel * 5);
 
     if (scroll_amount) {
         call_out("scribe", ROUND_LENGTH, spell, spell_clevel, tp, scroll_amount, ENV(tp));
