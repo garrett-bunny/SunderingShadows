@@ -50,7 +50,7 @@ void create()
     "dankness to the room and contributing to the ongoing %^BOLD%^"+
     "%^RED%^decay%^RESET%^%^ORANGE%^.%^RESET%^");
 	
-    set_smell("default","\nThe smell of earth tained by a hint of magic hangs heavily here.");
+    set_smell("default","\nThe smell of earth tainted by a hint of magic hangs heavily here.");
     
     set_listen("default","Sounds of wood snapping can be heard all around you.");			
 			
