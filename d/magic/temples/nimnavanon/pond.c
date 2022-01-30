@@ -17,9 +17,9 @@ void create()
     set_climate("temperate");
     set_short("A Quiet Pond");
     set("day long", "%^CYAN%^A quiet pond%^RESET%^\n" +
-        "%^CYAN%^Tall %^ORANGE%^reeds %^CYAN%^and %^ORANGE%^morass %^CYAN%^harbor a quiet %^BOLD%^pond %^RESET%^%^CYAN%^in the center of a sheltered clearing. A natural pier of %^WHITE%^boulders %^CYAN%^allows one to walk out to where the water is clear. Giant %^GREEN%^firs %^CYAN%^allows a few strands of %^YELLOW%^sunlight %^RESET%^%^CYAN%^through the canopy, otherwise the area lies in %^BLUE%^shade%^CYAN%^. The lowest tree branches hover high above you, but a plenitude of the huge dark trunks is enough to block out the view. A well trodden %^BOLD%^%^BLACK%^path %^RESET%^%^CYAN%^winds northwards through the woods.%^RESET%^\n");
+        "%^CYAN%^Tall %^ORANGE%^reeds %^CYAN%^and %^ORANGE%^morass %^CYAN%^harbor a quiet %^BOLD%^pond %^RESET%^%^CYAN%^in the center of a sheltered clearing. A natural pier of %^WHITE%^boulders %^CYAN%^allows one to walk out to where the water is clear. Giant %^GREEN%^firs %^CYAN%^allow a few strands of %^YELLOW%^sunlight %^RESET%^%^CYAN%^through the canopy, otherwise the area lies in %^BLUE%^shade%^CYAN%^. The lowest tree branches hover high above you, but a plenitude of the huge dark trunks is enough to block out the view. A well trodden %^BOLD%^%^BLACK%^path %^RESET%^%^CYAN%^winds northwards through the woods.%^RESET%^\n");
     set("night long", "%^BLUE%^A quiet pond%^RESET%^\n" +
-        "%^BLUE%^Tall %^ORANGE%^reeds %^BLUE%^and %^ORANGE%^morass %^BLUE%^harbor a quiet %^BOLD%^%^CYAN%^pond %^RESET%^%^BLUE%^in the center of a sheltered clearing. A natural pier of %^WHITE%^boulders %^BLUE%^allows one to walk out to where the water is clear. Giant %^GREEN%^firs %^BLUE%^allows a glimpse of the %^YELLOW%^stars %^RESET%^%^BLUE%^through the canopy, otherwise the area is shrouded in darkness. The lowest tree branches hover high above you, but a plenitude of the huge dark trunks is enough to block out the view. A well trodden %^BOLD%^%^BLACK%^path %^RESET%^%^BLUE%^winds northwards through the woods.%^RESET%^\n");
+        "%^BLUE%^Tall %^ORANGE%^reeds %^BLUE%^and %^ORANGE%^morass %^BLUE%^harbor a quiet %^BOLD%^%^CYAN%^pond %^RESET%^%^BLUE%^in the center of a sheltered clearing. A natural pier of %^WHITE%^boulders %^BLUE%^allows one to walk out to where the water is clear. Giant %^GREEN%^firs %^BLUE%^allow a glimpse of the %^YELLOW%^stars %^RESET%^%^BLUE%^through the canopy, otherwise the area is shrouded in darkness. The lowest tree branches hover high above you, but a plenitude of the huge dark trunks is enough to block out the view. A well trodden %^BOLD%^%^BLACK%^path %^RESET%^%^BLUE%^winds northwards through the woods.%^RESET%^\n");
     set_smell("default", "%^BOLD%^%^CYAN%^The fresh fragrance of pine mixes with a whiff of murky water.%^RESET%^");
     set_listen("default", "%^ORANGE%^You hear an occasional call of a bluejay, a rustling of a squirrel, and a barely audible howl in the wind.%^RESET%^");
     set_items(([
@@ -43,19 +43,17 @@ void init()
     add_action("pick", "pick");
 }
 
-int drink_func(string str)
-{
-    if (!str) {
-        return 0;
-    }
-    if (str != "water from pond" && str != "from pond") {
-        return 0;
-    }
-    if (!TP->add_quenched(20)) {
-        return notify_fail("Your stomach is sloshing already!\n");
-    }
-    tell_object(TP, "The cool water tastes surprisingly fresh and you feel refreshed and rejuvenated.");
-    tell_room(TO, TPQCN + " drinks water from the pond.", TP);
+int drink_func(string str){
+    object player;
+    player = this_player();
+    
+    if(!str) return 0;
+    if(str != "water from pond" && str != "from pond") return 0;
+    if(!player->add_quenched(20)) return notify_fail("Your stomach is sloshing already!\n");
+
+    tell_object(player, "The cool water tastes surprisingly fresh and you feel refreshed and rejuvenated.");
+    tell_room(this_object(), player->query_cap_name()+ " drinks water from the pond.", player);
+    player->add_quenched(20);
     return 1;
 }
 
@@ -78,42 +76,41 @@ void reset()
     }
 }
 
-int pick(string str)
-{
-
+int pick(string str){
+    object player;
     string season;
     season = season(time());
 
-    switch (season) {
-    case "winter":
-        tell_object(TP, "You don't find anything worth picking. Try again in a different season.");
-        return 1;
-    case "spring":
-        if (str != "berries") {
-            tell_object(TP, "The only thing that appears worth picking here is some berries.");
+    switch(season){
+        case "winter":
+            tell_object(player, "You don't find anything worth picking. Try again in a different season.");
             return 1;
-        }
-        tell_object(TP, "The berries are not ripe.");
-        return 1;
-
-    default:
-        if (str != "berries") {
-            tell_object(TP, "The only thing that appears worth picking here is some berries.");
-            return 1;
-        }
-
-        if (berrycount < 1) {
-            tell_object(TP, "All the berries have been picked already.");
-            return 1;
-        }else {
-            tell_object(TP, "You pick a handful of ripe salmonberries.");
-            tell_room(ETP, "" + TP->query_cap_name() + " picks a handful of ripe salmonberries.", TP);
-            berrycount -= 1;
-            new("/d/magic/temples/nimnavanon/strawberries.c")->move(TP);
-            if (berrycount < 1) {
-                add_item("bushes", "%^RED%^Sa%^BOLD%^lm%^RESET%^%^RED%^o%^BOLD%^n%^RESET%^%^RED%^berr%^BOLD%^y %^GREEN%^bushes grow close to the pond, but they have been picked clean.%^RESET%^");
+        case "spring":
+            if(str != "berries"){
+                tell_object(player, "The only thing that appears worth picking here are some berries.");
+                return 1;
             }
+            tell_object(player, "The berries are not ripe.");
             return 1;
-        }
     }
+    
+    if(str != "berries"){
+        tell_object(player, "The only thing that appears worth picking here is some berries.");
+        return 1;
+    }
+
+    if(berrycount < 1){
+        tell_object(player, "All the berries have been picked already.");
+        return 1;
+    }
+    
+    tell_object(player, "You pick a handful of ripe salmonberries.");
+    tell_room(environment(player), "" + player->query_cap_name() + " picks a handful of ripe salmonberries.", player);
+    berrycount -= 1;
+    new("/d/magic/temples/nimnavanon/strawberries.c")->move(player);
+    if(berrycount < 1){
+        add_item("bushes", "%^RED%^Sa%^BOLD%^lm%^RESET%^%^RED%^o%^BOLD%^n%^RESET%^%^RED%^berr%^BOLD%^y %^GREEN%^bushes grow close to the pond, but they have been picked clean.%^RESET%^");
+    }
+    return 1;
 }
+

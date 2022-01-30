@@ -16,7 +16,7 @@ void help()
   );
   write(
     "\n%^BOLD%^%^YELLOW%^Note: %^RESET%^%^RED%^Starting a background rumour about yourself may be considered an OOC action, to help establish the known history of your character. However, starting a rumour about someone else, or digging for information about them are definitely IC actions. There is some chance of word getting out about what you've been up to."
-    +"\nYou can start as many background rumours for your character as you like. However, you will be limited in how many rumours you can start or circulate using the 'start rumour' and 'circulate rumour' options, depending on your influence. Once you have exhausted all your gossipping potential, you'll have to wait a while before starting or circulating more.");
+    +"\nYou can start as many background rumours for your character as you like. However, you will be limited in how many rumours you can start or circulate using the 'start rumour' and 'circulate rumour' options, depending on your influence. Once you have exhausted all your gossiping potential, you'll have to wait a while before starting or circulating more.");
 }
 
 varargs cmd_gossip(string str){

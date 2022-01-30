@@ -29,7 +29,7 @@ void create()
       "primarily made from %^BOLD%^meticulously %^RESET%^%^ORANGE%^c"+
       "%^BOLD%^%^BLACK%^a%^RESET%^%^ORANGE%^rv%^BOLD%^%^BLACK%^e"+
       "%^RESET%^%^ORANGE%^d wo%^BOLD%^%^BLACK%^o%^RESET%^%^ORANGE%^"+
-      "d%^WHITE%^, it's impressive patterns and designs unlike anything "+
+      "d%^WHITE%^, its impressive patterns and designs unlike anything "+
       "you've seen before. Unobtrusive %^MAGENTA%^rugs %^WHITE%^line "+
       "the floor to muffle any footsteps, and the room is indeed rather "+
       "%^BOLD%^%^BLACK%^quiet%^RESET%^. Above the highest shelves, "+
