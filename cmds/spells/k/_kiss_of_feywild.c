@@ -14,7 +14,7 @@ void create()
     set_spell_sphere("alteration");
     set_syntax("cast CLASS kiss of feywild [on TARGET]");
     set_damage_desc("on living, fast healing 2");
-    set_description("Lo, Their Endless Host, the Harbingers of Life, Mercy and Kindness Followed Where'er She Walked, Where Her Court Will be Held.
+    set_description("\"Lo, their endless host, the harbingers of life, mercy and kindness followed where'er She walked, where Her court will be held.\" This spell will increase your fast healing, but does not stack with similar spells.
 
 %^BOLD%^%^RED%^See also:%^RESET%^ status effects");
 	set_helpful_spell(1);
