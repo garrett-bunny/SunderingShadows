@@ -9,8 +9,7 @@ void create(){
 	set_short("Dark cave.");
 	set_property("indoors",1);
 	set_property("light",0);
-set_long("
-    Enterance to the Cauldron.
+set_long("Enterance to the Cauldron.
 ");
        set_exits(([
           "down":"/d/attaya/cliff49",
