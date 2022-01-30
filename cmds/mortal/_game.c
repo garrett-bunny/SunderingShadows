@@ -9,7 +9,7 @@
 inherit DAEMON;
 
 void do_post(string arg, string mtitle);
-string file, title, varg;
+string file, title, varg, type;
 
 string notify_valid()
 {
@@ -142,7 +142,12 @@ report(string * lines)
 
     seteuid(UID_CRESAVE);
 
-    write_file("/tmp/bugs/export_" + time() + "_" + TPQN + ".txt",  title + "\n" + varg + "\n" + message);
+    if(varg == "typo")
+        write_file("/tmp/typos/export_" + time() + "_" + TPQN + ".txt",  title + "\n" + varg + "\n" + message);
+    else if(varg == "idea")
+        write_file("/tmp/ideas/export_" + time() + "_" + TPQN + ".txt",  title + "\n" + varg + "\n" + message);
+    else
+        write_file("/tmp/bugs/export_" + time() + "_" + TPQN + ".txt",  title + "\n" + varg + "\n" + message);
 
     seteuid(getuid());
     write(capitalize(varg) + " reported!  Thank you!\n");

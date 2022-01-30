@@ -18,7 +18,7 @@ void create() {
 
 If used without an argument this feat will pick up a random attacker.
 
-%^BOLD%^N.B.%^RESET%^ This feat only works with standard melee combat on foot. It takes quite different feats to <charge> from horseback, or to land a <preciseshot> with a ranged weapon.");
+%^BOLD%^N.B.%^RESET%^ This feat only works with standard melee combat on foot. It takes different feats to <charge> from horseback, or to land a <preciseshot> with a ranged weapon.");
     feat_name("rush");
     set_save("fort");
 }

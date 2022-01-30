@@ -16,7 +16,7 @@ void create()
     set_spell_sphere("alteration");
     set_monk_way("way of the elements");
     set_syntax("cast CLASS shatter on TARGET");
-    set_description("%^RESET%^This spell sends a piercing vibration of sonic damage straight towards the target of the spell.  If the target is not able to escape the blast, they will take a significant deal of damage.
+    set_description("%^RESET%^This spell sends a piercing vibration of sonic damage straight towards the target of the spell.  If the target is not able to escape the blast, they will take a significant amount of damage.
 
 %^BOLD%^%^RED%^See also:%^RESET%^ shatter *feats");
     set_verbal_comp();
