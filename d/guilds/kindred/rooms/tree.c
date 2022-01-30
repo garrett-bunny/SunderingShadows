@@ -20,7 +20,7 @@ void create()
 	" needed. The chairs and stools that are scattered about the room have"+
 	" been carved from the wood of the tree, but from dead branches that"+
 	" needed to be removed. There is a table on the eastern side with a"+
-	" platter laid out on it. From the center of the ceiling a little tendril"+
+	" platter laid out on it. From the center of the ceiling is a little tendril"+
 	" of wood that serves as a hook for a chandelier made of iron. From"+
 	" the iron chandelier hangs softly glowing moss that lights the room."
 	);
@@ -46,7 +46,7 @@ void create()
 	({"shelves","walls"}) : "Natural grooves in the walls form shelves for"+
 	" books, statues, and other items. The tree created them in the most"+
 	" convenient of places, as though it were alive and sentient. But that's"+
-	" rather silly...isn't it?",
+	" rather silly... isn't it?",
 	({"chandelier","iron chandelier"}) : "A large wrought iron chandelier"+
 	" hangs from a natural hook in the ceiling. Softly glowing moss clings"+
 	" to the chandelier, slowly eating it away. Every now and then the"+

@@ -3533,6 +3533,9 @@ varargs int do_save(object targ, int mod, int get_dc)
         if(spell_sphere == "enchantment_charm" && caster->query("subrace") == "trixie")
             DC += 1;
     }
+    
+    if(caster->query_race() == "kitsune" && spell_sphere == "enchantment_charm")
+        DC += 1;
 
 ///////END SPELL SAVE ADJUSTMENTS///////
     

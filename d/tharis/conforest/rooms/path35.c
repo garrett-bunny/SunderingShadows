@@ -15,7 +15,7 @@ void create()
 	"the light from above, leaving you little question as to why "+
 	"they call it the Darkwood Forest.  A carpet of pine needles "+
 	"stretches out and away from the path.  Signs of wildlife are "+
-	"everywhere...birds sing merrily from their perches, and the bushes "+
+	"everywhere... birds sing merrily from their perches, and the bushes "+
 	"rustle all around you as small creatures scurry about.  "+
    "The path you are on seems to continue south and northwest from here, "+
 	"hopefully providing you with safe passage through the forest.");
