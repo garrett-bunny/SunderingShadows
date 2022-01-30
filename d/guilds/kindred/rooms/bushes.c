@@ -25,7 +25,7 @@ void create()
 	set_items(([
 	"bushes" : "There are numerous bushes here, but only the ones closest"+
 	" to the path are in reach to be picked. There are several handfuls of"+
-	" of red juicy berries on them, you aren't sure what type they are but"+
+	" red juicy berries on them, you aren't sure what type they are but"+
 	" they look delicious.",
 	"path" : "A simple dirt path weaves its way through the berry bushes.",
 	({"blackberries","black berries"}) : "%^BOLD%^%^BLACK%^Some mouth watering"+

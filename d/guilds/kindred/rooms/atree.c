@@ -14,13 +14,13 @@ void create()
 	set_guild_object("/d/guilds/kindred/obj/pendant.c");
 	set_short("%^BOLD%^%^GREEN%^The Garden");
 	set_long(
-	"A large autograph tree stands at the edge of the path here in leiu of"+
+	"A large autograph tree stands at the edge of the path here in lieu of"+
 	" a posting board. This is where those of the Kindred can write their"+
 	" suggestions and ideas for the rest of the guild to read. The tree"+
 	" itself is of an average height, its branches spread out wide to either"+
 	" side and are low to the ground, very easy to reach. Dark green leaves"+
 	" that are round, thick, and hard cover the branches. At the base of the"+
-	" tree a collection of old leaves have been gathered together and formed"+
+	" tree a collection of old leaves has been gathered together and formed"+
 	" into a sort of sign. Each leaf has a name on it, listing the members."
 	);
 	set_smell("default","A faint scent of honey lingers in the air.");

@@ -52,14 +52,15 @@ void create(){
 
 }
 void fear(object targ){
-    if(!"daemon/saving_d"->saving_throw(targ,"rod_staff_wand")){
-	tell_object(targ,"%^BOLD%^BLUE%^You are consumed with fear and run for your life!");
-	tell_room(ETO,"%^BOLD%^BLUE%^"+targ->query_cap_name()+" is consumed with fear and runs away!",targ);
-	targ->run_away();
-   	return 1;
+    if((!"daemon/saving_d"->saving_throw(targ,"rod_staff_wand")) && (!PLAYER_D->immunity_check(targ, "fear"))){
+        tell_object(targ,"%^BOLD%^BLUE%^You are consumed with fear and run for your life!");
+        tell_room(ETO,"%^BOLD%^BLUE%^"+targ->query_cap_name()+" is consumed with fear and runs away!",targ);
+        targ->run_away();
+        return 1;
     }
     return 1;
 }
+
 void heart_beat(){
     ::heart_beat();
     if(!objectp(TO) || !objectp(ETO))  return;

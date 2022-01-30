@@ -21,7 +21,7 @@ void create()
 	" spring."
 	);
 	set_smell("default","A fruity scent faintly clings to the air.");
-	set_smell("rose","The black rose smells lovely, but its fragarance"+
+	set_smell("rose","The black rose smells lovely, but its fragrance"+
 	" somehow leaves you a little sad.");
 	set_smell("flowers","The flowers smell simply divine.");
 	set_listen("default","The bubbling of the stream is almost melodic.");
@@ -29,15 +29,15 @@ void create()
 	"spring" : "A stream bubbles up from beneath the ground into a pool of"+
 	" solid gray rocks. It overflows and makes its way eastward where there"+
 	" is already a little path laid out for it. It looks as though it used"+
-	" to be a much larger spring at one time and has since diwndled down to"+
+	" to be a much larger spring at one time and has since dwindled down to"+
 	" this little stream.",
 	({"brook","stream"}) : "%^BOLD%^%^BLUE%^A bubbling brook runs off to the east.",
-	"wildflowers" : "Wildflowers grow along the the bank of the spring."+
+	"wildflowers" : "Wildflowers grow along the bank of the spring."+
 	" They range in color from %^MAGENTA%^purple%^RESET%^ to %^BOLD%^%^RED%^red%^RESET%^"+
 	" to %^YELLOW%^gold%^RESET%^ and %^BOLD%^white%^RESET%^ and all the"+
 	" colors in between. They are very lovely, some are small and others are"+
 	" larger, they are all very delicate.",
-	({"rose bush","black rose bush"}) : "A solitairy black rose bush grows"+
+	({"rose bush","black rose bush"}) : "A solitary black rose bush grows"+
 	" in the small clearing near the spring. Only a single %^BOLD%^%^BLACK%^black"+
 	" rose%^RESET%^ is in bloom.",
 	({"rose","black rose"}) : "%^BOLD%^%^BLACK%^A single black rose grows"+
