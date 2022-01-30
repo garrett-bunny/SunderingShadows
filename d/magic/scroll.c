@@ -154,7 +154,7 @@ void set_spell_name(string str)
     // retaining the name of their old spell when the spell name is changed.
     ///////////////////////////////////////////////////////////////////////
     string* old_id_list, tmp;
-    int x;
+    int x,level;
     old_id_list = query_id();
     old_id_list -= ({ spell, "" });
     set_id(old_id_list);
@@ -167,6 +167,9 @@ void set_spell_name(string str)
     add_id(spell);
     set_long("This is a magic scroll of " + spell + ".  You can " +
              "<transcribe> it into your spell book or <use> it directly.");
+    level = query_spell_level();
+    set_value((level * level) * 100);
+    
     return 1;
 }
 
@@ -423,12 +426,14 @@ int do_back_fire(object myuser)
     return 0;
 }
 
+/*
 int query_value()
 {
     int level = query_spell_level();
 
     return (level * level) * 100;
 }
+*/
 
 int query_usable()
 {
