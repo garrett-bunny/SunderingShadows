@@ -101,8 +101,6 @@ void execute_attack()
 		return;
     }
 		
-    targets += ({ caster });
-    targets -= ({ caster });
     targets = shuffle(targets);
 
     for (i = 0; i < sizeof(targets) && i < 8; i++) 
@@ -117,19 +115,20 @@ void execute_attack()
             continue; 
 		}
 
-        if(!BONUS_D->intimidate_check(targets[i], caster) || PLAYER_D->immunity_check(targets[i], "fear")) 
+        if(!BONUS_D->intimidate_check(targets[i], caster)) 
 		{
-			tell_object(caster,"%^C107%^You finish your dance - but don't think it worked.");
-			tell_object(targets[i],"%^C107%^You watch the weapons display with keen interest, however, it %^C160%^fails %^C107%^to inspire much %^C194%^fear at all in you.%^C107%^"); 
-            tell_room(place,"%^C190%^You see "+targets[i]->query_cap_name() + " resist the display.",caster);
+			//tell_object(caster,"%^C107%^You finish your dance - but don't think it worked.");
+			//tell_object(targets[i],"%^C107%^You watch the weapons display with keen interest, however, it %^C160%^fails %^C107%^to inspire much %^C194%^fear at all in you.%^CRST%^");
+            tell_object(targets[i], "%^C107%^You shrug off the effects of the dsiplay.%^CRST%^");
+            tell_room(place,"%^C190%^"+targets[i]->query_cap_name() + " shrugs off the effects of the display.",targets[i]);
 		    continue; 
 		}
 
 		else 
 		{
-			tell_object(caster,"%^C054%^You finish your dance and can tell by the look on your targets face... they are %^C160%^scared.");
-			tell_object(targets[i],"%^C119%^The dazzling display makes you realize, just maybe you're not %^C107%^good %^C119%^enough.");
-            tell_room(place,"%^C107%^You see "+targets[i]->query_cap_name()+" is clearly %^C160%^intimidated %^C107%^by the display.",caster);
+			//tell_object(caster,"%^C054%^You finish your dance and can tell by the look on your targets face... they are %^C160%^scared.");
+			tell_object(targets[i],"%^C119%^You are shaken by the weapon display!%^CRST%^");
+            tell_room(place,"%^C107%^"+targets[i]->query_cap_name()+" is clearly %^C160%^intimidated %^C107%^by the display.",caster);
 			"/std/effect/status/shaken"->apply_effect(targets[i],roll_dice(1, 4));
         }
 

@@ -680,6 +680,9 @@ int intimidate_check(object victim, object attacker, int mod)
     if(!objectp(victim) || !objectp(attacker))
         return 0;
     
+    if(PLAYER_D->immunity_check(victim, "fear"))
+        return 0;
+    
     DC = min( ({ 50, victim->query_level() }) );
     DC += (10 + query_stat_bonus(victim, "wisdom"));
     
