@@ -11,7 +11,7 @@ void create()
     feat_category("Duelist");
     feat_name("true strikes");
     feat_prereq("Positioning");
-    feat_desc("This feat increases accuracy of your strikes when you use one single-handed weapon.");
+    feat_desc("This feat increases the accuracy of your strikes when you use one single-handed weapon.");
     permanent(1);
 }
 

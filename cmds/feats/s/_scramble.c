@@ -10,7 +10,7 @@ void create() {
     feat_category("Evasion");
     feat_name("scramble");
     feat_prereq("Mobility, Evasion");
-    feat_desc("This feat allows the user to fight defensively during combat, dodging from blows that may be directed at the character. Its effectiveness is based upon the character's skill in athletics, and can only be used in light armor.");
+    feat_desc("This feat allows the user to fight defensively during combat, dodging blows that may be directed at the character. Its effectiveness is based upon the character's skill in athletics, and can only be used in light armor or less.");
     set_required_for(({"spring attack"}));
     permanent(1);
 }
