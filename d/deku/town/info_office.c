@@ -106,7 +106,7 @@ void display_info() {
    string str, tmp;
    write("%^RED%^=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=%^RESET%^\n");
 
-   str = "The city of verbobone is currently offering contracts "+
+   str = "The city of Verbobone is currently offering contracts "+
    "to invidiuals interested in investing gold for the furthering "+
    "of our humble town.  You can now %^CYAN%^<buy contract for # gold>%^RESET%^.  "+
    "The town will offer contracts of up to 5,000 gold "+

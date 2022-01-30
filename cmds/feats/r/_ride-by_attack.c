@@ -9,7 +9,7 @@ void create() {
     feat_category("Horsemanship");
     feat_name("ride-by attack");
     feat_prereq("Mounted combat");
-    feat_desc("This feat is an indication of the character's riding skill, allowing them to make attacks on foes in such a way that they can move clear of retalliatory blows before they land. This is based on the rider's athletics skill.
+    feat_desc("This feat is an indication of the character's riding skill, allowing them to make attacks on foes in such a way that they can move clear of retaliatory blows before they land. This is based on the rider's athletics skill.
 
 %^BOLD%^N.B.%^RESET%^ This feat is not effective against ranged attackers, as the rider does not gain sufficient distance to out-range their attacks. 
 
