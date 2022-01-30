@@ -53,7 +53,7 @@ void create()
         "are warped dramatically and bowed inward. You are unsure how safe they are but you are quite "+
         "suprised that they hold your weight at all.%^RESET%^",
 		
-        ({"wind", "child wind"}) : "%^BOLD%^%^BLUE%^This chill wind blows constantly, as if "+
+        ({"wind", "chill wind"}) : "%^BOLD%^%^BLUE%^This chill wind blows constantly, as if "+
         "conjured intentionally, from some unknown source.%^RESET%^",
 		
         ({"bones", "charred bones"}) : "%^BOLD%^%^BLACK%^The original donor of these bones is unknown "+

@@ -454,7 +454,7 @@ void die(object ob)
         "shattered... you notice several items laying amongst them!%^RESET%^");
 
         tell_room(ETO, "%^BOLD%^%^CYAN%^A quiet voice whispers:%^RESET%^ This is not over... I have only "+
-        "began in your world!%^RESET%^");
+        "begun in your world!%^RESET%^");
 
         MyKillers = TO->query_attackers();
         MyKillers = filter_array(TO->query_attackers(), "is_player", FILTERS_D);
