@@ -48,6 +48,7 @@ void warning(object who)
 
 void create() {
     ::create();
+    set_heart_beat(1);
 }
 
 void reset() {  // this section added 10/25/03 by *Styx*
