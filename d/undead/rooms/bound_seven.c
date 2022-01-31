@@ -17,7 +17,7 @@ void create()
     set_long("%^BOLD%^%^BLACK%^You have entered into a nasty riverside swamp.\n%^RESET%^"
         "%^BLUE%^Now you are almost to the bank of the %^RESET%^River of Sorrows%^BLUE%^ "
         "for you can hear it roaring in the distance. The river must have "
-        "over flowed into this area causing it to become saturated in water "
+        "overflowed into this area causing it to become saturated in water "
         "and grime. To your west you can see trees from the Peth Forest rise "
         "up, almost blocking what little sunlight there is in this wicked land.");
  

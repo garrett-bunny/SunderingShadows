@@ -15,7 +15,7 @@ void create() {
     set_long( "%^BLUE%^"
         "The hallway here leads out of the stronghold to the south "
 	"and into chambers to the east and west. The walls are made of stone "
-	"have flickering torches hanging from them. "
+	"and have flickering torches hanging from them. "
         "%^RESET%^"
     );
     set_smell("default","It smells of dirty goblins.");

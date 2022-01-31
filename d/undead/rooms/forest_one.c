@@ -20,7 +20,7 @@ void create()
     set_short("%^BOLD%^%^GREEN%^You are in Peth Forest%^RESET%^");
  
     set_long("%^GREEN%^You are traveling through Peth Forest.%^RESET%^\n"
-        "%^BOLD%^%^BLACK%^The Peth Forest is a dark and dismall place, filled "
+        "%^BOLD%^%^BLACK%^The Peth Forest is a dark and dismal place, filled "
         "with dead or dying trees that must have fallen centuries ago. But "
         "yet some kind of life must be able to survive in this cesspool, "
         "because you feel eyes upon you constantly. Watching you, and waiting "

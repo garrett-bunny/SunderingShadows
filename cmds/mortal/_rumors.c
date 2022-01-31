@@ -7,7 +7,7 @@ mixed * arealist = ({});
 arealist = ({
         ({"Offestry" ,1,6,}),
             ({"Ekibi Caverns (Ekibi Ridge)" ,6,10,}),
-            ({"QUEST: Rosiden's Mission (Ebiki Caverns)" ,6,10,}),
+            ({"QUEST: Rosiden's Mission (Ekibi Caverns)" ,6,10,}),
             ({"Gobgob (Goblin Fortress)" ,6,10,}),
             ({"Darkwood Forest (Rhapsody)" ,8,10,}),
             ({"Dragon's Den Caverns" ,8,10,}),
