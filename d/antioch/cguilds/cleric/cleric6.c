@@ -33,7 +33,7 @@ void create()
 	" on the far side of the room. In the center of the altar is a depression"+
 	" that is filled with holy water. Beyond that is a large silver cross"+
 	" that is engraved with all the symbols of the gods of the realms.",
-	({"cross","silver cross"}) : "The signs of the good gods covers the top"+
+	({"cross","silver cross"}) : "The signs of the good gods cover the top"+
 	" part of the cross with the evil gods opposite them on the bottom. On"+
 	" the middle cross part are the gods of neutrality and in the very center"+
 	" of the cross is the Eye of Helm.",

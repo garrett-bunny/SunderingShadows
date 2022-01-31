@@ -13,7 +13,7 @@ void create()
 	set_short("%^BOLD%^Library of Antioch");
 	set_long(
 	"%^YELLOW%^You are awe-struck as you enter the room. The library is magnificent,"+
-	" definetly not what you were expecting here. It is almost like walking"+
+	" definitely not what you were expecting here. It is almost like walking"+
 	" into another world. The walls and floor are made of solid %^WHITE%^marble%^YELLOW%^ instead"+
 	" of stone bricks. Your footsteps echo off the walls and the room seems"+
 	" somehow larger. %^WHITE%^Marble pillars%^YELLOW%^ are placed about the room, giving this"+
@@ -24,7 +24,7 @@ void create()
 	" something. Although there doesn't appear to be any light source the"+
 	" room is lit with a warm golden glow."
 	);
-	set_smell("default","The light fragarance of gardenias drifts about the"+
+	set_smell("default","The light fragrance of gardenias drifts about the"+
 	" room.");
 	set_listen("default","There is a silent reverence to the room.");
 	set_items(([
@@ -43,7 +43,7 @@ void create()
 	" larger than it really is.",
 	({"pillar","pillars","marble pillar","marble pillars"}) : "%^BOLD%^There"+
 	" are several marble pillars around the room. They are round in shape"+
-	" with spiral grooves travelling around their length and rectangular"+
+	" with spiral grooves traveling around their length and rectangular"+
 	" bases and tops. It is an older style of pillar, but quite appropriate."+
 	" There are eight total pillars, two are in the middle of the room supporting"+
 	" a book shelf, there are two on each side of the remaining three book"+
@@ -55,7 +55,7 @@ void create()
 	" help support it.",
 	"books" : "There are hundreds of books around the room in every known"+
 	" language, and even some that have been long forgotten. The books are"+
-	" about the gods and goddesses of the realms, along with demi-gods and"+
+	" about the gods and goddesses of the realms, along with demigods and"+
 	" powerful spirits. You can %^BOLD%^read about%^RESET%^ the different"+
 	" gods and goddesses if you like.",
 	({"desk","desks"}) : "A few large hickory desks are placed in the"+

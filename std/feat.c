@@ -640,7 +640,8 @@ int status_check()
        tell_object(caster,"You are already doing something!");
        return 0;
     }
-    if(feat_name == "stillness of mind") { return 1; }
+    if(feat_name == "stillness of mind" || feat_name == "second wind") { return 1; }
+  
     if((caster->light_blind(0) || caster->query_blind()))
     {
         if(!allowblind && !FEATS_D->usable_feat(caster,"blindfight"))

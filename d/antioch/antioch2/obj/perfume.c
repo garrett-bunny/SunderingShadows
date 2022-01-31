@@ -14,7 +14,7 @@ void create()
 	set_long(
 	"%^BOLD%^This is a small crystal bottle of lilac perfume. You"+
 	" can see the lavender colored liquid in side and a wonderful"+
-	" fragarance comes from the bottle."
+	" fragrance comes from the bottle."
 	);
 	set_value(20);
 	set_weight(1);
