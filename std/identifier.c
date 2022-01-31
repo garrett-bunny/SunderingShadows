@@ -57,7 +57,7 @@ string query_long(string str){
    string longD = ::query_long(str);
    longD += "\n"+QCN+" will identify magical auras on items if you are "+
       "willing to pay. Simply say for "+QO+" to <detect this [item]> or "+
-      "<identify this [item]> you carry.  Alternatively, you could ask "+QS+" "
+      "<identify this [item]> you carry.  Alternatively, you could ask "+QO+" "
       "to <study this [item]> to learn the lore on the particular object.  "
       "%^BOLD%^You need to make sure the item in "+
       "question is the first such item in your inventory and use the "+

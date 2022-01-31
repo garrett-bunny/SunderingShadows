@@ -3,7 +3,7 @@ inherit "/d/deku/inherits/sroadi";
 
 void create() {
     ::create();
-    set_long(TO->query_long()+" The road meets the south gates here.The forest sprawls out around the city to the south.");
+    set_long(TO->query_long()+" The road meets the south gates here. The forest sprawls out around the city to the south.");
     set_exits(([
        "south" : "/d/deku/forest/dforest21-2",
        "north" : "/d/deku/town/sroad2",

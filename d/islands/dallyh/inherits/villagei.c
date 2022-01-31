@@ -14,14 +14,14 @@ void create()
     "%^ORANGE%^ around you travel skyward for hundreds of feet and are as thick as "+
     "a wagon while others are much thinner and reach only a few dozen feet into the air. "+
     "They blend together harmoniously, as if each is supporting the other and each "+
-    "type lends it %^RESET%^%^GREEN%^branches%^RESET%^%^ORANGE%^ to the impressive "+
-    "%^BOLD%^%^MAGENTA%^canopy%^RESET%^%^ORANGE%^ formation which heavily blankets this "+
+    "type lends its %^RESET%^%^GREEN%^branches%^RESET%^%^ORANGE%^ to the impressive "+
+    "%^BOLD%^%^MAGENTA%^canopy%^RESET%^%^ORANGE%^ formation, which heavily blankets this "+
     "ancient forest. You realize that there are shelters attached to and built up into a "+
     "large number of them. Each %^BOLD%^%^GREEN%^bl"+
     "%^RESET%^%^GREEN%^e%^BOLD%^%^GREEN%^nds%^RESET%^%^ORANGE%^ in so well with the forest that "+
     "it is difficult to find any openings. You realize that this is a well hidden native village and "+
     "you suspect that the natives prefer it this "+
-    "way. All of the bushes present in the rest of the forest have been cleared away here which "+
+    "way. All of the bushes present in the rest of the forest have been cleared away here, which "+
     "serves to make this portion of the forest even more breathtakingly beautiful.%^RESET%^");
     set_property("indoors",0);
     set_light(2);

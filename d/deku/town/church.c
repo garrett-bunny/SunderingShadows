@@ -8,7 +8,7 @@ void create() {
     set("short", "%^BOLD%^%^GREEN%^V%^RESET%^%^GREEN%^erbobone %^BOLD%^C%^RESET%^%^GREEN%^hurch%^WHITE%^");
     set("long",
 "%^BOLD%^%^GREEN%^V%^RESET%^%^GREEN%^erbobone %^BOLD%^C%^RESET%^%^GREEN%^hurch%^WHITE%^
-%^ORANGE%^You stand inside small wooden church. It is almost empty. Tiny altar with a %^GREEN%^sign %^ORANGE%^above it stands on the far corner. There are no benches and dust on the floor indicates the place seems almost abandoned.%^CYAN%^
+%^ORANGE%^You stand inside small wooden church. It is almost empty. A tiny altar with a %^GREEN%^sign %^ORANGE%^above it stands in the far corner. There are no benches and the dust on the floor indicates the place seems almost abandoned.%^CYAN%^
 "
 );
     set_exits( 

@@ -39,7 +39,7 @@ void make_me() {
       "his light hazel colored eyes.  His body is frail and "+
       "thin.  He carries several bolts of cloth with him, "+
       "mostly carrying it in sacks or other containers but "+
-      "occassionally draping some of it over his arms in proud "+
+      "occasionally draping some of it over his arms in proud "+
       "display.  <help shop>");
       break;
     }

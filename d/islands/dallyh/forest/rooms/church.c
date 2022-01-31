@@ -37,7 +37,7 @@ void create(){
         "unknown sacrifice.%^RESET%^",
         
         ({"floor", "wooden floor", "natural wood floor"}) : "%^BOLD%^%^GREEN%^The floor here seems to be "+
-        "composed of root material, it is bumpy and rough, but seems to almost give off a noticeable sheen."+
+        "composed of root material, it is bumpy and rough, but seems to almost give off a noticeable sheen. "+
         "You believe it is very sturdy.%^RESET%^",
         
       ]) );

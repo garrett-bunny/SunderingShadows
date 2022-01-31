@@ -24,7 +24,7 @@ void create() {
   "apparently of both food and drink.  Your first thought is "+
   "that it serves as a dining table for the individuals who "+
   "work night and day here, trying to recover the decades of "+
-  "lost people of verbobone and its surroundings.  The north "+
+  "lost people of Verbobone and its surroundings.  The north "+
   "wall of this room is littered with large pieces of parchment "+
   "but one large %^RED%^notice%^RESET%^ "+
   "immediately catches your attention.  The door "+
@@ -107,7 +107,7 @@ void display_info() {
    write("%^RED%^=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=%^RESET%^\n");
 
    str = "The city of Verbobone is currently offering contracts "+
-   "to invidiuals interested in investing gold for the furthering "+
+   "to individuals interested in investing gold for the furthering "+
    "of our humble town.  You can now %^CYAN%^<buy contract for # gold>%^RESET%^.  "+
    "The town will offer contracts of up to 5,000 gold "+
    "pieces in value and honor those that have reached up to "+
@@ -118,7 +118,7 @@ void display_info() {
    if(avatarp(TP)) {
         tmp = "\n\nAVATARS ONLY - You may %^CYAN%^<display "+
         "contracts>%^RESET%^ to view those that have been "+
-        "sold by ID (A long string of random nums & letters.) - "+
+        "sold by ID (A long string of random numbers & letters.) - "+
         "You may %^CYAN%^<void contract #>%^RESET%^ to void anything in "+
         "that list.  Please have a valid reason to void a contract.";
    }
