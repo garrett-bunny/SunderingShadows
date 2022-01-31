@@ -19,7 +19,7 @@ void create()
     set_stats("dexterity", 19);
     set_stats("constitution",15);
     new("/d/common/obj/weapon/longsword")->move(TO);
-    set_long("%^RESET%^This orcish guard wears a dull suit of %^BOLD%^%^WHITE%^silver chain mail%^RESET%^ and carries a longsword at ready.  This creature is obviously very unkept, hygiene is not a term that applies to it.  Its skin is a sickly gray and its course hair is matted together with all types of filth.  This guard is one of the elite of this keep, to boast his position he wears a %^BOLD%^%^WHITE%^bone%^RESET%^ ring.%^RESET%^");
+    set_long("%^RESET%^This orcish guard wears a dull suit of %^BOLD%^%^WHITE%^silver chain mail%^RESET%^ and carries a longsword at ready.  This creature is obviously very unkempt, hygiene is not a term that applies to it.  Its skin is a sickly gray and its course hair is matted together with all types of filth.  This guard is one of the elite of this keep, to boast his position he wears a %^BOLD%^%^WHITE%^bone%^RESET%^ ring.%^RESET%^");
     ob = new("/d/common/obj/armour/chain");
     ob->set_name("silver chain mail");
     ob->set_id(({"chain","Chain","silver chain","Silver Chain","chainmail","Chainmail","Mail","mail"}));
