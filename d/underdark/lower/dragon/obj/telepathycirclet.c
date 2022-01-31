@@ -25,7 +25,7 @@ void create() {
 "closer look, a voice whispered as if into her very thoughts, 'Take it'. She knew that voice, knew it all too well.\n\n"
 "%^YELLOW%^Elsebeth passed the handful of coins across to the shopkeeper and settled it upon her head, allowing herself a "
 "brief smile as her guardian ushered her forward. The soothing sound of that beloved voice returned, reaching more "
-"clearly into her thoughts, and she cried out to his mind in answer, after too long apart. Noone would keep her from "
+"clearly into her thoughts, and she cried out to his mind in answer, after too long apart. No one would keep her from "
 "him, not now...%^RESET%^\n");
    set_property("lore difficulty",30);
    set_property("id difficulty",30);

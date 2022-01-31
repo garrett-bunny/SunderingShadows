@@ -12,7 +12,7 @@ void create()
     set_short("Zombie warrior");
     set_long("The Zombie warrior is one of hundreds of zombies serving their undead "
         "lord, Kartakass. It is rumored that they are in fact the bodies of"
-        "fallen hero's brought back to fight for the side of evil.");
+        " fallen heroes brought back to fight for the side of evil.");
     set_race("undead");
     set_gender("male");
     set_hd(8,8);

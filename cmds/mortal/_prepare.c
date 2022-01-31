@@ -690,7 +690,7 @@ void prepare_listed_spells(object obj, string list, string myclass)
     {
     case "cleric": case "paladin":
 
-        tell_object(obj, "%^BOLD%^%^GREEN%^You begin praying for spells - Any action you take will interrupt your praying.)");
+        tell_object(obj, "%^BOLD%^%^GREEN%^You begin praying for spells - Any action you take will interrupt your praying.");
         tell_room(environment(obj), obj->QCN + " begins praying for spells.", obj);
         break;
 
