@@ -29,7 +29,7 @@ void create()
 	set_items(([
         ({"guard tower","tower"}) : "There's a guard tower on the"+
         " right, it looks like there's an entrance to it to the north.",
-        ({"gate","gates","gates of antioch","Gates of Antioch","gates of Antioch"}) : "The enormouse iron gates are behind you and"+
+        ({"gate","gates","gates of antioch","Gates of Antioch","gates of Antioch"}) : "The enormous iron gates are behind you and"+
         " they are still quite impressive, they look like they would"+
         " keep just about anything out.",
         "plaque" : "It's a wooden plaque with the symbol of a healer"+
