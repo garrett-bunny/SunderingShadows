@@ -46,7 +46,7 @@ void create(){
          "grayish blue feathers from a quail, pointing deeper into the forest.",
       ({"butterfly","butterflies"}) : "Multicolored butterflies drift on the breeze, "
          "fluttering through the low-hanging branches.  They brighten what is "
-         "otherwise a rather dark section of the foreset."
+         "otherwise a rather dark section of the forest."
    ]));
    set_search("default","The feathers are really the only thing that catches your attention here.");
    set_search("feathers","You take a closer look at the feathers, realizing "

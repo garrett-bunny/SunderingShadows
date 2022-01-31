@@ -12,7 +12,7 @@ void create() {
     set_spell_level(([ "ranger" : 1,"druid" : 2 ]));
     set_spell_sphere("divination");
     set_syntax("cast CLASS animal messenger on TARGET with the message TEXT");
-    set_description("This spell will allow a ranger to attempt to send a brief message by way of a small creature, if any are around..");
+    set_description("This spell will allow a ranger to attempt to send a brief message by way of a small creature, if any are around.");
     set_verbal_comp();
     set_somatic_comp();
     set_arg_needed();

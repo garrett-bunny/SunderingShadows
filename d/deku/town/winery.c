@@ -11,7 +11,7 @@ void create() {
     set_short("%^BLUE%^BOLD%^W%^RESET%^%^BLUE%^inery %^BOLD%^S%^RESET%^%^BLUE%^torehouse");
     set_long(
 "%^BLUE%^BOLD%^W%^RESET%^%^BLUE%^inery %^BOLD%^S%^RESET%^%^BLUE%^torehouse
-%^ORANGE%^This abandoned building used to be a winery. Numbers of ancient empty kegs and barrels are packed in rows alongside the walls. There is a counter, now dusty and dry, in the middle. A %^BOLD%^sign%^RESET%^%^ORANGE%^ hangs on the western wall."
+%^ORANGE%^This abandoned building used to be a winery. A number of ancient empty kegs and barrels are packed in rows alongside the walls. There is a counter, now dusty and dry, in the middle. A %^BOLD%^sign%^RESET%^%^ORANGE%^ hangs on the western wall."
     );
     set_exits(([
        "east" : "/d/deku/town/road9"

@@ -18,7 +18,7 @@ void create()
     set_syntax("cast CLASS entangle");
     set_description("This spell causes the foliage and insects to come alive in the area around the caster.  They will "
                     "attempt to impede the movement of all creatures in the area.  Those creatures that pass a strength check will have their "
-                    "movement effected less than those who do not.  This spell can only be used outside.");
+                    "movement affected less than those who do not.  This spell can only be used outside.");
     set_verbal_comp();
     set_somatic_comp();
     set_save("reflex");
