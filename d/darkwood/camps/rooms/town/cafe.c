@@ -13,7 +13,7 @@ void create() {
       "%^RESET%^%^GREEN%^This establishment is built in the common theme as the rest of"+
       " the building scheme in this village. The walls lack corners and are rather rounded"+
       " out to create a smooth transition between walls and floor. The floor is well kept and seamlessly"+
-      " blend in with the walls the surround the room."+
+      " blends in with the walls the surround the room."+
       " A wonderful scent drifts from the oven at the back of the cafe. People"+
       " are able to sit here in the cafe at one of the small tables crafted magically"+
       " from the floor of the tree. Patterned cloths in %^YELLOW%^v%^RED%^i%^MAGENTA%^"+

@@ -14,9 +14,9 @@ void create()
     ::create();
     set_spell_sphere("conjuration_summoning");
     set_mystery("nature");
-    set_description("This spell will allow the caster to summon an animal from the nearby surrounds.  It will react "
+    set_description("This spell will allow the caster to summon an animal from the nearby surroundings.  It will react "
                     "aggressively to anyone attempting to harm the caster.  It will fight to the death, and when the spell's time is up, "
-                    "it will return to its business.  Such creatures can only be summoned within the wilderness they call home. If this creature looses you it will return to home, and you'll have to recast this spell.");
+                    "it will return to its business.  Such creatures can only be summoned within the wilderness they call home. If this creature loses you it will return to its home, and you'll have to recast this spell.");
     set_verbal_comp();
     set_somatic_comp();
     set_helpful_spell(1);

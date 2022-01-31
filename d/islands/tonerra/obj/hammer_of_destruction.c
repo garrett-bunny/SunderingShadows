@@ -193,6 +193,7 @@ void init()
         tell_object(ETO, "%^RED%^The hammer magically shifts to fit " +
                     "perfectly in your hands.%^RESET%^");
         num = (int)ETO->query_size() + 1;
+        if(num > 4) num = 4;
         set_size(num);
         switch (num) { //normalizing this as per what a 2h hammer in each size class would be
         case 2:

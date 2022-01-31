@@ -45,6 +45,7 @@ void create() {
      "but most were lost or entombed with their owners as a result of the "
      "war with Intruder.  Some have been re-appearing over the years but "
      "how or why is still unknown.");
+   set_property("repairtype",({"weaponsmith"}));
 }
 
 int wield_func(){

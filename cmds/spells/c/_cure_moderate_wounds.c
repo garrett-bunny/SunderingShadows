@@ -12,8 +12,8 @@ void create() {
     set_mystery(({}));
     set_spell_sphere("healing");
     set_syntax("cast CLASS cure moderate wounds on TARGET");
-    set_description("Praying to their diety for a small miracle, the priest can attempt to heal a bit of damage to the "
-"target.  As the caster's strength grows, she will find her prayer will heal more.");
+    set_description("Praying to their deity for a small miracle, the priest can attempt to heal a bit of damage to the "
+"target.  As the caster's strength grows, she will find that her prayer will heal more.");
     set_verbal_comp();
     set_somatic_comp();
     set_target_required(1);
