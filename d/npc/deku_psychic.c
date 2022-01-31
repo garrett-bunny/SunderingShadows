@@ -30,7 +30,7 @@ void make_me() {
         "from a mysterious, dark green, fabric.  It comes down "+
         "to slightly below the knees of the wearer and has "+
         "tight sleeves that reach out to the hands.  It has been "+
-        "kept suprisingly clean and doesn't look very old.  "+
+        "kept surprisingly clean and doesn't look very old.  "+
         "Embroidered onto the front of it is an "+
         "open %^BOLD%^%^BLACK%^black hand%^RESET%^"+
         "%^GREEN%^.%^RESET%^"); 
@@ -47,7 +47,7 @@ void make_me() {
         "obviously quite young.  His toned body is thin and "+
         "a pale white color.  His eyes are "+
         "piercing and seem to be a mixture of green and "+
-        "gray, that reflect an intense curiosity.  "+
+        "gray that reflect an intense curiosity.  "+
         "He keeps his head shaved and has several "+
         "strange symbols painted on top of it.  His body "+
         "is covered by a dark %^BLUE%^blue robe%^RESET%^ "+
@@ -62,7 +62,7 @@ void make_me() {
         ob->set_long("%^BLUE%^This thin, light, robe is made "+
         "from a dark blue cloth.  It drapes down to the feet "+
         "of the wearer and has sleeves that hang low and reach "+
-        "out to the hands.  It has been kept suprisingly clean "+
+        "out to the hands.  It has been kept surprisingly clean "+
         "and doesn't look very old.  Embroidered onto the front "+
         "of it is an open %^BOLD%^%^BLACK%^black hand%^RESET%^"+
         "%^BLUE%^, save that, there is nothing really remarkable "+

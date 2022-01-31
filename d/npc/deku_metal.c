@@ -8,7 +8,7 @@ void make_me() {
       set_name("Dynas Gywon");
       set_id(({ "dynas", "Dynas", "dynas gywon","Dynas Gywon",
       "smith","dealer","metal dealer"}));
-      set_short("Dynas Gywon, metal keeper extraodinaire");
+      set_short("Dynas Gywon, metal keeper extraordinaire");
       set_long("The human before you is a very peculiar individual.  "+
       "He keeps his black hair long and in two separate braids.  "+
       "His soft blue eyes always carry a faraway look, "+
@@ -16,7 +16,7 @@ void make_me() {
       "tanned and calloused, a strange combination for this "+
       "man.  If not for the metal that he carries, in sacks "+
       "and a backpack, then this man could very well appear to be some "+
-      "sort of a philospher.  "+
+      "sort of a philosopher.  "+
       "<help shop>");
       break;
     case 1:
@@ -29,7 +29,7 @@ void make_me() {
       "enormous.  He is overly tall and his frame very large.  "+
       "His body is well toned and bulges in almost every "+
       "spot with muscles.  His head has been shaved and "+
-      "red tattooes have been carefully written onto it.  "+
+      "red tattoos have been carefully written onto it.  "+
       "His eyes are a strange green hue and very intense, "+
       "almost piercing to anyone that looks into them.  "+
       "He carries metals in various sacks and yet still doesn't "+

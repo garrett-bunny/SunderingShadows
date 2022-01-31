@@ -61,7 +61,7 @@
                 "is horribly lopsided and the appendages are no where near even. Whoever drew this had no "\
                 "emphasis on quality at all.%^RESET%^"
 
-#define HOB_H   "%^BOLD%^%^WHITE%^This is a strikingly life-life depiction of a very ugly hobgoblin. "\
+#define HOB_H   "%^BOLD%^%^WHITE%^This is a strikingly life-like depiction of a very ugly hobgoblin. "\
                 "The most amazing feature of the drawing is the depiction of the hide of the creature. "\
                 "The dark grey hair sprouting all over the hide is amazingly detailed and you ascertain "\
                 "that it likely took a long time for such detail.%^RESET%^" 

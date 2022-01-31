@@ -17,7 +17,7 @@ void create()
     set_travel(DIRT_ROAD);
     set_short("%^BOLD%^%^MAGENTA%^T%^RESET%^%^MAGENTA%^he %^BOLD%^V%^RESET%^%^MAGENTA%^erre %^BOLD%^B%^RESET%^%^MAGENTA%^ar%^WHITE%^");
     set_long("%^BOLD%^%^MAGENTA%^T%^RESET%^%^MAGENTA%^he %^BOLD%^V%^RESET%^%^MAGENTA%^erre %^BOLD%^B%^RESET%^%^MAGENTA%^ar%^WHITE%^
-%^GREEN%^This establishment has been decorated and modified over the past few years. There are several oak tables set up around the room along with a matching %^ORANGE%^bar%^GREEN%^. It has grown into a bar where both food and drink can be served and as the only one located in the town of verbobone and the safe part of the island, it brings in quite a bit of profit for the town. A %^ORANGE%^menu%^GREEN%^, showing the drinks and foods has been attached to the front of the bar. A small, dark %^ORANGE%^oak board%^GREEN%^ has been hung on the wall to the right of the doorway into the establishment. Another, lighter colored and thicker, %^ORANGE%^board%^GREEN%^ has been hung near the back of the establishment, serving as a dart board for the patrons of the bar."
+%^GREEN%^This establishment has been decorated and modified over the past few years. There are several oak tables set up around the room along with a matching %^ORANGE%^bar%^GREEN%^. It has grown into a bar where both food and drink can be served and as the only one located in the town of Verbobone and the safe part of the island, it brings in quite a bit of profit for the town. A %^ORANGE%^menu%^GREEN%^, showing the drinks and foods has been attached to the front of the bar. A small, dark %^ORANGE%^oak board%^GREEN%^ has been hung on the wall to the right of the doorway into the establishment. Another, lighter in color and thicker %^ORANGE%^board%^GREEN%^ has been hung near the back of the establishment, serving as a dart board for the patrons of the bar."
         );
   
   
@@ -28,7 +28,7 @@ void create()
     (["pub" : "The Verre Pub.",
     "bar" : "The Verre Bar.",
     "menu" : "This is a list of foods and drinks served by the "+
-    "verre bar.  You should %^BOLD%^<read menu>%^RESET%^.",
+    "Verre Bar.  You should %^BOLD%^<read menu>%^RESET%^.",
     "oak board" : "%^GREEN%^This board is a couple inches thick and "+
     "has written carved into the front of it.  It appears to be "+
     "some type of list.  You should probably read it.%^RESET%^",
