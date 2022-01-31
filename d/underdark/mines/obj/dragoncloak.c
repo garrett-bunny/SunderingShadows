@@ -23,7 +23,7 @@ void create(){
       "entirely of numerous dragon %^RED%^s%^BLUE%^c%^GREEN%^a%^WHITE%^"+
       "l%^BLACK%^e%^YELLOW%^s. Each type of chromatic dragon is "+
       "represented on the cloak. Each %^RED%^s%^BLUE%^c%^GREEN%^a"+
-      "%^WHITE%^l%^BLACK%^e %^YELLOW%^appears to be from different "+
+      "%^WHITE%^l%^BLACK%^e %^YELLOW%^appears to be from a different "+
       "dragon, with some of the same color bearing differing lusters "+
       "and thickness. Some of the %^RED%^s%^BLUE%^c%^GREEN%^a%^WHITE%^"+
       "l%^BLACK%^e%^YELLOW%^s appear to be loose, perhaps you can "+

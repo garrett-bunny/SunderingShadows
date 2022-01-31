@@ -49,7 +49,7 @@ int hit_func(object targ){
         tell_room(environment(ETO),"%^BOLD%^%^GREEN%^V%^RESET%^%^ORANGE%^ine"+
 "%^BOLD%^%^GREEN%^s %^RESET%^%^GREEN%^from %^BOLD%^%^RED%^"+ETO->QCN+"'s %^BOLD%^s%^ORANGE%^t"+
 "%^GREEN%^a%^ORANGE%^f%^GREEN%^f %^RESET%^%^GREEN%^wrap around %^YELLOW%^"+targ->QCN+"'s "
-    "body and begin to %^BOLD%^%^RED%^c%^RESET%^%^RED%^rus%^BOLD%^h%^YELLOW%^them!%^RESET%^",({ETO,targ}));
+    "body and begin to %^BOLD%^%^RED%^c%^RESET%^%^RED%^rus%^BOLD%^h%^YELLOW%^ them!%^RESET%^",({ETO,targ}));
 
         return random(4)+8;
    }

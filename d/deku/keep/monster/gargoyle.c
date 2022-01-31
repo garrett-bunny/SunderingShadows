@@ -10,7 +10,7 @@ void create()
     set_short("%^RED%^A massive gargoyle%^RESET%^");
     set_id(({"Gargoyle","gargoyle","Massive Gargoyle","massive gargoyle"}));
     set_long("%^MAGENTA%^This massive creature towers over twelve feet high, its body is made "+
-        "from what appears to be solid stone.  It has two enormous wings which spread out to "+
+        "from what appears to be solid stone.  It has two enormous wings, which spread out to "+
         "either side of its great shoulders and attached to each of its arms is a hand like "+
         "appendage that ends in four claws.  The eyes of this creature are a glowing %^RED%^"+
         "red%^MAGENTA%^.%^RESET%^");   

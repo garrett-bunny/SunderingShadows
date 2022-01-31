@@ -114,7 +114,7 @@ int hit_func(object victim) {
                 tell_object(victim,"%^YELLOW%^"+ETO->QCN+" strikes "+
                 " you with a weapon that lets out a roar.",);
                 tell_room(EETO,"%^YELLOW%^"+ETO->QCN+" strikes "+
-                victim->QCN+" with "+ETO->QO+
+                victim->QCN+" with "+ETO->QP+
                 " weapon that lets out a roar.",({ETO,victim}));
                 victim->cause_typed_damage(victim,0,roll_dice(1,8)+3,"bludgeoning");
                 break;
@@ -125,7 +125,7 @@ int hit_func(object victim) {
                 " into "+victim->QP+" repeatedly.");
                 tell_object(victim,"%^BOLD%^"+ETO->QCN+" suddenly moves"+
                 " swiftly, hammering the pillar into you with unnatural speed.",);
-                tell_room(EETO,"%^BOLD%^%"+ETO->QCN+" suddenly"+
+                tell_room(EETO,"%^BOLD%^"+ETO->QCN+" suddenly"+
                 " moves swiftly, hammering into "+victim->QCN+" with a "+
                 "series of blurring attacks.",({ETO,victim}));
                 victim->cause_typed_damage(victim,0,roll_dice(1,8)+3,"bludgeoning");

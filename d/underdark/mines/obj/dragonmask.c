@@ -16,14 +16,14 @@ void create(){
       "%^MAGENTA%^a%^BOLD%^%^BLACK%^c%^RESET%^%^MAGENTA%^o%^BOLD%^"+
       "%^BLACK%^n%^RESET%^%^MAGENTA%^i%^BOLD%^%^BLACK%^c mask%^RESET%^");
    set_long("%^BOLD%^%^BLACK%^This mask has been shoddily constructed "+
-      "out some sort of rough wood. Although some artistic license is "+
+      "out of some sort of rough wood. Although some artistic license is "+
       "involved, the mask has the general shape of a dragon's head. "+
       "Sloppy coats of black and %^RESET%^%^MAGENTA%^purple %^BOLD%^"+
       "%^BLACK%^paint have been applied in splotches all over the mask. "+
       "The visage incorporates a dichotomy of hideous, abject terror "+
-      "and ineptitude in its craftmanship.%^RESET%^");
+      "and ineptitude in its craftsmanship.%^RESET%^");
    set_lore("Those kobold communities that are dominated by draconic "+
-      "cults are led usually by a shaman or sorceror. The cult leader "+
+      "cults are led usually by a shaman or sorcerer. The cult leader "+
       "is bound to serve as the dragon's proxy within the community "+
       "and will usually adorn himself in draconic costumes and other "+
       "artifacts. Usually the leader will make use of a dragon mask, "+
