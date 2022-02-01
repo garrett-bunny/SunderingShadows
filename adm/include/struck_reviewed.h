@@ -82,4 +82,5 @@
     "/realms/kismet/obj/rewards/r_orchid", \
     "/d/shadow/room/farm/obj/petal_buckler", \
     "/d/underdark/mines/obj/gnorobe", \
+    "/d/laerad/lgnolls/obj/gnollbarding", \
 })
