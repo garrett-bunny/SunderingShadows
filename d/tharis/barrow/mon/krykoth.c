@@ -205,7 +205,7 @@ int throw_func(string str) {
 }
 void die(object ob) {
     message("environment",
-        "%^GREEN%^%^BOLD%^The krykoth's body drops dead but his inner "
+        "%^GREEN%^%^BOLD%^The Krykoth's body drops dead but its inner "
         "being vanishes back to the Abyss.\n%^BOLD%^%^RED%^"
         "Lloth tells you: %^RESET%^Quit killing my servants or else I "
         "shall eternally torment you!"

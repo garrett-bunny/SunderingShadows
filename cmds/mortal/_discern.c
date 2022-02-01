@@ -110,7 +110,7 @@ int cmd_discern(string str)
         string* names;
         names = obj->query_id();
         if (names) {
-            write("%^BOLD%^This item can be refered to as:%^RESET%^ " + implode(names, ", "));
+            write("%^BOLD%^This item can be referred to as:%^RESET%^ " + implode(names, ", "));
         }
     }
     {
@@ -217,7 +217,7 @@ int cmd_discern(string str)
             armbon = obj->query_item_bonus("shieldMiss");
             write("It has %^BOLD%^%^GREEN%^" + armbon + "%^RESET%^ deflection chance.");
             write("");
-            write("It %^RED%^requires %^BOLD%^%^GREEN%^shield%^RESET%^ profficiency to wield successfully.");
+            write("It %^RED%^requires %^BOLD%^%^GREEN%^shield%^RESET%^ proficiency to wield successfully.");
             write("It requires %^BOLD%^%^GREEN%^" + checkrepair((string)obj->query_type(), (string*)obj->query_property("repairtype")) + " %^RESET%^craft skill to repair.");
         }else {
             armbon = obj->query_original_ac();

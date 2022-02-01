@@ -18,7 +18,7 @@ void create() {
 "it through a series of graceful and lethal movements during combat. Doing so serves to empower their own strikes, "
 "granting them greater prowess with melee attacks. It similarly enthralls attackers, making it harder "
 "for anyone to land a successful hit upon their person. This spell does not work alongside similarly powerful melee "
-"spells, such as rage, dance of a thousand cuts, or cunning insight.");
+"spells, such as rage, transformation, or cunning insight.");
     set_somatic_comp();
     set_helpful_spell(1);
 }

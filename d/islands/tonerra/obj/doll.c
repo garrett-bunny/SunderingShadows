@@ -14,7 +14,7 @@ void create(){
 @OLI
    This doll has an annoying sneer on its face. You almost wish
 that you could wipe the sneer off its face. But it is only
-a doll, why should you be effected by it like this.
+a doll, why should you be effected by it like this?
 OLI
    );
    set_value("2000");
