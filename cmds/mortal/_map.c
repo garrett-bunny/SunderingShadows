@@ -502,7 +502,7 @@ void help()
     +" existing room mapped to the location you are moving into. By default,\n"
     +"you will just stop mapping, but if you set it to expand, the map will\n"
     +"stretch in order to accomodate the extra rooms. It may take some\n"
-    +"experimenting to work out how best to use this feature, which can be"
+    +"experimenting to work out how best to use this feature, which can be\n"
     +"considered 'alpha' at best.\n\n"
     +"Mudlet users - These commands conflict with the native mudlet mapper. You\n"
     +"can avoid the conflict by creating aliases for these commands."

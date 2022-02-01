@@ -15,9 +15,9 @@ void create()
     set_spell_sphere("abjuration");
     set_damage_desc("clevel/6+5 spell reflection chance.");
     set_syntax("cast CLASS spell turning");
-    set_description("The most skilled of abjurationists can use such a spell to raise a protective ward around themselves"
+    set_description("The most skilled of abjurers can use such a spell to raise a protective ward around themselves"
                     ". While it holds, it will have a chance to reflect any spells which are directly aimed at the caster, regardless of "
-                    "whether they are hostile or friendly. The ward will not reflect splash damage or AOE, but only direct-targetted spells. This spell will override spell reflection and reflection feats.");
+                    "whether they are hostile or friendly. The ward will not reflect splash damage or AOE, but only directly targeted spells. This spell will override spell reflection and reflection feats.");
     set_verbal_comp();
     set_somatic_comp();
     set_components(([

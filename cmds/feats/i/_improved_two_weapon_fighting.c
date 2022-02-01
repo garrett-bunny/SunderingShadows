@@ -10,7 +10,7 @@ void create()
     feat_category("TwoWeapons");
     feat_name("improved two weapon fighting");
     feat_prereq("Two weapon fighting");
-    feat_desc("Improved Two Weapon Fighting is a passive feat that gives extra a second extra attack with your offhand weapon.");
+    feat_desc("Improved Two Weapon Fighting is a passive feat that gives a second extra attack with your offhand weapon.");
     permanent(1);
     set_required_for(({"unassailable parry"}));
 }
