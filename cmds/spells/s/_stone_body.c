@@ -11,7 +11,6 @@ void create() {
     set_spell_level(([ "cleric" : 8,
                        "druid"  : 8]));
     set_spell_sphere("alteration");
-    set_mystery("stone");
     set_syntax("cast CLASS stone body");
     set_description("This spell will cover the caster's skin in a layer of granite, reducing the damage he takes with "
 "each hit.  The higher the level the caster, the more damage will be resisted.  The spell also renders the caster immune "

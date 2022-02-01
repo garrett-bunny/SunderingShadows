@@ -11,11 +11,10 @@ void create()
     set_spell_name("undeath is death");
     set_spell_level(([ "mage" : 6, "cleric" : 6, "inquisitor" : 6, ]));
     set_spell_sphere("necromancy");
-    set_mystery("reaper");
     set_domains("repose");
     set_syntax("cast CLASS undeath is death");
     set_damage_desc("positive energy to undead");
-    set_description("A caster draws a circle around herself and channels positive energy ourwards, destroying undead creatures that are not able to withstand it, but not affecting at all those of the strong will.");
+    set_description("A caster draws a circle around herself and channels positive energy outwards, destroying undead creatures that are not able to withstand it, but not affecting at all those of the strong will.");
     set_verbal_comp();
     set_somatic_comp();
     set_save("will");

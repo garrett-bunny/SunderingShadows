@@ -25,9 +25,9 @@ void create()
     feat_prereq("Ranger L18");
     feat_category("WildernessLore");
     feat_name("improved quarry");
-    feat_desc("This feat makes your quarry better by providing an additional "+
+    feat_desc("This feat strengthens you against your quarry by providing an additional "+
 "+2 to attack and damage rolls against them. You also will never fail to track your quarry " +
-"unless they are also a Ranger.");
+"unless they are also a ranger.");
     permanent(1);
 }
 

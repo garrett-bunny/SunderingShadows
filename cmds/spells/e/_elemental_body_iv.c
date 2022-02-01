@@ -43,8 +43,7 @@ void create()
 {
     ::create();
     set_spell_name("elemental body iv");
-    set_spell_level(([ "mage" : 7,"oracle": 7, "innate" : 7 ]));
-    set_mystery("elemental");
+    set_spell_level(([ "mage" : 7, "innate" : 7 ]));
     set_description("When you cast this spell, you infuse yourself with the power of the element. Infusions give the next effects as follows:
 
   fire:  +6 dexterity,    +4 constitution, +4 armor class
@@ -52,8 +51,6 @@ void create()
   earth: +8 strength,     +4 constitution, -2 dexterity,   +6 armor class
   water: +8 constitution, +4 strength,     -2 dexterity,   +6 armor class
 
-Stone Lords may only gain the augmentation of earth.
-
-Clerics of elemental domain can change into a specific domain form only.");
+Stone Lords may only gain the augmentation of earth.");
     set_syntax("cast CLASS "+query_spell_name()+" on fire|air|earth|water");
 }

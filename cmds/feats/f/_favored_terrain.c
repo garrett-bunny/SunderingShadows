@@ -28,7 +28,7 @@ void create()
     feat_prereq("Ranger L3");
     feat_syntax("favored_terrain [TYPE]");
     feat_desc("This feat allows a ranger to focus their knowledge and training\
-for operating a favored terrain of their choice. While within their favored\
+for operating within a favored terrain of their choice. While within their favored\
 terrain, the ranger gains +2 to stealth, perception, and survival skills.\
 You can select from the following favored terrain: \n\n" + "%^GREEN%^" + implode(valid_choices, "\n") +
 "%^RESET%^\n\n\To start selection process type <favored terrain> [TYPE].");

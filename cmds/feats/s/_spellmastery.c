@@ -39,7 +39,7 @@ void create() {
     feat_category("MagicDamage");
     feat_name("spellmastery");
     feat_syntax("spellmastery [SPELLNAME]");
-    feat_desc("Upon taking this feat you gain ability to select a spell (with %^ORANGE%^<spellmastery>%^RESET%^ command) you can cast indefinitely, without needing to prepare it. Only spells of 1st and 2nd level may be picked for SpellMastery. If you have more than one class able to use the same spell, the power of the SpellMastery (as well as armor checks, etc) will be based upon the highest of these.
+    feat_desc("Upon taking this feat you gain the ability to select a spell (with %^ORANGE%^<spellmastery>%^RESET%^ command) you can cast indefinitely, without needing to prepare it. Only spells of 1st and 2nd level may be picked for spellmastery. If you have more than one class able to use the same spell, the power of the spellmastery (as well as armor checks, etc) will be based upon the highest of these.
 
 %^ORANGE%^<spellmastery>%^RESET%^ without an argument will display currently spellmastered spell.
 
@@ -82,7 +82,7 @@ int cmd_spellmastery(string args)
         return 1;
     }
 
-    write("%^BOLD%^%^RED%^Setting spellname spell to:%^RESET%^ "+args);
+    write("%^BOLD%^%^RED%^Setting spellmastery spell to:%^RESET%^ "+args);
 
     TP->set("spellmastery_change",time());
     TP->set("spellmastery_spell",args);

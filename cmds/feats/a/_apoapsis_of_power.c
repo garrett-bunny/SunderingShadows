@@ -10,7 +10,7 @@ void create()
     feat_category("MagicDamage");
     feat_name("apoapsis of power");
     feat_prereq("Greater spell penetration, Greater spell power, Mage or Sorcerer L31");
-    feat_desc("Casters learn ability to shift their damage table two levels up. Only mage and sorcerer spells will be affected.");
+    feat_desc("Casters learn the ability to shift their spell damage table two levels up. Only mage and sorcerer spells will be affected.");
     permanent(1);
 }
 
