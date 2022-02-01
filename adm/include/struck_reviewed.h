@@ -65,6 +65,7 @@
     "/d/islands/common/obj/shimmeringcape2", \
     "/d/deku/armours/brobe", \
     "/d/islands/elf/obj/shield", \
+    "/d/islands/elf/obj/v_gloves", \
     "/d/dagger/derro/obj/shield", \
     "/d/dagger/marsh/tower/obj/shadowbracers", \
     "/d/dagger/marsh/tower/obj/castershoes", \
