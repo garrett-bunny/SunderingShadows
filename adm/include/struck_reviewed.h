@@ -38,6 +38,7 @@
     "/d/islands/argentrock/obj/shd_bskeletal", \
     "/d/islands/argentrock/obj/shd_glassy", \
     "/d/islands/argentrock/obj/shd_gskeletal", \
+    "/d/islands/common/eldebaro/ob/ebon_reflector", \
     "/d/shadow/room/githyanki/obj/obsidion_vambraces", \
     "/d/islands/common/obj/new/e_chain", \
     "/d/islands/common/obj/new/flameguards", \
