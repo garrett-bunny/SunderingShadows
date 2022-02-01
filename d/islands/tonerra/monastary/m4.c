@@ -27,8 +27,8 @@ OLI
 
    set_items(([
       "books":"These books look used and old. Great knowledge is stored here. One book looks frequently used, or at least frequently taken.",
-      "shelves":"You notice the shelves here are full of dusty, must covered books, except for one book.",
-      "book":"One of the many books here looks well refered to. As if many people have taken it in the past.",
+      "shelves":"You notice the shelves here are full of musky, dust covered books, except for one book.",
+      "book":"One of the many books here looks well referred to, as if many people have taken it in the past.",
       ]));
    set_smell("default","An odor of must and dust is dominant here.");
    set_listen("default","You seem to hear long dead whispers.");
@@ -52,7 +52,7 @@ int take(string str){
    flag = 1;
    add_exit(MONASTERY+"m17","east");
    tell_room(TO,"%^BOLD%^As "+TPQCN+" tries to take a book from the shelves a wall slides back revealing a passage.",TP);
-   write("You take the book but you notice it pulls, you hear a sliding behind you.");
+   write("You take the book but you notice it pulls. You hear a sliding behind you.");
    return 1;
 
 }

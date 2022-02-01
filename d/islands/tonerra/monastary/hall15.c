@@ -18,7 +18,7 @@ void create(){
    set_long(
 @OLI
    %^RED%^Dark hallway into the monastery%^RESET%^
-%^RESET%^This hall way is lit by dim %^BOLD%^%^BLACK%^f%^RESET%^%^ORANGE%^l%^BOLD%^ic%^RESET%^%^ORANGE%^k%^BOLD%^%^BLACK%^e%^RESET%^%^ORANGE%^r%^BOLD%^in%^RESET%^%^ORANGE%^g %^BOLD%^%^BLACK%^t%^RESET%^%^ORANGE%^o%^BOLD%^rc%^RESET%^%^ORANGE%^h%^BOLD%^%^BLACK%^e%^RESET%^%^ORANGE%^s%^WHITE%^. One of the
+%^RESET%^This hallway is lit by dim %^BOLD%^%^BLACK%^f%^RESET%^%^ORANGE%^l%^BOLD%^ic%^RESET%^%^ORANGE%^k%^BOLD%^%^BLACK%^e%^RESET%^%^ORANGE%^r%^BOLD%^in%^RESET%^%^ORANGE%^g %^BOLD%^%^BLACK%^t%^RESET%^%^ORANGE%^o%^BOLD%^rc%^RESET%^%^ORANGE%^h%^BOLD%^%^BLACK%^e%^RESET%^%^ORANGE%^s%^WHITE%^. One of the
 torches wobbles slightly in its holder. The %^BOLD%^%^BLACK%^dark stone %^RESET%^is worn
 from centuries of use. The chants grow stronger towards
 the north. Your footsteps echo in the walk way. Worn %^MAGENTA%^tapestries%^WHITE%^

@@ -16,7 +16,7 @@ void create(){
    set_long(
 @OLI
    %^RED%^Dark hallway into the monastery%^RESET%^
-%^RESET%^This hall way is lit by dim %^BOLD%^%^BLACK%^f%^RESET%^%^ORANGE%^l%^BOLD%^ic%^RESET%^%^ORANGE%^k%^BOLD%^%^BLACK%^e%^RESET%^%^ORANGE%^r%^BOLD%^in%^RESET%^%^ORANGE%^g %^BOLD%^%^BLACK%^t%^RESET%^%^ORANGE%^o%^BOLD%^rc%^RESET%^%^ORANGE%^h%^BOLD%^%^BLACK%^e%^RESET%^%^ORANGE%^s%^WHITE%^. The %^BOLD%^%^BLACK%^dark stone%^RESET%^
+%^RESET%^This hallway is lit by dim %^BOLD%^%^BLACK%^f%^RESET%^%^ORANGE%^l%^BOLD%^ic%^RESET%^%^ORANGE%^k%^BOLD%^%^BLACK%^e%^RESET%^%^ORANGE%^r%^BOLD%^in%^RESET%^%^ORANGE%^g %^BOLD%^%^BLACK%^t%^RESET%^%^ORANGE%^o%^BOLD%^rc%^RESET%^%^ORANGE%^h%^BOLD%^%^BLACK%^e%^RESET%^%^ORANGE%^s%^WHITE%^. The %^BOLD%^%^BLACK%^dark stone%^RESET%^
 is worn from centuries of use. The chants grow stronger towards
 the north. Your footsteps echo in the walkway. Worn %^MAGENTA%^tapestries%^WHITE%^
 portraying %^BOLD%^%^GREEN%^lovely hills %^RESET%^and %^CYAN%^ancient places %^WHITE%^hang on the walls.

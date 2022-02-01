@@ -24,7 +24,7 @@ OLI
    set_items(([
       "ground":"Soft and giving, this ground is thickly layered in small plants and various mosses.",
       "vines":"These vines dangle from the trees all around you. These look like your means of transportation.",
-      "branches":"Up in the trees it looks as if a whole other world exists up in the trees. Someone might be waiting somewhere up there.",
+      "branches":"It looks as if a whole other world exists up in the trees. Someone might be waiting somewhere up there.",
       "moss":"You've heard that some moss hurts you but this seems to be harmless.",
 
    ]));
