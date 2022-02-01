@@ -15,9 +15,8 @@ object detector, blocker;
 void create() {
     ::create();
     set_spell_name("screen");
-    set_spell_level(([ "oracle" : 8, "mage": 8 ]));
+    set_spell_level(([ "mage": 8 ]));
     set_spell_sphere("illusion");
-    set_mystery("lore");
     set_syntax("cast CLASS screen");
     set_description("Upon casting this spell, the user creates a screen of illusion centered upon himself that makes "
 "scrying attempts difficult.  This spell has a chance to both detect and block scrying attempts, with the chance for "
