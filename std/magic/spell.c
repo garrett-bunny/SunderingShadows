@@ -3314,6 +3314,9 @@ varargs int do_save(object targ, int mod, int get_dc)
         mod = 0;
     }
     
+    if(!pointerp(immune))
+        immune = ({  });
+    
     base_level = caster->query_base_character_level();
     classlvl = max( ({ caster->query_guild_level(spell_type), base_level - 10 }) );
     
