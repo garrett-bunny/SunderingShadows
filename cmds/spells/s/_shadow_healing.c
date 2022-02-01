@@ -12,7 +12,7 @@ void create()
     set_spell_level(([ "bard" : 3, "druid" : 3, "mage" : 3, "cleric" : 3, "magus" : 3 ]));
     set_spell_sphere("illusion");
     set_syntax("cast CLASS shadow healing on TARGET");
-    set_description("With this spell you connect your target to the shadow plane, granting them temporary, illusionary health points, but only if they already don't have them.");
+    set_description("With this spell you connect your target to the shadow plane, granting them temporary, illusory health points, but only if they already don't have them.");
     set_verbal_comp();
     set_somatic_comp();
     set_target_required(1);

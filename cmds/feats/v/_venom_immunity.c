@@ -6,11 +6,11 @@ int help();
 
 void create() {
     ::create();
-    feat_type("premanent");
+    feat_type("permanent");
     feat_category("WildernessLore");
     feat_name("venom immunity");
-    feat_prereq("Drid L9");
-    feat_desc("A character with this feat gains an innateimmunity to poisons.");
+    feat_prereq("Druid L9");
+    feat_desc("A character with this feat gains an innate immunity to poisons.");
     permanent(1);
 }
 

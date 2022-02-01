@@ -10,7 +10,7 @@ void create() {
     feat_category("WildernessLore");
     feat_name("tracklessstep");
     feat_syntax("tracklessstep");
-    feat_desc("A character with this feat leaves no trace of their passing in natural surroundings. They can, however, choose to temporarily leave tracks if they wish, by activating the feat. Using the command again will return the user to leaving no sign of passing.");
+    feat_desc("A character with this feat leaves no trace of their passing in natural surroundings. They can, however, choose to temporarily leave tracks if they wish by activating the feat. Using the command again will return the user to leaving no sign of passing.");
     set_target_required(0);
 }
 

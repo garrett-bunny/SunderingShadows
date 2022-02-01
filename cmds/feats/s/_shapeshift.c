@@ -12,7 +12,7 @@ void create() {
     feat_name("shapeshift");
     feat_prereq("Druid L4");
     feat_syntax("shapeshift SHAPE [| VARIANT]");
-    feat_desc("The shapeshift feat will allow the user to change into another form. Whileshapeshifted, users maintain their intelligence but also gain the mannerisms and instinctsof their shapeshifted form, but they are able to overcome their animal instincts and actof their own free will. Users in animal form can freely speak with other animals, butwill need a special feat to communicate with others who do not understand the animal'slanguage. All equipment worn and carried by the user is absorbed into the shapeshiftingprocess and, with the exception of healing vials, will be unusuable until the user returnsto his or her normal form. Equipment bonuses for worn and wielded armor and weapons willremain when the user is shapeshifted. In addition, bird shape can use <wing> command. Different forms are learned by the druid as theygrow in strength, as follows:
+    feat_desc("The shapeshift feat will allow the user to change into another form. While shapeshifted, users maintain their intelligence but also gain the mannerisms and instincts of their shapeshifted form, but they are able to overcome their animal instincts and act of their own free will. Users in animal form can freely speak with other animals, but will need a special feat to communicate with others who do not understand the animal's language. All equipment worn and carried by the user is absorbed into the shapeshifting process and, with the exception of healing vials, will be unusable until the user returns to his or her normal form. Equipment bonuses for worn and wielded armor and weapons will remain when the user is shapeshifted. In addition, bird shape can use <wing> command. Different forms are learned by the druid as they grow in strength, as follows:
 
   L4 Wolf. Variants: coyote, fox, hyena, jackal, wolverine, worg
   L4 Small Animal. Variants: ferret, lizard, mole, mongoose, monkey, mouse, rabbit, raccoon, rat, skunk, squirrel
@@ -21,7 +21,7 @@ void create() {
   L14 Bird. Variants: crow, eagle, falcon, hawk, owl, raven, vulture, goose
   L17 Cat. Variants: cheetah, jaguar, leopard, lion, lynx, ocelot, panther, tiger
 
-You will be able to set descriptions, speech messages for each form, but it will be shared between variants, and for many descriptions it means you can have just one variant of each form. For descriptions variants work as subraces and you can refer to them in adjectives with $SR keyword.
+You will be able to set descriptions and speech messages for each form, but it will be shared between variants, and for many descriptions it means you can have just one variant of each form. For descriptions, variants work as subraces and you can refer to them in adjectives with the $SR keyword.
 
 Dragon: refer to <help wild shape dragon>
 Elemental: refer to <help wild shape elemental>");

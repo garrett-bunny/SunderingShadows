@@ -1156,7 +1156,7 @@ If your terminal supports color, you may benefit from color coding of the feats 
 The numbers listed before the feats indicate which level the feats were gained at:
   %^BOLD%^%^CYAN%^00%^RESET%^: The feat has been bought normally.
   %^BOLD%^%^MAGENTA%^00%^RESET%^: The feat has been granted for free (class feats).
-  %^YELLOW%^00%^RESET%^: The feat has been bought with bonus racial, combat, magic, hybrid, arcana, rage or dvinebond feats.
+  %^YELLOW%^00%^RESET%^: The feat has been bought with bonus racial, combat, magic, hybrid, arcana, rage or divinebond feats.
 
 Adding and removing normal feats will add to your character improvement tax (see %^ORANGE%^<help exp tax>%^RESET%^) and slow your level advancement. This is to simulate the extra training that it requires to learn the new abilities or to forget your previous training.
 
