@@ -71,7 +71,9 @@
     "/d/islands/dallyh/marsh/obj/frobe", \
     "/d/islands/dallyh/forest/obj/rosebodice", \
     "/d/atoyatl/tecqumin/obj/poncho", \
+    "/d/atoyatl/tecqumin/obj/poncho_greater", \
     "/d/atoyatl/tecqumin/obj/kilt", \
+    "/d/atoyatl/tecqumin/obj/kilt_greater", \
     "/d/barriermnts/lothwaite/obj/ethereal_bracers", \
     "/realms/kismet/obj/rewards/moontiara", \
     "/realms/kismet/obj/rewards/r_orchid", \
