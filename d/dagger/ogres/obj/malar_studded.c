@@ -58,13 +58,14 @@ int remove_func(){
 
 int strike_func(int damage, object what, object who){
 	if(random(1000) < 100){
-	tell_room(EETO,"%^RESET%^%^GREEN%^As "+who->QCN+"%^RESET%^%^GREEN%^ str"+
-"ikes "+ETOQCN+"%^RESET%^%^GREEN%^, "+ETOQCN+"%^RESET%^%^GREEN%^ blocks"+
-" the blow easily! %^RESET%^",({ETO,who}));
-	tell_object(ETO,"%^RESET%^%^GREEN%^As "+who->QCN+"%^RESET%^%^GREEN%^'s "+
-"blow is about to strike you, you deflect it with a patch of heavy scale on the armor!%^RESET%^");
-	tell_object(who,"%^RESET%^%^GREEN%^As you strike "+ETOQCN+"%^RESET%^"+
-"%^GREEN%^ they block easily!%^RESET%^");
-return(-1)*(damage);
-}
+	    tell_room(EETO,"%^RESET%^%^GREEN%^As "+who->QCN+"%^RESET%^%^GREEN%^ str"+
+              "ikes "+ETOQCN+"%^RESET%^%^GREEN%^, "+ETOQCN+"%^RESET%^%^GREEN%^ blocks"+
+	      " the blow easily! %^RESET%^",({ETO,who}));
+	    tell_object(ETO,"%^RESET%^%^GREEN%^As "+who->QCN+"%^RESET%^%^GREEN%^'s "+
+	      "blow is about to strike you, you deflect it with a patch of heavy scale on the armor!%^RESET%^");
+	    tell_object(who,"%^RESET%^%^GREEN%^As you strike "+ETOQCN+"%^RESET%^"+
+	      "%^GREEN%^ they block easily!%^RESET%^");
+	    return 0;
+	}
+	return damage;
 }
