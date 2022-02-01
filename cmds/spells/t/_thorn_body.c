@@ -12,7 +12,7 @@ void create()
     set_spell_sphere("alteration");
     set_syntax("cast CLASS thorn body");
     set_damage_desc("piercing");
-    set_description("Thorns grow through your skin, damaging all creature that attack you.");
+    set_description("Thorns grow through your skin, damaging all creatures that attack you.");
     set_helpful_spell(1);
     traveling_aoe_spell(1);
 }

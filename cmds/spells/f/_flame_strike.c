@@ -22,7 +22,7 @@ void create() {
     set_spell_level(([ "druid" : 4, "inquisitor":5, "cleric" : 5 ]));
     set_spell_sphere("invocation_evocation");
     set_syntax("cast CLASS flame strike on TARGET");
-    set_description("This spell will call down a pillar of flame to engulf your foes.  It can be used in two ways - when "
+    set_description("This spell will call down a pillar of flame to engulf your foes.  It can be used in two ways: when "
 "used before combat begins, it will engulf a single foe; when cast during combat, it is particularly devastating, as it "
 "will severely burn up to five enemies.  Beware, the caster should advise his allies to not stand too close to the target "
 "of the spell!");

@@ -45,11 +45,11 @@ int do_struck(int damage, object weapon, object attacker) {
        tell_room(environment(who),"%^MAGENTA%^"+rider->QCN+" maneuvers  "+who->QCN+" skillfully, deflecting the force of "+attacker->query_cap_name()+"'s blow.",({rider,who,attacker}));
        tell_object(rider,"You steer your mount skillfully and drive "+attacker->QCN+"'s blow off target.");
        tell_object(attacker,"%^MAGENTA%^"+rider->query_cap_name()+" skillfully manages to ride "+who->query_cap_name()+" to deflect your blow.");
-    return -damage; // Maybe less in the future if this is unbalanced.
-
-   } else {
     return 0;
-    }
+
+   }
+   
+   return damage;
 }
 
 int is_metal() { return 1; }

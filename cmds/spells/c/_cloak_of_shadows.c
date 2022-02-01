@@ -15,14 +15,14 @@ void create() {
     set_spell_sphere("illusion");
     set_monk_way("way of the shadow");
     set_syntax("cast CLASS cloak of shadows on <vision|divination>");
-    set_description("This invocation allows the warlock to draw a curtain of shadow energy around "
+    set_description("This invocation allows the warlock or monk to draw a curtain of shadow energy around "
 "him, concealing him from normal and magical detection attempts. It can be used in two ways, though "
 "only one at a time. If cast on vision, it will generate a more powerful magical concealment than "
 "standard invisibility - it does not require the same direct concentration to maintain, and so it "
 "does not fail if combat is initiated. If cast on divination, it will potentially deflect magical "
 "divination attempts to locate or watch the caster from a distance. If invisible, the caster can "
 "simply forgo his concentration to <step> from the shadows, or with either type of casting, it can "
-"simply be dispelled. Both effects can only be centred upon the caster.");
+"simply be dispelled. Both effects can only be centered upon the caster.");
     set_verbal_comp();
     set_somatic_comp();
     set_arg_needed();
@@ -49,7 +49,7 @@ int preSpell() {
 
 void spell_effect(int prof) {
     tell_object(caster,"%^CYAN%^Your fingertips ensnare te%^RESET%^n%^CYAN%^dri%^RESET%^l%^CYAN%^s of sh%^BLUE%^a%^CYAN%^dow, and you pull them close, drawing them about you like a shroud.%^RESET%^");
-    tell_room(place,"%^CYAN%^"+caster->QCN+" ensnares te%^RESET%^n%^CYAN%^dri%^RESET%^l%^CYAN%^s of sh%^BLUE%^a%^CYAN%^dow from seemingly nowhere, whisps trailing through "+caster->QP+" fingers as "+caster->QS+" draws them about "+caster->QO+"self.%^RESET%^",caster);
+    tell_room(place,"%^CYAN%^"+caster->QCN+" ensnares te%^RESET%^n%^CYAN%^dri%^RESET%^l%^CYAN%^s of sh%^BLUE%^a%^CYAN%^dow from seemingly nowhere, wisps trailing through "+caster->QP+" fingers as "+caster->QS+" draws them about "+caster->QO+"self.%^RESET%^",caster);
     call_out("targ_vanish",2);
 }
 

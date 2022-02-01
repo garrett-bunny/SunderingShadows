@@ -21,7 +21,7 @@ void create() {
     set_description("Upon casting this spell, the druid calls upon her connection with nature to bring forth the magic inherent in an acorn. The druid tosses the acorn to the ground, where it sprouts into a mighty treant to protect her.
 
 To command the treant, simply: <command treant to action>.
-If theeant lost you and you wish for it to follow you again: <command treant to follow>");
+If the treant lost you and you wish for it to follow you again: <command treant to follow>");
     set_verbal_comp();
     set_somatic_comp();
 }

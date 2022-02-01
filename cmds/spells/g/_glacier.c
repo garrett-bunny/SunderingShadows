@@ -10,7 +10,7 @@ void create()
     set_spell_sphere("invocation_evocation");
     set_syntax("cast CLASS glacier on TARGET");
     set_damage_desc("half cold, half bludgeoning. Half damage on successful save.");
-    set_description("With this spell functions exactly like serac, but the platform is humongous.");
+    set_description("This spell functions exactly like serac, but the platform is humongous.");
     set_verbal_comp();
     set_save("reflex");
     set_somatic_comp();
