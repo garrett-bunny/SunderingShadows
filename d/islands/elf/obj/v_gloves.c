@@ -48,14 +48,14 @@ int removeme()
     return 1;
 }
 int strike_func(int damage, object what, object who){
-        if(!objectp(ETO)) return 1;
-		if(!random(5)){
-        tell_room(environment(query_worn()),"%^BOLD%^"+
+        if(!objectp(ETO)) return damage;
+	if(!random(5)){
+            tell_room(environment(query_worn()),"%^BOLD%^"+
             ""+who->QCN+"'s blow strikes"
             +ETO->QCN+" and their hands form into a spell.",({ETO,who}));
-        tell_object(ETO,"%^BOLD%^As the blow lands against your hands you strike back on your own.");
-        tell_object(who,"%^BOLD%^You strike the hands of "+ETO-QCN+"and their gloves begin to glow.");
-        new("/cmds/spells/v/_vampiric_touch")->use_spell(ETO, who, 50, 100, "mage");
-        return (damage);
-       }
+            tell_object(ETO,"%^BOLD%^As the blow lands against your hands you strike back on your own.");
+            tell_object(who,"%^BOLD%^You strike the hands of "+ETO-QCN+"and their gloves begin to glow.");
+            new("/cmds/spells/v/_vampiric_touch")->use_spell(ETO, who, 50, 100, "mage");
+        }
+	return damage;
 }
