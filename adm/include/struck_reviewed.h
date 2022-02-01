@@ -22,10 +22,11 @@
     "/d/dagger/ogres/obj/malar_studded", \
     "/d/dagger/ogres/obj/sune_studded", \
     "/d/islands/elf/obj/scale_mail", \
-    "/d/barriermnts/lothwaite/obj/ghostboots", \
     "/d/barriermnts/lothwaite/obj/ethereal_bplate", \
-    "/d/antioch/jarmila/obj/vashapride", \
+    "/d/barriermnts/lothwaite/obj/ghostboots", \
     "/d/barriermnts/lothwaite/obj/ghostsandals", \
+    "/d/barriermnts/lothwaite/obj/torc", \
+    "/d/antioch/jarmila/obj/vashapride", \
     "/d/magic/obj/shields/callamir", \
     "/d/magic/obj/shields/cevahir", \
     "/d/magic/obj/shields/jarmila", \
