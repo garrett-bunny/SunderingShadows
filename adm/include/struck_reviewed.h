@@ -5,6 +5,7 @@
 #define STRUCK_REVIEWED ({ \
     "/d/token_hunt/obj/high/nightydsp", \
     "/d/token_hunt/obj/high/dragonrobe", \
+    "/d/token_hunt/obj/low/rainbowbangles", \
     "/d/token_hunt/obj/low/rubytalongaunt", \
     "/d/token_hunt/obj/mid/paingreaves", \
     "/d/islands/serakii/obj/hound_robe", \
