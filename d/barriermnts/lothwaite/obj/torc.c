@@ -62,10 +62,9 @@ int remove_func(){
 
 }
 int strike_func(int damage, object what, object who){
-if(!objectp(ETO)) return 1;
+    if(!objectp(ETO)) return damage;
      
-
-        if(random(500) < 100){
+    if(random(500) < 100){
         tell_room(environment(query_worn()),"%^ORANGE%^For"+
         " a moment "+who->QCN+" looks surprised"+
         " by "+ETOQCN+"'s torc, the lions head bites "+
@@ -75,7 +74,7 @@ if(!objectp(ETO)) return 1;
         " "+who->QCN+" when they get too close.");
         tell_object(who,"%^ORANGE%^"+ETOQCN+"'s"+
         " torc's lion head bites you!");
-		 who->do_damage(random(6)+2);
-         return 0;
-		}
+        who->do_damage(random(6)+2);
+    }
+    return damage;
 }
