@@ -5,10 +5,9 @@ void create()
 {
    ::create();
    set_name("salmonberries");
-   set_short("%^GREEN%^A handful of %^RED%^Sa%^BOLD%^lm%^RESET%^%^RED%^o%^BOLD%^n%^RESET%^%^RED%^berr%^BOLD%^ies%^RESET%^");
+   set_short("%^GREEN%^A handful of %^RED%^sa%^BOLD%^lm%^RESET%^%^RED%^o%^BOLD%^n%^RESET%^%^RED%^berr%^BOLD%^ies%^RESET%^");
    set_id(({"salmonberries","berries"}));
-   set_long("The %^RED%^Sa%^BOLD%^lm%^RESET%^%^RED%^o%^BOLD%^n%^RESET%^%^RED%^berr%^BOLD%^ies%^RESET%^ are red with a hint of orange and look juicy and ripe.");
-   set_smell("The %^RED%^Sa%^BOLD%^lm%^RESET%^%^RED%^o%^BOLD%^n%^RESET%^%^RED%^berr%^BOLD%^ies%^RESET%^ have a sweet fragrance.");
+   set_long("The %^RED%^sa%^BOLD%^lm%^RESET%^%^RED%^o%^BOLD%^n%^RESET%^%^RED%^berr%^BOLD%^ies%^RESET%^ are red with a hint of orange and look juicy and ripe.");
    set_weight(1);
    set_value(0);
    set_destroy();
