@@ -60,9 +60,11 @@ int remove_func(){
 
 int strike_func(int damage, object what, object who){
 	if(random(1000) < 100){
-	tell_room(environment(query_worn()),"%^BOLD%^%^BLACK%^A %^RESET%^%^RED%^haunting wail %^BOLD%^%^BLACK%^can be heard coming from somewhere near "+who->QCN+"!  Suddenly "+who->QCN+" shrieks and grows rigid with fear!%^RESET%^",({ETO,who}));
-	tell_object(ETO,"%^BOLD%^%^BLACK%^The %^RESET%^chains %^BOLD%^%^BLACK%^rattle and shake and a %^RESET%^%^RED%^haunting wail %^BOLD%^%^BLACK%^takes up as "+who->QCN+"'s weapon strikes you. Suddenly "+who->QCN+" gives out a shriek of their own and grows rigid with fear!%^RESET%^");
-	tell_object(who,"%^BOLD%^%^BLACK%^As your weapon strikes the chains of "+ETOQCN+"'s %^RESET%^"+query_short()+"%^BOLD%^%^BLACK%^, you see a %^RESET%^ghostly shape %^BOLD%^%^BLACK%^rising up out of them.  It turns glowing %^RESET%^%^RED%^red eyes %^BOLD%^%^BLACK%^upon you and then streaks toward you with a piercing wail!%^RESET%^");
+		tell_room(environment(query_worn()),"%^BOLD%^%^BLACK%^A %^RESET%^%^RED%^haunting wail %^BOLD%^%^BLACK%^can be heard coming from somewhere near "+who->QCN+"!  Suddenly "+who->QCN+" shrieks and grows rigid with fear!%^RESET%^",({ETO,who}));
+		tell_object(ETO,"%^BOLD%^%^BLACK%^The %^RESET%^chains %^BOLD%^%^BLACK%^rattle and shake and a %^RESET%^%^RED%^haunting wail %^BOLD%^%^BLACK%^takes up as "+who->QCN+"'s weapon strikes you. Suddenly "+who->QCN+" gives out a shriek of their own and grows rigid with fear!%^RESET%^");
+		tell_object(who,"%^BOLD%^%^BLACK%^As your weapon strikes the chains of "+ETOQCN+"'s %^RESET%^"+query_short()+"%^BOLD%^%^BLACK%^, you see a %^RESET%^ghostly shape %^BOLD%^%^BLACK%^rising up out of them.  It turns glowing %^RESET%^%^RED%^red eyes %^BOLD%^%^BLACK%^upon you and then streaks toward you with a piercing wail!%^RESET%^");
 		who->set_paralyzed(roll_dice(6,2));
-return damage;	}
+		return 0;
+	}
+	return damage;
 }
