@@ -20,7 +20,7 @@ void create() {
     set_spell_domain("magic");
     set_mystery("dragon");
     set_syntax("cast CLASS true seeing");
-    set_description("This spell will allow you to see things as they truly are. It will allow you to see through magical invisibility and concealment. It will negate the effects of blindness on yourself, and the effects of blurred movement, discplacement and similar effects on opponents. Note: This spell does not negate non-magical hiding effects, such as hide in shadows.");
+    set_description("This spell will allow you to see things as they truly are. It will allow you to see through magical invisibility and concealment. It will negate the effects of blindness on yourself, and the effects of blurred movement, displacement and similar effects on opponents. Note: This spell does not negate non-magical hiding effects, such as hide in shadows.");
     set_verbal_comp();
     set_somatic_comp();
 	set_helpful_spell(1);

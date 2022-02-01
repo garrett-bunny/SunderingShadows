@@ -22,7 +22,7 @@ void create()
     set_mystery("heavens");
     set_syntax("cast CLASS lure of the cosmos");
     set_damage_desc("flight ability");
-    set_description("You feel the pull of the cosmos, so strongly that you literally lift yourself off the ground, reaching for the heavens above.");
+    set_description("You feel the pull of the cosmos so strongly that you literally lift yourself off the ground, reaching for the heavens above.");
     //set_verbal_comp();
     //set_somatic_comp();
     set_helpful_spell(1);

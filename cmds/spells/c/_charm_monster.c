@@ -22,10 +22,7 @@ void create() {
     set_discipline("telepath");
     set_mystery("nature");
     set_syntax("cast CLASS charm monster on TARGET");
-    set_description("Casting this divine prayer will allow a priest to attempt to charm a mob.  If the mob falls prey to "
-"the charm, they will stand in defense of the caster, and follow them around.  Caution should be exercised, for if you "
-"take any offensive actions against the charmed monster, the charm will end.   A caster may have only one charmed "
-"creature under their sway at one time.");
+    set_description("Casting this divine prayer will allow the caster to attempt to charm a monster. If the mob falls prey to the charm, they will stand in defense of the caster, and follow them around. Caution should be exercised, for if you take any offensive actions against the charmed monster, the charm will end.  A caster may have only one charmed creature under their sway at one time.");
     set_verbal_comp();
     set_somatic_comp();
     set_target_required(1);

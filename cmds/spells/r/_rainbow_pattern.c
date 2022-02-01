@@ -17,7 +17,7 @@ void create()
     set_spell_sphere("illusion");
     set_damage_desc("dazzled");
     set_syntax("cast CLASS rainbow pattern on TARGET");
-    set_description("This spell creates a hypnotic pattern in the air, causing every enemy to be dazzled and distracting them from reacting properly. Strong willed may shrug off that pattern.");
+    set_description("This spell creates a hypnotic pattern in the air, causing every enemy to be dazzled and distracting them from reacting properly. Strong willed creatures may shrug off the pattern.");
     set_save("will");
     set_verbal_comp();
     set_somatic_comp();

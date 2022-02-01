@@ -11,9 +11,9 @@ void create() {
     set_spell_level(([ "cleric" : 9,"druid":9 ]));
     set_spell_sphere("healing");
     set_syntax("cast CLASS resurrection on TARGET");
-    set_description("Praying to their diety for a miracle, a priest can attempt to resurrect a slainally back to life. The resurrection, if successful, will restore the corpseback to life and full of health. The spell is somewhat draining on the priest,for channeling large ammounts of divine power can be exhausting. The targetwill suffer significantly less from the death due to theintervention of the priest. Unlike lower spells this spell will work on targets whose corpse is not present.
+    set_description("Praying to their diety for a miracle, a priest can attempt to resurrect a slain ally back to life. The resurrection, if successful, will restore the corpse back to life and full of health. The spell is somewhat draining on the priest, for channeling large ammounts of divine power can be exhausting. The target will suffer significantly less from the death due to the intervention of the priest. Unlike lower spells, this spell will work on targets whose corpse is not present.
 
-This spell will not work on a victim of player kill, use raise dead or other spells.
+This spell will not work on a victim of player kill, you must use raise dead or other such spells.
 
 The TARGET must be the recognized name of the dead player or their corpse. You don't need to know the name to use this spell on a corpse.");
     set_verbal_comp();

@@ -14,7 +14,7 @@ create()
     set_mystery("shadow");
     set_spell_sphere("illusion");
     set_syntax("cast CLASS mass invisibility");
-    set_description("This spell applies invisibility spell to all your followers and party members. Note that maintaining this spell is much harder than common invisibility.");
+    set_description("This spell applies the invisibility spell to all your followers and party members. Note that maintaining this spell is much harder than common invisibility.");
     set_verbal_comp();
     set_somatic_comp();
     set_helpful_spell(1);

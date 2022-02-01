@@ -15,7 +15,7 @@ void create()
     set_domains("plant");
     set_spell_sphere("conjuration_summoning");
     set_syntax("cast CLASS shambler");
-    set_description("Call to shambling mound to aid you in combat.
+    set_description("You call a shambling mound to aid you in combat.
 
 This is a greater summons, and cannot be used simultaneously with other greater summons.
 To remove shambler use %^ORANGE%^<dismiss shambler>%^RESET%^
