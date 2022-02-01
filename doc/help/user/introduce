@@ -4,7 +4,7 @@ introduce -- make your name known
 
 %^CYAN%^SYNTAX%^RESET%^
 
-introduce
+introduce as <NAME>
 
 %^CYAN%^DESCRIPTION%^RESET%^
 
