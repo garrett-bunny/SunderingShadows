@@ -11,7 +11,7 @@ void create()
    set_property("indoors",0);
    set_short("%^BOLD%^%^GREEN%^Meadow Lands%^RESET%^");
    set_long(
-   "%^BOLD%^%^GREEN%^The meadow lands are incredibly lush and beautiful, full of life."+
+   "%^BOLD%^%^GREEN%^The meadowlands are incredibly lush and beautiful, full of life."+
    " Dark green grass comes up as high as four feet in some places and"+
    " is filled with all sorts of insects and animals. There are wildflowers"+
    " that have sprouted up about the area, giving off a wonderful scent."+
@@ -19,7 +19,7 @@ void create()
    " easily conceal many dangers and it's best to be on your guard.\n"
    );
    set("night long",
-   "%^GREEN%^The night air blows a cool breeze across the meadow lands,"+
+   "%^GREEN%^The night air blows a cool breeze across the meadowlands,"+
    " rustling the grass and arousing the crickets even louder. The grass"+
    " is dark and thick, making it hard to see whether or not your next"+
    " step will be safe. You never know what could be hiding under the"+
@@ -37,7 +37,7 @@ void create()
    " four feet high in some places. It is filled with crickets and"+
    " smaller animals, but you realize that it could also conceal something"+
    " more sinister.",
-   ({"wildflowers","flowers"}) : "%^MAGENTA%^Wildflowers grow around the meadow lands,"+
+   ({"wildflowers","flowers"}) : "%^MAGENTA%^Wildflowers grow around the meadowlands,"+
    " often under the grass, although some have fought their way above"+
    " it where the grass is lower. They give off a wonderful fragrance.",
    "crickets" : "Numerous crickets are hiding and jumping about in the grass.",

@@ -11,7 +11,7 @@ void create(){
   set_long(
 @DESC
 %^BLUE%^You are at the entrance to the catacombs beneath the
-old monastery. The light coming down the stair from above 
+old monastery. The light coming down the stairs from above 
 does not seem to illuminate anything past this part of the
 catacombs. 
 DESC
