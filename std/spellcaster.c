@@ -33,11 +33,17 @@ int magic_arsenal_feat(int num)
     if (FEATS_D->usable_feat(TO, "magic arsenal")) {
         num += 2;
     }
+    if(this_object()->is_class("archmage"))
+    {
+        num += (query_level() / 31 + 1);
+    }
     if (FEATS_D->usable_feat(TO, "greater arsenal")) {
-        num += query_level() / 10 + 1;
+        num += 4;
+        //num += query_level() / 10 + 1;
     }
     if (FEATS_D->usable_feat(TO, "gift of the shadows")) {
-        num += query_level() / 10 + 1;
+        num += 4;
+        //num += query_level() / 10 + 1; supposed to be 4
     }
     return num;
 }
