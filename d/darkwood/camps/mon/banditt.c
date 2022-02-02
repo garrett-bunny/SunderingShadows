@@ -11,7 +11,7 @@ void create() {
    set_id(({"orc","bandit","orc bandit", "xxguardorcxx"}));
    set_short("Orc bandit");
    set_long(
-       "This is an orc bandit apart of the camp that calls itself the"+
+       "This is an orc bandit, part of the camp that calls itself the"+
        " Raging Horde. They are a group of orcs that tend to try to invade"+
        " the nearby elven town and ambush lone travelers on the road."
    );

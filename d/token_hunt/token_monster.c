@@ -777,7 +777,7 @@ void initial_setup()
             "might make one hesitant to tangle with his skills.%^RESET%^");
         break;
     case "fighter":
-        set_long("%^RESET%^%^CYAN%^Bands of metal enchase this "+MYTYPE+" warrior with their "
+        set_long("%^RESET%^%^CYAN%^Bands of metal encase this "+MYTYPE+" warrior with their "
             "protective strength. Though a bit dented and battered in some places, the armor "
             "looks almost as a second skin against the ruddy, worn and scarred features. Despite "
             "this, there is an easy confidence and certain prowess about "+TO->QO+" that suggests "
@@ -821,7 +821,7 @@ void initial_setup()
             "and security of "+TO->QP+" position within the world. At "+TO->QP+" hip, a bejeweled "
             "blade rests within a fine leather sheath, while a heavy lance and mighty warhorse are "
             "never far from "+TO->QP+" side. Upon the breast plate of "+TO->QP+" armor and along "
-            "the shoulderplates and greaves are etched decorations of "+MYSTYLE+" that are enhanced "
+            "the shoulder plates and greaves are etched decorations of "+MYSTYLE+" that are enhanced "
             "by slivers of "+MYCRYSTAL+" which glitter in the light.%^RESET%^");
         call_out("horse_me",2);
         break;
@@ -833,7 +833,7 @@ void initial_setup()
             ""+MYSTYLE+". "+TO->QP+" long "+MYHAIR+" hair is swept back behind "+TO->QP+" ears "
             "with the bangs held away from "+TO->QP+" "+MYFACE+" face by a %^BOLD%^%^WHITE%^silver "
             "circlet%^RESET%^%^CYAN%^. Hanging from this circlet is a shard of "+MYCRYSTAL+" which "
-            "glitters, much like the gleam within "+TO->QP+" knowledgable "+MYEYE+" eyes. A few other "
+            "glitters, much like the gleam within "+TO->QP+" knowledgeable "+MYEYE+" eyes. A few other "
             "glitters of jewelry can be seen decorating "+TO->QP+" hands and neck, and there always "
             "appears to be a few crystals that "+TO->QS+" keeps loose within "+TO->QP+" fingers. Almost "
             "as if "+TO->QS+" anticipates something happening soon.%^RESET%^");

@@ -19,7 +19,7 @@ item = 1;
       "%^RESET%^%^GREEN%^The spiral stairs along the side of the tree lead to this platform."+
       " This platform is high up in the trees. The vastness of the land"+
       " around you can be observed from here. The platform is made up of the intricate bindings"+
-      " of the tree branches. There is a small waist high border, to keep people from accidentally"+
+      " of the tree branches. There is a small waist-high border, to keep people from accidentally"+
       " falling off. There is a large deposit of arrows set in one corner and several long bows"+
       " hanging from a hook grown from the tree."
    );

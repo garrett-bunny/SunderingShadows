@@ -23,7 +23,7 @@ string main, tmp;
 		"halfling term meaning 'Mother's Blessing', which they believe "+
 		"the verdant bounty of the meadowlands to be a gift to their "+
 		"people from Mielikki.  Some halflings have set up shops for "+
-		"the adventures across the Meadowlands, offering clothing in "+
+		"the adventurers across the Meadowlands, offering clothing in "+
 		"all sizes, trinkets, and even healing.  The temple of "+
         "%^BOLD%^%^BLUE%^Callamir%^RESET%^ can be found within the verdant "+
         "green meadows. The Meadowlands have "+
