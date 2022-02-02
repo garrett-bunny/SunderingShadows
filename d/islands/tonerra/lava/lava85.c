@@ -12,13 +12,13 @@ void create(){
 @DESC
    %^BOLD%^%^RED%^A Cave in of some sort%^RESET%^
 This room is empty. The wall to the east is covered with a
-pile of rubble. You think it might be a cave in of some form.
-The feeling of lava is less here, possibly you farther from
+pile of rubble. You think it might be a cave-in of some form.
+The feeling of lava is less here, possibly you are farther from
 the lava flow then you thought.
 DESC
   );
   set_items(([
-   "rubble":"You think this is a cave in until you inspect the ceiling. There is no sign of this rubble coming from the ceiling of this cavern. Someone moved this rubble here. Why?",
+   "rubble":"You think this is a cave-in until you inspect the ceiling. There is no sign of this rubble coming from the ceiling of this cavern. Someone moved this rubble here. Why?",
    "pile":"Its made of a ton of rubble, or maybe 2 or 3",
    ]));
   
@@ -54,7 +54,7 @@ void moving(object ob){
    if(rubble < 1){
       tell_room(TO,"At last the rubble is moved.");
       tell_room(TO,"%^BOLD%^You see a silver ring on the ground.");
-      tell_room(TO,"%^BOLD%^Magically the cave in return to its previous form, leaving the ring however.");
+      tell_room(TO,"%^BOLD%^Magically the cave is returned to its previous form, leaving the ring however.");
       rubble = 50;
       new(OBJ+"ring3")->move(TO);
       return;

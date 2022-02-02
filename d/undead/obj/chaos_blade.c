@@ -27,7 +27,7 @@ void create()
         "is known to meld itself to what is in the mind of those who are "
         "on it.  So chaotic was the warrior's heart, that a great rift "
         "opened on the plane of limbo, a tear in the fabric of the world "
-        "that lead through to the plane of chaos.  The warrior saw that "
+        "that led through to the plane of chaos.  The warrior saw that "
         "rift as the weapon he was looking for, and his mind tore a fragment "
         "of it away.  That fragment was said to be forged into a powerful "
         "sword, the %^RESET%^%^GREEN%^Chaos Blade%^RESET%^%^BOLD%^%^WHITE%^");
@@ -63,7 +63,7 @@ int wieldme()
 		    tell_object(ETO,"%^RED%^The sword refuses your hand and collapses "
                 "in on itself with a violent implosion!");
 		    tell_room(EETO,"The sword carried by "+ETO->QCN+" suddenly collapses "
-                "in on itself with a voilent implosion!",ETO);
+                "in on itself with a violent implosion!",ETO);
 		    TO->set_property("magic",1);
             ETO->do_damage("left hand",roll_dice(3,6));
             TO->set_property("magic",-1);
@@ -127,7 +127,7 @@ int unwieldme()
 	    case 7: 
         case 8: 
         case 9:		
-		    tell_object(ETO,"%^BOLD%^%^GREEN%^You long for the comforting presense "
+		    tell_object(ETO,"%^BOLD%^%^GREEN%^You long for the comforting presence "
                 "of the blade almost as soon as it leaves your grasp!");
 		    tell_room(EETO,""+ETO->QCN+" releases the blade with a wistful sigh",ETO);
    		    TO->set_wc(1,8);
@@ -204,12 +204,12 @@ int hitme(object targ)
                     case 6:
 
                         tell_object(ETO,"%^CYAN%^You send a lightning strike quickly through "
-                            ""+targ->QCN+"'s defences and strike a vulnerable spot!%^RESET%^");                    
+                            ""+targ->QCN+"'s defenses and strike a vulnerable spot!%^RESET%^");                    
                         tell_object(targ,"%^CYAN%^"+ETO->QCN+" sends a lightly strike in towards "
-                            "you, slipping through your defences and scoring a painful "
+                            "you, slipping through your defenses and scoring a painful "
                             "hit!%^RESET%^");                    
                         tell_room(EETO,"%^CYAN%^"+ETO->QCN+" sends a lightning strike towards "
-                            ""+targ->QCN+", slipping through "+targ->QP+" defences and "
+                            ""+targ->QCN+", slipping through "+targ->QP+" defenses and "
                             "scoring a painful hit!%^RESET%^",({ETO,targ}));                    
                         TO->set_property("magic", 1);
                         targ->do_damage(targ->return_limb(),roll_dice(2,6));

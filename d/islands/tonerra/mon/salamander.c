@@ -17,7 +17,7 @@ void create(){
    This creature from the plane of fire seems to make his home
 in the raging heat of the lava that flows under and in these
 tubes. The heat from this creature itself scorches your face
-hands. The long snakelike body is barbed with glowing red
+and hands. The long snakelike body is barbed with glowing red
 spikes and the scales glow with the creature's heat.
 OLI
    );

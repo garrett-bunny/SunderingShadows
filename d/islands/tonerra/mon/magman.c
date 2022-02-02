@@ -13,7 +13,7 @@ void create()
     set_name("magman");
     set_short("%^RESET%^%^RED%^Fla%^ORANGE%^m%^RED%^ing Ma%^ORANGE%^g%^RED%^man%^RESET%^");
     set_id(({ "magman", "Magman", "Flaming Magman", "flaming", "magmen" }));
-    set_long("%^RED%^This small creature looks as if it is solid rock but it is on fire The pointy webbed ears end in flames. Thick solid little legs end with a butt ended 4 toed stump. Long arms end in 5 fingered talons that drag along the ground. A mischievous grin crosses the creature's face. He is the original pyromaniac.");
+    set_long("%^RED%^This small creature looks as if it is solid rock but it is on fire. The pointy webbed ears end in flames. Thick solid little legs end with a butt ended 4 toed stump. Long arms end in 5 fingered talons that drag along the ground. A mischievous grin crosses the creature's face. He is the original pyromaniac.");
     //turnign these up to lvl 32-35 - Saide
     //set_hd(14+random(12),10);
     set_hd(38 + random(4), 10);

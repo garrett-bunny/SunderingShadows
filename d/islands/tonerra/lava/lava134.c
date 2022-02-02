@@ -14,13 +14,13 @@ void create(){
 @DESC
    %^BOLD%^%^RED%^Immense cavern%^RESET%^
 This is an extremely large cavern. It is basically empty
-except for a large pillar in the middle. The pillar reach
+except for a large pillar in the middle. The pillar reaches
 high to the top of the cavern. Who or what would build such
 a pillar in the middle of a lava tube?
 DESC
   );
   set_items(([
-   "pillar":"This is an ornately carved pillar, in the center about 20 feet up you see a silver ring embedded in the pillar.",
+   "pillar":"This is an ornately carved pillar. In the center about 20 feet up you see a silver ring embedded in the pillar.",
    "ring":"The ring is about 20 feet up, more then likely you will have to climb the pillar."
    ]));
   

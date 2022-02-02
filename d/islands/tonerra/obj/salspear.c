@@ -30,13 +30,13 @@ void create(){
 		"be seen, circling around.  Instead of a standard spearhead,"+
 		" an enchanted magical %^RESET%^%^RED%^f%^BOLD%^la%^RESET%^"+
 		"%^RED%^m%^BOLD%^e%^BLACK%^ that has been shaped into a kite "+
-		"shape crows the top of the spear.  The fires blaze and flare,"+
+		"shape crowns the top of the spear.  The fires blaze and flare,"+
 		" though never seem to expand past the shape they have been "+
 		"fashioned in.%^RESET%^");
 	set_lore("Forged from fever iron, this majestic and magical spear has"+
 		" been infused with the fires in the heart of the Lava Tubes.  "+
 		"The enchanted sphere of flamedance and fire opal are said to "+
-		"help the fuel the fires continuously.  The Spear of the Eternal"+
+		"help fuel the fires continuously.  The Spear of the Eternal"+
 		" Flames is said to have been crafted by a human mage who saw the"+
 		" process within a dream.  Some say Eldorando became obsessed with"+
 		" the spear, spending every waking hour working on locating the right"+
