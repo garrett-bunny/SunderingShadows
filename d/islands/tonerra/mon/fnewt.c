@@ -53,7 +53,7 @@ OLI
       set_id(({"firenewt","Firenewt","elite","elite firenewt"}));
       set_long(
 @OLI
-   This leathery creature is a bit larger then its saller brothers.
+   This leathery creature is a bit larger then its smaller brothers.
 It supports itself with powerful bent hind legs and wields weapons
 with its powerful claws.
 OLI
@@ -103,7 +103,7 @@ OLI
       set_id(({"firenewt","Firenewt","priest"}));
       set_long(
 @OLI
-This leathery creature is a bit larger then its saller brothers.
+This leathery creature is a bit larger then its smaller brothers.
 It supports itself with powerful bent hind legs and wields weapons
 with its powerful claws.
 OLI

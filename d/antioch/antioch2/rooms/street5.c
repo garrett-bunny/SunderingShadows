@@ -9,7 +9,7 @@ void create()
     set_travel(PAVED_ROAD);
     set_property("indoors", 0);
     set_property("light", 2);
-    set_short("%^BOLD%^%^BLACK%^P%^RESET%^%^GREEN%^ine %^GREEN%^str%^BOLD%^%^BLACK%^e%^RESET%^%^GREEN%^e%^BOLD%^%^BLACK%^t%^RESET%^ Street");
+    set_short("%^BOLD%^%^BLACK%^P%^RESET%^%^GREEN%^ine %^GREEN%^Str%^BOLD%^%^BLACK%^e%^RESET%^%^GREEN%^e%^BOLD%^%^BLACK%^t%^RESET%^");
     set_long(
         "%^GREEN%^You are on %^GREEN%^%^BOLD%^%^BLACK%^P%^RESET%^%^GREEN%^ine %^GREEN%^str%^BOLD%^%^BLACK%^e%^RESET%^%^GREEN%^e%^BOLD%^%^BLACK%^t%^RESET%^ street%^RESET%^\n" +
         "To the north is the intersection of %^BOLD%^%^BLACK%^P%^RESET%^%^GREEN%^ine %^GREEN%^str%^BOLD%^%^BLACK%^e%^RESET%^%^GREEN%^e%^BOLD%^%^BLACK%^t%^RESET%^ with %^GREEN%^A%^RED%^pp%^GREEN%^l%^RED%^e%^RESET%^ and" +
