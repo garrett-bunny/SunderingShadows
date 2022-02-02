@@ -9,7 +9,7 @@ void create() {
     set_id( ({"sword","serrated", "black sword", "black", "serrated sword"}) );
    set_short("%^BOLD%^%^BLUE%^Serrated sword%^RESET%^");
     set_long(
-      "This sword is made of a strange metal, colored of the purest black from hilt to tip of the blade.  It has a long curved blade on one edge, and the other is serrated, with barbs all over it to rip your flesh from your body.  It is eternally stained with the blood of those it has slain."
+      "This sword is made of a strange metal, colored of the purest black from hilt to tip of the blade.  It has a long curved blade on one edge, and the other is serrated, with barbs all over it to rip flesh from the body.  It is eternally stained with the blood of those it has slain."
     );
     set_weight(8);
     set("value",1000);

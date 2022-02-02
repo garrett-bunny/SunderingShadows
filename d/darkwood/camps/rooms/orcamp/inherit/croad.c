@@ -20,7 +20,7 @@ void create() {
    set_smell("default","%^RESET%^%^GREEN%^The smell of the wolf hides fill the air.%^RESET%^");
    set_listen("default","%^RESET%^%^CYAN%^The sounds of life in the camp surround you.%^RESET%^");
    set_items( ([
-      "trees" : "The trees look damaged and hurt from the abuse by those that inhabit this area.",
+      "trees" : "The trees look damaged and hurt from the abuse by those who inhabit this area.",
       "large tent" : "There is one large tent that stands out among everything else in this camp.",
    ]) );
 }

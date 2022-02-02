@@ -11,13 +11,13 @@ create(){
    set_short("%^RESET%^%^RED%^G%^BOLD%^%^WHITE%^o%^RESET%^%^RED%^re's %^RESET%^%^RED%^cl%^BOLD%^%^WHITE%^a%^RESET%^%^RED%^w%^RESET%^");
    set_long(
       "%^RESET%^%^RED%^The two eight inch %^BOLD%^%^WHITE%^blades %^RESET%^%^RED%^protrude ominously from an %^BOLD%^%^RED%^adamantine %^RESET%^%^RED%^"+
-      "gauntlet. The %^BOLD%^%^WHITE%^blades %^RESET%^%^RED%^are sharpened to a magical keeness."+
+      "gauntlet. The %^BOLD%^%^WHITE%^blades %^RESET%^%^RED%^are sharpened to a magical keenness."+
       " The inner lining is made out of soft sheep skin,"+
       " making the fit snug but comfortable. The fingers of the"+
       " gauntlet allow for easy movement, making almost no"+
       " hindrance to the wearer's flexibility or combat potential."+
       " The %^BOLD%^%^RED%^adamantine %^RESET%^%^RED%^is dyed with a strange red substance, hueing"+
-      " it to almost a blood red color. Small runes cover the gauntlet"+
+      " it to an almost blood red color. Small runes cover the gauntlet"+
       " that shift randomly. %^RESET%^"
    );
    set_property("enchantment",1);
