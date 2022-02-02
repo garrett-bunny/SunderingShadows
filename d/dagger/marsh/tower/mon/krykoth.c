@@ -16,10 +16,10 @@ void create() {
     set_short("%^RESET%^%^RED%^Krykoth%^RESET%^");
     set_long(
         "%^RESET%^%^RED%^The large demon that stands before you can only "
-        "be a Krykoth...one of the most horrible demons to wander "
+        "be a krykoth...one of the most horrible demons to wander "
         "the Abyssal planes of existence. You shiver as the cold "
 	"eyes of the "
-        "Krykoth seem to gaze right through you. The horns of this one "
+        "krykoth seem to gaze right through you. The horns of this one "
 	"are close to 4 feet long and its fangs glisten with blood.%^RESET%^"
     );
     set_gender("male");

@@ -21,7 +21,7 @@ void create() {
     set_long(
 	"%^GREEN%^The small imp of a humanoid looks very crafty and money hungry. "
 	"She is dressed in long merchant robes and sports a sly grin.  If you feel "+
-      "lucky, you might be able to <purchase> what's in the box from him.%^RESET%^"
+      "lucky, you might be able to <purchase> what's in the box from her.%^RESET%^"
     );
     set_gender("female");
     set_hd(5,1);

@@ -35,7 +35,7 @@ void create() {
 	   "nearly eight feet, and is powerfully built with a mass of "+
 	   "corded muscles.  Its drow heritage is apparent with ebony "+
 	   "skin, and long, ragged %^WHITE%^white %^BOLD%^%^BLACK%^hair "+
-	   "which covers nearly half of its body.  The demonic head is "+
+	   "that covers nearly half of its body.  The demonic head is "+
 	   "elongated into a lupine snout bearing a mouth full of sharp "+
 	   "teeth.  Two sets of extended arms lead to four deadly claws "+
 	   "that look more than capable of rending through hardened steel.");

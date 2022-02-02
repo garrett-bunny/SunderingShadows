@@ -36,7 +36,7 @@ int preSpell()
 
     if(present("plant 4",place))
     {
-        tell_object(caster,"There are already too many animated plants here.  You can't create any more.");
+        tell_object(caster,"There are already too many animated plants here. You can't create any more.");
         return 0;
     }
 
@@ -46,7 +46,7 @@ int preSpell()
 
 string query_cast_string()
 {
-   return "%^GREEN%^"+caster->QCN+" waves "+caster->QP+" hand in a slow arc towards the ground and the foilage begins to come alive!";
+   return "%^GREEN%^"+caster->QCN+" waves "+caster->QP+" hand in a slow arc towards the ground and the foliage begins to come alive!";
 }
 
 
@@ -91,8 +91,8 @@ spell_effect(int prof)
         caster->add_follower(plant);
         caster->add_protector(plant);
 
-        tell_room(place,"%^BOLD%^%^GREEN%^A bit of foilage near "+caster->QCN+" comes to life and transforms into a miniature "+plant->QCN+"!",caster);
-        tell_object(caster,"%^BOLD%^%^GREEN%^A bit of foilage near you comes to life and transforms into a miniature "+plant->QCN+"!");
+        tell_room(place,"%^BOLD%^%^GREEN%^A bit of foliage near "+caster->QCN+" comes to life and transforms into a miniature "+plant->QCN+"!",caster);
+        tell_object(caster,"%^BOLD%^%^GREEN%^A bit of foliage near you comes to life and transforms into a miniature "+plant->QCN+"!");
     }
 
     environment(caster)->set_property("used sticks",1);
@@ -156,7 +156,7 @@ void dest_effect()
     if(objectp(caster))
     {
         removeSpellFromCaster();
-        tell_object(caster,"%^GREEN%^Your animated plants loose their magical energy and turn back into ordinary foliage.");
+        tell_object(caster,"%^GREEN%^Your animated plants lose their magical energy and turn back into ordinary foliage.");
     }
 
     if(sizeof(plants))
