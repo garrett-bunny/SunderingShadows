@@ -67,6 +67,8 @@
     "/d/underdark/lower/dragon/obj/shadowdancer", \
     "/d/islands/common/obj/shimmeringcape2", \
     "/d/deku/armours/brobe", \
+    "/d/deku/armours/priest_robe", \
+    "/d/deku/armours/robe", \
     "/d/islands/elf/obj/shield", \
     "/d/islands/elf/obj/v_gloves", \
     "/d/dagger/derro/obj/shield", \
