@@ -7,7 +7,7 @@ object ob;
 void create() {
    ::create();
    set_id(({"gnoll","warrior","young"}));
-   set_name("younggnoll");
+   set_name("young gnoll");
    set_short("A young gnoll warrior");
    set_long("%^RESET%^This is a large, heavily haired and angry gnoll. It stands"+
               " over seven feet in height and looks around hungrily. The creature is"+

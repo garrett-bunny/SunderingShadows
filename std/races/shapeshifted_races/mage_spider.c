@@ -47,7 +47,7 @@ int default_descriptions(object obj)
 {
     if(!objectp(obj)) { return 0; }
 
-    obj->set_description("%^BOLD%^%^BLACK%^ has a large plump abdomen, multiple eyes, and four pairs of segmented legs. Its body is covered with short, black bristles. Two gray stripes run the length of its back. Its eyes are bright red. The creature moves incredibly fast for a 15 foot long spider.%^RESET%^");
+    obj->set_description("%^BOLD%^%^BLACK%^has a large plump abdomen, multiple eyes, and four pairs of segmented legs. Its body is covered with short, black bristles. Two gray stripes run the length of its back. Its eyes are bright red. The creature moves incredibly fast for a 15 foot long spider.%^RESET%^");
 
     obj->setDescriptivePhrase("%^BOLD%^%^BLACK%^gigantic $R%^RESET%^");
 

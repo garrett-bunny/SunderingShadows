@@ -36,7 +36,7 @@ void create(){
 	({"walls","ceiling","floor"}) : "%^BOLD%^%^BLACK%^The structure of this room is crumbling and looks as if it's set to collapse at any time. Mold grows in cracks, made damp from the water seeping in through the ceiling. %^RESET%^",
 	]));  
    set_exits(([
-      "east" : ROOMS"sewer27",
+      "out" : ROOMS"sewer27",
 	  "south" : ROOMS"sewer30",
    ]));	
 }

@@ -50,7 +50,7 @@ int default_descriptions(object obj)
 {
     if(!objectp(obj)) { return 0; }
 
-    obj->set_description("%^RESET%^%^RED%^ stands tall and deadly, covered in iron-hard scales from "+obj->QP+" horn "
+    obj->set_description("%^RESET%^%^RED%^stands tall and deadly, covered in iron-hard scales from "+obj->QP+" horn "
         "covered head to "+obj->QP+" long tail. A ridge of spines runs all the way down "+obj->QP+" back. "
         ""+capitalize(obj->QP)+" wings are folded at "+obj->QP+" sides. "+capitalize(obj->QS)+"'s clawed hands are easily the size of an ogre's fists.  Keenly intelligent eyes peer out at the world with deadly intent.");
 
