@@ -28,7 +28,27 @@ void create(){
    set_size(2);
    set_overall_ac(0);
    set("magic",1);
+   set_heart_beat(1);
 }
+
+void heart_beat()
+{
+    object owner;
+    
+    ::heart_beat();
+    
+    if(!environment(this_object()))
+        return;
+    
+    owner = this_object()->query_property("minion");
+    
+    if(!objectp(owner))
+    {
+        die();
+        return;
+    }
+}   
+
 
 void die(object ob){
    int i;
