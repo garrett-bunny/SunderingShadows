@@ -18,7 +18,7 @@ void create() {
 	"The stone calls out to you as though it is alive and held captive in "
 	"an endless state of torment. A few small black %^CYAN%^candles%^RED%^ "
 	"lay flickering on the floor in a large circle. The ceiling is "
-	"non-existant here; instead a large hole leads up into the darkness. "
+	"nonexistent here; instead a large hole leads up into the darkness. "
 	"You wonder how safe it is to stand here where something could fall down "
 	"on top of you. Furthermore, the floor is littered with many long sharp "
 	"spikes sticking upwards, as though waiting to impale anything which should "

@@ -17,7 +17,7 @@ void create() {
 	"%^WHITE%^middle crosses%^RED%^ made of %^ORANGE%^wood%^RED%^ "
 	"hang upon the walls and strange %^GREEN%^herbs%^RED%^ "
 	"and %^MAGENTA%^flower petals%^RED%^ "
-	"litter the floor as though a wierd ritual was preformed here."
+	"litter the floor as though a weird ritual was preformed here."
 	"%^RESET%^" 
     );
     set_short("%^RED%^Tower Hallway%^RESET%^");

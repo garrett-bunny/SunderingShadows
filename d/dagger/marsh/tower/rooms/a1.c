@@ -14,15 +14,15 @@ void create() {
     set_property("no teleport",1);
     set_long("%^RED%^"
 	"The front ante-chamber of what must be the inside of the tower-like "
-	"shadowy column, is made from a polished %^BOLD%^blood-red%^RESET%^%^RED%^ "
+	"shadowy column is made from a polished %^BOLD%^blood-red%^RESET%^%^RED%^ "
 	"stone. Three narrow passageways head into the darkness to the north. "
 	"To the south, a swirling, chaotic and shadowy "
 	"%^GREEN%^mist%^RED%^ "
 	"appears to shroud "
-	"an opening which you pray leads back to the outside of this mysterious "
+	"an opening that you pray leads back to the outside of this mysterious "
 	"place of despair. A %^RESET%^skeleton%^RED%^ lays upon the "
 	"floor, an arm "
-	"outstretched with one bony finger uncurled from it's claw and a sinister "
+	"outstretched with one bony finger uncurled from its claw and a sinister "
 	"snarl permanently etched into the jaw of this fallen warrior. Upon "
 	"the west wall %^CYAN%^a message%^RED%^ has been engraved, perhaps "
 	"a final warning to those who try to tread here while still walking among "
@@ -33,7 +33,7 @@ void create() {
         "It is dead silent, as though sound itself fears to enter here."
     );
     set_smell("default",
-        "You sense the presense of a powerful and decrepit evil."
+        "You sense the presence of a powerful and decrepit evil."
     );
     set_items(([
 	"stone":"%^RED%^The stone used to form the chamber is made from an unknown "
@@ -44,7 +44,7 @@ void create() {
 	"and pointing.",
 	"finger":"The skeleton seems to be pointing to the north.",
 	"claw":"The skeleton's claw of a hand remains closed into a fist, except "
-	"for one long bony finger which lays uncurled and pointing.",
+	"for one long bony finger that lays uncurled and pointing.",
  	"message":"%^CYAN%^The message is a passage or verse. Try reading it.%^RESET%^"
     ]));
     set_exits(([

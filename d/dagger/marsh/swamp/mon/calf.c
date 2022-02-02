@@ -13,7 +13,7 @@ void create()
     set_short("%^RESET%^%^RED%^Headless calf%^RESET%^");
     set_long("The abomination before you is a sick sight! A small undead calf that was obviously "
         "beheaded in some gruesome freak manner. A viscous substance still leaks out of its "
-        "severed neck and it's sickly skin is covered in matted dried blood and hair.");
+        "severed neck and its sickly skin is covered in matted dried blood and hair.");
     set_gender("male");
 
     set_class("fighter");

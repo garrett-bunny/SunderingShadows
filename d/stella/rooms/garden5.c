@@ -24,8 +24,8 @@ void create(){
     set_name("Castle Garden");
     set_short("%^GREEN%^Castle Garden");
     set_long(
-      "%^GREEN%^This is the garden which surrounds the Marble Castle.  "
-      "You are walking along a white gravel path which winds through "
+      "%^GREEN%^This is the garden that surrounds the Marble Castle.  "
+      "You are walking along a white gravel path that winds through "
       "the garden in-between flower beds, trees, and shrubs.  "
     );
     set_listen("default",
@@ -40,14 +40,14 @@ void create(){
     );
     set_items(([
 	({"castle","marble castle"}):"You can see the outer wall of the castle.  ",
-	"wall":"The wall is made entirely out of large blocks of rose and grey marble.  It "
+	"wall":"The wall is made entirely out of large blocks of rose and gray marble.  It "
 	"is somehow both beautiful and intimidating at the same time.  That castle was built "
 	"for strength as well as beauty.",
-	"path":"%^WHITE%^The path is made from white gravel which crunches beneath your feet.%^RESET%^",
+	"path":"%^WHITE%^The path is made from white gravel that crunches beneath your feet.%^RESET%^",
 	({"flower","flowers","flower beds"}):"There are a variety of flowers, all "
-	"artistically arranged into flower beds surrounded by white stone borders",
-	"trees":"The trees sway gently in the mild breeze",
-	"shrubs":"The shrubs are about waist height and look well tended",
+	"artistically arranged into flower beds surrounded by white stone borders.",
+	"trees":"The trees sway gently in the mild breeze.",
+	"shrubs":"The shrubs are about waist height and look well tended.",
 	"lilac":"You see some lovely blue lilac blossoms.  Perhaps you might pick one?",
 	"rose":"You see some beautiful red roses.  Perhaps you might pick one?"
       ]));

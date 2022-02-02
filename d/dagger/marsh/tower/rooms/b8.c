@@ -13,7 +13,7 @@ void create() {
 	"blood-red%^RESET%^%^RED%^ stone as seen in other parts of the tower. "
 	"The stone calls out to you as though it is alive and held captive in "
 	"an endless state of torment.\n%^CYAN%^The ceiling and the floor is "
-	"non-existant here; instead a large hole leads up into the darkness and another down. "
+	"nonexistent here; instead a large hole leads up into the darkness and another down. "
 	"%^RESET%^" 
     );
     set_short("%^RED%^Tower Chute Chamber%^RESET%^");

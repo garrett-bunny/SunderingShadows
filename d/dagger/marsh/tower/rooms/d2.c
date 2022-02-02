@@ -11,7 +11,7 @@ void create() {
 	"The inner hallway of the tower is decorated similar to other parts of the tower. "
 	"The stone is more subdued in tone here however; almost as though the strange force "
 	"which runs through it is being slowly drained out, devoured by an evil "
-	"greater than that which twisted it's shape into existance. "
+	"greater than that which twisted it's shape into existence. "
 	"\n"
 	"%^BOLD%^%^RED%^A voice deep in the back of your head, begins to howl in fear!"
 	"%^RESET%^" 

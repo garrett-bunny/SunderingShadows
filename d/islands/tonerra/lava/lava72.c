@@ -31,7 +31,7 @@ DESC
   set_items(([
    "doors":"These are large stone doors. They have a great seal on them embedded with a symbol.",
    "seal":"This is a great metal seal. It holds the doors fast. It has a great symbol in it.",
-   "symbol":"This is a collect of 4 rings. One on top, one on the bottom, one to the right, one to the left. The ring on the top is just a carving, as if the ring itself is missing. Looks as if one needs to be inserted."
+   "symbol":"This is a collection of 4 rings. One on top, one on the bottom, one to the right, one to the left. The ring on the top is just a carving, as if the ring itself is missing. Looks as if one needs to be inserted."
    ]));
 }
 

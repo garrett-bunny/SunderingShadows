@@ -12,8 +12,8 @@ void create()
     set_name("reaver");
     set_id(({ "reaver", "demon reaver" }));
     set_short("%^RESET%^%^RED%^Reaver%^RESET%^");
-    set_long("%^RESET%^%^RED%^" "The humanoid which stands before you is one of an extremly "
-             "vile nature. Pure worshippers of evil and the (un)dead, the "
+    set_long("%^RESET%^%^RED%^" "The humanoid that stands before you is one of an extremely "
+             "vile nature. Pure worshipers of evil and the (un)dead, the "
              "have adopted a cult like magical craft of immense power. This "
              "power has long often been sought after by users of magic across "
              "the land but only those willing to cross over to the vile side "

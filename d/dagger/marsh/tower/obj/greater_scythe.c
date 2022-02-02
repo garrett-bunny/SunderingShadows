@@ -21,13 +21,13 @@ void create() {
        "%^BLACK%^bed scythe%^RESET%^");
     set_long("%^BOLD%^%^BLACK%^Forged of a shimmering spectral metal, "+
        "this sleekly curved weapon is truly of magnificent craft.  The "+
-       "shadowy transparancy serves only to more fully accentuate the "+
+       "shadowy transparency serves only to more fully accentuate the "+
        "%^BOLD%^%^GREEN%^gl%^RESET%^%^GREEN%^ow%^BOLD%^ing %^BLUE%^arcane "+
        "symbols %^BLACK%^inscribed along its surface, each one c%^GREEN%^r"+
        "%^RESET%^%^GREEN%^a%^BOLD%^c%^BLACK%^kling with its own %^RESET%^"+
        "%^GREEN%^po%^BOLD%^tent ene%^RESET%^%^GREEN%^rgy%^BOLD%^%^BLACK%^"+
        ".  The haft has been fashioned to resemble a humanoid spinal "+
-       "column, each vertabra mounted with w%^RESET%^%^RED%^i%^BOLD%^"+
+       "column, each vertebra mounted with w%^RESET%^%^RED%^i%^BOLD%^"+
        "%^BLACK%^ck%^RESET%^%^RED%^e%^BOLD%^%^BLACK%^d b%^RESET%^%^RED%^a"+
        "%^BOLD%^%^BLACK%^rbs that run the length of the column before "+
        "tapering off at a %^RESET%^%^RED%^serrated blade%^BOLD%^%^BLACK%^"+
@@ -222,10 +222,10 @@ int extra_hit(object vic) {
                           "%^BOLD%^flames%^RESET%^%^GREEN%^ pour "+
                           "from the sockets!%^RESET%^",vic);
                        tell_object(ETO,"%^GREEN%^You tug the "+
-                          "weapon free contemptiously letting the "+
+                          "weapon free contemptuously letting the "+
                           "lifeless body fall to the ground.%^RESET%^");
                        tell_room(EETO,"%^GREEN%^"+ETOQCN+" smirks "+
-                          "contemptiously as "+ETO->QS+" tugs the "+
+                          "contemptuously as "+ETO->QS+" tugs the "+
                           "weapon free, letting the lifeless body "+
                           "fall to the ground.%^RESET%^",({ETO,vic}));
                        tell_object(vic,"%^GREEN%^The %^RESET%^gh"+

@@ -11,7 +11,7 @@ void create() {
 	"The inner hallway of the tower is decorated similar to other parts of the tower. "
 	"The stone is more subdued in tone here however; almost as though the strange force "
 	"which runs through it is being slowly drained out, devoured by an evil "
-	"greater than that which twisted it's shape into existance. "
+	"greater than that which twisted it's shape into existence. "
 	"Remarkably, the entire floor as been painted into a large historical mural."
 	"The mural has a light covering of dust across it's surface.\n"
 	"%^BOLD%^%^RED%^A voice deep in the back of your head, begins to scream in panic!"
@@ -42,7 +42,7 @@ void create() {
 	"evil face..."
 	"the power behind the eyes rages...you cannot "
 	"stop looking into the eyes...Suddenly you jerk your gaze away from the "
-	"mural, realising you narrowly avoided being drawn into a fixated trance by the figure in the "
+	"mural, realizing you narrowly avoided being drawn into a fixated trance by the figure in the "
 	"mural.",
     ]));
     set_exits(([
