@@ -13,15 +13,15 @@ void create() {
     set_short("%^RESET%^%^GREEN%^Morlock%^RESET%^");
     set_long(
         "The humanoid shape before you can only be a Morlock, creatures "
-	"which live beneath the earth, fearing the daylight sun. Many "
+	"that live beneath the earth, fearing the daylight sun. Many "
 	"relate Morlocks to vampires, but this is far from the truth...they "
 	"are not undead. However, they are known to butcher humans and "
 	"humanoid races for the meat on their bodies. They also are "
-	"very capable graverobbers and actively seek to plunder places "
-	"of burial in search for the powerful objects and gold which "
+	"very capable grave robbers and actively seek to plunder places "
+	"of burial in search for the powerful objects and gold that "
 	"is often buried along with the dead. Dressed in dirty rags and with "
 	"a face only a mother could love, looking upon one makes you shudder. "
-	"Normally highly aggressive, this one pays you little heed; obviosly "
+	"Normally highly aggressive, this one pays you little heed; obviously "
    "it has other more important pressing issues on its mind than dinner."
     );
     set_gender("male");

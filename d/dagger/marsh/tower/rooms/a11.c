@@ -14,7 +14,7 @@ void create() {
 	"greater than that which twisted it's shape into existence. "
 	"Remarkably, the entire floor as been painted into a large historical mural."
 	"The mural has a light covering of dust across it's surface.\n"
-	"%^BOLD%^%^RED%^A voice deep in the back of your head, begins to scream in panic!"
+	"%^BOLD%^%^RED%^A voice deep in the back of your head begins to scream in panic!"
 	"%^RESET%^" 
     );
     set_short("%^RED%^Inner Hallway%^RESET%^");
@@ -33,7 +33,7 @@ void create() {
 	"bodies of his enemies. Deeper in the picture can be seen a small hill. "
 	"Storm clouds gather only over this hill, and part of the hill resembles "
  	"the look of a grinning skull, with large black stones placed where "
-	"the eye cavities would be located. A lone dark figure stands within the storm "
+	"the eye cavities would be located. A lone dark figure stands within the storm, "
 	"which rages atop the hill, hands outstretched. Long thin strands of energy "
 	"stretch towards the victorious man who stands unaware, celebrating his victory. "
 	"The wisps of energy seem as though they seek to drain or collect something, and drift "

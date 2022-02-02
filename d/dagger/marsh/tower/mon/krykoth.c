@@ -19,8 +19,8 @@ void create() {
         "be a Krykoth...one of the most horrible demons to wander "
         "the Abyssal planes of existence. You shiver as the cold "
 	"eyes of the "
-        "Krykoth seems to gaze right through you. The horns of this one "
-	"are close to 4 feet long and it's fangs glisten with blood.%^RESET%^"
+        "Krykoth seem to gaze right through you. The horns of this one "
+	"are close to 4 feet long and its fangs glisten with blood.%^RESET%^"
     );
     set_gender("male");
     set_hd(25,5);

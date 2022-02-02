@@ -16,7 +16,7 @@ void create() {
 	"blood-red%^RESET%^%^RED%^ stone as seen in other parts of the tower. "
 	"The stone calls out to you as though it is alive and held captive in "
 	"an endless state of torment. Old rusted torch brackets hang broken "
-	"from the walls. Cobwebs fill the chmaber, as though nothing has entered "
+	"from the walls. Cobwebs fill the chamber, as though nothing has entered "
 	"this area of the tower for years. A %^BLUE%^pedestal%^RED%^ sits "
 	"in the center of the room. No dust or cobwebs gather upon the pedestal. "
 	"A small %^ORANGE%^bronze figurine%^RED%^ sits perched atop the pedestal."
@@ -27,7 +27,7 @@ void create() {
         "It is dead silent, as though sound itself fears to roam here."
     );
     set_smell("default",
-        "The smell of age and decay permates the chamber."
+        "The smell of age and decay permeates the chamber."
     );
     set_items(([
 	"stone":"%^RED%^The stone used to form the chamber is made from an unknown "

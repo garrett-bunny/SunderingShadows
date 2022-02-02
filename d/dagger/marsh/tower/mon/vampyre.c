@@ -11,7 +11,7 @@ void create() {
     set_living_name("my_vampyre");
     set_short("%^RESET%^%^RED%^Slatulzzk, Greater vampyre%^RESET%^");
     set_long(
-        "This is one of the rare vampyric beings of the Shadowgate realms "
+        "This is one of the rare vampyric beings of the Sundered Shadows realms "
 	"to which immense horror is attributed. Many eons ago wizards "
 	"of great power unlocked secrets which mortals were not to "
 	"know and see. Out of this disturbance of great evil, three "
@@ -272,7 +272,7 @@ void heart_beat() {
 void die(object ob) {
     force_me("yell Even with death I shall continue to arise for vengeance!");
     message("environment",
-	"%^BOLD%^%^BLUE%^The Vampyre breaths as it dies: %^RESET%^"
+	"%^BOLD%^%^BLUE%^The Vampyre breathes as it dies: %^RESET%^"
 	"It was I who showed Vecna the darkest way, despite the knowledge "
 	"that his inner self would rise above me in undeath to be my master. You too "
 	"will know undeath. We have waited long for you to join us.\n%^RED%^The "

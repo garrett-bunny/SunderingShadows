@@ -11,7 +11,7 @@ set_long("%^MAGENTA%^Deep dusky violet suede is used in the creation of "+
             "this heavily embroidered vest.  The vest itself looks to be cut where it will "+
             "always hang open.  A pointed up turned collar mirrors the stiffened suede that "+
             "juts out from the shoulders, giving it a sharply angled appearance.  Patches of "+
-            "%^BOLD%^%^BLACK%^dark grey%^RESET%^%^MAGENTA%^ and %^BLUE%^blue%^RESET%^%^MAGENTA%^"+
+            "%^BOLD%^%^BLACK%^dark gray%^RESET%^%^MAGENTA%^ and %^BLUE%^blue%^RESET%^%^MAGENTA%^"+
             " suede cover the upper part of the vest, giving an illusion of storm clouds in the "+
             "sky.   Glass beads in %^BOLD%^%^WHITE%^white%^RESET%^%^MAGENTA%^, "+
             "%^RESET%^silver%^MAGENTA%^, %^YELLOW%^gold%^RESET%^%^MAGENTA%^ and "+
@@ -24,7 +24,7 @@ set_long("%^MAGENTA%^Deep dusky violet suede is used in the creation of "+
 	set_value(1999);
 	set_lore(
 @AVATAR
-The Vest of the Storms, many believe to be Talosian in desing and origin.  When in truth Talos and his faithful had little to do with its creation.  The vest is attributed to a sorceress by the name of Ororo, who was known as the Weather Witch.  The Weather Witch favored spells that delt with lighting, wind, and other meterlogical effects thus how she earned her nickname.  This vest is one of the last items of hers to be in existance in the lands, so it is rumored.
+The Vest of the Storms, many believe to be Talosian in desing and origin.  When in truth Talos and his faithful had little to do with its creation.  The vest is attributed to a sorceress by the name of Ororo, who was known as the Weather Witch.  The Weather Witch favored spells that dealt with lighting, wind, and other meteorological effects, thus how she earned her nickname.  This vest is one of the last items of her's to be in existence in the lands, so it is rumored.
 
 AVATAR
 	);

@@ -22,7 +22,7 @@ void create() {
 	"%^BLUE%^vat of substance%^RED%^ set into a %^ORANGE%^rack%^RED%^ "
 	"beside an %^CYAN%^opening%^RED%^ in the floor of the room. A %^GREEN%^steel "
 	"funnel%^RED%^ inset in the ceiling hangs above the %^BLUE%^vat%^RED%^. "
-	"Upon the north wall is located a %^ORANGE%^small lever%^RED%^."  
+	"Upon the north wall, a %^ORANGE%^small lever%^RED%^ is located ."  
 	"%^RESET%^" 
     );
     set_short("%^RED%^Tower Room%^RESET%^");
