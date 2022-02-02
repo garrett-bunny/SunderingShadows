@@ -152,7 +152,7 @@ void mist()
 
 #define GROUP4 ({"beastman","half-ogre","wemic","centaur","saurian"})
 #define GROUP5 ({"elf","hobgoblin","half-drow","yuan-ti"})
-#define GROUP6 ({"gnome","ogre","kobold","minotaur"})
+#define GROUP6 ({"gnome","ogre","kobold","minotaur","troll"})
 #define GROUP7 ({"voadkyn","bugbear","dwarf","shade"})
 #define GROUP1 ({"firbolg","goblin","half-elf","satyr", "nymph"})
 #define GROUP2 ({"half-orc","halfling","drow","human"})
