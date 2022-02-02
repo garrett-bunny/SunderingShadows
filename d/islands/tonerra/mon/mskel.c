@@ -12,7 +12,7 @@ void create()
     set_name("old skeletal monk");
     set_id(({ "skeletal monk", "old skeletal monk", "skeletal monk", "undead", "monk", "skeleton" }));
     set_short("An old skeletal monk");
-    set_long("This was once an old monk. More then likely the spirit of the monk has left and now understand the world as a whole. The skeleton has been animated to protect the sanctity of the catacombs. It appears to have the same balance and dexterity as the monks when alive. Your guessing that it has the same skill.");
+    set_long("This was once an old monk. More then likely the spirit of the monk has left and now understands the world as a whole. The skeleton has been animated to protect the sanctity of the catacombs. It appears to have the same balance and dexterity as the monks when alive. Your guessing that it has the same skill.");
     set_race("human");
     set_body_type("human");
     set_base_damage_type("bludgeoning");
@@ -90,7 +90,7 @@ int martial(object targ)
     case "left hand":
         switch (random(12)) {
         case 0..5:
-            tell_object(targ, "%^BLUE%^The skeletal monk lunges foward, grabs your blocking arm, pulls it out of the way and delivers a powerful punch with his free hand.");
+            tell_object(targ, "%^BLUE%^The skeletal monk lunges forward, grabs your blocking arm, pulls it out of the way and delivers a powerful punch with his free hand.");
             tell_room(ETO, "%^BLUE%^The skeletal monk lunges toward " + targ->query_cap_name() + " and grabs his blocking arm, pulls it out of the way and delivers a powerful punch with his free hand.", targ);
             return random(6);
 
@@ -125,7 +125,7 @@ int martial(object targ)
 
         case 9:
             tell_object(targ, "%^BOLD%^%^CYAN%^The skeletal monk launches a feint kick past your head, and then quickly reverse it with a sharp snapping motion, driving his heel into the back of your head with his reverse front kick.");
-            tell_room(ETO, "%^BOLD%^%^CYAN%^The skeletal monk launches a fient kick past " + targ->query_cap_name() + "'s head, then quickly reverses it with a sharp snapping motion, driving his heel into the back of the head with his reverse front kick.", targ);
+            tell_room(ETO, "%^BOLD%^%^CYAN%^The skeletal monk launches a feint kick past " + targ->query_cap_name() + "'s head, then quickly reverses it with a sharp snapping motion, driving his heel into the back of the head with his reverse front kick.", targ);
             return random(12);
         }
 
@@ -151,7 +151,7 @@ int martial(object targ)
 
 int groove(object targ)
 {
-    tell_room(ETO, "A sudden placidness comes over the skeletal monk. His body and the nature about him become one and he moves with quickness and control");
+    tell_room(ETO, "A sudden placidity comes over the skeletal monk. His body and the nature about him become one and he moves with quickness and control");
     set_func_chance(0);
     execute_attack();
     execute_attack();

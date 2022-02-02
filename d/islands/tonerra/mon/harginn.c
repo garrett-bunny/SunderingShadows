@@ -13,7 +13,7 @@ void create()
     set_name("harginn");
     set_id(({ "harginn", "Harginn", "flame", "horror", "flaming horror" }));
     set_short("Harginn, Flaming horror");
-    set_long("This creature has a flaming torso and white flames for legs. You feel the heat radiate from him. He seems corporal but also seems to not be here.  He dances around you flaming and flickering like the flame he lives as.  He extinguishes in front of you only to appear behind you as a bon fire.");
+    set_long("This creature has a flaming torso and white flames for legs. You feel the heat radiate from him. He seems corporeal but also seems to not be here.  He dances around you flaming and flickering like the flame he lives as.  He extinguishes in front of you only to appear behind you as a bonfire.");
     set_race("harginn");
     set_gender("male");
     set_class("fighter");
