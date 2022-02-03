@@ -97,7 +97,7 @@ void execute_feat()
     companion->set_race("undead");
     companion->set_name("golem");
     companion->set_id( ({ "golem", "bone golem", "greater summon", caster->query_name() + "'s ally" }) );
-    companion->set_short(sprintf("%s's bone golem.",capitalize(caster->query_name())));
+    //companion->set_short(sprintf("%s's bone golem.",capitalize(caster->query_name())));
     companion->set_level(class_level);
     companion->set_hd(comp_hd, 14);
     companion->set_attacks_num(2 + class_level / 10);
