@@ -20,7 +20,7 @@ void create()
 {
     ::create();
     set_spell_name("wish");
-    set_spell_level(([ "mage" : 10 ]));
+    set_spell_level(([ "deep" : 10 ]));
     set_spell_sphere("universal");
     set_syntax("cast CLASS wish on SPELL_NAME [on SPELL_ARGS]");
     set_description("With this spell, the arcanist pulls on the very nature of the weave, changing the universe around them to perform a spell effect. The caster can perform any spell in the game, up to level 9 for most spells, limited to level 8 for spells of the mage's opposing school. This spell can only be used once per day. This spell is considered deep magic and represents the pinnacle of the universalist school of magic.");

@@ -1868,7 +1868,7 @@ varargs void use_spell(object ob, mixed targ, int ob_level, int prof, string cla
 
     if (living(caster) && base_name(PO) != "/d/magic/obj/contingency") {
         tell_object(caster, "You begin to " + whatdo + " " + spell_name + "!");
-        if (spell_type != "innate" && spell_type != "cantrip" && !silent_casting) {
+        if (spell_type != "innate" && spell_type != "cantrip" && spell_type != "deep" && !silent_casting) {
             tell_room(environment(caster), caster->QCN +
                       " begins to " + whatdo + " a " + whatsit + "!", caster);
         }
@@ -2460,7 +2460,7 @@ void define_clevel()
 
     clevel = caster->query_guild_level(spell_type);
 
-    if(spell_type == "cantrip" || spell_type == "innate")
+    if(spell_type == "cantrip" || spell_type == "innate" || spell_type == "deep")
         clevel = caster->query_base_character_level();
 
     if (spell_type == "assassin") {
@@ -3338,7 +3338,7 @@ varargs int do_save(object targ, int mod, int get_dc)
     base_level = caster->query_base_character_level();
     classlvl = max( ({ caster->query_guild_level(spell_type), base_level - 10 }) );
     
-    if(spell_type == "innate" || spell_type == "cantrip" || spell_type == "deep magic")
+    if(spell_type == "innate" || spell_type == "cantrip" || spell_type == "deep")
         classlvl = base_level;
     
     //Cypher casts scroll with full DC
