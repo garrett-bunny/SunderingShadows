@@ -117,7 +117,7 @@ int remove_func(){
 }
 
 int strike_func(int damage, object what, object who){
-        if(random(1000) < 100){
+    if(random(1000) < 100){
         tell_room(environment(query_worn()),""+
             "%^BOLD%^%^BLUE%^"+ETOQCN+"'s bracers "+
             "glow blue as "+
@@ -128,7 +128,7 @@ int strike_func(int damage, object what, object who){
         tell_object(who,"%^BOLD%^%^BLUE%^"+ETOQCN+"'s bracers "+
             "glow blue as "+
             "you strike them!");
-
-        return (damage/2);
- }
+	return (damage/2);
+    }
+    return damage;
 }
