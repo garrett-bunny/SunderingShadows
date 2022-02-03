@@ -115,8 +115,8 @@ void flies_fun(){
     ob = new("/d/common/obj/daily/mon/plaguelord_flies");
     ob->move(room);
     ob->set_powerlevel(powerlevel);
-    stercus->add_follower(ob2);
-    stercus->add_protector(ob2);
+    stercus->add_follower(ob);
+    stercus->add_protector(ob);
     return;
 }
 
