@@ -1630,7 +1630,7 @@ mixed WildMagicArea(object where)
 varargs void use_spell(object ob, mixed targ, int ob_level, int prof, string classtype)
 {
     string msg, whatsit, whatdo, * myclasses;
-    mixed innate_spells, cantrips;
+    mixed innate_spells, cantrips, deep;
 
     if (!objectp(TO)) {
         return;
@@ -1643,6 +1643,24 @@ varargs void use_spell(object ob, mixed targ, int ob_level, int prof, string cla
     clevel = ob_level;
     seteuid(getuid());
     abnormal_cast = 1;//not a natural cast
+    
+    if(classtype == "deep")
+    {
+        abnormal_cast = 0;
+        deep = caster->query_deep_spells();
+        
+        if(!pointerp(deep) || !sizeof(deep) || member_array(spell_name, deep) < 0)
+        {
+            tell_object(caster, "You have no deep magic named " + spell_name + ".");
+            this_object()->remove();
+            return;
+        }
+        
+        if(clevel < 1)
+            clevel = 1;
+        
+        clevel += caster->query_property("empowered");
+    }
 
     if(classtype == "cantrip")
     {
@@ -3320,7 +3338,7 @@ varargs int do_save(object targ, int mod, int get_dc)
     base_level = caster->query_base_character_level();
     classlvl = max( ({ caster->query_guild_level(spell_type), base_level - 10 }) );
     
-    if(spell_type == "innate" || spell_type == "cantrip")
+    if(spell_type == "innate" || spell_type == "cantrip" || spell_type == "deep magic")
         classlvl = base_level;
     
     //Cypher casts scroll with full DC
