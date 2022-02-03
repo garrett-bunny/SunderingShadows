@@ -25,9 +25,11 @@ void create(){
 
 
 int strike_func(int damage, object what, object who){
-	if(random(1000) < 150){
+    if(random(1000) < 150){
 	tell_room(environment(query_worn()),"%^BOLD%^%^CYAN%^With a quick movement, "+ETOQCN+" brings up their "+query_short()+" %^BOLD%^%^CYAN%^to block "+who->QCN+"'s attack!%^RESET%^",({ETO,who}));
 	tell_object(ETO,"%^BOLD%^%^CYAN%^With a quick movement, you bring up your "+query_short()+" %^BOLD%^%^CYAN%^to block "+who->QCN+"'s attack!%^RESET%^");
 	tell_object(who,"%^BOLD%^%^CYAN%^With a quick movement, "+ETOQCN+" brings up their "+query_short()+" %^BOLD%^%^CYAN%^to block your attack!%^RESET%^");
-return (damage*50)/100;	}
+        return (damage*50)/100;	
+    }
+    return damage;
 }
