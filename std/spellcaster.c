@@ -20,6 +20,7 @@ int* masterable;
 int mypp, mymax, myneeded;
 mapping InnateAbilities;
 mapping Cantrips;
+mapping DeepMagic;
 
 int magic_arsenal_feat(int num)
 {
@@ -1103,6 +1104,27 @@ void clear_targeted_spells()
 
 void reset_racial_innate() { TO->delete("racial innate"); }
 
+void InitDeepMagic()
+{
+    mapping deep_magic_spells = ([  ]);
+    mapping testclass;
+    string MyClassFile;
+    
+    if(this_object()->query_class_level("mage") < 31)
+        return;
+    
+    MyClassFile = DIR_CLASSES + "/mage.c";
+    
+    if(!file_exists(MyClassFile))
+        return;
+    
+    if(catch(deep_magic_spells = MyClassFile->query_deep_spells(this_object())))
+        return;
+    
+    if(sizeof(deep_magic_spells))
+        DeepMagic = deep_magic_spells;
+}
+        
 void InitCantrips()
 {
     mapping cantrip_spells = ([  ]);
@@ -1347,6 +1369,20 @@ void add_bonus_innate(mapping BonusInnate)
     if(!mapp(BonusInnate)) return;
     if(!sizeof(keys(BonusInnate))) return;
     InnateAbilities += BonusInnate;
+}
+
+mixed query_deep_spells()
+{
+    string *tmp;
+    
+    InitDeepMagic();
+    
+    if(!mapp(DeepMagic))
+        return;
+    
+    tmp = keys(DeepMagic);
+    
+    return tmp;
 }
 
 mixed query_cantrip_spells()
