@@ -88,4 +88,5 @@
     "/d/shadow/room/farm/obj/petal_buckler", \
     "/d/underdark/mines/obj/gnorobe", \
     "/d/laerad/lgnolls/obj/gnollbarding", \
+    "/d/laerad/outpost/obj/torm_shield", \
 })
