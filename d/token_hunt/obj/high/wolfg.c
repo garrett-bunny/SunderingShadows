@@ -42,11 +42,11 @@ int remove_func(){
 	return 1;
 }
 int strike_func(int damage, object what, object who){
-	if(!random(5)){
+    if(!random(5)){
 	tell_room(environment(query_worn()),"%^RESET%^%^BOLD%^Just as "+who->QCN+" is about to strike "+ETOQCN+", "+ETO->query_subjective()+" rushes forward, "+ETO->query_possessive()+" form becoming that of a %^BLACK%^shadowy wolf%^WHITE%^ as "+ETO->query_subjective()+" avoids the blow.",({ETO,who}));
 	tell_object(ETO,"%^RESET%^%^BOLD%^Just as "+who->QCN+" is about to strike you, there is a low snap and growl as you leap forward, avoiding the blow.%^RESET%^");
 	tell_object(who,"%^RESET%^%^BOLD%^As you strike "+ETOQCN+", "+ETO->query_subjective()+" transforms into a %^BLACK%^shadowy wolf%^WHITE%^ and your blow passes right through "+ETO->query_objective()+"!%^RESET%^");
-    return 0;;
+        return 0;
     }
     return damage;
 }
