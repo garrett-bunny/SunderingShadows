@@ -201,7 +201,15 @@ private void swap(string* arr, int i, int j)
 
 int* magic_arsenal_feat(object ob, int* spells)
 {
-    int i;
+    //int i;
+    
+    for(int x = 0; x < sizeof(spells); x++)
+    {
+        spells[x] = ob->magic_arsenal_feat(spells[x]);
+    }
+        
+    
+    /*
 
     if (FEATS_D->usable_feat(ob, "magic arsenal")) {
         for (i = 0; i < sizeof(spells); i++) {
@@ -227,6 +235,8 @@ int* magic_arsenal_feat(object ob, int* spells)
             spells[i] += TP->query_level() / 10 + 1;
         }
     }
+    
+    */
     return spells;
 }
 
