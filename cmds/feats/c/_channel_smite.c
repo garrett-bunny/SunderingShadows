@@ -128,8 +128,9 @@ void execute_attack()
     ::execute_attack();
 
     dam = flevel + (FEATS_D->usable_feat(caster, "improved channel") * 2);
-    dam = roll_dice(dam, 8);
-
+    //dam = roll_dice(dam, 8);
+    dam = roll_dice(dam, 8) + (member_array("sun", caster->query_divine_domain()) >= 0 ? caster->query_class_level("cleric") / 2 : 0);
+    
     //Evil channel negative energy
     if (caster->query_true_align() % 3 == 0) {
         //energy_type = "negative energy";

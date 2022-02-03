@@ -91,11 +91,11 @@ void init(){
 }
 
 void flies_fun(){
-    object room, ob, ob2, targ;
+    object room, ob, ob2, targ, stercus;
     object* attackers;
     
-    room = environment(this_object());
-    
+    stercus = this_object();
+    room = environment(stercus);
     attackers = query_attackers();
     targ=attackers[random(sizeof(attackers))];
     
@@ -107,14 +107,16 @@ void flies_fun(){
             ob2 = new("/d/common/obj/daily/mon/plaguelord_flies");
             ob2->move(room);
             ob2->set_powerlevel(powerlevel);
-            ob2->kill_ob(targ);
+            stercus->add_follower(ob2);
+            stercus->add_protector(ob2);
         }
     }
     
     ob = new("/d/common/obj/daily/mon/plaguelord_flies");
     ob->move(room);
     ob->set_powerlevel(powerlevel);
-    ob->kill_ob(targ);
+    stercus->add_follower(ob2);
+    stercus->add_protector(ob2);
     return;
 }
 
