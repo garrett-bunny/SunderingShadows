@@ -53,9 +53,11 @@ int remove_func(){
 	return 1;
 }
 int strike_func(int damage, object what, object who){
-	if(random(1000) < 200){
+    if(random(1000) < 200){
 	tell_room(environment(query_worn()),""+ETOQCN+"'s "+query_short()+" shimmer %^GREEN%^green%^RESET%^, %^ORANGE%^brown %^RESET%^and %^BOLD%^%^BLACK%^black%^RESET%^ as the wooden plates deflect "+who->QCN+"'s attack.",({ETO,who}));
 	tell_object(ETO,"The "+query_short()+" shimmer %^GREEN%^green%^RESET%^, %^ORANGE%^brown %^RESET%^and %^BOLD%^%^BLACK%^black%^RESET%^ as the wooden plates deflect "+who->QCN+"'s attack.");
 	tell_object(who,""+ETOQCN+"'s "+query_short()+" shimmer %^GREEN%^green%^RESET%^, %^ORANGE%^brown %^RESET%^and %^BOLD%^%^BLACK%^black%^RESET%^ as the wooden plates deflect your attack.");
-return (damage*75)/100;	}
+        return (damage*75)/100;	
+    }
+    return damage;
 }
