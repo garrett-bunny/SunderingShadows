@@ -13,6 +13,7 @@ void create(){
 
 		  "north" : TOWN"11",
 		  "west" : TOWN"13",
+          "east" : "/d/player_houses/sophia/rooms/outside",
 
 
    ]));
