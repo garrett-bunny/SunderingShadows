@@ -142,7 +142,7 @@ void set_guard_stuff()
 {
     set_jail_location("/d/dagger/Torm/city/jail_main");
     set_guarding("Torm");
-    set_bad_races(({ "hobgoblin", "hobgoblin", "kobold", "ogre", "orc", "gnoll", "bugbear", "minotaur", "dragon", "ratkin", "wererat", "undead", "troll" }));
+    set_bad_races(({ "hobgoblin", "hobgoblin", "kobold", "ogre", "orc", "gnoll", "bugbear", "minotaur", "dragon", "ratkin", "wererat", "werewolf", "weretiger", "undead", "troll" }));
     set_race_action("capture");
     set_race_messages(([
                            "hobgoblin" : "Careful folks, it's a hobgoblin, I'll take care of it.",
