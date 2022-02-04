@@ -21,7 +21,7 @@ void create() {
 
 string query_cast_string() {
     tell_object(caster,"%^MAGENTA%^Passing a hand over your eyes, you draw upon the shadowweave to shroud your vision.%^RESET%^");
-    tell_room(place,"%^MAGENTA%^"+caster->QCN+" passes a hand over "+caster->QP+" eyes and focusses intently.%^RESET%^",caster);
+    tell_room(place,"%^MAGENTA%^"+caster->QCN+" passes a hand over "+caster->QP+" eyes and focuses intently.%^RESET%^",caster);
     return "display";
 }
 

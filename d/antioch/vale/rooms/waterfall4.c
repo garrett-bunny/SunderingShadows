@@ -37,7 +37,7 @@ void create()
    );
    set_listen("default","The roar of the waterfall echoes faintly.");
    set_smell("default",
-   "The air is warm and thick with a faint sulphiric tinge.");
+   "The air is warm and thick with a faint sulphuric tinge.");
    set_items(([
    ({"moss","phosphorescent moss"}) : "%^BOLD%^%^CYAN%^Blue%^RESET%^%^CYAN%^ and"+
    " %^GREEN%^green%^CYAN%^ phosphorescent moss grow along the edges"+
@@ -67,7 +67,7 @@ void create()
    " but it grows shallower closer to the edges, where it is only"+
    " two feet deep. There is sand all over the bottom that people"+
    " can scrub clean with before moving up into either of the other"+
-   " pools. You notice a series ledges in the very back that are like"+
+   " pools. You notice a series of ledges in the very back that are like"+
    " stairs, leading up to the higher pools.",
    ({"ledges","stairs"}) : "%^ORANGE%^In the very back of the room are a series"+
    " of ledges that look strikingly like wide stairs. You can use them"+

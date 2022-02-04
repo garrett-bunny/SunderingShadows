@@ -933,7 +933,7 @@ void prepare(string str, int temp, string myclass, int num, int flag)
 
         case "sorcerer":
             tell_object(TO, "The arcane power hums through your body.");
-            tell_room(ETO, TO->QCN + " focusses intently.", TO);
+            tell_room(ETO, TO->QCN + " focuses intently.", TO);
             break;
         
         case "mage":

@@ -66,7 +66,7 @@ int hit_func(object target) {
             ETO->execute_attack();
             return roll_dice(1,8)+1;
 	  case 5:
-            tell_room(EETO,"%^BLUE%^"+ETO->QCN+" strikes"+target->QCN+
+            tell_room(EETO,"%^BLUE%^"+ETO->QCN+" strikes "+target->QCN+
 			" in the head with the anchor and it lets out a sickening thud."
                          ,({target,ETO}));
             tell_object(ETO,"%^BLUE%^You strike "+target->QCN+" in the head with"+

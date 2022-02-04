@@ -29,7 +29,7 @@ string query_cast_string(){
     tell_object(caster,"%^ORANGE%^You snatch up a stick from the ground and "
 "focus upon the remnants of natural energy within it.");
     tell_room(place,"%^ORANGE%^"+caster->QCN+" snatches up a stick from the "
-"ground and focusses.",caster);
+"ground and focuses.",caster);
         return "display";
 }
 

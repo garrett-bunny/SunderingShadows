@@ -14,7 +14,7 @@ void create(){
   	set("day long","%^GREEN%^You have passed the gates of Muileann and are "+
       	"now headed in the general direction of the ocean. The road has gotten "+
       	"a bit rough and in the distance you can see it bend a little to the "+
-      	"northeast. The folliage has thinned out considerably here. There are "+
+      	"northeast. The foliage has thinned out considerably here. There are "+
       	"no trees to speak of and just a few bushes, other then that it is "+
       	"nothing but small rock cliffs to either side of the deserted road.");
   	set("night long","%^BOLD%^%^BLUE%^You have passed the gates of Muileann "+
