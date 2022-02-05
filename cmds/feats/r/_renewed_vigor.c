@@ -38,7 +38,7 @@ int prerequisites(object ob)
     return ::prerequisites(ob);
 }
 
-int cmd_layonhands(string str)
+int cmd_renewed_vigor(string str)
 {
     object feat;
     
