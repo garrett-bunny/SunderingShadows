@@ -189,7 +189,7 @@ void heart_beat() {
     
         switch(yy) {
             case 0:
-                tell_room(env,"%^CYAN%^"+owner->QCN+"s robe shimmers softly "+
+                tell_room(env,"%^CYAN%^"+owner->QCN+"'s robe shimmers softly "+
                 "as the image of a dragon flows over.%^RESET%^",
                 owner);
                 break;

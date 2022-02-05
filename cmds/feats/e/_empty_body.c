@@ -169,12 +169,12 @@ void dest_effect()
             if(BaseFlag && (int)caster->query_invis())
             {
                 if(caster->query_invis()) tell_room(environment(caster), caster->QCN+"%^BOLD%^%^WHITE%^ fades back into view!%^RESET%^", caster);
-                tell_object(caster, "%^BOLD%^%^CYAN%^You feel body shudder violently as you suddenly regain your vulnerabilities and fade fade back into view!%^RESET%^");
+                tell_object(caster, "%^BOLD%^%^CYAN%^You feel your body shudder violently as you suddenly regain your vulnerabilities and fade back into view!%^RESET%^");
                 caster->set_magic_hidden(0);
             }
             else
             {
-                tell_object(caster, "%^BOLD%^%^CYAN%^You feel body shudder violenty as you suddenly regain your vulnerabilities!%^RESET%^");
+                tell_object(caster, "%^BOLD%^%^CYAN%^You feel your body shudder violently as you suddenly regain your vulnerabilities!%^RESET%^");
             }
             caster->remove_property("empty body");
         }
