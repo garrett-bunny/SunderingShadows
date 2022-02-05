@@ -13,7 +13,7 @@ void create(){
   
   
   set_exits(([
-    "south":LAVA+"lava55",
+    "southwest":LAVA+"lava55",
 
     "southeast":LAVA+"lava53",
   ]));
