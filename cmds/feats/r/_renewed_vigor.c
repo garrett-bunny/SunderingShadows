@@ -44,9 +44,10 @@ int cmd_renewed_vigor(string str)
     
     if(!objectp(this_player())) 
         return 0;
-    
+    /*
     if(!stringp(str))
         return 0;
+    */
     
     feat = new(base_name(TO));
     feat->setup_feat(TP,str);
