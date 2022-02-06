@@ -140,6 +140,9 @@ varargs int do_save(object ob, int dc, string type, raw_save)
             if(ob->query("subrace") == "maalish")
                 mod += 1;
             
+            if(ob->query_race() == "nymph")
+                mod += 2;
+            
             //Paladin Auras
             if(PLAYER_D->check_aura(ob, "courage") == 2)
                 mod += 2;
