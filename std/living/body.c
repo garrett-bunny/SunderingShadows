@@ -1275,7 +1275,7 @@ int query_ac()
 
     attacker = TO->query_current_attacker();
     
-    if(this_object()->query_race() == "nymph")
+    if(attacker && this_object()->query_race() == "nymph")
     {
         if(userp(attacker) || attacker->query_body_type() == "humanoid")
             myac += 2;
