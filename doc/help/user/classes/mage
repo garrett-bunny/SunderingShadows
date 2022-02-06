@@ -25,7 +25,7 @@ Mages must not wear any armor or wield any weapons while casting, but they can l
 Mages can select a school of dedication. Refer to %^ORANGE%^<help magic school>%^RESET%^ for details.
 
 Mages recieve the following cantrips (type 'recall cantrip spells'):
-%^CYAN%^Acid Splash, Detect Magic, Daze, Dancing Lights, Ray of Frost, Resistance%^RESET%^
+%^CYAN%^Acid Splash, Daze, Detect Magic, Dancing Lights, Disrupt Undead, Ray of Frost, Resistance%^RESET%^
 
 %^RESET%^%^CYAN%^See also: %^RESET%^prepare, feats, stats, skills, spells, cast, buff, magic school, master, prestige classes, archmage, new caster, arcane bond
 
