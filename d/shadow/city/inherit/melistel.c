@@ -20,7 +20,7 @@ void create(){
       "The avenue is wider than those found in most large cities in "+
       "the North, and seems to have been designed to more than "+
       "adequately handle the throngs of Shadow's citizenry, or an "+
-      "army on parade. Dark octogonal %^BOLD%^%^BLACK%^st%^RESET%^"+
+      "army on parade. Dark octagonal %^BOLD%^%^BLACK%^st%^RESET%^"+
       "o%^BOLD%^%^BLACK%^ne %^RESET%^pavers form the surface of the "+
       "roadway. A multitude of %^ORANGE%^wooden %^RESET%^and "+
       "st%^BOLD%^o%^RESET%^ne buildings line both sides of the "+
@@ -35,7 +35,7 @@ void create(){
    set_items(([
       ({"street","avenue","road","roadway","pavers"}) : "The wide "+
          "street allows for four horse-drawn wagons to travel abreast "+
-         "of each other. Thousands of octogonal pavers carved out of a "+
+         "of each other. Thousands of octagonal pavers carved out of a "+
          "fairly mundane dark %^BOLD%^%^BLACK%^st%^RESET%^o%^BOLD%^"+
          "%^BLACK%^ne %^RESET%^compose the surface of the road. The "+
          "center of the street is crested, with the edges slightly "+

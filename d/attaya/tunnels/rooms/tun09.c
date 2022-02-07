@@ -48,7 +48,7 @@ string long_desc(){
    return "%^BOLD%^%^BLACK%^This is a narrow tunnel cut through the"
           +" black rock. It is unclear whether this is a crudely"
           +" constructed tunnel or simply a natural fissure, but the"
-          +"walls are steep and tall, and the ceiling is way out of sight"
+          +" walls are steep and tall, and the ceiling is way out of sight"
           +" overhead. The tunnel comes to an end here, as the walls"
           +" close together to the north. However, the largest hole"
           +" you have seen so far is in front of you, about three feet"
@@ -114,7 +114,7 @@ void crawl_hole(string str)
 
     		return 1;	
   	}
- 	tell_object(TP, "You struggle a bit, but mangage to scramble up into"
+ 	tell_object(TP, "You struggle a bit, but manage to scramble up into"
                  +" the hole...");	
   	tell_room(TO, TPQCN + " scrambles up and pulls " + TP->QO + "self up"
               +" into the large hole in the wall.", TP);

@@ -10,7 +10,7 @@ void create(){
     set_short("Stegosaurus");
     set_id( ({"dino", "dinosaur", "stego", "stegosaurus"}) );
     set_long(
-      "This large and awe inspiring dinosaur is covered in huge bony plates along its entire body, except for its tail which has several huge spikes protruding from it.  The dinosaur silently munches on its plants as it regards you with one eye."
+      "This large and awe inspiring dinosaur is covered in huge bony plates along its entire body, except for its tail, which has several huge spikes protruding from it.  The dinosaur silently munches on its plants as it regards you with one eye."
     );
     set_size(3);
     set_hd(15+random(10), 1);

@@ -60,8 +60,8 @@ int lever_func(string str) {
             add_exit(ROOMS"2_38","bridge");
         return 1;
         }
-            tell_object(TP,"%^RESET%^%^ORANGE%^You pull the lever and you hear a trickle of water. It doesn't seem there is enough water getting to whatever mechanism runs this%^RESET%^ \n");
-            tell_room(ETP,"%^RESET%^%^ORANGE%^"+TPQCN+"%^RESET%^%^ORANGE%^ Pulls the lever and and nothing happens!\n",TP);
+            tell_object(TP,"%^RESET%^%^ORANGE%^You pull the lever and you hear a trickle of water. It doesn't seem there is enough water getting to whatever mechanism runs this.%^RESET%^\n");
+            tell_room(ETP,"%^RESET%^%^ORANGE%^"+TPQCN+"%^RESET%^%^ORANGE%^ pulls the lever and and nothing happens!\n",TP);
     return 1;
     }
     tell_object(TP,"Pull what?");

@@ -53,7 +53,7 @@ void activate_judgements(string* judgements)
     lendingto = caster->query_property("lend_judgement");
 
     apply_judgements(judgements, 1);
-    tell_object(caster, "%^BOLD%^%^WHITE%^You with a mere will you call out to the arcane for the strength.");
+    tell_object(caster, "%^BOLD%^%^WHITE%^You call on your deity for strength.");
     call_out("check", ROUND_LENGTH);
 }
 
@@ -82,7 +82,7 @@ void apply_judgements(string* judgements, int direction)
         
         if (direction > 0) {
             tell_object(caster, "%^BOLD%^%^WHITE%^" + lendingto->QCN + " is infused with your zeal.");
-            tell_object(lendingto, "%^BOLD%^%^WHITE%^You are infused with power of the zeal!");
+            tell_object(lendingto, "%^BOLD%^%^WHITE%^You are infused with zealous power!");
         }
 
         for (i = 0; i < maxtolend; i++) {
@@ -176,11 +176,11 @@ void check()
     ticker++;
 
     if (ticker == 2) {
-        tell_object(caster,"%^BOLD%^%^WHITE%^You sense you begin to loose the grip on your arcane zeal.%^RESET%^");
+        tell_object(caster,"%^BOLD%^%^WHITE%^You sense you begin to lose the grip on your zeal.%^RESET%^");
     }
 
     if (!sizeof(caster->query_attackers()) && ticker > 3) {
-        tell_object(caster, "%^BOLD%^%^CYAN%^As the battle comes to an end your arcane zeal recedes.%^RESET%^");
+        tell_object(caster, "%^BOLD%^%^CYAN%^As the battle comes to an end your zeal recedes.%^RESET%^");
         apply_judgements(active_judgements, -1);
         TO->remove();
         return;
