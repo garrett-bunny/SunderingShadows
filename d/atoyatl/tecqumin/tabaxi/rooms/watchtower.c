@@ -33,7 +33,7 @@ int go_on() {
 void init(){
   ::init();
   add_action("yell_me", "yell");
-  add_action("yell_me", "flay");
+  //add_action("yell_me", "flay");
   set_had_players(3);
 }
 
