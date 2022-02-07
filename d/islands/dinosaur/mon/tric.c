@@ -10,7 +10,7 @@ void create(){
     set_short("Triceratops");
     set_id( ({"dino", "dinosaur", "tric", "tricera", "triceratops"}) );
     set_long(
-      "This large plant eating dinosaur has its face covered with large bony plates, protecting its face, where the rest of the body is not armored.  Most remarkable about this dinosaur is the two three foot long horns on its forhead, and the shorter horn on its nose.  You don't want to get hit with those."
+      "This large plant eating dinosaur has its face covered with large bony plates, protecting its face, where the rest of the body is not armored. Most remarkable about this dinosaur are the pair of three foot long horns on its forehead, and the shorter horn on its nose. You don't want to get hit with those."
     );
     set_size(3);
     set_hd(15+random(5), 1);

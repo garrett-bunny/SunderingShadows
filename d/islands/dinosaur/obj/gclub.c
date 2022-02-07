@@ -25,7 +25,7 @@ void create() {
    "a mysterious hermit mage.  Rumors of "+
    "this mage are not verified but stories "+
    "have be told of an old man seen doing "+
-   "strange experements on the dinosaur island.");
+   "strange experiments on the dinosaur island.");
    set_property("enchantment",4);  
    set_wield((:this_object(),"wield_func":));
    set_unwield((:this_object(),"unwield_func":));
@@ -80,7 +80,7 @@ int hit_func(object target) {
 
            case 31..40:
             tell_room(environment(ETO),"%^RED%^The runes in the bone "+
-			"%^BOLD%^glow%^RESET%^%^RED%^ durning a sickening strike.",({target,ETO}));
+			"%^BOLD%^glow%^RESET%^%^RED%^ during a sickening strike.",({target,ETO}));
             tell_object(ETO,"%^RED%^The lines in the club glow as the club smashes into "+
               target->query_cap_name()+"!");
             tell_object(target, "%^RED%^The lines in the club glow"+

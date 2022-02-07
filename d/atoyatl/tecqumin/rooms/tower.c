@@ -25,7 +25,7 @@ void create() {
     +" storeys high, but mostly ruined. The rest of the life of the %^GREEN%^"
     +"j%^BOLD%^%^GREEN%^u%^RESET%^%^GREEN%^ng%^BOLD%^%^GREEN%^l%^RESET%^"
     +"%^GREEN%^e%^RESET%^ appears to carry on as normal all around it." );
-  set_items(([({"tower", "stone tower"}) : "About three storeys high, the "
+  set_items(([({"tower", "stone tower"}) : "About three stories high, the "
     +"tower is dwarfed by the trees that surround it, including a mighty"
     +" %^ORANGE%^higurion%^RESET%^ tree that grows close alongside. The"
     +" tower's condition is very poor, with many cracks and faults in the"
@@ -37,7 +37,7 @@ void create() {
     +" tree stands next to the tower, its canopy spreading over the top of the"
     +" ruined structure.",
                 ({"higurion", "higurion tree"}) : "The %^ORANGE%^higurion"
-    +"%^RESET%^ tree is characterised by a thick bole, supporting strong, near"
+    +"%^RESET%^ tree is characterized by a thick bole, supporting strong, near"
     +"-horizontal branches that begin fairly low to the ground, making it easy"
     +" to climb. Its upper canopy spreads above the tower, and one or two of"
     +" the middle branches poke through the holes in the tower's stone walls." 
@@ -72,7 +72,7 @@ int climb(string str){
     if (collapsed == 0){
       tell_object(TP, "You could probably jump down into the tower from here.");
     }
-    tell_room(TO, TPQCN +" climbs into the brances of the %^ORANGE%^higurion%^RESET%^ tree.",TP);
+    tell_room(TO, TPQCN +" climbs into the branches of the %^ORANGE%^higurion%^RESET%^ tree.",TP);
     TP->force_me("pose climbing the higurion tree");
     return 1;
   }
@@ -113,7 +113,7 @@ int collapse_tower(){
     +"%^GREEN%^l%^RESET%^%^GREEN%^e%^RESET%^. One mighty %^ORANGE%^higurion%^RESET%^"
     +" tree stands next to huge pile of stones",
                 ({"higurion", "higurion tree"}) : "The %^ORANGE%^higurion"
-    +"%^RESET%^ tree is characterised by a thick bole, supporting strong, near"
+    +"%^RESET%^ tree is characterized by a thick bole, supporting strong, near"
     +"-horizontal branches that begin fairly low to the ground, making it easy"
     +" to climb." 
         ]));

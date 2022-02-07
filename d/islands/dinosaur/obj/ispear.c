@@ -16,11 +16,11 @@ void create(){
 		"spear is pure %^BOLD%^%^WHITE%^iv%^YELLOW%^o%^WHITE%^ry"+
 		"%^RESET%^, polished smooth.  While cool to the touch, "+
 		"the shaft feels solid and strong.  Grafted to the shaft"+
-		" is an eliptical spearhead, made from %^BOLD%^%^WHITE%^iv"+
+		" is an elliptical spearhead, made from %^BOLD%^%^WHITE%^iv"+
 		"%^YELLOW%^o%^WHITE%^ry%^RESET%^ as well.  Detailed "+
-		"carvings create a latice type effect to the spearhead, "+
+		"carvings create a lattice type effect to the spearhead, "+
 		"making it look far more fragile than it really is.  Inside"+
-		" open carved spearhead a floating %^BOLD%^white orb%^RESET%^"+
+		" the open carved spearhead a floating %^BOLD%^white orb%^RESET%^"+
 		" can be seen, hovering in the air.%^RESET%^");
      set_lore("The Ivory Spear goes by many names, depending on the"+
 		" person.  To some it is known as Reptilebane, the deadly "+
@@ -28,9 +28,9 @@ void create(){
 		"Aurilites it is commonly known as The Spear of Snowfalls, "+
 		"for its connection to frost and ice.  Those of Kossuth know "+
 		"it as one of two names, Firebane or Tinder Spear.  With so "+
-		"many names for one spear its near impossible to find who "+
+		"many names for one spear it's near impossible to find who "+
 		"first created the spear and for what purpose it was used.  "+
-		"One thing is for sure, the Ivory Spear, as its more commonly"+
+		"One thing is for sure, the Ivory Spear, as it's more commonly"+
 		" known, is a trusted weapon of many folk.");
 	set_property("lore",12);
    	set_value(1200);
@@ -88,12 +88,12 @@ targ->do_damage("torso",random(8)+4);
 			"orb around your spearhead. With a fling of "+
 			"your spear, you send the orb of frost and ice "+
 			"speeding towards "+targ->QCN+".");
-      tell_object(targ,"%^BOLD%^Vapors and watter collect into"+
+      tell_object(targ,"%^BOLD%^Vapors and water collect into"+
 		" an orb around "+ETO->QCN+"'s"+
 		" spearhead.\n With a fling of "+ETO->QP+" spear,"+
 		" "+ETO->QCN+" sends the orb of frost and ice "+
 		"speeding towards you!");
-      tell_room(environment(ETO),"%^BOLD%^Vapors and watter collect into"+
+      tell_room(environment(ETO),"%^BOLD%^Vapors and water collect into"+
 		" an orb around "+ETO->QCN+"'s"+
 		" spearhead.\n With a fling of "+ETO->QP+" spear,"+
 		" "+ETO->QCN+" sends the orb of frost and ice "+
