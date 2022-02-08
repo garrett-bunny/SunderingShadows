@@ -124,6 +124,11 @@ int cmd_recall(string str)
     {
         if(recall_cantrips(TP))
             return 1;
+    }  
+    if(str == "deep spells")
+    {
+        if(recall_deep_spells(this_player()))
+            return 1;
     }
     if (str == "monk spells") {
         tell_object(TP, "See <help ki>");
@@ -307,6 +312,29 @@ int recall_cantrips(object who)
     return 1;
 }
 
+int recall_deep_spells(object who)
+{
+    mixed *deep_spells;
+    
+    if(!objectp(who))
+        return 0;
+    
+    deep_spells = who->query_deep_spells();
+    
+    if(!sizeof(deep_spells))
+        return 0;
+    
+    deep_spells = sort_array(deep_spells, "alphabetical_sort", FILTERS_D);
+    
+    msg = FR + "Deep Magic" + BK;
+    
+    foreach(string str in cantrips)
+        msg += "\n%^BOLD%^WHITE%^" + str + "%^RESET%^";
+        
+    tell_object(this_player(), msg);
+    return 1;
+}
+    
 int recall_innate_spells(object who)
 {
     int x, max, uses;
@@ -461,9 +489,6 @@ int recall_spells(string type, object who)
     max = magic_arsenal_feat(who, max);
     max = bonus_spell_slots(who, max);
     
-    if(FEATS_D->has_feat(who, "deep magic"))
-        max += ({ 1 });
-    
     if ((string)who->query_race() == "human") {
         subrace = (string)who->query("subrace");
         if (subrace) {
@@ -583,6 +608,7 @@ recall monster %^ORANGE%^%^ULINE%^NUMBER%^RESET%^
 recall %^ORANGE%^%^ULINE%^CLASS%^RESET%^ spells [%^ORANGE%^%^ULINE%^LEVEL%^RESET%^]
 recall innate spells
 recall cantrip spells
+recall deep spells
 
 %^CYAN%^DESCRIPTION%^RESET%^
 
