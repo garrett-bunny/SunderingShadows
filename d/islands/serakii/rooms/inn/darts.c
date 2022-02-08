@@ -51,6 +51,11 @@ set_listen("default","%^C061%^You hear %^C063%^constant "+
 
 }
 
+void init() {
+   ::init();
+   add_action("read", "read");
+}
+
 void reset() {
     object ob;
   ::reset();
@@ -61,3 +66,22 @@ void reset() {
     }
 }
 
+ int read(string str) {
+    object ob; 
+    string stuff,*names;
+    int length, x;
+
+    
+    if(str == "list" && ob = present("dartboard")) {
+        write("This is a list of those who have been witnessed achieving a mastery at darts here in Rooks Rest.");
+        names = ob->query_mastery_list();
+        if(!sizeof(names)) { 
+            return 1;
+        }
+        for(x = 0;x < sizeof(names);x++) {
+            tell_object(TP,"%^BOLD%^%^GREEN%^"+capitalize(names[x])+"%^RESET%^\n");
+        }
+        return 1;
+    }
+
+}
