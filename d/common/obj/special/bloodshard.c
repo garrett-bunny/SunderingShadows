@@ -44,6 +44,11 @@ int break_fun(string args)
         tell_object(TP,"%^BOLD%^%^WHITE%^THERE IS ONLY ONE ESCAPE IN COMBAT. DIE OR <KILL YOURSELF>.%^RESET%^");
         return 1;
     }
+    
+    if(environment(this_player())->query_property("no pocket space")) {
+        tell_object(this_player(),"%^BOLD%^%^WHITE%^THERE IS ONLY ONE ESCAPE FROM THIS PLACE. DIE OR <KILL YOURSELF>.%^RESET%^");
+        return 1;
+    }
 
     if(TP->query_property("bloodshard")+1800>time())
     {
