@@ -270,7 +270,7 @@ skills remove %^ORANGE%^%^ULINE%^NUMBER%^RESET%^ from %^ORANGE%^%^ULINE%^SKILL%^
 
 %^CYAN%^DESCRIPTION%^RESET%^
 
-This command will list the skills available on the mud.  The number in brackets is your base, unmodified skill, which you allocate yourself with points. For core skills, you will receive 4 points per 2 levels to spend as you choose; thieves and bards will receive 6 points per 2 levels. For craft skills, you will receive 1 point per 2 levels regardless of class.
+This command will list the skills available on the mud.  The number in brackets is your base, unmodified skill, which you allocate yourself with points. For core skills, you will receive 4 points per 2 levels to spend as you choose; thieves, bards, and inquisitors will receive 6 points per 2 levels. For craft skills, you will receive 1 point per 2 levels regardless of class.
 
 To add points to a skill use %^ORANGE%^<skills add %^ORANGE%^%^ULINE%^NUMBER%^RESET%^%^ORANGE%^ to %^ORANGE%^%^ULINE%^SKILL%^RESET%^%^ORANGE%^>%^RESET%^. You can only spend limited amount of free points based on your level and class.
 

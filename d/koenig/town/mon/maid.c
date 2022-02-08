@@ -7,7 +7,7 @@ void create() {
   set_id( ({"maid","maddie"}) );
   set_short("%^BOLD%^%^WHITE%^Maddie the Maid%^RESET%^");
   set_long("%^RESET%^This maid looks to be human and dressed in a very skimpy little %^BOLD%^%^BLACK%^maid "+
-"uniform%^RESET%^. Her %^BOLD%^%^RED%^red wild curls%^RESET%^ fall from beneath her little maid cap and over a "+
+"uniform%^RESET%^. Her %^BOLD%^%^RED%^wild red curls%^RESET%^ fall from beneath her little maid cap and over a "+
 "pair of %^BOLD%^%^GREEN%^predatory %^RESET%^%^GREEN%^green %^BOLD%^eyes%^RESET%^. You really can't tell if she is smiling at you or "+
 "sneering. She wanders about the huge room getting little work done, and flirting "+
 "with the %^BOLD%^%^BLACK%^golems%^RESET%^ lining the wall.");
@@ -76,7 +76,7 @@ void whine(object targ) {
   if(!targ) return 0;
   tell_room(environment(targ),"The maid begins to whine horribly, "
   +targ->query_cap_name()+" has become paralyzed!", targ);
-  targ->do_paralyzed(random(20));
+  targ->set_paralyzed(random(20));
   tell_object(targ,"The maid begins to whine horribly, you feel it down to your"+
   " very marrow, YOU'RE PARALYZED!");
   return 1;
