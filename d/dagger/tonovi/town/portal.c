@@ -40,9 +40,9 @@ void create(){
     ]));
     add_location("tharis",0,55,"/d/tharis/road/road8");
     add_location("juran",0,55,"/d/shadow/room/forest/owagon26");
-    add_location("verbobone",15,75,"/d/deku/town/road13");
-    add_location("seneca",25,95,"/d/attaya/newseneca/rooms/boardwalk3");
-    add_location("enclave",10,75,"/d/dagger/tonovi/town/cguilds/psions/foyer");
+    add_location("verbobone",0,75,"/d/deku/town/road13");
+    add_location("seneca",0,95,"/d/attaya/newseneca/rooms/boardwalk3");
+    add_location("enclave",0,75,"/d/dagger/tonovi/town/cguilds/psions/foyer");
 }
 
 void reset(){

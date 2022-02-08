@@ -53,8 +53,8 @@ void create(){
       "south":"/d/deku/town/sroad2",
       "east":"/d/deku/town/crystals",
     ]));
-    add_location("shadow",10,75,"/d/darkwood/room/road1");
-    add_location("tonovi",10,75,"/d/dagger/tonovi/road2");
+    add_location("shadow",0,75,"/d/darkwood/room/road1");
+    add_location("tonovi",0,75,"/d/dagger/tonovi/road2");
     if(!present("portalpsion")) 
     {
         new("/d/shadow/mon/nomad")->move(TO);
