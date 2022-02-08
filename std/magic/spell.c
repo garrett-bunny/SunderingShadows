@@ -2661,7 +2661,7 @@ void define_clevel()
             if(caster->query_bloodline() == "abyssal" || caster->query_bloodline() == "infernal")
                 clevel += 1;
         }
-        if(caster->query("subrace") == "feytouched")
+        if(caster->query("subrace") == "feytouched" || caster->query_race() == "nymph" || caster->query_race() == "satyr")
         {
             if(caster->query_bloodline() == "fey")
                 clevel += 1;
