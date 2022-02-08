@@ -7,7 +7,7 @@
 
 #define ELF "/d/dagger/road/mon/elranger.c"
 //#define GUARD "/d/dagger/road/mon/wanguard1.c"
-#define GUARD "/d/player_houses/yuki/mobs/crow_soldier.c"
+//#define GUARD "/d/player_houses/yuki/mobs/crow_soldier.c"
 #define THORBY "/d/dagger/road/mon/thorby.c"
 #define RANGER "/d/dagger/road/mon/elranglead.c"
 #define ROOMS1 ({"83", "87", "90", "91", "95", "99", "103", "109"})
@@ -64,6 +64,7 @@ void do_elf(){
     }
 }
 
+/*
 void do_guard(){
     int num, numguards, i, j;
 
@@ -78,7 +79,7 @@ void do_guard(){
       j = random(sizeof(ROOMS2));
       new(GUARD)->move(find_object_or_load(BASE+ROOMS2[j]));
     }
-}
+}*/
 
 void do_thorby(){
     int num;
