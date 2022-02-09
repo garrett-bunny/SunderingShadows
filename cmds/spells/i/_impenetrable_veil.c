@@ -61,7 +61,7 @@ spell_effect()
 
     spell_successful();
 
-    tell_room(place,"%^MAGENTA%^"+caster->QCN+"  raises an impenetrable veil of magic around "+target->QCN+".%^RESET%^");
+    tell_room(place,"%^MAGENTA%^"+caster->QCN+" raises an impenetrable veil of magic around "+target->QCN+".%^RESET%^");
     
     bonus = calculate_bonus(caster->query_stats(get_casting_stat()));
     power = clevel + bonus + random(6);
