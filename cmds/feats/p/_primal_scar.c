@@ -28,7 +28,7 @@ void create()
     feat_category("MetaMagic");
     feat_name("primal scar");
     feat_prereq("Spellscar Oracle L31");
-    feat_syntax("primal scar TARGET");
+    feat_syntax("primal_scar TARGET");
     feat_desc("This Meta Magic feat will attempt to scar your target with primal wild magic, causing the next spell they cast to go wild with a random spell effect instead. This feat will first attempt a spellcraft roll against the target's spellcraft. If succeeded, a level 9 spell slot will be consumed to scar the target. You must have a level 9 slot prepared to use this feat. This feat has a cooldown.");
     set_target_required(1);
     set_required_for(({ }));
