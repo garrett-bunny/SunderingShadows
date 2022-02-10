@@ -54,7 +54,7 @@ mapping query_deep_spells(object ob)
     if(!FEATS_D->has_feat(ob, "deep magic"))
         return deep_spells;
     
-    spells = MAGIC_D->query_index("deep");
+    spells = keys(MAGIC_D->query_index("deep"));
     
     foreach(string str in spells)
     {
