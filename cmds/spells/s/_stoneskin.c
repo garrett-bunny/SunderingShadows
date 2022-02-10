@@ -49,7 +49,7 @@ int preSpell()
 string query_cast_string()
 {
     if(spell_type == "monk")
-        return "%^BOLD%^"+caster->QCN+"%^BOLD%^ begins focusing intently as "+caster->QS+" mumbles incromprehensibly.";
+        return "%^BOLD%^"+caster->QCN+"%^BOLD%^ begins focusing intently as "+caster->QS+" mumbles incomprehensibly.";
     return "%^BOLD%^"+caster->QCN+" sprinkles some granite dust over "+target->QCN+" and begins muttering incomprehensibly.";
 }
 
@@ -59,7 +59,7 @@ void spell_effect(int prof)
     if(spell_type == "monk") target = caster;
     if((string)TO->query_spell_type() == "potion") {
       if(target->query_stoneSkinned() || target->query_property("iron body")){
-        tell_object(caster,"The potion doesn't seem to have any effect. You realise you already have protection of this nature!");
+        tell_object(caster,"The potion doesn't seem to have any effect. You realize you already have protection of this nature!");
         TO->remove();
         return;
       }

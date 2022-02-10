@@ -33,6 +33,6 @@ void wer_me()
     return 1;
 }
 void remov_me(){
-    tell_object(ETO,"Your skin begins feels dry and normal again.");
+    tell_object(ETO,"Your skin begins to feel dry and normal again.");
     return 1;
 }
