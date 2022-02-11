@@ -15,7 +15,7 @@ void create()
     feat_name("augment physical prowess");
     feat_classes("magus");
     feat_syntax("augment_physical_prowess str|strength|dex|dexterity|con|constitution|check");
-    feat_desc("You can expend 1 point from the arcane pool to draw upon yout magical abilities to strengthen yout limbs, sharpen your reflexes, or enhance your toughness for a number of rounds equal to your magus class level.
+    feat_desc("You can expend 1 point from the arcane pool to draw upon your magical abilities to strengthen your limbs, sharpen your reflexes, or enhance your toughness for a number of rounds equal to your magus class level.
 The bonus is equal to 1 plus one aditional for every 10 magus levels.");
 }
 

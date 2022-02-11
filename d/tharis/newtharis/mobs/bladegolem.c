@@ -39,8 +39,6 @@ void create()
         droll =(10+random(21));
         set_gender("neuter");
         set_race("golem");
-        set_max_hp(roll_dice( query_hd(), 50));
-        set_hp(query_max_hp());
         set_alignment(2);
         set_overall_ac(-50);
         set_class("fighter");
@@ -65,6 +63,8 @@ void create()
         }),1);
         set_new_exp(50,"normal");
         set_max_level(50);
+        set_max_hp(roll_dice( query_hd(), 50));
+        set_hp(query_max_hp());
         set_property("swarm",1);
         set_property("full attacks",1);
         set("aggressive",0);
