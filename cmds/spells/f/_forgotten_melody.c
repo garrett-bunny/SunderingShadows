@@ -17,7 +17,8 @@ void create()
 {
     ::create();
     set_spell_name("forgotten melody");
-    set_spell_level(([ "bard" : 4, "mage":4]));
+    set_spell_level(([ "bard" : 4, "mage":4, "cleric" : 4 ]));
+    set_domains("charm");
     set_spell_sphere("enchantment_charm");
     set_syntax("cast CLASS forgotten melody on TARGET in LANGUAGE");
     set_description("This spell has the caster singing the beginning of a catchy tune.  The tune gets locked in the head "
