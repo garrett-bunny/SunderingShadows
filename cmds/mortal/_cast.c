@@ -69,7 +69,7 @@ int cmd_cast(string str)
         healharm = 0;
     }
 
-    if (regexp(str, implode(PLAYER_D->list_classes(), "|") + "|innate|cantrip")) {
+    if (regexp(str, implode(PLAYER_D->list_classes(), "|") + "|innate|cantrip|deep")) {
         if (!sscanf(str, "%s %s", type, str2)) {
             return notify_fail("Syntax: <cast CLASS CAST_STRING>\n");
         }
@@ -304,11 +304,11 @@ int cmd_cast(string str)
         targ->use_spell(TP, tar, (int)TP->query_innate_ability_level(str2), 100, "innate");
     }
     if (type == "cantrip") { //this should really use wizard interface somehow to pick up the proper clevels, might need to define cantrips differently
-        targ->use_spell(this_player(), tar, TP->query_base_character_level(), 100, "cantrip");
+        targ->use_spell(this_player(), tar, targ->query_clevel(), 100, "cantrip");
     }
     if(type == "deep")
     {
-        targ->use_spell(this_player(), tar, TP->query_base_character_level(), 100, "deep");
+        targ->use_spell(this_player(), tar, targ->query_clevel(), 100, "deep");
     }
 
     return 1;
@@ -374,6 +374,10 @@ Would cast undeath ward if you are a crypt stalker with enough levels for that a
 %^CYAN%^CANTRIP CASTING%^RESET%^
 Casting classes also get a few cantrip spells, which can be cast without preparation.
 EX:   cast cantrip acid splash
+
+%^CYAN%^DEEP MAGIC CASTING%^RESET%^
+Mages get access to Deep Magic at higher levels, which have cooldowns, but do not need to be prepared.
+EX    cast deep wish
 
 
 %^CYAN%^SEE ALSO%^RESET%^

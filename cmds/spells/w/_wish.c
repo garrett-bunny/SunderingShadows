@@ -94,8 +94,8 @@ int preSpell()
     tell_room(place, "%^BOLD%^CYAN%^" + caster->query_cap_name() + " concentrates deeply and slowly brings " + caster->query_possessive() + " deepest desires into being.", caster);
 
     spell_successful();
-
-    spell_to_cast->use_spell(this_player(),sargs,clevel);
+    spell_type = spell_to_cast->query_spell_type();
+    spell_to_cast->use_spell(this_player(),sargs,clevel,ctype);
     caster->add_cooldown("wish", 86400);
     
     return 1;
