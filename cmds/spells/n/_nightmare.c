@@ -7,11 +7,12 @@ void create()
 {
     ::create();
     set_spell_name("nightmare");
-    set_spell_level(([ "mage" : 5, "bard":5, ]));
+    set_spell_level(([ "mage" : 5, "bard":5, "innate" : 5 ]));
+    set_domains("nightmare");
     set_spell_sphere("illusion");
     set_syntax("cast CLASS nightmare on TARGET");
     set_damage_desc("mental, fatigue for clevel / 4 + 1  rounds");
-    set_description("The nightmare prevents restful sleep and causes target to become fatigued for a very long period of time.");
+    set_description("The nightmare prevents restful sleep and causes target to become fatigued for a very long period of time. Nightmare clerics casting this spell as an innate spell must expend one Divine grace point.");
     set_verbal_comp();
     set_somatic_comp();
     set_target_required(1);
@@ -21,6 +22,20 @@ void create()
 string query_cast_string()
 {
     return "%^BLUE%^" + caster->QCN + " makes a few passes in the air, whispering in dread undertones.%^RESET%^";
+}
+
+int preSpell() {
+    
+    if(caster->is_class("cleric") && spell_type == "innate")
+    {
+        if(!(int)USER_D->spend_pool(this_player(), 1, "grace"))
+        {
+            tell_object(caster, "You don't have the Divine Grace to cast Nightmare!");
+            return 0;
+        }
+    }
+    
+    return 1;
 }
 
 spell_effect()

@@ -15,7 +15,7 @@ void create()
     set_author("nienne");
     set_spell_name("black tentacles");
     set_spell_level(([ "mage" : 4, "warlock" : 3, "magus" : 4, "cleric" : 4 ]));
-    set_domains("void");
+    set_domains("nightmare");
     set_spell_sphere("conjuration_summoning");
     set_syntax("cast CLASS black tentacles");
     set_description("This spell summons up a mass of writhing black " +

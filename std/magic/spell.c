@@ -3422,6 +3422,12 @@ varargs int do_save(object targ, int mod, int get_dc)
         }
     }
     
+    if(caster->is_class("cleric"))
+    {
+        if(member_array("nightmare", caster->query_divine_domain()) >= 0 && spell_sphere == "illusion")
+            DC += 1;
+    }
+    
     //Bloodline DC adjustments
     if(caster->is_class("sorcerer"))
     {
