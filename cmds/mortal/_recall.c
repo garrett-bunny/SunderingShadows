@@ -315,6 +315,7 @@ int recall_cantrips(object who)
 int recall_deep_spells(object who)
 {
     mixed *deep_spells;
+    string msg;
     
     if(!objectp(who))
         return 0;
@@ -328,7 +329,7 @@ int recall_deep_spells(object who)
     
     msg = FR + "Deep Magic" + BK;
     
-    foreach(string str in cantrips)
+    foreach(string str in deep_spells)
         msg += "\n%^BOLD%^WHITE%^" + str + "%^RESET%^";
         
     tell_object(this_player(), msg);
