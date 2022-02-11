@@ -814,6 +814,12 @@ int query_resistance(string res)
             case "electricity":
             if(member_array("air", domains) >= 0)
                 myres += TO->query_class_level("cleric");
+            break;
+            
+            case "void":
+            if(member_array("void", domains) >= 0)
+                myres += TO->query_class_level("cleric");
+            break;           
         }
     }
 

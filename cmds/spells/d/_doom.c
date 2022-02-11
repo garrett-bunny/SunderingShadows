@@ -8,6 +8,7 @@ void create() {
 	::create();
     set_spell_name("doom");
     set_spell_level(([ "cleric":1,"paladin":1,"inquisitor" : 1, "bard" : 1 ]));
+    set_domains("void");
     set_spell_sphere("necromancy");
     set_syntax("cast CLASS doom on TARGET");
     set_damage_desc("shaken");
