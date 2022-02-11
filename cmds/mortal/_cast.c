@@ -88,7 +88,7 @@ int cmd_cast(string str)
         }
     }
 
-    if (!TP->is_class(type) && !avatarp(TP) && type != "innate" && type != "cantrip") {
+    if (!TP->is_class(type) && !avatarp(TP) && type != "innate" && type != "cantrip" && type != "deep") {
         return notify_fail("You can't cast spells as a " + type + "!\n");
     }
 
@@ -297,7 +297,7 @@ int cmd_cast(string str)
         targ->set_silent_casting(1);
     }
 
-    if (type != "innate" && type != "cantrip") {
+    if (type != "innate" && type != "cantrip" && type != "deep") {
         targ->wizard_interface(TP, type, tar);
     }
     if (type == "innate") {
@@ -305,6 +305,10 @@ int cmd_cast(string str)
     }
     if (type == "cantrip") { //this should really use wizard interface somehow to pick up the proper clevels, might need to define cantrips differently
         targ->use_spell(this_player(), tar, TP->query_base_character_level(), 100, "cantrip");
+    }
+    if(type == "deep")
+    {
+        targ->use_spell(this_player(), tar, TP->query_base_character_level(), 100, "deep");
     }
 
     return 1;
