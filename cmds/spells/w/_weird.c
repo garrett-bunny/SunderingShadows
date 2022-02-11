@@ -11,7 +11,8 @@ void create()
 {
     ::create();
     set_spell_name("weird");
-    set_spell_level(([ "mage" : 9 ]));
+    set_spell_level(([ "mage" : 9, "cleric" : 9 ]));
+    set_domains("madness");
     set_spell_sphere("illusion");
     set_syntax("cast CLASS weird");
     set_damage_desc("mental damage, phantasmal killer, and cowering on failed save");
