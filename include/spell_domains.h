@@ -4,7 +4,7 @@
 // with cleric will have to deal with lack of domains
 #define SPELL_DOMAINS (([\
  "ashra"    : ({ "charm", "madness", "darkness", "evil", "void" }), \
- "edea"     : ({ "good", "renewal", "protection", "sun", "stars" }), \
+ "edea"     : ({ "good", "renewal", "protection", "sun", "creation" }), \
  "callamir" : ({ "charm", "travel", "good", "illusion"}), \
  "cevahir" :  ({ "strength", "war", "repose", "knowledge" }) , \
  "jarmila" :  ({ "renewal", "sun", "fire", "good", }) , \
