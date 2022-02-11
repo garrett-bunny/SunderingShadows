@@ -2538,7 +2538,7 @@ void define_clevel()
             break;
 
             case "conjuration_summoning":
-            if(member_array("animal", domains) >= 0)
+            if(member_array("animal", domains) >= 0 || member_array("creation", domains) >= 0)
                 clevel += 1;
             break;
 
