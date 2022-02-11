@@ -2535,22 +2535,32 @@ void define_clevel()
             case "divination":
             if(member_array("knowledge", domains) >= 0)
                 clevel += 1;
+            break;
 
             case "conjuration_summoning":
             if(member_array("animal", domains) >= 0)
                 clevel += 1;
+            break;
 
             case "healing":
             if(member_array("renewal", domains) >= 0)
                 clevel += 2;
+            break;
 
             case "abjuration":
             if(member_array("magic", domains) >= 0)
                 clevel += 1;
+            break;
 
             case "invocation_evocation":
             if(member_array("destruction", domains) >= 0)
                 clevel += 1;
+            break;
+            
+            default:
+            if(member_array("madness", domains) >= 0)
+                clevel += 1;
+            break;
         }
 
         if(evil_spell)

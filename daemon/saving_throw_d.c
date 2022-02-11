@@ -182,6 +182,9 @@ varargs int do_save(object ob, int dc, string type, raw_save)
 
     if (FEATS_D->usable_feat(ob, "shadow master") && objectp(ENV(ob)) && ENV(ob)->query_light() < 2)
         mod += 2;
+    
+    if(member_array("madness", ob->query_divine_domain()) >= 0)
+        mod -= 1;
 
     save += mod;
     save = save > (level + 22 + max_mod) ? (level + 22 + max_mod) : save;

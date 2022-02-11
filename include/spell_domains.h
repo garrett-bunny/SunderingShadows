@@ -16,5 +16,5 @@
  "nilith" :  ({ "destruction", "undeath", "chaos", "evil", }), \
  "nimnavanon" : ({ "renewal", "plant", "animal", "earth", }) , \
  "seija" :   ({ "air", "cold", "fire", "earth", }) , \
- "the faceless one" : ({ "illusion", "suffering", "darkness", "evil", }) , \
+ "the faceless one" : ({ "illusion", "madness", "darkness", "evil", }) , \
 ]))
