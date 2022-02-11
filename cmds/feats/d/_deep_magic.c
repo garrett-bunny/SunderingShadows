@@ -11,7 +11,7 @@ void create() {
     feat_prereq("Mage L31");
     feat_desc("The mage has reached a pinnacle of power and understanding in their studies. It is at this point that they begin to delve into the deeper recesses of the weave to grasp power long lost With this feat, the mage gains access to Deep Magic, another type of magic, similar to cantrips or innate. To utilize deep magic spells you have, type use the following syntax.
     
-    recall deep magic
+    recall deep spells
     cast deep <spell name>
 
 The mage starts with the wish spell. Any new deep magic must be acquired by finding tomes of knowledge in the world, which will be introduced periodically.");
