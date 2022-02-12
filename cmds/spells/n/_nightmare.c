@@ -1,6 +1,7 @@
 #include <std.h>
 #include <spell.h>
 #include <magic.h>
+#include <daemons.h>
 inherit SPELL;
 
 void create()
