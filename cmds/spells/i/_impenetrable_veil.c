@@ -65,8 +65,8 @@ spell_effect()
     
     bonus = calculate_bonus(caster->query_stats(get_casting_stat()));
     power = clevel + bonus + random(6);
-    blocker->set_block_power(power);
     blocker = SCRY_D->add_block_scrying(target);
+    blocker->set_block_power(power);
     
     target->set_property("spelled", ({TO}) );
     target->set_property("block scrying", 1);
