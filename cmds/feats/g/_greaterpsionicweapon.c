@@ -18,7 +18,7 @@ void create() {
     feat_name("greaterpsionicweapon");
     feat_syntax("greaterpsionicweapon");
     feat_prereq("Psionicweapon, Psywarrior L15, or Psion L15");
-    feat_desc("This feat improves on psionic weapon, making it more deadly.");
+    feat_desc("This feat improves on psionic weapon, making it more deadly. This feat costs psionic focus to use.");
     psionic(1);
 }
 
@@ -65,6 +65,11 @@ void execute_feat() {
     if(!sizeof(caster->query_attackers())) {
         tell_object(caster,"You're not under attack!");
         dest_effect();
+        return;
+    }
+    if(!USER_D->spend_pool(caster, 1, "focus"))
+    {
+        tell_object(caster, "You need to be focused before you can attempt Greater Psionic Weapon.");
         return;
     }
 
