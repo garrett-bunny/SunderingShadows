@@ -90,12 +90,6 @@ void execute_feat()
         return;
     }
     
-    if(!(int)USER_D->spend_pool(TP, 1, "grace"))
-    {
-        tell_object(caster, "You don't have the Divine Grace to summon your steed!");
-        return;
-    }
-    
     companion = caster->query_property("animal_companion");
     
     if(objectp(companion))
@@ -104,6 +98,12 @@ void execute_feat()
         caster->remove_property("animal_companion");
         companion && companion->remove();
                 
+        return;
+    }
+    
+    if(!(int)USER_D->spend_pool(TP, 1, "grace"))
+    {
+        tell_object(caster, "You don't have the Divine Grace to summon your steed!");
         return;
     }
     
@@ -136,9 +136,9 @@ void execute_feat()
     companion->set_heart_beat(1);
     
     //Setting companion stats based on type per SRD
-    companion->set_stats("strength", 16);
+    companion->set_stats("strength", 30);
     companion->set_stats("dexterity", 12);
-    companion->set_stats("constitution", 18);
+    companion->set_stats("constitution", 30);
     companion->set_stats("intelligence", 6);
     companion->set_stats("wisdom", 8);
     companion->set_stats("charisma", 14);
