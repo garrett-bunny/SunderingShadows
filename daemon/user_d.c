@@ -286,7 +286,11 @@ varargs void regenerate_pool(object ob, int amount, int pass, string pool_type)
         case "focus":
             if(ob->is_class("psion") || ob->is_class("psywarrior"))
             {
+                
                 delay = 90;
+                if(FEATS_D->has_feat(ob, "battle focus") && ob->query_current_attacker())
+                    delay = 46;
+                
                 delay -= BONUS_D->query_stat_bonus(ob, "intelligence");
             }
             break;
