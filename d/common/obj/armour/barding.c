@@ -20,7 +20,7 @@ chain mail. The upper legs are covered with small plates linked with thick
 leather. The bottom of the legs are still unprotected.
 OLI
     );
-    set_weight(200);
+    set_weight(100);
     set_size(2);
     set_ac(15);
     set_limbs(({"torso","right foreleg","left foreleg","right rear leg","left rear leg","head"}));
