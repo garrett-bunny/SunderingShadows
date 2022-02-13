@@ -815,11 +815,11 @@ int query_resistance(string res)
             if(member_array("air", domains) >= 0)
                 myres += TO->query_class_level("cleric");
             break;
-            
+
             case "void":
             if(member_array("void", domains) >= 0)
                 myres += TO->query_class_level("cleric");
-            break;           
+            break;
         }
     }
 
@@ -875,13 +875,19 @@ int query_resistance_percent(string res)
         if(res == "electricity")
             mod += 25;
     }
-	
+
 	if(this_object()->is_feyborn())
     {
         if(res == "silver")
             mod += -25;
 		if(res == "sonic")
             mod += 10;
+    }
+
+    if(this_object()->is_were()) {
+        if (res == "silver") {
+            mod += -10;
+        }
     }
 
     if (TO->is_undead()) {
@@ -1012,7 +1018,7 @@ int query_resistance_percent(string res)
             break;
         }
     }
-    
+
     //Psion mental mastery capstone
     if(this_object()->is_class("psion") && this_object()->query("available focus") == 2 && res == "mental")
         mod = 100;
@@ -1062,12 +1068,12 @@ int cause_typed_damage(object targ, string limb, int damage, string type)
             attacker = attacker->query_caster();
         }
     }
-    
+
     if(damage <= 0)
     {
         log_file("reports/negative_damage", "Negative or zero damage value passed : " + base_name(previous_object()) + "\n");
     }
-        
+
     damage = (int)COMBAT_D->typed_damage_modification(attacker, targ, limb, damage, type);
     return targ->cause_damage_to(targ, limb, damage);
 }
@@ -1280,7 +1286,7 @@ int query_ac()
     }
 
     attacker = TO->query_current_attacker();
-    
+
     if(attacker && this_object()->query_race() == "nymph")
     {
         if(userp(attacker) || attacker->query_body_type() == "humanoid")

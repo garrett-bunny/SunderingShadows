@@ -189,10 +189,10 @@ int spend_pool(object ob, int amount, string pool_type)
         return 0;
     }
     avail -= amount;
-    
+
     if(pool_type == "focus" && avail < 1)
         tell_object(ob, "%^BOLD%^You lose your psionic focus.%^RESET%^");
-    
+
     ob->set("available " + pool_type, avail);
     return 1;
 }
@@ -839,10 +839,10 @@ int is_valid_enemy(string id, string cat)
 {
     if(!strlen(id))
         return 0;
-    
+
     if(!pointerp(VALID_ENEMY[cat]))
         return 0;
-    
+
     if (member_array(id, VALID_ENEMY[cat]) != -1) {
         return 1;
     }
@@ -881,7 +881,8 @@ int is_pk_race_player(object ob)
     if (file_exists(racefile)) {
         if (ob->query("no pk")) {
             if (racefile->is_pk_race(ob->query("subrace")) ||
-                ob->is_undead()) {
+                ob->is_undead() ||
+                ob->is_were()) {
                 return 1;
             }
         }

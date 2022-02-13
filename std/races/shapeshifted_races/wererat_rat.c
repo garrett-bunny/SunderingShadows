@@ -18,10 +18,11 @@ void create()
     set_base_attack_num(0);
     set_castable(1);
     set_can_talk(0);
-    set_shape_race("bird");
+    set_shape_race("rat");
     set_shape_profile("wererat_rat_999");
     set_shape_bonus("sight bonus", 5);
     set_shape_bonus("dexterity", 2);
+    set_shape_bonus("silver resistance percent", -23);
     set_shape_height(10 + random(5));
     set_shape_weight(10 + random(20));
 }
