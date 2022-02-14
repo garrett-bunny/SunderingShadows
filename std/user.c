@@ -4369,6 +4369,8 @@ string realNameVsProfile(string who)
     foreach(string name in names)
     {
         tmp = relationships[name];
+        if(!mapp(tmp))
+            continue;
 
         if (!sizeof(tmp)) {
             continue;
