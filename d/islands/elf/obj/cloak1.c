@@ -37,4 +37,5 @@ int remove_fun(){
 tell_room(EETO,"%^BOLD%^"+ETO->QCN+" removes the "+
 "regal cloak.%^RESET%^",ETO);
 tell_object(ETO,"%^BOLD%^You remove the regal cloak.%^RESET%^");
+return 1;
 }

@@ -171,6 +171,8 @@ mapping query_innate_spells(object player)
         innate_spells += ([ "blinding flash" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), ]);
     if(member_array("void", player->query_divine_domain()) >= 0)
         innate_spells += ([ "void bolt" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), ]);
+    if(member_array("nightmare", player->query_divine_domain()) >= 0)
+        innate_spells += ([ "nightmare" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), ]);
 
     return innate_spells;
 }

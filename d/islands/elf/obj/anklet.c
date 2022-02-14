@@ -25,7 +25,7 @@ void create(){
     set_size(-1);
     set_property("enchantment",4);
     set_item_bonus("reflex",3);
-    set_remove((:TO,"remove_func":));
+    set_remove("%^CYAN%^You remove the anklets and feel dehydrated.%^RESET%^");
     set_wear( (:TO,"check":) );
     set_struck((:TO,"strike_func":));
 	set_item_bonus("cold resistance",30);
@@ -39,10 +39,14 @@ int check(){
       return 1;
 }
 
+/*
+
 int remove_func(){
     tell_object(ETO,"%^CYAN%^You remove the anklets and feel dehydrated.");
     return 1;
 }
+
+*/
 
 int strikeme(int damage, object what, object who){
         if(random(1000) < 250){
