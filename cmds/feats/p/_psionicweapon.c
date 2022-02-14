@@ -52,6 +52,7 @@ void execute_feat()
     int delay;
     ::execute_feat();
 
+    /*
     if(caster->cooldown("psionicweapon"))
     {
     //if ((int)caster->query_property("using smite") > time()) { //keeping the same variable to avoid stacking
@@ -59,6 +60,7 @@ void execute_feat()
         dest_effect();
         return;
     }
+    */
     if ((int)caster->query_property("using instant feat")) {
         tell_object(caster, "You are already in the middle of using a feat!");
         dest_effect();
