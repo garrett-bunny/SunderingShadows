@@ -10,7 +10,7 @@ int ident;
 string query_defdesc()
 {
     return "This is a pristine white canvas. The weave is tight and smooth, with no major
-imprefections. The cotton appears ready to hold paint well.
+imperfections. The cotton appears ready to hold paint well.
 %^ORANGE%^<paint %^ORANGE%^%^ULINE%^CANVAS%^RESET%^%^ORANGE%^>%^RESET%^
     Will allow you to paint on CANVAS in your inventory.
 %^ORANGE%^<wash %^ORANGE%^%^ULINE%^CANVAS%^RESET%^%^ORANGE%^>%^RESET%^

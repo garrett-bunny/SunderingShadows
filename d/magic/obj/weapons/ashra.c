@@ -32,7 +32,7 @@ int hit_func(object target){
     if(!random(10)){
         tell_object(owner, "%^RESET%^%^CRST%^%^C091%^The edge of the %^C255%^s%^C253%^i%^C251%^c%^C249%^k%^C247%^l%^C245%^e %^C243%^wh%^C059%^is%^C243%^pe%^C059%^rs %^RESET%^%^C091%^as you slice into "+targetname+"%^RESET%^%^CRST%^%^C091%^.%^CRST%^");
         tell_object(target, "%^RESET%^%^CRST%^%^C091%^The edge of the %^C255%^s%^C253%^i%^C251%^c%^C249%^k%^C247%^l%^C245%^e %^C243%^wh%^C059%^is%^C243%^pe%^C059%^rs %^RESET%^%^C091%^as "+ownername+"%^RESET%^%^CRST%^%^C091%^ slices into you.%^CRST%^");
-        tell_room(environment(ETO), "%^RESET%^%^CRST%^%^C091%^The edge of the %^C255%^s%^C253%^i%^C251%^c%^C249%^k%^C247%^l%^C245%^e %^C243%^wh%^C059%^is%^C243%^pe%^C059%^rs %^RESET%^%^C091%^as "+owner+"%^RESET%^%^CRST%^%^C091%^ slices into "+targetname+"%^RESET%^%^CRST%^%^C091%^.%^CRST%^", ({owner, target}));
+        tell_room(environment(ETO), "%^RESET%^%^CRST%^%^C091%^The edge of the %^C255%^s%^C253%^i%^C251%^c%^C249%^k%^C247%^l%^C245%^e %^C243%^wh%^C059%^is%^C243%^pe%^C059%^rs %^RESET%^%^C091%^as "+ownername+"%^RESET%^%^CRST%^%^C091%^ slices into "+targetname+"%^RESET%^%^CRST%^%^C091%^.%^CRST%^", ({owner, target}));
         return (random(4) + 8);
     }
 }

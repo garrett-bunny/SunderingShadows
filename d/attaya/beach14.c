@@ -8,7 +8,7 @@ void create() {
     set_travel(LEDGE);
     set_property("light",3);
     set_property("indoors",0);
-    set_short("%^RESET%^%^BOLD%^%^ORANGE%^Decendi%^WHITE%^n%^ORANGE%^g%^BLACK%^ path%^RESET%^%^RESET%^");
+    set_short("%^RESET%^%^BOLD%^%^ORANGE%^Descendi%^WHITE%^n%^ORANGE%^g%^BLACK%^ path%^RESET%^%^RESET%^");
     set_long("%^RESET%^%^BOLD%^%^WHITE%^D%^WHITE%^e%^WHITE%^c%^WHITE%^e%^ORANGE%^n%^WHITE%^d%^ORANGE%^ing%^BLACK%^ path%^RESET%^%^RESET%^
 %^RESET%^%^BOLD%^%^BLACK%^The %^ORANGE%^pat%^WHITE%^h%^BLACK%^ widens a bit here. You breathe a little easier as you don't feel the threat of falling to your death weighing quite as heavilly on your thoughts.%^RESET%^%^RESET%^");
 

@@ -459,8 +459,7 @@ int fill_me(string str){
   string what, contents, * items;
   int i, flag;
   if (!stringp(str)){
-    return notify_fail("You might be able to fill the cauldron %^BOLD%^%^YELLOW%^with%^RESET%^"
-                      +" something");
+    return notify_fail("You might be able to fill the cauldron with something.");
   }
   sscanf(str, "%s with %s", what, contents);
   if (!id(what)){

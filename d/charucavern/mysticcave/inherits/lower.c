@@ -94,7 +94,7 @@ void create()
        "and very erratically.%^RESET%^",
        
        ({"floor", "sand", "sand floor", "fine sand"}) : "%^YELLOW%^"+
-       "The floor here has changed into a softy and very fine sand. Which "+
+       "The floor here has changed into a soft and very fine sand. Which "+
        "makes walking here much more difficult. You could probably dig down into "+
        "it you wanted to.%^RESET%^",
        

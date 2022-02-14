@@ -18,7 +18,7 @@ void create() {
      );
   set("long",
       "%^CYAN%^In the Charu Mountains
-%^CYAN%^The peaks of the Charu Mountains are outlined by the sky. A wolf howls in thedistance. Cold air whistles down this path, the smell of death and fear strong in yournose."
+%^CYAN%^The peaks of the Charu Mountains are outlined by the sky. A wolf howls in the distance. Cold air whistles down this path, the smell of death and fear strong in your nose."
       );
   set_exits( ([
     "northwest": MOUNT+"pass_2",
