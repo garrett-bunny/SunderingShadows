@@ -131,8 +131,8 @@ void execute_attack()
     caster->remove_property("using instant feat");
     ::execute_attack();
     
-    extra = 1 + flevel / 20;
-    extra += (FEATS_D->has_feat(caster, "battle psyche") * 2);
+    extra = 1 + flevel / 31;
+    extra += (FEATS_D->has_feat(caster, "battle psyche"));
     
     tell_object(caster, "%^CYAN%^BOLD%^You unleash a barrage of additional attacks!%^RESET%^");
     

@@ -29,7 +29,7 @@ void init()
                   TP->is_class("pale_lord") ||
                   TP->is_class("gravecaller")
             ) {
-            tell_object(TP, "\n%^BOLD%^WHITE%^Your existence has ended. The time has come to pay for breaking the covenant. You briefly see a large, open space... Then it fades as you struggle the stream of souls, and turn to elsewhere...\n");
+            tell_object(TP, "\n%^BOLD%^WHITE%^Your existence has ended. The time has come to pay for breaking the covenant. You briefly see a large, open space... Then it fades as you struggle against the stream of souls, and turn elsewhere...\n");
             call_out("end_death0_undead", 5, TP);
             return;
         }else if (TP->query("subrace") == "feytouched" ||
@@ -41,7 +41,7 @@ void init()
             call_out("end_death0_feytouched", 5, TP);
             return;
         }else {
-            tell_object(TP, "\n%^BOLD%^%^WHITE%^You find yourself standing in a large, open space with %^RESET%^mists %^BOLD%^%^WHITE%^that obscure any distance. Rising up before you is a simple oaken chair with a high back, upon which is seated a somber and serene woman. %^BLACK%^Dark hair %^WHITE%^frames her ageless face, while a robe of gray rests about her shoulders like a pall. Her fingers rest upon the chair's arm, and you note the three %^BLACK%^m%^RESET%^i%^BOLD%^%^WHITE%^s%^RESET%^m %^BOLD%^%^BLACK%^a%^RESET%^t%^BOLD%^%^WHITE%^c%^RESET%^h %^BOLD%^%^BLACK%^e%^RESET%^d %^BOLD%^%^WHITE%^rings she wears. As her %^RESET%^%^CYAN%^steady gaze %^BOLD%^%^WHITE%^falls upon you, you realise that this must be the Lady of Fate - Lysara. In agony, you try to recall all you have done that might warrant the deity's attention, and you squirm as you wait to hear what she will say. Finally, she speaks...\n");
+            tell_object(TP, "\n%^BOLD%^%^WHITE%^You find yourself standing in a large, open space with %^RESET%^mists %^BOLD%^%^WHITE%^that obscure any distance. Rising up before you is a simple oaken chair with a high back, upon which is seated a somber and serene woman. %^BLACK%^Dark hair %^WHITE%^frames her ageless face, while a robe of gray rests about her shoulders like a pall. Her fingers rest upon the chair's arm, and you note the three %^BLACK%^m%^RESET%^i%^BOLD%^%^WHITE%^s%^RESET%^m %^BOLD%^%^BLACK%^a%^RESET%^t%^BOLD%^%^WHITE%^c%^RESET%^h %^BOLD%^%^BLACK%^e%^RESET%^d %^BOLD%^%^WHITE%^rings she wears. As her %^RESET%^%^CYAN%^steady gaze %^BOLD%^%^WHITE%^falls upon you, you realize that this must be the Lady of Fate - Lysara. In agony, you try to recall all you have done that might warrant the deity's attention, and you squirm as you wait to hear what she will say. Finally, she speaks...\n");
             call_out("end_death", 8, TP);
             WHICH_CALL_OUT = "end_death";
             return;
@@ -188,7 +188,7 @@ void do_death3(object tp){
        "%^BOLD%^%^BLACK%^a%^RESET%^t%^BOLD%^%^WHITE%^c%^RESET%^h"+
        "%^BOLD%^%^BLACK%^e%^RESET%^d %^BOLD%^%^WHITE%^rings she wears.  "+
        "As her %^RESET%^%^CYAN%^steady gaze %^BOLD%^%^WHITE%^falls upon "+
-       "you, you realise that this must be the Lady of Fate - Lysara.  "+
+       "you, you realize that this must be the Lady of Fate - Lysara.  "+
        "In agony, you try to recall all you have done that might warrant "+
        "the deity's attention, and you squirm as you wait to hear "+
        "what she will say.  Finally, she speaks...\n");
@@ -420,6 +420,10 @@ void do_death7(object tp){
                        "long to join your allies and foes alike in "+
                        "the thrill of battle.\n");
                     break;
+       case "ashra":  tell_object(tp,"%^RESET%^%^CRST%^%^C091%^The darkness seems to press inward, surrounding you entirely. You are filled with a suffocating claustrophobia as a shadowy void envelops you, subsuming you. Whispers trail at the edge of your awareness, the susurrus growing and rising, until it is an unintelligible roar.%^CRST%^\n");
+                    break;
+       case "edea":  tell_object(tp,"%^RESET%^%^CRST%^%^C144%^A light begins to dawn around you, brightening slowly but inexorably into an awesome brilliance. There is a warmth, filling you with a sense of burgeoning potential, of life waiting to blossom, to run free and wild. You cannot focus on anything at all, as the radiance fills your view.%^CRST%^\n");
+                    break;
        default:  tell_object(tp,"%^BOLD%^%^BLACK%^Darkness "+
                     "swirls around you, hiding Lysara from "+
                     "view.  You watch with dread as the %^RESET%^"+
@@ -505,6 +509,10 @@ void do_death8(object tp){
                        "So long as "+tp->QS+" faced them all "+
                        "fearlessly, I say return "+tp->QO+" to "+
                        "the glory "+tp->QS+" has earned.\n");
+                    break;
+       case "ashra":  tell_object(tp,"%^RESET%^%^CRST%^%^C091%^The whispers coalesce into a single, layered message: %^RESET%^%^C059%^My will has not yet been done. Radiance still pushes back the void, leaving my grasp wanting. Return my servant, that "+tp->QS+" can spread my shadows and darkness. Their service is not yet complete.%^CRST%^\n");
+                    break;
+       case "edea":  tell_object(tp,"%^RESET%^%^CRST%^%^C144%^A voice, gentle and warm, speaks from the surrounding radiance: %^RESET%^%^C230%^It is not "+tp->QP+" fault, they were pushing the boundaries of the dark and feel. It is only in the light that life can blossom and bloom, and such sacrifice is noble... and should be rewarded. Grant my devoted chosen another chance.%^CRST%^\n");
                     break;
        default:  tell_object(tp,"%^RESET%^%^GREEN%^The hideous wall "+
                     "begins to wrap itself around you, draining you "+
@@ -677,6 +685,10 @@ void do_death10(object tp){
                        "One of mine will never turn aside from the "+
                        "field of battle.  I know "+tp->QS+" will "+
                        "serve me well.\n");
+                    break;
+       case "ashra":  tell_object(tp,"%^RESET%^%^CRST%^%^C091%^The voices grows stronger, more insistent: %^RESET%^%^C059%^Do not forget your charge. Spread my primordial darkness in every sense. Take pleasure in snuffing out the light, and those chosen to defend it from my inevitable victory.%^CRST%^\n");
+                    break;
+       case "edea":  tell_object(tp,"%^RESET%^%^CRST%^%^C144%^The voice takes on a cautioning tone: Be wary, my chosen. The darkness will always strike, searching out any weakness to exploit. Drive it back and show them the power of my eternal radiance. Stand fast, and I shall guide you.%^CRST%^\n");
                     break;
        default:  tell_object(tp,"%^RESET%^Miraculously, all stops "+
                     "for a moment, and you hear a voice from above.\n\n"+
