@@ -131,15 +131,18 @@ void execute_attack()
     caster->remove_property("using instant feat");
     ::execute_attack();
     
-    extra = 1 + flevel / 31;
-    extra += (FEATS_D->has_feat(caster, "battle psyche"));
-    
-    tell_object(caster, "%^CYAN%^BOLD%^You unleash a barrage of additional attacks!%^RESET%^");
-    
-    for(int x = 0; x < extra; x++)
+    if(caster->query_current_attacker())
     {
-        if(caster->query_current_attacker())
-            caster->execute_attack();
+        extra = 1 + flevel / 31;
+        extra += (FEATS_D->has_feat(caster, "battle psyche"));
+    
+        tell_object(caster, "%^CYAN%^BOLD%^You unleash a barrage of additional attacks!%^RESET%^");
+    
+        for(int x = 0; x < extra; x++)
+        {
+            if(caster->query_current_attacker())
+                caster->execute_attack();
+        }
     }
         
     environment(caster)->addObjectToCombatCycle(this_object(),1);

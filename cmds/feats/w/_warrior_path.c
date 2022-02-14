@@ -46,18 +46,23 @@ To start selection process type <warrior_path>.
 
 int allow_shifted() { return 1; }
 
+int prerequisites(object ob)
+{
+    if(!objectp(ob)) return 0;
+    if(ob->query_class_level("psywarrior") < 3)
+    {
+        dest_effect();
+        return 0;
+    }
+    return ::prerequisites(ob);
+}
+
 int cmd_warrior_path(string str)
 {
     object feat;
 
     if(!objectp(this_player()))
         return 0;
-
-    if(this_player()->query_class_level("psywarrior") < 3)
-    {
-        dest_effect();
-        return 0;
-    }
 
     feat = new(base_name(this_object()));
     feat->setup_feat(this_player(), str);
@@ -108,19 +113,6 @@ void confirm_selection(string str)
     this_player()->add_cooldown("warrior path change", DELAY);
     dest_effect();
     return;
-}
-
-int prerequisites(object ob)
-{
-    if (!objectp(ob)) {
-        return 0;
-    }
-    if (!(ob->is_class("psion")))
-    {
-        dest_effect();
-        return 0;
-    }
-    return ::prerequisites(ob);
 }
 
 void dest_effect()
