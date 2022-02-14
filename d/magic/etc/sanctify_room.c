@@ -275,6 +275,16 @@ void set_desc(string diety)
         desc += ({ "%^RESET%^%^ORANGE%^This %^BOLD%^oak-paneled %^RESET%^%^ORANGE%^room seems to be far removed from the rest of the world, despite the %^CYAN%^windows %^ORANGE%^on three of the four sides looking out upon scenes of %^RED%^battle%^ORANGE%^. The %^RESET%^stone floor %^ORANGE%^has been covered with thick %^MAGENTA%^pa%^BOLD%^t%^RESET%^%^MAGENTA%^te%^RESET%^r%^MAGENTA%^ned rugs%^ORANGE%^, and a %^RED%^f%^BOLD%^i%^YELLOW%^r%^RESET%^%^RED%^e %^ORANGE%^crackles in the %^RESET%^stone fireplace %^ORANGE%^set within the fourth wall. Arranged around the room are %^YELLOW%^tables %^RESET%^%^ORANGE%^covered in %^RESET%^maps %^ORANGE%^and lined with stools and benches enough to accommodate many people as they planned. Baskets near the fireplace hold pieces for strategy games, and the space is thick with an atmosphere of planning.%^RESET%^" });
         break;
 
+    case "ashra":
+        desc += ({ "%^RESET%^%^CRST%^%^C091%^A fountain within a dimly lit space%^CRST%^" });
+        desc += ({ "%^RESET%^%^CRST%^%^C091%^A strange circular fountain is central to this space, but it appears to be working in reverse. A large %^C255%^porc%^C252%^el%^C255%^ai%^C252%^n %^C255%^ma%^C252%^s%^C255%^k %^RESET%^%^C091%^hovers in the air, cracked and tarnished. %^C059%^Bl%^C243%^ac%^C059%^k o%^C243%^il%^C059%^y l%^C243%^iq%^C059%^ui%^C243%^d %^RESET%^%^C091%^drips from the eye sockets, the mouth, and every ruinous disfiguring rift, pouring down into the %^C247%^basin %^C091%^below. Small wisps of %^C103%^pu%^C097%^r%^C103%^pl%^C097%^e %^C103%^f%^C097%^l%^C103%^ame %^RESET%^%^C091%^hover and bob around the periphery, offering a scant amount of light, but it isn't strong enough to push back the oppressive %^C059%^shadows %^C091%^surround this place. It feels as if the void is closing in, suffocating and snuffing out everything.%^CRST%^" });
+        break;
+        
+    case "edea":
+        desc += ({ "%^RESET%^%^CRST%^%^C144%^A pristine altar atop a grassy hill%^CRST%^" });
+        desc += ({ "%^RESET%^%^CRST%^%^C144%^A short %^C255%^mar%^C252%^bl%^C255%^e pil%^C252%^l%^C255%^a%^C252%^r %^RESET%^%^C144%^sits at the top of this %^C040%^g%^C046%^rass%^C040%^y h%^C046%^il%^C040%^l%^RESET%^%^C144%^, and perched atop is a large %^C214%^l%^C220%^um%^226%^in%^C220%^ou%^C214%^s %^C220%^o%^C226%^r%^C220%^b%^RESET%^%^C144%^. It radiates light, challenging the sun for brilliance as it stands sentinel over the wildflowers dotting the surrounding slopes. %^C046%^Trees %^C144%^line the base of the hill, teeming with birdsong and signs of life, and the %^C033%^skies %^RESET%^%^C144%^above are a vibrant azure amid wispy, feathered clouds.%^CRST%^" });
+        break;
+
     default:
         desc += ({ "%^GREEN%^A humble shrine" });
         desc += ({ "%^GREEN%^Set apart from the rest of the world, this humble shrine is composed" +
