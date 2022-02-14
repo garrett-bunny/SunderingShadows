@@ -14,7 +14,7 @@
 
 inherit FEAT;
 
-string *valid_choices = ({ "ascetic", "assassin", "gladiator", "infiltrator", "survivor", "weaponmaster" });
+string *valid_choices = ({ "ascetic", "assassin", "gladiator", "survivor", "weaponmaster" });
 
 void create()
 {
@@ -33,10 +33,9 @@ Warrior paths grant unique bonuses when using trance and also allow for special 
  Ascetic
  Assassin
  Gladiator
- Infiltrator
  Survivor
  Weaponmaster
-
+%^RESET%^
 A psywarrior that has not made their choice will merely be precluded from access to the path-specific bonuses and maneuvers.
 
 To start selection process type <warrior_path>.

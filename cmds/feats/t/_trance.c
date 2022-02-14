@@ -25,6 +25,7 @@ void create()
     feat_prereq("Psywarrior L1");
     feat_syntax("trance");
     feat_classes("psywarrior");
+    feat_desc("This feat allows the psywarrior to enter a specialized battle trance to aid them in combat. This trance gives the psywarrior full base attack and a few bonus attacks each round. This trance also adds other buffs based on the psywarrior's warrior path. See specific warrior path help files for more information.");
     allow_blind(1);
     psionic(1);
 }
@@ -131,7 +132,7 @@ void execute_attack()
     ::execute_attack();
     
     extra = 1 + flevel / 20;
-    extra += FEATS_D->has_feat(caster, "battle psyche");
+    extra += (FEATS_D->has_feat(caster, "battle psyche") * 2);
     
     tell_object(caster, "%^CYAN%^BOLD%^You unleash a barrage of additional attacks!%^RESET%^");
     
