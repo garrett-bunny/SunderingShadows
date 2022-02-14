@@ -41,7 +41,7 @@ A psywarrior that has not made their choice will merely be precluded from access
 
 To start selection process type <warrior_path>.
 
-%^CYAN%^See also :%^RESET%^ ascetic path, assassin path, gladiator path, infiltrator path, survivor path, weaponmaster path");
+%^RED%^%^BOLD%^See also :%^RESET%^ ascetic path, assassin path, gladiator path, infiltrator path, survivor path, weaponmaster path");
     allow_tripped(1);
 }
 
