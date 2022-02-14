@@ -623,9 +623,8 @@ int query_combat_maneuver_defense(object ob)
     
     mysize = ob->query_size();
     cmd = new_bab(ob->query_level(), ob);
-
-    cmd += max( ({ query_stat_bonus(ob, "strength"), query_stat_bonus(ob, "dexterity") }) );
-    
+    cmd += ob->query("gladiator trance");
+    cmd += max( ({ query_stat_bonus(ob, "strength"), query_stat_bonus(ob, "dexterity") }) );    
     cmd += (mysize - 2);
     
     if(ob->query_race() == "dwarf")
@@ -639,7 +638,7 @@ int query_combat_maneuver_defense(object ob)
 
 int combat_maneuver(object victim, object attacker, int mod)
 {
-    int result, CMB, CMD, diff;
+    int result, CMB, CMD, diff, psybonus;
     
     if(victim->query_paralyzed() || victim->query_bound() || victim->query_unconscious())
         return 1;
@@ -651,6 +650,8 @@ int combat_maneuver(object victim, object attacker, int mod)
     if(result == 20)
         return 1;
     
+    psybonus = attacker->query("gladiator trance") / 2;
+    result += psybonus;
     result += mod;
     
     if(!userp(victim))
