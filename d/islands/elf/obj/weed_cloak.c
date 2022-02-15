@@ -27,7 +27,7 @@ set_item_bonus("cold resistance",-5);
 set_item_bonus("fire resistance",5);
 set_item_bonus("charisma",-1);
 set_wear((:TO,"wear_fun":));
-set_remove((:TO,"remove_fun":));
+set_remove("%^CYAN%^You remove the seaweed cloak and feel less cold.%^RESET%^");
 }
 
 int wear_fun(){
@@ -36,8 +36,10 @@ tell_object(ETO,"%^CYAN%^%You throw the cloak "+
 return 1;
 }
 
+/*
 int remove_fun(){
 tell_room(EETO,"%^CYAN%^"+ETO->QCN+" removes the "+
 "looks glad to be out of the %^GREEN%^seaweed cloak.%^RESET%^",ETO);
 tell_object(ETO,"%^CYAN%^You remove the seaweed cloak and feel less cold.%^RESET%^");
 }
+*/

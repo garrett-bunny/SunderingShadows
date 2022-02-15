@@ -21,7 +21,7 @@ void create(){
    "suddenly by some kind of earthquake or flood. "+
    " Only the style of the buckle gives hint as to the origin.");
    set_size(-1);
-   TO->set_property("enchantment",4+random(2));
+   set_property("enchantment",4+random(2));
    set_item_bonus("survival",2);
    set_item_bonus("electricity resistance",-5);
    set_item_bonus("charisma",-1);
