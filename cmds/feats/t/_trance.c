@@ -81,7 +81,7 @@ void execute_feat()
     tell_room(place,"%^RESET%^%^ORANGE%^Strange symbols flash in " + caster->query_cap_name() + "'s eyes as " + caster->query_subjective() + " gives a warcry.%^RESET%^",caster);
     caster->set_property("dance-of-cuts", 1); //Makes them full BAB
     
-    mod = 2 + caster->query_class_level("psywarrior") / 6;
+    mod = 2 + caster->query_class_level("psywarrior") / 16;
     path = caster->query("warrior path");
     strlen(path) && tell_object(caster, "%^YELLOW%^You focus on the " + path + " path!");
 
