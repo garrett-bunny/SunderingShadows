@@ -18,6 +18,7 @@ void create()
     set_somatic_comp();
     set_target_required(1);
     set_save("will");
+    evil_spell(1);
 }
 
 string query_cast_string()
