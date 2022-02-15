@@ -51,7 +51,7 @@ void create()
    " inspection this is probably primarily a deer path, judging by"+
    " the distinctive hoof prints that are all over the place. Other"+
    " animals undoubtedly use it as well, so it's best to be careful.",
-   " squirrels" : "%^ORANGE%^Cute little squirrels are busy gathering food. They"+
+   "squirrels" : "%^ORANGE%^Cute little squirrels are busy gathering food. They"+
    " don't really seem to be afraid of you, or much care that you're"+
    " even there if you don't have something for them to eat.",
    "mice" : "%^BOLD%^%^BLACK%^Mice are scampering about under the brush and leaves,"+

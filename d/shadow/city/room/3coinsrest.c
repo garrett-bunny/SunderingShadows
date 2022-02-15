@@ -83,7 +83,7 @@ void create()
       "north" : ROOMS"3coinspatio"
    ]));
    set_door("glass door",ROOMS"3coinspatio","north",0,0);
-   set_door_description("copper door","%^RESET%^This %^BOLD%^glass "+
+   set_door_description("glass door","%^RESET%^This %^BOLD%^glass "+
       "door %^RESET%^leads outside to the patio.");
 }
 

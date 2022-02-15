@@ -1084,8 +1084,8 @@ void play_crafting_reel(mapping info)
 
         case 3:
 
-            tell_room(etp, "%^BOLD%^%^BLACK%^Closing "+tp->QCN+" eyes in concentration, "+tp->QP+" voice %^RESET%^rises "
-                "%^BOLD%^%^BLACK%^and %^RESET%^falls %^BOLD%^%^BLACK%^in a r%^RESET%^h%^BOLD%^%^BLACK%^yth%^RESET%^m"
+            tell_room(etp, "%^BOLD%^%^BLACK%^"+tp->QCN+" closes their eyes in concentration, "+tp->QP+" voice %^RESET%^rising "
+                "%^BOLD%^%^BLACK%^and %^RESET%^falling %^BOLD%^%^BLACK%^in a r%^RESET%^h%^BOLD%^%^BLACK%^yth%^RESET%^m"
                 "i%^BOLD%^%^BLACK%^c, m%^RESET%^%^MAGENTA%^es%^WHITE%^m%^BOLD%^%^BLACK%^eri%^RESET%^%^MAGENTA%^zi"
                 "n%^BOLD%^%^BLACK%^g mantra.%^RESET%^\n",tp);
             tell_object(tp, "%^BOLD%^%^BLACK%^You close your eyes and chant, feeling the %^MAGENTA%^p%^RESET%^%^MAGENTA%^o%^BOLD%^w"

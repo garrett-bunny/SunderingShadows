@@ -94,8 +94,8 @@ void disenchant_item(mapping map)
 
         case 1:
 
-            tell_object(tp,"%^CYAN%^You whisper incantations of unmaking, carefully unravelling the enchantments around "+obj->query_short()+"%^CYAN%^.\n");
-            tell_room(etp,"%^CYAN%^"+tp->QCN+" whispers incantations of unmaking, carefully unravelling the enchantments around "+obj->query_short()+"%^CYAN%^.\n",tp);
+            tell_object(tp,"%^CYAN%^You whisper incantations of unmaking, carefully unraveling the enchantments around "+obj->query_short()+"%^CYAN%^.\n");
+            tell_room(etp,"%^CYAN%^"+tp->QCN+" whispers incantations of unmaking, carefully unraveling the enchantments around "+obj->query_short()+"%^CYAN%^.\n",tp);
             break;
 
         case 2:
