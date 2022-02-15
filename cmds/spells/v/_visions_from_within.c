@@ -22,6 +22,7 @@ void create()
     set_somatic_comp();
     mental_spell();
     set_save("will");
+    evil_spell(1);
     //set_components((["mage":(["rose petals":3,"slug":1])]));
     aoe_spell(1);
     set_aoe_message("%^BOLD%^%^BLUE%^(%^BLACK%^populated with %^BLACK%^n%^BLUE%^i%^BLACK%^ght%^BLUE%^m%^BLACK%^ar%^BLUE%^i%^BLACK%^s%^BLUE%^h%^BLACK%^ horrors%^BLUE%^)%^RESET%^");
