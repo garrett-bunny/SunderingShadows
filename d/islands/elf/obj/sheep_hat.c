@@ -19,10 +19,13 @@ void create()
     set_property("enchantment",4+random(2));
     set_item_bonus("cold resistance", 10);
     set_item_bonus("constitution",2);
-    set_remove((:TO,"remove_func":));
+    set_remove("%^CYAN%^Your hat shimmers as you "+
+      "remove it.%^RESET%^");
     set_wear( (:TO,"wear_func":) );
     set_struck((:TO,"strike_func":));
 }
+
+/*
 int remove_func(){
     if(!ETO->query_invis()) {
         tell_room(EETO,"%^CYAN%^"+ETOQCN+"'s hat shimmers "+
@@ -32,6 +35,9 @@ int remove_func(){
       "remove it.");
         return 1;
 }
+
+*/
+
 int wear_func(){
 
    if(objectp(ETO) && ETO->query_property("evil item")){    
@@ -46,6 +52,7 @@ int wear_func(){
          "%^RESET%^%^CYAN%^on "+ETO->QP+" head.",ETO);
           return 1;
 }
+
 int strike_func(int damage, object what, object who){
     object sheep;
     if(!present("sheep",EETO)){
