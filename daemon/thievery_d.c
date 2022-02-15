@@ -113,7 +113,6 @@ int check_caught(int victim_roll, object victim, int thief_roll, object thief, o
 			pkills = thief->query_pkilled();
 			if(member_array(victim->query_name(),pkills) == -1) {
 				pkills += ({victim->query_name()});
-				tell_object(thief, pkills);
 				thief->set_pkilled(pkills);
 			}
 		}
