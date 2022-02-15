@@ -22,7 +22,7 @@ void create()
     feat_type("instant");
     feat_category("Psionics");
     feat_name("trance");
-    feat_prereq("Psywarrior L1");
+    feat_prereq("Psywarrior L5");
     feat_syntax("trance");
     feat_classes("psywarrior");
     feat_desc("This feat allows the psywarrior to enter a specialized battle trance to aid them in combat. This trance gives the psywarrior full base attack and a few bonus attacks each round. This trance also adds other buffs based on the psywarrior's warrior path. See specific warrior path help files for more information.");
@@ -35,7 +35,7 @@ int allow_shifted() { return 1; }
 int prerequisites(object ob)
 {
     if(!objectp(ob)) return 0;
-    if(ob->query_class_level("psywarrior") < 1)
+    if(ob->query_class_level("psywarrior") < 5)
     {
         dest_effect();
         return 0;
@@ -115,7 +115,9 @@ void execute_feat()
     caster->set_property("prescienced", 1);
     caster->set_property("using instant feat",1);
     duration = ROUND_LENGTH * (8 + mod + BONUS_D->query_stat_bonus("intelligence", caster));
-    call_out("dest_effect", duration);
+    
+    if(!FEAT_D->has_feat(caster, "eternal warrior"))
+        call_out("dest_effect", duration);
 }
 
 void execute_attack()

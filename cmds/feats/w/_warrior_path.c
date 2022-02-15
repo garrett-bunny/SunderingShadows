@@ -23,7 +23,7 @@ void create()
     feat_type("instant");
     feat_category("Psionics");
     feat_name("warrior path");
-    feat_prereq("Psywarrior L3");
+    feat_prereq("Psywarrior L7");
     feat_syntax("warrior_path [PATH]");
     feat_desc("This feat allows the psywarrior to choose their warrior path.
 
@@ -49,7 +49,7 @@ int allow_shifted() { return 1; }
 int prerequisites(object ob)
 {
     if(!objectp(ob)) return 0;
-    if(ob->query_class_level("psywarrior") < 3)
+    if(ob->query_class_level("psywarrior") < 7)
     {
         dest_effect();
         return 0;
