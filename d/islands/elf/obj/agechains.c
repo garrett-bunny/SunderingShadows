@@ -28,7 +28,7 @@ void create() {
     set_property("enchantment",-4);
 	}
     set_wear((:TO,"wear_func":));
-    set_remove((:TO,"remove_func":));
+    //set_remove((:TO,"remove_func":));
 }
 int wear_func(){
       int age;
