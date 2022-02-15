@@ -116,7 +116,7 @@ void execute_feat()
     caster->set_property("using instant feat",1);
     duration = ROUND_LENGTH * (8 + mod + BONUS_D->query_stat_bonus("intelligence", caster));
     
-    if(!FEAT_D->has_feat(caster, "eternal warrior"))
+    if(!FEATS_D->has_feat(caster, "eternal warrior"))
         call_out("dest_effect", duration);
 }
 
