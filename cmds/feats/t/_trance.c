@@ -79,7 +79,7 @@ void execute_feat()
     
     tell_object(caster,"%^RESET%^%^ORANGE%^You pluck the very essence of planning from the air around you, giving you insight into battle.%^RESET%^");
     tell_room(place,"%^RESET%^%^ORANGE%^Strange symbols flash in " + caster->query_cap_name() + "'s eyes as " + caster->query_subjective() + " gives a warcry.%^RESET%^",caster);
-    caster->set_property("transformed", 1); //Makes them full BAB
+    caster->set_property("dance-of-cuts", 1); //Makes them full BAB
     
     mod = 2 + caster->query_class_level("psywarrior") / 6;
     path = caster->query("warrior path");
@@ -181,7 +181,7 @@ void dest_effect()
             break;
         }
         
-        caster->remove_property("transformed");
+        caster->remove_property("dance-of-cuts");
         caster->remove_property("prescienced");
         
     }

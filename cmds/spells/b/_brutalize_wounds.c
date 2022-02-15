@@ -26,7 +26,8 @@ void create()
     "damage from all physical attacks. If it succeeds its save, it takes an additional 1 damage "+
     "from all physical attacks instead.");
     set_save("will");
-    set_arg_needed(1);
+    //set_arg_needed(1);
+    set_target_required(1);
 }
 
 void spell_effect()

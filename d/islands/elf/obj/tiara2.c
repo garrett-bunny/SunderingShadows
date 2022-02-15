@@ -18,12 +18,9 @@ void create(){
    " touches it.  This seems unfit to be worn by a living being.%^RESET%^");
    set_size(2);
    set_value(5000);
-   set_wear((:TO,"wear_me":));
+   set_wear("%^CYAN%^You don the tiara and a chill goes down your spine.%^RESET%^");
    set_property("enchantment",5);
    set_item_bonus("cold resistance",5);
    set_item_bonus("fire resistance",-5);
 }
-int wear_me(){
-  tell_object(ETO,"%^CYAN%^You don the tiara and a chill goes down your spine.");
-  return 1;
-}
+
