@@ -22,18 +22,6 @@ void create(){
    set_property("enchantment",4+random(3));
    set_item_bonus("charisma",2);
    set_item_bonus("influence", 2);
-   set_wear((: TO, "wearme" :));
-   set_remove((: TO, "removeme" :));
+   set_wear("%^GREEN%^You pull the tunic on and feel important.");
+   set_remove("%^GREEN%^You feel like a filthy commoner without the tunic on.");
 }
-
-int wearme()
-{
-    tell_object(ETO, "%^GREEN%^You pull the tunic on and feel important.");
-    return 1;
-}
-int removeme()
-{
-    tell_object(ETO, "%^GREEN%^You feel like a filthy commoner without the tunic on.");
-    return 1;
-}
-
