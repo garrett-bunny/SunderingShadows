@@ -1196,6 +1196,10 @@ void new_body()
             mylvl = CHARACTER_LEVEL_CAP - 1;
         }
         newmax = PWPOINTS[mylvl];
+        
+        if(FEATS_D->has_feat(this_object(), "eternal warrior"))
+            newmax += 50;
+        
         TP->set_max_mp(newmax);
     }
     if (TO->is_class("psion")) {

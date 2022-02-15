@@ -26,7 +26,7 @@ void create(){
     set_property("lore difficulty",30);
     set_value(5000);
     set_property("enchantment",4);
-    set_remove((:TO,"remove_func":));
+    set_remove("%^CYAN%^You see the bracers shimmer as yoremove them.%^RESET%^");
     set_wear( (:TO,"check":) );
     set_struck((:TO,"strike_func":));
 	set_item_bonus("cold resistance",10);
@@ -84,6 +84,8 @@ void cold(string str){
     uses --;
     return 1;
 }
+
+/*
 int check(){
 
    ::check();
@@ -105,7 +107,7 @@ int check(){
           
    
 }
-
+/*
 int remove_func(){
     if(!ETO->query_invis()) {
         tell_room(EETO,"%^CYAN%^"+ETOQCN+"'s bracer shimmer "+
@@ -115,6 +117,8 @@ int remove_func(){
       "remove them.");
         return 1;
 }
+
+*/
 
 int strike_func(int damage, object what, object who){
     if(random(1000) < 100){

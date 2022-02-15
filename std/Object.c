@@ -708,6 +708,10 @@ mixed query_property(string prop)
             (string)TO->query("subrace") == "szarkai") {
             num += 1;
         }
+        
+        if(FEATS_D->has_feat(this_object(), "eternal warrior") && this_object()->query("available focus") == 2)
+            num += 2;
+        
         num += props[prop];
         return (num + EQ_D->gear_bonus(TO, "magic resistance"));
     }
