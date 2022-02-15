@@ -48,7 +48,7 @@ set_property("lore difficulty",25);
    set_max_internal_encumbrance(30);
    set_property("enchantment",3+random(2));
    set_wear((:TO,"wear":));
-   set_remove((:TO,"unwear":));
+   set_remove("%^MAGENTA%^You disrobe.");
    set_item_bonus("bonus_spell_slots_3",1);
    set_item_bonus("negative energy resistance",5);
 }
@@ -61,8 +61,12 @@ int wear(){
    return 1;
 }
 
+/*
+
 int unwear(){
    if(!objectp(ETO)) return 0;
    tell_object(ETO,"%^MAGENTA%^You disrobe.");
    return 1;
 }
+
+*/

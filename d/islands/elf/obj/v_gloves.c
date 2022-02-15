@@ -47,6 +47,7 @@ int removeme()
     ETO->set_property("evil item", -1);
     return 1;
 }
+
 int strike_func(int damage, object what, object who){
         if(!objectp(ETO)) return damage;
 	if(!random(5)){
