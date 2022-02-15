@@ -35,6 +35,7 @@ void init(){
    ::init();
    add_action("break_func","use");
 }
+
 int break_func(string str){
    object ob, ob2;
    if ( !str || str !="stone") {
