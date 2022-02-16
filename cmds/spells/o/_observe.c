@@ -8,10 +8,10 @@ string theName;
 
 void create(){
     ::create();
-    set_spell_name("witness");
-    set_spell_level(([ "inquisitor" : 3, "bard" : 3 ]));
-    set_spell_sphere("divination");
-    set_syntax("cast CLASS witness on TARGET");
+    set_spell_name("observe");
+    set_spell_level(([ "psywarrior": 3, "psion":3]));
+    set_spell_sphere("clairsentience");
+    set_syntax("cast CLASS observe on TARGET");
     set_description("You link your senses to the target, allowing you to see and hear through its eyes and ears. For the duration of the effect you'll remain blinded.");
     set_verbal_comp();
     set_somatic_comp();
@@ -107,5 +107,5 @@ void dest_effect()
 }
 
 string query_spell_display(){
-   return "Witnessing: "+theName;
+   return "Observing: "+theName;
 }

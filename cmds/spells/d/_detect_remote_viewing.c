@@ -12,7 +12,7 @@ void create() {
     ::create();
     set_spell_name("detect remote viewing");
     set_spell_level(([ "psion" : 4, "psywarrior" : 3 ]));
-    set_spell_sphere("divination");
+    set_spell_sphere("clairsentience");
     set_syntax("cast CLASS detect remote viewing");
     set_description("When manifesting this power, the psion attunes his mind to the detection of magical and psionic "
 "abilities that attempt to scry him in some form.  The power remains strong in the psion's mind, allowing him to move and "
