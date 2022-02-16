@@ -209,6 +209,7 @@ void save_inventory(object ob, string path)
     {
         fname = path+"/ob"+x;
         if(catch(j = inv[x]->save_me(fname)))
+            log_file("save_inventory", "Failed to save: " + base_name(inv[x]) + "\n");
         //j=inv[x]->save_me(fname);
         continue;
     }

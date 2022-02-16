@@ -13,16 +13,16 @@ void smack_em(object ob);
 
 void create() {
     ::create();
-    feat_type("instant");
+    feat_type("permanent");
     feat_category("Psionics");
     feat_name("greaterpsionicweapon");
-    feat_syntax("greaterpsionicweapon");
+    //feat_syntax("greaterpsionicweapon");
     feat_prereq("Psionicweapon, Psywarrior L15, or Psion L15");
-    feat_desc("This feat improves on psionic weapon, making it more deadly. This feat costs psionic focus to use.");
+    feat_desc("This feat improves on psionic weapon, making it more deadly by increasing its damage dice from d6 to d8.");
     psionic(1);
 }
 
-int allow_shifted() { return 1; }
+//int allow_shifted() { return 1; }
 
 int prerequisites(object ob){
     if(!objectp(ob)) return 0;
@@ -37,6 +37,21 @@ int prerequisites(object ob){
     return ::prerequisites(ob);
 }
 
+void permanent_effects(object ob)
+{
+    ::permanent_effects(ob);
+    dest_effect();
+    return;
+}
+
+void reverse_permanent_effects(object ob)
+{
+    ::reverse_permanent_effects(ob);
+    dest_effect();
+    return;
+}
+
+/*
 int cmd_greaterpsionicweapon(string str) {
     object feat;
     if(!objectp(TP)) return 0;
@@ -50,7 +65,7 @@ void execute_feat() {
     int delay;
     ::execute_feat();
 
-    /*
+    
     if(caster->cooldown("psionicweapon"))
     {
     //if((int)caster->query_property("using smite") > time()) { //keeping the same variable to avoid stacking
@@ -58,7 +73,7 @@ void execute_feat() {
         dest_effect();
         return;
     }
-    */
+    
     if((int)caster->query_property("using instant feat")) {
         tell_object(caster,"You are already in the middle of using a feat!");
         dest_effect();
@@ -84,7 +99,9 @@ void execute_feat() {
     //caster->set_property("using smite",delay);
     return;
 }
+*/
 
+/*
 void execute_attack()
 {
     int die, i, dmg, myint, yourint, extra;
@@ -103,7 +120,7 @@ void execute_attack()
         return;
     }
 
-    caster->add_cooldown("psionicweapon", FEATTIMER);
+    //caster->add_cooldown("psionicweapon", FEATTIMER);
 
     die = 8;
 
@@ -147,6 +164,7 @@ void execute_attack()
     dest_effect();
     return;
 }
+*/
 
 
 void dest_effect(){

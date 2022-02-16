@@ -103,13 +103,15 @@ void execute_attack()
         return;
     }
 
-    caster->add_cooldown("psionicweapon", FEATTIMER);
+    //caster->add_cooldown("psionicweapon", FEATTIMER);
 
-    die = 6;
-
-    if (FEATS_D->usable_feat(caster, "mind wave")) {
+    if(FEATS_D->has_feat(caster, "greaterpsionicweapon"))
         die = 8;
-    }
+    else
+        die = 6;
+    
+    if (FEATS_D->usable_feat(caster, "mind wave"))
+        die += 2;
 
     targets = caster->query_attackers();
 
@@ -135,8 +137,8 @@ void execute_attack()
             continue;
         }
         tell_object(targets[i], "%^BOLD%^%^MAGENTA%^" + caster->QCN + " releases a psionic tempest that slices through your mind like countless blades!%^RESET%^");
-        dmg = roll_dice(clevel, die);
-
+        //dmg = roll_dice(clevel, die);
+        dmg = roll_dice(clevel, die) + BONUS_D->query_stat_bonus(caster, "intelligence");
         //caster->cause_damage_to(targets[i], "head", dmg);
         targets[i]->cause_typed_damage(targets[i], targets[i]->return_target_limb(), dmg, "mental");
         caster->add_attacker(targets[i]);
