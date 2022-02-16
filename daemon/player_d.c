@@ -773,6 +773,12 @@ int immunity_check(object obj, string type)
             return 1;
     }
     break;
+    
+    case "disease":
+    {
+        if(member_array("plague", obj->query_divine_domain()) >= 0)
+            return 1;
+    }
 
     case "fear":
     {
