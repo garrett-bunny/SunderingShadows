@@ -896,7 +896,17 @@ int immunity_check(object obj, string type)
                 obj->add_cooldown("ghoulish aspect", 120);
                 return 1;
             }
-        }        
+        }
+
+        if(member_array("freedom", obj->query_divine_domain()) >= 0)
+        {
+            if(!obj->cooldown("freedom boon"))
+            {
+                tell_object(obj, "%^YELLOW%^Your dedication to freedom at all costs protects you from the paralysis!");
+                obj->add_cooldown("freedom boon", 120);
+                return 1;
+            }
+        }         
     
         return 0;
     }
