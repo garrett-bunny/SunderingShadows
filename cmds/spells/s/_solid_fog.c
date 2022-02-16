@@ -10,7 +10,7 @@ void create() {
     set_spell_level(([ "mage" : 4, "magus" : 4 ]));
     set_spell_sphere("conjuration_summoning");
     set_damage_desc("mass staggering for 1d6 rounds");
-    set_description("This spells functions a lot like fog cloud, but instead of obscuring sight it conjures a fog so hard to move in everyone in the agrea becomes staggered.");
+    set_description("This spells functions a lot like fog cloud, but instead of obscuring sight it conjures a fog so hard to move in everyone in the area becomes staggered.");
 
     set_verbal_comp();
     set_somatic_comp();
