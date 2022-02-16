@@ -1032,12 +1032,23 @@ int quit()
     }
     YUCK_D->save_inventory(TO);
     inv=all_inventory(TO);
+    
+    foreach(object ob in inv)
+    {
+        if(!objectp(ob))
+            continue;
+        
+        if(catch(ob->remove()))
+            continue;
+    }
 
+    /*
     for (x=0;x<sizeof(inv);x++)
     {
         //if(objectp(inv[x])) { inv[x]->unequip(); }
         if(objectp(inv[x])) { inv[x]->remove(); }
     }
+    */
 
     if(static_user["pets"])
     {
