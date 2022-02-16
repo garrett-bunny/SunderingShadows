@@ -994,6 +994,8 @@ int quit()
                 "Sweet dreams!",
                 "You be well now!",
         });
+    
+    string errors;
 
     if(catch(break_all_spells()))
         message("environment", "Error breaking spells.", this_object());
@@ -1038,8 +1040,11 @@ int quit()
         if(!objectp(ob))
             continue;
         
-        if(catch(ob->remove()))
+        if(strlen(errors = catch(ob->remove())))
+        {
+            log_file("quit", "quit error", query_name() + ": " + errors + "\n");
             continue;
+        }
     }
 
     /*

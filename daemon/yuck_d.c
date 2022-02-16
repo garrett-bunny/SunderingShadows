@@ -204,10 +204,12 @@ void save_inventory(object ob, string path)
     }
     seteuid(getuid());
     j = 0;
+    
     for (x = 0; x < sizeof(inv); x++) 
     {
         fname = path+"/ob"+x;
-        j=inv[x]->save_me(fname);
+        if(catch(j = inv[x]->save_me(fname)))
+        //j=inv[x]->save_me(fname);
         continue;
     }
 }
