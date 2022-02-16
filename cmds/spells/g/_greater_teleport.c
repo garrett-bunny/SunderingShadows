@@ -12,7 +12,7 @@ void create() {
     ::create();
     set_spell_name("greater teleport");
     set_spell_level(([ "mage" : 7, "cleric" : 7 ]));
-    set_domains("travel");
+    set_domains(({"travel", "freedom" }));
     set_spell_sphere("conjuration_summoning");
     set_syntax("cast CLASS greater teleport on LOCATION");
     set_description("This greater version of teleport allow mage to travel to her destination perfectly without any chance to arrive off target, bringing all her followers with her.
