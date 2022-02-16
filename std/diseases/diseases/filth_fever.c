@@ -63,6 +63,7 @@ void heart_beat()
 
     if (!ETO->is_living()) {
         TO->remove();
+        return;
     }
     if (ETO->query_age() > next_step) {
         advance_disease();
