@@ -17,4 +17,7 @@
  "nimnavanon" : ({ "renewal", "plant", "animal", "earth", }) , \
  "seija" :   ({ "air", "cold", "fire", "earth", }) , \
  "the faceless one" : ({ "illusion", "madness", "darkness", "evil", }) , \
+ "ebolek" : ({ "plague", "evil", }), \
+ "mephasm" : ({ "evil", "law", }), \
+ "velik" : ({ "freedom", "chaos", }), \
 ]))
