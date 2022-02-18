@@ -1868,7 +1868,7 @@ varargs void use_spell(object ob, mixed targ, int ob_level, int prof, string cla
 
     if (living(caster) && base_name(PO) != "/d/magic/obj/contingency") {
         tell_object(caster, "You begin to " + whatdo + " " + spell_name + "!");
-        if (spell_type != "innate" && spell_type != "cantrip" && spell_type != "deep" && !silent_casting) {
+        if (spell_type != "innate" && spell_type != "cantrip" && spell_type != "deep" && !silent_casting && !shadow_spell) {
             tell_room(environment(caster), caster->QCN +
                       " begins to " + whatdo + " a " + whatsit + "!", caster);
         }
