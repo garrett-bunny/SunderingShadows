@@ -56,6 +56,8 @@ void spell_effect(int prof)
     spell_kill(target, caster);
 
     targets = target_selector();
+    targets += ({target});
+    targets = distinct_array(targets);
     
     foreach(object ob in targets)
     {
