@@ -365,6 +365,10 @@ int can_memorize(string myclass, string spell)
             return 0;
         }
     }
+    
+    if(member_array(spell, keys(MAGIC_D->query_index(myclass))) < 0)
+        return 0;
+    
     if ((query_spell_level_restricted(myclass)) && lvl >= query_spell_level_restricted(myclass)) {
         return SPELL_RESTRICTED;
     }
