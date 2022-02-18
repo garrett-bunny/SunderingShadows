@@ -236,7 +236,7 @@ int cmd_cast(string str)
     
     if(type == "druid" || type == "cleric")
     {
-        if(member_array(spell, keys(MAGIC_D->index_castable_spells(this_object(), type))) < 0)
+        if(member_array(spell, keys(MAGIC_D->index_castable_spells(this_player(), type))) < 0)
         {
             write("You can't cast that spell.");
             return 1;
