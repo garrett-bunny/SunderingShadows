@@ -40,12 +40,12 @@ Level 5 (epic) (DC 65): 3 million each
 Level 6 (legendary) (DC 75), MAX): 8 million each
 
 Traps/Locks:
-Level 1 (poor) (DC 35): 62.5k each
-Level 2 (common) (DC 45): 125k each
-Level 3 (good) (DC 55): 250k each
-Level 4 (rare) (DC 65): 500k each
-Level 5 (epic) (DC 75): 3 million each
-Level 6 (legendary) (DC 85), MAX): 8 million each
+Level 1 (poor) (DC 30): 62.5k each
+Level 2 (common) (DC 40): 125k each
+Level 3 (good) (DC 50): 250k each
+Level 4 (rare) (DC 60): 500k each
+Level 5 (epic) (DC 70): 3 million each
+Level 6 (legendary) (DC 80), MAX): 8 million each
 
 DCs are set with an assumption of a 25% chance for a max skilled character to bypass at legendary level.
 
