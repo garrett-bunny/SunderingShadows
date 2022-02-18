@@ -39,9 +39,10 @@ int armor_filter(object ob)
 int cmd_cast(string str)
 {
     object targ, * armor, * wielded;
-    int i, j, align, healharm, schoolspell, mylvl, * mapkeys, domain, slevel, maguslvl;
-    string str2, tmp, type, spell, tar, * known, myschool, myexp, myexp1, myexp2, myexp3, domain_name;
+    int i, j, align, healharm, schoolspell, mylvl, * mapkeys, domain, slevel, maguslvl, succ;
+    string str2, tmp, type, spell, tar, * known, myschool, myexp, myexp1, myexp2, myexp3, *domain_name;
     mapping mymapp = ([]), mymapp2 = ([]);
+    mapping all_spells;
 
     seteuid(getuid());
     if (!str) {
@@ -230,9 +231,18 @@ int cmd_cast(string str)
             }
         }
     }
-
     spell = str2;
     spell = MAGIC_D->expand_quick_name(spell);
+    
+    if(type == "druid" || type == "cleric")
+    {
+        if(member_array(spell, keys(MAGIC_D->index_castable_spells(this_object(), type))) < 0)
+        {
+            write("You can't cast that spell.");
+            return 1;
+        }
+    }
+    
     spell = replace_string(spell, " ", "_");
     tmp = "/cmds/spells/" + spell[0..0] + "/_" + spell + ".c";
     if (!file_exists(tmp)) {
@@ -251,7 +261,7 @@ int cmd_cast(string str)
             return 1;
         }
     }
-
+    
     if (domain) {
         targ = find_object_or_load(tmp);
         slevel = targ->query_spell_level(type);
