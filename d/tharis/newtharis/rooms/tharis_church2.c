@@ -107,7 +107,7 @@ int search_lanterns(string str){
                         "hallway leading to a tunnel.%^RESET%^");
 		tell_room(ETP,"%^BOLD%^%^BLACK%^"+TP->QCN+" pulls on one "+
 			"of the lanterns and causes a panel to the side.%^RESET%^",TP);
-                add_exit(ROOMS"tunnel1","down");
+                add_exit(ROOMS"tunnel5","down");
 		return 1;
 	}
 }

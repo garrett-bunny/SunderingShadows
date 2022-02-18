@@ -30,7 +30,7 @@ int hit_func(object target){
     if(!random(10)){
         tell_object(owner, "%^RESET%^%^CRST%^%^C144%^A flash of %^C255%^light %^C144%^from the sword distracts "+targetname+"%^RESET%^%^CRST%^%^C144%^ as you lunge forward with the %^C189%^bl%^C195%^a%^C189%^de%^RESET%^%^C144%^!%^CRST%^");
         tell_object(target, "%^RESET%^%^CRST%^%^C144%^A flash of %^C255%^light %^C144%^from the sword distracts you as "+ownername+"%^RESET%^%^CRST%^%^C144%^ lunges forward with the %^C189%^bl%^C195%^a%^C189%^de%^RESET%^%^C144%^!%^CRST%^");
-        tell_room(environment(ETO), "%^RESET%^%^CRST%^%^C144%^A flash of %^C255%^light %^C144%^from the sword distracts "+targetname+"%^RESET%^%^CRST%^%^C144%^ as "+owner+"%^RESET%^%^CRST%^%^C144%^ lunges forward with the %^C189%^bl%^C195%^a%^C189%^de%^RESET%^%^C144%^!%^CRST%^", ({owner, target}));
+        tell_room(environment(ETO), "%^RESET%^%^CRST%^%^C144%^A flash of %^C255%^light %^C144%^from the sword distracts "+targetname+"%^RESET%^%^CRST%^%^C144%^ as "+ownername+"%^RESET%^%^CRST%^%^C144%^ lunges forward with the %^C189%^bl%^C195%^a%^C189%^de%^RESET%^%^C144%^!%^CRST%^", ({owner, target}));
         return (random(4) + 8);
     }
 }

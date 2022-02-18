@@ -30,7 +30,7 @@ int hit_func(object target){
     if(!random(10)){
         tell_object(owner, "%^RESET%^%^CRST%^%^C091%^The barbs of your sword catch "+targetname+", %^C196%^tearing %^C091%^and %^C124%^ripping %^RESET%^%^C091%^free!%^CRST%^");
         tell_object(target, "%^RESET%^%^CRST%^%^C091%^The barbs of "+ownername+"%^RESET%^%^CRST%^%^C091%^'s sword catches you, %^C196%^tearing %^C091%^and %^C124%^ripping %^RESET%^%^C091%^free!%^CRST%^");
-        tell_room(environment(ETO), "%^RESET%^%^CRST%^%^C091%^The barbs of "+owner+"%^RESET%^%^CRST%^%^C091%^'s sword catch "+targetname+"%^RESET%^%^CRST%^%^C091%^, %^C196%^tearing %^C091%^and %^C124%^ripping %^RESET%^%^C091%^free!%^CRST%^", ({owner, target}));
+        tell_room(environment(ETO), "%^RESET%^%^CRST%^%^C091%^The barbs of "+ownername+"%^RESET%^%^CRST%^%^C091%^'s sword catch "+targetname+"%^RESET%^%^CRST%^%^C091%^, %^C196%^tearing %^C091%^and %^C124%^ripping %^RESET%^%^C091%^free!%^CRST%^", ({owner, target}));
         return (random(4) + 8);
     }
 }
