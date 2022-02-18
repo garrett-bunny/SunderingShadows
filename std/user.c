@@ -5513,7 +5513,7 @@ int test_passive_perception()
         ismagic = targ->query_magic_hidden();
         stealth = (int)targ->query_skill("stealth");
         spellcraft = (int)targ->query_skill("spellcraft");
-        if (FEATS_D->usable_feat(player, "spot") && !player->true_seeing()) {
+        if (FEATS_D->usable_feat(player, "spot")) {
             if (ishidden == 1 && ismagic == 0) {
                 if (perception > stealth) {
                     numnotvisible++;
