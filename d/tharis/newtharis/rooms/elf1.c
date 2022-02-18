@@ -25,10 +25,11 @@ void create(){
         "south" : ROOMS"office",
         "north" : "/d/player_houses/caledor/room/courtyard",
         ]));
-    set_door("wooden gate", "/d/player_houses/caledor/room/courtyard", "north", "caledor_gate", "lock");
-	set_locked("wooden gate", 1, "lock");
-    lock_difficulty("wooden gate", 55, "lock");
-    set_lock_description("wooden gate", "lock", "%^RESET%^%^CRST%^%^C058%^This is a huge wooden bar that glides across to secure the gate.%^CRST%^");
+    set_door("wooden gate", "/d/player_houses/caledor/room/courtyard", "north", 0, 0);
+    //set_door("wooden gate", "/d/player_houses/caledor/room/courtyard", "north", "caledor_gate", "lock");
+	//set_locked("wooden gate", 1, "lock");
+    //lock_difficulty("wooden gate", 55, "lock");
+    //set_lock_description("wooden gate", "lock", "%^RESET%^%^CRST%^%^C058%^This is a huge wooden bar that glides across to secure the gate.%^CRST%^");
 	set_door_description("wooden gate", "%^RESET%^%^CRST%^%^C058%^Before you is a massive wooden gate bound together with what seems to be forged cold iron bands. A great edifice in the shape of a starburst emblazoned upon it.%^CRST%^");
 }
 
