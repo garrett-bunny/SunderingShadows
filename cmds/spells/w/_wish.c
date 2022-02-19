@@ -75,7 +75,8 @@ int preSpell()
         sargs = "";
     spell_to_cast = new(splfn);
 
-    mage_level = min(values(MAGIC_D->query_index_row(spl)["levels"]));
+    mage_level = min(values(spell_to_cast->query_spell_level_map()));
+    //mage_level = min(values(MAGIC_D->query_index_row(spl)["levels"]));
 
     max_level = MAX_MAG;
     
