@@ -3163,7 +3163,7 @@ varargs int checkMagicResistance(object victim, int mod)
 
     antimagic = place->query_property("antimagic field");
     
-    if(antimagic && antimagic > roll_dice(1, 100))
+    if(antimagic && (10 + antimagic) > (clevel + roll_dice(1, 20)))
     {
         tell_room(place, "%^CYAN%^The spell fails to power through the antimagic field.%^RESET%^");
         return 1;
