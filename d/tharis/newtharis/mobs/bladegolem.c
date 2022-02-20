@@ -83,7 +83,7 @@ void create()
 
 void set_guard_stuff() {
     set_jail_location("/d/tharis/newtharis/rooms/jail_main");
-    set_guarding("tharis");
+    set_guarding("Tharis");
     //set_bad_races(RACIST);
     set_race_action("capture");  //might as well :D
     /*

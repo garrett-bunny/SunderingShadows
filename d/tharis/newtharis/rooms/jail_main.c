@@ -20,7 +20,7 @@ void create(){
     if(!present("golem 2"))
         new("/d/tharis/newtharis/mobs/bladegolem")->move(TO);
     
-    set_jail_location("tharis");
+    set_jail_location("Tharis");
     DESTD->clear_waystations("/d/tharis/newtharis/rooms/jail_main");
     DESTD->clear_waystations("/d/tharis/newtharis/rooms/jail_main");
     ADEST("/d/tharis/newtharis/rooms/jail_main",1);
