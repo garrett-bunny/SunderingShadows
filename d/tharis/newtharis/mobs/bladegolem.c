@@ -122,7 +122,7 @@ void do_special_combat_actions()
 {
    blow_horn(this_object());
 }
-
+/*
 void do_laws(object live){
 do_laws();
 do_laws();
@@ -131,6 +131,7 @@ do_laws();
 if(sizeof(live->query_wielded()))
   force_me("say please unhand your weapon");
 }
+*/
 
 void blow_horn(object ob)
 {
