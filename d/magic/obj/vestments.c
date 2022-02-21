@@ -216,7 +216,7 @@ int wearit()
         set_short("%^RESET%^%^CRST%^%^C091%^extravagant %^C059%^bl%^C243%^ac%^C059%^k s%^C243%^il%^C059%^k %^RESET%^%^C091%^vestments%^CRST%^");
         break;
     case "edea":
-        set_long("%^RESET%^%^CRST%^%^C144%^Fashioned from simple linen, these flowing robes are a %^C255%^st%^C252%^a%^C255%^r%^C252%^k %^C255%^wh%^C252%^i%^C255%^t%^C252%^e %^RESET%^%^C144%^with an uneven %^C059%^bl%^C243%^ac%^C0590%^k %^C144%^and %^C246%^gr%^C249%^a%^C246%^y %^RESET%^%^C144%^border. The brilliant hue seems to be driving back the shadowy pigment, symbolic of Edea's radiance driving back the void. An image of a beautiful %^C255%^porcelain mask %^RESET%^%^C144%^is present, centered over the chest.%^CRST%^");
+        set_long("%^RESET%^%^CRST%^%^C144%^Fashioned from simple linen, these flowing robes are a %^C255%^st%^C252%^a%^C255%^r%^C252%^k %^C255%^wh%^C252%^i%^C255%^t%^C252%^e %^RESET%^%^C144%^with an uneven %^C059%^bl%^C243%^ac%^C059%^k %^C144%^and %^C246%^gr%^C249%^a%^C246%^y %^RESET%^%^C144%^border. The brilliant hue seems to be driving back the shadowy pigment, symbolic of Edea's radiance driving back the void. An image of a beautiful %^C255%^porcelain mask %^RESET%^%^C144%^is present, centered over the chest.%^CRST%^");
         set_short("%^RESET%^%^CRST%^%^C144%^simple %^C255%^wh%^C252%^i%^C255%^t%^C252%^e %^C255%^li%^C252%^n%^C255%^e%^C252%^n %^RESET%^%^C144%^vestments%^CRST%^");
         break;
 
