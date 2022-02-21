@@ -775,6 +775,7 @@ int query_resistance(string res)
         }
     }
 
+/*
     if(FEATS_D->usable_feat(this_object(), "infused form"))
     {
         switch(res)
@@ -788,6 +789,7 @@ int query_resistance(string res)
             break;
         }
     }
+*/
 
     //Cleric domain-specific resistances
     domains = TO->query_divine_domain();
@@ -930,6 +932,20 @@ int query_resistance_percent(string res)
     {
         if(this_object()->query("elementalist") == res)
             mod += 30;
+    }
+    
+    if(FEATS_D->usable_feat(this_object(), "infused form"))
+    {
+        switch(res)
+        {
+            case "fire":
+            case "cold":
+            case "electricity":
+            case "acid":
+            case "sonic":
+            mod += 10;
+            break;
+        }
     }
 
     if(this_object()->is_class("oracle"))

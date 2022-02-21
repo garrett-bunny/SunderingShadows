@@ -17,7 +17,7 @@ void create()
     feat_category("Psionics");
     feat_name("infused form");
     feat_prereq("Psion (Egoist) L21");
-    feat_desc("This feat passively gives the egoist +5 damage resistance and +10 fire, cold, electricity, acid and sonic resistance.");
+    feat_desc("This feat passively gives the egoist +5 damage resistance and +10 fire, cold, electricity, acid and sonic resistance percent.");
     permanent(1);
     psionic(1);
 }
