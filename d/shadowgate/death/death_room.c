@@ -412,7 +412,7 @@ void do_death7(object tp){
                        "Faint, echoing laughter touches your ears and you "+
                        "cannot help but smile.\n");
                     break;
-       case "varda":  tell_object(tp,"%^RESET%^%^RED%^All around "+
+       case "cevahir":  tell_object(tp,"%^RESET%^%^RED%^All around "+
                        "you are the sounds of battle.  Swords "+
                        "ring off armor amid the grunts and "+
                        "yells of soldiers fighting.  A sense of "+
@@ -503,7 +503,7 @@ void do_death8(object tp){
                        "has much left to do in the realms in "+
                        "my name... "+tp->QS+" must be returned.\n");
                     break;
-       case "varda":  tell_object(tp,"%^RESET%^%^MAGENTA%^A dauntless "+
+       case "cevahir":  tell_object(tp,"%^RESET%^%^MAGENTA%^A dauntless "+
                        "voice states%^RESET%^:  %^BOLD%^%^RED%^"+
                        "The field of battle is riddled with dangers.  "+
                        "So long as "+tp->QS+" faced them all "+
@@ -680,7 +680,7 @@ void do_death10(object tp){
                        "%^BOLD%^%^BLACK%^Oh, now...I think "+tp->QS+" "+
                        "knows better than to betray me.\n");
                     break;
-       case "varda":  tell_object(tp,"%^RESET%^%^MAGENTA%^A dauntless "+
+       case "cevahir":  tell_object(tp,"%^RESET%^%^MAGENTA%^A dauntless "+
                        "voice states%^RESET%^:  %^BOLD%^%^RED%^"+
                        "One of mine will never turn aside from the "+
                        "field of battle.  I know "+tp->QS+" will "+
