@@ -2487,6 +2487,11 @@ void define_clevel()
             clevel += 4;
         }
     }
+    
+    if(spell_type == "psion")
+    {
+
+    }
 
     if (spell_type == "psywarrior" || spell_type == "psion") {
         if (FEATS_D->usable_feat(caster, "mind wave")) {
@@ -2513,6 +2518,34 @@ void define_clevel()
         {
             if(mydiscipline == caster->query_discipline())
                 clevel += 1;
+        }
+        
+        switch(caster->query_discipline())
+        {
+            case "egoist":
+            if(spell_sphere == "psychometabolism")
+                clevel += 1;
+            break;
+            case "nomad":
+            if(spell_sphere == "psychoportation")
+                clevel += 1;
+            break;
+            case "kineticist":
+            if(spell_sphere == "psychokinesis")
+                clevel += 1;
+            break;
+            case "shaper":
+            if(spell_sphere == "metacreativity")
+                clevel += 1;
+            break;
+            case "seer":
+            if(spell_sphere == "clairsentience")
+                clevel += 1;
+            break;
+            case "telepath":
+            if(spell_sphere == "telepathy")
+                clevel += 1;
+            break;
         }
     }
 
