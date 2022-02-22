@@ -103,12 +103,16 @@ void do_rid(){
    string name;
    object ridob;
    
+   /*
    for(i=0;i<sizeof(toberid);i++){
       name = toberid[i];
       ridob = new("/cmds/adm/_rid");
       ridob->cmd_rid(name);
    }
-   write("Purged "+sizeof(toberid)+" players.");
+   */
+   write(identify(toberid));
+   write("Found "+sizeof(toberid)+" players.");
+   //write("Purged "+sizeof(toberid)+" players.");
 }
 
 int help(){
