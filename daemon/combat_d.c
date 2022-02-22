@@ -3366,6 +3366,9 @@ void internal_execute_attack(object who)
     who_name = who->query_cap_name();
     who_poss = who->query_possessive();
     who_obj = who->query_objective();
+    
+    if(eval_cost() < 100000)
+        return;
 
     if (!objectp(EWHO)) {
         return;
