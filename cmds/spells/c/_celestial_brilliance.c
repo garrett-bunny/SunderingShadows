@@ -34,7 +34,7 @@ string query_cast_string()
 void spell_effect(int prof)
 {
     tell_room(place,"%^RESET%^%^CYAN%^A loud %^BOLD%^t%^GREEN%^r%^CYAN%^um%^GREEN%^p%^CYAN%^et bl%^GREEN%^a%^CYAN%^st %^RESET%^%^CYAN%^sounds out as the area brightens with %^BOLD%^%^WHITE%^v%^RESET%^i%^YELLOW%^b%^WHITE%^ra%^RESET%^n%^BOLD%^t l%^RESET%^u%^BOLD%^m%^ORANGE%^i%^WHITE%^n%^RESET%^e%^BOLD%^s%^ORANGE%^c%^WHITE%^e%^RESET%^n%^BOLD%^ce%^RESET%^%^CYAN%^, %^YELLOW%^p%^WHITE%^u%^ORANGE%^re %^RESET%^%^CYAN%^and %^YELLOW%^wh%^WHITE%^o%^ORANGE%^les%^WHITE%^o%^ORANGE%^me%^RESET%^%^CYAN%^!%^RESET%^");
-    prevlight=place->query_light();
+    prevlight=place->query_property("light");
     if(prevlight<1)
         place->set_light(1);
     counter = clevel * 3;
@@ -92,7 +92,8 @@ void execute_attack()
 void dest_effect() {
     if(objectp(place))
     {
-        place->set_light(prevlight);
+        place->remove_property("light");
+        place->set_property("light", prevlight);
         tell_object(place,"%^BOLD%^%^BLUE%^The brightness recedes, and the place becomes a bit cooler.%^RESET%^");
         place->remove_property_value("spelled", ({TO}) );
     }
