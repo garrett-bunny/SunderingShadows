@@ -7,6 +7,7 @@ inherit DAEMON;
 
 #define GREPFILE "/adm/save/users/temp.txt"
 #define USERDIR "/adm/save/users/"
+#define BACKUPDIR "/adm/save/users/rid/"
 #define ALPHA ({"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"})
 
 string *toberid;
@@ -100,16 +101,24 @@ void grep(string str) {
 
 void do_rid(){
    int i;
-   string name;
+   string name, file, tmp;
    object ridob;
    
-   /*
-   for(i=0;i<sizeof(toberid);i++){
-      name = toberid[i];
-      ridob = new("/cmds/adm/_rid");
-      ridob->cmd_rid(name);
-   }
-   */
+    for(i=0;i<sizeof(toberid);i++)
+    {
+        name = toberid[i];
+        file = USERDIR + name[0..0] + "/" + name + ".o";
+        if(file_size(file) > -1)
+        {
+            tmp = read_file(file);
+            rm(BACKUPDIR + name + ".o");
+            write_file(BACKUPDIR + name + ".o", tmp);
+            write("Backing up: " + file + "\n");
+            rm(file);
+        }
+          
+    }
+
    write(identify(toberid));
    write("Found "+sizeof(toberid)+" players.");
    //write("Purged "+sizeof(toberid)+" players.");
