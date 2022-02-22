@@ -42,6 +42,9 @@ void init()
 
 void warning(object who)
 {
+    if(environment(who) != this_object())
+        return;
+    
     tell_object(who, "%^CYAN%^BOLD%^You feel the power of the patron deity protecting this place. Hostile action against the faithful of this deity will be punished.%^RESET%^");
     return;
 }
