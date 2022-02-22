@@ -1,6 +1,10 @@
 #include <std.h>
 inherit WEAPONLESS;
 
+// LoKi - Edited so pigs wander off
+
+void go_home(object to);
+
 void create()
 {
     ::create();
@@ -27,4 +31,22 @@ void create()
     set("aggressive", 8);
     set_hd(4, 2);
     set_attack_limbs(({ "right forepaw", "left forepaw", "head" }));
+}
+
+
+
+void go_home(object to)
+{
+    if (!objectp(to)) {
+        return;
+    }
+    tell_room(environment(to), "The pig wanders off...");
+    to->move("/d/shadowgate/void");
+    to->remove();
+}
+
+void reset()
+{
+    ::reset();
+    go_home(TO);
 }
