@@ -3557,6 +3557,11 @@ varargs int do_save(object targ, int mod, int get_dc)
     {
         DC -= 2;
     }
+    if(FEATS_D->has_feat(targ, "resist natures lure"))
+    {
+        if(USER_D->is_valid_enemy(caster->query_race(), "fey") || USER_D->is_valid_enemy(caster->query("subrace"), "fey"))
+            DC -= 4;
+    }
 
     //RACIAL ADJUSTMENTS AGAINST SPELLS
     if (targ->query_race() == "dwarf")
