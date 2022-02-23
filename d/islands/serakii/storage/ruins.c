@@ -30,7 +30,7 @@ void create() {
 	"%^C055%^sorrow %^C245%^in the area, though "+
 	"no sense of actual danger. The %^C244%^"+
 	"rubble %^C245%^is thick enough here that "+
-	"you could try to %^C099%^clear %^C245%^it "+
+	"you could try to %^C099%^>clear< %^C245%^it "+
 	"and see what is underneath.%^CRST%^\n");
 
     set_items(([
@@ -112,7 +112,23 @@ progress.",TP);
     switch(i){
         case 0..2:    // corpse
 
-       tell_object(TP,"Corpse.");
+    {
+        object corpse;
+        corpse = new("/std/obj/corpse");
+        corpse->set_name("human");
+        corpse->set_gender(({"male","female"})[random(2)]);
+        corpse->set_long("%^CYAN%^Before you is an %^CYAN%^o%^CYAN%^l%^CYAN%^d "+
+         "%^CYAN%^c%^BOLD%^%^BLACK%^o%^RESET%^%^CYAN%^r%^BOLD%^%^BLACK%^"+
+         "p%^RESET%^%^CYAN%^s%^CYAN%^e%^CYAN%^ of a human being in tattered "+
+         "clothes. Its features are %^CYAN%^r%^BOLD%^%^BLACK%^ott%^RESET%^%^CYAN%^"+
+         "e%^BOLD%^%^BLACK%^n %^BLACK%^aw%^RESET%^%^CYAN%^a%^BOLD%^%^BLACK%^"+
+         "y%^RESET%^%^CYAN%^ and are hard to discern. It smells as disgustingly "+
+         "as it looks, %^BOLD%^%^WHITE%^bi%^BLACK%^t%^WHITE%^s %^BLACK%^o%^WHITE%^"+
+         "f %^BLACK%^b%^WHITE%^o%^BLACK%^n%^BLACK%^e%^RESET%^%^CYAN%^ peer through "+
+         "decayed pieces. Who it was in life is impossible to tell at this point.");
+        corpse->set_short("%^CYAN%^A human corpse%^RESET%^");
+        corpse->move(TO);
+    }
 
         break;
 
