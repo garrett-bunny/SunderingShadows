@@ -424,6 +424,10 @@ void do_death7(object tp){
                     break;
        case "edea":  tell_object(tp,"%^RESET%^%^CRST%^%^C144%^A light begins to dawn around you, brightening slowly but inexorably into an awesome brilliance. There is a warmth, filling you with a sense of burgeoning potential, of life waiting to blossom, to run free and wild. You cannot focus on anything at all, as the radiance fills your view.%^CRST%^\n");
                     break;
+       case "khyron":  tell_object(tp,"%^CRST%^%^RESET%^%^C059%^A sudden %^C060%^savage wind%^C059%^ rips at your being, and %^C190%^l%^C191%^i%^C192%^g%^C193%^h%^C194%^t%^C195%^n%^C194%^i%^C193%^n%^C192%^g%^RESET%^%^C059%^ splits the encroaching darkness. A deafening rumble of %^C243%^t%^C244%^h%^C245%^u%^C245%^n%^C243%^d%^C244%^e%^C245%^r%^RESET%^%^C059%^ infuses you with the %^C243%^f%^C244%^u%^C245%^r%^C244%^y%^RESET%^%^C059%^ of a %^C060%^s%^C066%^t%^C065%^o%^C059%^r%^C060%^m%^RESET%^%^C059%^.%^CRST%^\n");
+                    break;
+       case "seija":  tell_object(tp, "%^CRST%^%^RESET%^%^C153%^As the vision fades and %^C245%^darkness%^C153%^ settles around you, you find yourself at peace and perfectly relaxed, with a sense of all things being balanced in true harmony%^CRST%^\n");
+                    break;
        default:  tell_object(tp,"%^BOLD%^%^BLACK%^Darkness "+
                     "swirls around you, hiding Lysara from "+
                     "view.  You watch with dread as the %^RESET%^"+
@@ -513,6 +517,10 @@ void do_death8(object tp){
        case "ashra":  tell_object(tp,"%^RESET%^%^CRST%^%^C091%^The whispers coalesce into a single, layered message: %^RESET%^%^C059%^My will has not yet been done. Radiance still pushes back the void, leaving my grasp wanting. Return my servant, that "+tp->QS+" can spread my shadows and darkness. Their service is not yet complete.%^CRST%^\n");
                     break;
        case "edea":  tell_object(tp,"%^RESET%^%^CRST%^%^C144%^A voice, gentle and warm, speaks from the surrounding radiance: %^RESET%^%^C230%^It is not "+tp->QP+" fault, they were pushing the boundaries of the dark and feel. It is only in the light that life can blossom and bloom, and such sacrifice is noble... and should be rewarded. Grant my devoted chosen another chance.%^CRST%^\n");
+                    break;
+       case "khyron":  tell_object(tp,"%^CRST%^%^RESET%^%^C060%^A voice roars over the howling wind:%^RESET%^ "+capitalize(tp->QS)+" must continue to spread my might until all the world fears the coming storm! Release "+tp->QO+".%^CRST%^\n");
+                    break;
+       case "seija":  tell_object(tp,"%^CRST%^%^RESET%^%^C111%^A soothing voice calls out: %^CRST%^The volatile elements of the world must be kept in balance. You must free "+tp->QO+" so "+tp->QS+" can continue my teachings, to inspire harmony within the mortal world.%^CRST%^\n");
                     break;
        default:  tell_object(tp,"%^RESET%^%^GREEN%^The hideous wall "+
                     "begins to wrap itself around you, draining you "+
@@ -689,6 +697,10 @@ void do_death10(object tp){
        case "ashra":  tell_object(tp,"%^RESET%^%^CRST%^%^C091%^The voices grows stronger, more insistent: %^RESET%^%^C059%^Do not forget your charge. Spread my primordial darkness in every sense. Take pleasure in snuffing out the light, and those chosen to defend it from my inevitable victory.%^CRST%^\n");
                     break;
        case "edea":  tell_object(tp,"%^RESET%^%^CRST%^%^C144%^The voice takes on a cautioning tone: Be wary, my chosen. The darkness will always strike, searching out any weakness to exploit. Drive it back and show them the power of my eternal radiance. Stand fast, and I shall guide you.%^CRST%^\n");
+                    break;
+       case "khyron":  tell_object(tp,"%^CRST%^%^RESET%^%^C060%^A voice roars over the howling wind:%^RESET%^ "+capitalize(tp->QS)+" will not defy me, for all fear my wrath.%^CRST%^\n");
+                    break;
+       case "seija":  tell_object(tp,"%^CRST%^%^RESET%^%^C111%^A soothing voice calls out: %^CRST%^"+capitalize(tp->QS)+" understands the importance of "+tp->QP+" duty, "+tp->QS+" will not turn away from it.%^CRST%^\n");
                     break;
        default:  tell_object(tp,"%^RESET%^Miraculously, all stops "+
                     "for a moment, and you hear a voice from above.\n\n"+
