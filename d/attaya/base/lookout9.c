@@ -20,7 +20,7 @@ void create() {
     set_items(([
     "windows" : "The entire inner wall is made of glass to display the beautiful crystalline tower outside.",
     "walls" : "The walls are built of ancient stone bricks that crumble and crack now beneath the weight of the fortress.",
-    "floor" : "The floor, made of granite tiles, is covered by rotten decaing masses of black carpet.",
+    "floor" : "The floor, made of granite tiles, is covered by rotten decaying masses of black carpet.",
     "carpet" : "It is completely decayed.",
     "pool" : "The reflecting pool is crystal clear and reflects the crystalline tower."
     ]));
