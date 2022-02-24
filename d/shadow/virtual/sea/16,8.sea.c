@@ -15,7 +15,7 @@ void create() {
     set_short("You are in the Desert");
     set_long(
 @OLI
-	%^BOLD%^You are on a the Saakrune Sea.%^RESET%^
+	%^BOLD%^You are on the Saakrune Sea.%^RESET%^
 You see an island in the water here.
 OLI
 	);

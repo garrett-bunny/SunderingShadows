@@ -26,7 +26,7 @@ void create()
   set_light(2);
      set_property("no teleport",1);
   set_short("You are in the Desert");
-  set_long("	%^BOLD%^You are on a the Saakrune Sea.%^RESET%^\n"
+  set_long("	%^BOLD%^You are on the Saakrune Sea.%^RESET%^\n"
       "You see the dock of an island here.\n");
   set_exits( ([
 	       "north" : "/d/shadow/virtual/50,7.sea",

@@ -108,7 +108,7 @@ void dest_effect(){
 
    if(objectp(caster))
    {
-       tell_object(caster,"%^CYAN%^%^BOLD%^The illusion protected you from scrying fades.%^RESET%^");
+       tell_object(caster,"%^CYAN%^%^BOLD%^The illusion protecting you from scrying fades.%^RESET%^");
        caster->remove_property_value("spelled", ({TO}) );
    }
    if(objectp(detector)) detector->self_destruct();

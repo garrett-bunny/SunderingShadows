@@ -53,7 +53,7 @@ void create() {
 "rafters large enough to be keels of galleons.%^RESET%^",
 ({"balcony"}) : "%^RESET%^%^ORANGE%^A balcony overlooks the trading floor. "+
 "People lean over with drinks in hand%^RESET%^",
-({"chandeliers"}) : "%^BLACK%^%^BOLD%^three chandeliers hang from the ceiling, "+
+({"chandeliers"}) : "%^BLACK%^%^BOLD%^Three chandeliers hang from the ceiling, "+
 "providing light through %^RESET%^%^ORANGE%^numerous candles%^RESET%^",
     ]));
 

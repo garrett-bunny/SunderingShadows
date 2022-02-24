@@ -8,7 +8,7 @@ void create(){
    set_property("indoors", 1);
    set_property("light", 1);
    set_property("no teleport",1);
-   set_smell("default", "The air is thick the natural smells of rebirth");
+   set_smell("default", "The air is thick with the natural smells of rebirth");
    set_listen("default", "You can't hear anything.");
    set_short("%^BOLD%^%^GREEN%^A Pulsating Cocoon");
    set_long("%^BOLD%^%^BLACK%^A l%^RESET%^a%^BOLD%^%^BLACK%^r%^RESET%^ge %^BOLD%^%^BLACK%^p%^GREEN%^u%^RESET%^%^GREEN%^l%^BOLD%^%^BLACK%^sa%^RESET%^%^GREEN%^t%^BOLD%^i%^BLACK%^n%^RESET%^%^GREEN%^g %^BOLD%^%^BLACK%^c%^RESET%^o%^BOLD%^%^BLACK%^c%^RESET%^oo%^BOLD%^%^BLACK%^n%^RESET%^");

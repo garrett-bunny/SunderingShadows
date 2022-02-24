@@ -135,7 +135,7 @@ void do_locks() {
                 int score;
                 if(!EETO->query_locked(dkeys[i],cur_keys[x])) { continue; }
                 score = 20 + roll_dice(1,10);
-                if(door[cur_keys[x]]["mod"]) { score += door[cur_keys[x]]["mod"]; }
+                if(door[cur_keys[x]]["mod"]) { score -= door[cur_keys[x]]["mod"]; }
                 if (score > 20) {
                     tell_room(EETO,
                         "%^CYAN%^The "+cur_keys[x]+" of the "+dkeys[i]+" clicks "
