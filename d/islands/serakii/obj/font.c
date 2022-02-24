@@ -5,6 +5,8 @@
 inherit OBJECT;
 
 void cinema(object tp, int num);
+void cinema_mass(object tp, int num);
+object ob;
 
 void create(){
     ::create();
@@ -70,6 +72,14 @@ int sanctify_fun(string str,object who){
         cinema(TP,0);
         return 1;
     }
+	
+    if((str == "mass") || (str == "mass of flesh") || (str == "tears of the lost")){
+        ob=present("mass of flesh",TP);
+        if(!ob) return notify_fail("\nYou do not have a mass of flesh to sanctify.\n");
+        ob->remove();
+        cinema_mass(TP,0);
+        return 1;
+    }
 
     tell_object(TP,"%^BLACK%^%^BOLD%^Sanctify What?\n%^RESET%^");
     return 1;
@@ -120,7 +130,41 @@ void cinema(object tp,int num){
     return;
 }
 
+void cinema_mass(object tp,int num){
+            switch(num){
+                case(0):
+                    tell_object(TP,"\n%^C069%^You look at the %^C186%^disgusting dagger%^C069%^ in your hand, then place it resolutely on the %^C240%^slab%^C069%^.%^CRST%^\n");
+                    tell_room(ETP,"%^C069%^\n%^CRST%^"+TPQCN+"%^C069%^ places an %^C186%^odd looking dagger%^C069%^ on the %^C244%^slab%^C069%^.%^CRST%^%^CRST%^\n",TP);
+                break;
+                case(1):
+                    tell_object(TP,"%^C075%^You stand back, whispering a prayer, to %^C072%^Lysara%^C075%^.%^CRST%^\n");
+                    tell_room(ETP,"%^C075%^with a step back %^CRST%^"+TPQCN+"%^C075%^ seems to whisper a soft prayer%^CRST%^\n",TP);                    
+                break;
+                case(2):
+                    tell_room(ETP,"%^C066%^With a %^C060%^frown %^CRST%^"+TPQCN+"%^C066%^ seems to wait...%^CRST%^\n",TP);
+                    tell_object(TP,"%^C066%^You look around, waiting for something.%^CRST%^");
+                break;
+                case(3):
+                    tell_room(ETP,"%^C023%^You hear the %^C160%^sharp caw%^C023%^ of a %^C240%^raven %^C023%^echo through the %^C059%^ruins %^C023%^of the %^CRST%^"+
+                    	"%^C023%^city.%^CRST%^\n");
+                break;
+                case(4):
+                    tell_room(ETP,"%^C071%^The %^C160%^angry caw%^C071%^ of the raven is multiplied, it becomes an %^C088%^angry cacaphony%^C071%^ that drowns out everything!%^CRST%^\n");
+                break;
+                case(5):
+                    tell_room(ETP,"%^C151%^The %^C221%^dagger %^C151%^on the slab shudders, twists, and %^C160%^suddenly explodes%^C151%^!%^CRST%^\n");
+                break;
+                case(6):
+                    tell_room(ETP,"%^C228%^Small %^C226%^motes of light%^C228%^ fly around the area! They buzz through you and spin around you for awhile before %^C221%^zipping %^C228%^off into the distance in random directions. All that is left is a small gem.%^CRST%^\n");
+                    ob = new(OBJ"soul_gem")->move(ETO);
 
+                break;
+            return;
+                }
+    num++;
+    call_out("cinema_mass",5,tp,num);
+    return;
+}
 
 
 
