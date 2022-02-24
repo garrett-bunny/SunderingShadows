@@ -134,9 +134,9 @@ void do_locks() {
             if (mapp(door[cur_keys[x]])) {
                 int score;
                 if(!EETO->query_locked(dkeys[i],cur_keys[x])) { continue; }
-                score = 20 + roll_dice(1,10);
+                score = roll_dice(2,10);
                 if(door[cur_keys[x]]["mod"]) { score -= door[cur_keys[x]]["mod"]; }
-                if (score > 20) {
+                if (score > 1) {
                     tell_room(EETO,
                         "%^CYAN%^The "+cur_keys[x]+" of the "+dkeys[i]+" clicks "
                         "open."

@@ -15,7 +15,7 @@ void create() {
      set_property("no teleport",1);
     set_long(
 @OLI
-        %^BOLD%^You are on a the Saakrune Sea.%^RESET%^
+        %^BOLD%^You are on the Saakrune Sea.%^RESET%^
 %^CYAN%^Freezing air blows off a glacial island nearby.
 Various size ice bergs float in the water.%^RESET%^ 
 

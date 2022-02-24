@@ -9,11 +9,11 @@ void create() {
   set_indoors(1);
   ::create();
   set_light(2);
-  set_short("You are in the Desert");
+  set_short("You are on the Saakrune Sea");
   set_property("no teleport",1);
   set_long(
 @OLI
-        You are on a the Saakrune Sea.
+        You are on the Saakrune Sea.
 The coast of the continent known as Atoyatl Tepexitl is to the east.
 There is something interesting in the water here.
 OLI

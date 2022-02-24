@@ -12,7 +12,7 @@ void create() {
     set_indoors(1);
     ::create();
     set_light(2);
-    set_short("You are in the Desert");
+    set_short("You are on the Saakrune Sea");
      set_property("no teleport",1);
     set_long(
 @OLI

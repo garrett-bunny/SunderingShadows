@@ -25,7 +25,7 @@ void create()
   set_indoors(1);
   set_light(2);
      set_property("no teleport",1);
-  set_short("You are on the Saakrun Sea");
+  set_short("You are on the Saakrune Sea");
   set_long("	%^BOLD%^You are on the Saakrune Sea.%^RESET%^\n"
       "You see the dock of an island here.\n");
   set_exits( ([
