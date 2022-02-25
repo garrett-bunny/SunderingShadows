@@ -11,6 +11,7 @@ void create(){
 
 set_exits(([
 "east" : HOUND"6",
+"northwest" : HOUND"b1",
 "southwest" : HOUND"21",
 "south" : HOUND"20",
 
