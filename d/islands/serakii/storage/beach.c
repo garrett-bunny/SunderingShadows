@@ -27,8 +27,8 @@ void create() {
         "sand%^CRST%^ that would be beautiful if it was not smeared "+
         "with %^C196%^blood%^CRST%^ and %^C094%^detritus%^CRST%^. "+
         "All around you are %^C244%^heavy stakes%^CRST%^ driven into "+
-        "the %^C094%^ground%^CRST%^ either have a person %^C242%^chained%^CRST%^ "+
-        "to it or previously did by the amount of %^C088%^caked blood%^CRST%^ "+
+        "the %^C094%^ground%^CRST%^ must previously have had someone "+
+        "%^C242%^chained%^CRST%^ to them based on the amount of %^C088%^caked blood%^CRST%^ "+
         "on the %^C244%^manacles%^CRST%^. %^C249%^Tins%^CRST%^ on the "+
         "ground must have held %^C058%^food%^CRST%^ or %^C111%^water%^CRST%^ "+
         "but most are empty.\n");
