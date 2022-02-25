@@ -602,7 +602,7 @@ void receive_given_item(object ob){
     }
     item = list[0];
     if(ob->id(item)) {
-        command("say You have did well, this is what I seek.");
+        command("say You have done well, this is what I seek.");
         SAVE_D->remove_array(DSEEK);
         command("say I will reward you with anything that "+
         "I now have.  You have five minutes to make your decision "+
