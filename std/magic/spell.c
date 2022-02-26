@@ -1393,6 +1393,11 @@ void wizard_interface(object user, string type, string targ)
     else {
         caster->remove_property("magus spell");
     }
+    
+    if(spell_type == "psywarrior")
+        caster->set_property("psywarrior spell", 1);
+    else
+        caster->remove_property("psywarrior spell");
 
     if (0) {
         if (target) {
@@ -2895,6 +2900,10 @@ void define_base_damage(int adjust)
             }
         }
         else if (FEATS_D->is_active(caster, "eldritch warfare")) {
+            sdamage = roll_dice(2, sdamage / 4);
+        }
+        else if(caster->is_class("psywarrior") && FEATS_D->has_feat(caster, "martial power") && caster->query_current_attacker())
+        {
             sdamage = roll_dice(2, sdamage / 4);
         }
     }

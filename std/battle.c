@@ -232,7 +232,7 @@ void heart_beat()
             if (combatants[i]->query_property("magus cast") && combatants[i]->query_property("magus spell")) {
                 canfullattack = 1;
             }
-            if(FEATS_D->has_feat(combatants[i], "martial power") && combatants[i]->query("available focus"))
+            if(FEATS_D->has_feat(combatants[i], "martial power") && combatants[i]->query("available focus") && combatants[i]->query_property("psywarrior spell"))
             {
                 canfullattack = 1;
             }
