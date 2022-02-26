@@ -10,7 +10,7 @@ void create()
     feat_category("Psionics");
     feat_name("martial power");
     feat_prereq("Psywarrior L11");
-    feat_desc("With this feat, the psychic warrior is able to manifest his psionic powers in the midst of combat. While focused, the psywarrior is able to manifest his powers while physically attacking. Damage spells cast during combat will have reduced damage.");
+    feat_desc("With this feat, the psychic warrior is able to manifest his psionic powers in the midst of combat, while fully attacking, as long as he is has psionic focus. Damage spells cast during combat will have reduced damage.");
     psionic(1);
     permanent(1);
 }
