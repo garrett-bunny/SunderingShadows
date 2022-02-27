@@ -8,7 +8,7 @@ void create()
    set_property("indoors",1);
    set_property("light",2);
    set_travel(PAVED_ROAD);
-   set_terrain(STONE_BUILDING);
+   set_terrain(CITY);
    set_climate("temperate");
    set_name("The Grind House");
    set_short("%^RESET%^%^BOLD%^%^BLACK%^The %^BLACK%^Grind %^BLACK%^H%^RESET%^%^ORANGE%^o%^BOLD%^%^BLACK%^use%^RESET%^%^RESET%^");
