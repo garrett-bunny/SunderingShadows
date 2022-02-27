@@ -61,6 +61,16 @@ void make_me(){
 
 }
 
+void go_home(object to)
+{
+    if (!objectp(to)) {
+        return;
+    }
+    tell_room(environment(to), "The professor leaves the classroom");
+    to->move("/d/shadowgate/void");
+    to->remove();
+}
+
 void heart_beat(){
     ::heart_beat();
     x = random(10);
@@ -146,6 +156,7 @@ void souls_lesson_1(object tp,int num){
 				    force_me("say thank you, no questions today, meet me for office hours later.");
                     tell_room(ETP,"%^C152%^The professor gathers up his papers and steps away from the lectern.%^CRST%^\n");
 					force_me("pose clear");
+                    go_home(TO);
                 break;
             return;
                 }
@@ -184,6 +195,7 @@ void dragons_lesson_1(object tp,int num){
 				    force_me("say thank you, no questions today, meet me for office hours later.");
                     tell_room(ETP,"%^C152%^The professor gathers up his papers and steps away from the lectern.%^CRST%^\n");
 					force_me("pose clear");
+                    go_home(TO);
                 break;
             return;
                 }
@@ -222,6 +234,7 @@ void history_lesson_1(object tp,int num){
 				    force_me("say thank you, no questions today, meet me for office hours later.");
                     tell_room(ETP,"%^C152%^The professor gathers up his papers and steps away from the lectern.%^CRST%^\n");
 					force_me("pose clear");
+                    go_home(TO);
                 break;
             return;
                 }
@@ -260,6 +273,7 @@ void gods_lesson_1(object tp,int num){
 				    force_me("say thank you, no questions today, meet me for office hours later.");
                     tell_room(ETP,"%^C152%^The professor gathers up his papers and steps away from the lectern.%^CRST%^\n");
 					force_me("pose clear");
+                    go_home(TO);
                 break;
             return;
                 }
