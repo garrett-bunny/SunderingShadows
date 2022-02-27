@@ -9,6 +9,7 @@
 #define DOCK "/d/islands/serakii/rooms/dock/"+
 #define TOWN "/d/islands/serakii/rooms/village/"+
 #define HOUND "/d/islands/serakii/rooms/hound/"+
+#define FOR "/d/islands/serakii/rooms/forest/"+
 #define INN "/d/islands/serakii/rooms/inn/"+
 #define ROAD "/d/islands/serakii/rooms/road/"+
 #define FALLOW "/d/islands/serakii/rooms/fallow/"+
