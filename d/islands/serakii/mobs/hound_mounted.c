@@ -111,6 +111,8 @@ void create()
     if(random(4)) ob->set_property("monsterweapon", 1);
     ob->move(TO);
     
+	add_money("gold", 500 + random(10000));
+	
 }
 
 

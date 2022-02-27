@@ -92,7 +92,7 @@ void create()
     set_funcs(({ "stuns" }));
     set_func_chance(50);
 
-    add_money("platinum", 500 + random(1000));
+    add_money("gold", 500 + random(10000));
 }
 
 void stuns(object targ)
