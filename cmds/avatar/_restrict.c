@@ -31,13 +31,13 @@ int cmd_restrict(string str){
    if(!who = find_player(name)) return notify_fail("Cannot find "+name+" to restrict.\n");
    if(!who->is_class(type)) return notify_fail(capitalize(name)+" cannot cast spells as a "+type+".\n");
    if(level > -1){
-      if(type == "mage" || type == "cleric" || type == "psion" || type == "druid" || type == "sorcerer"){
+      if(type == "mage" || type == "cleric" || type == "psion" || type == "druid" || type == "sorcerer" || type == "oracle"){
          if(level > 9) return notify_fail("The highest "+type+" spell level is 9.\n");
       }
-      if(type == "bard"){
+      if(type == "bard" || type == "psywarrior" || type == "inquisitor" || || type == "magus"){
          if(level > 6) return notify_fail("The highest "+type+" spell level is 6.\n");
       }
-      if(type == "ranger" || type == "paladin"){
+      if(type == "ranger" || type == "paladin" || type == "warlock"){
          if(level > 4) return notify_fail("The highest "+type+" spell level is 4.\n");
       }
       res_level = who->query_spell_level_restricted(type);
@@ -51,7 +51,7 @@ int cmd_restrict(string str){
    }
    else{
       spellfile = replace_string(spell," ","_");
-      if(!file_exists("/cmds/spell/"+spell[0..0]+"/_"+spellfile+".c"))
+      if(!file_exists("/cmds/spells/"+spell[0..0]+"/_"+spellfile+".c"))
          return notify_fail("No spell named "+spell+" exists.\n");
       else{
          who->restrict_spell(type,spell);
