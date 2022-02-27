@@ -71,3 +71,11 @@ int sit_fun(string str){
    return 0;
 }
 
+void reset(){
+   ::reset();
+   if(!present("professor")){
+      new(MOBS"professor.c")->move(TO);
+   }
+}
+
+
