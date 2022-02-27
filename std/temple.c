@@ -157,8 +157,8 @@ int select_diety(string str) {
     if(objectp(symbol)) symbol->remove();
     TP->set("god changed",1);
     TP->update_channels();
-    if(!avatarp(TP))
-        ADVANCE_D->diety_news(diety,TPQCN+" has chosen to follow "+capitalize(diety)+"!");
+    /*if(!avatarp(TP))
+        ADVANCE_D->diety_news(diety,TPQCN+" has chosen to follow "+capitalize(diety)+"!");*/
     log_file("player/god_change", capitalize(TP->query_name())+" joined "+capitalize(diety)+": "+ctime(time())+"\n");
 //added by Styx 4/21/02
     "/cmds/avatar/_note.c"->cmd_note("ckpt "+TPQN+" %^BOLD%^%^CYAN%^chose to follow "+capitalize(diety)+".");
@@ -180,8 +180,8 @@ int leave_diety(string str) {
     if(old!=diety) return notify_fail("You are not a follower of "+capitalize(diety)+"!");
     if((int)TP->query_lowest_level() < 10) return notify_fail("You have not been one of the faithful long enough to forsake your deity.");
     symbol = present("holy symbol",TP);
-    if(!avatarp(TP))
-        ADVANCE_D->deity_news(diety,TPQCN+" has forsaken "+capitalize(diety)+" as "+TP->query_possessive()+" deity!");
+    /*if(!avatarp(TP))
+        ADVANCE_D->deity_news(diety,TPQCN+" has forsaken "+capitalize(diety)+" as "+TP->query_possessive()+" deity!");*/
     log_file("player/god_change", capitalize(TP->query_name())+" left "+capitalize(diety)+": "+ctime(time())+"\n");
 //added by Styx 4/21/02
     "/cmds/avatar/_note.c"->cmd_note("ckpt "+TPQN+" %^BOLD%^%^CYAN%^chose to forsake "+capitalize(diety)+".");
