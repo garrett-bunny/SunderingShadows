@@ -2,7 +2,7 @@
 #include "../../serakii.h"
 
 inherit STORAGE"beach.c";
-
+object ob;
 
 
 void create(){
@@ -27,3 +27,30 @@ void reset(){
    }
 }
 
+void init() {
+    ::init();
+    add_action("power_fun", "power");
+
+}
+
+int power_fun(string str,object who){
+
+object ob;
+
+    if(!str) {
+       tell_object(TP,"%^BLACK%^%^BOLD%^Power what? the archway?\n%^RESET%^");
+       return 1;
+    }
+
+    if(str == "archway"){
+        ob=present("shard of soul",TP);
+        if(!ob) return notify_fail("\nYou have nothing you could use to power the archway.\n");
+        //ob->remove();
+       tell_object(TP,"%^YELLOW%^%^BOLD%^The archway powers up and a portal appears\n%^RESET%^");
+	   add_exit( FOR"1", "portal" );
+        return 1;
+    }
+	
+       tell_object(TP,"%^BLACK%^%^BOLD%^Power what? the archway?\n%^RESET%^");
+    return 1;
+}
