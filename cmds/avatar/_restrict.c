@@ -34,7 +34,7 @@ int cmd_restrict(string str){
       if(type == "mage" || type == "cleric" || type == "psion" || type == "druid" || type == "sorcerer" || type == "oracle"){
          if(level > 9) return notify_fail("The highest "+type+" spell level is 9.\n");
       }
-      if(type == "bard" || type == "psywarrior" || type == "inquisitor" || || type == "magus"){
+      if(type == "bard" || type == "psywarrior" || type == "inquisitor" || type == "magus"){
          if(level > 6) return notify_fail("The highest "+type+" spell level is 6.\n");
       }
       if(type == "ranger" || type == "paladin" || type == "warlock"){
