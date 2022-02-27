@@ -52,7 +52,7 @@ void reset()
         ::reset();
         if(!present("voice"))
         {
-//new(MOBS"mordecai")->move(TO);
+new(MOBS"mordecai")->move(TO);
 
         }
 }
