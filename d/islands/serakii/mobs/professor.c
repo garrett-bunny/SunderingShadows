@@ -2,11 +2,13 @@
 
 #include <std.h>
 #include <daemons.h>
+#include "../serakii.h"
+
 inherit NPC;
 
 int x,y,w,q;    
 string prof_name, prof_outfit, prof_type;
-
+object coworker;
 
 void create() {
    object ob;
@@ -155,9 +157,11 @@ void souls_lesson_1(object tp,int num){
                 case(6):
 				    force_me("say thank you, no questions today, meet me for office hours later.");
                     tell_room(ETP,"%^C152%^The professor gathers up his papers and steps away from the lectern.%^CRST%^\n");
-					force_me("pose clear");
+                    tell_room(ETP,"%^C152%^The professor gathers up his papers and steps away from the lectern.%^CRST%^\n");
+                    tell_room(ETP,"%^C243%^Another professor walks into the classroom%^CRST%^\n");
+					new(MOBS"professor.c")->move(ETO);
                     go_home(TO);
-					ETP->reset();
+ 
                 break;
             return;
                 }
@@ -195,9 +199,9 @@ void dragons_lesson_1(object tp,int num){
                 case(6):
 				    force_me("say thank you, no questions today, meet me for office hours later.");
                     tell_room(ETP,"%^C152%^The professor gathers up his papers and steps away from the lectern.%^CRST%^\n");
-					force_me("pose clear");
-                    go_home(TO);
-					ETP->reset();					
+                    tell_room(ETP,"%^C243%^Another professor walks into the classroom%^CRST%^\n");
+					new(MOBS"professor.c")->move(ETO);
+                    go_home(TO);				
                 break;
             return;
                 }
@@ -235,9 +239,9 @@ void history_lesson_1(object tp,int num){
                 case(6):
 				    force_me("say thank you, no questions today, meet me for office hours later.");
                     tell_room(ETP,"%^C152%^The professor gathers up his papers and steps away from the lectern.%^CRST%^\n");
-					force_me("pose clear");
+                    tell_room(ETP,"%^C243%^Another professor walks into the classroom%^CRST%^\n");
+					new(MOBS"professor.c")->move(ETO);
                     go_home(TO);
-					ETP->reset();
                 break;
             return;
                 }
@@ -275,9 +279,9 @@ void gods_lesson_1(object tp,int num){
                 case(6):
 				    force_me("say thank you, no questions today, meet me for office hours later.");
                     tell_room(ETP,"%^C152%^The professor gathers up his papers and steps away from the lectern.%^CRST%^\n");
-					force_me("pose clear");
+                    tell_room(ETP,"%^C243%^Another professor walks into the classroom%^CRST%^\n");
+					new(MOBS"professor.c")->move(ETO);
                     go_home(TO);
-					ETP->reset();
                 break;
             return;
                 }
