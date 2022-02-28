@@ -32,7 +32,7 @@ msg = ({"Your vision blurs as you touch the stone and enter a dream-like trance.
 "You agree to go with them and not return to Tharis.",
 "They magically transport you back to their keep "+
 "and set you up with a place in a lovely grove.  "+
-"Life here is nothing like the and terrible life you lived "+
+"Life here is nothing like the terrible life you lived "+
 "in the elven quarter where you were treated like scum. "+
 " You find yourself grateful, but quite out of place.",
 "The vision blurs as time fast forwards and you find "+

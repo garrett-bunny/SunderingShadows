@@ -14,7 +14,7 @@ void create()
     feat_desc("The PowerAttack feat allows the character to shift their stance so that their attacks do more damage but it makes their attacks less likely to hit."
         + "\n"
         + "\nThis feat shift values between attack and damage bonuses."
-        + "\nYou can use this feat once and one aditional time for every 4 character levels to a max bonus of 5.");
+        + "\nYou can use this feat once and one additional time for every 4 character levels to a max bonus of 5.");
         set_target_required(0);
     set_required_for(({ "shatter","sunder","rush" }));
 }
