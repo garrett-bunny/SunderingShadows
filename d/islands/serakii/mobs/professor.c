@@ -95,7 +95,7 @@ void teach_the_lesson(){
 	
 	switch(prof_type){
 		case "dragons": 
-		    dragon_lesson_1(TP,0);
+    		    dragon2_lesson_1(TP,0);
 		break;
 		
 		case "souls": 
