@@ -13,7 +13,7 @@ void create(){
     ::create();
     set_name("cigarette");
     set_id(({ "cigarette" }));
-    set_short("%^RESET%^%^ORANGE%^A slender %^BOLD%^%^WHITE%^ci%^RESET%^g%^BOLD%^ar"+
+    set_short("%^RESET%^%^ORANGE%^slender %^BOLD%^%^WHITE%^ci%^RESET%^g%^BOLD%^ar"+
         "%^RESET%^e%^BOLD%^tt%^RESET%^e");
     set_long("%^RESET%^%^ORANGE%^This is a crude, hand rolled %^BOLD%^%^WHITE%^ci"+
         "%^RESET%^g%^BOLD%^ar%^RESET%^e%^BOLD%^tt%^RESET%^e. %^ORANGE%^Dried, "+
