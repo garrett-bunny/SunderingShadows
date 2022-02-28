@@ -73,7 +73,7 @@ void go_home(object to)
 
 void heart_beat(){
     ::heart_beat();
-    x = random(10);
+    x = random(5);
         y++;
     if(x == 1){
         if(y > 10){ //one lesson every 10 minutes if people are here
