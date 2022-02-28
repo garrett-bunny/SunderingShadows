@@ -95,7 +95,7 @@ void teach_the_lesson(){
 	
 	switch(prof_type){
 		case "dragons": 
-    		    dragon2_lesson_1(TP,0);
+		    dragon_lesson_1(TP,0);
 		break;
 		
 		case "souls": 
@@ -157,6 +157,7 @@ void souls_lesson_1(object tp,int num){
                     tell_room(ETP,"%^C152%^The professor gathers up his papers and steps away from the lectern.%^CRST%^\n");
 					force_me("pose clear");
                     go_home(TO);
+					ETP->reset();
                 break;
             return;
                 }
@@ -196,6 +197,7 @@ void dragons_lesson_1(object tp,int num){
                     tell_room(ETP,"%^C152%^The professor gathers up his papers and steps away from the lectern.%^CRST%^\n");
 					force_me("pose clear");
                     go_home(TO);
+					ETP->reset();					
                 break;
             return;
                 }
@@ -235,6 +237,7 @@ void history_lesson_1(object tp,int num){
                     tell_room(ETP,"%^C152%^The professor gathers up his papers and steps away from the lectern.%^CRST%^\n");
 					force_me("pose clear");
                     go_home(TO);
+					ETP->reset();
                 break;
             return;
                 }
@@ -274,6 +277,7 @@ void gods_lesson_1(object tp,int num){
                     tell_room(ETP,"%^C152%^The professor gathers up his papers and steps away from the lectern.%^CRST%^\n");
 					force_me("pose clear");
                     go_home(TO);
+					ETP->reset();
                 break;
             return;
                 }
