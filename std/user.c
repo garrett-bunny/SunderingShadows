@@ -2013,7 +2013,7 @@ nomask void die()
         tell_object(TO, "%^BOLD%^No...no...this cannot be happening...there are so many more enemies left to kill and blood to be spilt...GET UP AND FIGHT!");
         tell_room(ETO, "%^RESET%^%^RED%^With a blood-curdling scream, " + TO->query_cap_name() + " springs from the ground and looks ready to beat back Kelemvor himself.", TO);
         TO->force_me("say I will not die until I murder you lot!");
-        TO->set_hp(query_max_hp());
+        TO->set_hp(query_max_hp() / 2);
         TO->set("rage death avoided", time() + 7200);
         return;
     }
@@ -2025,7 +2025,7 @@ nomask void die()
         tell_object(this_object(), "%^BOLD%^A beam of starlight illuminates your fallen form, expanding as it engulfs your entire being.%^RESET%^");
         tell_object(this_object(), "%^BOLD%^The energy fills your soul, and you feel yourself reborn.....a star child. You stand and continue to fight!%^RESET%^");
         tell_room(environment(this_object()), "%^BOLD%^A beam of starlight illuminates " + this_object()->query_cap_name() + ". " + this_object()->query_pronoun() + " stands once more, reborn and ready to fight!", this_object());
-        this_object()->set_hp(query_max_hp());
+        this_object()->set_hp(query_max_hp() / 2);
         this_object()->add_cooldown("star child", 7200);
         return;
     }
@@ -2037,7 +2037,7 @@ nomask void die()
             tell_object(TO, "%^BOLD%^%^RED%^As you are struck down, you find the will in your blood to continue the fight.");
             tell_object(TO, "%^BOLD%^You stand u and brush yourself up, ready to stick it out to the very end!!");
             tell_room(ETO, "%^RESET%^%^RED%^" + TO->query_cap_name() + " stands and continues to fight!", TO);
-            TO->set_hp(query_max_hp());
+            TO->set_hp(query_max_hp() / 2);
             this_object()->add_cooldown("orc ferocity", 7200);
             return;
         }
