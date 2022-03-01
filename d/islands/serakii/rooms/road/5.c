@@ -12,7 +12,7 @@ void create(){
 
 set_exits(([
 
-"south" : ROAD"5",
+"south" : ROAD"2",
 "north" : ROAD"6",
 ]));
 
