@@ -16,7 +16,7 @@ void create()
 	set_destroy();
 	set_poison(0);
 	set_strength(20);
-	set_my_mess("You eat the handful of tastey berries and are somehow"+
+	set_my_mess("You eat the handful of tasty berries and are somehow"+
 	" quite filled by them.");
 	set_your_mess("eats a handful of berries.");
 }

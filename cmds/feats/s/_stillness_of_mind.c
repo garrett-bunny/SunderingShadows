@@ -11,7 +11,7 @@ void create()
     feat_name("stillness of mind");
     feat_prereq("Monk L7");
     feat_syntax("stillness_of_mind");
-    feat_desc("A monk that is unarmored and unarmed, or wielding small weapons, may attempt to still her mind, freeing herself from all movement impairing affects. This focus is intense and requires the use of 2 ki. Furthemore, the monk must wait a period of time being being able to focus her mind in such a way again.");
+    feat_desc("A monk that is unarmored and unarmed, or wielding small weapons, may attempt to still her mind, freeing herself from all movement impairing affects. This focus is intense and requires the use of 2 ki. Furthermore, the monk must wait a period of time being being able to focus her mind in such a way again.");
 }
 
 int allow_shifted() { return 1; }

@@ -427,7 +427,7 @@ int pick_warlock_heritage(string str,object ob) {
       case "celestial":  heritage = "celestial";  break;
       case "fey":        heritage = "fey";        break;
       case "abyssal":    heritage = "abyssal";    break;
-      case "astral":     heritage = "occult";      break;
+      case "astral":     heritage = "astral";      break;
       case "gloom":      heritage = "gloom";      break;
       case "infernal":   heritage = "infernal";   break;
       case "abort": return 1;
