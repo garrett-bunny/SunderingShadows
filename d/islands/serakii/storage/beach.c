@@ -27,8 +27,8 @@ void create() {
         "sand%^CRST%^ that would be beautiful if it was not smeared "+
         "with %^C196%^blood%^CRST%^ and %^C094%^detritus%^CRST%^. "+
         "All around you are %^C244%^heavy stakes%^CRST%^ driven into "+
-        "the %^C094%^ground%^CRST%^ must previously have had someone "+
-        "%^C242%^chained%^CRST%^ to them based on the amount of %^C088%^caked blood%^CRST%^ "+
+        "the %^C094%^ground%^CRST%^ either have a person %^C242%^chained%^CRST%^ "+
+        "to it or previously did by the amount of %^C088%^caked blood%^CRST%^ "+
         "on the %^C244%^manacles%^CRST%^. %^C249%^Tins%^CRST%^ on the "+
         "ground must have held %^C058%^food%^CRST%^ or %^C111%^water%^CRST%^ "+
         "but most are empty.\n");
@@ -54,22 +54,11 @@ set_listen("default","%^C111%^The surf crashes against the beach%^CRST%^.");
 }
 
 
-void pick_critters(){
-   switch(random(6)){
-         case 0:   set_monsters(
-({MOBS"hound_heavy",MOBS"attack_dog"}),({random(4),random(2)}) );
-                   break;
-         case 1:   set_monsters(
-({MOBS"hound_heavy"}),({random(6)}) );
-                   break;
-         case 2:   set_monsters(
-({MOBS"hound_heavy",MOBS"archer"}),({1,random(1)+3}) );
-                   break;
-         case 3:   set_monsters(
-({MOBS"archer"}),({random(5)}) );
-                   break;
-         case 4..5: set_monsters(
-({MOBS"hound_heavy",MOBS"attack_dog"}),({random(4),random(2)}) );
-                   break;
-   }
+void reset()
+{
+    ::reset();
+    if(!present("prisoner"))
+                {
+  if(!random(3)) {new(MOBS"prisoner.c")->move(TO); }
+                }
 }
