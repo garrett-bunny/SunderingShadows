@@ -224,6 +224,10 @@ void greater_rage(int direction)
 void mighty_rage(int direction)
 {
     int amount, save_bonus;
+    
+    if(!caster || !objectp(caster))
+        return;
+    
     amount = 4 + FEATS_D->usable_feat(caster, "reckless abandon");
     save_bonus = FEATS_D->usable_feat(caster, "indomitable will") * 2;
     /*
