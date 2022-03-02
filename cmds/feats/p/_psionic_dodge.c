@@ -72,6 +72,7 @@ void execute_feat()
     if(!USER_D->spend_pool(caster, 1, "focus"))
     {
         tell_object(caster, "You need to be focused before you can attempt Psionic Dodge.");
+        dest_effect();
         return;
     }
 
