@@ -1,4 +1,5 @@
 #include <std.h>
+#include <daemons.h>
 inherit "/d/common/obj/armour/breastplate";
 
 int OWNED;
@@ -83,7 +84,7 @@ int strikeme(int damage, object who,object what){
             "and scowls angrily!",ETO);
          tell_object(ETO,"%^BLUE%^You suddenly feel a rising anger "+
             "and scowl angrily!");
-         if(!"daemon/saving_d"->saving_throw(who,"spell",2)) {
+         if((!"daemon/saving_d"->saving_throw(who,"spell",2)) && (!PLAYER_D->immunity_check(who, "fear"))){
             tell_room(EETO,"%^BOLD%^%^BLUE%^"+who->QCN+" runs in "+
                "terror!",who);
             tell_object(who,"%^BOLD%^%^BLUE%^You run in terror!");
