@@ -18,6 +18,7 @@ void create() {
 "price - while active, the mage will be unable to concentrate enough to use offensive spells. This spell does not "
 "work alongside similarly powerful melee spells, such as rage, dance of a thousand cuts, or cunning insight.");
     set_verbal_comp();
+    set_bonus_type(({ "enhancement", "competence" }));
     set_somatic_comp();
     set_components(([
       "mage" : ([ "fur" : 1, "dung scrapings" : 1, ]),
@@ -26,7 +27,8 @@ void create() {
 }
 
 int preSpell(){
-   if((int)CASTER->query_property("raged") || (int)CASTER->query_property("transformed") || (int)CASTER->query_property("dance-of-cuts") || caster->query_property("shapeshifted")){
+   //if((int)CASTER->query_property("raged") || (int)CASTER->query_property("transformed") || (int)CASTER->query_property("dance-of-cuts") || caster->query_property("shapeshifted")){
+   if((int)CASTER->query_property("raged") || (int)CASTER->query_property("transformed") || (int)CASTER->query_property("dance-of-cuts")){
       tell_object(CASTER,"You are already under the influence of such a spell.");
       return 0;
    }
