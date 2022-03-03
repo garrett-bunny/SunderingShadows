@@ -25,8 +25,8 @@ MELNMARN
      "south":"/d/shadow/virtual/desert/26,45.desert",
      "east":"/d/shadow/virtual/desert/25,46.desert"
 ]));
-set_smell("default","You smell the odors of a bustling city.");
-set_listen("default","You hear the sounds of people moving in the city.");
+set_smell("default","The dry desert air fills your nostrils.");
+set_listen("default","You can hear the breeze blowing over the sand, it is so quiet here.");
 set_items(([
 ({"hole","spot","black","black spot"}):
 @HOLE

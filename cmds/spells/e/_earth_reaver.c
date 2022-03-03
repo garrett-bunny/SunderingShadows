@@ -18,6 +18,7 @@ void create() {
     set_spell_sphere("alteration");
     set_domains("earth");
     set_syntax("cast CLASS earth reaver on TARGET");
+    set_damage_desc("bludgeoning damage on target for clevel/4 + 1 rounds, shatters stoneskin on target");
     set_description("This spell will cause the ground around the target to erupt and throw dirt and rocks at the target.");
     set_verbal_comp();
     set_somatic_comp();

@@ -15,6 +15,7 @@ void create(){
     set_spell_level(([ "cleric" : 5 ]));
     set_spell_sphere("conjuration_summoning");
     set_syntax("cast CLASS maw of stone on TARGET");
+    set_damage_desc("bludgeoning damage on failed save, with progressively less damage each round after for clevel/5 rounds");
     set_description("This spell conjures stone from the earth to surround the target, causing damage to all those "
 "attacking the caster initially.  Afterwards, it continues to gnaw on the target for a limited time.");
     set_verbal_comp();
