@@ -20,7 +20,7 @@ void create()
     set_spell_level(([ "bard" : 4, "mage":4, "cleric" : 4 ]));
     set_domains("charm");
     set_spell_sphere("enchantment_charm");
-    set_syntax("cast CLASS forgotten melody on TARGET in LANGUAGE");
+    set_syntax("cast CLASS forgotten melody on TARGET on LANGUAGE");
     set_description("This spell has the caster singing the beginning of a catchy tune.  The tune gets locked in the head "
         "of the target listeners.  This prevents them from doing anything involving concentration due to their infatuation with "
         "the song.  The caster does not have to continue singing, as the spell's effects are that the targets become lost in "
@@ -37,9 +37,9 @@ void create()
 int preSpell()
 {
     string t;
-    if(sscanf(arg,"%s in %s",t, lang) != 2)
+    if(sscanf(arg,"%s on %s",t, lang) != 2)
     {
-        tell_object(caster,"Chant forgotten melody on TARGET in LANGUAGE");
+        tell_object(caster,"Chant forgotten melody on TARGET on LANGUAGE");
         return 0;
     }
     target = present(t,place);
