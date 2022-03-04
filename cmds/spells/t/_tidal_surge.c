@@ -58,15 +58,15 @@ void spell_effect(int prof)
     foes = ({});
     ownparty = ({});
     dam = sdamage;
-    tell_object(caster, "%^CYAN%^As your continue to chant, you can feel the water "
+    tell_object(caster, "%^CYAN%^As you continue to chant, you can feel the water "
                 "for miles and miles being pulled from the very air to heed your call!");
     tell_room(place, "%^BOLD%^%^CYAN%^Your mouth begins to feel dry as " + caster->QCN + " "
               "continues to chant.", caster);
     tell_object(caster, "%^CYAN%^As you complete the " +
-                "chant, you send your arms foward, " +
+                "chant, you send your arms forward, " +
                 "directing the path of a tremendous wave!%^RESET%^", caster);
     tell_room(place, "%^CYAN%^As " + caster->QCN + " completes the " +
-              "chant, " + caster->QS + " sends " + caster->QP + " arms foward, " +
+              "chant, " + caster->QS + " sends " + caster->QP + " arms forward, " +
               "directing the path of a tremendous wave!%^RESET%^", caster);
     tell_object(place, "%^BOLD%^The %^BLUE%^wave%^WHITE%^ widens, " +
                 "striking all in its path!%^RESET%^");
