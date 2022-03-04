@@ -27,7 +27,7 @@ void create()
     feat_syntax("warrior_path [PATH]");
     feat_desc("This feat allows the psywarrior to choose their warrior path.
 
-Warrior paths grant unique bonuses when using trance and also allow for special maneuvers while under trance.
+Warrior paths grant unique bonuses when using trance.
 
 %^BOLD%^You can select from the following warrior paths:
  Ascetic
