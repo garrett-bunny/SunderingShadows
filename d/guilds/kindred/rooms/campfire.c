@@ -51,7 +51,7 @@ void create()
 		add_item("camp fire","The camp fire is burning brightly, shedding a"+
 		" warm glow on the surrounding area.");
 		lit = 1;
-		set_property("light",3);
+                set_property("light",2);
 	}
 	set_exits(([
 	"west" : "/d/guilds/kindred/rooms/stream",
