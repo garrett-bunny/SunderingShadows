@@ -28,7 +28,7 @@
 #define ALIGNMENT_ENHANCEMENTS ({ "holy", "unholy", "axiomatic", "anarchic", });
 //magus pending: dancing, vorpal, speedy, keen.
 
-#define PALADIN_WEAPON_ENHANCEMENTS ({ "flaming", "flaming burst", "holy", "unholy", "axiomatic", "anarchic", });
+#define PALADIN_WEAPON_ENHANCEMENTS ({ "flaming", "flaming burst", "frost", "icy burst", "holy", "unholy", "axiomatic", "anarchic", });
 //paladin pending: brilliant energy, defending, disruption, merciful, speedy, keen.
 //antipaladin pending: vicious, wounding, vorpal, keen.
 
