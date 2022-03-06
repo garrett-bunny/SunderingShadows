@@ -608,6 +608,14 @@ int query_max_hp_base()
     if (FEATS_D->usable_feat(TO, "epic toughness")) {
         num += TO->query_level();
     }
+    
+    if(this_object()->is_animal())
+    {
+        object rider = this_object()->query_current_rider();
+            
+        if(objectp(rider) && FEATS_D->has_feat(rider, "bred for war"))
+                num += (rider->query_level() * 2);
+    }
 
     //Represents the Unholy Fortitude Feat for Agent of the Grave
     if(FEATS_D->usable_feat(this_object(), "negative energy conduit"))

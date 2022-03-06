@@ -655,6 +655,14 @@ mixed query_property(string prop)
         if(this_object()->query_mystery() == "battle" && this_object()->query_class_level("oracle") >= 15)
             num += 5;
         
+        if(this_object()->is_animal())
+        {
+            object rider = this_object()->query_current_rider();
+            
+            if(objectp(rider) && FEATS_D->has_feat(rider, "bred for war"))
+                num += 5;
+        }
+        
         num += props[prop];
         return (num + EQ_D->gear_bonus(TO, "damage resistance"));
     }
