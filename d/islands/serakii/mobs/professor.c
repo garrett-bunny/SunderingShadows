@@ -49,7 +49,7 @@ void create() {
 
 void make_me(){
 	
-    string* prof_names = ({ "%^C068%^Byron Harstrem%^CRST%^", "%^C139%^Thomas Kilgrav%^CRST%^", "%^C206%^Percival Nell%^CRST%^","%^C037%^Jacob Ascelin%^CRST%^"});
+    string* prof_names = ({ "%^C068%^Byron Harstrem%^CRST%^", "%^C139%^Thomas Kilgrav%^CRST%^", "%^C206%^Percival Nell%^CRST%^","%^C037%^Jacob Ascelin%^CRST%^", "%^C175%^Alastair Buchan%^CRST%^", "%^C156%^Antoniou Constantinos%^CRST%^", "%^C079%^Oliver Fischer%^CRST%^", "%^C100%^Hans Rudolf%^CRST%^"});
     string* prof_outfits = ({ "%^C240%^dark gray robe%^CRST%^", "%^C055%^formal attire%^CRST%^", "%^C251%^chalk covered cassock%^CRST%^","%^C060%^adventurer's gear%^CRST%^"});
     string* prof_types = ({ "dragons", "souls", "history","gods"});	
 
@@ -99,28 +99,28 @@ void teach_the_lesson(){
 		case "dragons": 
 		    switch(random(2)) {
 				case 0: 		    dragons_lesson_1(TP,0); break;
-				default: 		    dragons_lesson_2(TP,0); break;
+				case 1: 		    dragons_lesson_2(TP,0); break;
         }
 		break;
 		
 		case "souls": 
 		    switch(random(2)) {
 				case 0: 		    souls_lesson_1(TP,0); break;
-				default: 		    souls_lesson_2(TP,0); break;
+				case 1: 		    souls_lesson_2(TP,0); break;
         }
 		break;
 		
 		case "history": 
 		    switch(random(2)) {
 				case 0: 		    history_lesson_1(TP,0); break;
-				default: 		    history_lesson_2(TP,0); break;
+				case 1: 		    history_lesson_2(TP,0); break;
         }
 		break;
 		
 		case "gods": 
 		    switch(random(2)) {
 				case 0: 		    gods_lesson_1(TP,0); break;
-				default: 		    gods_lesson_2(TP,0); break;
+				case 1: 		    gods_lesson_2(TP,0); break;
         }
 		break;
 
@@ -333,7 +333,6 @@ void souls_lesson_2(object tp,int num){
                 case(6):
 				    force_me("say thank you, no questions today, meet me for office hours later.");
                     tell_room(ETP,"%^C152%^The professor gathers up his papers and steps away from the lectern.%^CRST%^\n");
-                    tell_room(ETP,"%^C152%^The professor gathers up his papers and steps away from the lectern.%^CRST%^\n");
                     tell_room(ETP,"%^C243%^Another professor walks into the classroom%^CRST%^\n");
 					new(MOBS"professor.c")->move(ETO);
                     go_home(TO);
@@ -342,7 +341,7 @@ void souls_lesson_2(object tp,int num){
             return;
                 }
     num++;
-    call_out("souls_lesson_1",5,tp,num);
+    call_out("souls_lesson_2",5,tp,num);
     return;
 }
 
@@ -382,7 +381,7 @@ void gods_lesson_2(object tp,int num){
             return;
                 }
     num++;
-    call_out("gods_lesson_1",5,tp,num);
+    call_out("gods_lesson_2",5,tp,num);
     return;
 }
 
@@ -423,7 +422,7 @@ void history_lesson_2(object tp,int num){
             return;
                 }
     num++;
-    call_out("history_lesson_1",5,tp,num);
+    call_out("history_lesson_2",5,tp,num);
     return;
 }
 
@@ -463,6 +462,6 @@ void dragons_lesson_2(object tp,int num){
             return;
                 }
     num++;
-    call_out("dragons_lesson_1",5,tp,num);
+    call_out("dragons_lesson_2",5,tp,num);
     return;
 }
