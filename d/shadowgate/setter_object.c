@@ -1063,7 +1063,8 @@ select_language(string str)
     int maxbonus = (char_sheet["stats"]["intelligence"] - 10) / 4 + 1;
     int i;
 
-    prospective = (("/std/races/" + char_sheet["race"])->query_languages(char_sheet["subrace"]))["optional"];
+    //prospective = (("/std/races/" + char_sheet["race"])->query_languages(char_sheet["subrace"]))["optional"];
+    prospective = generate_language();
 
     if (str == "random") {
         i = maxbonus;
