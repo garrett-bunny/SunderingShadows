@@ -232,9 +232,10 @@ varargs int get_bonus_value(string bonus_name, string num, object item, object t
 
     case "sight bonus":                     value = num * 8;            break;
 
-    case "max hp bonus":                     value = num * 8;            break;
+    case "max hp bonus":                     value = num * 0.71;            break;
 
     case "magic resistance":                value = num * 12;            break;
+    case "spell resistance":                value = num * 12;            break;
 
     // stats
     case "strength":
@@ -277,6 +278,8 @@ varargs int get_bonus_value(string bonus_name, string num, object item, object t
     case "positive energy resistance":
     case "negative energy resistance":
     case "force resistance":
+    case "radiant resistance":
+    case "void resistance":
     case "divine resistance":
     case "mental resistance":               value = num * 1.5;            break;
 
@@ -288,6 +291,8 @@ varargs int get_bonus_value(string bonus_name, string num, object item, object t
     case "positive energy resistance percent":
     case "negative energy resistance percent":
     case "force resistance percent":
+    case "radiant resistance percent":
+    case "void resistance percent":
     case "divine resistance percent":
     case "mental resistance percent":               value = num * 15;            break;
 
@@ -337,7 +342,7 @@ varargs int get_bonus_value(string bonus_name, string num, object item, object t
     case "thievery":                        value = num * 8;        break;
 
     //Misc
-    case "fast healing":                    value = num * 20;       break;
+    case "fast healing":                    value = num * 28;       break;
     }
 
     return abs(to_int(value));
