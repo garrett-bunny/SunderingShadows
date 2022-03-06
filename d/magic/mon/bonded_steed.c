@@ -30,7 +30,8 @@ void create(){
     set_id(({"steed", "bonded steed", "greater summon"}));
     set_short("A generic bonded steed");
     set_hd(4,1);
-    set_hp(40);
+    set_max_hp(600);
+    set_hp(600);
     set_exp(1);
     set_damage(2, 6);
     set_size(3);

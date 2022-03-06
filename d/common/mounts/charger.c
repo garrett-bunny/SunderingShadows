@@ -20,7 +20,7 @@ void create()
 	set_body_type("equine");
 	set_size(2);
 	set_hd(3,6);
-	set_max_hp(150);
+	set_max_hp(500);
 	set_hp(query_max_hp());
 	set_value(200);
 	set_max_distance(500);

@@ -20,9 +20,9 @@ void create(){
     set_riding_level(20);
     set_mlevel("fighter",20);
     set_hd(20,10);
-    set_max_hp(200);
-    set_hp(200);
-    set_overall_ac(6);
+    set_max_hp(500);
+    set_hp(500);
+    set_overall_ac(-10);
     set_exp(1);
     set_max_distance(1000);
     set_enter_room("rides in");

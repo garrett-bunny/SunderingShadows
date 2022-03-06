@@ -9,7 +9,7 @@ void create() {
     feat_category("Horsemanship");
     feat_name("bred for war");
     feat_prereq("Mounted combat");
-    feat_desc("Your mount is a paragon of war training, resulting in unmatched breeding for war. With this feat, your mount gains additional toughness, gaining your level * 2 additional max hit points and +5 damage resistance. Now your faithful steed can wade into the rigors of war without fear of those who stand below you.");
+    feat_desc("Your mount is a paragon of war training, resulting in unmatched breeding for war. With this feat, your mount gains additional toughness, gaining your level * 2 additional max hit points, +5 damage resistance, and +5 spell damage resistance. Now your faithful steed can wade into the rigors of war without fear of those who stand below you.");
     permanent(1);
 }
 

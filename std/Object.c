@@ -885,6 +885,15 @@ mixed query_property(string prop)
             num += 9;
         }
         */
+        
+        if(this_object()->is_animal())
+        {
+            object rider = this_object()->query_current_rider();
+            
+            if(objectp(rider) && FEATS_D->has_feat(rider, "bred for war"))
+                num += 5;
+        }
+        
         num += props[prop];
         return (num + EQ_D->gear_bonus(TO, "spell damage resistance"));
     }
