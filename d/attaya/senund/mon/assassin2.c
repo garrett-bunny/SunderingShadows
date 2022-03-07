@@ -81,11 +81,11 @@ void aggfunc()
 {
         if((string)TPQCN != "bruenor")
         {
-        command("say %^RED%^What are you doing interrupting me!");
-        command("say %^RED%^Do not bother me when i am on the job!");
+        command("say %^RED%^What are you doing interrupting me?");
+        command("say %^RED%^Do not bother me when I am on the job!");
         command("say %^RED%^I'm just trying to perform a simple hit "+
         "and you come in here and get in the way. What nerve...");
-        command("say %^RED%^Their cannot be any witnesses. You must "+
+        command("say %^RED%^There cannot be any witnesses. You must "+
                 "die!");
         command("stab "+TP->query_name());
         command("scramble");
