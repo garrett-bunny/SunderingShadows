@@ -175,12 +175,14 @@ int is_bad_race(object live)
     if (query_bad_race(live)) {
         return 1;
     }
+    /*
     if ((string)live->query_race() == "elf") {
         if ((string)live->query("subrace") == "fey'ri" &&
             !live->query_property("altered")) {
             return 1;
         }
     }
+    */
     if (objectp(myshape = live->query_property("shapeshifted"))) {
         if ((string)myshape->query_shape_race() == "dragon") {
             return 1;

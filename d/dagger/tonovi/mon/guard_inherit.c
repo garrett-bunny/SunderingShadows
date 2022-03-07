@@ -62,7 +62,7 @@ void set_guard_stuff()
 {
     set_jail_location("/d/dagger/tonovi/town/jail1");
     set_guarding("Tonovi");
-    set_bad_races(({ "elf", "fey'ri", "half-elf" }));
+    //set_bad_races(({ "elf", "fey'ri", "half-elf" }));
     set_race_action("capture");
     set_race_messages(([
                            "elf"      : "%^BOLD%^Elves, only good for slaves, grab it!",
