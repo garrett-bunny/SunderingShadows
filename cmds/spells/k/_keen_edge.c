@@ -21,7 +21,7 @@ void create() {
 
 string query_cast_string()
 {
-	tell_object(caster,"%^RED%^They lyrics to an ancient spell flood into your mind as you begin to hum.");
+	tell_object(caster,"%^RED%^The lyrics to an ancient spell flood into your mind as you begin to hum.");
 	tell_room(place,"%^RED%^"+caster->QCN+" begins to hum.",caster);
 	return "display";
 }

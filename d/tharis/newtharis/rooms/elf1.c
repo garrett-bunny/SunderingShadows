@@ -17,7 +17,7 @@ void create(){
     set_items(([
       "fortress" : "%^BLUE%^Above the city looms the ever-present Shadovar fortress, casting the entire area into a state of perpetual twilight.%^RESET%^",
       "vegetation" : "%^RESET%^%^GREEN%^Wild vegetation grows everywhere, springing from cracks and pushing through every available space.%^RESET%^",
-      "flag" : "%^RESET%^%^CRST%^%^C248%^This flagpole towers above the %^RESET%^%^C058%^compound%^C248%^ to the north, a flag emblazoned with a %^C241%^black starburst %^C248%^on a %^RESET%^%^C124%^r%^C160%^e%^C124%^d %^RESET%^%^C248%^background fluttering dramatically in the %^RESET%^%^C030%^wind%^RESET%^%^C248%^. The sheer height of the pole and size of the flag ensure its %^RESET%^%^C031%^vi%^C039%^s%^C038%^i%^C045%^b%^C014%^i%^C045%^l%^C038%^i%^C039%^t%^C031%^y %^RESET%^%^C248%^from well beyond the Bastion’s %^C241%^w%^C244%^a%^C247%^l%^C241%^ls%^RESET%^%^C248%^.%^CRST%^",
+      "flag" : "%^RESET%^%^CRST%^%^C248%^This flagpole towers above the %^RESET%^%^C058%^compound%^C248%^ to the north, a flag emblazoned with a %^C241%^black starburst %^C248%^on a %^RESET%^%^C124%^r%^C160%^e%^C124%^d %^RESET%^%^C248%^background fluttering dramatically in the %^RESET%^%^C030%^wind%^RESET%^%^C248%^. The sheer height of the pole and size of the flag ensure its %^RESET%^%^C031%^vi%^C039%^s%^C038%^i%^C045%^b%^C014%^i%^C045%^l%^C038%^i%^C039%^t%^C031%^y %^RESET%^%^C248%^from well beyond the Bastion's %^C241%^w%^C244%^a%^C247%^l%^C241%^ls%^RESET%^%^C248%^.%^CRST%^",
     ]));
     set_exits(([
         "east" : ROOMS"elf2",

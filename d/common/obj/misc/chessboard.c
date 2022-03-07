@@ -1755,7 +1755,7 @@ int upset_board(string str)
   tell_object(TP, "In a fit of %^BOLD%^%^RED%^temper%^RESET%^, you knock"
                  +" the board over, sending the pieces"
                  +" %^BOLD%^%^CYAN%^flying%^RESET%^ all over the place!");
-  tell_room(TO, "In a fit of %^BOLD%^%^RED%^temper%^RESET%^, " + TPQCN 
+  tell_room(ETO, "In a fit of %^BOLD%^%^RED%^temper%^RESET%^, " + TPQCN 
                +" knocks the board over, sending the pieces%^BOLD%^"
                +" %^CYAN%^flying%^RESET%^ all over the place!,TP");
   return 1;

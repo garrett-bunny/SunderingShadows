@@ -11,7 +11,7 @@ void create()
     set_obvious_short("an ordinary gray ring");
     set_short("ring of detection");
     set_long("%^RESET%^%^BOLD%^This ring appears to be fashioned from a "
-        "cheap band of steel.  The simple worskmanship has imbued the "
+        "cheap band of steel.  The simple worksmanship has imbued the "
         "ordinary band of metal with only one frill;  The single groove "
         "that runs around the outside of the entire circumference.  The "
         "groove of the ring appears to be filled with an almost indistinguishable "
@@ -35,7 +35,7 @@ void create()
     set_weight(1);
     set_value(500);
     set_language("common");
-    set_read("You need only gaze apon the reagents to detect their "
+    set_read("You need only gaze upon the reagents to detect their "
         "magical properties.");
     set_limbs(({"right hand","left hand"}));
     charges = (random(16)+5);
