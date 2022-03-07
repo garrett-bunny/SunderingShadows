@@ -40,14 +40,14 @@ void init()
 void reset()
 {
     ::reset();
-    if(!present("cofeemaster")) {
+    if(!present("coffeemaster")) {
         new(MON+"brennan.c")->move(TO);
     }
 }
 
 int read(string str)
 {
-    object ob = present("cofeemaster");
+    object ob = present("coffeemaster");
     int i;
     if(str == "menu")
     {
