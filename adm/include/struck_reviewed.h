@@ -86,6 +86,7 @@
     "/d/atoyatl/tecqumin/obj/kilt", \
     "/d/atoyatl/tecqumin/obj/kilt_greater", \
     "/d/barriermnts/lothwaite/obj/ethereal_bracers", \
+    "/realms/kismet/obj/rewards/k_balurhat", \
     "/realms/kismet/obj/rewards/moontiara", \
     "/realms/kismet/obj/rewards/r_orchid", \
     "/d/shadow/room/farm/obj/petal_buckler", \
