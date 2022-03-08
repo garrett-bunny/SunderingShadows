@@ -11,6 +11,7 @@
     "/d/token_hunt/obj/low/rubytalongaunt", \
     "/d/token_hunt/obj/mid/chainedovercoat", \
     "/d/token_hunt/obj/mid/forestarmor", \
+    "/d/token_hunt/obj/mid/glitteringarmor", \
     "/d/token_hunt/obj/mid/ogregauntlets", \
     "/d/token_hunt/obj/mid/paingreaves", \
     "/d/islands/serakii/obj/hound_robe", \
