@@ -55,7 +55,7 @@ int remove_func(){
 	return 1;
 }
 int strike_func(int damage, object what, object who){
-	if(random(1000) < 150){
+    if(random(1000) < 150){
 	tell_room(environment(query_worn()),"%^BOLD%^%^RED%^"+who->QCN+" "+
          "looks as if "+who->QS+" is ready to vomit as they gag on the "+
          "stench from the smelly red coat that "+ETOQCN+" is "+
@@ -68,6 +68,7 @@ int strike_func(int damage, object what, object who){
          "and feces combined.  The smell makes you sick at your stomach "+
          "and you can't help but gag! %^GREEN%^Better take a moment to "+
          "calm your stomache before you vomit.");
-		who->set_paralyzed((random(3)+ 1)*5);
-return damage;	}
+	who->set_paralyzed((random(3)+ 1)*5);
+    }
+    return damage;
 }
