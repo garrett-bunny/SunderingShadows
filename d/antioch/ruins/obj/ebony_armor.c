@@ -114,5 +114,5 @@ int strikeme(int damage, object what, object who)
 		" harmlessly off "+ETO->QP+" armor.",({ETO,who}));
                 return (-1)*(damage);
 	}
-	return 1;
+	return damage;
 }
