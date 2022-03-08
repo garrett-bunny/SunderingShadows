@@ -6,6 +6,7 @@
     "/d/token_hunt/obj/high/nightydsp", \
     "/d/token_hunt/obj/high/dragonrobe", \
     "/d/token_hunt/obj/high/wolfg", \
+    "/d/token_hunt/obj/low/darkgem_shield", \
     "/d/token_hunt/obj/low/rainbowbangles", \
     "/d/token_hunt/obj/low/rubytalongaunt", \
     "/d/token_hunt/obj/mid/chainedovercoat", \
