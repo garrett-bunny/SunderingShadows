@@ -31,6 +31,7 @@
     "/d/barriermnts/lothwaite/obj/ghostsandals", \
     "/d/barriermnts/lothwaite/obj/torc", \
     "/d/antioch/jarmila/obj/vashapride", \
+    "/d/antioch/ruins/obj/ebony_armor", \
     "/d/magic/obj/shields/callamir", \
     "/d/magic/obj/shields/cevahir", \
     "/d/magic/obj/shields/jarmila", \
