@@ -93,6 +93,7 @@
     "/realms/kismet/obj/rewards/moontiara", \
     "/realms/kismet/obj/rewards/r_orchid", \
     "/d/shadow/room/farm/obj/petal_buckler", \
+    "/d/underdark/mines/obj/dragonmask", \
     "/d/underdark/mines/obj/gnorobe", \
     "/d/laerad/lgnolls/obj/gnollbarding", \
     "/d/laerad/outpost/obj/torm_shield", \
