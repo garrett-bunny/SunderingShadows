@@ -93,4 +93,5 @@
     "/d/underdark/mines/obj/gnorobe", \
     "/d/laerad/lgnolls/obj/gnollbarding", \
     "/d/laerad/outpost/obj/torm_shield", \
+    "/d/islands/pirates/obj/redcoat", \
 })
