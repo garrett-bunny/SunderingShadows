@@ -97,5 +97,6 @@
     "/d/laerad/lgnolls/obj/gnollbarding", \
     "/d/laerad/outpost/obj/torm_shield", \
     "/d/laerad/outpost/obj/torm_scalemail", \
+    "/d/islands/pirates/obj/newcoat", \
     "/d/islands/pirates/obj/redcoat", \
 })
