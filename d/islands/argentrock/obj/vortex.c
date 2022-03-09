@@ -49,7 +49,6 @@ void kill_him(object vic)
             "the black twisting horror!",vic);
         tell_object(vic,"%^RED%^You are caught helplessly in the black twisting "+
             "horror!");
-        vic->do_damage( "torso",(random(30) + 50) );
         vic->cause_typed_damage(vic, "torso", (random(30) + 50), "force");
         return;
     }
