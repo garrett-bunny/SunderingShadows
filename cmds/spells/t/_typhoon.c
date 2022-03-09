@@ -86,9 +86,9 @@ void execute_attack()
         }
 
         if (slipped) {
-            tell_object(targ, "%^BOLD%^%^CYAN%^Unable to hold your balance, you are send flying into the typhoon!%^RESET%^");
-            tell_room(place, "%^CYAN%^%^BOLD%^Unable to hold balance, " + targ->QCN + " is send flying into the typhoon!", ({ targ }));
-            targ->set_tripped(roll_dice(1, 2), "%^BOLD%^You are send flying by the typhoon!%^RESET%^", 4);
+            tell_object(targ, "%^BOLD%^%^CYAN%^Unable to hold your balance, you are sent flying into the typhoon!%^RESET%^");
+            tell_room(place, "%^CYAN%^%^BOLD%^Unable to hold balance, " + targ->QCN + " is sent flying into the typhoon!", ({ targ }));
+            targ->set_tripped(roll_dice(1, 2), "%^BOLD%^You were sent flying by the typhoon!%^RESET%^", 4);
         }
 
         tell_object(targ,"%^BOLD%^%^CYAN%^You are crushed by the strong wings of the typhoon!");

@@ -36,7 +36,7 @@ void spell_effect(int prof)
 {
     int bonus;
 
-    tell_room(place,"%^YELLOW%^"+target->QCN+"'s eyes become unfocussed...%^RESET%^",({caster,target}));
+    tell_room(place,"%^YELLOW%^"+target->QCN+"'s eyes become unfocused...%^RESET%^",({caster,target}));
     tell_object(caster,"%^YELLOW%^You cast a handful of glittering dust towards "+target->QCN+", interwoven with an "
         "enchantment of the mind...%^RESET%^");
     //   bonus = (clevel/3) + (((int)caster->query_stats("intelligence")-10)/2);
