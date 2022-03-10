@@ -53,7 +53,7 @@ void create()
         "thought.  The mass is said to mold itself to the wearer's body, helping to "+
         "further the art of deception that those loyal to The King of Thieves live in."+
         "  Though the Night's Cover was jealously covered by some followers of the "+
-        "Nightsinger, who felt that those of Mask had gone to far, stealing upon the "+
+        "Nightsinger, who felt that those of Mask had gone too far, stealing upon the "+
         "power of the night.  Even with rumors of an alliance between the two faiths, "+
         "there are those Sharrans who would slay or torture any they see with such armor on.");
   

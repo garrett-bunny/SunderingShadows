@@ -25,7 +25,7 @@ void create() {
     "emblem%^RESET%^ of some %^RED%^dark power%^RESET%^.  Inset "+
     "deeply into its skull are two glowing %^BOLD%^%^BLACK%^"+
     "obsidian%^CYAN%^ orbs%^RESET%^, they radiate an intense "+
-    "%^RED%^hatred%^RESET%^ for all living things.  On occassion "+
+    "%^RED%^hatred%^RESET%^ for all living things.  On occasion "+
     "it seems to fade from existence, as if it truly isn't solid "+
     "at all.  You cannot help but to wander what %^RED%^dark "+
     "force%^RESET%^ this creature represents and you begin to "+
