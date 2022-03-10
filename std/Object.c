@@ -1325,7 +1325,7 @@ string query_short()
         }
     }
     if (objectp(TP)) {
-        if (TP->get_static("detecting magic") || FEAT_D->has_feat(this_player(), "eldritch sight")) {
+        if (TP->get_static("detecting magic") || FEATS_D->has_feat(this_player(), "eldritch sight")) {
             theShort = addMagic(theShort);
         }
     }
