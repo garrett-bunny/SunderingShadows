@@ -50,41 +50,17 @@ void heart_beat() {
      chance = 240*playershere;
      if(random(chance)) return;
      switch(random(100)) {
-       case 0..10:
-       tell_room(EETO,"%^CYAN%^Grubby children go running past, shrieking and yelling as they chase one another.%^RESET%^");
+       case 0..24:
+       tell_room(EETO,"%^RESET%^%^CRST%^%^C141%^A %^RESET%^%^C099%^young woman %^RESET%^%^C141%^pushes a stroller down the sidewalk.%^CRST%^");
        break;
-       case 11..15:
-       tell_room(EETO,"%^ORANGE%^A sharp shriek goes up from somewhere nearby, before the sound is abruptly strangled.%^RESET%^");
+       case 25..49:
+       tell_room(EETO,"%^RESET%^%^CRST%^%^C123%^An older gentleman makes his way from tree to tree, picking the ripe %^C196%^f%^C197%^r%^C203%^u%^C202%^i%^C208%^t %^RESET%^%^C123%^and placing it in a %^C094%^wicker basket%^RESET%^%^C123%^.%^CRST%^");
        break;
-       case 16..20:
-       tell_room(EETO,"%^YELLOW%^A brief ruckus comes from down a nearby alleyway, before going suddenly and unsettlingly silent.%^RESET%^");
-       break;
-       case 21..25:
-       tell_room(EETO,"%^BOLD%^%^BLACK%^A shadowy figure slips between the buildings and vanishes from view, further down the road.%^RESET%^");
-       break;
-       case 26..30:
-       tell_room(EETO,"%^BOLD%^%^BLACK%^A shadowy, cowled figure passes you, confident strides carrying him swiftly elsewhere.%^RESET%^");
-       break;
-       case 31..40:
-       tell_room(EETO,"%^GREEN%^A soft breeze picks up, bringing with it the stench of the slums.%^RESET%^");
-       break;
-       case 41..50:
-       tell_room(EETO,"%^BLUE%^You catch a glimpse of a rodent as it scampers along the ground beside a nearby building, and finds a place to hide.%^RESET%^");
-       break;
-       case 51..60:
-       tell_room(EETO,"%^BOLD%^%^BLUE%^A gang of young, rough-looking youths strut along the street, peering about with hard expressions and arrogant sneers.%^RESET%^");
-       break;
-       case 61..70:
-       tell_room(EETO,"%^CYAN%^An old, unsteady man wanders up the street, extending a hand to beg for alms as he goes.%^RESET%^");
-       break;
-       case 71..80:
-       tell_room(EETO,"%^BLUE%^You hear them before you see them. A group of guards stomp past, keeping a vigilant watch on the area, their armor clacking in time with their footfalls.%^RESET%^");
-       break;
-       case 81..90:
-       tell_room(EETO,"%^BOLD%^%^BLACK%^A small child jostles past you and goes running off into an alleyway. You quickly check that your coins are still in your pocket!%^RESET%^");
+       case 50..74:
+       tell_room(EETO,"%^RESET%^%^CRST%^%^C028%^A gentle %^C027%^b%^C033%^r%^C039%^e%^C033%^e%^C039%^z%^C027%^e%^RESET%^%^C028%^ blows through the area, rustling the leaves of the %^C196%^f%^C197%^r%^C203%^u%^C202%^i%^C208%^t %^C214%^t%^C131%^r%^C132%^e%^C126%^e%^C127%^s%^RESET%^%^C028%^.%^CRST%^");
        break;
        default:
-       tell_room(EETO,"%^MAGENTA%^A short, furtive figure concealed beneath hood and cloak slinks along the street, constantly looking to either side as if fearful. It turns a corner and vanishes from sight.%^RESET%^");
+       tell_room(EETO,"%^RESET%^%^CRST%^%^C105%^A handsome young man and graceful older woman walk arm-in-arm down the sidewalk, chatting and laughing %^RESET%^%^C171%^h%^C183%^a%^C189%^p%^RESET%^%^C231%^p%^C225%^i%^C219%^l%^C213%^y%^RESET%^%^C105%^.%^CRST%^");
        break;
      }
      return;
