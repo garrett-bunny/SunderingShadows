@@ -67,6 +67,7 @@ mapping BONUS_CATS = ([
              "cold iron resistance",            "cold iron resistance percent",
              "radiant resistance",              "radiant resistance percent",
              "void resistance",                 "void resistance percent",
+             "magic resistance",
              }),
  "stats" : ({
          "charisma",
