@@ -4832,6 +4832,7 @@ void clear_feats()
     set_divinebond_feats_gained(0);
     set_rage_feats_gained(0);
     set_talent_feats_gained(0);
+    set_pact_feats_gained(0);
     set_other_feats_gained(0);
     set_epic_feats_gained(0);
     return;
@@ -4931,6 +4932,18 @@ int query_rage_feats_gained()
 {
     if(!intp(__FEAT_DATA["rage_feats_gained"])) { __FEAT_DATA["rage_feats_gained"] = 0; }
     return __FEAT_DATA["rage_feats_gained"];
+}
+
+void set_pact_feats_gained(int num)
+{
+    __FEAT_DATA["pact_feats_gained"] = num;
+    return;
+}
+
+int query_pact_feats_gained()
+{
+    if(!intp(__FEAT_DATA["pact_feats_gained"])) { __FEAT_DATA["pact_feats_gained"] = 0; }
+    return __FEAT_DATA["pact_feats_gained"];
 }
 
 void set_talent_feats_gained(int num)
@@ -5095,6 +5108,22 @@ mapping query_rage_feats()
 {
     if(!mapp(__FEAT_DATA["rage"])) { __FEAT_DATA["rage"] = ([]); }
     return __FEAT_DATA["rage"];
+}
+
+void set_pact_feats(mapping feats)
+{
+    if(!mapp(__FEAT_DATA["pact"])) { __FEAT_DATA["pact"] = ([]); }
+    if(mapp(feats))
+    {
+        __FEAT_DATA["pact"] = feats;
+    }
+    return;
+}
+
+mapping query_pact_feats()
+{
+    if(!mapp(__FEAT_DATA["pact"])) { __FEAT_DATA["pact"] = ([]); }
+    return __FEAT_DATA["pact"];
 }
 
 mapping query_talent_feats()

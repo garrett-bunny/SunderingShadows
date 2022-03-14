@@ -121,7 +121,6 @@ void execute_feat()
         return;
     }
     
-    if(!
     if(!arg || member_array(arg, keys(valid_types)) < 0)
     {
         tell_object(caster, "That is not a valid choice for familiar.");
