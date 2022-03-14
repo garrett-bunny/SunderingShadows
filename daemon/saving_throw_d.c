@@ -113,6 +113,9 @@ varargs int do_save(object ob, int dc, string type, raw_save)
 
             if(PLAYER_D->check_familiar(ob, "fox"))
                 mod += 2;
+            
+            if(PLAYER_D->check_familiar(ob) && ob->is_class("warlock"))
+                mod += 2;
         break;
         
         //WILL SAVES

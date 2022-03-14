@@ -427,6 +427,12 @@ int query_skill(string skill)
         }
     }
     
+    if(this_object()->is_class("warlock") && PLAYER_D->check_familiar(this_Object()))
+    {
+        if(skill == "perception")
+            x += 2;
+    }
+    
     //Represents the Jack of All Trades feature in tabletop which gives +1 to all skill checks
     if(this_object()->is_class("bard"))
         x += 1;
