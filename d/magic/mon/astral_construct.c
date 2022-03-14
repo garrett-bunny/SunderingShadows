@@ -29,7 +29,7 @@ void create(){
     set_name("companion");
     set_id(({"companion", "greater summon"}));
     set_short("%^BOLD%^%^CYAN%^Astral Construct%^RESET%^");
-    set_long("%^RESET%^%^CYAN%^Crafted from some sort of transluscent material, " +
+    set_long("%^RESET%^%^CYAN%^Crafted from some sort of translucent material, " +
              "this creature seems to be an impressive mass of crystal given humanoid " +
              "shape.  Its shoulders are wide enough for any blacksmith, and its " +
              "hulking form seems to be perfectly balanced.  Its legs are thick and " +
@@ -244,8 +244,8 @@ void special_attack(object target)
         tell_object(target, "%^RESET%^%^CYAN%^The %^BOLD%^construct %^RESET%^%^CYAN%^curls in on itself while a %^BOLD%^%^BLUE%^wa%^RESET%^%^ORANGE%^r%^BOLD%^p%^BLUE%^in%^RESET%^%^ORANGE%^g %^BOLD%^e%^BLUE%^ne%^RESET%^%^ORANGE%^r%^BOLD%^g%^BLUE%^y %^RESET%^%^CYAN%^coalesces around its bulk, and it %^RED%^launches %^CYAN%^itself at %^WHITE%^you %^RESET%^%^CYAN%^with force%^BOLD%^!%^RESET%^.");
         break;
         default:
-        tell_room(room, "%^RESET%^%^CYAN%^Slowly, the %^BOLD%^construct %^RESET%^%^CYAN%^begins to %^BOLD%^%^BLACK%^v%^WHITE%^i%^BLACK%^b%^WHITE%^r%^BLACK%^a%^WHITE%^t%^BLACK%^e%^RESET%^%^CYAN%^, rising in volocity until %^RED%^erupting %^CYAN%^in multiple %^BOLD%^%^RED%^e%^MAGENTA%^e%^RED%^r%^MAGENTA%^ie %^RED%^p%^MAGENTA%^u%^RED%^l%^MAGENTA%^se%^RED%^s %^RESET%^%^CYAN%^of %^BOLD%^%^RED%^e%^MAGENTA%^ne%^RED%^r%^MAGENTA%^g%^RED%^y %^RESET%^%^CYAN%^that slam into %^WHITE%^%^BOLD%^" + tname + "%^CYAN%^!%^RESET%^", ({ target }));
-        tell_object(target, "%^RESET%^%^CYAN%^Slowly, the %^BOLD%^construct %^RESET%^%^CYAN%^begins to %^BOLD%^%^BLACK%^v%^WHITE%^i%^BLACK%^b%^WHITE%^r%^BLACK%^a%^WHITE%^t%^BLACK%^e%^RESET%^%^CYAN%^, rising in volocity until %^RED%^erupting %^CYAN%^in multiple %^BOLD%^%^RED%^e%^MAGENTA%^e%^RED%^r%^MAGENTA%^ie %^RED%^p%^MAGENTA%^u%^RED%^l%^MAGENTA%^se%^RED%^s %^RESET%^%^CYAN%^of %^BOLD%^%^RED%^e%^MAGENTA%^ne%^RED%^r%^MAGENTA%^g%^RED%^y %^RESET%^%^CYAN%^that slam into %^WHITE%^you%^BOLD%^%^CYAN%^!%^RESET%^."); 
+        tell_room(room, "%^RESET%^%^CYAN%^Slowly, the %^BOLD%^construct %^RESET%^%^CYAN%^begins to %^BOLD%^%^BLACK%^v%^WHITE%^i%^BLACK%^b%^WHITE%^r%^BLACK%^a%^WHITE%^t%^BLACK%^e%^RESET%^%^CYAN%^, rising in velocity until %^RED%^erupting %^CYAN%^in multiple %^BOLD%^%^RED%^e%^MAGENTA%^e%^RED%^r%^MAGENTA%^ie %^RED%^p%^MAGENTA%^u%^RED%^l%^MAGENTA%^se%^RED%^s %^RESET%^%^CYAN%^of %^BOLD%^%^RED%^e%^MAGENTA%^ne%^RED%^r%^MAGENTA%^g%^RED%^y %^RESET%^%^CYAN%^that slam into %^WHITE%^%^BOLD%^" + tname + "%^CYAN%^!%^RESET%^", ({ target }));
+        tell_object(target, "%^RESET%^%^CYAN%^Slowly, the %^BOLD%^construct %^RESET%^%^CYAN%^begins to %^BOLD%^%^BLACK%^v%^WHITE%^i%^BLACK%^b%^WHITE%^r%^BLACK%^a%^WHITE%^t%^BLACK%^e%^RESET%^%^CYAN%^, rising in velocity until %^RED%^erupting %^CYAN%^in multiple %^BOLD%^%^RED%^e%^MAGENTA%^e%^RED%^r%^MAGENTA%^ie %^RED%^p%^MAGENTA%^u%^RED%^l%^MAGENTA%^se%^RED%^s %^RESET%^%^CYAN%^of %^BOLD%^%^RED%^e%^MAGENTA%^ne%^RED%^r%^MAGENTA%^g%^RED%^y %^RESET%^%^CYAN%^that slam into %^WHITE%^you%^BOLD%^%^CYAN%^!%^RESET%^."); 
         break;
     }
     
@@ -255,7 +255,7 @@ void special_attack(object target)
 void die(object ob)
 {
     //"/daemon/yuck_d"->save_inventory(this_object(), SAVEDIR + "acompanion");
-    owner && tell_object(owner, "%^RED%^Your astral construct seems to cave in on itself and it completely dissappates!%^RESET%^");
+    owner && tell_object(owner, "%^RED%^Your astral construct seems to cave in on itself and it completely dissipates!%^RESET%^");
     owner && owner->remove_property("animal_companion");
     owner && owner->remove_property("has_elemental");
     remove();

@@ -67,7 +67,7 @@ A creature with the fast healing effect regains hit points at an exceptional rat
 Necrotic energy permeates the target, blocking healing abilities. The afflicted has the effects of healing spells and powers reduced by the strength of the source of fester. In addition, any healing provided by regenerative effects (such as fast healing and the regeneration feat) are halved. Fester does not affect the healing gained from the standard kits of healing vials or the heal skill.
 
 %^CYAN%^Paralysis%^RESET%^
-A paralyzed creature cannot act. Paralyzed players can not enter many commands. They loose their dexterity bonus to armor class.
+A paralyzed creature cannot act. Paralyzed players can not enter many commands. They lose their dexterity bonus to armor class.
 
 %^CYAN%^Prone or staggered%^RESET%^
 Prone or staggered creatures can not use most weapons for the duration of the effect. They loose their dexterity bonus to armor class.
