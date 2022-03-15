@@ -11,7 +11,7 @@ void create() {
     set_spell_sphere("enchantment_charm");
     set_syntax("cast CLASS mass castigate");
     set_damage_desc("cowering, shaken on save");
-    set_description("You compel the target to beg for forgiveness. On a failed save, the target cowers with fear. On a successful save, it is shaken for 1 round.  A creature who worships the same god as you takes a penalty on its saving shrow.");
+    set_description("You compel the target to beg for forgiveness. On a failed save, the target cowers with fear. On a successful save, it is shaken for 1 round.  A creature who worships the same god as you takes a penalty on its saving throw.");
     set_verbal_comp();
     set_somatic_comp();
     mental_spell(1);
@@ -52,7 +52,7 @@ void spell_effect(int prof){
         if(do_save(target,bonus))
         {
             tell_object(target, "%^RESET%^%^RED%^You fight compulsion to fall onto your knees.%^RESET%^");
-            tell_room(place,"%^RESET%^%^RED%^"+target->QCN+" grimmaces and shakes "+target->QP+" head, fighting off the mental attack.%^RESET%^",target);
+            tell_room(place,"%^RESET%^%^RED%^"+target->QCN+" grimaces and shakes "+target->QP+" head, fighting off the mental attack.%^RESET%^",target);
 
             "/std/effect/status/shaken"->apply_effect(target,roll_dice(1,6), caster);
         }
