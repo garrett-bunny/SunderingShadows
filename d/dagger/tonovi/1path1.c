@@ -1,3 +1,6 @@
+// Chernobog (3/15/22)
+// Western Yniam Road
+
 #include <std.h>
 #include "/d/dagger/tonovi/short.h"
 
