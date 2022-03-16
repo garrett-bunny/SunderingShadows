@@ -100,4 +100,5 @@ int strike_func(int damage, object what, object who){
 ""+ETOQCN+"'s armor block your attack!%^RESET%^");
         return (damage*-80)/100;        
         }
+        return damage;
 }
