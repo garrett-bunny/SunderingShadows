@@ -43,6 +43,8 @@ void create(){
     set_property("hidden inventory", 1);
     set_property("cast and attack", 1);
     set_property("darkvision", 1);
+    set_property("disease immunity", 1);
+    set_property("poison immunity", 1);
     set_spell_chance(75);
     set_spells(({
         "mass fester",
