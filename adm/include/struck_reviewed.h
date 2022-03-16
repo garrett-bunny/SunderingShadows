@@ -14,6 +14,7 @@
     "/d/token_hunt/obj/mid/glitteringarmor", \
     "/d/token_hunt/obj/mid/ogregauntlets", \
     "/d/token_hunt/obj/mid/paingreaves", \
+    "/d/token_hunt/obj/mid/seraphimarmor", \
     "/d/islands/serakii/obj/hound_robe", \
     "/d/islands/serakii/obj/legion_bracers", \
     "/d/islands/serakii/obj/hound_bracers", \
