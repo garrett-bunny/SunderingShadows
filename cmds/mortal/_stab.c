@@ -296,6 +296,8 @@ varargs int get_stab_damage(object player,object target,object weapon)
             if (enchantment < resistance) { damage = 0; }
         }
     }
+    
+    damage = min( ({ damage, target->query_max_hp() / 5 }) );
 
 	return damage;
 }

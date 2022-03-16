@@ -778,6 +778,9 @@ int immunity_check(object obj, string type)
     {
         if(member_array("plague", obj->query_divine_domain()) >= 0)
             return 1;
+        
+        if(FEATS_D->has_feat(obj, "undead graft"))
+            return 1;
     }
 
     case "fear":
