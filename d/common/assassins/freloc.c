@@ -123,7 +123,7 @@ int attack_fun() {
       command(
              "say Slaughter time "+TPQCN+"!!!"
              );
-      user = users();
+      /*user = users();
       i = sizeof(user);
       if((string)TPQCN == TARGET) {
          for(j = 0;j < i;j++) {
@@ -139,7 +139,7 @@ int attack_fun() {
                            "I have hunted long for you "+TPQCN+"...let the pain begin!");        
             }
          }
-      }
+      }*/
       call_out("stab",1,TP);
       TARGET = (string)TP->query_cap_name();
       ATTACK = 1;
@@ -172,13 +172,13 @@ void heart_beat() {
       }
    } else {
       if(ATTACK == 1 && !query_current_attacker()) {
-         user = users();
+         /*user = users();
          ii = sizeof(user);
          for(jj = 0;jj < ii;jj++) {
             if((string)user[jj]->query_level() > 19) {
                tell_object(user[jj],"%^RESET%^Freloc %^MAGENTA%^says:%^RESET%^ GET BACK HERE "+TARGET+" YOU SPINELESS WUSS!!!");        
             }
-         }
+         }*/
          ATTACK = 0;
          return;
       } else {

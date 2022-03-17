@@ -176,13 +176,13 @@ void heart_beat() {
       }
    } else {
       if(ATTACK == 1 && !query_current_attacker()) {
-         user = users();
+         /*user = users();
          ii = sizeof(user);
          for(jj = 0;jj < ii;jj++) {
             if((string)user[jj]->query_level() > 19) {
                tell_object(user[jj],"%^RESET%^Freloc %^MAGENTA%^says:%^RESET%^ GET BACK HERE "+TARGET+" YOU SPINELESS WUSS!!!");
             }
-         }
+         }*/
          ATTACK = 0;
          return;
       } else {

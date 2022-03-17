@@ -31,7 +31,6 @@ void create(){
     set_short("%^RESET%^%^CRST%^%^C144%^A towering %^C255%^bo%^C252%^n%^C255%^e %^C144%^golem%^CRST%^");
     set_long("%^RESET%^%^CRST%^%^C144%^The golem is comprised of so many different skeletons, reorganized into this giant humanoid. Four arms spread from a tangled mess of %^C255%^ri%^C252%^b%^C255%^s%^C144%^, %^C250%^femurs%^RESET%^%^C144%^, and other misplaced %^C255%^bo%^C253%^n%^C255%^e%^C252%^s%^RESET%^%^C144%^, with %^C058%^antlers %^C144%^and %^C059%^horns %^RESET%^%^C144%^protruding from its limbs like vicious talons, all bound together by wisps of %^C118%^e%^C112%^ld%^C106%^r%^C118%^i%^C112%^tc%^C106%^h %^C118%^e%^C112%^ne%^C106%^r%^C118%^g%^C112%^y%^RESET%^%^C144%^. A gigantic %^C255%^minotaur skull %^C144%^tops off the monstrosity, its eye sockets aglow with sparks of %^C039%^b%^C045%^al%^C051%^e%^C039%^f%^C045%^ul %^C051%^b%^C039%^l%^C045%^ue %^C051%^f%^C039%^l%^C045%^am%^C051%^e %^RESET%^%^C144%^above a %^C244%^r%^C246%^i%^C248%^c%^C244%^t%^C246%^u%^C248%^s %^C244%^g%^C246%^r%^C248%^i%^C244%^n%^RESET%^%^C144%^.%^CRST%^");
     set_race("undead");
-    set_long("");
     set_hd(4,1);
     set_hp(40);
     set_exp(1);
