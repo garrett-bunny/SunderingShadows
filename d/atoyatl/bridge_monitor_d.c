@@ -1,6 +1,6 @@
 #include <std.h>
 #include <daemons.h>
-#include "/realms/lujke/tecqumin/tecqumin.h"
+#include "/d/atoyatl/tecqumin/tecqumin.h"
 
 inherit DAEMON;
 
