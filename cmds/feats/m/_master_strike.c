@@ -27,7 +27,7 @@ void create()
     feat_name("master strike");
     feat_prereq("Thief L31");
     feat_syntax("master_strike [TARGET]");
-    feat_desc("With this feat, the thief is able to perform a devastating strike on a vulnerable enemy, fully exploiting that vulnerability. Master strike can only be used against targets who are vulnerable to sneak attacks (paralyzed, tripped, blind, or attacking someone else). Master strike bypasses physical defenses, like armor class and damage resistance. This feat deals damage based on the thief's sneak attack dice. If the target does not make a fortitude save, they suffer internal bleeding. This feat has a cooldown.");
+    feat_desc("With this feat, the thief is able to perform a devastating strike on a vulnerable enemy, fully exploiting that vulnerability. If Master Strike is  used against targets who are vulnerable to sneak attacks (paralyzed, tripped, blind, or attacking someone else), your sneak attack dice are added to the damage. Master strike bypasses physical defenses, like armor class and damage resistance. If the target does not make a fortitude save, they suffer internal bleeding. This feat has a cooldown.");
     set_save("fort");
 }
 
@@ -78,13 +78,13 @@ int check_can_use()
         tell_object(caster, "You can't use master strike while mounted.");
         return 0;
     }
-    
+    /*
     if(!target->is_vulnerable_to(caster))
     {
         tell_object(caster, "Your target isn't vulnerable to sneak attacks.");
         return 0;
     }
-    
+    */
     if(caster->cooldown("master strike"))
     {
         tell_object(caster, "You can't use master strike yet.");
@@ -164,7 +164,7 @@ void execute_feat()
 
 void execute_attack()
 {
-    int damage, DC;
+    int damage, DC, sneak;
     object *weapons, stagger;
     string ename, pname;
     
@@ -185,39 +185,39 @@ void execute_attack()
     spell_kill(target, caster);
     //Bypasses physical avoidance...needs to have a cooldown....starting with 5 minutes
     //Down to 3 minutes
-    caster->add_cooldown("master strike", 180);
+    caster->add_cooldown("master strike", 60);
     ename = target->QCN;
     pname = caster->QCN;
     
     tell_object(caster, CRAYON_D->color_string("You strike " + ename + " in their most vulnerable spot with incredible ferocity!", "lightning yellow"));
     tell_room(place, sprintf("%s%s strikes %s ferociously in a vulnerable spot!%s", HIR, pname, ename, NOR), ({ caster }));
     
-    damage = caster->query_class_level("thief") / 2;
+    sneak = caster->query_class_level("thief") / 2;
     
     if(FEATS_D->usable_feat(target, "mighty resilience"))
-        damage = 0;
+        sneak = 0;
         
     //Armor bond sneak attack resistance
     if(target->query_property("fortification 75"))
-        damage /= 4;
+        sneak /= 4;
     else if(target->query_property("fortification 50"))
-        damage /= 2;
+        sneak /= 2;
     else if(target->query_property("fortification 25"))
-        damage = (damage * 3) / 4;
+        sneak = (damage * 3) / 4;
     
     if(FEATS_D->usable_feat(target, "undead graft"))
-        damage /= 2;
+        sneak /= 2;
         
     //Barbarians/Thieves with danger sense gain resistance to sneak attacks
     if(FEATS_D->usable_feat(target, "danger sense") && target->query_level() + 4 > caster->query_level())
-        damage /= 2;
+        sneak /= 2;
     
     if(caster->query_blind() || caster->light_blind())
     {
         if(FEATS_D->usable_feat(caster, "blindfight"))
-            damage /= 2;
+            sneak /= 2;
         else 
-            damage = 0;
+            sneak = 0;
     }
     
     weapons = caster->query_wielded();
@@ -226,6 +226,12 @@ void execute_attack()
     damage += sizeof(weapons) ? weapons[0]->query_wc() : caster->query_unarmed_damage();
     damage += BONUS_D->query_stat_bonus(caster, "dexterity");
     damage += caster->query_damage_bonus();
+    
+    if(target->is_vulnerable_to(caster))
+    {
+        damage += sneak;
+        target->set_paralyzed(roll_dice(1, 4), "%^YELLOW%^You are still recovering your senses!%^RESET%^");
+    }
     
     target->set_property("magic", 1);
     target->cause_typed_damage(target, target->return_target_limb(), damage, "untyped");
@@ -239,7 +245,7 @@ void execute_attack()
         
         tell_object(target, "%^BOLD%^RED%^The strike ruptures your organs!");
         tell_room(place, ename + "'s organs are ruptured by the strike!", ({ target }));
-        target->set_property("rend", 5);
+        target->set_property("rend", 7);
     }
     
     return;
