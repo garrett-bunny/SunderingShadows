@@ -361,12 +361,12 @@ int do_strike(object play, object vic)
         if (!objectp(armor[i])) {
             continue;
         }
-        if (!sizeof(weapon) || !objectp(weapon[0])) mod = armor[i]->do_struck(damage,0,play);
-        else mod = armor[i]->do_struck(damage,weapon[0],play);
+        if (!sizeof(weapon) || !objectp(weapon[0])) mod = armor[i]->do_struck(damage, 0, play);
+        else mod = armor[i]->do_struck(damage, weapon[0], play);
 
-	    if (damage && mod <= 0 && member_array(base_name(armor[i]), STRUCK_REVIEWED) == -1) {
-	        log_file("reports/struck_damage", "Review struck function returning " + mod + ": " + base_name(armor[i]) + "\n");
-	    }
+	if (damage && mod <= 0 && member_array(base_name(armor[i]), STRUCK_REVIEWED) == -1) {
+	    log_file("reports/struck_damage", "Review struck function returning " + mod + ": " + base_name(armor[i]) + "\n");
+	}
         if (mod < 0) {
             damage += mod;
         }
