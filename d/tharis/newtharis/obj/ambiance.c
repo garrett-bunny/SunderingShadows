@@ -68,33 +68,18 @@ void heart_beat() {
    if(strsrch(roomname,"rooms/elf") != -1) {
      chance = 240*playershere;
      if(random(chance)) return;
-     switch(random(90)) {
-       case 0..10:
-       tell_room(EETO,"%^CYAN%^The torn remains of a poster rustle past, carried by a stray gust of wind.%^RESET%^");
+     switch(random(100)) {
+       case 0..24:
+       tell_room(EETO,"%^RESET%^%^CRST%^C241%^A lithe shadowy figure slips between the buildings and disappears from view.%^CRST%^");
        break;
-       case 11..20:
-       tell_room(EETO,"%^ORANGE%^A hollow crack echoes down the street, probably a piece of masonry coming loose.%^RESET%^");
+       case 25..49:
+       tell_room(EETO,"%^RESET%^%^CRST%^%^C094%^A %^C088%^h%^C124%^o%^C088%^bg%^C124%^o%^C088%^blin %^C094%^in %^RESET%^%^C241%^dark s%^C246%^t%^C248%^u%^C250%^dd%^C248%^e%^C241%^d leathers %^RESET%^%^C094%^and carrying a large %^RESET%^%^C248%^sword %^RESET%^%^C094%^departs the compound to the north, traipsing eastward.%^CRST%^");
        break;
-       case 21..30:
-       tell_room(EETO,"%^BOLD%^%^BLACK%^A shadowy figure slips between the buildings and disappears from view, further down the road.%^RESET%^");
-       break;
-       case 31..40:
-       tell_room(EETO,"%^GREEN%^A soft breeze picks up, stirring the leaves of the small plants growing up through the walls and buildings.%^RESET%^");
-       break;
-       case 41..50:
-       tell_room(EETO,"%^BLUE%^You catch a glimpse of a rodent as it scampers along the ground beside a nearby building, and finds a place to hide.%^RESET%^");
-       break;
-       case 51..60:
-       tell_room(EETO,"%^YELLOW%^A brief ruckus comes from the west, further distant in the slums, before fading again to return the area to silence.%^RESET%^");
-       break;
-       case 61..70:
-       tell_room(EETO,"%^CYAN%^The wind picks up briefly, causing the shutters on a nearby window to bang against the wall.%^RESET%^");
-       break;
-       case 71..80:
-       tell_room(EETO,"%^BLUE%^You hear them before you see them. A group of guards stomp past, keeping a vigilant watch on the area, their armor clacking in time with their footfalls.%^RESET%^");
+       case 50..74:
+       tell_room(EETO,"%^RESET%^%^CRST%^%^C028%^A gentle %^C027%^b%^C033%^r%^C039%^e%^C033%^e%^C039%^z%^C027%^e%^RESET%^%^C028%^ blows through the area, causing the large %^C124%^f%^C196%^l%^C241%^a%^C124%^g %^RESET%^%^C028%^flying high above the compound to snap sharply.%^CRST%^");
        break;
        default:
-       tell_room(EETO,"%^MAGENTA%^A gentle trill of birdsong carries from somewhere above the nearby rooftops.%^RESET%^");
+       tell_room(EETO,"%^RESET%^%^CRST%^%^C100%^A %^RESET%^%^C058%^cart %^C100%^carrying supplies rumbles up to the great wooden gates of the %^RESET%^%^C241%^compound%^RESET%^%^C100%^. A moment later the gates open, allowing it to roll in and providing the briefest glimpse of the courtyard beyond, full of training %^RESET%^%^C244%^soldiers%^C100%^.%^CRST%^");
        break;
      }
      return;
