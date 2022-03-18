@@ -44,7 +44,7 @@ void init() {
 int smile_func() {
      tell_object(ETO,"%^BLACK%^%^BOLD%^You find you cannot bring yourself to "+
 	 "smile.%^RESET%^");
-     tell_room(EETO, ""+ETOQCN+" %^BLACK%^%^BOLD%^seems to paues a moment.%^RESET%^",ETO);
+     tell_room(EETO, ""+ETOQCN+" %^BLACK%^%^BOLD%^seems to pause a moment.%^RESET%^",ETO);
     return 1;
 }
 
