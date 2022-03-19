@@ -508,6 +508,16 @@ mixed query_property(string prop)
                 }
             }
         }
+        
+        if(this_object()->is_class("druid"))
+        {
+            if(FEATS_D->has_feat(this_object(), "guardian of nature"))
+            {
+                if(!USER_D->is_valid_terrain(environment(this_object())->query_terrain(), "city"))
+                    num += 2;
+            }
+        }
+        
         if(this_object()->is_class("psion") && this_object()->query("available focus"))
             num += 1;
     

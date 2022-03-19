@@ -50,6 +50,7 @@ mapping class_featmap(string myspec)
                 11 : ({ "wild speech" }),
                 15 : ({ "timeless body" }),
                 16 : ({ "wild knowledge" }),
+                31 : ({ "guardian of nature" }),
             ]);
 }
 

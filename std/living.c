@@ -1836,6 +1836,15 @@ int query_attack_bonus()
         }
     }
     
+    if(this_object()->is_class("druid"))
+    {
+        if(FEATS_D->has_feat(this_object(), "guardian of nature"))
+        {
+            if(!USER_D->is_valid_terrain(environment(this_object())->query_terrain(), "city"))
+                ret += 2;
+        }
+    }
+    
     if(attacker && this_object()->query_race() == "dwarf")
     {
         if(this_object()->query("subrace") != "gray dwarf")
@@ -1943,6 +1952,15 @@ int query_damage_bonus()
             //Favored enemy improves with additional feats
             FEATS_D->usable_feat(TO, "second favored enemy") && ret += 2;
             FEATS_D->usable_feat(TO, "third favored enemy") && ret += 2;
+        }
+    }
+    
+    if(this_object()->is_class("druid"))
+    {
+        if(FEATS_D->has_feat(this_object(), "guardian of nature"))
+        {
+            if(!USER_D->is_valid_terrain(environment(this_object())->query_terrain(), "city"))
+                ret += 2;
         }
     }
     
