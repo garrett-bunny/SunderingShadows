@@ -11,7 +11,7 @@ void create()
     feat_category("WildernessLore");
     feat_name("guardian of nature");
     feat_prereq("Druid L31");
-    feat_desc("The druid becomes a true guardian of the natural order, and the natural world around them lends them its strength. While the druid is not within a city, he gains +2 attack bonus, +2 damage bonus, and +2 caster level.");
+    feat_desc("The druid becomes a true guardian of the natural order, and the natural world around them lends them its strength. While the druid is not within a city, he gains +2 attack bonus, +2 damage bonus, and +2 caster level. Additionally, the druid gains the create demiplane spell, which can be used to make their very own druid's grove.");
     permanent(1);
 }
 

@@ -11,7 +11,7 @@ void create(){
     set_spell_sphere("divination");
     set_syntax("cast CLASS commune with nature");
     set_description("This spell allows the ranger to become one with nature, sensing abnormal presences within their "
-"surroundings. ");
+"surroundings. It also will tell you what type of terrain you're in.");
     set_verbal_comp();
     set_helpful_spell(1);
 }
@@ -58,6 +58,7 @@ void spell_effect(int prof){
       dest_effect();
       return;
     }
+    tell_object(caster, "%^GREEN%^BOLD%^You sense the type of terrain here is : " + environment(caster)->query_terrain() + ".");
     peo = ({});
     peo += users();
     if(member_array(caster,peo) != -1) peo -= ({ caster });
