@@ -427,7 +427,7 @@ int query_skill(string skill)
         }
     }
     
-    if(this_object()->is_class("warlock") && PLAYER_D->check_familiar(this_Object()))
+    if(this_object()->is_class("warlock") && PLAYER_D->check_familiar(this_object()))
     {
         if(skill == "perception")
             x += 2;
