@@ -927,6 +927,7 @@ void check_extra_abilities(object attacker, object target, object weapon, int cr
     if(FEATS_D->usable_feat(attacker, "cleave") && objectp(weapon))
     {
         int cleave_dmg, flvl;
+        string cleave_type;
         object first;
 
         att = attacker->query_attackers() - ({ target });
@@ -934,9 +935,9 @@ void check_extra_abilities(object attacker, object target, object weapon, int cr
 
         if(sizeof(att) && BONUS_D->process_hit(attacker, att[0], 0, weapon, 0, 0, 0));
         {
-            flvl = attacker->query_player_level() / 2;
+            flvl = 1 + attacker->query_player_level() / 10;
             flvl += (FEATS_D->usable_feat(attacker, "great cleave") * 2);
-            cleave_dmg = roll_dice(flvl, weapon->query_wc());
+            cleave_dmg = roll_dice(flvl, 1 + weapon->query_wc());
             //cleave_dmg = (weapon->query_wc() + 2) * (1 + flvl / 10);
 
             //Cleave happens once per HB unless they have the improved cleave feat
