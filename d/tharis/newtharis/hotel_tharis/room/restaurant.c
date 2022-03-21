@@ -7,7 +7,7 @@ inherit ROOM;
 
 void create(){
     ::create();
-    set_terrain(WOOD_BUILDING);
+    set_terrain(CITY);
     set_travel(PAVED_ROAD);
     set_property("light", 2);
     set_property("indoors", 1);
