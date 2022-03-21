@@ -20,7 +20,7 @@ void create(){
 ]));
        set_items(([
     "formations" : "Jagged formations of natural rock tower all around you.",
-    "channel" : "The waters are very shallow, are crystalm clear, and move at a snail's pace.",
+    "channel" : "The waters are very shallow, are crystal clear, and move at a snail's pace.",
     "water" : "It is crystal clear.",
     "rocks" : "The rocks here are very jagged.",
     "formation" : "It looks almost perfectly like a sobbing boy if you look at it from just the right angle.",

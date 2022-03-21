@@ -11,7 +11,7 @@ void create()
     feat_category("Inquisition");
     feat_name("monster lore");
     feat_prereq("Inquisitor L1");
-    feat_desc("The inquisitor adds her Wisdom modifier in addition to her Intelligence modifier, when studyng creatures. The inquisitor might use her wisdom instead of her intelligence for the amount of foes he can remember");
+    feat_desc("The inquisitor adds her Wisdom modifier in addition to her Intelligence modifier, when studying creatures. The inquisitor might use her wisdom instead of her intelligence for the amount of foes he can remember.");
     permanent(1);
 }
 

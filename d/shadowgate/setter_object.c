@@ -373,7 +373,7 @@ string *generate_gender()
 hint_gender()
 {
     write("
-%^BOLD%^Gender defines how game will reference you in messages and which races are available to you. For example, %^CYAN%^Dryads%^WHITE%^ can be only %^CYAN%^females%^WHITE%^, while %^CYAN%^Satyrs%^WHITE%^ only %^CYAN%^males%^WHITE%^.
+%^BOLD%^Gender defines how the game will reference your pronouns in various messages, such as echoes and emotes.
 
 %^BOLD%^%^CYAN%^ Male%^WHITE%^ will be referenced to as %^CYAN%^he%^WHITE%^.
 %^BOLD%^%^CYAN%^ Female%^WHITE%^ will be referenced to as %^CYAN%^she%^WHITE%^.
