@@ -39,6 +39,7 @@ void create()
     set_attacks_num(5);
     set_base_damage_type("piercing");
     set_property("full attacks",1);
+    set_property("undead", 1);
     add_limb("tooth filled maw", "head", 0, 0, 0);
     add_limb("right front claw", "right foreleg", 0, 0, 0);
     add_limb("left front claw", "left foreleg", 0, 0, 0);
