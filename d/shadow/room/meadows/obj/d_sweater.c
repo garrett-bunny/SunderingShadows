@@ -29,7 +29,7 @@
 "%^BOLD%^%^MAGENTA%^carnation pink%^RESET%^",\
 "%^BOLD%^%^BLACK%^charcoal gray%^RESET%^",\
 "%^BOLD%^%^WHITE%^rich cream%^RESET%^",\
-"%^YELLOW%^saphron%^RESET%^",\
+"%^YELLOW%^saffron%^RESET%^",\
 "%^RESET%^%^ORANGE%^peach%^RESET%^",\
 "%^YELLOW%^lemon yellow%^RESET%^",\
 "%^BOLD%^%^MAGENTA%^brilliant pink%^RESET%^",\
