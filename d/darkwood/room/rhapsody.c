@@ -68,7 +68,7 @@ void create(){
 
     set_menu( ({"raging tempo","treble clef","languishing lyre","rhapsody",
         "elven steak","pheasant","story stew","sparkling melody","spinach salad",
-        "pretzels","licorice lager","evermeet tea","cocoa","destroyers draught",
+        "pretzels","licorice lager","evermeet tea","cocoa","destroyer's draught",
         "leg of lamb","feywine"}),
         ({"alcoholic","alcoholic","alcoholic","alcoholic","food","food","food",
         "soft drink","food","food","alcoholic","soft drink","soft drink","alcoholic",
