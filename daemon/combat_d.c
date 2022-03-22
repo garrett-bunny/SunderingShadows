@@ -444,13 +444,11 @@ varargs int typed_damage_modification(object attacker, object targ, string limb,
 
     damage = to_int(damage * percentage);
 
-    //if(damage < 0)
-    //    damage = 0;
-
-    damage = damage - resist;
-
-    //if(damage < 0)
-    //    damage = 0;
+    //prevent flat resist from exceeding the value of the damage
+    if(damage > 0) {
+	resist = min( ({ resist, damage }) );
+	damage = damage - resist;
+    }
 
     if ((type == "negative energy" ||
         type == "positive energy") &&
