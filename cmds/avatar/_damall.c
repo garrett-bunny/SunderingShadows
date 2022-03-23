@@ -30,6 +30,13 @@ int cmd_damall(string str){
         return 1;
 
     objs = all_living(room) - ({ this_player() });
+    
+    if(!sizeof(objs))
+    {
+        write("There are no targets here.");
+        return;
+    }
+    
     args = explode(str, " ");  
     amount = atoi(args[0]);
 
