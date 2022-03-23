@@ -17,8 +17,8 @@ void create()
         "they take notice of you. You can tell that they are not very happy "
         "to see you, and that they may in fact be planning to cause you "
         "grave amounts of harm. You notice the burned and squashed corpses "
-        "of long dead heros and realize your prior conclusion was correct.  "
-        "You are definately in a mess of trouble here, maybe you should have "
+        "of long dead heroes and realize your prior conclusion was correct.  "
+        "You are definitely in a mess of trouble here, maybe you should have "
         "given more thought to that knocker's riddle. Damn, too late now.");
  
     set_exits(([
