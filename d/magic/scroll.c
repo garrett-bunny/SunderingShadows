@@ -362,6 +362,7 @@ int use_scroll(string str)
     if (FEATS_D->usable_feat(TP, "enhance scroll")) {
         lev = TP->query_prestige_level(TP->query("base_class"));
         lev += TP->query_property("empowered");
+        lev = max( ({ lev, this_object()->query_clevel() }) );
     }
 
     if (lev < 1) {
