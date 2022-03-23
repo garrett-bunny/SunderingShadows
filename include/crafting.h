@@ -81,7 +81,7 @@ mapping JEWEL = ([]);
 JEWEL = ([
              "anklet":(["file":COMMONFILE"jewelry/anklet","units":2]),
              "bracelet":(["file":COMMONFILE"jewelry/bracelet","units":2]),
-             "bracers":(["file":COMMONFILE"armour/bracers","units":3]),
+             "bracers":(["file":COMMONFILE"armour/metal_bracers","units":3]),
              "circlet":(["file":COMMONFILE"jewelry/circlet","units":2]),
              "glasses":(["file":COMMONFILE"jewelry/glasses","units":2]),
              "necklace":(["file":COMMONFILE"jewelry/necklace","units":2]),
@@ -186,7 +186,7 @@ WOODWORK = ([
 
                 "anklet":(["file":COMMONFILE"jewelry/anklet","units":2]),
                 "bracelet":(["file":COMMONFILE"jewelry/bracelet","units":2]),
-                "bracers":(["file":COMMONFILE"armour/bracers","units":3]),
+                "bracers":(["file":COMMONFILE"armour/wooden_bracers","units":3]),
                 "circlet":(["file":COMMONFILE"jewelry/circlet","units":2]),
                 "necklace":(["file":COMMONFILE"jewelry/necklace","units":2]),
                 "ring":(["file":COMMONFILE"jewelry/ring","units":2]),
