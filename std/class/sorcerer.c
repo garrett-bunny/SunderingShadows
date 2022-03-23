@@ -73,7 +73,7 @@ string *bloodline_skills(string bloodline)
         skills += ({ "healing" });
         break;
         
-        case "stormborn": case "boreal": case "fey":
+        case "stormborn": case "boreal": case "fey": case "orc":
         skills += ({ "survival" });
         break;
         

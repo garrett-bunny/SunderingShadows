@@ -1035,6 +1035,11 @@ int query_resistance_percent(string res)
             if(res == "fire")
                 mod = 20 + sorc_level * 2;
             break;
+            
+            case "orc":
+            if(res == "fire")
+                mod = 10 + sorc_level;
+            break;
 
             case "boreal":
             if(res == "cold")

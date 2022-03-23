@@ -92,6 +92,8 @@ class_spell_storage =
     //    ({"sleep","blindness","displacement","phantasmal killer","false vision""eyebite","visions from within","euphoric tranquility"}),
     //"shadow":
     //    ({"touch of fatigue","alter self","phantom steed","shadowform","angelic aspect","shadow alteration","umbral strike","greater shadow evocation"}),
+    "orc":
+        ({"burning hands","scorcher","fireball","wall of fire","cloudkill","tar pool","delayed blast fireball","iron body","meteor swarm"}),
     "stormborn":
         ({"shocking grasp","lightning bolt","gust of wind","lightning arc","chain lightning","phase door","stormbolts","ride the lightning"}),
     //"undead":
