@@ -35,8 +35,8 @@ void create(){
          "direct their soldiers in combat against elves defending "+
          "themselves with spell and blade.  In the right corner, a "+
          "line of soldiers is leading away %^CYAN%^chained elves "+
-         "%^RESET%^even while the battle wages.\nYou see several "+
-         "marks where bold elves have tried to deface the mural.",
+         "%^RESET%^even while the battle wages.\n The mural has been "+
+         "entirely defaced, only remnants of its original meaning remains.",
       ]) );
     set_exits( ([
 	"south" : RPATH "street1",
