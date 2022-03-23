@@ -16,7 +16,7 @@ void create() {
   set_travel(DECAYED_FLOOR);
     set_short("Tropical Docks");
   set_long(
-      "You are standing on an ancient run down pier that seems to serve as the docks for this strange tropical island.  From here, you can see the cliffs rising above the island to the north, and the cliffs falling into the ocean to the south, but its the vast jungle before you that amazes you."
+      "You are standing on an ancient run down pier that seems to serve as the docks for this strange tropical island. From here, you can see the cliffs rising above the island to the north, and the cliffs falling into the ocean to the south, but it's the vast jungle before you that amazes you."
   );
   set_smell("default","You smell the salt of the ocean.");
     set_listen("default", "You can hear strange crashing noises coming from the jungle on the island.");

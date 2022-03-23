@@ -20,7 +20,7 @@ void create()
 	" needed. The chairs and stools that are scattered about the room have"+
 	" been carved from the wood of the tree, but from dead branches that"+
 	" needed to be removed. There is a table on the eastern side with a"+
-	" platter laid out on it. From the center of the ceiling a little tendril"+
+	" platter laid out on it. From the center of the ceiling is a little tendril"+
 	" of wood that serves as a hook for a chandelier made of iron. From"+
 	" the iron chandelier hangs softly glowing moss that lights the room."
 	);
@@ -28,9 +28,9 @@ void create()
 	set_listen("default","You can hear the branches above you creaking in"+
 	" the wind.");
 	set_items(([
-	"floor" : "The hard dirt floor has a woven straw matt stretched out"+
+	"floor" : "The hard dirt floor has a woven straw mat stretched out"+
 	" across it.",
-	({"straw matt","matt"}) : "%^YELLOW%^A woven straw matt has been stretched"+
+	({"straw mat","mat"}) : "%^YELLOW%^A woven straw mat has been stretched"+
 	" out across the floor. It has been kept fairly clean from dust, well, as"+
 	" clean as can be expected.",
 	"ceiling" : "The ceiling is domed and smooth, made from solid wood. In"+
@@ -39,14 +39,14 @@ void create()
 	"chairs" : "Several chairs hand carved from fallen branches of the tree"+
 	" are scattered across the room.",
 	"table" : "A table that was carefully hand carved out of a solid branch"+
-	" of this magnificent tree is on the east. A platter has been laid out"+
+	" of this magnificent tree is to the east. A platter has been laid out"+
 	" on the table.",
-	"platter" : "A platter of honey comb has been thoughtfully laid out. You"+
+	"platter" : "A platter of honeycomb has been thoughtfully laid out. You"+
 	" can take a piece if you wish.",
 	({"shelves","walls"}) : "Natural grooves in the walls form shelves for"+
 	" books, statues, and other items. The tree created them in the most"+
 	" convenient of places, as though it were alive and sentient. But that's"+
-	" rather silly...isn't it?",
+	" rather silly... isn't it?",
 	({"chandelier","iron chandelier"}) : "A large wrought iron chandelier"+
 	" hangs from a natural hook in the ceiling. Softly glowing moss clings"+
 	" to the chandelier, slowly eating it away. Every now and then the"+
@@ -69,9 +69,9 @@ void reset()
 	::reset();
 	if(count < 5) {
 		tell_room(ETO,"%^BOLD%^A little sprite flutters into the room, quickly"+
-		" refilling the platter with honey comb and then leaving just as"+
+		" refilling the platter with honeycomb and then leaving just as"+
 		" quickly.");
-		add_item("platter","A platter of honey comb has been thoughtfully laid"+
+		add_item("platter","A platter of honeycomb has been thoughtfully laid"+
 		" out. You can take a piece if you wish.");
 		count = 5;
 	}
@@ -86,19 +86,19 @@ void init()
 
 int take_honey(string str)
 {
-	if(str != "honey comb") {
-		tell_object(TP,"Try take honey comb.");
+	if(str != "honeycomb") {
+		tell_object(TP,"Try take honeycomb.");
 		return 1;
 	}
 	if(count < 1) {
-		tell_object(TP,"There is no more honey comb left, it's all been taken.");
+		tell_object(TP,"There is no more honeycomb left, it's all been taken.");
 		return 1;
 	}
 	else {
 		tell_object(TP,"%^YELLOW%^You reach out and take a piece of honey"+
-		" comb from the platter.");
+		"comb from the platter.");
 		tell_room(ETP,"%^YELLOW%^"+TP->query_cap_name()+" reaches out and"+
-		" takes a piece of honey comb from the platter.",TP);
+		" takes a piece of honeycomb from the platter.",TP);
 		count -= 1;
 		new("/d/guilds/kindred/obj/honey.c")->move(TP);
 		if(count < 1) {

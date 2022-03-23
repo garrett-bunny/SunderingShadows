@@ -52,9 +52,9 @@ void create()
     set_exits((["opening": ELROOMSE+"14"]));
     add_location("azha",0,55,"/d/azha/town/wroad");
     add_location("torm",0,55,"/d/dagger/Torm/road/path12");
-    add_location("verbobone",15,75,"/d/deku/town/road13");
-    add_location("seneca",25,95,"/d/attaya/newseneca/rooms/boardwalk3");
-    add_location("enclave",10,75,"/d/shadow/room/city/portal/foyer");
+    add_location("verbobone",0,75,"/d/deku/town/road13");
+    add_location("seneca",0,95,"/d/attaya/newseneca/rooms/boardwalk3");
+    add_location("enclave",0,75,"/d/shadow/room/city/portal/foyer");
     return;
 }
 

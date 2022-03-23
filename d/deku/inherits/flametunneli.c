@@ -70,7 +70,7 @@ void create() {
     "blue%^RESET%^%^RED%^ barrier surrounding the fire on the "+
     "inside of the tunnel.  You realize that just beyond the "+
     "barrier the fire is raging and out of control and "+
-    "occassionally the barrier wavers, leaving you unsure of its "+
+    "occasionally the barrier wavers, leaving you unsure of its "+
     "strength and very wary of how long it might hold.%^RESET%^");
   
    
@@ -96,7 +96,7 @@ void create() {
         "out of control fire.  It is somehow held at bay by a "+
         "light %^BLUE%^blue%^RESET%^%^RED%^ barrier.%^RESET%^",
         "barrier" : "%^BLUE%^This light blue barrier contains "+
-        "the raging and out of control fire here.  It occassionally "+
+        "the raging and out of control fire here.  It occasionally "+
         "wavers, leaving you unsure of its strength and wary of "+
         "how long it might hold.%^RESET%^",
     ] ));

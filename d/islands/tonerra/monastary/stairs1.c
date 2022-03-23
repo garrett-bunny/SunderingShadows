@@ -22,7 +22,7 @@ For now you don't seem to be able to climb them.
 OLI
    );
    set_smell("default","The old stone has kept all of the smells it's been exposed to.");
-   set_listen("default","You heartbeat echos in the distance.");
+   set_listen("default","Your heartbeat echos in the distance.");
    set_exits(([
       "northwest":MONASTERY+"hall1",
    ]));

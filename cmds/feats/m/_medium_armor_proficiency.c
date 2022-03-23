@@ -10,7 +10,7 @@ void create()
    feat_category("ArmorMastery");
    feat_name("medium armor proficiency");
    feat_prereq("Light armor proficiency");
-   feat_desc("Medium Armor Proficiency is a passive feat that allows the use of various types of mail, including chain, ring, scale, splint, and banded. It also allows the use of brigandine armor and breastplates. Requires light armor proficiency feat.");
+   feat_desc("Medium Armor Proficiency is a passive feat that allows the use of various types of mail, including chain, ring, scale, splint, and banded. It also allows the use of brigandine armor and breastplates. Requires the light armor proficiency feat.");
    permanent(1);
    set_required_for(({"heavy armor proficiency","shield proficiency"}));
 }

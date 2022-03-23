@@ -43,12 +43,13 @@ int remove_func(){
 	return 1;
 }
 int strike_func(int damage, object what, object who){
-	if(random(1000) < 400){
+    if(random(1000) < 400){
 	tell_room(environment(query_worn()),"%^BOLD%^%^RED%^The %^RESET%^silver spikes%^BOLD%^%^RED%^ of "+ETOQCN+"'s%^BOLD%^%^RED%^ "+query_short()+"%^BOLD%^%^RED%^ tears into "+who->QCN+"%^BOLD%^%^RED%^'s flesh, splattering %^RESET%^%^RED%^blood%^BOLD%^%^RED%^ everywhere!%^RESET%^",({ETO,who}));
 	tell_object(ETO,"%^BOLD%^%^RED%^You bash your knee into "+who->QCN+"%^RESET%^%^BOLD%^%^RED%^, ripping into the flesh.%^RESET%^");
 	tell_object(who,"%^BOLD%^%^RED%^You feel your flesh ripped asunder as "+ETOQCN+"%^BOLD%^%^RED%^ bashes you with "+query_short()+"%^BOLD%^%^RED%^.%^RESET%^");
-		who->cause_typed_damage(who, "torso", roll_dice(1, 7) + 19, "piercing");
-return damage;	}
+	who->cause_typed_damage(who, "torso", roll_dice(1, 7) + 19, "piercing");
+    }
+    return damage;
 }
 
 int is_metal() { return 0; }

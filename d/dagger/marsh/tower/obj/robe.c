@@ -16,7 +16,7 @@ create() {
     set_short("%^RESET%^%^BLUE%^Robe of death%^RESET%^");
     set_long(
         "%^BLUE%^This blood stained robe is made of an unknown blue "
-   "fabric which seems to suck light into it. Its clasp is formed "
+   "fabric, which seems to suck light into it. Its clasp is formed "
 	"into the likeness of a cackling skull.%^RESET%^"
     );
 //    set_weight(20);

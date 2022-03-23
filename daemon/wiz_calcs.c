@@ -126,9 +126,15 @@ int *query_max_spell_array(int wizard_level, string caster_class, int stat) {
 
 int query_spell_limit(int spell_level, int wizard_level, string caster_class, int stat) {
     int *x;
+    int total;
     if(!spell_level) { return 0; }
     x = query_max_spell_array(wizard_level, caster_class, stat);
-    return x[spell_level-1];
+    total = x[spell_level - 1];
+    
+    if(caster_class == "mage" && wizard_level > 30 && spell_level == 10)
+        total = 1;
+    
+    return total;
 }
 
 int can_memorize(object caster, int splvl){

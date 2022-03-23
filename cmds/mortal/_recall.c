@@ -124,6 +124,11 @@ int cmd_recall(string str)
     {
         if(recall_cantrips(TP))
             return 1;
+    }  
+    if(str == "deep spells")
+    {
+        if(recall_deep_spells(this_player()))
+            return 1;
     }
     if (str == "monk spells") {
         tell_object(TP, "See <help ki>");
@@ -201,7 +206,15 @@ private void swap(string* arr, int i, int j)
 
 int* magic_arsenal_feat(object ob, int* spells)
 {
-    int i;
+    //int i;
+    
+    for(int x = 0; x < sizeof(spells); x++)
+    {
+        spells[x] = ob->magic_arsenal_feat(spells[x]);
+    }
+        
+    
+    /*
 
     if (FEATS_D->usable_feat(ob, "magic arsenal")) {
         for (i = 0; i < sizeof(spells); i++) {
@@ -227,6 +240,8 @@ int* magic_arsenal_feat(object ob, int* spells)
             spells[i] += TP->query_level() / 10 + 1;
         }
     }
+    
+    */
     return spells;
 }
 
@@ -297,6 +312,30 @@ int recall_cantrips(object who)
     return 1;
 }
 
+int recall_deep_spells(object who)
+{
+    mixed *deep_spells;
+    string msg;
+    
+    if(!objectp(who))
+        return 0;
+    
+    deep_spells = who->query_deep_spells();
+    
+    if(!sizeof(deep_spells))
+        return 0;
+    
+    deep_spells = sort_array(deep_spells, "alphabetical_sort", FILTERS_D);
+    
+    msg = FR + "Deep Magic" + BK;
+    
+    foreach(string str in deep_spells)
+        msg += "\n%^BOLD%^WHITE%^" + str + "%^RESET%^";
+        
+    tell_object(this_player(), msg);
+    return 1;
+}
+    
 int recall_innate_spells(object who)
 {
     int x, max, uses;
@@ -450,6 +489,7 @@ int recall_spells(string type, object who)
     max = WIZ_CALCS->query_max_spell_array(class_level, spell_type, who->query_stats(mystat));
     max = magic_arsenal_feat(who, max);
     max = bonus_spell_slots(who, max);
+    
     if ((string)who->query_race() == "human") {
         subrace = (string)who->query("subrace");
         if (subrace) {
@@ -569,6 +609,7 @@ recall monster %^ORANGE%^%^ULINE%^NUMBER%^RESET%^
 recall %^ORANGE%^%^ULINE%^CLASS%^RESET%^ spells [%^ORANGE%^%^ULINE%^LEVEL%^RESET%^]
 recall innate spells
 recall cantrip spells
+recall deep spells
 
 %^CYAN%^DESCRIPTION%^RESET%^
 

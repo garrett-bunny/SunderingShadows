@@ -11,7 +11,7 @@ void create() {
     set_long(
         "The sixteen foot tall golem creature before you is made from "
 	"a pure jet black stone substance. Two cold fiery blue eyes stare "
-	"down at you. It's fists are clenched and it stands absolutly motionless."
+	"down at you. It's fists are clenched and it stands absolutely motionless."
     );
     set_level(27);
     set_hd(27,9);
@@ -45,7 +45,7 @@ set_overall_ac(-22);
 }
 void death(object targ){
 	message("environment",
-	    "%^BLUE%^%^BOLD%^Death Golem chants the phrase of death!%^RESET%^"
+	    "%^BLUE%^%^BOLD%^Death golem chants the phrase of death!%^RESET%^"
 ,environment());
 	tell_object(targ,
 	    "%^RED%^%^BOLD%^Death golem gazes upon you!%^RESET%^"

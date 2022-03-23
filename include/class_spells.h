@@ -27,7 +27,7 @@ class_spell_storage =
     "bones":
         ({"cause fear","false life","animate dead","boneshatter","slay living","circle of death","waves of exhaustion","horrid wilting","wail of the banshee"}),
     "battle":
-        ({"enlarge person", "divine weapon", "rage", "divine power", "righteous might", "greater magic weapon", "foresight", "earthquake", "storm of vengeance"}),
+        ({"true strike", "divine weapon", "keen edge", "divine power", "righteous might", "greater magic weapon", "foresight", "earthquake", "storm of vengeance"}),
     //"flame":
     //    ({"burning hands", "resist energy", "fireball", "wall of fire", "conjure elemental", "fire seeds", "fire storm", "incendiary cloud", "fiery body"}),
     //"elemental":
@@ -92,6 +92,8 @@ class_spell_storage =
     //    ({"sleep","blindness","displacement","phantasmal killer","false vision""eyebite","visions from within","euphoric tranquility"}),
     //"shadow":
     //    ({"touch of fatigue","alter self","phantom steed","shadowform","angelic aspect","shadow alteration","umbral strike","greater shadow evocation"}),
+    "orc":
+        ({"burning hands","scorcher","fireball","wall of fire","cloudkill","tar pool","delayed blast fireball","iron body","meteor swarm"}),
     "stormborn":
         ({"shocking grasp","lightning bolt","gust of wind","lightning arc","chain lightning","phase door","stormbolts","ride the lightning"}),
     //"undead":
@@ -121,7 +123,7 @@ class_spell_storage =
     "kineticist":
         ({"animate object","energy emanation","energy cone","hold person","energy current","bolt of force","reddopsi","crushing hand","tornado blast"}),
     "nomad":
-        ({"dimension slide","phantom steed", "dismissal", "trace psychoport","dimensional anchor","psionic teleport","planar portal","astral projection","planar sending"}),
+        ({"dimension slide","phantom steed", "dismissal", "trace psychoport","dimensional anchor","dimensional barrier","planar portal","astral projection","planar sending"}),
     "telepath":
         ({"suggestion","charm monster","hostile empathic transfer","modify memory","mass suggestion","visions from within","mindnet","overwhelming presence","psychic scream"}),
 ]),
@@ -129,7 +131,7 @@ class_spell_storage =
 "warlock":
 ([
     "all":
-        ({"eldritch blast", "eldritch claws", "summon companion", "eldritch bow", "detect magic", "eldritch glaive","eldritch scimitar","eldritch chain","eldritch burst"}),
+        ({"eldritch blast", "eldritch claws", "eldritch bow", "detect magic", "eldritch glaive","eldritch scimitar","eldritch chain","eldritch burst"}),
 ]),
 
 ]);

@@ -30,7 +30,7 @@ OLI
    set_items(([
       "books":"These books look used and old. Great knowledge is stored here. A single book seems to stand out here.",
       "book":"This book is larger brighter and not quite right.",
-      "shelves":"You notice the shelves here are full of dusty, must covered books.",
+      "shelves":"You notice the shelves here are full of musty, dust covered books.",
 
       ]));
    set_exits(([

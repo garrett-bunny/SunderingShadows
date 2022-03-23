@@ -75,7 +75,7 @@ void create()
         "The crisp cool spring water soothes your thirst.\n",
         "The dark roast coffee perks you up!\n",
         "The slab of meat is tender but you are not sure what it is.\n",
-        "The sandwich is quite tasty despite the fact that the meat is a mstery.\n",
+        "The sandwich is quite tasty despite the fact that the meat is a mystery.\n",
         "The hunk of leg is moist and tender, even if you can't identify the creature it came from.\n"})
     );
 

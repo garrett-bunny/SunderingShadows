@@ -17,7 +17,7 @@ void create()
     set_short("%^RESET%^%^ORANGE%^A massive d%^BOLD%^e%^RESET%^%^ORANGE%^s%^BOLD%^"+
     "e%^RESET%^%^ORANGE%^rt cr%^BOLD%^a%^RESET%^%^ORANGE%^wl%^BOLD%^e%^RESET%^%^ORANGE%^r%^RESET%^");
 
-    set_long("%^RESET%^%^ORANGE%^This monstrous worm looks a lot like a giant fluffy catepillar. "+
+    set_long("%^RESET%^%^ORANGE%^This monstrous worm looks a lot like a giant fluffy caterpillar. "+
     "Its entire enormous body, save for its head, is covered with thick fuzz which is coated "+
     "with layer upon layer of sand. Its head is nothing short of %^BOLD%^%^GREEN%^hideous%^RESET%^"+
     "%^ORANGE%^ with a gaping %^BOLD%^%^BLACK%^maw%^RESET%^%^ORANGE%^ down which you can make out "+

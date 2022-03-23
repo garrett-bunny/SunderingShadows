@@ -20,8 +20,8 @@ void create(){
 ]));
        set_items(([
     "walls" : "They are tall formations of natural rock that surround the crater.",
-    "ground" : "It is coated in a thick, black, crystalized ash.",
-    "ash" : "The ash is a finely granulated crystaline powder.  It glistens oddly in the light.",
+    "ground" : "It is coated in a thick, black, crystallized ash.",
+    "ash" : "The ash is a finely granulated crystalline powder.  It glistens oddly in the light.",
     "plateau" : "It is a volcanic crater high above sea level.  Four tall obelisks are placed around the perimeter.",
 ]));
 	

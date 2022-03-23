@@ -57,12 +57,12 @@ int free_func(string str) {
 	return 0;
     }
     write("%^GREEN%^"
-	"You break the shackles which bind the slave!\n"
+	"You break the shackles that bind the slave!\n"
 	"The slave quickly runs off, leaving a piece of bread "
 	"behind.%^RESET%^"
     );
     say("%^GREEN%^"
-	+TPQCN+" breaks the shackles which bind the slave!\n"
+	+TPQCN+" breaks the shackles that bind the slave!\n"
 	"The slave quickly runs off, leaving a piece of bread "
 	"behind.%^RESET%^"
     ,TP);

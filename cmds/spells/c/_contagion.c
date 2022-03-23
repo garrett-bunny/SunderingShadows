@@ -11,7 +11,7 @@ void create() {
     set_spell_sphere("necromancy");
     set_damage_desc("Random disease");
     set_syntax("cast CLASS contagion on TARGET");
-    set_description("The subject contracts one of the following diseases: blinding sickness, cackle fever, filth fever, mindfire, red ache, shakes, slimy doom. The disease is contracted immediately (the onset period does not apply). Spell's caster level used as spell power. Disease will progress then as usual.");
+    set_description("The subject contracts one of the following diseases: blinding sickness, cackle fever, filth fever, mindfire, red ache, shakes, or slimy doom. The disease is contracted immediately (the onset period does not apply). The spell's caster level is used as its spell power. The disease will progress then as usual.");
 
     set_verbal_comp();
     set_somatic_comp();

@@ -18,11 +18,8 @@ void create(){
   
    set_size(2);
    set_value(5000);
-   set_wear((:TO,"wear_me":));
+   set_wear("%^MAGENTA%^You don the tiara on your head.");
    set_property("enchantment",4);
    set_item_bonus("will save",2);
 }
-int wear_me(){
-  tell_object(ETO,"%^MAGENTA%^You don the tiara on your head.");
-  return 1;
-}
+

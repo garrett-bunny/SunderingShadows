@@ -16,7 +16,7 @@ void create() {
     set_short("In the Dagger Straits");
     set_long(
 @OLI
-	%^BOLD%^You are on a the Dagger Straits.%^RESET%^
+	%^BOLD%^You are on the Dagger Straits.%^RESET%^
 Cliffs mostly surround you. Occassionally you pass a sandbar.
 OLI
 	);

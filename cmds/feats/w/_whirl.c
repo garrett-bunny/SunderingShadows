@@ -17,7 +17,7 @@ void create()
     feat_name("whirl");
     feat_syntax("whirl");
     feat_prereq("Ambidexterity or Weapon Finesse");
-    feat_desc("Whirl is an instant combat feat that can be used to execute a strike against each foe in reach. The command requires at least one target to work, and will use a small amount of stamina.
+    feat_desc("Whirl is an instant combat feat that can be used to execute a strike against each foe in reach. The command requires at least one target to work, a weapon in each hand, and will use a small amount of stamina.
 
  A druid with the 'mastery of fang and claw' feat may also use this feat while in cat form, even if it has not been purchased directly.");
     set_target_required(0);

@@ -17,9 +17,9 @@ void create()
     set_mystery("nature");
     set_spell_sphere("alteration");
     set_syntax("cast CLASS animal shape on cat|wolf|bear|bird");
-    set_description("With this spell you transform into one of several fearsome creatures. In the new form you won't be able to access your inventory, but you will posses mighty melee abilities. The potency of the form will grow with your power, but it won't benefit from transformation spell. In addition winged forms can use <wing> command to travel.
+    set_description("With this spell you transform into one of several fearsome creatures. In the new form you won't be able to access your inventory, but you will possess mighty melee abilities. The potency of the form will grow with your power, but it won't benefit from the transformation spell. In addition, winged forms can use <wing> command to travel.
 
-%^BOLD%^%^RED%^N.B.%^RESET%^ You can set alternative description, speech string and adjective for these forms.");
+%^BOLD%^%^RED%^N.B.%^RESET%^ You can set an alternative description, speech string, and adjective for each form.");
     set_verbal_comp();
     set_somatic_comp();
     set_arg_needed();

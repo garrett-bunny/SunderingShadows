@@ -80,4 +80,5 @@ int strike_me(int damage, object what, object who){
     
         who->do_damage(who->return_target_limb(),roll_dice(1,8));
     }
+    return damage;
 }

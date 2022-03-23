@@ -17,7 +17,6 @@ void create() {
 "bracers end and the air begins, is a fine shifting line of %^YELLOW%^gold %^RESET%^%^BLUE%^around either "
 "edge, that %^WHITE%^gli%^BOLD%^t%^RESET%^%^WHITE%^ters %^BLUE%^and %^BOLD%^%^WHITE%^sparkl%^YELLOW%^e%^WHITE%^"
 "s %^RESET%^%^BLUE%^with a life of its own.%^RESET%^\n");
-   set_weight(5);
    set_value(1025);
    set_lore("%^BOLD%^%^WHITE%^Such intriguing bracers as these are renowned as "
 "never having been crafted, but instead torn forcibly from the stuff of the "

@@ -26,7 +26,7 @@ void create()
         "entering this death ridden tomb.  Along the walls you "
         "large patches of strange, glowing, moss.  You've never "
         "seen anything like it, you can only hope that it is not "
-        "harmfull.");
+        "harmful.");
  
     set_exits(([
         "north"     :HALL+"hall3",

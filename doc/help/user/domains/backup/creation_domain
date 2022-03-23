@@ -1,14 +1,15 @@
 %^BOLD%^-=%^YELLOW%^Creation Domain%^WHITE%^=-%^RESET%^
 
-Drawing upon the powers of conjuration, the creation domain is quite useful, producing everything from common goods to wards of protection that are difficult to bypass. In addition, the domain may also create a particularly powerful spell to harm foes.
+Drawing upon the desire to create, rather than destroy, the creation domain allows the cleric to make useful items to help them on their journey.
 
 Clerics with the Creation Domain gain the following benefits:
 - A +1 bonus to caster level when casting conjuration school spells.
+- Minions summoned with monster summoning spells gain +10 spell damage resistance
 
 The creation domain contains the following spells:
 
-Mending, Stinking Cloud, Secret Chest, Sticks Into Snakes, Acid Fog
+Minor Creation, Glitterdust, Secret Chest, Instant Summons, Mages Sword
 
-%^CYAN%^Deities%^RESET%^: Kismet
+%^CYAN%^Deities%^RESET%^: Edea
 
 %^BOLD%^Please see individual help files for an explanation of what each spell does.%^RESET%^

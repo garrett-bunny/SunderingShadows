@@ -11,7 +11,7 @@ void create() {
      set("aggressive", 0);
      set_level(19);
      set_long("He is an old elf, who tends to the injured \n"+
-	      "heros who dare venture into the Drow city of Underdark.");
+	      "heroes who dare venture into the Drow city of Underdark.");
      set_languages( ({ "common" }) );
      set_gender("male");
      set_alignment(4);

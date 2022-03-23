@@ -10,7 +10,7 @@ void create(){
     set_short("%^BLUE%^Black Pearl%^RESET%^");
     set_id( ({"perl", "pearl", "black pearl"}) );
     set_long(
-      "This large black pearl, about a foot in diamaeter, is almost perfect.  The shape of the pearl is a perfect sphere with no cracks or other deformities, and the color is the black of the darkest night.  You can feel a dark power flowing from the pearl as you inspect it."
+      "This large black pearl, about a foot in diameter, is almost perfect.  The shape of the pearl is a perfect sphere with no cracks or other deformities, and the color is the black of the darkest night.  You can feel a dark power flowing from the pearl as you inspect it."
     );
     set_property("magic", 1);
     set_weight(10);

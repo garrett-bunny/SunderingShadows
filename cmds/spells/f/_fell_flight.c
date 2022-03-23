@@ -15,7 +15,7 @@ void create(){
     set_syntax("cast CLASS fell flight");
     set_description("This spell causes the warlock to sprout a set of wings, their nature "
 "dependent upon the origins of their pact. As the wings are only shaped from energy, they "
-"are not powerful enough to bear the caster aloft in true flights of any length. However, "
+"do not last long and could be dangerous to use during flights of any length. However, "
 "they allow the warlock to drift in short bursts to conserve energy when traveling, and may "
 "also be used to propel the warlock with unexpected speed in combat, to land an extra attack "
 "against a foe. This invocation does not work together with other flight-based spells, nor "

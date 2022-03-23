@@ -13,9 +13,9 @@ void create()
     set_spell_sphere("abjuration");
     set_syntax(
         "cast CLASS siphon magic on OBJECT2 into OBJECT2");
-    set_description("With this spell you can transfer enchantment value between objects of the same type.
+    set_description("With this spell you can transfer the enchantment value between objects of the same type (weapons to weapons and armor to armor).
 
-This spell uses 66 260 gp as a material component.");
+This spell uses 66,260 gp as a material component.");
     set_verbal_comp();
     set_somatic_comp();
     set_arg_needed();

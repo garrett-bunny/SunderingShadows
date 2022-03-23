@@ -28,7 +28,7 @@ void create() {
    "piece of lost brothers and sisters.\n- %^C093%^Quartermaster "+
    "Hartmannus%^CRST%^: Personal Diary");
    set_value(5000);
-   set_item_bonus("Will", 4);
+   set_item_bonus("will", 4);
    set_weight(4);
    set_value(5000);
    set_type("clothing");

@@ -24,11 +24,13 @@ set_property("lore difficulty",25);
    set_limbs(({"torso"}));
    set_max_internal_encumbrance(30);
    set_property("enchantment",3+random(2));
-   set_wear((:TO,"wear":));
-   set_remove((:TO,"unwear":));
+   set_wear("%^CYAN%^You don the robe and it sends a chill down your spine.");
+   set_remove("%^CYAN%^You disrobe.");
    set_item_bonus("bonus_spell_slots_1",1);
    set_item_bonus("cold resistance",5);
 }
+
+/*
 
 int wear(){
    tell_object(ETO,"%^CYAN%^You don the robe and it sends a chill down your spine.");
@@ -40,3 +42,5 @@ int unwear(){
    tell_object(ETO,"%^CYAN%^You disrobe.");
    return 1;
 }
+
+*/

@@ -80,4 +80,5 @@ int strikeme(int damage, object what, object who){
 		tell_object(who,"%^YELLOW%^Coral dust explodes in a shower "+
 			"of dust from "+ETOQCN+"'s armor, blinding you!");
 	}
+	return damage;
 }

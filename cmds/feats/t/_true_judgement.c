@@ -164,10 +164,10 @@ void execute_attack()
     tell_object(caster, "%^BLUE%^A ray of deadly raw power releases of your finger and hits " + target->QCN + "!");
     tell_room(place, "%^BLUE%^A ray of death releases of " + caster->QCN + "'s finger and hits " + target->QCN + "!", caster);
 
-    bonusdc = clevel;
-    bonusdc += BONUS_D->query_stat_bonus(caster, "wisdom");
+    //bonusdc = clevel;
+    bonusdc = BONUS_D->query_stat_bonus(caster, "wisdom");
     spell_kill(target, caster);
-    if ((string)target->query_property("no death") || do_save(target, -bonusdc)) {
+    if ((string)target->query_property("no death") || do_save(target, bonusdc)) {
         tell_room(place, "%^BOLD%^%^BLUE%^" + target->QCN + " is utterly unaffected by the judgement!", target);
         tell_object(target, "%^BOLD%^%^BLUE%^You are utterly unaffected by the judgement!");
     } else {

@@ -15,7 +15,7 @@ void create()
     set_syntax("cast CLASS resistance");
     set_bonus_type(({ "resistance" }));
     set_damage_desc("+1 to all saving throws");
-    set_description("By this spell, the caster imbues themselves with a small amount of resistance to harm.  The spell grants small bonus to will, fortitude and reflex.
+    set_description("With this spell, the caster imbues themselves with a small amount of resistance to harm.  The spell grants a small bonus to will, fortitude, and reflex.
 
 %^BOLD%^%^RED%^See also:%^RESET%^ resistance *feats");
     set_verbal_comp();

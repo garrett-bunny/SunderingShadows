@@ -13,7 +13,7 @@ void create() {
     feat_name("charge");
     feat_prereq("Ride-by attack");
     feat_syntax("charge TARGET");
-    feat_desc("A mounted character can attempt to charge down a foe, causing enhanced damage if they successfully impact.Charges from several rooms distant will do greater damage.If the charge is not completed in a short time, your mount will tire and lose too much speed to continue the charge.");
+    feat_desc("A mounted character can attempt to charge down a foe, causing enhanced damage if they successfully impact.Charges from several rooms distant will do greater damage. If the charge is not completed in a short time, your mount will tire and lose too much speed to continue the charge.");
     set_target_required(0);
 }
 

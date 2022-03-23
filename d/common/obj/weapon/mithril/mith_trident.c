@@ -5,7 +5,7 @@ create() {
    set_id(({ "trident" }));
    set_name("trident");
    set_short("A mithril trident");
-   set_long("This three pronged spear forged from mithril looks very vicious.  The center tine is longer than the side two which are horribly barbed.");
+   set_long("This three pronged spear forged from mithril looks very vicious.  The center tine is longer than the side two, which are horribly barbed.");
 	set_property("enchantment", 1);
    set_weight(6);
    set_size(2);

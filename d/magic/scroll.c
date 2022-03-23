@@ -154,7 +154,7 @@ void set_spell_name(string str)
     // retaining the name of their old spell when the spell name is changed.
     ///////////////////////////////////////////////////////////////////////
     string* old_id_list, tmp;
-    int x;
+    int x,level;
     old_id_list = query_id();
     old_id_list -= ({ spell, "" });
     set_id(old_id_list);
@@ -167,6 +167,9 @@ void set_spell_name(string str)
     add_id(spell);
     set_long("This is a magic scroll of " + spell + ".  You can " +
              "<transcribe> it into your spell book or <use> it directly.");
+    level = query_spell_level();
+    set_value((level * level) * 100);
+    
     return 1;
 }
 
@@ -180,6 +183,7 @@ int transcribe(string str)
     object book;
     int prev;
     int after;
+    int spell_level;
     if (TP->light_blind(0)) {
         return notify_fail("You cannot see well enough to read this.\n");
     }
@@ -200,6 +204,12 @@ int transcribe(string str)
     if (member_array(spell, keys(MAGIC_D->query_index("mage"))) == -1) {
         notify_fail("You can only transcribe arcane spells");
     }
+    
+    spell_level = MAGIC_D->query_spell_level("mage", spell);
+    
+    if(spell_level >= 10 && !FEATS_D->has_feat(this_player(), "deep magic"))
+        return notify_fail("That spell is too powerful for you to copy correctly. You fail.\n");
+    
     write("%^ORANGE%^You carefully file " + spell + " into your spellbook.\n");
     book->set_spellbook(spell);
     TO->remove();
@@ -352,6 +362,7 @@ int use_scroll(string str)
     if (FEATS_D->usable_feat(TP, "enhance scroll")) {
         lev = TP->query_prestige_level(TP->query("base_class"));
         lev += TP->query_property("empowered");
+        lev = max( ({ lev, this_object()->query_clevel() }) );
     }
 
     if (lev < 1) {
@@ -416,12 +427,14 @@ int do_back_fire(object myuser)
     return 0;
 }
 
+/*
 int query_value()
 {
     int level = query_spell_level();
 
     return (level * level) * 100;
 }
+*/
 
 int query_usable()
 {

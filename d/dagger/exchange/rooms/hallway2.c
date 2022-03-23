@@ -14,9 +14,9 @@ set_name("A Hallway");
     set_property("light",2);
     set_short("%^RESET%^%^ORANGE%^A Hallway%^RESET%^");
     set_long("%^RESET%^%^ORANGE%^The opulence of the foyer continues along "+
-"this hallway. The glow from the Foyer still reaches here, illuminating the "+
-"%^RESET%^%^RED%^plush red carpet %^RESET%^%^ORANGE%^and wood panelled walls."+
-" Several paintings have with obvious reverence. To the east are stairs down.\n%^RESET%^");
+"this hallway. The glow from the foyer still reaches here, illuminating the "+
+"%^RESET%^%^RED%^plush red carpet %^RESET%^%^ORANGE%^and wood paneled walls."+
+" Several paintings hang with obvious reverence. To the east are stairs down.\n%^RESET%^");
     set_exits(([
         "west" : ROOMS"hallway",
       "up" : "/d/dagger/exchange/horse/rooms/hall",

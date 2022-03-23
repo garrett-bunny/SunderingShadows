@@ -27,7 +27,7 @@ void create(){
         "st%^BOLD%^o%^RESET%^ne steps lead up to a bluff overlooking the "+
         "plaza that houses the Magistrate's Hall and associated "+
         "government offices. The %^YELLOW%^Bank of Shadow %^RESET%^is "+
-        "situated at the southeast corner of the plaza. There is a wooden %^ORANGE%^board%^RESET%^ standing, with notices and %^CYAN%^%^BOLD%^map%^RESET%^ of the area pinned to it.\n");
+        "situated at the southeast corner of the plaza. There is a wooden %^ORANGE%^board%^RESET%^ standing, with notices and a %^CYAN%^%^BOLD%^map%^RESET%^ of the area pinned to it.\n");
     set_smell("default","Your nose catches the miasma of thousands "+
         "of humanoids in close proximity.");
     set_listen("default","You hear the dull roar of conversations and "+
@@ -69,7 +69,7 @@ void create(){
             "175 feet. Its architecture is indicative of the "+
             "Perpendicular style, but is certainly more grandiose "+
             "than the %^YELLOW%^Bank of Shadow %^WHITE%^done in "+
-            "same style. Mulitple %^RED%^s%^RESET%^%^ORANGE%^t"+
+            "same style. Multiple %^RED%^s%^RESET%^%^ORANGE%^t"+
             "%^MAGENTA%^a%^BOLD%^i%^YELLOW%^n%^RESET%^%^RED%^e"+
             "%^BOLD%^%^BLACK%^d %^WHITE%^glass windows are "+
             "found all along the facade%^RESET%^.",
@@ -91,7 +91,7 @@ void create(){
         ob->set_id( ({ "board", "bulletin board" }) );
         ob->set_board_id("union_board");
         ob->set_short("%^RESET%^%^CYAN%^Arcane Bulletin Board");
-        ob->set_long("This corkboard has been nailed to the wall of the "+
+        ob->set_long("This cork board has been nailed to the wall of the "+
             "inn to allow businesses to advertise and citizens and adventurers "+
             "to communicate about events.");
         ob->set_max_posts(50);

@@ -18,8 +18,8 @@ void create() {
     "staircase" : "/d/attaya/base/base47",
         ]) );
     set_items(([
-    "ceiling" : "It is just a faint grey shadow far, far away.",
-    "platforms" : "The crystal platfroms hang in mid air all over the room.  Some are close to others, some are distant.",
+    "ceiling" : "It is just a faint gray shadow far, far away.",
+    "platforms" : "The crystal platforms hang in mid air all over the room.  Some are close to others, some are distant.",
      "water" : "The water in the pool seems to glisten with gold.  You seem to have a bad feeling about it.",
      "walls" : "The walls are made from thousands of glass panels held together by posts of worked steel and bronze.",
       "pool" : "The water in the pool seems to glisten with gold.  You seem to have a bad feeling about it.",

@@ -13,7 +13,7 @@ void create() {
 "You are standing on Sunset Way, which leads east back to the Offestry town square and continues west. The cobblestone %^ORANGE%^streets %^RESET%^are smooth beneath your feet, granting passage to the light but "
 "steady stream of %^CYAN%^traffic %^RESET%^that passes through the town on a daily basis.  The street is bordered on both "
 "sides by a jumble of %^RED%^buildings%^RESET%^. To the north the closest of which is a clothing store with its doors open to welcome customers. "
-"To the south the closet of which is the general store with its doors open to welcome customers.%^RESET%^\n");
+"To the south the closest of which is the general store with its doors open to welcome customers.%^RESET%^\n");
    set("night long", ""+TO->query_long()+"\n%^BOLD%^The street light glows brightly to light your way.");
    set_listen("default","You hear snatches of conversation from passersby.");
    set_smell("default","The air is fresh and clean.");

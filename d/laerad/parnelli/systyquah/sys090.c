@@ -17,8 +17,8 @@ void create(){
 	"%^BOLD%^Inside the city walls%^RESET%^
 You have walked into the city walls of Systyquah.  A narrow pathway "+
 	"continues to the east and west.  Troll guards run up and down the "+
-	"pathway keeping watch on the outside through peep holes and arrow "+
-	"slots making sure the cities defenses are sound.  A gate to the "+
+	"pathway, keeping watch on the outside through peep holes and arrow "+
+	"slots, making sure the city's defenses are sound.  A gate to the "+
 	"north leads into the city."
     );
     set_property("indoors",1);

@@ -28,4 +28,5 @@
                     "torch" : CMISC "torch", \
                     "weaponsmith toolset" : CMISC "tools/weaponsmithtoolset", \
                     "writing quill" : CMISC "tools/quill4", \
+                    "skinning kit" : CMISC "tools/skinningkit", \
                 ]))

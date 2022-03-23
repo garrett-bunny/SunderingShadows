@@ -13,8 +13,8 @@ void create(){
    set_long(
 @OLI
    This is the guardian of wisdom. The ancient knowledge and experience
-of the monks is guarded by this being. Old and narled by time this does
-not appear to be a especially dangerous or formidable oponent. But the
+of the monks is guarded by this being. Old and gnarled by time this does
+not appear to be a especially dangerous or formidable opponent. But the
 knowledge of the body is this creatures as it is the monks.
 OLI
    );

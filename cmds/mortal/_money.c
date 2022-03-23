@@ -37,9 +37,7 @@ money - look into your purse
 
 %^CYAN%^DESCRIPTION%^RESET%^
 
-Money are mysterious substance that makes you happier when you have more of it.
-
-This command displays currency you have on yourself.
+This command displays any currency you are currently carrying.
 
 %^ULINE%^%^CYAN%^Money conversions:%^RESET%^
 

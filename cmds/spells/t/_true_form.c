@@ -16,7 +16,7 @@ void create()
     set_spell_sphere("abjuration");
     set_syntax("cast CLASS true form on TARGET");
     set_damage_desc("reverts alternative shape");
-    set_description("You will the unmaking of polymorph form of the target. If their will is weak, they will revert to their true self. This spell will works on any shapechange ability, including that of supernatural origin such as werewolves or vampires. This spell won't affect alter self and glamer forms, and it won't rever werewolf's hybrid form.");
+    set_description("You will the unmaking of the polymorph form of the target. If their will is weak, they will revert to their true self. This spell will work on any shapechange ability, including that of supernatural origin such as werewolves or vampires. This spell won't affect alter self and glamour forms, and it won't reverse a werecreature's hybrid form.");
     set_save("will");
     set_target_required(1);
 }

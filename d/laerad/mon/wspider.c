@@ -9,7 +9,7 @@ void create()
     set_name("Whisper Spider");
     set_short("%^RESET%^A %^BLUE%^Whisper%^WHITE%^ Spider");
     set_long(
-        "This Spider has a large plump abdomen, multiple eyes, and four "
+        "This spider has a large plump abdomen, multiple eyes, and four "
         "pairs of segmented legs. Its body is covered with short, black "
         "bristles. Two gray stripes run the length of its back. Its eyes "
         "are bright red. The creature moves incredibly fast for a 15 foot "

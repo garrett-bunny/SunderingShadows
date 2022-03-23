@@ -17,6 +17,7 @@ void create()
     set_property("indoors", 1);
     set_property("light", 3);
     set_property("no teleport", 1);
+    set_property("no pocket space",1);
     set_listen("default", "You hear the sound of burners.");
     set_smell("default", "You smell strong choking smells.");
     set_items((["window" : "You see the dense forest of Argentrock outside.",

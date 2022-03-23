@@ -380,14 +380,14 @@ string query_stone_desc()
     if(gap_string != "") 
     {
         ret = "%^BOLD%^%^BLACK%^Th massive stones tower upward in the "+
-        "sky, they are covered with strange %^BOLD%^%^CYAN%^symbols%^BOLD%^%^BLACK%^ which look very "+
+        "sky, they are covered with strange %^BOLD%^%^CYAN%^symbols%^BOLD%^%^BLACK%^ that look very "+
         "ancient. They look as if they have only recently been unearthed. A gap in them allows passage to the "+
         gap_string+".%^RESET%^";
     }
     else
     {           
         ret = "%^BOLD%^%^BLACK%^Th massive stones tower upward in the "+
-        "sky, they are dark and covered with strange %^BOLD%^%^CYAN%^symbols%^BOLD%^%^BLACK%^ which look very "+
+        "sky, they are dark and covered with strange %^BOLD%^%^CYAN%^symbols%^BOLD%^%^BLACK%^ that look very "+
         "ancient. They look as if they have only recently been unearthed.%^RESET%^";
     }
     if(tomb_room) 
@@ -513,7 +513,7 @@ string base_long()
     
     if(dir_string != "") 
     {
-        extra = " %^RESET%^%^ORANGE%^The forboding ocean collides v%^BOLD%^%^MAGENTA%^i%^RESET%^"+
+        extra = " %^RESET%^%^ORANGE%^The foreboding ocean collides v%^BOLD%^%^MAGENTA%^i%^RESET%^"+
         "%^MAGENTA%^o%^BOLD%^%^RED%^l%^BOLD%^%^WHITE%^e%^RESET%^%^ORANGE%^"+
         "n%^BOLD%^%^MAGENTA%^tl%^RESET%^%^ORANGE%^y with the s%^BOLD%^a%^RESET%^%^ORANGE%^"+
         "ndsc%^BOLD%^a%^RESET%^%^ORANGE%^p%^BOLD%^e%^RESET%^%^ORANGE%^ to the "+dir_string+"%^RESET%^.\n";

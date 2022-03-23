@@ -47,9 +47,10 @@ void init(){
     add_action("sneak", "sneak");
 }
 
+/*
 int sneak(string str){
     tell_object(TP, "You try to sneak through the gate, and bang your head into it painfully.");
     tell_room(ETP, TPQCN+" tries to sneak through the gate, and doesn't make it very far.", ({TP}));
     TP->do_damage("head", 1);
     return 1;
-}
+}*/

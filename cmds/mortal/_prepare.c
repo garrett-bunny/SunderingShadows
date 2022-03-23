@@ -404,6 +404,9 @@ int max_allowed(object obj, string myclass, int level)
     max_spells = (int)obj->magic_arsenal_feat(max_spells);
     max_spells = (int)obj->bonus_spell_slots(max_spells);
     max_spells = (int)obj->bonus_spell_slots_by_level(level, max_spells);
+    
+    if(level == 10 && FEATS_D->has_feat(obj, "deep magic"))
+        max_spells = 1;
 
     if (level == 1 && ((string)obj->query_race() == "human"))
     {
@@ -687,7 +690,7 @@ void prepare_listed_spells(object obj, string list, string myclass)
     {
     case "cleric": case "paladin":
 
-        tell_object(obj, "%^BOLD%^%^GREEN%^You begin praying for spells - Any action you take will interrupt your praying.)");
+        tell_object(obj, "%^BOLD%^%^GREEN%^You begin praying for spells - Any action you take will interrupt your praying.");
         tell_room(environment(obj), obj->QCN + " begins praying for spells.", obj);
         break;
 

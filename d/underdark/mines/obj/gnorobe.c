@@ -70,13 +70,14 @@ int remove_fun(){
 }
 
 int strike_fun(){
-   if(ETO->query_stoneSkinned()) return 0;
+   if(ETO->query_stoneSkinned()) return damage;
    if(!random(5)){
       new("/cmds/spells/s/_stoneskin.c")->use_spell(ETO,ETO,12,100,"mage");
       tell_object(ETO,"%^BOLD%^The robe reacts to the hit, causing "+
          "it to harden into stone itself!%^RESET%^");
       tell_room(EETO,"%^BOLD%^"+ETOQCN+"'s robe reacts to the attack "+
          "and magically hardens itself into stone!%^RESET%^",ETO);
-      return 1;
+      return 0;
    }
+   return damage;
 }

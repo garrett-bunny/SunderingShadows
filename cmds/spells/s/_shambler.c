@@ -15,7 +15,7 @@ void create()
     set_domains("plant");
     set_spell_sphere("conjuration_summoning");
     set_syntax("cast CLASS shambler");
-    set_description("Call to shambling mound to aid you in combat.
+    set_description("You call a shambling mound to aid you in combat.
 
 This is a greater summons, and cannot be used simultaneously with other greater summons.
 To remove shambler use %^ORANGE%^<dismiss shambler>%^RESET%^
@@ -46,8 +46,8 @@ void summon_servant()
 {
     object ob, thing;
 
-    tell_object(caster, "%^GREEN%^%^BOLD%^Small plant breaks through the floor and quickly grows into a shambling mound to stand before you and obey your commands.%^RESET%^");
-    tell_room(place, "%^GREEN%^%^BOLD%^Small plant breaks through the floor and quickly grows into a shambling mound.%^RESET%^", caster);
+    tell_object(caster, "%^GREEN%^%^BOLD%^A small plant breaks through the floor and quickly grows into a shambling mound to stand before you and obey your commands.%^RESET%^");
+    tell_room(place, "%^GREEN%^%^BOLD%^A small plant breaks through the floor and quickly grows into a shambling mound.%^RESET%^", caster);
 
     ob = new("/d/magic/mon/shambler.c");
     ob->setup_servant(caster, clevel);

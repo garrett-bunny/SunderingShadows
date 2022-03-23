@@ -41,7 +41,7 @@ void create()
       }
       set_long("%^GREEN%^This fearsome orog warrior has the facial features of an orc; a jutting"
                 +" forehead and tusk-like %^RESET%^canine teeth%^GREEN%^, with pointed, wolflike ears"
-                +" and a broad snout for a nose. It's eyes glow dully %^RED%^red%^GREEN%^ in the dark."
+                +" and a broad snout for a nose. Its eyes glow dully %^RED%^red%^GREEN%^ in the dark."
                 +"\n%^GREEN%^Unlike an orc, however, this creature stands nearly 6 and a half feet"
                 +" tall and has an olympian build, with powerful limbs, broad chest and back and a"
                 +" narrow waist. " + capitalize(QS) +" looks fit, lithe and dangerous.");
@@ -394,7 +394,7 @@ void clamber_battlements(){
   }
   if (flag == 0){
     squad->start_walking(TABAXROOM + "granary");
-    squad->set_entry_method("scaled a seige ladder to get over the fence and onto the battlements");
+    squad->set_entry_method("scaled a siege ladder to get over the fence and onto the battlements");
   }
   TO->move("/d/shadowgate/void");
   TO->remove();
@@ -474,7 +474,7 @@ void die (object ob){
   object ladder, orog;
   ladder = present("ladder", TO);
   if (objectp(ladder)){
-    force_me("emote drops the %^ORANGE%^seige ladder%^ORANGE%^ as " + QS + " dies.");
+    force_me("emote drops the %^ORANGE%^siege ladder%^ORANGE%^ as " + QS + " dies.");
     ladder->move(ETO);
     orog = present("orog", ETO);
     if (orog == TO){

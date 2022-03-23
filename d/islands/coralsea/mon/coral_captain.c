@@ -8,7 +8,7 @@ object ob;
 
 void create(){
 	::create();
-	set_name("captain zeralquin");
+	set_name("Captain Zeralquin");
 	set_id(({"captain","zeralquin","zeralquin","Captain Zeralquin",
 		"captain zeralquin","undead"}));
 	set_race("half-drow");

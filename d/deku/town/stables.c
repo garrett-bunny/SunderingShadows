@@ -15,7 +15,7 @@ void update_stable_hand()
         "His body is very well toned, his exposed torso the result "+
         "of years of hard work with his massive hands.  "+
         "His eyes are a pale green and offer a continually "+
-        "hopefully look, a look that has probably encouraged "+
+        "hopeful look, a look that has probably encouraged "+
         "more than one person in his time.  A warm smile "+
         "commonly and easily finds its way to his lips.  The "+
         "charm and kindness that seem to linger about this "+

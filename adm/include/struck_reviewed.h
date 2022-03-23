@@ -4,6 +4,17 @@
 
 #define STRUCK_REVIEWED ({ \
     "/d/token_hunt/obj/high/nightydsp", \
+    "/d/token_hunt/obj/high/dragonrobe", \
+    "/d/token_hunt/obj/high/wolfg", \
+    "/d/token_hunt/obj/low/darkgem_shield", \
+    "/d/token_hunt/obj/low/rainbowbangles", \
+    "/d/token_hunt/obj/low/rubytalongaunt", \
+    "/d/token_hunt/obj/mid/chainedovercoat", \
+    "/d/token_hunt/obj/mid/forestarmor", \
+    "/d/token_hunt/obj/mid/glitteringarmor", \
+    "/d/token_hunt/obj/mid/ogregauntlets", \
+    "/d/token_hunt/obj/mid/paingreaves", \
+    "/d/token_hunt/obj/mid/seraphimarmor", \
     "/d/islands/serakii/obj/hound_robe", \
     "/d/islands/serakii/obj/legion_bracers", \
     "/d/islands/serakii/obj/hound_bracers", \
@@ -13,12 +24,15 @@
     "/d/token_hunt/obj/mid/goldenstagcloth", \
     "/d/token_hunt/obj/mid/akaboots", \
     "/d/dagger/ogres/obj/doubletflames", \
-    "/d/islands/elf/obj/scale_mail", \
-    "/d/barriermnts/lothwaite/obj/ghostboots", \
-    "/d/barriermnts/lothwaite/obj/ethereal_bplate", \
-    "/d/antioch/jarmila/obj/vashapride", \
-    "/d/barriermnts/lothwaite/obj/ghostsandals", \
+    "/d/dagger/ogres/obj/malar_studded", \
     "/d/dagger/ogres/obj/sune_studded", \
+    "/d/islands/elf/obj/scale_mail", \
+    "/d/barriermnts/lothwaite/obj/ethereal_bplate", \
+    "/d/barriermnts/lothwaite/obj/ghostboots", \
+    "/d/barriermnts/lothwaite/obj/ghostsandals", \
+    "/d/barriermnts/lothwaite/obj/torc", \
+    "/d/antioch/jarmila/obj/vashapride", \
+    "/d/antioch/ruins/obj/ebony_armor", \
     "/d/magic/obj/shields/callamir", \
     "/d/magic/obj/shields/cevahir", \
     "/d/magic/obj/shields/jarmila", \
@@ -34,6 +48,8 @@
     "/d/islands/argentrock/obj/shd_bskeletal", \
     "/d/islands/argentrock/obj/shd_glassy", \
     "/d/islands/argentrock/obj/shd_gskeletal", \
+    "/d/islands/common/eldebaro/ob/ebon_reflector", \
+    "/d/islands/common/eldebaro/ob/shroud_of_darkness", \
     "/d/shadow/room/githyanki/obj/obsidion_vambraces", \
     "/d/islands/common/obj/new/e_chain", \
     "/d/islands/common/obj/new/flameguards", \
@@ -54,6 +70,36 @@
     "/d/deku/hhouse/ob/lathanders_dawn", \
     "/d/deku/hhouse/ob/shroud_of_the_impaler", \
     "/d/islands/common/obj/harbinger", \
+    "/d/underdark/lower/dragon/obj/barrier", \
     "/d/underdark/lower/dragon/obj/shadowdancer", \
     "/d/islands/common/obj/shimmeringcape2", \
+    "/d/deku/armours/brobe", \
+    "/d/deku/armours/priest_robe", \
+    "/d/deku/armours/robe", \
+    "/d/islands/elf/obj/bracers", \
+    "/d/islands/elf/obj/shield", \
+    "/d/islands/elf/obj/v_gloves", \
+    "/d/dagger/derro/obj/shield", \
+    "/d/dagger/marsh/tower/obj/shadowbracers", \
+    "/d/dagger/marsh/tower/obj/castershoes", \
+    "/d/islands/coralsea/obj/coralscape", \
+    "/realms/nuwisha/obj/iceaura2", \
+    "/d/islands/dallyh/marsh/obj/frobe", \
+    "/d/islands/dallyh/forest/obj/rosebodice", \
+    "/d/atoyatl/tecqumin/obj/poncho", \
+    "/d/atoyatl/tecqumin/obj/poncho_greater", \
+    "/d/atoyatl/tecqumin/obj/kilt", \
+    "/d/atoyatl/tecqumin/obj/kilt_greater", \
+    "/d/barriermnts/lothwaite/obj/ethereal_bracers", \
+    "/realms/kismet/obj/rewards/k_balurhat", \
+    "/realms/kismet/obj/rewards/moontiara", \
+    "/realms/kismet/obj/rewards/r_orchid", \
+    "/d/shadow/room/farm/obj/petal_buckler", \
+    "/d/underdark/mines/obj/dragonmask", \
+    "/d/underdark/mines/obj/gnorobe", \
+    "/d/laerad/lgnolls/obj/gnollbarding", \
+    "/d/laerad/outpost/obj/torm_shield", \
+    "/d/laerad/outpost/obj/torm_scalemail", \
+    "/d/islands/pirates/obj/newcoat", \
+    "/d/islands/pirates/obj/redcoat", \
 })

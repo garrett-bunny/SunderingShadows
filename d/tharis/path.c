@@ -34,7 +34,7 @@ void create()
 	" center of the path.",
 	"weeds" : "%^GREEN%^Several spindly weeds have stretched themselves out"+
 	" along sections of the path.",
-	"trees" : "Large trees tower over you, stretching up to incredibly heights."+
+	"trees" : "Large trees tower over you, stretching up to incredible heights."+
 	" They are obviously very old, but they are in quite good health. You"+
 	" can hear squirrels and other animals scurrying about in their branches.",
 	"brush" : "Brush grows thick along the forest floor, you can see it"+

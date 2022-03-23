@@ -19,14 +19,14 @@ void create(){
     add_limb("head","torso",0,0,0);
     set_attack_limbs( ({"right leg","left leg"}) );
 	set_damage(1,10);
-	set_stats("strength",18);
+	set_stats("strength",30);
     set_body_type("equine");
     set_level(20);
     set_mlevel("fighter",20);
     set_hd(20,10);
-    set_max_hp(200);
-    set_hp(200);
-    set_overall_ac(6);
+    set_max_hp(500);
+    set_hp(500);
+    set_overall_ac(-10);
     set_exp(1);
     set_max_distance(200);
     set_flight_delay(300);

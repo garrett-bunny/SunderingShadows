@@ -19,8 +19,7 @@ void create()
     set_shape_profile("werewolf_wolf_999");
     set_shape_bonus("perception", 2);
     set_shape_bonus("survival", 4);
-    set_shape_bonus("cold resistance percent", 5);
-    set_shape_bonus("silver resistance percent", -33);
+    set_shape_bonus("silver resistance percent", -23);
     set_shape_bonus("sight bonus", 3);
     set_shape_bonus("damage bonus", 3);
     set_shape_bonus("attack bonus", 3);

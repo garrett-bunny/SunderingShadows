@@ -14,8 +14,8 @@ void create() {
 	"an endless state of torment. A small %^ORANGE%^cot%^RED%^ "
 	"lays pressed against one wall. It appears as though "
 	"someone has been living here for eons, but there are no "
-	"signs of food or drink. The chamber is clear of rubbage, "
-	"dust and debris."
+	"signs of food or drink. The chamber is clear of rubble, "
+	"dust, and debris."
 	"%^RESET%^" 
     );
     set_short("%^RED%^Tower Chamber%^RESET%^");

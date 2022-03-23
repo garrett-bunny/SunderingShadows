@@ -122,7 +122,7 @@ void init(){
 
 
 int wield_hammer(){
-  return 1;
+
   if (!objectp(TO)||!objectp(ETO)||!objectp(EETO)){tell_room(find_object_or_load("/realms/lujke/workshop"), "ERROR - can't read"); return 0;}
 
   if (FEATS_D->can_use_feat(TP, "sunder")){
@@ -140,6 +140,7 @@ int wield_hammer(){
 
   tell_room(EETO, (string)ETO->query_cap_name() + " hefts " 
                   +(string)ETO->QP + " mighty stone %^ORANGE%^warhammer%^RESET%^.",ETO );
+  return 1;
 }
 
 int unwield_hammer(){

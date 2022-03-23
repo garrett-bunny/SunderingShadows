@@ -17,14 +17,14 @@ void create() {
     "north" : "/d/attaya/base/lookout1",
         ]) );
     set_items(([
-    "ceiling" : "It is just a faint grey shadow far, far away.",
-    "platforms" : "The crystal platfroms hang in mid air all over the room.  Some are close to others, some are distant.",
-     "water" : "The crystal clear waters of the reflection pool reflect everything above you like a mirror.  If you tune your eyes just right, however, you can see a maze beneath their surface!",
-      "pool" : "The crystal clear waters of the reflection pool reflect everything above you like a mirror.  If you tune your eyes just right, however, you can see a maze beneath their surface!",
-      "enterance" : "It is heavily guarded.",
-     "walls" : "The walls are made from thousands of glass panels held together by posts of worked steel and bronze.",
-      "pool" : "The water in the pool seems to glisten with gold.  You seem to have a bad feeling about it.",
-      "bridge" : "The bridge is lavishly carved with marble and black walnut.  It is high above the reflection pool.",
+    "ceiling" : "It is just a faint gray shadow far, far away.",
+    "platforms" : "The crystal platforms hang in mid air all over the room.  Some are close to others, some are distant.",
+    "water" : "The crystal clear waters of the reflection pool reflect everything above you like a mirror.  If you tune your eyes just right, however, you can see a maze beneath their surface!",
+    "pool" : "The crystal clear waters of the reflection pool reflect everything above you like a mirror.  If you tune your eyes just right, however, you can see a maze beneath their surface!",
+    "entrance" : "It is heavily guarded.",
+    "walls" : "The walls are made from thousands of glass panels held together by posts of worked steel and bronze.",
+    "pool" : "The water in the pool seems to glisten with gold.  You seem to have a bad feeling about it.",
+    "bridge" : "The bridge is lavishly carved with marble and black walnut.  It is high above the reflection pool.",
     ]));
 }
 

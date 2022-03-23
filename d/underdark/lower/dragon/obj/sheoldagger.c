@@ -153,7 +153,7 @@ int hit_func(object targ){
 "%^GREEN%^e%^BOLD%^a%^RESET%^%^GREEN%^m %^MAGENTA%^to its %^BLUE%^dark%^MAGENTA%^, %^BOLD%^%^BLACK%^glo"
 "%^RESET%^ss%^BOLD%^%^BLACK%^y %^RESET%^%^MAGENTA%^surface before they are snuffed out again.  A refreshing "
 "feeling of %^CYAN%^vitality %^MAGENTA%^runs through you!%^RESET%^");
-       ETO->cause_typed_damage(ETO,"torso",(random(40)-80),"positive energy");
+       ETO->cause_typed_damage(ETO,"torso",(random(40)-80),"untyped");
     }
 
     if(rand == 10) { // blind on 10% only

@@ -36,7 +36,7 @@ dest_effect()
     if (objectp(caster)) {
         if (caster->query_property("detecting_thoughts")) {
             caster->remove_property("detecting_thoughts");
-            tell_object(caster,"%^CYAN%^You sense you loose your grasp on presence of through.");
+            tell_object(caster,"%^CYAN%^You sense you lose your grasp on the presence of thought.");
         }
     }
 

@@ -15,8 +15,8 @@ void create()
 	" at equal intervals. They are quite large and would be about impossible"+
 	" to move, you aren't sure how they got here in the first place. They are"+
 	" each about three feet tall and five feet long. It is here where the"+
-	" Kindred come on occassion to hold meetings of the entire guild and"+
-	" seek advice from their gods and guardians. Symbols of each diety that"+
+	" Kindred come on occasion to hold meetings of the entire guild and"+
+	" seek advice from their gods and guardians. Symbols of each deity that"+
 	" help the Kindred are carved into the rocks."
 	);
 	set_smell("default","The fresh scent of pine drifts in the air.");
@@ -28,7 +28,7 @@ void create()
 	" pattern around this clearing. They are approximately three feet in"+
 	" height and five feet long. Each has symbols of the patron gods of the"+
 	" Kindred engraved into it.",
-	"ground" : "The ground here is covered in a thick matt of vibrant grass.",
+	"ground" : "The ground here is covered in a thick mat of vibrant grass.",
 	"grass" : "%^BOLD%^%^GREEN%^The grass stretches out over the entire ground,"+
 	" a cool and lush carpet for bare feet.",
 	]));

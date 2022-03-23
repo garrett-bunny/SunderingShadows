@@ -7,13 +7,13 @@ inherit ROOM;
 
 void create(){
     ::create();
-    set_terrain(WOOD_BUILDING);
+    set_terrain(CITY);
     set_travel(PAVED_ROAD);
     set_property("light", 2);
     set_property("indoors", 1);
     set_name("The Violet's Foyer");
     set_short("%^RESET%^%^MAGENTA%^T%^BOLD%^%^BLACK%^h%^RESET%^%^MAGENTA%^e %^RESET%^%^MAGENTA%^V%^BOLD%^io%^RESET%^%^MAGENTA%^l%^BOLD%^e%^RESET%^%^MAGENTA%^t's F%^BOLD%^%^BLACK%^oye%^RESET%^%^MAGENTA%^r%^RESET%^");
-    set_long("%^BOLD%^%^BLACK%^The main entrance to %^RESET%^%^MAGENTA%^The Violet %^BOLD%^%^BLACK%^is a sight to behold. The walls are comprised of large slabs of polished black marble shot through with thick veins of %^WHITE%^wh%^RESET%^i%^BOLD%^t%^RESET%^e%^BOLD%^%^BLACK%^. Interspersed along the walls are large %^WHITE%^wh%^RESET%^i%^BOLD%^t%^RESET%^e %^BOLD%^p%^RESET%^o%^BOLD%^ts %^BLACK%^containing lush %^RESET%^%^GREEN%^f%^ORANGE%^e%^BOLD%^%^GREEN%^r%^RESET%^%^GREEN%^ns%^BOLD%^%^BLACK%^, and beautiful %^RESET%^%^RED%^p%^ORANGE%^a%^BOLD%^i%^GREEN%^n%^BLUE%^t%^RESET%^%^MAGENTA%^i%^BOLD%^n%^RESET%^%^RED%^g%^ORANGE%^s %^BOLD%^%^BLACK%^decorate the spaces between. A %^RESET%^%^MAGENTA%^dark violet %^BOLD%^%^BLACK%^runner lines the center of the walkway over %^RESET%^polished %^BOLD%^%^BLACK%^ebony wood floors. To the side is a large and intricately carved wooden desk, complete with a ledger and s%^RESET%^i%^BOLD%^l%^RESET%^v%^BOLD%^%^BLACK%^er b%^RESET%^e%^BOLD%^l%^BLACK%^l%^RESET%^.\n");
+    set_long("%^BOLD%^%^BLACK%^The main entrance to %^RESET%^%^MAGENTA%^The Violet %^BOLD%^%^BLACK%^is a sight to behold. The walls are comprised of large slabs of polished black marble shot through with thick veins of %^WHITE%^wh%^RESET%^i%^BOLD%^t%^RESET%^e%^BOLD%^%^BLACK%^. Interspersed along the walls are large %^WHITE%^wh%^RESET%^i%^BOLD%^t%^RESET%^e %^BOLD%^p%^RESET%^o%^BOLD%^ts %^BLACK%^containing lush %^RESET%^%^GREEN%^f%^ORANGE%^e%^BOLD%^%^GREEN%^r%^RESET%^%^GREEN%^ns%^BOLD%^%^BLACK%^, and beautiful %^RESET%^%^RED%^p%^ORANGE%^a%^BOLD%^i%^GREEN%^n%^BLUE%^t%^RESET%^%^MAGENTA%^i%^BOLD%^n%^RESET%^%^RED%^g%^ORANGE%^s %^BOLD%^%^BLACK%^decorate the spaces between. A %^RESET%^%^MAGENTA%^dark violet %^BOLD%^%^BLACK%^runner lines the center of the walkway over %^RESET%^polished %^BOLD%^%^BLACK%^ebony wood floors. To the side is a large and intricately carved wooden desk, complete with a ledger and s%^RESET%^i%^BOLD%^l%^RESET%^v%^BOLD%^%^BLACK%^er b%^RESET%^e%^BOLD%^l%^BLACK%^li%^RESET%^.\n");
     set_smell("default","The air carries a mix of white tea and vanilla, with a hint of cedar.");
     set_listen("default","You hear the gentle susurrus of patrons coming and going.");
     set_items(([

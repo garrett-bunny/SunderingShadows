@@ -100,7 +100,7 @@ int lookin(string str)
         return 1;
     }
 
-    if(target->query_property("no scry"))
+    if(target->query_property("no scry") || target->query_property("block scrying"))
     {
         tell_object(ETO,"%^GREEN%^The mist inside of the orb takes on a sickly green glow and suddenly "
             "the orb flashes a bright light before returning to normal!%^RESET%^");

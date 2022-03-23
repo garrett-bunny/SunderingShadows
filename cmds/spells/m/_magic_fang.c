@@ -48,11 +48,12 @@ void spell_effect(int prof) {
       return;
     }
     pets = ({});
-    myshort = caster->query_name()+"'s ally";
-    for(i=0;i<sizeof(minions);i++) {
-      if(minions[i]->id(myshort)) pets += ({ minions[i] });
-    }
-    if(!sizeof(pets)){
+
+    pets = caster->query_protectors();
+    pets = filter_array(pets, (: !userp($1) :));
+
+    if(!pointerp(pets) || !sizeof(pets))
+    {
       tell_object(caster,"You have no creatures by your side.");
       dest_effect();
       return;

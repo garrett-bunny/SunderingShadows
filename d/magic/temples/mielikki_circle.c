@@ -24,7 +24,7 @@ void create() {
              "wilderness with happiness and pride.%^RESET%^\n");
     set_items(([
                    ({"circle","stone circle"}) : "%^GREEN%^Large stones have "+
-                   "been placed in a circle, providing decent seats%^RESET%^",
+                   "been placed in a circle, providing decent seats.%^RESET%^",
                    ({"stone","boulders"}) : "%^GREEN%^Large boulders are "+
                    "positioned amongst those of the ruins, all of them too "+
                    "big for even the largest of ogres to lift!%^RESET%^",

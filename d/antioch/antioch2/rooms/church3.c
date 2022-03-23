@@ -11,7 +11,7 @@ void create()
     set_property("light", 2);
     set_short("%^BOLD%^Grand Church of Antioch");
     set_long(
-        "%^WHITE%^There is a grand %^BOLD%^%^WHITE%^stai%^RESET%^%^WHITE%^r%^WHITE%^ case here, it spirals up for at least another level and probably beyond, but it is hard to see because it winds out of sight. The chants of acolytes drift to your ears from upstairs. The second %^BOLD%^%^WHITE%^floor%^RESET%^%^WHITE%^ must be where they study and sleep. There are %^BOLD%^%^BLACK%^s%^WHITE%^t%^BLACK%^one %^WHITE%^sc%^RESET%^%^WHITE%^o%^BOLD%^%^WHITE%^nces%^RESET%^%^WHITE%^ here that hold some of the %^MAGENTA%^in%^CYAN%^c%^MAGENTA%^en%^CYAN%^s%^CYAN%^e%^WHITE%^ that is throughout the church. The acolytes are probably responsible for keeping them lit and fresh.
+        "%^WHITE%^There is a grand %^BOLD%^%^WHITE%^staircase%^RESET%^%^WHITE%^%^WHITE%^ here, it spirals up for at least another level and probably beyond, but it is hard to see because it winds  out of sight. The chants of acolytes drift to your ears from upstairs. The second %^BOLD%^%^WHITE%^floor%^RESET%^%^WHITE%^ must be where they study and sleep. There are %^BOLD%^%^BLACK%^s%^WHITE%^t%^BLACK%^one %^WHITE%^sc%^RESET%^%^WHITE%^o%^BOLD%^%^WHITE%^nces%^RESET%^%^WHITE%^ here that hold some of the %^MAGENTA%^in%^CYAN%^c%^MAGENTA%^en%^CYAN%^s%^CYAN%^e%^WHITE%^ that is throughout the church. The acolytes are probably responsible for keeping them lit and fresh.
 "
         );
     set_smell("default", "The scent of incense is relaxing.");

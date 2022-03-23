@@ -373,7 +373,7 @@ int climb_fence(string str){
     }
     tell_object(TP, "You begin climbing the %^ORANGE%^ladder%^RESET%^. This should be a quick way to"
                    +" the top of the fence");
-    tell_room(TO, TPQCN + " %^RESET%^begins climbing a seige ladder toward the top of the fence.", TP);
+    tell_room(TO, TPQCN + " %^RESET%^begins climbing a siege ladder toward the top of the fence.", TP);
     rooms += ({TABAXROOM + "watchtower1", TABAXROOM + "watchtower2"});
     if (objectp(battlement)){
       rooms += ({file_name(battlement) });
@@ -1232,7 +1232,7 @@ void bury2(object ob){
       pitted = 3;
       stakes->remove();
     }
-    add_item("pits", "Defensive %^BOLD%^%^BLACK%^pits%^RESET%^ have beend dug here, presenting an"
+    add_item("pits", "Defensive %^BOLD%^%^BLACK%^pits%^RESET%^ have been dug here, presenting an"
                     +" obstacle against any attack on the stockade. You can also make out that they"
                     +" have had %^ORANGE%^sharpened stakes%^RESET%^ planted in the bottom of them."
                     +" Nasty.");
@@ -1391,7 +1391,7 @@ void uncover2(object ob){
                  +"%^RESET%^.");
       break;
     case 4:
-      add_item("pits", "Defensive %^BOLD%^%^BLACK%^pits%^RESET%^ have beend dug here, presenting an"
+      add_item("pits", "Defensive %^BOLD%^%^BLACK%^pits%^RESET%^ have been dug here, presenting an"
                     +" obstacle against any attack on the stockade. You can also make out that they"
                     +" have had %^ORANGE%^sharpened stakes%^RESET%^ planted in the bottom of them."
                     +" Nasty.");
@@ -1424,7 +1424,7 @@ string corn_desc(){
     break;
   case "plantingdays":   
     corndesc = "%^GREEN%^The maize is almost fully grown; the plants stand at five feet or taller, the"
-              +" %^BOLD%^%^YELLOW%^yellow ears%^RESET%^%^GREEN%^ unmistakeable against the dark green"
+              +" %^BOLD%^%^YELLOW%^yellow ears%^RESET%^%^GREEN%^ unmistakable against the dark green"
               +" leaves.%^RESET%^";
     break;
   case "sundays":
@@ -1440,7 +1440,7 @@ string corn_desc(){
     break;
   case "harvestdays":
     corndesc = "%^GREEN%^The maize is almost fully grown; the plants stand at five feet or taller, the"
-              +" %^BOLD%^%^YELLOW%^yellow ears%^RESET%^%^GREEN%^ unmistakeable against the dark green"
+              +" %^BOLD%^%^YELLOW%^yellow ears%^RESET%^%^GREEN%^ unmistakable against the dark green"
               +" leaves.%^RESET%^";
     break;
   case "autumnstime":
@@ -1486,7 +1486,7 @@ string long_corndesc(){
     break;
   case "plantingdays":   
     corndesc = "%^GREEN%^The maize is almost fully grown; the plants stand at five feet or taller, the"
-              +" %^BOLD%^%^YELLOW%^yellow ears%^RESET%^%^GREEN%^ unmistakeable against the dark green"
+              +" %^BOLD%^%^YELLOW%^yellow ears%^RESET%^%^GREEN%^ unmistakable against the dark green"
               +" leaves. In between the circular stands of %^GREEN%^m%^ORANGE%^a%^GREEN%^i%^BOLD%^"
               +"%^YELLOW%^z%^RESET%^%^GREEN%^e, small crops of %^ORANGE%^bl%^BOLD%^"
               +"%^BLACK%^a%^RESET%^"
@@ -1518,7 +1518,7 @@ string long_corndesc(){
     break;
   case "harvestdays":
     corndesc = "%^GREEN%^The maize is almost fully grown; the plants stand at five feet or taller, the"
-              +" %^BOLD%^%^YELLOW%^yellow ears%^RESET%^%^GREEN%^ unmistakeable against the dark green"
+              +" %^BOLD%^%^YELLOW%^yellow ears%^RESET%^%^GREEN%^ unmistakable against the dark green"
               +" leaves. In between the circular stands of %^GREEN%^m%^ORANGE%^a%^GREEN%^i%^BOLD%^"
               +"%^YELLOW%^z%^RESET%^%^GREEN%^e%^RESET%^%^GREEN%^, small crops of %^ORANGE%^bl%^BOLD%^"
               +"%^BLACK%^a%^RESET%^"

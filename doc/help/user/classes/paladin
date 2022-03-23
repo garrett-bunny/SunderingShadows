@@ -10,7 +10,7 @@
  %^RESET%^L2: layonhands
  %^RESET%^L3: divine health, aura of courage
  %^RESET%^L4: channel
- %^RESET%^L5: weapon bond OR armor bond OR bonded steed
+ %^RESET%^L5: divinebond (choose between weapon bond OR armor bond OR bonded steed)
  %^RESET%^L6: indomitable
  %^RESET%^L7: divine grace
  %^RESET%^L8: aura of resolve
@@ -19,7 +19,7 @@
  %^RESET%^L14: leadership
  %^RESET%^L17: aura of justification
  %^RESET%^L20: champion
- %^RESET%^L21: weapon bond OR armor bond OR bonded steed
+ %^RESET%^L21: divinebond (choose between weapon bond OR armor bond OR bonded steed)
  %^RESET%^L31: searing smite
  %^RESET%^Also: one bonus melee feat at L21, and every five class levels thereafter
  %^RESET%^      one bonus divinebond feat at L5, and another at L21

@@ -67,7 +67,7 @@ void spell_effect(int prof)
         TO->remove();
         return;
     }
-    arg = lower_case(arg);
+    //arg = lower_case(arg);
     if(arg == "summoning")
     {
         do_summons();
@@ -81,6 +81,7 @@ void spell_effect(int prof)
             return;
         }
     }
+    spell_successful();
     tell_object(caster, "Syntax: cast mage gate on summoning OR \n\t"+
     "cast mage gate on travel | location");
     TO->remove();
@@ -89,6 +90,8 @@ void spell_effect(int prof)
 
 void do_summons()
 {
+    arg = lower_case(arg);
+    
     if (!objectp(caster))
     {
         TO->remove();

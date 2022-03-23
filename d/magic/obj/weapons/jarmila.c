@@ -22,8 +22,8 @@ if(!objectp(targ)) return 1;
 if(!random(10)) {
 //targ->QCN
         tell_object(ETO,"%^RESET%^%^GREEN%^The thorns on the vines wrapped around your lance snag "+targ->QCN+", scoring "+targ->QP+" flesh!%^RESET%^");
-        tell_object(targ,"%^RESET%^%^GREEN%^The thorns on the lance wielded by "+ETO->QCN+"tear your flesh!%^RESET%^");
-        tell_room(EETO,"%^RESET%^%^GREEN%^The thorns on the lance wielded by "+ETO->QCN+"tear "+targ->QCN+"'s flesh!%^RESET%^",({ETO,targ}));
+        tell_object(targ,"%^RESET%^%^GREEN%^The thorns on the lance wielded by "+ETO->QCN+" tear your flesh!%^RESET%^");
+        tell_room(EETO,"%^RESET%^%^GREEN%^The thorns on the lance wielded by "+ETO->QCN+" tear "+targ->QCN+"'s flesh!%^RESET%^",({ETO,targ}));
         return random(4)+8;
 }
 }

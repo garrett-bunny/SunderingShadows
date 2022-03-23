@@ -15,7 +15,7 @@ void create()
     set_property("indoors", 1);
     set_property("no teleport", 1);
     set_long("%^BOLD%^%^BLACK%^The chamber in which you now stand "+
-    "bares no resemblance to the one you were just in.  This place is "+
+    "bears no resemblance to the one you were just in.  This place is "+
     "obviously of no mortal creation.  It is the very essence of shadow and "+
     "darkness.  The darkness here is stifling and you're almost "+
     "blinded by the shadows that linger here without end.  You believe "+

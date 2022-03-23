@@ -19,9 +19,7 @@ void create() {
     set_mystery("battle");
     set_spell_sphere("invocation_evocation");
     set_syntax("cast CLASS storm of vengeance");
-    set_description("When this spell is cast, a dark storm cloud will cover the area.  Lightning will begin to strike enemies of the caster "
-        "and they will be shaken by thunder.  Soon after, the cloud will open up in a torrent of acid rain and hail, making it difficult "
-        "to maintain footing and to see.");
+    set_description("When this spell is cast, a dark storm cloud will cover the current area. Lightning will begin to strike enemies of the caster and they will be shaken by thunder. Soon after, the cloud will open up in a torrent of acid rain and hail, making it difficult to maintain footing and to see.");
     set_verbal_comp();
     set_somatic_comp();
     set_save("varied");

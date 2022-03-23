@@ -15,7 +15,7 @@ void create()
     set_spell_sphere("illusion");
     set_damage_desc("clevel / 8 to perception");
     set_syntax("cast CLASS hypnotic pattern on TARGET");
-    set_description("This spell creates a hypnotic pattern in the air, causing target creature to be fascinated and distracting them from reacting properly. Strong willed may shrug off that pattern.");
+    set_description("This spell creates a hypnotic pattern in the air, causing the target creature to be fascinated and distracting them from reacting properly. Strong willed creatures may shrug off the pattern.");
     set_save("will");
     set_verbal_comp();
     set_somatic_comp();

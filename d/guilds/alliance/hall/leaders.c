@@ -16,7 +16,7 @@ void create()
     set_property("teleport proof", "/daemon/player_housing"->get_phouse_tp_proof("legendary"));
     set_short("Leaders' Room");
     set_long("%^CYAN%^Leader's Room%^RESET%^\n" +
-             "%^BOLD%^%^WHITE%^You appear in a large room, a old, round " +
+             "%^BOLD%^%^WHITE%^You appear in a large room, an old, round " +
              "table stands in the center surrounded by three chairs. The " +
              "table is covered by a faded %^RESET%^%^BLUE%^blue %^BOLD%^" +
              "%^WHITE%^tablecloth. The chairs look expensive and are carved " +

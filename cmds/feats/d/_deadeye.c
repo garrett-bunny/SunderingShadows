@@ -9,7 +9,7 @@ void create() {
     feat_category("RangedCombat");
     feat_name("deadeye");
     feat_prereq("Manyshot");
-    feat_desc("Deadeye represents the extended training of a skilled archer, allowing them tomake more telling shots on targets at close range.");
+    feat_desc("Deadeye represents the extended training of a skilled archer, allowing them to make more telling shots on targets at close range.");
     permanent(1);
     set_required_for(({"preciseshot","shot on the run"}));
 }

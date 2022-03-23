@@ -56,6 +56,10 @@ void reset()
         new("/d/common/obj/misc/tools/writingcase")->move(TO);
     }
 
+    if (!present("woodworkers kit")) {
+        new("/d/common/obj/misc/tools/woodkit")->move(TO);
+    }
+
     //if (!present("portable lab case")) {
         //new("/d/common/obj/misc/tools/portable_lab_case")->move(TO);
     //}

@@ -165,7 +165,7 @@ varargs int follow(string exit,object obj)
     }
     else
     {
-        obj->move_player(there);
+        obj->move_player(there, "", 1);
         return 1;
     }
 }

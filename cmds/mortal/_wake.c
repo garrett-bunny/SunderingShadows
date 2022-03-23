@@ -17,11 +17,11 @@ int cmd_wake(string str){
 
     who = present(str, ETP);
     if (!objectp(who)) {
-        return notify_fail(capitalize(str)+" is no here.\n");
+        return notify_fail(capitalize(str)+" is not here.\n");
     }
 
     if (who->query_magic_hidden()) {
-        return notify_fail(capitalize(str)+" is no here.\n");
+        return notify_fail(capitalize(str)+" is not here.\n");
     }
 
     if (!who->query_asleep()) {
@@ -52,7 +52,7 @@ wake %^ORANGE%^%^ULINE%^TARGET%^RESET%^
 
 %^CYAN%^DESCRIPTION%^RESET%^
 
-This command mages the %^ORANGE%^%^ULINE%^TARGET%^RESET%^ less asleep.
+This command wakes up the %^ORANGE%^%^ULINE%^TARGET%^RESET%^.
 
 %^CYAN%^SEE ALSO%^RESET%^
 

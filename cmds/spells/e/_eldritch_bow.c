@@ -16,7 +16,7 @@ void create() {
     set_spell_sphere("conjuration_summoning");
     set_syntax("cast CLASS eldritch bow");
     set_description("A variant on the core spell-like ability of the warlock, this invocation allows "
-"the caster to shape their eldritch blast into a single bow, which can be used as a melee weapon. "
+"the caster to shape their eldritch blast into a single bow. "
 "Both hands must be empty in order for this invocation to work; similarly, if a different shaped "
 "blast is invoked, the bow will disappear. Releasing grip upon the weapon will end the invocation. "
 "As with the eldritch blast, the bow can be imbued with various essences.\nSee also: <help "

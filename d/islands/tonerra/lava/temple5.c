@@ -16,7 +16,7 @@ void create(){
 This room is the home of the powerful creatures of Ibrandul.
 It would appear that either these creatures have lived a long
 time without thier lord or that he still exists. Yes that is
-correct before you stand two of the God Ibrandul's creations,
+correct, before you stand two of the God Ibrandul's creations:
 Ibrandlins.
 DESC
   );

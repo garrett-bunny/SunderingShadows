@@ -56,7 +56,7 @@ void create() {
     set_door_description("iron door","%^BLACK%^%^BOLD%^This door has been wrought "+
 "from iron and looks very secure. %^RESET%^Arcane runes%^BLACK%^%^BOLD%^ have been "+
 "carved into it around the hinges and around the lock%^RESET%^");
-    set_string("ornate door", "open", "%^BLACK%^%^BOLD%^The hinges squeel as the door opens.%^RESET%^");
+    set_string("ornate door", "open", "%^BLACK%^%^BOLD%^The hinges squeal as the door opens.%^RESET%^");
     set_string("ornate door", "close", "%^BLACK%^%^BOLD%^The door closes with a >THUD<.%^RESET%^");
 
 }

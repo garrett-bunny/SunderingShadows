@@ -163,7 +163,7 @@ void help() {
 "
 %^CYAN%^NAME%^RESET%^
 
-steal - optimize someone's intentory
+steal - optimize someone's inventory
 
 %^CYAN%^SYNOPSIS%^RESET%^
 

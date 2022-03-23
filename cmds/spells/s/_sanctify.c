@@ -41,7 +41,7 @@ void spell_effect(int prof) {
         return 0;
     }
     tell_object(caster, "%^CYAN%^You can feel a resonance of power as"+
-		" you murmer an incantation to your god.");
+		" you murmur an incantation to your god.");
     tell_room(place, "%^CYAN%^"+caster->QCN+" murmurs an incantation of power.", caster);
     spell_successful();
     roomName = base_name(place);

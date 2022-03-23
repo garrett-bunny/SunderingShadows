@@ -32,7 +32,7 @@ void create() {
 "black%^RESET%^%^ORANGE%^, and the uneven ground is even more "+
 "treacherous as a layer of %^RESET%^%^BOLD%^%^WHITE%^mist %^RESET%^"+
 "%^ORANGE%^covers it. Large ro%^RESET%^%^RED%^c%^RESET%^%^ORANGE%^k "+
-"outcroppings of obsidion rise up everywhere. The ever present piles "+
+"outcroppings of obsidian rise up everywhere. The ever present piles "+
 "of %^RESET%^%^BOLD%^%^RED%^c%^RESET%^%^RED%^o%^RESET%^%^BOLD%^%^RED%^"+
 "rpses %^RESET%^%^ORANGE%^also rise up from the %^RESET%^%^BOLD%^"+
 "%^WHITE%^mist%^RESET%^%^ORANGE%^.%^RESET%^\n\n");
@@ -42,7 +42,7 @@ void create() {
     set_items
     (([
         ({"floor", "ground", "outcroppings"}) : "%^RESET%^%^ORANGE%^The ground here is"+
-"rough, uneven, and random outcroppings of %^BLACK%^%^BOLD%^obsidion%^RESET%^%^ORANGE%^"+
+"rough, uneven, and random outcroppings of %^BLACK%^%^BOLD%^obsidian%^RESET%^%^ORANGE%^"+
 " make navigating difficult.%^RESET%^",
         ({"wall", "walls"}) : "%^RESET%^%^ORANGE%^The walls here are rough, and"+
 " mostly cloaked in shadows.%^RESET%^",

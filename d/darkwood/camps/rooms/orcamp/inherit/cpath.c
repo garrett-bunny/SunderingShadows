@@ -12,7 +12,7 @@ void create() {
    set_travel(DIRT_ROAD);
    set("long",
       "%^RESET%^%^GREEN%^The road here is small and narrow. It is a footworn path created by"+
-      " often use. The plant life of the forest crosses over the path here and there, but its obvious which way"+
+      " often use. The plant life of the forest crosses over the path here and there, but it's obvious which way"+
       " the path heads through the forest. The trees and thick plant life mark the edges of each side of the trail,"+
       " making it hard for several people to walk side by side. As you look up into the trees you see a few ripped"+
       " branches and signs of abuse of the forest. However, only a few of the scars on the trees look recent."

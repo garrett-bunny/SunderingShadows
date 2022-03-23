@@ -126,7 +126,7 @@ void execute_feat()
     }
     
     tell_object(caster, "%^CYAN%^BOLD%^You twirl your fingers, weaving ectoplasmic material from the Astral plane.%^RESET%^");
-    tell_object(caster, "%^BOLD%^You rearange the fibers, pulling and place them into the proper order, until finally, an astral construct stands before you.");
+    tell_object(caster, "%^BOLD%^You rearrange the fibers, pulling and placing them into the proper order, until finally, an astral construct stands before you.");
 
     bonus = FEATS_D->usable_feat(caster, "summoners call") * 5;    
     class_level = caster->query_prestige_level("psion") + bonus;

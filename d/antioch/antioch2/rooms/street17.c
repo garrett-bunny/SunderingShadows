@@ -16,7 +16,7 @@ void create()
 	set_property("light",2);
 	set_short("%^ORANGE%^Crescent%^RESET%^ Street");
 	set_long("You are on %^BOLD%^%^ORANGE%^C%^RESET%^%^ORANGE%^re%^BOLD%^%^ORANGE%^s%^RESET%^%^ORANGE%^c%^BOLD%^%^ORANGE%^e%^RESET%^%^ORANGE%^n%^BOLD%^%^ORANGE%^t%^RESET%^ %^ORANGE%^street%^WHITE%^.\n"+
-"%^WHITE%^There is a little %^BOLD%^%^BLACK%^h%^RESET%^%^ORANGE%^o%^BOLD%^%^BLACK%^use%^RESET%^%^WHITE%^ to the west. A strong scent of dried meats and fruits seems to come from within it. To the northeast you can see a very large stone church that causes the %^BOLD%^%^ORANGE%^s%^RESET%^%^ORANGE%^t%^BOLD%^%^ORANGE%^reet%^RESET%^%^WHITE%^ to turn to the north. To the southwest is the intersection of %^ORANGE%^Crescent%^RESET%^ and %^GREEN%^%^BOLD%^%^BLACK%^P%^RESET%^%^GREEN%^ine %^GREEN%^str%^BOLD%^%^BLACK%^e%^RESET%^%^GREEN%^e%^BOLD%^%^BLACK%^t%^RESET%^ street%^RESET%^ not far from the Antioch gates.
+"%^WHITE%^There is a little %^BOLD%^%^BLACK%^h%^RESET%^%^ORANGE%^o%^BOLD%^%^BLACK%^use%^RESET%^%^WHITE%^ to the west. A strong scent of dried meats and fruits seems to come from within it. To the northeast you can see a very large stone church that causes the %^BOLD%^%^ORANGE%^s%^RESET%^%^ORANGE%^t%^BOLD%^%^ORANGE%^reet%^RESET%^%^WHITE%^ to turn to the north. To the southwest is the intersection of %^ORANGE%^Crescent%^RESET%^ and %^GREEN%^%^BOLD%^%^BLACK%^P%^RESET%^%^GREEN%^ine %^GREEN%^str%^BOLD%^%^BLACK%^e%^RESET%^%^GREEN%^e%^BOLD%^%^BLACK%^t%^RESET%^%^RESET%^ not far from the Antioch gates.
 "
 	);
 	set_smell("default","You can smell dried meat and fruits.");

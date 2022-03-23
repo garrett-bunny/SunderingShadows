@@ -15,7 +15,7 @@ void create(){
 You are standing on the central road of Systyquah.  The street "+
 	"splits to the north, south, east and west, leading into "+
 	"the inner streets in the city.  You can see a few huts off to either "+
-	"side of the road.  A few bonfires are lit near by, smoke pouring "+
+	"side of the road.  A few bonfires are lit nearby, smoke pouring "+
 	"into the sky."
     );
     set_property("indoors",0);

@@ -67,22 +67,22 @@ void create() {
     ({
        	"%^BOLD%^%^CYAN%^You drink a glass of water.%^RESET%^",
       	"%^ORANGE%^The cool refreshing taste of the ice tea "+
-			"sooths your throat.%^RESET%^",
+			"soothes your throat.%^RESET%^",
        	"%^YELLOW%^The fragrant nectar is sweetened with honey"+
 		" and flowers.%^RESET%^",
        	"%^MAGENTA%^The herbal tea goes down smooth and relaxes "+
 			"your senses.%^RESET%^",
       	 "%^BOLD%^%^MAGENTA%^You drink the feywine and feel an "+
 			"almost magical, blissful peace wash %^BOLD%^%^MAGENTA%^"+
-			" over you as your skin starts to tingle all over. The "+
+			"over you as your skin starts to tingle all over. The "+
 			"glass almost slips from your hands as you hear a faerie"+
 			" giggling in your ear. You set the glass down, letting "+
 			"the wine take full effect.",
-       	"%^BOLD%^%^RED%^With each sip of the magicaly distilled ruby colored "+
+       	"%^BOLD%^%^RED%^With each sip of the magically distilled ruby colored "+
 			"drink you taste the full effect of a different fruit."+
 			" As the smooth drink runs down your throat you"+
        		" almost feel like you are slipping from your body and"+
-			" becomming weightless.%^RESET%^",
+			" becoming weightless.%^RESET%^",
        	"%^GREEN%^You eat the salad and feel full of energy.%^RESET%^",
        	"%^YELLOW%^The combination of fruits makes for a tasty snack.%^RESET%^",
        	"%^ORANGE%^You bite into the elven waybread and enjoy the filling"+
@@ -148,7 +148,7 @@ void create() {
        "This is wine glass, filled with a ruby colored substance.",
        "This is a bowl of mixed greens tossed with tomatoes and cucumbers.",
        "This is a bowl of fresh fruit that have been cut into cubes.",
-       "This is a loaf of freshy baked elven waybread.",
+       "This is a loaf of freshly baked elven waybread.",
        "This is a cup of recently made peach cobbler.",
        "This is a slice of pie that is over running with cherries.",
 	 "This large muffin is stuffed full of fresh raspberries, "+

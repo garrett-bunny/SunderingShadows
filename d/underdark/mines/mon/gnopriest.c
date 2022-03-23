@@ -13,7 +13,7 @@ void create(){
    set_long("%^ORANGE%^This gnome is of short stature, even for a "+
       "member of his race. His head is completely bald, and sits atop "+
       "a very skinny frame draped in a simple %^RESET%^grey "+
-      "%^ORANGE%^robe.  The only other decorations on his person is a "+
+      "%^ORANGE%^robe.  The only other decorations on his person are a "+
       "simple %^BOLD%^%^WHITE%^mithral %^RESET%^%^ORANGE%^circlet, and "+
       "a %^RED%^r%^BOLD%^%^RED%^u%^RESET%^%^RED%^by %^ORANGE%^medallion "+
       "that hangs heavily around his neck.");

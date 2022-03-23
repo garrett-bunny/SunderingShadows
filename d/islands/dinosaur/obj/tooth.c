@@ -3,9 +3,9 @@ inherit "/d/common/obj/weapon/dagger";
 
 void create(){
     ::create();
-    set_name("tyranosaurus tooth");
-    set_id( ({"tooth", "tyrano tooth", "tyranosaurus tooth","dagger"}) );
-    set_short("tyranosaurus tooth");
+    set_name("tyrannosaurus tooth");
+    set_id( ({"tooth", "tyrano tooth", "tyrannosaurus tooth","dagger"}) );
+    set_short("tyrannosaurus tooth");
     set_long(
       "This long tooth was pulled from the skull of a dead Tyrannosaurus.  Enchanted by unknown means, this is a common weapon on Dinosaur Island."
     );

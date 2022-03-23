@@ -40,6 +40,7 @@ int cmd_reward(string str)
 		thelevels = target->query_adjusted_character_level();
         expall = abs(EXP_NEEDED[thelevels + 1] - EXP_NEEDED[thelevels]) / 8;
         expall = WORLD_EVENTS_D->check_exp_events(expall, TO);
+	if(j > 4) expall = expall * 5 / j; //above 5 players and the reward diminishes
         target->set_property("ignore tax", 1);
         target->add_general_exp(target->query_classes()[0], expall);
         target->remove_property("ignore tax");
@@ -115,6 +116,8 @@ reward %^ORANGE%^%^ULINE%^all%^RESET%^
 %^CYAN%^DESCRIPTION%^RESET%^
 
 This command will allow you to reward anyone or everyone in the group with 12.5% of exp towards their next level. The reason for doing so is left to your discretion. The player won't know who rewarded them, but will see the message about the reward. They also must be present in the room with you. You can do it only once per hour.
+
+With <reward all>, after five players present the amount of experience rewarded to each person will diminish to be equal to as if there was a <reward all> chain from five players. A singular, targeted reward will give the full amount regardless.
 
 Player may opt out from receiving rewards with noreward setting in %^ORANGE%^<set>%^RESET%^ command. If they did so, your attempt to reward them won't count.
 

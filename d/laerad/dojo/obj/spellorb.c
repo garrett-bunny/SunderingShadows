@@ -63,13 +63,8 @@ int wield_fun()
 
     tell_room(EETO, "%^RESET%^" + thecolor + "The smoky haze of the orb comes to life, roiling angr%^BOLD%^i%^RESET%^" + thecolor +
               "ly within its glassy prison.%^RESET%^");
-    if (TP->is_class("mage") || TP->is_class("psion") || TP->is_class("alchemist")) {
-        set_item_bonus("intelligence", 4);
-        set_item_bonus("charisma", 0);
-        set_item_bonus("wisdom", 0);
-        return 1;
-    }
-    if (TP->is_class("sorcerer") || TP->is_class("bard") || TP->is_class("oracle") || TP->is_class("warlock")) {
+    
+    if (TP->is_class("sorcerer") || TP->is_class("bard") || TP->is_class("oracle") || TP->is_class("warlock" || TP->is_class("paladin")) {
         set_item_bonus("intelligence", 0);
         set_item_bonus("charisma", 4);
         set_item_bonus("wisdom", 0);
@@ -81,10 +76,12 @@ int wield_fun()
         set_item_bonus("wisdom", 4);
         return 1;
     }
-
-
-    tell_object(ETO, "%^BOLD%^The orb doesn't seem to respond to you, its inner mists remaining almost motionless.%^RESET%^");
-    return 0;
+    
+    //default
+    set_item_bonus("intelligence", 4);
+    set_item_bonus("charisma", 0);
+    set_item_bonus("wisdom", 0);
+    return 1;
 }
 
 int unwield_fun()

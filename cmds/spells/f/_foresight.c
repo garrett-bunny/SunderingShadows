@@ -19,7 +19,7 @@ void create() {
     set_bonus_type("insight");
     set_syntax("cast CLASS foresight [on TARGET]");
     set_damage_desc("+2 to armor bonus, +2 to reflex save, death ward feat");
-    set_description("The caster uses this spell to heighten their awareness for a time, allowing them to perceive fragments of their immediate future. This allows them to react pre-emptively to many threats, defending better against attacks that they can see coming before they actually land, and they may even be able avoid the death itself.");
+    set_description("The caster uses this spell to heighten their awareness for a time, allowing them to perceive fragments of their immediate future. This allows them to react preemptively to many threats, defending better against attacks that they can see coming before they actually land, and they may even be able avoid the death itself.");
     set_verbal_comp();
     set_somatic_comp();
 

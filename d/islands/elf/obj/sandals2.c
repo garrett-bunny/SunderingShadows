@@ -20,12 +20,7 @@ void create(){
   
    set_size(1+random(3));
    set_value(2000);
-   set_wear((:TO,"wear_me":));
+   set_wear("%^CYAN%^You slip your feet into the sandals and they chill your feet.%^RESET%^");
    set_property("enchantment",3);
    set_item_bonus("cold resistance",5);
-}
-
-int wear_me(){ 
-  tell_object(ETO,"%^CYAN%^You slip your feet into the sandals and they chill your feet.");
-  return 1;
 }

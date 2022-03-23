@@ -56,7 +56,7 @@ int hit_stuff(object ob)
                     +"%^RESET%^%^CYAN%^ fl%^BOLD%^%^WHITE%^i%^RESET%^"
                     +"%^CYAN%^ck%^RESET%^e%^CYAN%^rs%^ORANGE%^ and phases"
                     +" before stabbing through " + (string)ob->QCN 
-                    +" %^RESET%^%^ORANGE%^defenses!",({ob,ETO}));
+                    +"'s %^RESET%^%^ORANGE%^defenses!",({ob,ETO}));
     set_property("magic",1);
     ob->cause_typed_damage(ob, ob->return_target_limb(), roll_dice(3, 10), "piercing");
     remove_property("magic");
@@ -75,7 +75,7 @@ int hit_stuff(object ob)
                    +" %^CYAN%^disappears%^RESET%^ from " + (string)ETO->QP
                    +" hand as " + (string)ETO->QS + " strikes, only to"
                    +" re-appear, embedded deeply in " + (string)ob->QCN 
-                  +"'s  flesh!", ({ob,ETO}) );
+                   +"'s flesh!", ({ob,ETO}) );
     set_property("magic",1);
     ob->cause_typed_damage(ob, ob->return_target_limb(), roll_dice(3, 10) + 5, "piercing");
     remove_property("magic");

@@ -10,7 +10,7 @@ void create()
 	set_long(
 	"%^YELLOW%^This is a large piece of very sticky honey comb. It's getting"+
 	" all over your fingers as you hold it, and you can smell its sweet"+
-	" fragarance that makes your mouth water."
+	" fragrance that makes your mouth water."
 	);
 	set_weight(1);
 	set_value(0);

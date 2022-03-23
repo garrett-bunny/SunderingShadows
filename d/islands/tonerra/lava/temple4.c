@@ -13,7 +13,7 @@ void create(){
   set_long(
 @DESC
    %^BOLD%^%^RED%^The temple Proper%^RESET%^
-This room is a broad chamber. It too simply another room
+This room is a broad chamber. It, too, is simply another room
 along a straight line of rooms. There is only one entrance
 and only one exit it would appear. This room is quite clean.
 The floor worn and the dust has not yet settled. You notice

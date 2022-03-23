@@ -39,9 +39,10 @@ int armor_filter(object ob)
 int cmd_cast(string str)
 {
     object targ, * armor, * wielded;
-    int i, j, align, healharm, schoolspell, mylvl, * mapkeys, domain, slevel, maguslvl;
-    string str2, tmp, type, spell, tar, * known, myschool, myexp, myexp1, myexp2, myexp3, domain_name;
+    int i, j, align, healharm, schoolspell, mylvl, * mapkeys, domain, slevel, maguslvl, succ;
+    string str2, tmp, type, spell, tar, * known, myschool, myexp, myexp1, myexp2, myexp3, *domain_name;
     mapping mymapp = ([]), mymapp2 = ([]);
+    mapping all_spells;
 
     seteuid(getuid());
     if (!str) {
@@ -69,7 +70,7 @@ int cmd_cast(string str)
         healharm = 0;
     }
 
-    if (regexp(str, implode(PLAYER_D->list_classes(), "|") + "|innate|cantrip")) {
+    if (regexp(str, implode(PLAYER_D->list_classes(), "|") + "|innate|cantrip|deep")) {
         if (!sscanf(str, "%s %s", type, str2)) {
             return notify_fail("Syntax: <cast CLASS CAST_STRING>\n");
         }
@@ -88,7 +89,7 @@ int cmd_cast(string str)
         }
     }
 
-    if (!TP->is_class(type) && !avatarp(TP) && type != "innate" && type != "cantrip") {
+    if (!TP->is_class(type) && !avatarp(TP) && type != "innate" && type != "cantrip" && type != "deep") {
         return notify_fail("You can't cast spells as a " + type + "!\n");
     }
 
@@ -230,9 +231,18 @@ int cmd_cast(string str)
             }
         }
     }
-
     spell = str2;
     spell = MAGIC_D->expand_quick_name(spell);
+    
+    if(type == "druid" || type == "cleric")
+    {
+        if(member_array(spell, keys(MAGIC_D->index_castable_spells(this_player(), type))) < 0)
+        {
+            write("You can't cast that spell.");
+            return 1;
+        }
+    }
+    
     spell = replace_string(spell, " ", "_");
     tmp = "/cmds/spells/" + spell[0..0] + "/_" + spell + ".c";
     if (!file_exists(tmp)) {
@@ -251,7 +261,7 @@ int cmd_cast(string str)
             return 1;
         }
     }
-
+    
     if (domain) {
         targ = find_object_or_load(tmp);
         slevel = targ->query_spell_level(type);
@@ -297,14 +307,18 @@ int cmd_cast(string str)
         targ->set_silent_casting(1);
     }
 
-    if (type != "innate" && type != "cantrip") {
+    if (type != "innate" && type != "cantrip" && type != "deep") {
         targ->wizard_interface(TP, type, tar);
     }
     if (type == "innate") {
         targ->use_spell(TP, tar, (int)TP->query_innate_ability_level(str2), 100, "innate");
     }
     if (type == "cantrip") { //this should really use wizard interface somehow to pick up the proper clevels, might need to define cantrips differently
-        targ->use_spell(this_player(), tar, TP->query_base_character_level(), 100, "cantrip");
+        targ->use_spell(this_player(), tar, targ->query_clevel(), 100, "cantrip");
+    }
+    if(type == "deep")
+    {
+        targ->use_spell(this_player(), tar, targ->query_clevel(), 100, "deep");
     }
 
     return 1;
@@ -370,6 +384,10 @@ Would cast undeath ward if you are a crypt stalker with enough levels for that a
 %^CYAN%^CANTRIP CASTING%^RESET%^
 Casting classes also get a few cantrip spells, which can be cast without preparation.
 EX:   cast cantrip acid splash
+
+%^CYAN%^DEEP MAGIC CASTING%^RESET%^
+Mages get access to Deep Magic at higher levels, which have cooldowns, but do not need to be prepared.
+EX    cast deep wish
 
 
 %^CYAN%^SEE ALSO%^RESET%^

@@ -4,7 +4,7 @@ inherit BCAMP;
 void create() {
    ::create();
    set("long",
-      "%^RESET%^%^ORANGE%^This is the entrance to the large camp in the"+
+      "%^RESET%^%^ORANGE%^This is the entrance to the large tent in the"+
       " middle of the camp. The entrance is wide and the path leading inside"+
       " looks well traveled. The door way is outlined by two trees with a ripped"+
       " branch placed between them to hold the cloth up and provide an obvious"+

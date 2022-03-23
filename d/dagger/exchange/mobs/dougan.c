@@ -17,7 +17,7 @@ void create() {
    set_id(({ "dougan frost","Dougan Frost Commander of the Dragoons, dragoon",
 "commander","Dougan","Frost"}));
    set_long("%^RESET%^%^ORANGE%^Dougan is a human in his mid thirties. He has the "+
-"look of a grizzled veterem of countless engagements. His deeply %^RESET%^%^RED%^"+
+"look of a grizzled veteran of countless engagements. His deeply %^RESET%^%^RED%^"+
 "tanned skin %^RESET%^%^ORANGE%^is marred by several %^RESET%^%^WHITE%^scars %^RESET%^"+
 "%^ORANGE%^and his short brown hair has the signs of %^RESET%^%^BOLD%^%^BLACK%^early "+
 "gray%^RESET%^%^ORANGE%^. He wears scuffed studded leather and %^RESET%^%^BOLD%^%^BLACK%^"+
@@ -48,7 +48,7 @@ void create() {
    set_emotes(5, ({
 "%^BLACK%^%^BOLD%^Dougan looks you over and nods.%^RESET%^",
 "%^RESET%^%^BOLD%^%^BLACK%^Dougan looks over some reports on his desk.%^RESET%^",
-"%^RESET%^%^BOLD%^%^BLACK%^Dougan intones in a soft yet commanding voice '%^RESET%^I dont "+
+"%^RESET%^%^BOLD%^%^BLACK%^Dougan intones in a soft yet commanding voice '%^RESET%^I don't "+
 "want any trouble in the exchange. This is my comfy retirement.'%^RESET%^",
 }), 0);
    set_property("no bows",1);
@@ -108,7 +108,7 @@ void reply_rules(string msg, object who){
     tell_room(ETO,"%^BLACK%^%^BOLD%^He chuckles softly and adjusts"+
 " his shoulderplates.\n%^RESET%^");
     force_me("say This is my place, and the rules are easy to "+
-"follow. Don't cause trouble, dont contribute to trouble. Keep "+
+"follow. Don't cause trouble, don't contribute to trouble. Keep "+
 "your weapons sheathed and your magic and fingers to themselves. "+
 "Easy right?");
     return 1;

@@ -17,7 +17,7 @@ void create()
     "%^RESET%^%^ORANGE%^. Around the altar there are several comfortable and %^BOLD%^%^MAGENTA%^plush%^RESET%^%^ORANGE%^"+
     " chairs. Along the northern wall of the tent there multiple locked %^BOLD%^containers%^RESET%^%^ORANGE%^, each have several "+
     "drawers which slide out when unlocked. A few large and %^BOLD%^comfortable beds%^RESET%^%^ORANGE%^"+
-    " rests along the far wall. Each is big enough for a few people to sleep comfortably in. "+
+    " rest along the far wall. Each is big enough for a few people to sleep comfortably in. "+
     "It is amazingly well lit as there are %^BOLD%^lanterns%^RESET%^%^ORANGE%^"+
     " set up at various spots around the tent. None of them seem to be %^BOLD%^burning%^RESET%^%^ORANGE%^"+
     " though, they all appear to be %^BOLD%^glowing%^RESET%^%^ORANGE%^ and are putting off no heat.%^RESET%^");     
@@ -31,7 +31,7 @@ void create()
         ({"tent", "large tent"}) : "%^RESET%^%^ORANGE%^This tent is mostly bare. A stone altar rests in "+
         "the dead center of it. Around the altar there are several comfortable and plush chairs. Along the "+
         "northern wall there are multiple locked containers, each with several "+
-        "drawers which slide out when unlocked. A few large and comfortable beds rests along the far wall, each "+
+        "drawers which slide out when unlocked. A few large and comfortable beds rest along the far wall, each "+
         "big enough for a few people to sleep comfortably in.%^RESET%^",
         
         ({"altar", "stone altar"}) : "%^BOLD%^%^BLACK%^"+
@@ -45,7 +45,7 @@ void create()
         "obvious effort to make it very well lit regardless of time of day. They are not burning but instead are glowing brilliantly. "+
         "They are obviously magical as they put off no heat.%^RESET%^",
         
-        ({"beds", "comfortable beds"}) : "%^BOLD%^%^YELLOW%^These large and comfortable eds rests along the far wall of the "+
+        ({"beds", "comfortable beds"}) : "%^BOLD%^%^YELLOW%^These large and comfortable beds rest along the far wall of the "+
         "tent. It looks like several people could sleep in each of them without any issues at all.%^RESET%^",
         
         ({"containers", "locked containers", "drawers"}) : "%^BOLD%^%^YELLOW%^These large locked containers "+

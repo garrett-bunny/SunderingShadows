@@ -9,7 +9,7 @@ void create()
     feat_type("permanent");
     feat_category("GeneralCombat");
     feat_name("exotic weapon proficiency");
-    feat_desc("Exotic Weapon Proficiency is a passive feat that allows the use of various types of weapons such as double-bladed swords, whip, giant-sized weapons, and other unique weapons.");
+    feat_desc("Exotic Weapon Proficiency is a passive feat that allows the use of various types of weapons such as double-bladed swords, whips, giant-sized weapons, and other unique weapons.");
     feat_prereq("Martial weapon proficiency");
     permanent(1);
 }

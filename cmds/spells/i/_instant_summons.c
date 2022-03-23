@@ -14,7 +14,8 @@ void damage();
 void create() {
     ::create();
     set_spell_name("instant summons");
-    set_spell_level(([ "mage" : 7 ]));
+    set_spell_level(([ "mage" : 7, "cleric" : 7 ]));
+    set_domains("creation");
     set_spell_sphere("conjuration_summoning");
     set_syntax("cast CLASS instant summons on ITEM, with password PASSWORD");
     set_description("To cast this spell, the mage must use a gem of at least 100 gold value. This will need to be an actual gem found somewhere in the realms; 'spell component' gems won't do (Wizbert says that it's something to do with the special way 'component' gems are cut. Sounds plausible, but then again everyone knows Wizbert talks rubbish a lot of the time).

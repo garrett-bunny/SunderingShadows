@@ -76,7 +76,7 @@ void do_bravery(){
        dest_effect();
        return;
     }
-    mod = ((int)caster->query_guild_level(myclass) +9)/10;
+    mod = 1 + ((int)caster->query_guild_level(myclass) / 24);
     duration = 150 + ((int)caster->query_guild_level(myclass)*10);
     for(i=0;i<sizeof(cur_players);i++) {
         if(!objectp(cur_players[i])) continue;

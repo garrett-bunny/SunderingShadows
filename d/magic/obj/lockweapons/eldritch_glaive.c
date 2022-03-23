@@ -39,7 +39,7 @@ void weapon_setup(object caster,int clevel) {
     mysize = (int)caster->query_size()+1;
     set_size(mysize);
     if(powerlevel < 100) powerlevel = 100; // 10% minimum proc rate
-    if(powerlevel < 350) powerlevel = 350; // 10% minimum proc rate    
+    if(powerlevel > 350) powerlevel = 350; // 35% maximum proc rate    
     mychant = clevel;
     if(mychant < 1) mychant = 1;
     if(mychant > (int)caster->query_level()) mychant = (int)caster->query_level(); // let's not let the weapon enchant & bonuses exceed what they can reasonably wield!

@@ -17,7 +17,7 @@ create()
     set_domains("illusion");
     set_spell_sphere("illusion");
     set_syntax("cast CLASS invisibility [on TARGET]");
-    set_description("Although called invisibility, this spell doesn't turn target invisible. Instead, it alters perception of everyone around them, making target unnoticeable in minds of others. This spell requires target to move with some caution and will break itself if target enters into combat. Creatures that can see beyond this illusion will be able to attack the target.
+    set_description("Although called invisibility, this spell doesn't turn the target invisible. Instead, it alters the perception of everyone around them, making the target unnoticeable in the minds of others. This spell requires the target to move with some caution and will break itself if the target enters combat. Creatures that can see beyond this illusion will be able to attack the target.
 If target so wishes it might %^ORANGE%^<appear>%^RESET%^.");
     set_verbal_comp();
     set_somatic_comp();

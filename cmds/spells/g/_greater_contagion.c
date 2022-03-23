@@ -9,7 +9,7 @@ void create() {
     set_spell_sphere("necromancy");
     set_damage_desc("Random disease");
     set_syntax("cast CLASS greater contagion on TARGET");
-    set_description("This spell functions as contagion, except the victim cannot overcome the disease without magic—making the required number of saves does not cure it.");
+    set_description("This spell functions as contagion, except the victim cannot overcome the disease without magic. Making the required number of saves will not cure it naturally.");
 
     set_verbal_comp();
     set_somatic_comp();

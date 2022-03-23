@@ -42,10 +42,7 @@ void create() {
 //   set_long("This is a small boat for transporting players and materials.");
 //description change by Circe 9/16/04 in response to a typo report that
 //it should be more IC
-   set_long("This boat appears sea-worthy despite its small size.  "+
-      "It is manned by a small crew of sailors who take orders "+
-      "from the owner alone.  It may be used to transport "+
-      "people and goods across the sea.");
+   set_long("This boat appears sea-worthy despite its small size. It is manned by a small crew of sailors who take orders from the owner alone. It may be used to transport people and goods across the sea. There is a gangplank present in order to <board> the boat.");
    set_weight(100000);
    call_out("make_me",1);
    owner = "noone";

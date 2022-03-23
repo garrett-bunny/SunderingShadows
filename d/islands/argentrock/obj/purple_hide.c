@@ -24,9 +24,9 @@ void create(){
 	set_lore("The fey'ri of Argentrock have found a use for "+
 		"the purple worms that live on the island.  Scouting"+
 		" parties hunt down these massive creatures just for "+
-		"their hides, which the fey'ri claims grants them a "+
-		"hightened immunity to magical effects.  The fey'ri "+
-		"have hunted the purple worms into near extintion on "+
+		"their hides, which the fey'ri claim grants them a "+
+		"heightened immunity to magical effects.  The fey'ri "+
+		"have hunted the purple worms into near extinction on "+
 		"Argentrock to have robes, gloves, boots, and armor "+
 		"made from the supple but tough hide.");
 	set_property("lore",12);

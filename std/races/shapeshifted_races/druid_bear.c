@@ -42,9 +42,7 @@ int default_descriptions(object obj)
 {
     if(!objectp(obj)) { return 0; }
 
-    obj->set_description("is covered in course, brown fur from the tip of "+obj->QP+" snout to the end of "+obj->QP+" large. "
-        "muscular frame.  Long claws can be seen at the ends of "+obj->QP+" paws any time "+obj->QO+" takes a step.  Such a large "
-        "creature could prove a dangerous foe.");
+    obj->set_description("is covered in coarse, brown fur from the tip of "+obj->QP+" snout to the end of "+obj->QP+" large, muscular frame. Long claws can be seen at the ends of "+obj->QP+" paws any time "+obj->QO+" takes a step. Such a large creature could prove a dangerous foe.");
 
     obj->setDescriptivePhrase("hulking brown $R with dark brown eyes");
 

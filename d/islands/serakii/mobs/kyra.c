@@ -47,10 +47,10 @@ set_long("%^CRST%^Dressed in a "+
    set_hp(query_max_hp());
    set("aggressive",0);
    set_emotes(3, ({
-"%^C246%^You swear you just saw a %^C231%^small white rabbit%^C246%^ peer out from behind the %^C241%^altar%^CRST%^\n",
+"%^C246%^You swear you just saw a %^C231%^small white rabbit%^C246%^ peer out from behind the %^C241%^altar.%^CRST%^\n",
 "%^C061%^Out of the corner of your eyes, the %^C056%^runes %^C061%^on the altar reform and you can %^C110%^understand them%^C061%^! But when you look again they are obscure again.%^CRST%^\n",
-"%^C208%^You see a flash of %^C226%^golden wings%^C208%^ through the temple windows.. Or no.. thats not possible.. %^CRST%^\n",
-"%^C088%^The temple is awash suddenly in the rich %^C196%^scent of roses%^C088%^, but as you turn, its gone.. %^CRST%^\n",
+"%^C208%^You see a flash of %^C226%^golden wings%^C208%^ through the temple windows.. Or no.. that's not possible.. %^CRST%^\n",
+"%^C088%^The temple is awash suddenly in the rich %^C196%^scent of roses%^C088%^, but as you turn, it's gone...%^CRST%^\n",
 "%^C247%^The %^C241%^shadows %^C247%^seem to grow, encroaching on everything in the room, but when they get close to the young girl they %^C059%^recoil %^C247%^and return to normal.%^CRST%^\n",
 }), 0);
    set_property("no bows",1);

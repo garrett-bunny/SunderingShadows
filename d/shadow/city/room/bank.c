@@ -48,7 +48,7 @@ void create() {
 		"%^BLUE%^ bar.  The tapestries pay homage to the coins and "+
 		"precious metals that require people to safely stroe their "+
 		"money in a bank.  One tapestry though stands out from the others,"+
-		" showing the image of a windblow man in a long cloak.  "+
+		" showing the image of a windblown man in a long cloak.  "+
 		"This tapestry represents Shaundakul, god of trade." ]));
   set_exits( ([ "northwest":ROOMS"plaza" ]) );
   set_smell("default","The smell of money fills your nostrils.");

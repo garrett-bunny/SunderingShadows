@@ -12,7 +12,8 @@ void create() {
     string stufflist, *tmp = ({});
     ::create();
     set_spell_name("minor creation");
-    set_spell_level(([ "mage" : 1, "magus" : 1, "inquisitor" : 1, "psion" : 1, "warlock" : 1 ]));
+    set_spell_level(([ "mage" : 1, "magus" : 1, "inquisitor" : 1, "psion" : 1, "warlock" : 1, "cleric" : 1 ]));
+    set_domains("creation");
     set_spell_sphere("conjuration_summoning");
     set_discipline("shaper");
     set_syntax("cast CLASS minor creation on <object>");

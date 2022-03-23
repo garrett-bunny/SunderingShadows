@@ -88,7 +88,7 @@ int raise_player(string verb)
             DeadPerson->delete("RaisingPriestGod");
             DeadPerson->delete("RaisingExpLoss");
             DeadPerson->delete("RaisingType");
-            tell_object(DeadPerson,"%^BOLD%^You have choosen to return to life!%^RESET%^");
+            tell_object(DeadPerson,"%^BOLD%^You have chosen to return to life!%^RESET%^");
             tell_room(environment(DeadPerson),"%^BOLD%^"+TP->QCN+" has returned from the "+
             "dead!",DeadPerson);
             PERMA_DEATH_D->remove_player(DeadPerson->query_name());
@@ -100,7 +100,7 @@ int raise_player(string verb)
         case "cancel":
             if(verb == "cancel")
             {
-                tell_object(DeadPerson,"%^BOLD%^You have choosen to leave your "+
+                tell_object(DeadPerson,"%^BOLD%^You have chosen to leave your "+
                 "fate in Lysara's hands!%^RESET%^");
             }
             DeadPerson->delete("RaisingRoom");
@@ -144,7 +144,7 @@ void create()
 		"living objects.  There are no trees, no grass, no water, nor earth.  "+
 		"Instead, it is a haze of nothingness where you have been sent while "+
 		"Lysara decides your fate.  Around you float the lost souls of others "+
-	      "awaiting thier time in front of the Lord of the Dead, and the sheer numbers "+
+	    "awaiting their time in front of the Lord of the Dead, and the sheer numbers "+
       	"of them give you a sinking feeling.  While here, you are able to think upon "+
 		"your life and decide what you have done that might be worthy of "+
 		"his good graces, for you know he holds your future in his hands.  "+
@@ -201,15 +201,15 @@ int filter_act(string str)
 			x = (int)PERMA_DEATH_D->get_permadeath(DeadPerson->query_name()) - time();
 			if(x / 10 >= 650)
 			{
-				response_str = "%^BOLD%^%^RED%^A horde of souls%^RESET%^";
+				response_str = "%^BOLD%^%^RED%^a horde of souls%^RESET%^";
 			}
 			else if(x / 10 >= 450)
 			{
-				response_str = "%^BOLD%^%^BLACK%^A vast number of souls%^RESET%^";
+				response_str = "%^BOLD%^%^BLACK%^a vast number of souls%^RESET%^";
 			}
 			else if(x / 10 >= 300)
 			{
-				response_str = "%^BOLD%^%^GREEN%^A lot of souls%^RESET%^";
+				response_str = "%^BOLD%^%^GREEN%^a lot of souls%^RESET%^";
 			}
 			else if(x / 10 >= 150)
 			{
@@ -235,8 +235,8 @@ int filter_act(string str)
 		tell_object(TP, "%^BOLD%^%^WHITE%^A stern yet patient voice answers you "+
 		"from the haze :  %^BOLD%^%^WHITE%^Be patient %^BOLD%^%^CYAN%^"+
 		capitalize(DeadPerson->query_name())+
-		" %^BOLD%^%^WHITE%^Lysara must see "+response_str+
-		" %^BOLD%^%^WHITE%^before he will decide your fate.%^RESET%^");
+		" %^BOLD%^%^WHITE%^, Lysara must see "+response_str+
+		" %^BOLD%^%^WHITE%^before she will decide your fate.%^RESET%^");
 		return 1;
 	}
   	if (member_array(query_verb(), VALID_ACTIONS ) == -1)
@@ -247,7 +247,7 @@ int filter_act(string str)
 			"the following : \n");
 		}
 		tmp = "%^BOLD%^%^WHITE%^While you patiently await "+
-		"Lysara's Decision, you are only able to perform "+
+		"Lysara's decision, you are only able to perform "+
 		"the following actions : \n\n";
 
 		tmp += "%^BOLD%^%^CYAN%^" + implode(VALID_ACTIONS, "\n");

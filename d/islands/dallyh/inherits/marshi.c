@@ -50,14 +50,14 @@ void create()
     "copious layers of a %^RESET%^%^GREEN%^foul "+
     "sl%^BOLD%^u%^RESET%^%^GREEN%^dge%^BOLD%^%^BLACK%^. The %^RESET%^"+
     "%^RED%^thorns%^BOLD%^%^BLACK%^ stand out in stark contrast to the rest of the foliage. They appear to not "+
-    "only be living but actually thriving as they wind tighty around the trees and the roots sucking life from "+
+    "only be living but actually thriving as they wind tightly around the trees and the roots sucking life from "+
     "them with impunity. The %^RESET%^%^GREEN%^trees and roots%^BOLD%^%^BLACK%^ jut up "+
     "from beneath the sludge at odd angles. You watch as pieces of them break off and fall into "+
     "the sludge with audible '%^BOLD%^%^GREEN%^"+
     "plops%^BOLD%^%^BLACK%^' as the %^RESET%^%^RED%^thorns%^BOLD%^%^BLACK%^ harvest what little life remains."+
     " You believe that the %^RESET%^%^GREEN%^sl%^BOLD%^u%^RESET%^%^GREEN%^dge%^BOLD%^%^BLACK%^ used to "+
     "be water but years of stagnation and decay have deduced it to its current state. Travel here is nearly impossible "+
-    "and a forboding and dreadful aura lingers over the surface of the %^RESET%^%^GREEN%^sl%^BOLD%^u%^RESET%^%^GREEN%^"+
+    "and a foreboding and dreadful aura lingers over the surface of the %^RESET%^%^GREEN%^sl%^BOLD%^u%^RESET%^%^GREEN%^"+
     "dge%^BOLD%^%^BLACK%^ forming a tangible %^BOLD%^%^WHITE%^mist%^BOLD%^%^BLACK%^.%^RESET%^");
 
 
@@ -65,7 +65,7 @@ void create()
         ({"marsh", "ancient marsh", "dreadful marsh"}) : "%^BOLD%^%^BLACK%^This marsh is ancient. What water might "+
         "have once been here has long since been deduced to a copious foul sludge. There are trees and roots "+
         "jutting up from within it at odd angles. They are wrapped tightly by treacherous thorns which seem to be "+
-        "harvesting what little life remains from them. A forboding and dreadful aura lingers over the surface "+
+        "harvesting what little life remains from them. A foreboding and dreadful aura lingers over the surface "+
         "of the sludge, forming a tangible mist.%^RESET%^", 
         ({"thorns", "treacherous thorns"}) : "%^RESET%^%^RED%^These treacherous thorns are in stark contrast to "+
         "the other foliage here. They are wrapped tightly around the trees and roots which jut up at odd angles from "+
@@ -75,11 +75,11 @@ void create()
         "into the sludge with audible 'plops' as the remaining life is sucked out of them by the treacherous "+
         "thorns.%^RESET%^",
         ({"sludge", "foul sludge"}) : "%^BOLD%^%^GREEN%^It is likely that this sludge was once the water that "+
-        "provided substenance to the foilage here but years of stagnation and decaying plant matter has deduced it "+
+        "provided sustenance to the foliage here but years of stagnation and decaying plant matter has deduced it "+
         "to its current state. Surprisingly the thorns appear to be thriving from the sludge while the trees and "+
         "their roots sink further into decay.%^RESET%^",
         ({"mist", "tangible mist", "aura", "dreadful aura"}) : "%^BOLD%^%^WHITE%^This tangible mist seems the "+
-        "physical manifestation of a forbiding and dreadful aura that lingers over the surface of the "+
+        "physical manifestation of a foreboding and dreadful aura that lingers over the surface of the "+
         "sludge. You are unsure if the aura is coming from the sludge or if it is something else "+
         "entirely but whatever the case may be the mist does little to make travel here easier.%^RESET%^",
     ]));

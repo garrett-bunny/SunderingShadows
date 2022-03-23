@@ -24,7 +24,7 @@ set_size(2);
 set_property("enchantment",4);
 set_item_bonus("influence",2);
 set_wear((:TO,"wear_fun":));
-set_remove((:TO,"remove_fun":));
+set_remove("%^BOLD%^You remove the regal cloak.%^RESET%^");
 }
 
 int wear_fun(){
@@ -33,8 +33,14 @@ tell_object(ETO,"%^BOLD%^%You throw the cloak "+
 return 1;
 }
 
+/*
+
 int remove_fun(){
 tell_room(EETO,"%^BOLD%^"+ETO->QCN+" removes the "+
 "regal cloak.%^RESET%^",ETO);
 tell_object(ETO,"%^BOLD%^You remove the regal cloak.%^RESET%^");
+return 1;
 }
+
+*/
+

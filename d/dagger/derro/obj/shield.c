@@ -37,7 +37,8 @@ void create() {
         set_property("enchantment",3);
 }
 int strikeme(int damage, object what, object who){
-  	tell_object(ETO,"%^BOLD%^%^BLUE%^The shield lunges at"+
+    if(!random(3)) {
+        tell_object(ETO,"%^BOLD%^%^BLUE%^The shield lunges at"+
 		" "+who->QCN+", snapping and snarling, making the"+
 		" blow glance off course!");
    	tell_object(who,"%^BOLD%^%^BLUE%^"+ETO->QCN+"'s shield "+
@@ -45,15 +46,18 @@ int strikeme(int damage, object what, object who){
    	tell_room(environment(ETO),"%^BOLD%^%^BLUE%^"+ETO->QCN+"'s "+
 		"shield bites at "+who->QCN+" as "+who->QS+" gets too"+
 		" close!",({who,ETO}));
-  if(!random(4)){
-    	who->do_damage("torso",random(6)+2);
-   	who->set_paralyzed((random(6)+3),"%^BOLD%^You struggle to free your hand "+
+	if(!random(4)){
+	    who->do_damage("torso",random(6)+2);
+	    who->set_paralyzed((random(6)+3),"%^BOLD%^You struggle to free your hand "+
 		"from the shield's mouth!");
-   tell_room(environment(ETO),"%^BOLD%^The shield bites "+who->QCN+" and"+
+	    tell_room(environment(ETO),"%^BOLD%^The shield bites "+who->QCN+" and"+
 		" won't let go!");
-  }
-  return (-1)*(damage/2);
+	}
+	return (-1)*(damage/2);
+    }
+    return damage;
 }
+
 int wearme(){
   if((int)ETO->query_highest_level() <15){
   	write("%^GREEN%^The shield chuckles as you try to wear it but"+

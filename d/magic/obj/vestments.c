@@ -211,6 +211,14 @@ int wearit()
         set_long("%^BOLD%^%^BLACK%^The vestments of Khyron are made of a pitch black satin that has been shredded and singed in the riotous celebration of the faithful.  The vestments change throughout a priest's life, with a new strip of colored fabric added for each storm or instance of destruction the priest causes - %^BOLD%^%^RED%^red %^BLACK%^for fire, %^YELLOW%^yellow %^BLACK%^for lightning, %^WHITE%^white %^BLACK%^for ice, and %^CYAN%^cyan %^BLACK%^for wind.%^RESET%^");
         set_short("%^BOLD%^%^BLACK%^Pitch black satin vestments%^RESET%^");
         break;
+    case "ashra":
+        set_long("%^RESET%^%^CRST%^%^C091%^These silken vestments are %^C059%^pitch black%^RESET%^%^C091%^, trimmed in an uneven %^C255%^wh%^C252%^i%^C255%^t%^C252%^e %^C091%^and %^C246%^gr%^C249%^a%^C246%^y %^RESET%^%^C091%^border. The ebon hue seems to be reaching out in shadowy tendrils along the fabric to symbolically snuff out the light along the borders. A mantle rests across the shoulders, framing the image of a cracked %^C255%^po%^C250%^r%^C255%^cel%^C245%^a%^C250%^i%^C255%^n m%^C250%^a%^C255%^sk %^RESET%^%^C091%^displayed on the chest.%^CRST%^");
+        set_short("%^RESET%^%^CRST%^%^C091%^extravagant %^C059%^bl%^C243%^ac%^C059%^k s%^C243%^il%^C059%^k %^RESET%^%^C091%^vestments%^CRST%^");
+        break;
+    case "edea":
+        set_long("%^RESET%^%^CRST%^%^C144%^Fashioned from simple linen, these flowing robes are a %^C255%^st%^C252%^a%^C255%^r%^C252%^k %^C255%^wh%^C252%^i%^C255%^t%^C252%^e %^RESET%^%^C144%^with an uneven %^C059%^bl%^C243%^ac%^C059%^k %^C144%^and %^C246%^gr%^C249%^a%^C246%^y %^RESET%^%^C144%^border. The brilliant hue seems to be driving back the shadowy pigment, symbolic of Edea's radiance driving back the void. An image of a beautiful %^C255%^porcelain mask %^RESET%^%^C144%^is present, centered over the chest.%^CRST%^");
+        set_short("%^RESET%^%^CRST%^%^C144%^simple %^C255%^wh%^C252%^i%^C255%^t%^C252%^e %^C255%^li%^C252%^n%^C255%^e%^C252%^n %^RESET%^%^C144%^vestments%^CRST%^");
+        break;
 
     default:  tell_object(ETO, "Someone forgot your deity," +
                           " please bugreport and let us know who you follow.");

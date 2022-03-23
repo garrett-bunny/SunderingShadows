@@ -11,7 +11,7 @@ void create()
     feat_category("TwoWeapons");
     feat_name("improved whirl");
     feat_prereq("Whirl");
-    feat_desc("With this feat you are able avoid being triped on a missed whirlwind attack.");
+    feat_desc("With this feat you are able avoid being tripped on a missed whirlwind attack.");
     permanent(1);
 }
 

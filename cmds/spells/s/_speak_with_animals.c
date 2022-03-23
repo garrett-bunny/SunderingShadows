@@ -14,7 +14,7 @@ void create() {
     set_spell_level(([ "druid" : 1, "bard" : 3, "ranger" : 1 ]));
     set_spell_sphere("divination");
     set_syntax("cast CLASS speak with animals [on TARGET]");
-    set_description("This will give the caster the ability to understand, and speak sylvan tongue.");
+    set_description("This will give the caster the ability to understand and speak sylvan tongue.");
     set_verbal_comp();
     set_components(([
       "mage" : ([ "clay model ziggurat" : 1, ]),

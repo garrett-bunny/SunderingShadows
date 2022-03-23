@@ -277,7 +277,7 @@ void daemonic_surprise(object vic)
     tell_room(ETO, "%^RED%^As he finishes the chant, a red shadowy thing " +
               "flashes across your eyes.");
     if (!vic->will_save(60 + roll_dice(1, 25))) {
-        tell_object(vic, "%^RED%^You suddenly feel tremedous pain and " +
+        tell_object(vic, "%^RED%^You suddenly feel tremendous pain and " +
                     "scream! An image of a demon appears and vanishes.");
         tell_room(ETO, "%^RED%^" + vic->query_cap_name() + " suddenly screams " +
                   "in pain!", vic);
@@ -299,7 +299,7 @@ void energy_strike(object vic)
     }
     tell_room(ETO, "%^BOLD%^CYAN%^Batlin gathers some reagents and chants " +
               "a short phase.");
-    tell_room(ETO, "%^BLUE%^As he finishes the chant, you sense tremedous " +
+    tell_room(ETO, "%^BLUE%^As he finishes the chant, you sense tremendous " +
               "flow of energy in the room.");
     if (!vic->will_save(60 + roll_dice(1, 20))) {
         tell_object(vic, "%^BLUE%^A bundle of energy strikes you like a " +
@@ -326,7 +326,7 @@ void mind_blast(object vic)
               "a short phase.");
     tell_room(ETO, "%^CYAN%^Batlin concentrates for a moment.");
     if (!vic->will_save(60 + roll_dice(1, 20))) {
-        tell_object(vic, "%^CYAN%^You feel a strange assult on your brain, " +
+        tell_object(vic, "%^CYAN%^You feel a strange assault on your brain, " +
                     "an awfully strong power grows in your head, you start to lose " +
                     "control of your mind and your body!");
         tell_room(ETO, "%^CYAN%^" + vic->query_cap_name() + " suddenly looks " +
@@ -376,7 +376,7 @@ void do_it()
     living = all_living(ETO);
     living -= ({ TO });
     all = sizeof(living);
-    tell_room(ETO, "%^B_RED%^ORANGE%^The room starts shaking voilently.\n" +
+    tell_room(ETO, "%^B_RED%^ORANGE%^The room starts shaking violently.\n" +
               "The air around you seems to vaporize.\nThe floor opens.\nYour " +
               "sight begins to blur.\n\n\n...\n\n... ...\n\n... ... ...\n\n\n\n");
     message("broadcast", "%^RED%^A tremble passes from beneath your feet " +
@@ -519,3 +519,4 @@ void die(object ob)
     ::die(ob);
     return;
 }
+

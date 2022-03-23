@@ -8,7 +8,7 @@ void create() {
     feat_category("DivineSpellcraft");
     feat_name("second divine domain");
     feat_prereq("Cleric L1");
-    feat_desc("This feat represents the greater bond with divinitythat an advanced priest has, and grants another small subset of specialty spellsthat are specific to their own deity, in addition to those learnt at first level.");
+    feat_desc("This feat represents the greater bond with divinity that an advanced priest has, and grants another small subset of specialty spells that are specific to their own deity, in addition to those learned at first level.");
     permanent(1);
 }
 

@@ -11,8 +11,19 @@ void create()
 	set_property("light",2);
 	set_short("Crumbled Gates");
 	set_long(
-	"%^BOLD%^%^BLACK%^Crumbled Gates%^RESET%^
-%^ORANGE%^The %^BOLD%^%^BLACK%^g%^RESET%^%^CYAN%^ates%^ORANGE%^ before you once lead into the magnificent city of Antioch. Now they lay in %^CYAN%^rui%^BOLD%^%^BLACK%^n%^BLACK%^s%^RESET%^%^CYAN%^.%^ORANGE%^ The %^WHITE%^st%^CYAN%^e%^WHITE%^el%^ORANGE%^ of the large gates has been melted by incredible heat, and the %^CYAN%^wo%^BOLD%^%^BLACK%^o%^BLACK%^d%^RESET%^%^ORANGE%^ has been splintered and charred. The huge stone wall that once surrounded the city has toppled to the ground, along with the %^CYAN%^towe%^BOLD%^%^BLACK%^r%^BLACK%^s%^RESET%^%^ORANGE%^ that once stood on either side of the gates. The towers and %^BOLD%^%^BLACK%^w%^RESET%^%^CYAN%^alls%^ORANGE%^ could not protect the citizens from their enemies, and now all that is left of the once wonderous town is a pile of ruins. A small path to the west leads to the new city of Antioch."
+        "%^BOLD%^%^BLACK%^Crumbled Gates\n%^RESET%^"+
+"%^ORANGE%^The %^BOLD%^%^BLACK%^g%^RESET%^%^CYAN%^ates%^ORANGE%^ before "+
+"you once led into the magnificent city of Antioch. Now they lay "+
+"in  %^CYAN%^rui%^BOLD%^%^BLACK%^n%^BLACK%^s%^RESET%^%^CYAN%^.%^ORANGE%^ "+
+"The  %^WHITE%^st%^CYAN%^e%^WHITE%^el%^ORANGE%^ of the large gates has "+
+"been melted by incredible heat, and  the %^CYAN%^wo%^BOLD%^%^BLACK%^"+
+"o%^BLACK%^d%^RESET%^%^ORANGE%^ has been splintered and charred. The "+
+"huge stone wall that once surrounded the city has toppled to the ground, "+
+"along with the  %^CYAN%^towe%^BOLD%^%^BLACK%^r%^BLACK%^s%^RESET%^%^ORANGE%^ "+
+"that once stood on either side of the  gates. The towers and %^BOLD%^%^BLACK%^"+
+"w%^RESET%^%^CYAN%^alls%^ORANGE%^ could not protect the citizens from their "+
+"enemies, and now all that is left of the once wonderous town is a pile of "+
+"ruins. A small path to the west leads to the new city of Antioch."
 	);
 	set_smell("default","The air has a musty quality to it.");
 	set_listen("default","Everything is strangely still.");

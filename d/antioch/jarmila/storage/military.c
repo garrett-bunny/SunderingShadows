@@ -23,7 +23,7 @@ void create(){
    "climb the base of the hill. Here there are less %^RESET%^"+
    "%^MAGENTA%^merchants %^BOLD%^%^BLACK%^and %^CYAN%^revelers "+
    "%^BLACK%^and instead you find orderly %^WHITE%^military style "+
-   "%^RESET%^%^ORANGE%^tents %^BOLD%^%^BLACK%^inter spaced with "+
+   "%^RESET%^%^ORANGE%^tents %^BOLD%^%^BLACK%^interspaced with "+
    "those of dignitaries. Small groups of %^RESET%^Templar "+
    "%^BOLD%^%^BLACK%^wander through the %^RESET%^%^ORANGE%^"+
    "tents%^BOLD%^%^BLACK%^, keeping the revelers from traveling "+

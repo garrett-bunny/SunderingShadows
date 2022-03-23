@@ -10,7 +10,7 @@ void create(){
     set_short("Systyquah's general store");
     set_long(
 	"%^BOLD%^Systyquah's general store%^RESET%^
-You have walked into a general store.  The stores walls are lined with "+
+You have walked into a general store.  The store's walls are lined with "+
 	"numerous weapons, armors, and other equipment.  There is a desk "+
 	"at the northern end of the room where you can <list> or "+
 	"<buy> and <sell> items.  There is a troll behind the counter waiting "+

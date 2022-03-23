@@ -98,10 +98,10 @@ int leaping() {
 
 int GoThroughDoor() {
     if(!TP->is_class("mage") && !TP->is_class("sorcerer") && !avatarp(TP)) {
-        tell_object(TP,"%^ORANGE%^As you through the lightning, you wince "+
+        tell_object(TP,"%^ORANGE%^As you leap through the lightning, you wince "+
             "from a jolt of electricity - a warning you don't belong inside.");
          tell_room(TO,"%^ORANGE%^"+TPQCN+" walks up to the barrier "+
-            "and winces "+TP->QS+" receives a small jolt of electricty.",TP);
+            "and winces "+TP->QS+" receives a small jolt of electricity.",TP);
 	TP->do_damage("torso", 5);
         return 1;
     }

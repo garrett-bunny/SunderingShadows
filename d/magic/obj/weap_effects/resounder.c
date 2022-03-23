@@ -40,8 +40,8 @@ int resounder_func(object obj)
         if(!(pspell->do_save(targ,6)))
         {
             tell_object(tp,"%^CYAN%^The vibrations of your"+obj->query_name()+" %^CYAN%^ resound with "+targ->QCN+"%^CYAN%^.%^RESET%^");
-            tell_object(targ,"%^CYAN%^The virbations of "+tp->QCN+"%^CYAN%^'s "+obj->query_name()+"%^CYAN%^ resound with your flesh!%^RESET%^");
-            tell_room(etp,"%^CYAN%^The virbations of  "+tp->QCN+"%^CYAN%^'s "+obj->query_name()+"%^CYAN%^ resound with "+targ->QCN+".%^RESET%^",({tp,targ}));
+            tell_object(targ,"%^CYAN%^The vibrations of "+tp->QCN+"%^CYAN%^'s "+obj->query_name()+"%^CYAN%^ resound with your flesh!%^RESET%^");
+            tell_room(etp,"%^CYAN%^The vibrations of  "+tp->QCN+"%^CYAN%^'s "+obj->query_name()+"%^CYAN%^ resound with "+targ->QCN+".%^RESET%^",({tp,targ}));
             targ->cause_typed_damage(targ, targ->return_target_limb(), roll_dice(1, 8), "sonic");
             //targ->do_damage(targ->return_target_limb(), roll_dice(1,8));
         }

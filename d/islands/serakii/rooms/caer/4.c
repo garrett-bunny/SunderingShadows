@@ -31,7 +31,7 @@ void create() {
         "south" : CAER"3",
                 "northeast" : CAER"voice",
    ]));
-    set_door("white door",RUINS"voice","northeast",0);
+    set_door("white door",CAER"voice","northeast",0);
     set_door_description("white door","Formed from solid wood painted white.");
 }
 void reset()

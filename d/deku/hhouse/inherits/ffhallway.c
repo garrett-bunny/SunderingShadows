@@ -64,7 +64,7 @@ void pick_room()
             "%^BOLD%^%^RED%^exquisite%^BOLD%^%^MAGENTA%^! The walls and ceiling are "+
             "almost flawless, with not a speck of visible dust anywhere, suggesting "+
             "something very meticulous keeps this place in order. They are constructed "+
-            "from a study and magnificent %^RESET%^%^GREEN%^oak%^BOLD%^%^MAGENTA%^ "+
+            "from a sturdy and magnificent %^RESET%^%^GREEN%^oak%^BOLD%^%^MAGENTA%^ "+
             "and look as if they might last forever. It is suprising that such a "+
             "hallway still exists inside this place but all is not well. The floor "+
             "here is quite disturbing and makes the entire hallway seem as if it "+

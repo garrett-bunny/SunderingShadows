@@ -67,7 +67,7 @@ int look_fun(string str){
 		tell_object(TP,"%^RESET%^%^RED%^The scratches are a form of thieves' cant. You work out the meaning to be:%^RESET%^");
 		tell_object(TP,"%^BOLD%^%^RED%^Mistakes will happen, and you must be swift to correct them. Stab your opponent in a vital spot to silence it. A thief who hesitates is caught.%^RESET%^");
 		tell_object(TP,"");
-		tell_object(TP,"%^BOLD%^%^BLACK%^(OOC Info: %^BOLD%^%^BLACK%^You can %^WHITE%^<stab (target)> %^BLACK%^to strike them in a vulnerable spot for extra damage. This can only be done from outside combat, and you can even stab with your bare hands, but this will lock you in the room for a short time. They have an opporunity to catch you doing this and it is a contest between your %^WHITE%^stealth %^BLACK%^and your target's %^WHITE%^perception%^BLACK%^.)%^RESET%^");}
+		tell_object(TP,"%^BOLD%^%^BLACK%^(OOC Info: %^BOLD%^%^BLACK%^You can %^WHITE%^<stab (target)> %^BLACK%^to strike them in a vulnerable spot for extra damage. This can only be done from outside combat, and you can even stab with your bare hands, but this will lock you in the room for a short time. They have an opportunity to catch you doing this and it is a contest between your %^WHITE%^stealth %^BLACK%^and your target's %^WHITE%^perception%^BLACK%^.)%^RESET%^");}
 	return 1;
 }
 

@@ -18,7 +18,7 @@ grant PLAYER EXP REASON
 
 %^CYAN%^DESCRIPTION%^RESET%^
 
-Will grant the exp indicated tot he specific class indicated. State a reason for the notes.
+Will grant the exp indicated to the specific class indicated. State a reason for the notes.
 
 %^CYAN%^SEE ALSO%^RESET%^
 

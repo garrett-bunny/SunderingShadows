@@ -8,12 +8,12 @@ void create(){
     set_short("A Trident of Atlantis");
    set_obvious_short("A trident");
    set("lore",
-	"This is a massive trident.  Forged of some indestructable ore, it "+
+	"This is a massive trident.  Forged of some indestructible ore, it "+
 	"glitters like gold yet cuts through steel as though it was "+
 	"paper.  The weapon is masterfully etched and carved with "+
 	"ancient runes and designs."
     );
-   set_long("  This three pronged spear looks very vicious.  The center tine is longer than the side two which are horribly barbed.");
+   set_long("  This three pronged spear looks very vicious.  The center tine is longer than the side two, which are horribly barbed.");
     set_size(3);
     set_weight(20);
     set_value(5000);

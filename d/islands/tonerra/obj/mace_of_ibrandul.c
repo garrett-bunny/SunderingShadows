@@ -12,8 +12,8 @@ void create(){
    set_short("%^RED%^Mace of Ibrandul%^RESET%^");
    set_long(
 @OLI
-   This fine diamond headed mace is the traditional mace
-of the followers of Ibrandul. With wicked sharped edges
+   This fine diamond-headed mace is the traditional mace
+of the followers of Ibrandul. With wicked sharp edges
 on the head the mace looks likely to do great damage.
 OLI
    );

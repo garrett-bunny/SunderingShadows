@@ -36,10 +36,10 @@ void create(){
    set_attack_limbs( ({"right leg","left leg"}) );
    set_damage(1,6);
    set_body_type("equine");
-   set_max_hp(200);
-   set_hp(200);
+   set_max_hp(500);
+   set_hp(500);
    set_hd(10,4);
-   set_overall_ac(5);
+   set_overall_ac(-10);
    set_exp(10);
    set_max_distance(200);
    set_flight_delay(900);

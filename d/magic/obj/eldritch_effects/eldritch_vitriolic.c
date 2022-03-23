@@ -3,12 +3,12 @@
 inherit OBJECT;
 
 object myvictim;
-int myduration,active,dmgboost;
+int myduration,active,dmgboost,counter;
 
 void create() {
    ::create();
    set_name("");
-   set("id", ({ "eldritch_hellfire_xxx"}) );
+   set("id", ({ "eldritch_vitriolic_xxx"}) );
    set("short", "");
    set("long", "");
    set_weight(0);
@@ -17,6 +17,7 @@ void create() {
    set_heart_beat(1);
    myduration = 0;
    active = 0;
+   counter = 0;
 }
 
 void activate(int duration,int clevel) {
@@ -32,6 +33,7 @@ void activate(int duration,int clevel) {
 
 void heart_beat() {
    int dmg;
+
    if(!objectp(myvictim)) { TO->remove(); return; }
    if(ETO != myvictim) { TO->remove(); return; }
    if(!active) { active = 1; return; } // was double-ticking first round, this should delay the first damage tick.
@@ -43,6 +45,14 @@ void heart_beat() {
        tell_room(environment(myvictim),"%^GREEN%^The searing acid finally fades from "+myvictim->QCN+"'s skin.%^RESET%^",myvictim);
        TO->remove();
    }
+   
+   counter++;
+   
+   if(counter < 3)
+       return;
+   
+   counter = 0;
+   
    dmg = roll_dice(2,6)+dmgboost;
    tell_object(myvictim,"%^GREEN%^Searing acid continues to burn through your skin!%^RESET%^");
    myvictim->cause_typed_damage(myvictim,"torso",dmg,"acid");

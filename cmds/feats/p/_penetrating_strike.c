@@ -10,7 +10,7 @@ void create()
     feat_category("WeaponMastery");
     feat_name("penetrating strike");
     feat_prereq("Fighter L12");
-    feat_desc("With this feat you learn to ignore five points of target's damage reduction, making spells such as stoneskin essentially useless.");
+    feat_desc("With this feat you learn to ignore five points of a target's damage reduction, making spells such as stoneskin essentially useless.");
     permanent(1);
 }
 

@@ -15,7 +15,7 @@ void create()
     set_spell_level(([ "bard" : 1, "inquisitor" : 1, "ranger" : 1, "mage" : 1 ]));
     set_spell_sphere("abjuration");
     set_syntax("cast CLASS alarm on [audible|mental]");
-    set_description("You draw an invisible alarm rune on the ground. If the alarm detects anyone in the room besides you and your followers it will convey either a telepathic message directly into your mind, or a loud pop to nearby rooms. You can have as many alarms as you need, but after awhile the magic in them will dissipate.");
+    set_description("You draw an invisible alarm rune on the ground. If the alarm detects anyone in the room besides you and your followers it will convey either a telepathic message directly into your mind, or a loud pop to nearby rooms. You can have as many alarms as you need, but after a while the magic in them will dissipate.");
     set_arg_needed();
     set_helpful_spell(1);
 }

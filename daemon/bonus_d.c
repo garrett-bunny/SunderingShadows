@@ -22,7 +22,7 @@ int high_thaco(int level)
 varargs int thaco(int level, string myclass, object ob)
 {
     string file, * classes;
-    int ret, i;
+    int ret, i, bab;
 
     if (!intp(level)) {
         return 0;
@@ -50,7 +50,8 @@ varargs int thaco(int level, string myclass, object ob)
                 if (!file_exists(file)) {
                     continue;
                 }
-                ret += file->attack_bonus(ob);
+                bab = file->attack_bonus(ob);
+                ret += (bab < 0 ? 0 : bab);
             }
 
             ret = ret - 20;
@@ -184,7 +185,7 @@ int query_stance_bonus(object victim)
 int new_bab(int level, object ob)
 {
     string* classes, file;
-    int i, ret = 0;
+    int i, ret = 0, bab = 0;
     if (objectp(ob)) {
         if ((int)ob->query_property("transformed") || (int)ob->query_property("dance-of-cuts")) { // fighter BAB under transformation/dance.
             //ret = (int)ob->query_level();
@@ -201,7 +202,8 @@ int new_bab(int level, object ob)
             if (!file_exists(file)) {
                 continue;
             }
-            ret += file->attack_bonus(ob);
+            bab = file->attack_bonus(ob);
+            ret += (bab < 0 ? 0 : bab);
             //since mobs are usually much higher level than players - Saide
             if (!userp(ob)) {
                 return ret;
@@ -377,7 +379,7 @@ varargs int hit_bonus(object who, object targ, int attack_num, object current, i
             mysize -= (int)current->query_size();
             //if (FEATS_D->usable_feat(who, "weapon finesse") && ((mysize >= 0) || current->query_property("finesse") || touch == 1)) { // if has-feat & weapon is smaller/same size as user - Odin 5/24/2020 or weapon has the property - Venger dec20
             //Or it's a ranged touch attack (uses dex)
-            if (FEATS_D->usable_feat(who, "weapon finesse") && ((mysize >= 0) || touch == 1)) {
+            if (FEATS_D->usable_feat(who, "weapon finesse") && ((mysize >= 0) || touch == 1 || current->query_property("finesse"))) {
                 to_hit += (query_dex_bonus(who) * -1);
             }
             else if(FEATS_D->usable_feat(who, "fighter finesse"))
@@ -403,7 +405,7 @@ varargs int hit_bonus(object who, object targ, int attack_num, object current, i
             to_hit += query_stat_bonus(who, "charisma");
         }
         else {
-            to_hit += query_stat_bonus(who, "strength");
+            to_hit += (query_stat_bonus(who, "strength"));
         }
     }
     
@@ -522,17 +524,22 @@ varargs int process_hit(object who, object targ, int attack_num, mixed current, 
         return 20;
     }
     
+    if(attack_roll == 1)
+        return 1;
+    
     attack_roll += mod;
     
     //if(attack_roll == 1) return -1;
     //does this change make AC less OP? - Saide, August 2017
     //Might have to reconsider this since I added the change above to diminished returns - Tlaloc
+    /*
     if ((bon + 15) < AC) {
         if (random(bon + AC + attack_roll) >= AC) {
             return attack_roll;
         }
         return 0;
     }
+    */
     if ((attack_roll + bon) >= AC) {
         return attack_roll;
     }
@@ -616,20 +623,22 @@ int query_combat_maneuver_defense(object ob)
     
     mysize = ob->query_size();
     cmd = new_bab(ob->query_level(), ob);
-
-    cmd += max( ({ query_stat_bonus(ob, "strength"), query_stat_bonus(ob, "dexterity") }) );
-    
+    cmd += ob->query("gladiator trance");
+    cmd += max( ({ query_stat_bonus(ob, "strength"), query_stat_bonus(ob, "dexterity") }) );    
     cmd += (mysize - 2);
     
     if(ob->query_race() == "dwarf")
         cmd += 4;
+    
+    if(ob->query_race() == "hobgoblin")
+        cmd += 1;
     
     return cmd;
 }
 
 int combat_maneuver(object victim, object attacker, int mod)
 {
-    int result, CMB, CMD, diff;
+    int result, CMB, CMD, diff, psybonus;
     
     if(victim->query_paralyzed() || victim->query_bound() || victim->query_unconscious())
         return 1;
@@ -641,6 +650,8 @@ int combat_maneuver(object victim, object attacker, int mod)
     if(result == 20)
         return 1;
     
+    psybonus = attacker->query("gladiator trance") / 2;
+    result += psybonus;
     result += mod;
     
     if(!userp(victim))
@@ -670,6 +681,9 @@ int intimidate_check(object victim, object attacker, int mod)
     if(!objectp(victim) || !objectp(attacker))
         return 0;
     
+    if(PLAYER_D->immunity_check(victim, "fear"))
+        return 0;
+    
     DC = min( ({ 50, victim->query_level() }) );
     DC += (10 + query_stat_bonus(victim, "wisdom"));
     
@@ -685,7 +699,7 @@ int intimidate_check(object victim, object attacker, int mod)
     if(result == 20)
         return 1;
     
-    if(attacker->query_race() == "half-orc" || attacker->query_race() == "orc")
+    if(attacker->query_race() == "half-orc" || attacker->query_race() == "orc" || attacker->query_race() == "hobgoblin")
         mod += 2;
     
     result = influence + result;

@@ -95,7 +95,7 @@ int wear_it(){
     
         if(!ETO->query_invis()) {
             tell_room(EETO,ETOQCN + "%^CYAN%^wraps themselves in "+
-"the soft scaley robes.%^RESET%^",ETO);
+"the soft scaly robes.%^RESET%^",ETO);
         }
         
         tell_room(EETO,"%^BOLD%^%^BLUE%^Shimmering lights dance "+
@@ -134,9 +134,9 @@ int remove_it(){
 
 int struck(int damage, object what, object who){
     if(objectp(who)) {
-        tell_object(ETO,"%^RESET%^%^CYAN%^A Shadowy dragon figure blast at "+
-        who->QCN+"%^RESET%^%^CYAN%^ as "+who->QO+" hits you "+
-        "weaking "+who->QP+" blow!%^RESET%^");
+        tell_object(ETO,"%^RESET%^%^CYAN%^A Shadowy dragon figure blasts at "+
+        who->QCN+"%^RESET%^%^CYAN%^ as "+who->QS+" hits you, "+
+        "weakening "+who->QP+" blow!%^RESET%^");
     }
 
     if(!(random(2))) {
@@ -152,8 +152,8 @@ int struck(int damage, object what, object who){
 
         if(!random(4)) {
             tell_room(EETO,"%^BOLD%^%^YELLOW%^A shimmering image of "+
-            "a dragon snaps at "+who->QCN+" as "+who->QO+
-            " touches them!%^RESET%^",who);
+            "a dragon snaps at "+who->QCN+" as "+who->QS+
+            " touches "+ETO->QCN+"!%^RESET%^",who);
 
             tell_object(who,"%^BOLD%^%^YELLOW%^A shimmering dragon "+
             "leaps out at you as you strike the chains!%^RESET%^");
@@ -189,7 +189,7 @@ void heart_beat() {
     
         switch(yy) {
             case 0:
-                tell_room(env,"%^CYAN%^"+owner->QCN+"s robe shimmers softly "+
+                tell_room(env,"%^CYAN%^"+owner->QCN+"'s robe shimmers softly "+
                 "as the image of a dragon flows over.%^RESET%^",
                 owner);
                 break;

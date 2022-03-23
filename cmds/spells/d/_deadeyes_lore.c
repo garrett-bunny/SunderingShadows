@@ -37,7 +37,8 @@ spell_effect()
 
     spell_successful();
 
-    tell_room(place,"%^GREEN%^"+caster->QCN+" touches own eyes, chanting in low undertones.%^RESET%^");
+    tell_object(caster, "%^GREEN%^You touch your own eyes, chanting in low undertones.%^RESET%^");
+    tell_room(place, "%^GREEN%^"+caster->QCN+" touches "+caster->query_possessive()+" own eyes, chanting in low undertones.%^RESET%^", caster);
 
     bonus=clevel/2+1;
     target->add_skill_bonus("survival",bonus);

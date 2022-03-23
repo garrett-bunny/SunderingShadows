@@ -113,6 +113,9 @@ varargs int do_save(object ob, int dc, string type, raw_save)
 
             if(PLAYER_D->check_familiar(ob, "fox"))
                 mod += 2;
+            
+            if(PLAYER_D->check_familiar(ob) && ob->is_class("warlock"))
+                mod += 2;
         break;
         
         //WILL SAVES
@@ -139,6 +142,9 @@ varargs int do_save(object ob, int dc, string type, raw_save)
         
             if(ob->query("subrace") == "maalish")
                 mod += 1;
+            
+            if(ob->query_race() == "nymph")
+                mod += 2;
             
             //Paladin Auras
             if(PLAYER_D->check_aura(ob, "courage") == 2)
@@ -179,6 +185,9 @@ varargs int do_save(object ob, int dc, string type, raw_save)
 
     if (FEATS_D->usable_feat(ob, "shadow master") && objectp(ENV(ob)) && ENV(ob)->query_light() < 2)
         mod += 2;
+    
+    if(member_array("madness", ob->query_divine_domain()) >= 0)
+        mod -= 1;
 
     save += mod;
     save = save > (level + 22 + max_mod) ? (level + 22 + max_mod) : save;

@@ -44,7 +44,7 @@ int cmd_update(string str)
     }
 
     if(!strlen(str) || str == "here")
-        file = "/" + file_name(environment(this_player()));
+        file = file_name(environment(this_player()));
     else
     {
         input = explode(str, " ");         
@@ -80,6 +80,12 @@ int cmd_update(string str)
     
     if(file[<2..<1] != ".c")
         file += ".c";
+    
+    if(file_size(file) == -1)
+    {
+        write("File does not exist.");
+        return 1;
+    }
     
     seteuid(getuid(this_player()));
     

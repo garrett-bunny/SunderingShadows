@@ -12,7 +12,7 @@ void create()
     set_spell_sphere("alteration");
     set_syntax("cast CLASS stone throw on TARGET");
     set_damage_desc("bludgeoning");
-    set_description("You create a small stone and forcefully project it on target.");
+    set_description("You create a small stone and forcefully project it at a target.");
     set_verbal_comp();
     set_somatic_comp();
     set_target_required(1);

@@ -51,7 +51,7 @@ void create(){
 			"displaying the artist's rendition of the metropolis "+
 			"that is Tharis.%^RESET%^");
 		
-		set_smell("default","Sweet incense tickles you nose.");
+		set_smell("default","Sweet incense tickles your nose.");
 		set_listen("default","A low murmur of prayer echoes "+
 			"through the chamber.");
 		

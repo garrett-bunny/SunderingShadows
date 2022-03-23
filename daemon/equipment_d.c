@@ -67,6 +67,7 @@ mapping BONUS_CATS = ([
              "cold iron resistance",            "cold iron resistance percent",
              "radiant resistance",              "radiant resistance percent",
              "void resistance",                 "void resistance percent",
+             "magic resistance",
              }),
  "stats" : ({
          "charisma",
@@ -227,6 +228,7 @@ mixed gear_bonus(object who, string bonus, int flag)
         if(member_array(bonus, VALID_DAMAGE_TYPES) != -1)
         {
             actual_amt = item->query_item_bonus(bonus);
+            
             if(!actual_amt) actual_amt = item->query_item_bonus(bonus + " resistance");
             if(!actual_amt) continue;
         }
@@ -269,6 +271,7 @@ mixed gear_bonus(object who, string bonus, int flag)
                 continue;
             }
             actual_amt = item->query_item_bonus(bonus);
+            
         }
         if(!actual_amt) continue;
         if(actual_amt < 0 || (WORLD_EVENTS_D->stacking_bonus_active(who) && !WORLD_EVENTS_D->stacking_bonus_active(who, -1)))
@@ -411,9 +414,11 @@ mixed all_active_bonuses(object who, int flag)
                 totalBon = who->query_max_hp_bonus();
                 break;
                 // misc bonuses held in set_property()
+            
             case "spell resistance":
                 totalBon = who->query_property("magic resistance");
                 break;
+            
             case "spell damage resistance": case "damage resistance": case "spell penetration":
                 totalBon = who->query_property(Bonus);
             break;

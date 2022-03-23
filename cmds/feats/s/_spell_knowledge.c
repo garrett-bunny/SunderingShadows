@@ -9,7 +9,7 @@ void create() {
     feat_category("ArcaneSpellcraft");
     feat_name("spell knowledge");
     feat_prereq("L21 in any class that can master");
-    feat_desc("This feat allows a caser to master an additional two spells of any level, above what the class would normally allow");
+    feat_desc("This feat allows a caster to master an additional two spells of any level, above what the class would normally allow");
     permanent(1);
 }
 

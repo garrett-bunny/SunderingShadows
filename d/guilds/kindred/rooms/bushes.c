@@ -15,7 +15,7 @@ void create()
 	"Berry bushes are growing along the path here. Actually, it might be"+
 	" more accurate to say that the path meanders between the berry bushes."+
 	" There are several different types of berries here, ranging from"+
-	" %^BOLD%^%^BLACK%^black berries%^RESET%^ to %^BOLD%^%^BLUE%^blueberries%^RESET%^"+
+	" %^BOLD%^%^BLACK%^blackberries%^RESET%^ to %^BOLD%^%^BLUE%^blueberries%^RESET%^"+
 	" to %^BOLD%^%^RED%^raspberries%^RESET%^. The only berries that are in"+
 	" reach, however, are a round little juicy red berry. They give off a light"+
 	" fruity scent that drifts on the breeze."
@@ -25,11 +25,11 @@ void create()
 	set_items(([
 	"bushes" : "There are numerous bushes here, but only the ones closest"+
 	" to the path are in reach to be picked. There are several handfuls of"+
-	" of red juicy berries on them, you aren't sure what type they are but"+
+	" red juicy berries on them, you aren't sure what type they are but"+
 	" they look delicious.",
 	"path" : "A simple dirt path weaves its way through the berry bushes.",
 	({"blackberries","black berries"}) : "%^BOLD%^%^BLACK%^Some mouth watering"+
-	" black berries are towards the back of the bushes, out of reach.",
+	" blackberries are towards the back of the bushes, out of reach.",
 	"raspberries" : "%^BOLD%^%^RED%^Large, delicious looking raspberries are"+
 	" just tantalizingly out of reach.",
 	({"blue berries","blueberries"}) : "%^BOLD%^%^BLUE%^Huge blueberries are"+

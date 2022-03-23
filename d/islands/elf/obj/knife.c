@@ -26,7 +26,7 @@ void create(){
     set_property("enchantment",3+random(3));
     set_damage_type("cold iron");
     set_wield((:TO,"extra_wield":));
-    set_unwield((:TO,"removeme":));
+    set_unwield((:TO,"extra_unwield":));
     set_hit((:TO,"extra_hit":));
     set_item_bonus("stealth", 4);
     set_item_bonus("reflex", 4);  
@@ -47,7 +47,7 @@ int extra_wield(){
    return 1;
 }
 
-int removeme(){
+int extra_unwield(){
    ETO->set_property("evil item",-1);
    return 1;
 }

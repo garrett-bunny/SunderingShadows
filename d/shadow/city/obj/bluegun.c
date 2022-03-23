@@ -30,7 +30,7 @@ create() {
    set_lrhit((:TO,"extra_lrhit":));
    set_hit((:TO,"extra_hit":));
    set_lore("%^WHITE%^%^BOLD%^Because pistols like this tend to be somewhat rare in the world, the ones that do show up "+
-   "have a deep and fascinating history as to its origins. This one, however, has no search history. If there is one thing "+
+   "have a deep and fascinating history as to its origins. This one, however, seems to lack any trace in the stories of the bards or tomes of the learned. If there is one thing "+
    "to be said about it, is that there's nothing to be said about it. At least nothing that anyone is willing to speak about, "+
    "leaving it shrouded in mystery.%^RESET%^\n");
    set_property("lore difficulty",9);

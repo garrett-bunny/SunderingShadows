@@ -14,16 +14,16 @@ void create(){
   set_long(
 @DESC
    %^BOLD%^%^RED%^Some type of storage room
-This seems to be some form of storage room. Crates line the rooms
-Most are decaying slightly. There are sacks that have split. You
+This seems to be some form of storage room. Crates line the room,
+and most are decaying slightly. There are sacks that have split. You
 can't figure out what or who would need a storage area of this
 type. You still feel the lava flowing beneath you, but the rock
 here seems solid.
 DESC
   );
   set_items(([
-  "crates":"These are full of some basic healing supplies, and some smokes goods.",
-  "sacks":"Tese have some stange herbs and such, possibly for making potions.",
+  "crates":"These are full of some basic healing supplies, and some smoked goods.",
+  "sacks":"These have some strange herbs and such, possibly for making potions.",
   ]));
  set_search("crates",(:TO,"search":));
 

@@ -852,6 +852,9 @@ void get_ladder(){
 }
 
 int am_in_stockade(){
+    if(!environment(this_object()))
+        return 0;
+    
     if (!stringp(ETO->get_name()))
         return 0;
     if (member_array((string)ETO->get_name(), STOCK_ROOMS)!=-1) return 1;

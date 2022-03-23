@@ -53,8 +53,8 @@ int pull_up_rope(string str) {
       write("The rope may not be taken in if there are more than 8 creatures in this space.\n");
       return 1;
    }
-   tell_room(TO, TP->query_cap_name()+" pulls the rope into the space, making this room inaccessable from outside!", ({ TP }));
-   tell_object(TP, "You pull the access rope into the space, making this room inacessible from outside!");
+   tell_room(TO, TP->query_cap_name()+" pulls the rope into the space, making this room inaccessible from outside!", ({ TP }));
+   tell_object(TP, "You pull the access rope into the space, making this room inaccessible from outside!");
    rope->raise();
    TO->remove_exit("out");
    return 1;
@@ -62,7 +62,7 @@ int pull_up_rope(string str) {
 
 int lower_rope(string str) {
    if(str != "rope") return 0;
-   tell_room(TO, TP->query_cap_name()+" lowers the rope making this room accessable from outside!", ({ TP }));
+   tell_room(TO, TP->query_cap_name()+" lowers the rope making this room accessible from outside!", ({ TP }));
    tell_object(TP, "You lower the access rope to the outside!");
    rope->lower();
    if(!objectp(entry))

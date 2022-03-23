@@ -18,7 +18,7 @@ void create()
     set_mystery( ({ "darkness", "lunar", "winter" }) );
     set_syntax("cast CLASS polar midnight");
     set_damage_desc("cold, exhaustion");
-    set_description("You plunge an area into the brutal chill of the arctic night. Illumination conditions are dropped by to negative level, and all creatures in the area take cold damage. A failed save each round causes them to become exhausted.");
+    set_description("You plunge an area into the brutal chill of the arctic night. Illumination conditions are dropped to a negative level, and all creatures in the area take cold damage. A failed save each round causes them to become exhausted.");
     set_verbal_comp();
     set_somatic_comp();
     set_save("fort");

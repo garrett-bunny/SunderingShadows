@@ -14,7 +14,7 @@ void create()
     set_spell_sphere("invocation_evocation");
     set_syntax("cast CLASS vortex");
     set_damage_desc("bludgeoning, paralyzed");
-    set_description("You create a vortex and send it at your opponents... Those who can't dodge become momentarely stuck and paralyzed in it.");
+    set_description("You create a vortex and send it at your opponents. Those who can't dodge become momentarily stuck, paralyzed within.");
     splash_spell(2);
     set_save("reflex");
 }

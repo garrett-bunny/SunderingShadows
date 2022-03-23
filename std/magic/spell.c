@@ -939,7 +939,7 @@ void wizard_interface(object user, string type, string targ)
 
     if (query_traveling_aoe_spell()) {
         if (caster->query_property("travaoe")) {
-            tell_object(caster, "You can't concentrate on that many travaoe effects!");
+            tell_object(caster, "You can't concentrate on that many traveling area effects!");
             ::remove();
             return;
         }
@@ -1393,6 +1393,11 @@ void wizard_interface(object user, string type, string targ)
     else {
         caster->remove_property("magus spell");
     }
+    
+    if(spell_type == "psywarrior")
+        caster->set_property("psywarrior spell", 1);
+    else
+        caster->remove_property("psywarrior spell");
 
     if (0) {
         if (target) {
@@ -1630,7 +1635,7 @@ mixed WildMagicArea(object where)
 varargs void use_spell(object ob, mixed targ, int ob_level, int prof, string classtype)
 {
     string msg, whatsit, whatdo, * myclasses;
-    mixed innate_spells, cantrips;
+    mixed innate_spells, cantrips, deep;
 
     if (!objectp(TO)) {
         return;
@@ -1643,6 +1648,24 @@ varargs void use_spell(object ob, mixed targ, int ob_level, int prof, string cla
     clevel = ob_level;
     seteuid(getuid());
     abnormal_cast = 1;//not a natural cast
+    
+    if(classtype == "deep")
+    {
+        abnormal_cast = 0;
+        deep = caster->query_deep_spells();
+        
+        if(!pointerp(deep) || !sizeof(deep) || member_array(spell_name, deep) < 0)
+        {
+            tell_object(caster, "You have no deep magic named " + spell_name + ".");
+            this_object()->remove();
+            return;
+        }
+        
+        if(clevel < 1)
+            clevel = 1;
+        
+        clevel += caster->query_property("empowered");
+    }
 
     if(classtype == "cantrip")
     {
@@ -1850,7 +1873,7 @@ varargs void use_spell(object ob, mixed targ, int ob_level, int prof, string cla
 
     if (living(caster) && base_name(PO) != "/d/magic/obj/contingency") {
         tell_object(caster, "You begin to " + whatdo + " " + spell_name + "!");
-        if (spell_type != "innate" && spell_type != "cantrip" && !silent_casting) {
+        if (spell_type != "innate" && spell_type != "cantrip" && spell_type != "deep" && !silent_casting && !shadow_spell) {
             tell_room(environment(caster), caster->QCN +
                       " begins to " + whatdo + " a " + whatsit + "!", caster);
         }
@@ -2197,6 +2220,8 @@ void do_spell_blowup(int prof)
 void spell_successful() //revoked exp bonuses from casting. This function seems redundant now? Nienne, 06/10.
 {
     int stat;
+    string *buffs;
+    
     if (!objectp(TO) || !objectp(caster)) {
         return;
     }
@@ -2229,10 +2254,17 @@ void spell_successful() //revoked exp bonuses from casting. This function seems 
         if(!target)
             target = caster;
         
-        if(target->query_property("spell_bonus_type"))
-            target->add_property_value("spell_bonus_type", bonus_type);
-        else
-            target->set_property("spell_bonus_type", bonus_type);
+        if(!objectp(target))
+            return 1;
+        
+        buffs = target->query_property("spell_bonus_type");
+        
+        if(!pointerp(buffs))
+            buffs = ({  });
+        
+        target->remove_property("spell_bonus_type");       
+        buffs = distinct_array(buffs + bonus_type);
+        target->set_property("spell_bonus_type", buffs);
     }
 
     return 1;
@@ -2280,6 +2312,7 @@ void dest_effect()
         caster->remove_property("travaoe");
     }       
     
+    /*
     if(sizeof(bonus_type))
     {
         if(!target || !objectp(target))
@@ -2287,6 +2320,7 @@ void dest_effect()
         
         target && target->remove_property_value("spell_bonus_type", bonus_type);
     }
+    */
 
     before_cast_dest_effect();
     return;
@@ -2431,7 +2465,7 @@ void define_clevel()
 
     clevel = caster->query_guild_level(spell_type);
 
-    if(spell_type == "cantrip" || spell_type == "innate")
+    if(spell_type == "cantrip" || spell_type == "innate" || spell_type == "deep")
         clevel = caster->query_base_character_level();
 
     if (spell_type == "assassin") {
@@ -2457,6 +2491,11 @@ void define_clevel()
         if (FEATS_D->usable_feat(caster, "elemental attunement")) {
             clevel += 4;
         }
+    }
+    
+    if(spell_type == "psion")
+    {
+
     }
 
     if (spell_type == "psywarrior" || spell_type == "psion") {
@@ -2485,6 +2524,34 @@ void define_clevel()
             if(mydiscipline == caster->query_discipline())
                 clevel += 1;
         }
+        
+        switch(caster->query_discipline())
+        {
+            case "egoist":
+            if(spell_sphere == "psychometabolism")
+                clevel += 1;
+            break;
+            case "nomad":
+            if(spell_sphere == "psychoportation")
+                clevel += 1;
+            break;
+            case "kineticist":
+            if(spell_sphere == "psychokinesis")
+                clevel += 1;
+            break;
+            case "shaper":
+            if(spell_sphere == "metacreativity")
+                clevel += 1;
+            break;
+            case "seer":
+            if(spell_sphere == "clairsentience")
+                clevel += 1;
+            break;
+            case "telepath":
+            if(spell_sphere == "telepathy")
+                clevel += 1;
+            break;
+        }
     }
 
     if(spell_type == "cleric")
@@ -2506,22 +2573,32 @@ void define_clevel()
             case "divination":
             if(member_array("knowledge", domains) >= 0)
                 clevel += 1;
+            break;
 
             case "conjuration_summoning":
-            if(member_array("animal", domains) >= 0)
+            if(member_array("animal", domains) >= 0 || member_array("creation", domains) >= 0)
                 clevel += 1;
+            break;
 
             case "healing":
             if(member_array("renewal", domains) >= 0)
                 clevel += 2;
+            break;
 
             case "abjuration":
             if(member_array("magic", domains) >= 0)
                 clevel += 1;
+            break;
 
             case "invocation_evocation":
             if(member_array("destruction", domains) >= 0)
                 clevel += 1;
+            break;
+            
+            default:
+            if(member_array("madness", domains) >= 0)
+                clevel += 1;
+            break;
         }
 
         if(evil_spell)
@@ -2632,7 +2709,7 @@ void define_clevel()
             if(caster->query_bloodline() == "abyssal" || caster->query_bloodline() == "infernal")
                 clevel += 1;
         }
-        if(caster->query("subrace") == "feytouched")
+        if(caster->query("subrace") == "feytouched" || caster->query_race() == "nymph" || caster->query_race() == "satyr")
         {
             if(caster->query_bloodline() == "fey")
                 clevel += 1;
@@ -2781,6 +2858,12 @@ void define_base_damage(int adjust)
                 sdamage += (BONUS_D->query_stat_bonus(caster, "intelligence") * (1 + clevel / 12));
         }
         
+        if(spell_type == "sorcerer")
+        {
+            if(caster->query_bloodline() == "orc")
+                sdamage += (BONUS_D->query_stat_bonus(caster, "charisma") * (1 + clevel / 12));
+        }
+        
         if(target && target->is_class("sorcerer"))
         {
             if(target->query_bloodline() == "celestial" && is_evil(caster))
@@ -2823,6 +2906,10 @@ void define_base_damage(int adjust)
             }
         }
         else if (FEATS_D->is_active(caster, "eldritch warfare")) {
+            sdamage = roll_dice(2, sdamage / 4);
+        }
+        else if(caster->is_class("psywarrior") && FEATS_D->has_feat(caster, "martial power") && caster->query_current_attacker())
+        {
             sdamage = roll_dice(2, sdamage / 4);
         }
     }
@@ -3124,7 +3211,7 @@ varargs int checkMagicResistance(object victim, int mod)
 
     antimagic = place->query_property("antimagic field");
     
-    if(antimagic && antimagic > roll_dice(1, 100))
+    if(antimagic && (10 + antimagic) > (clevel + roll_dice(1, 20)))
     {
         tell_room(place, "%^CYAN%^The spell fails to power through the antimagic field.%^RESET%^");
         return 1;
@@ -3303,10 +3390,13 @@ varargs int do_save(object targ, int mod, int get_dc)
         mod = 0;
     }
     
+    if(!pointerp(immune))
+        immune = ({  });
+    
     base_level = caster->query_base_character_level();
     classlvl = max( ({ caster->query_guild_level(spell_type), base_level - 10 }) );
     
-    if(spell_type == "innate" || spell_type == "cantrip")
+    if(spell_type == "innate" || spell_type == "cantrip" || spell_type == "deep")
         classlvl = base_level;
     
     //Cypher casts scroll with full DC
@@ -3378,6 +3468,12 @@ varargs int do_save(object targ, int mod, int get_dc)
                 DC += 1;
             }
         }
+    }
+    
+    if(caster->is_class("cleric"))
+    {
+        if(member_array("nightmare", caster->query_divine_domain()) >= 0 && spell_sphere == "illusion")
+            DC += 1;
     }
     
     //Bloodline DC adjustments
@@ -3476,6 +3572,11 @@ varargs int do_save(object targ, int mod, int get_dc)
     {
         DC -= 2;
     }
+    if(FEATS_D->has_feat(targ, "resist natures lure"))
+    {
+        if(USER_D->is_valid_enemy(caster->query_race(), "fey") || USER_D->is_valid_enemy(caster->query("subrace"), "fey"))
+            DC -= 4;
+    }
 
     //RACIAL ADJUSTMENTS AGAINST SPELLS
     if (targ->query_race() == "dwarf")
@@ -3510,6 +3611,9 @@ varargs int do_save(object targ, int mod, int get_dc)
                 )) {
             DC -= 2;
         }
+        
+        if(spell_sphere != "enchantment_charm" && targrace == "half-drow" && type == "will")
+            DC -= 1;
     }
     
     if(caster->query_race() == "gnome" && caster->query("subrace") != "deep gnome")
@@ -3519,6 +3623,9 @@ varargs int do_save(object targ, int mod, int get_dc)
         if(spell_sphere == "enchantment_charm" && caster->query("subrace") == "trixie")
             DC += 1;
     }
+    
+    if(caster->query_race() == "kitsune" && spell_sphere == "enchantment_charm")
+        DC += 1;
 
 ///////END SPELL SAVE ADJUSTMENTS///////
     

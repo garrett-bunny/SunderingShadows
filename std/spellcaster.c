@@ -20,6 +20,7 @@ int* masterable;
 int mypp, mymax, myneeded;
 mapping InnateAbilities;
 mapping Cantrips;
+mapping DeepMagic;
 
 int magic_arsenal_feat(int num)
 {
@@ -33,11 +34,17 @@ int magic_arsenal_feat(int num)
     if (FEATS_D->usable_feat(TO, "magic arsenal")) {
         num += 2;
     }
+    if(this_object()->is_class("archmage"))
+    {
+        num += (query_level() / 31 + 1);
+    }
     if (FEATS_D->usable_feat(TO, "greater arsenal")) {
-        num += query_level() / 10 + 1;
+        num += 4;
+        //num += query_level() / 10 + 1;
     }
     if (FEATS_D->usable_feat(TO, "gift of the shadows")) {
-        num += query_level() / 10 + 1;
+        num += 4;
+        //num += query_level() / 10 + 1; supposed to be 4
     }
     return num;
 }
@@ -358,6 +365,12 @@ int can_memorize(string myclass, string spell)
             return 0;
         }
     }
+    
+    /*
+    if(member_array(spell, keys(MAGIC_D->index_castable_spells(this_object(), myclass))) < 0)
+        return 0;
+    */
+    
     if ((query_spell_level_restricted(myclass)) && lvl >= query_spell_level_restricted(myclass)) {
         return SPELL_RESTRICTED;
     }
@@ -926,7 +939,7 @@ void prepare(string str, int temp, string myclass, int num, int flag)
 
         case "sorcerer":
             tell_object(TO, "The arcane power hums through your body.");
-            tell_room(ETO, TO->QCN + " focusses intently.", TO);
+            tell_room(ETO, TO->QCN + " focuses intently.", TO);
             break;
         
         case "mage":
@@ -1097,6 +1110,27 @@ void clear_targeted_spells()
 
 void reset_racial_innate() { TO->delete("racial innate"); }
 
+void InitDeepMagic()
+{
+    mapping deep_magic_spells = ([  ]);
+    mapping testclass;
+    string MyClassFile;
+    
+    if(this_object()->query_class_level("mage") < 31)
+        return;
+    
+    MyClassFile = DIR_CLASSES + "/mage.c";
+    
+    if(!file_exists(MyClassFile))
+        return;
+    
+    if(catch(deep_magic_spells = MyClassFile->query_deep_spells(this_object())))
+        return;
+    
+    if(sizeof(deep_magic_spells))
+        DeepMagic = deep_magic_spells;
+}
+        
 void InitCantrips()
 {
     mapping cantrip_spells = ([  ]);
@@ -1341,6 +1375,20 @@ void add_bonus_innate(mapping BonusInnate)
     if(!mapp(BonusInnate)) return;
     if(!sizeof(keys(BonusInnate))) return;
     InnateAbilities += BonusInnate;
+}
+
+mixed query_deep_spells()
+{
+    string *tmp;
+    
+    InitDeepMagic();
+    
+    if(!mapp(DeepMagic))
+        return;
+    
+    tmp = keys(DeepMagic);
+    
+    return tmp;
 }
 
 mixed query_cantrip_spells()

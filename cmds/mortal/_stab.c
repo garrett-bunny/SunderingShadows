@@ -10,6 +10,7 @@
 #include <move.h>
 #include <std.h>
 #include <daemons.h>
+#include <struck_reviewed.h>
 inherit DAEMON;
 
 int flip_weapons(object sheath);
@@ -303,7 +304,7 @@ varargs int get_stab_damage(object player,object target,object weapon)
 int do_strike(object play, object vic)
 {
     object *weapon, *head, *armor;
-    int percent,damage,level,thac0,AC,vic_size,magic;
+    int percent,damage,level,thac0,AC,vic_size,magic,mod;
     int i,j;
     int dex,ret;
 
@@ -353,13 +354,24 @@ int do_strike(object play, object vic)
     armor = vic->query_armour("torso");
     j = sizeof(armor);
 
-    for (i=0;i<j;i++)
-    {
-        if (!objectp(armor[i])) continue;
-        if(random(3))
-        {
-	        if (!sizeof(weapon) || !objectp(weapon[0])) damage += armor[i]->do_struck(damage,0,play);
-	        else damage += armor[i]->do_struck(damage,weapon[0],play);
+    for (i = 0; i < j; i++) {
+        if (vic->query_property("shapeshifted")) {
+            continue;
+        }
+        if (!objectp(armor[i])) {
+            continue;
+        }
+        if (!sizeof(weapon) || !objectp(weapon[0])) mod = armor[i]->do_struck(damage, 0, play);
+        else mod = armor[i]->do_struck(damage, weapon[0], play);
+
+	if (damage && mod <= 0 && member_array(base_name(armor[i]), STRUCK_REVIEWED) == -1) {
+	    log_file("reports/struck_damage", "Review struck function returning " + mod + ": " + base_name(armor[i]) + "\n");
+	}
+        if (mod < 0) {
+            damage += mod;
+        }
+        if (mod >= 0) {
+            damage = mod;
         }
     }
 

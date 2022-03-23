@@ -65,7 +65,7 @@ gag %^ORANGE%^%^ULINE%^TARGET%^RESET%^
 
 %^CYAN%^DESCRIPTION%^RESET%^
 
-Gag the %^ORANGE%^%^ULINE%^TARGET%^RESET%^. This will prevent them from doing a ny speech oriented actions. The %^ORANGE%^%^ULINE%^TARGET%^RESET%^ must be unconcious or bound.
+Gag the %^ORANGE%^%^ULINE%^TARGET%^RESET%^. This will prevent them from doing any speech oriented actions. The %^ORANGE%^%^ULINE%^TARGET%^RESET%^ must be unconcious or bound.
 
 %^CYAN%^SEE ALSO%^RESET%^
 

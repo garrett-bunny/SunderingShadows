@@ -2059,7 +2059,7 @@ int setup_bets(){
     if (!present("chips", player)){
       tell_object(player, query_short() + " tells you that you need to"
        +" buy some chips before you can play.");
-      tell_room(ETO, query_short() + " tells " +  player->QCN + " that"
+      tell_room(ETO, query_short() + " tells " +  player->QCN + " that "
         + player->QS + " needs to buy some chips before " 
         + player->QO + " can play.", players[i]);
       players -= ({player});
@@ -2068,7 +2068,7 @@ int setup_bets(){
     if (present("chips", player)->query_val()<big_blind){
       tell_object(player, query_short() + " tells you that you need at"
        +" least " + big_blind + " chips before you can play.");
-      tell_room(ETO, query_short() + " tells " +  player->QCN + " that"
+      tell_room(ETO, query_short() + " tells " +  player->QCN + " that "
         + player->QS + " at least " + big_blind + " chips before "
         + player->QO + " can play.", player);
       players -= ({player});

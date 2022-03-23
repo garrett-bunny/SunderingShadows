@@ -55,6 +55,7 @@ void create() {
     set_exits(([
 
 
+        "west" : CAER"classroom",
         "stairs" : CAER"foyer",
 
     ]));

@@ -608,6 +608,14 @@ int query_max_hp_base()
     if (FEATS_D->usable_feat(TO, "epic toughness")) {
         num += TO->query_level();
     }
+    
+    if(this_object()->is_animal())
+    {
+        object rider = this_object()->query_current_rider();
+            
+        if(objectp(rider) && FEATS_D->has_feat(rider, "bred for war"))
+                num += (rider->query_level() * 2);
+    }
 
     //Represents the Unholy Fortitude Feat for Agent of the Grave
     if(FEATS_D->usable_feat(this_object(), "negative energy conduit"))
@@ -775,6 +783,7 @@ int query_resistance(string res)
         }
     }
 
+/*
     if(FEATS_D->usable_feat(this_object(), "infused form"))
     {
         switch(res)
@@ -788,6 +797,7 @@ int query_resistance(string res)
             break;
         }
     }
+*/
 
     //Cleric domain-specific resistances
     domains = TO->query_divine_domain();
@@ -814,6 +824,12 @@ int query_resistance(string res)
             case "electricity":
             if(member_array("air", domains) >= 0)
                 myres += TO->query_class_level("cleric");
+            break;
+
+            case "void":
+            if(member_array("void", domains) >= 0)
+                myres += TO->query_class_level("cleric");
+            break;
         }
     }
 
@@ -869,13 +885,19 @@ int query_resistance_percent(string res)
         if(res == "electricity")
             mod += 25;
     }
-	
+
 	if(this_object()->is_feyborn())
     {
         if(res == "silver")
             mod += -25;
 		if(res == "sonic")
             mod += 10;
+    }
+
+    if(this_object()->is_were()) {
+        if (res == "silver") {
+            mod += -10;
+        }
     }
 
     if (TO->is_undead()) {
@@ -918,6 +940,20 @@ int query_resistance_percent(string res)
     {
         if(this_object()->query("elementalist") == res)
             mod += 30;
+    }
+    
+    if(FEATS_D->usable_feat(this_object(), "infused form"))
+    {
+        switch(res)
+        {
+            case "fire":
+            case "cold":
+            case "electricity":
+            case "acid":
+            case "sonic":
+            mod += 10;
+            break;
+        }
     }
 
     if(this_object()->is_class("oracle"))
@@ -999,6 +1035,11 @@ int query_resistance_percent(string res)
             if(res == "fire")
                 mod = 20 + sorc_level * 2;
             break;
+            
+            case "orc":
+            if(res == "fire")
+                mod = 10 + sorc_level;
+            break;
 
             case "boreal":
             if(res == "cold")
@@ -1006,7 +1047,7 @@ int query_resistance_percent(string res)
             break;
         }
     }
-    
+
     //Psion mental mastery capstone
     if(this_object()->is_class("psion") && this_object()->query("available focus") == 2 && res == "mental")
         mod = 100;
@@ -1056,12 +1097,12 @@ int cause_typed_damage(object targ, string limb, int damage, string type)
             attacker = attacker->query_caster();
         }
     }
-    
+
     if(damage <= 0)
     {
         log_file("reports/negative_damage", "Negative or zero damage value passed : " + base_name(previous_object()) + "\n");
     }
-        
+
     damage = (int)COMBAT_D->typed_damage_modification(attacker, targ, limb, damage, type);
     return targ->cause_damage_to(targ, limb, damage);
 }
@@ -1274,6 +1315,12 @@ int query_ac()
     }
 
     attacker = TO->query_current_attacker();
+
+    if(attacker && this_object()->query_race() == "nymph")
+    {
+        if(userp(attacker) || attacker->query_body_type() == "humanoid")
+            myac += 2;
+    }
 
     if(attacker && FEATS_D->usable_feat(TO, "resist undead") && attacker->is_undead())
         myac += 8;

@@ -11,9 +11,9 @@ create() {
     set_spell_sphere("healing");
     set_syntax("cast CLASS inspiring recovery on TARGET");
     set_damage_desc("positive/negative energy");
-    set_description("You channel a beam of own energy at target, healing them. If the target is deceased, the beam instead will try to return them to life into their body. The type of energy depends on who is the caster. Undead will use negative energy, living will use positive energy.
+    set_description("You channel a beam of energy at the target, healing them. If the target is deceased, the beam will instead try to return them to life. The type of energy depends on who casting the spell. Undead will use negative energy, and the living will use positive energy (unless they have negative energy affinity).
 
-This spell accepts recognized players name or their corpse as the TARGET if they are deceased.
+This spell accepts the recognized player's name or their corpse as the TARGET if they are deceased.
 ");
     set_verbal_comp();
     set_somatic_comp();

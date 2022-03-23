@@ -28,7 +28,7 @@ string query_cast_string() {
         tell_object(caster,"%^GREEN%^Closing your eyes, you focus upon your "
         "surroundings and attune your senses.%^RESET%^");
         tell_room(place,"%^GREEN%^"+caster->QCN+" closes "+caster->QP+" eyes and "
-        "focusses intently.%^RESET%^",caster);
+        "focuses intently.%^RESET%^",caster);
     }
     else if(spell_type == "monk")
     {

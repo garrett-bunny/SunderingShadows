@@ -37,7 +37,7 @@ void create() {
 "%^ORANGE%^provide more then enough illumination. A giant sign dominates "+
 "one wall, listing commodities. %^RESET%^");
     set_exits(([
-//      "up" : ROOMS"cafe",
+"up" : ROOMS"cafe",
         "south" : ROOMS"foyer",
     ]));
     set_items(([
@@ -53,7 +53,7 @@ void create() {
 "rafters large enough to be keels of galleons.%^RESET%^",
 ({"balcony"}) : "%^RESET%^%^ORANGE%^A balcony overlooks the trading floor. "+
 "People lean over with drinks in hand%^RESET%^",
-({"chandeliers"}) : "%^BLACK%^%^BOLD%^three chandeliers hang from the ceiling, "+
+({"chandeliers"}) : "%^BLACK%^%^BOLD%^Three chandeliers hang from the ceiling, "+
 "providing light through %^RESET%^%^ORANGE%^numerous candles%^RESET%^",
     ]));
 
@@ -125,10 +125,6 @@ int list(){
        tell_object(TP,"%^ORANGE%^Spices from Azha                 %^RED%^"+Spice_Azha+"%^RESET%^");
        tell_object(TP,"%^ORANGE%^Spices from Asgard               %^RED%^"+Spice_Seneca+"%^RESET%^");
 
-       tell_object(TP,"\n%^YELLOW%^Slaves (Per 10) %^RESET%^");
-       tell_object(TP,"%^ORANGE%^Elven Slaves from Tonovi         %^RED%^"+Slaves_Tonovi+"%^RESET%^");
-       tell_object(TP,"%^ORANGE%^Un-trained Slaves from Juran     %^RED%^"+Slaves_Juran+"%^RESET%^");
-       tell_object(TP,"%^ORANGE%^Indentured Criminals from Tharis %^RED%^"+Slaves_Tharis+"%^RESET%^");
 return 1;
 
 
@@ -247,20 +243,8 @@ int quantity_asked,total;
                total = quantity_asked*Spice_Seneca;
             break;
 
-            case "slaves from tonovi":
-               type = "Slaves_Tonovi";
-               total = quantity_asked*Slaves_Tonovi;
-            break;
 
-            case "slaves from juran":
-               type = "Slaves_Juran";
-               total = quantity_asked*Slaves_Juran;
-            break;
 
-            case "slaves from tharis":
-               type = "Slaves_Tharis";
-               total = quantity_asked*Slaves_Tharis;
-            break;
 
             default:
                tell_object(TP, "%^BLACK%^%^BOLD%^That doesnt"+
@@ -376,17 +360,8 @@ int total,total2,total3,tax;
                total2 = total*Spice_Seneca;
             break;
 
-            case "Slaves_Tonovi":
-               total2 = total*Slaves_Tonovi;
-            break;
 
-            case "Slaves_Juran":
-               total2 = total*Slaves_Juran;
-            break;
 
-            case "Slaves_Tharis":
-               total2 = total*Slaves_Tharis;
-            break;
 
         }
     total3 = total2* 0.85;

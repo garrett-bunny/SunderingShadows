@@ -139,7 +139,7 @@ void set_guard_stuff()
 {
     set_jail_location("/d/darkwood/tabor/room/jail");
     set_guarding("Tabor");
-    set_bad_races(({ "drow", "half-drow", "goblin", "hobgoblin", "kobold", "ogre", "orc", "gnoll", "bugbear", "minotaur", "yuan-ti", "ratkin", "wererat", "nightwing" }));
+    set_bad_races(({ "drow", "half-drow", "goblin", "hobgoblin", "kobold", "ogre", "orc", "gnoll", "bugbear", "minotaur", "yuan-ti", "ratkin", "wererat", "werewolf", "weretiger", "nightwing" }));
     set_race_action("capture");
     set_race_messages(([
                            "drow"      : "Arg, its a drow, sound the horn, stop it before it starts killing children.",

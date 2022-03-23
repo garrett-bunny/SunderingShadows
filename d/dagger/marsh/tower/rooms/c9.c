@@ -20,11 +20,11 @@ void create() {
 	"and contains no furnishings or details of note. However, the land your eyes "
 	"look upon is not the one you walked from into the tower. The %^WHITE%^sky%^BLUE%^ is "
 	"%^CYAN%^grey%^BLUE%^ and filled with a swirling combination of %^WHITE%^mist and smoke%^BLUE%^. "
-	"Two %^MAGENTA%^purple hazy moons%^BLUE%^ provide an incadescent shimmering light "
+	"Two %^MAGENTA%^purple hazy moons%^BLUE%^ provide an incandescent shimmering light "
 	"to view your surroundings by. The %^MAGENTA%^moons%^BLUE%^ are not the moons of your world. "
 	"The %^GREEN%^land%^BLUE%^ below you in hard to make out clearly, as it is enveloped in %^BOLD%^%^BLUE%^shadows"
 	"%^RESET%^%^BLUE%^. Of the %^BOLD%^%^BLUE%^shadows%^RESET%^%^BLUE%^; some are moving, some are still, some solid "
-	"in substance and some are virtually transparent. The ground below you is atleast a fifty foot "
+	"in substance and some are virtually transparent. The ground below you is at least a fifty foot "
 	"clear drop." 
 	"%^RESET%^"
     ); 

@@ -20,7 +20,7 @@ create(){
   set_read("(The writing is scratchy and worn, having the appearance of"
           +" having been scratched into the clay long after the amulet was"
           +" made) %^ORANGE%^...use amule.. call ancestors.. scan ... what"
-          +" xxx seek%^RESET%^");
+          +" xxx seek");
   set_value(20000);
   last_used = 0;
 }
@@ -37,6 +37,7 @@ int scan_area2(string str, object holder){
   object item, startroom, itemenv, * rooms;
   path = ({});
   rooms = ({});
+  debug ("starting scan_area2");
   if (!objectp(holder)){
     return 0;
   }
@@ -53,18 +54,18 @@ int scan_area2(string str, object holder){
                        +" have the amulet");
     tell_room(startroom, "%^CYAN%^" + holder->QCN + "%^RESET%^%^CYAN%^"
                         +" opens " + holder->QP + " eyes and looks around"
-                        +" as " + holder->QS + " emerges from " + holder->QP 
+                        +" as " + holder->QS + "%^RESET%^%^CYAN%^ emerges from " + holder->QP 
                         +" trance.", holder);
     return 1;
   }
   startroom = environment(holder);
-  item = present(str, startroom);
+  item = far_present(startroom, str, 5);
   if (!objectp(item)){
     tell_object(holder, "You can't detect a " + str + " anywhere round"
                        +" here");
     tell_room(startroom, "%^CYAN%^" + holder->QCN + "%^RESET%^%^CYAN%^"
                         +" opens " + holder->QP + " eyes and looks around"
-                        +" as " + holder->QS + " emerges from " + holder->QP 
+                        +" as " + holder->QS + "%^RESET%^%^CYAN%^ emerges from " + holder->QP 
                         +" trance.", holder);
     return 1;
   }
@@ -73,11 +74,11 @@ int scan_area2(string str, object holder){
   if (objectp(item)){ 
     usermessage= "%^CYAN%^The spirits take you briefly out of your body, and"
             +" you see a vision of the room you are standing in, with a "
-                +"%^RESET%^" + item->query_name()+ "%^RESET%^%^CYAN%^ right"
-                +" there.%^RESET%^";
+                +"" + item->query_name()+ "%^RESET%^%^CYAN%^ right"
+                +" there.";
     envmessage = "%^CYAN%^" + holder->QCN + "%^RESET%^%^CYAN%^ opens "
                + holder->QP + " eyes and looks around as " + holder->QS 
-               + " emerges from " + holder->QP + " trance.";
+               + "%^RESET%^%^CYAN%^ emerges from " + holder->QP + " trance.";
   } else {
     item = far_present(startroom , str, 5);
     if (objectp(item)){
@@ -132,9 +133,9 @@ int scan_area2(string str, object holder){
           directions += ", " + path[i];
         }
       }
-      directions += "%^RESET%^.";
+      directions += ".";
       tell_object(holder, "You sense that you can get to it by going"
-                         +" %^CYAN%^" + directions + ".");
+                         +" %^CYAN%^" + directions + "%^RESET%^.");
     }
   }
   return 1;
@@ -149,11 +150,12 @@ int scan_area(string str){
   object holder, env;
   holder = ETO;
   env = EETO;
+  debug ("Starting scan_area");
   if (!objectp (holder) || !interactive(holder)){
     return 0;
   }
   if (!str){
-    tell_object(holder, "Try %^BOLD%^%^YELLOW%^scan <item>%^RESET%^");
+    tell_object(holder, "Try %^BOLD%^%^YELLOW%^scan <item>");
     return 1;
   }
   if (!objectp(env)){
@@ -163,7 +165,7 @@ int scan_area(string str){
   }
   if (last_used > time() - 90){
     tell_object(holder, "%^CYAN%^You close your eyes, but you cannot feel"
-                       +" any contact from the %^RESET%^spirits%^CYAN%^."
+                       +" any contact from the spirits."
                        +" Perhaps they are not yet ready to search for"
                        +" you.");
     tell_room(env, "%^CYAN%^" + holder->QCN + "%^RESET%^%^CYAN%^"

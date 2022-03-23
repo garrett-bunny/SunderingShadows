@@ -62,7 +62,7 @@ int hit_func(object target) {
     }
     return 1;
    }
-   if(random(1000) < 400){
+   if(random(1000) < 300){
      switch(random(6)){
       case 0..4:
 	    limb = target->return_target_limb();

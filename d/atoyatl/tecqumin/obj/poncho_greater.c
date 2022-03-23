@@ -139,7 +139,7 @@ void do_bonuses(){
     break;
   case DIVINER:
     set_item_bonus("intelligence", 6);
-    set_item_bonus("spell penetration", 3);
+    set_item_bonus("spell penetration", 4);
     break;
   }
 }

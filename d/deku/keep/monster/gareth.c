@@ -71,6 +71,7 @@ void create() {
     set_max_hp(100 + random(50));
     set_hp(query_max_hp());
     new("/d/common/obj/armour/robe")->move(TO);
+    new(KEEPO+"vaultkey")->move(TO);
     command("wear robe");
     command("speech say quickly");
     command("speak common");

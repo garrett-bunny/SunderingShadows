@@ -8,7 +8,7 @@ inherit "/d/shadowgate/death/death_inherit";
 
 void create() {
     ::create();
-    set_short("The gate to the etherial plane");
+    set_short("The gate to the ethereal plane");
     set_property("light", 2);
     set_property("no teleport", 1);
     set_property("indoors", 1);

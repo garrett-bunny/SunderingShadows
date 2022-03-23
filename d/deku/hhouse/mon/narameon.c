@@ -18,7 +18,7 @@ create() {
     "anger or hatred.  A pile of %^BOLD%^%^BLACK%^dark%^RESET%^ "+
     "%^YELLOW%^and oily hair hangs down from his head and "+
     "conceals whatever type of ears he may have.  His neck bulges "+
-    "with vains that shine a sickly %^BOLD%^%^GREEN%^green"+
+    "with veins that shine a sickly %^BOLD%^%^GREEN%^green"+
     "%^RESET%^%^YELLOW%^ from beneath his slightly grayed flesh.  "+
     "An emblem, that of %^RED%^two opened palms%^RESET%^%^YELLOW%^ "+
     "each holding a %^BOLD%^%^WHITE%^skeletal wand%^RESET%^%^YELLOW%^ "+

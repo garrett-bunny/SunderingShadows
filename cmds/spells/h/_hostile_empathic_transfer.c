@@ -38,6 +38,7 @@ void spell_effect(int prof) {
 
     if(!sizeof(foes)){
        tell_object(caster,"You do not see any enemies here.");
+       dest_effect();
        return;
     }
 

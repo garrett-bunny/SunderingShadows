@@ -155,7 +155,7 @@ int cmd_throw(string str)
             }
 
             if (i < distance - 1) {
-                tell_room(current, "Something wizzes by your head.");
+                tell_room(current, "Something whizzes past your head.");
             }
 
             if (current->query_property("indoors")) {
@@ -337,11 +337,11 @@ throw %^ORANGE%^%^ULINE%^OBJECT%^RESET%^ %^ORANGE%^%^ULINE%^DIRECTION%^RESET%^ %
 
 %^CYAN%^DESCRIPTION%^RESET%^
 
-Throw can be applied to any wielded object. Throwing at a target starts combat. Some objects will do nothing when they hit a target. Others will explode, capture pierce or otherwise wound the target. Oh some might just break.
+Throw can be applied to any wielded object. Throwing at a target starts combat. Some objects will do nothing when they hit a target. Others will explode, capture, pierce, or otherwise wound the target. Some might just break.
 
 Throwing an object without naming a target moves it to the relevant room.
 
-When wielding a bow, you can use shoot command instead.
+When wielding a bow, you can use the <shoot> command instead.
 
 %^CYAN%^EXAMPLES%^%^RESET%^
 
@@ -352,7 +352,7 @@ The command only looks at objects you are wielding. So, if you wish to throw 'da
 
 %^CYAN%^SEE ALSO%^RESET%^
 
-peer, look, mmap, map, help
+peer, look, mmap, map, help, shoot
 "
         );
     return 1;

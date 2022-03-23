@@ -20,14 +20,14 @@ void create() {
   set_short("Dariul Tymor, A strange looking creature");
   set_long("This pale white creature resembles a human that is "+
   "far more rigid than normal.  He stands roughly six feet tall "+
-  "and is strikingly handsome by most standards,  His hair is a "+
+  "and is strikingly handsome by most standards. His hair is a "+
   "light black that is kept short, his facial features "+
   "are rugged and firm, yet his ice blue eyes offer a "+
-  "boyish gaze.  Its only once you lock eyes with him "+
+  "boyish gaze.  It's only once you lock eyes with him "+
   "that you realize he has no pupils to speak of and you understand "+
   "that he is not a human at all.  He still appears relatively "+
   "friendly and stands here waiting to serve this small "+
-  "town of verbobone, night or day.");
+  "town of Verbobone, night or day.");
   set_alignment(5);
   set_hd(20,2);
   set_hp(200 + random(101));
@@ -257,7 +257,7 @@ int buy_contract(string str) {
             TP->add_money("gold",-gold);
             force_me("say writing new contract for "+gold+" gold "+
             "pieces.");
-            force_me("emoteat "+TP->query_name()+" hurridly writes "+
+            force_me("emoteat "+TP->query_name()+" hurriedly writes "+
             "something onto a piece of parchment and then "+
             "drops it on the table for you.");
             force_me("emote writes something down into a thick book "+
@@ -271,10 +271,10 @@ int buy_contract(string str) {
             ob->set_id_name(nam);
 
             ob->set_read("Contract shall be considered valid by "+
-            "the town of verbobone until officially voided.  "+
+            "the town of Verbobone until officially voided.  "+
             "Contract shall, over the course of time, draw value "+
-            "that will be honored by the town of verbobone upon "+
-            "date of sell.\n"+
+            "that will be honored by the town of Verbobone upon "+
+            "date of sale.\n"+
             "Signed, \n"+
             "Dariul Tymor, Official Represenative of Verbobone "+
             "by hand of Ruther Enuren, on "+day(time())+", "+

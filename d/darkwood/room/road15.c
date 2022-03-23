@@ -12,7 +12,7 @@ inherit "/d/darkwood/room/road2";
 void create() {
     ::create();
     set_long(
-"%^GREEN%^You are on the Royal Southern Road. The road seems to beskirting the southern edge of a dark forest. To the southof you appears to be some hills and a wide plain stretchingto the horizon. The road continues to the east-west.
+"%^GREEN%^You are on the Royal Southern Road. The road seems to beskirting the southern edge of a dark forest. To the south of you appears to be some hills and a wide plain stretching to the horizon. The road continues to the east-west.
 "
     );
     set_exits(

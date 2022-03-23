@@ -10,7 +10,7 @@ void create() {
    set_terrain(VILLAGE);
    set_travel(FOOT_PATH);
    set("long",
-      "%^RESET%^%^GREEN%^ The large doorway opens up into a high ceiling room with"+
+      "%^RESET%^%^GREEN%^ The large doorway opens up into a high ceilinged room with"+
       " plenty of room to maneuver the ill and injured. This is obviously the village"+
       " healer."+
       " You enjoy a splendid view of the surrounding forest from the shop's window."+

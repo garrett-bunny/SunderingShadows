@@ -20,8 +20,8 @@ void create() {
    set_size(-1);
    set_type("clothing");
    set_limbs(({"torso"}));
-   set_lore("%^WHITE%^%^BOLD%^A particular akadian rogue, known only by the name of Eylean, was said to "
-"have always worn a garment similar to this.  The rogue was supposedly distainful of most armor, "
+   set_lore("%^WHITE%^%^BOLD%^A particular Akadian rogue, known only by the name of Eylean, was said to "
+"have always worn a garment similar to this.  The rogue was supposedly disdainful of most armor, "
 "preferring instead to confuse his opponents as to just where he was standing.  This flowing vest only "
 "served to make his body even harder to target properly in combat, and he always used this to his "
 "advantage.%^RESET%^\n");

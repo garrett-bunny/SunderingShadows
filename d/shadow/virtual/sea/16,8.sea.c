@@ -12,10 +12,10 @@ void create() {
     set_indoors(1);
     ::create();
     set_light(2);
-    set_short("You are in the Desert");
+    set_short("You are on the Saakrune Sea");
     set_long(
 @OLI
-	%^BOLD%^You are on a the Saakrune Sea.%^RESET%^
+	%^BOLD%^You are on the Saakrune Sea.%^RESET%^
 You see an island in the water here.
 OLI
 	);

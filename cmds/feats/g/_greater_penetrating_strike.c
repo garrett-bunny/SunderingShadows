@@ -10,7 +10,7 @@ void create()
     feat_category("AdvancedTraining");
     feat_name("greater penetrating strike");
     feat_prereq("Penetrating strike, Advanced Training");
-    feat_desc("With this feat you ignore up to ten points of damage reduction, making spells such as iron body meaningless..");
+    feat_desc("With this feat you ignore up to ten points of damage reduction, making spells such as iron body meaningless.");
     permanent(1);
 }
 

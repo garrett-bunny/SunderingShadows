@@ -18,7 +18,7 @@ void create()
     "services. There are %^RESET%^%^ORANGE%^herbs%^RESET%^%^GREEN%^,"+
     " %^RESET%^%^ORANGE%^balms%^RESET%^%^GREEN%^, and all types of %^BOLD%^%^BLACK%^substances"+
     "%^RESET%^%^GREEN%^ packed into %^RESET%^%^ORANGE%^wooden shelves%^RESET%^%^GREEN%^ "+
-    "which line the northern and southern walls of this shelter. The natural wooden floor is "+
+    ",which line the northern and southern walls of this shelter. The natural wooden floor is "+
     "much smoother here and placed strategically across it are very soft and thick mats.%^RESET%^");
     
     

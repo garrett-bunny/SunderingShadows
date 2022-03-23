@@ -34,6 +34,25 @@ OLI
    set_size(1);
    set_overall_ac(7);
    set("magic",1);
+   set_heart_beat(1);
+}
+
+void heart_beat()
+{
+    object owner;
+    
+    ::heart_beat();
+    
+    if(!environment(this_object()))
+        return;
+    
+    owner = this_object()->query_property("minion");
+    
+    if(!objectp(owner))
+    {
+        die();
+        return;
+    }
 }
 
 void die(object ob){

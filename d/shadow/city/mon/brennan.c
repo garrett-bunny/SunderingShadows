@@ -4,7 +4,7 @@ inherit "/std/barkeep";
 void create() {
     ::create();
    	set_name("brennan");
-    set_id( ({ "cofeemaster",
+    set_id( ({ "coffeemaster",
                     "shopkeeper",
                     "brennan",
                     "Brennan"}) );

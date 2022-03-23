@@ -27,9 +27,7 @@ void create()
     set_shape_bonus("damage bonus",3);
     set_shape_bonus("attack bonus",3);
 
-    set_shape_bonus("acid resistance percent", 7);
-    set_shape_bonus("cold resistance percent", 7);
-    set_shape_bonus("silver resistance percent", -33);
+    set_shape_bonus("silver resistance percent", -23);
 }
 
 int default_descriptions(object obj)

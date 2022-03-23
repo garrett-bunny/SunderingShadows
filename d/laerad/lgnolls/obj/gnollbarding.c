@@ -43,23 +43,27 @@ int remove_it(){
 
 int bump(int damage, object what, object bumptarg){
         object rakey;
-//tell_room(EETO,"ETO is "+base_name(ETO)+" and bumptarg is "+base_name(bumptarg)+".");
-        if(!objectp(ETO)) return 0;
-        if(!objectp(bumptarg)) return 0;
-	if((string)ETO->query_race() == "wemic"){
-                tell_object(ETO,"%^MAGENTA%^As %^WHITE%^"+bumptarg->QCN+" %^MAGENTA%^tries to hit your lower-torso, you rise up on your hind-legs and %^BOLD%^%^RED%^rake %^RESET%^"+bumptarg->QO+" %^RED%^t%^BOLD%^e%^RESET%^%^RED%^rr%^BOLD%^i%^RESET%^%^RED%^bl%^BOLD%^y%^RESET%^%^RED%^!%^RESET%^");
-                tell_room(EETO,"%^MAGENTA%^As "+bumptarg->QCN+" tries to hit "+ETO->QCN+"'s lower-torso, "+ETO->QCN+" rises to "+ETO->QP+" hindlegs and %^BOLD%^%^RED%^rakes %^RESET%^%^MAGENTA%^"+bumptarg->QCN+" %^RED%^t%^BOLD%^e%^RESET%^%^RED%^rr%^BOLD%^i%^RESET%^%^RED%^bl%^BOLD%^y!%^RESET%^",ETO);
-                tell_object(bumptarg,"%^MAGENTA%^As you try to hit %^WHITE%^"+ETO->QCN+"%^MAGENTA%^'s lower-torso, %^WHITE%^"+ETO->QS+" %^MAGENTA%^rises on "+ETO->QP+" hind-legs and %^BOLD%^%^RED%^rakes %^RESET%^%^MAGENTA%^you %^RED%^t%^BOLD%^e%^RESET%^%^RED%^rr%^BOLD%^i%^RESET%^%^RED%^bl%^BOLD%^y%^RESET%^%^MAGENTA%^!%^RESET%^");
-		rakey = new(OBJ"rake");
-        rakey->move(bumptarg);
-        rakey->hurt(bumptarg);
-	return (damage*(1/2));}
-	
-	if((string)ETO->query_race() == "centaur"){
-                tell_object(ETO,"%^MAGENTA%^As %^WHITE%^"+bumptarg->QCN+" %^MAGENTA%^tries to hit your lower-torso, you rise up on your hind-legs and send %^WHITE%^"+bumptarg->QO+" %^BOLD%^%^BLACK%^spawling %^RESET%^%^MAGENTA%^with a %^ORANGE%^knock %^MAGENTA%^from your %^ORANGE%^fr%^BOLD%^%^BLACK%^o%^RESET%^%^ORANGE%^nt h%^BOLD%^%^BLACK%^oo%^RESET%^%^ORANGE%^ves!%^RESET%^");
-                tell_room(EETO,"%^MAGENTA%^As %^WHITE%^"+bumptarg->QCN+" %^MAGENTA%^tries to hit %^WHITE%^"+ETO->QCN+"%^MAGENTA%^'s lower-torso, %^WHITE%^"+ETO->QCN+" %^MAGENTA%^rises to %^WHITE%^"+ETO->QP+" %^MAGENTA%^hind-legs and sends %^WHITE%^"+bumptarg->QCN+" %^MAGENTA%^to the %^BOLD%^%^BLACK%^ground %^RESET%^%^MAGENTA%^with a %^BOLD%^%^BLACK%^knock %^RESET%^%^MAGENTA%^of %^WHITE%^"+ETO->QCN+" %^ORANGE%^fr%^BOLD%^%^BLACK%^o%^RESET%^%^ORANGE%^nt h%^BOLD%^%^BLACK%^oo%^RESET%^%^ORANGE%^ves%^MAGENTA%^!%^RESET%^");
-                tell_object(bumptarg,"%^MAGENTA%^As you try to hit %^WHITE%^"+ETO->QCN+"%^MAGENTA%^'s lower-torso, %^WHITE%^"+ETO->QS+" %^MAGENTA%^rises on "+ETO->QP+" hind-legs and %^BOLD%^%^BLACK%^knocks %^RESET%^%^MAGENTA%^you to the %^BOLD%^%^BLACK%^ground %^RESET%^%^MAGENTA%^with "+ETO->QP+" %^ORANGE%^fr%^BOLD%^%^BLACK%^o%^RESET%^%^ORANGE%^nt h%^BOLD%^%^BLACK%^oo%^RESET%^%^ORANGE%^ves%^MAGENTA%^!%^RESET%^");
-                bumptarg->do_damage(bumptarg->return_target_limb(),roll_dice(4,4)+4);
-                bumptarg->set_tripped(1,"Get back on your feet first!");
-	return (damage*(1/2));}
+        if(!objectp(ETO)) return damage;
+        if(!objectp(bumptarg)) return damage;
+	if(!random(3)) {
+		if((string)ETO->query_race() == "wemic"){
+			tell_object(ETO,"%^MAGENTA%^As %^WHITE%^"+bumptarg->QCN+" %^MAGENTA%^tries to hit your lower-torso, you rise up on your hind-legs and %^BOLD%^%^RED%^rake %^RESET%^"+bumptarg->QO+" %^RED%^t%^BOLD%^e%^RESET%^%^RED%^rr%^BOLD%^i%^RESET%^%^RED%^bl%^BOLD%^y%^RESET%^%^RED%^!%^RESET%^");
+			tell_room(EETO,"%^MAGENTA%^As "+bumptarg->QCN+" tries to hit "+ETO->QCN+"'s lower-torso, "+ETO->QCN+" rises to "+ETO->QP+" hindlegs and %^BOLD%^%^RED%^rakes %^RESET%^%^MAGENTA%^"+bumptarg->QCN+" %^RED%^t%^BOLD%^e%^RESET%^%^RED%^rr%^BOLD%^i%^RESET%^%^RED%^bl%^BOLD%^y!%^RESET%^",ETO);
+			tell_object(bumptarg,"%^MAGENTA%^As you try to hit %^WHITE%^"+ETO->QCN+"%^MAGENTA%^'s lower-torso, %^WHITE%^"+ETO->QS+" %^MAGENTA%^rises on "+ETO->QP+" hind-legs and %^BOLD%^%^RED%^rakes %^RESET%^%^MAGENTA%^you %^RED%^t%^BOLD%^e%^RESET%^%^RED%^rr%^BOLD%^i%^RESET%^%^RED%^bl%^BOLD%^y%^RESET%^%^MAGENTA%^!%^RESET%^");
+			rakey = new(OBJ"rake");
+			rakey->move(bumptarg);
+			rakey->hurt(bumptarg);
+			return (damage*(1/2));
+		}
+
+		if((string)ETO->query_race() == "centaur"){
+			tell_object(ETO,"%^MAGENTA%^As %^WHITE%^"+bumptarg->QCN+" %^MAGENTA%^tries to hit your lower-torso, you rise up on your hind-legs and send %^WHITE%^"+bumptarg->QO+" %^BOLD%^%^BLACK%^spawling %^RESET%^%^MAGENTA%^with a %^ORANGE%^knock %^MAGENTA%^from your %^ORANGE%^fr%^BOLD%^%^BLACK%^o%^RESET%^%^ORANGE%^nt h%^BOLD%^%^BLACK%^oo%^RESET%^%^ORANGE%^ves!%^RESET%^");
+			tell_room(EETO,"%^MAGENTA%^As %^WHITE%^"+bumptarg->QCN+" %^MAGENTA%^tries to hit %^WHITE%^"+ETO->QCN+"%^MAGENTA%^'s lower-torso, %^WHITE%^"+ETO->QCN+" %^MAGENTA%^rises to %^WHITE%^"+ETO->QP+" %^MAGENTA%^hind-legs and sends %^WHITE%^"+bumptarg->QCN+" %^MAGENTA%^to the %^BOLD%^%^BLACK%^ground %^RESET%^%^MAGENTA%^with a %^BOLD%^%^BLACK%^knock %^RESET%^%^MAGENTA%^of %^WHITE%^"+ETO->QCN+" %^ORANGE%^fr%^BOLD%^%^BLACK%^o%^RESET%^%^ORANGE%^nt h%^BOLD%^%^BLACK%^oo%^RESET%^%^ORANGE%^ves%^MAGENTA%^!%^RESET%^");
+			tell_object(bumptarg,"%^MAGENTA%^As you try to hit %^WHITE%^"+ETO->QCN+"%^MAGENTA%^'s lower-torso, %^WHITE%^"+ETO->QS+" %^MAGENTA%^rises on "+ETO->QP+" hind-legs and %^BOLD%^%^BLACK%^knocks %^RESET%^%^MAGENTA%^you to the %^BOLD%^%^BLACK%^ground %^RESET%^%^MAGENTA%^with "+ETO->QP+" %^ORANGE%^fr%^BOLD%^%^BLACK%^o%^RESET%^%^ORANGE%^nt h%^BOLD%^%^BLACK%^oo%^RESET%^%^ORANGE%^ves%^MAGENTA%^!%^RESET%^");
+			bumptarg->do_damage(bumptarg->return_target_limb(),roll_dice(4,4)+4);
+			bumptarg->set_tripped(1,"Get back on your feet first!");
+			return (damage*(1/2));
+		}
+	}
+	return damage;
 }

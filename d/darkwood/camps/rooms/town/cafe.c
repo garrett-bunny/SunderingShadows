@@ -13,7 +13,7 @@ void create() {
       "%^RESET%^%^GREEN%^This establishment is built in the common theme as the rest of"+
       " the building scheme in this village. The walls lack corners and are rather rounded"+
       " out to create a smooth transition between walls and floor. The floor is well kept and seamlessly"+
-      " blend in with the walls the surround the room."+
+      " blends in with the walls the surround the room."+
       " A wonderful scent drifts from the oven at the back of the cafe. People"+
       " are able to sit here in the cafe at one of the small tables crafted magically"+
       " from the floor of the tree. Patterned cloths in %^YELLOW%^v%^RED%^i%^MAGENTA%^"+
@@ -29,8 +29,8 @@ void create() {
    set_smell("default", "%^RESET%^%^ORANGE%^You can smell freshly baked elven waybread.%^RESET%^");
    set_listen("default", "%^RESET%^%^CYAN%^You can hear the peaceful sounds of village life outside.%^RESET%^");
    set_items( ([ 
-      "tables": "The tables sit dispersed throughout the room.  Each table is covered with a patterened"+
-         " cloth in %^YELLOW%^v%^RED%^i%^MAGENTA%^b%^BLUE%^r%^GREEN%^a%^WHITE%^n%^CYAN%^t"+
+      "tables": "The tables sit dispersed throughout the room.  Each table is covered with a patterned"+
+         " cloth in %^YELLOW%^v%^RED%^i%^MAGENTA%^b%^BLUE%^r%^GREEN%^a%^WHITE%^n%^CYAN%^t "+
          "%^RESET%^colors.", 
       "floor":"The floor is clean and well kept.", 
       "walls":"The walls are crafted from the tree itself.  Garlands of flowers hang around the room,"+
@@ -84,7 +84,7 @@ void init() {
         return 1;
     }
     if(str == "list" && ob = present("dartboard")) {
-        write("This is a list of those who have been witnessed achieving a mastery at darts here in synoria.");
+        write("This is a list of those who have been witnessed achieving a mastery at darts here in Synoria.");
         names = ob->query_mastery_list();
         if(!sizeof(names)) { 
             return 1;

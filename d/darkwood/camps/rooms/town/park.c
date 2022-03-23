@@ -13,7 +13,7 @@ void create() {
    set("long",
       "%^RESET%^%^GREEN%^This clearing in the forest leads off from the path stemming from the"+
       " village's central square. Wooden benches have been set out around the clearing, making this"+
-      " an ideal place to sit and relax. The trees arch overhead with branches, which provides shade"+
+      " an ideal place to sit and relax. The trees arch overhead with branches, which provide shade"+
       " for the people that gather here.%^RESET%^"
    );
    set_smell("default", "%^RESET%^%^ORANGE%^You can smell the fresh scent of the forest.%^RESET%^");

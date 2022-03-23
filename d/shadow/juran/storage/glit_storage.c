@@ -7,8 +7,8 @@ void create(){
         ::reset();
 
     if(!present("smokebomb")) {
-      ob = new("/d/tharis/obj/smokebomb");
+      ob = new("/d/common/obj/misc/smokebomb");
       ob->move(TO);
-      ob->set_origin("tharis");
+      ob->set_origin("juran");
     }
 }

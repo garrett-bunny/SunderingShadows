@@ -48,7 +48,7 @@ int default_descriptions(object obj)
 {
     if(!objectp(obj)) { return 0; }
 
-    obj->set_description("%^RESET%^%^ORANGE%^ is disgusting green skinned creature stands in front of you at almost 10 feet tall. A rubbery skin covers its skinny limbs. It has black hair growing out of its oblong head and its eyes are hidden inside deep black sockets.%^RESET%^");
+    obj->set_description("%^RESET%^%^ORANGE%^is disgusting green skinned creature stands in front of you at almost 10 feet tall. A rubbery skin covers its skinny limbs. It has black hair growing out of its oblong head and its eyes are hidden inside deep black sockets.%^RESET%^");
 
     obj->setDescriptivePhrase("%^RESET%^%^ORANGE%^stinking $R%^RESET%^");
 

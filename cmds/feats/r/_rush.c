@@ -18,7 +18,7 @@ void create() {
 
 If used without an argument this feat will pick up a random attacker.
 
-%^BOLD%^N.B.%^RESET%^ This feat only works with standard melee combat on foot. It takes quite different feats to <charge> from horseback, or to land a <preciseshot> with a ranged weapon.");
+%^BOLD%^N.B.%^RESET%^ This feat only works with standard melee combat on foot. It takes different feats to <charge> from horseback, or to land a <preciseshot> with a ranged weapon.");
     feat_name("rush");
     set_save("fort");
 }
@@ -371,7 +371,7 @@ void rush_mess(object play,object targ){
 								""+targ->QCN+"!",({play,targ}));
 							tell_object(targ,"%^BOLD%^You see "+play->QCN+" break "+
 								"from combat and suddenly "+
-								"rushes madly toward you!\n");
+								"rush madly toward you!\n");
 							break;
 	}
    	return;

@@ -10,8 +10,8 @@ void create(){
   set_id(({"serpent","hell hound","hellhound"}));
   set_short("%^RESET%^%^CYAN%^tra%^BOLD%^n%^RESET%^%^CYAN%^slucent se%^BOLD%^r%^RESET%^%^CYAN%^pent%^RESET%^");
   set_long("This gold serpent is about seven feet in length."+
-  "  It looks like a smaller version of a gold dragon.   It's"+
-  " ethereal nature allows one to see right through it.  The"+
+  "  It looks like a smaller version of a gold dragon. Its"+
+  " ethereal nature allows one to see right through it. The"+
   " creature looks fearsome.");
   set_hd(35,5);
   set_max_hp(200);

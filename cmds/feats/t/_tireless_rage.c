@@ -9,7 +9,7 @@ void create()
    feat_category("Rampage");
    feat_name("tireless rage");
    feat_prereq("Barbarian L17");
-   feat_desc("With this feat barbarian will no longer be fatigued at the end of raging.");
+   feat_desc("With this feat the barbarian will no longer be fatigued at the end of raging.");
    permanent(1);
 }
 

@@ -8,21 +8,11 @@ void create() {
     set_name("%^RED%^Bloody hand");
     set_short("%^RED%^Bloody hand%^RESET%^");
     set_long("%^RED%^This is a disgusting bloody hand. It contains magical "
-      "properties which involve ancient voodoo evils. The hand can be used "
+      "properties that involve ancient voodoo evils. The hand can be used "
       "to caress <victim> to inflict them with an ancient voodoo disease. "
-      "Your not sure what this disease is but know it must be used with "
+      "You're not sure what this disease is but know it must be used with "
       "extreme caution.%^RESET%^");
-    set_lore("%^BOLD%^This hand was rumored to belong to a drow lich who's "
-        "specialty in life was spreading diseases among her enemies.  "
-        "Later in undeath, a noble matron of a drow house asked the lich for "
-        "assistance.  The lich broke off her own hand and gave to the drow, "
-        "along with instructions to create many more that she could use to spread "
-        "a horrible plague among her enemies.  The lich however, was already in "
-        "league with the matron's enemies and when she created many of the hands "
-        "to spread among her enemies, they overwhelmed her.  The hands crawled with "
-        "a mind of their own and infected the one who would wield them!  Ever since "
-        "then the drow are careful to carry only one such hand at a time so that "
-        "their combined magic does not overtake and destroy them.");
+    set_lore("%^BOLD%^This hand was rumored to belong to a drow lich whose specialty in life was spreading diseases among her enemies. Later in undeath, a noble matron of a drow house asked the lich for assistance. The lich broke off her own hand and gave it to the drow, along with instructions to create many more that she could use to spread a horrible plague among her enemies. The lich, however, was already in league with the matron's enemies and when she created many of the hands to spread among her foes, they overwhelmed her. The hands crawled with a mind of their own and infected the one who would wield them! Ever since, the drow are careful to carry only one such hand at a time so that their combined magic does not overtake and destroy them.");
     set_property("lore difficulty",20);
     set_value(105);
     set_weight(1);

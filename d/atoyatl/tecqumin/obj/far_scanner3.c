@@ -10,10 +10,15 @@ void create(){
   set_short("");
 }
 
+void debug(string str){
+  "/d/atoyatl/reporter_d.c"->report("lujke", str);
+}
+
 object far_present(object startroom, string item_name, int distance){
   object *rooms, item, temproom;
   string * exits, exitname;
   int i,j,k,roomcount, prevcount, runningcount;
+  debug ("starting far_present");
   if (!objectp(startroom)){return 0;}
   rooms= allocate(8000);
   roomcount = 0;
@@ -115,6 +120,7 @@ object* all_far_present(object startroom, string item_name, int distance){
   object *rooms, *items, *tempitems,temproom;
   string * exits, exitname;
   int i,j,k,l,m,roomcount, prevcount, runningcount;
+  debug ("Starting all_far_present");
   if (!objectp(startroom)){return 0;}
   rooms= allocate(8000);
   items =  ({});

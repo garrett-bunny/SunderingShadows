@@ -14,7 +14,7 @@ void create()
     set_bonus_type("enhancement");
     set_syntax("cast CLASS aspect of the wolf");
     set_damage_desc("+4 to str and dex, knockdown feat");
-    set_description("Feel the aspect of the wolf boiling though your blood.");
+    set_description("Feel the aspect of the wolf coursing through your veins.");
     set_verbal_comp();
     set_somatic_comp();
     set_helpful_spell(1);

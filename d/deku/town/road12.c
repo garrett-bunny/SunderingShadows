@@ -13,7 +13,7 @@ void create() {
   set_long("%^BOLD%^%^WHITE%^This is the broadway street going through the town of Verbobone. "+
   "The road ends here at a giant %^BOLD%^%^BLUE%^blue iron%^BOLD%^%^WHITE%^ gate. "+
   "Visible beyond the gate you can make out the outline of "+
-  "an %^BOLD%^%^BLACK%^ancient%^BOLD%^%^WHITE%^ and %^ORANGE%^delapidated"+
+  "an %^BOLD%^%^BLACK%^ancient%^BOLD%^%^WHITE%^ and %^ORANGE%^dilapidated"+
   "%^BOLD%^%^WHITE%^ house. It is hard to see much of it clearly from here as "+
   "a %^BOLD%^%^GREEN%^sickly green%^BOLD%^%^WHITE%^ haze makes it almost impossible "+
   "to see. You only hope that it does not seep further this way, less it might take over "+
@@ -25,7 +25,7 @@ void create() {
   ] ));
 
   set_items(([
-    ({"house", "delapidated house", "haunted house",
+    ({"house", "dilapidated house", "haunted house",
     "ancient house"}) : "%^BOLD%^%^BLACK%^The house "+
     "north of you looks enormous, but it is difficult to "+
     "make out more than a faint outline of it from here "+

@@ -26,7 +26,7 @@ set_item_bonus("spellcraft",4);
 set_item_bonus("charisma",-1);
 set_item_bonus("divine resistance",10);
 set_wear((:TO,"wear_fun":));
-set_remove((:TO,"remove_fun":));
+set_remove("%^BOLD%^You remove the tattered dress and feel much better..%^RESET%^");
 }
 
 int wear_fun(){
@@ -34,9 +34,13 @@ tell_object(ETO,"%^BOLD%^You wear the dress and feel like a refugee.%^RESET%^");
 return 1;
 }
 
+/*
+
 int remove_fun(){
 tell_room(EETO,"%^BOLD%^"+ETO->QCN+" removes the "+
 "tattered dress and oddly it doesn't fall apart.%^RESET%^",ETO);
 tell_object(ETO,"%^BOLD%^You remove the tattered dress and feel much better..%^RESET%^");
 return 1;
 }
+
+*/

@@ -22,7 +22,7 @@ void create() {
        "This bag contains a collection of powders mixed into quite "
        "a fetid mixture.  Whiffs of ammonia and other irritants reach "
        "your nose as you inspect the bag.  You feel that if you <toss powder> "
-       "at some target's eyes and hit would hurt them badly.  You could also "
+       "at some target's eyes and it would hurt them badly.  You could also "
        "spread the powder in a wide circle and <reveal> anyone hidden "
        "in the room.");
    set_value(200);

@@ -81,6 +81,7 @@ void spell_effect(int prof) {
     //target->set_property("spell damage resistance", lower); 
     target->set_property("protection from spells", 1);
     addSpellToCaster();
+    spell_successful();
     spell_duration = (clevel + roll_dice(1, 20)) * ROUND_LENGTH * 2;
     set_end_time();
     call_out("dest_effect",spell_duration);

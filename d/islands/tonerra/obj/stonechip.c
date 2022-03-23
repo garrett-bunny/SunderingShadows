@@ -61,7 +61,7 @@ if(tp->query_ghost()){
     remove();
       return;
   }
-	tell_object(tp,"%^BOLD%^Seering pain from the chip of stone in your wound races through your body!\n");
+	tell_object(tp,"%^BOLD%^Searing pain from the chip of stone in your wound races through your body!\n");
 	tp->do_damage("torso",roll_dice(2,5));
 	call_out("hurt",20,tp);
 	if(blah >4 && !interactive(tp)){

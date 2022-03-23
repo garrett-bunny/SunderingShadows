@@ -11,7 +11,7 @@ void create() {
     set_spell_level(([ "inquisitor":1, "cantrip" : 1 ]));
     set_spell_sphere("enchantment_charm");
     set_syntax("cast CLASS daze on TARGET");
-    set_description("%^RESET%^This spell attempts to dazzle a creature into immobility. %^RESET%^%^BOLD%^N.B.%^RESET%^:
+    set_description("%^RESET%^This spell attempts to dazzle a creature into immobility. 
 
 %^BOLD%^%^RED%^See also%^RESET%^: daze *feats%^RESET%^");
     set_verbal_comp();

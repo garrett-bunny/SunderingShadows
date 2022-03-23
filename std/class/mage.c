@@ -1,4 +1,6 @@
 #include <std.h>
+#include <daemons.h>
+
 inherit DAEMON;
 
 void create() { ::create(); }
@@ -36,7 +38,7 @@ string *class_feats(string myspec)
 }
 
 mapping class_featmap(string myspec) {
-    return ([ 1 : ({ "simple weapon proficiency", "spell focus", "magic school", "scribe", "arcane bond" }), ]);
+    return ([ 1 : ({ "simple weapon proficiency", "spell focus", "magic school", "scribe", "arcane bond" }), 31 : ({ "deep magic" }), ]);
 }
 
 mapping query_cantrip_spells(object ob)
@@ -44,6 +46,25 @@ mapping query_cantrip_spells(object ob)
     return ([ "acid splash" : 1, "detect magic" : 1, "daze" : 1, "dancing lights" : 1, "disrupt undead": 1, "resistance" : 1, "ray of frost" : 1 ]);
 }
 
+mapping query_deep_spells(object ob)
+{
+    string *spells;
+    mapping deep_spells = ([  ]);
+    
+    if(!FEATS_D->has_feat(ob, "deep magic"))
+        return deep_spells;
+    
+    spells = keys(MAGIC_D->query_index("deep"));
+    
+    foreach(string str in spells)
+    {
+        if(ob->query("deep magic " + str) || str == "wish")
+            deep_spells += ([ str : 1, ]);
+    }
+    
+    return deep_spells;
+}
+          
 string *class_skills()
 {
     return ({ "academics","dungeoneering","healing","spellcraft" });

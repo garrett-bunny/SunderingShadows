@@ -21,7 +21,7 @@ int preSpell()
 {
     if(target==caster)
     {
-        tell_object(caster,"You already benefint from own judgements!");
+        tell_object(caster,"You already benefit from own judgements!");
         return 0;
     }
     if(caster->query_property("lend_judgement"))

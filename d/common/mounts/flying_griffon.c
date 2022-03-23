@@ -21,10 +21,10 @@ void create(){
    set_gender("male");
    set_body_type("hippogriff");
    set_size(3);
-   set_max_hp(200);
+   set_max_hp(500);
    set_hd(10,4);
-   set_hp(250);
-   set_overall_ac(0);
+   set_hp(500);
+   set_overall_ac(-10);
    set_exp(10);
    set_max_distance(200);
    set_enter_room("rides in.");

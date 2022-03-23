@@ -13,7 +13,7 @@ void create()
     set_spell_sphere("necromancy");
     set_syntax("cast CLASS vampiric shadow shield");
     set_damage_desc("negative energy on living");
-    set_description("You raise shadows of the undead to guard you from those who mean you harm. Up to eight livings that attack you will be harmed and their essences will be used to heal you.");
+    set_description("You raise shadows of the undead to guard you from those who mean you harm. Up to eight living beings that attack you will be harmed and their essences will be used to heal you.");
     set_save("reflex");
     set_helpful_spell(1);
     traveling_aoe_spell(1);

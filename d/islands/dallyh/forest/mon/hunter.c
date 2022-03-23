@@ -11,8 +11,8 @@ void create()
     "%^BOLD%^%^BLACK%^dark hair%^BOLD%^%^GREEN%^ and %^BOLD%^%^BLACK%^dark eyes%^RESET%^");
     set_long("%^BOLD%^%^BLACK%^This woman stand over six feet tall. She has long "+
     "dark hair that comes down to nearly the middle of her back, it is messy and "+
-    "unkept, flowing wildly around her roundish face. She has dark eyes, which reflect "+
-    "an immense intelligent and a profound concern, though you are unable to determine the "+
+    "unkempt, flowing wildly around her roundish face. She has dark eyes, which reflect "+
+    "an immense intelligence and a profound concern, though you are unable to determine the "+
     "exact cause of her concern. The visible portions of her body are muscular and well toned. "+
     "She has long lean legs which serve to make her look quite agile. She is almost difficult "+
     "to focus on, as if something is off or wrong about her. However, you are unsure of what it "+

@@ -14,11 +14,11 @@ void create() {
 		"death" }) );
     set_short("Full plate armor of Death");
     set_long("This is the impressive, high gothic style armor of the late "
-        "middle ages and renaissance. It is perfectly forged and fitted. All the  "
+        "middle ages and renaissance. It is perfectly forged and fitted. All the "
 	"plates are interlocking and carefully angled to deflect blows. The metal "
 	"plates are backed by padding and chainmail. The weight is well "
 	"distributed. The armor is crafted exclusively by unholy drow elves "
-	"smiths and smiten with evil power by vile clerics of renown power lending it a "
+	"smiths and smitten with evil power by vile clerics of renown power lending it a "
 	"quality of cooled temperature and light weight. It is favored by "
 	"the order of dark Paladins."
     );

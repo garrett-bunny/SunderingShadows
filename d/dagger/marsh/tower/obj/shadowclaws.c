@@ -53,11 +53,11 @@ int hit_fun(object targ){
    targ = ETO->query_current_attacker();
 
    if(!random(12)) {
-      tell_object(ETO,"%^BLUE%^The claws shimmer and become insubstancial, as they pass right through "
+      tell_object(ETO,"%^BLUE%^The claws shimmer and become insubstantial, as they pass right through "
 +targ->QCN+"'s flesh!%^RESET%^");
-      tell_object(targ,"%^BLUE%^"+ETO->QCN+"'s claws seem to become insubstancial as they pass right through "
+      tell_object(targ,"%^BLUE%^"+ETO->QCN+"'s claws seem to become insubstantial as they pass right through "
 "your flesh!%^RESET%^");
-      tell_room(EETO,"%^BLUE%^"+ETO->QCN+"'s claws seem to become insubstancial as they pass right through "
+      tell_room(EETO,"%^BLUE%^"+ETO->QCN+"'s claws seem to become insubstantial as they pass right through "
 +targ->QCN+"'s flesh!%^RESET%^",({ETO,targ}));
       dam = roll_dice(1, 10);
       TO->set_property("magic",1);

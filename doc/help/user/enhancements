@@ -15,7 +15,7 @@ flaming/icy/shocking/corrosive/thundering burst
 	%^ORANGE%^<enhance add icy burst>%^RESET%^
 
 %^BOLD%^%^MAGENTA%^Aligned weapon%^RESET%^ (Cost:1)
-Ignores defenses from opposing alignement, chance to deal added damage. Your alignement must match the choice(s).
+Ignores defenses from opposing alignment, chance to deal added damage. Your alignment must match the choice(s).
 holy/unholy/axiomatic/anarchic
 	%^ORANGE%^<enhance add axiomatic>%^RESET%^
 

@@ -99,7 +99,7 @@ void receive_given_item(object obj){
          ob->remove();
       }
       force_me("say Take this small token of our gratitude.");
-      TP->add_money("electrum",2000+random(1000));
+      TO->add_money("electrum",2000+random(1000));
       force_me("give "+query_money("electrum")+" electrum coins to "+TPQN);
       if(present("wardens",TO)) force_me("give robe to "+TPQN);
       else if(present("boots",TO)) force_me("give boots to "+TPQN);

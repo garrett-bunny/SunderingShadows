@@ -32,7 +32,7 @@ int preSpell() {
 
 string query_cast_string() {
     tell_object(caster,"%^BOLD%^%^WHITE%^You press your palms together and focus your power.%^RESET%^");
-    tell_room(place,"%^BOLD%^%^WHITE%^"+caster->QCN+" presses "+caster->QP+" palms together and focusses.%^RESET%^",caster);
+    tell_room(place,"%^BOLD%^%^WHITE%^"+caster->QCN+" presses "+caster->QP+" palms together and focuses.%^RESET%^",caster);
     return "display";
 }
 

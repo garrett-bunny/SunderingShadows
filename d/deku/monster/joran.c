@@ -6,8 +6,8 @@ void create(){
         set_name("joran");
         set_short("Joran, a short and scruffy man");
         set_id(({"joran","Joran","gemshaper","man","shaper"}));
-        set_long("%^RESET%^%^ORANGE%^Standing an an unimpressive four feet "
-"tall, this man looks more like a begger than a shopkeeper.  He looks like he "
+        set_long("%^RESET%^%^ORANGE%^Standing an unimpressive four feet "
+"tall, this man looks more like a beggar than a shopkeeper.  He looks like he "
 "%^BOLD%^%^BLACK%^hasn't slept in weeks %^RESET%^%^ORANGE%^and %^WHITE%^hasn't"
 " eaten in months%^ORANGE%^.  However, his eyes are %^BOLD%^%^WHITE%^keen "
 "%^RESET%^%^ORANGE%^and his wits sharp.  He sorts %^BOLD%^%^MAGENTA%^c%^RESET%^"

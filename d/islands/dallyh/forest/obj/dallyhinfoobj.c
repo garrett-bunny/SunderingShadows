@@ -59,7 +59,7 @@ void inform_me()
         case 5:
             info_tmp2 = info_tmp;
             info_tmp2 += " Be WARNED that the demons will not like being disturbed... and it is highly likely that "+
-            "once that portal is sealed another shall open somewhere within the marsh... seal ALL of them that open!";
+            "once that portal is sealed another shall open somewhere within the marsh... seal ALL of them that open!\n";
             info_tmp2 += info_tmp;
             info_tmp2 += " If you are able to accomplish this, then return here and I shall grant you a boon of my favor!\n";
             info_tmp2 += info_tmp;

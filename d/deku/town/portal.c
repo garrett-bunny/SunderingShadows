@@ -18,8 +18,8 @@ void create(){
 "each corner of the room. Each holds a softly-glowing %^BOLD%^%^MAGENTA%^"
 "crys%^RESET%^%^MAGENTA%^t%^BOLD%^al%^RESET%^%^ORANGE%^ that sheds just "
 "enough light around the room to see, yet not enough to be considered harsh, "
-"or detract from the %^RED%^cosy %^ORANGE%^feeling of the building itself.  "
-"At the centre of the room is a circle carved into the wooden floor, and "
+"or detract from the %^RED%^cozy %^ORANGE%^feeling of the building itself.  "
+"At the center of the room is a circle carved into the wooden floor, and "
 "filled in with %^RESET%^gli%^BOLD%^t%^RESET%^ter%^BOLD%^i%^RESET%^ng "
 "%^ORANGE%^dust to mark its path. At evenly-spaced intervals around the "
 "circle are three small pillars, each embedded within the floorboards, and "
@@ -53,8 +53,8 @@ void create(){
       "south":"/d/deku/town/sroad2",
       "east":"/d/deku/town/crystals",
     ]));
-    add_location("shadow",10,75,"/d/darkwood/room/road1");
-    add_location("tonovi",10,75,"/d/dagger/tonovi/road2");
+    add_location("shadow",0,75,"/d/darkwood/room/road1");
+    add_location("tonovi",0,75,"/d/dagger/tonovi/road2");
     if(!present("portalpsion")) 
     {
         new("/d/shadow/mon/nomad")->move(TO);

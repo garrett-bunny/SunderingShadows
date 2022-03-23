@@ -10,7 +10,7 @@ void create()
     feat_category("MagicDamage");
     feat_name("greater spell power");
     feat_prereq("Improved spell power");
-    feat_desc("The Greater Spell Power feat will increase the power of the casters spells beyond both Improved Spell Power and Spell Power.");
+    feat_desc("The Greater Spell Power feat will increase the power of the caster's spells beyond both Improved Spell Power and Spell Power.");
     permanent(1);
     set_required_for(({"magic arsenal"}));
 }

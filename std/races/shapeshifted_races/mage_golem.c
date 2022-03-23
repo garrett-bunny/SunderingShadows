@@ -33,7 +33,7 @@ void create()
     set_shape_bonus("sight bonus",3);
     set_shape_bonus("damage bonus",3);
     set_shape_bonus("attack bonus",3);
-    set_shape_bonus("damage resistance",20);
+    set_shape_bonus("damage resistance",15);
     set_shape_height(900+random(100));
     set_shape_weight(5000+random(500));
 }
@@ -47,7 +47,7 @@ int default_descriptions(object obj)
 {
     if(!objectp(obj)) { return 0; }
 
-    obj->set_description("%^BOLD%^%^BLUE%^ standing at an impressive thirty feet tall, this statue is made of iron. Rust-free and gray, it is molded to look like a fighter wearing a full face helmet and plate armor. The statue has both hands resting on the pommel of a huge sword, the tip of which rests upon the ground in front of it.%^RESET%^");
+    obj->set_description("%^BOLD%^%^BLUE%^standing at an impressive thirty feet tall, this statue is made of iron. Rust-free and gray, it is molded to look like a fighter wearing a full face helmet and plate armor. The statue has both hands resting on the pommel of a huge sword, the tip of which rests upon the ground in front of it.%^RESET%^");
 
     obj->setDescriptivePhrase("%^BOLD%^%^BLUE%^gigantic  $R%^RESET%^");
 

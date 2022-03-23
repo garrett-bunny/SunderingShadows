@@ -46,7 +46,7 @@ void reset() {
      new(TMONDIR+"centaurcl.c")->move(TO);
   }
 
-  taken = random(2);
+  taken = random(2) + 1;
 }
 
 void init(){

@@ -26,7 +26,7 @@
 #define JAILFOOD "/d/common/obj/special/jail_food"
 #define JAILDRINK "/d/common/obj/special/jail_drink"
 
-#define MAXTIME 1200
+#define MAXTIME 3600
 #define MAXWANTED 3600
 
 #include <std.h>

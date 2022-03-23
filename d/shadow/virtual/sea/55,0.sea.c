@@ -16,7 +16,7 @@ void create() {
      set_property("no teleport",1);
     set_long(
 @OLI
-	%^BOLD%^You are on a the Saakrune Sea.%^RESET%^
+	%^BOLD%^You are on the Saakrune Sea.%^RESET%^
      Here is a small cove with a dock in it.
 OLI
 	);

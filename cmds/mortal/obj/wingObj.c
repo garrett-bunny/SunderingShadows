@@ -14,7 +14,7 @@ string * RAND_MSG = ({"A cool breeze gives your wings some extra lift as you soa
             "A flutter of wings takes you into the air.",
             "You slowly descend to the ground in a series of languid swoops.",
             "Powerful thrusts of your wings carry you higher.",
-            "Soaring through the air calm you as you ride the wind currents."});
+            "Soaring through the air calms you as you ride the wind currents."});
 string * RAND_CLRS = ({"%^BLUE%^%^BOLD%^","%^BOLD%^%^WHITE%^","%^WHITE%^","%^BLUE%^","%^ORANGE%^"});
 string FLIGHT_ROOM = "/std/flying_room.c";
 object destobj;

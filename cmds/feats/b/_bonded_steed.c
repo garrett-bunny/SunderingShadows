@@ -22,7 +22,7 @@ void create()
     feat_name("bonded steed");
     feat_prereq("Paladin L5");
     feat_syntax("bonded_steed to summon or bonded_steed to dismiss");
-    feat_desc("Summons or dismisses the paladin's faithful bonded steed. The steed will be loyal only to its owner and can be ridden, like any other mount, with the 'mount' command.
+    feat_desc("Summons or dismisses the paladin's faithful bonded steed. The steed will be loyal only to its owner and can be ridden, like any other mount, with the 'mount' command. At paladin level 21, this steed becomes a majestic flying creature.
 
 The Bonded Steed can also be customized through several commands, which will allow you to change its description:
 
@@ -90,12 +90,6 @@ void execute_feat()
         return;
     }
     
-    if(!(int)USER_D->spend_pool(TP, 1, "grace"))
-    {
-        tell_object(caster, "You don't have the Divine Grace to summon your steed!");
-        return;
-    }
-    
     companion = caster->query_property("animal_companion");
     
     if(objectp(companion))
@@ -107,13 +101,27 @@ void execute_feat()
         return;
     }
     
-    tell_object(caster, sprintf("You summon your trusty steed to your side."));
+    if(!(int)USER_D->spend_pool(TP, 1, "grace"))
+    {
+        tell_object(caster, "You don't have the Divine Grace to summon your steed!");
+        return;
+    }
     
     class_level = caster->query_guild_level("paladin");
     comp_hd = class_level + 2;
     comp_ac = class_level + 10;
     
-    companion = new("/d/magic/mon/bonded_steed");
+    if(class_level > 20)
+    {
+        companion = new("/d/magic/mon/flying_bonded_steed");
+        tell_object(caster, sprintf("You whistle and a majestic flying mount lands at your side."));
+    }
+    else
+    {
+        companion = new("/d/magic/mon/bonded_steed");
+        tell_object(caster, sprintf("You summon your trusty steed to your side."));
+    }
+    
     companion->set_race("horse");
     companion->set_name("steed");
     companion->set_id( ({ "steed", "bonded steed", "greater summon", "animal", caster->query_name() + "'s ally" }) );
@@ -136,9 +144,9 @@ void execute_feat()
     companion->set_heart_beat(1);
     
     //Setting companion stats based on type per SRD
-    companion->set_stats("strength", 16);
+    companion->set_stats("strength", 30);
     companion->set_stats("dexterity", 12);
-    companion->set_stats("constitution", 18);
+    companion->set_stats("constitution", 30);
     companion->set_stats("intelligence", 6);
     companion->set_stats("wisdom", 8);
     companion->set_stats("charisma", 14);

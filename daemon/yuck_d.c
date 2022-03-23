@@ -204,10 +204,13 @@ void save_inventory(object ob, string path)
     }
     seteuid(getuid());
     j = 0;
+    
     for (x = 0; x < sizeof(inv); x++) 
     {
         fname = path+"/ob"+x;
-        j=inv[x]->save_me(fname);
+        if(catch(j = inv[x]->save_me(fname)))
+            log_file("save_inventory", "Failed to save: " + base_name(inv[x]) + "\n");
+        //j=inv[x]->save_me(fname);
         continue;
     }
 }

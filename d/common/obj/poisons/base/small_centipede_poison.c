@@ -9,7 +9,7 @@ void create()
 	add_id(({"small centipede venom"}));	
 	set_poison_dc(11);
 	set_poison_effect_type(({"dexterity"}));
-	set_poison_name("small cendipede venom");
+	set_poison_name("small centipede venom");
 	set_poison_dice(({1}));
 	set_poison_num_dice(({2}));
 	set_delivery_method("injury");

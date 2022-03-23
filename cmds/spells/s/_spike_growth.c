@@ -18,8 +18,7 @@ void create()
     set_spell_level(([ "druid" : 3, "ranger" : 2 ]));
     set_spell_sphere("conjuration_summoning");
     set_syntax("cast CLASS spike growth");
-    set_description("This spell causes roots or other vegetation in the area to become hard and razor sharp.  Anyone moving in the area, "
-        "such as the movement in combat or passing through the room, will suffer piercing damage to his or her feet.  The spell may only "
+    set_description("This spell causes roots or other vegetation in the area to become hard and razor sharp.  Anyone passing through the room or engaged in combat will suffer piercing damage to his or her feet.  The spell may only "
         "be used in areas where some vegetation may be found.");
     set_property("magic",1);
     set_casting_time(1);

@@ -25,7 +25,7 @@ void create()
              "forest scene%^WHITE%^.  The lush forest around the " +
              "unicorn is highly detailed, from the texture of the" +
              " bark to the shape of the leaves.  The unicorn's long" +
-             " flowing main has been depicted as floating in the " +
+             " flowing mane has been depicted as floating in the " +
              "air.  With her head bent low, the unicorn is touching" +
              " the surface of a %^CYAN%^still pool%^WHITE%^ of water" +
              " with her %^YELLOW%^h%^WHITE%^o%^YELLOW%^r%^WHITE%^n." +
@@ -37,7 +37,7 @@ void create()
              "seem to spell out something.");
     set_lore("First created by the faiths of Lysara and Nim'navanon," +
              " the Chalice of Purity symbolized the main themes of both" +
-             " goddesses.  The unicorn is used to symbolize purity and" +
+             " deities.  The unicorn is used to symbolize purity and" +
              " cleansing, while the still pool is an icon of Lysara's" +
              " tranquility.");
     set_property("lore difficulty", 9);

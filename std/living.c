@@ -325,7 +325,7 @@ void reinit_path()
 
 void heart_beat()
 {
-    int myskill, mylevel, i;
+    int myskill, mylevel, regen_amt, i;
     object attacker;
 
     if (!objectp(TO)) {
@@ -401,14 +401,18 @@ void heart_beat()
         if(!this_object()->query_current_attacker())
             this_object()->remove_property("using instant feat");
         
-        if (FEATS_D->usable_feat(TO, "regeneration")) {
+        if (FEATS_D->usable_feat(this_object(), "regeneration")) {
             if (query_hp() < query_max_hp()) {
-                add_hp(roll_dice(1, TO->query_level()) / 2 + 1);
+                regen_amt = roll_dice(1, this_object()->query_level()) / 2 + 1;
+                if(this_object()->query_property("fester")) regen_amt = regen_amt / 2;
+                add_hp(regen_amt);
             }
         }
         if (query_property("fast healing")) {
             if (query_hp() < query_max_hp()) {
-                add_hp(query_property("fast healing") * roll_dice(1, TO->query_level() / 2 + 1));
+                regen_amt = query_property("fast healing") * roll_dice(1, this_object()->query_level() / 2 + 1);
+                if(this_object()->query_property("fester")) regen_amt = regen_amt / 2;
+                add_hp(regen_amt);
             }
         }
 
@@ -443,7 +447,7 @@ void heart_beat()
         }
         
         if(this_object()->is_shade() &&
-        !random(8) &&
+        !random(25) &&
         !avatarp(this_object()) &&
         !wizardp(this_object()) &&
         !this_object()->query_hidden() &&
@@ -1832,6 +1836,15 @@ int query_attack_bonus()
         }
     }
     
+    if(this_object()->is_class("druid"))
+    {
+        if(FEATS_D->has_feat(this_object(), "guardian of nature"))
+        {
+            if(!USER_D->is_valid_terrain(environment(this_object())->query_terrain(), "city"))
+                ret += 2;
+        }
+    }
+    
     if(attacker && this_object()->query_race() == "dwarf")
     {
         if(this_object()->query("subrace") != "gray dwarf")
@@ -1939,6 +1952,15 @@ int query_damage_bonus()
             //Favored enemy improves with additional feats
             FEATS_D->usable_feat(TO, "second favored enemy") && ret += 2;
             FEATS_D->usable_feat(TO, "third favored enemy") && ret += 2;
+        }
+    }
+    
+    if(this_object()->is_class("druid"))
+    {
+        if(FEATS_D->has_feat(this_object(), "guardian of nature"))
+        {
+            if(!USER_D->is_valid_terrain(environment(this_object())->query_terrain(), "city"))
+                ret += 2;
         }
     }
     

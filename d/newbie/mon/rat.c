@@ -25,7 +25,7 @@ void create()
     set_base_damage_type("piercing");
     add_limb("teeth", "head", 0, 0, 0);
     set_attack_limbs(({ "right forepaw", "left forepaw", "teeth" }));
-    set_ac(10);
+    set_overall_ac(10);
     set_alignment(9);
     add_money("gold", random(10) + 2);
     add_money("silver", random(10));

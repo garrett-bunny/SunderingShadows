@@ -18,7 +18,7 @@ void create()
     set_syntax("cast CLASS cone of cold on TARGET");
     set_damage_desc("delayed cold");
     set_description("By casting this spell, you form a massive white cone of icy cold towards your target.  Not only does "
-        "this spell increase damagewise as the caster increases in level, but also, the chance of hitting an unintended target in "
+        "this spell increase damage-wise as the caster increases in level, but also, the chance of hitting an unintended target in "
         "addition to the intentional one increases too.  The mage will try to aim the spell at only hostile targets, but this is "
         "not always possible.");
     set_verbal_comp();
@@ -151,7 +151,7 @@ void zapper()
         {
             tell_object(caster, "%^BOLD%^%^WHITE%^You unleash a massive white "+size+" of frost toward "+HIM+"!%^RESET%^");
             tell_room(place, "%^BOLD%^%^WHITE%^A massive white "+size+" of frost thrusts forth from "+caster->QCN+"%^BOLD%^%^WHITE%^ toward "+HIM+"!%^RESET%^", ({target, caster}));
-            tell_object(target, "%^BOLD%^%^WHITE%^A massive white "+size+" of frost thursts forth from "+YOU+" toward you!%^RESET%^");
+            tell_object(target, "%^BOLD%^%^WHITE%^A massive white "+size+" of frost thrusts forth from "+YOU+" toward you!%^RESET%^");
         }
         else
         {

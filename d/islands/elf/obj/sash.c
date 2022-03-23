@@ -21,11 +21,8 @@ void create(){
    " of its own that defies the forces of time and entropy.");
    set_size(-1);
    set_value(5000);
-   set_wear((:TO,"wear_me":));
+   set_wear("%^MAGENTA%^You wrap the sash around you and feel so alone...%^RESET%^");
    set_property("enchantment",4);
    set_item_bonus("craft, tailor",2);
 }
-int wear_me(){ 
-  tell_object(ETO,"%^MAGENTA%^You wrap the sash around you and feel so alone...");
-  return 1;
-}
+

@@ -355,3 +355,5 @@ void move_random() {
    }
    if(!random(3))  call_out("move_random", 5);
 }
+
+int is_boat(){ return 1;}

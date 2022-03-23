@@ -26,7 +26,7 @@ void create()
     set_item_bonus("dungeoneering",2);
 	set_value(1000);
 	set_wear((:TO,"wearme":));
-	set_remove((:TO,"removeme":));
+	set_remove("You remove your trousers and your backside feels the cold air againsts the wetness.");
 }
 int wearme()
 {
@@ -36,9 +36,11 @@ int wearme()
 	return 1;
 }
 
+/*
 int removeme()
 {
 	tell_object(ETO,"You remove your trousers and your"+
     " backside feels the cold air againsts the wetness.");
 	return 1;
 }
+*/

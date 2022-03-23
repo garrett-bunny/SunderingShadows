@@ -105,7 +105,7 @@
 
 inherit NPC;
 
-#define VALID_GODS ({"jarmila","callamir","kreysneothosies","seija","lord shadow","the faceless one","kismet","lysara","nimnavanon","nilith","khyron","cevahir"})
+#define VALID_GODS ({"jarmila","callamir","kreysneothosies","seija","lord shadow","the faceless one","kismet","lysara","nimnavanon","nilith","khyron","cevahir","ashra","edea"})
 
 mapping race_messages=([]);
 string *bad_races=({}),race_action,area_guarded,temple_guarded,jail_location,expel_location,capture_location;
@@ -285,6 +285,15 @@ void add_to_wanted(object live)
         AREALISTS_D->add_wanted(live, query_guarding(), TO);
     }
     return;
+}
+
+void add_bounty(object live, int amount)
+{
+    if(!userp(live))
+        return;
+    
+    if(!AREALISTS_D->query_bounty_amount(live, query_guarding(), this_object()))
+        AREALISTS_D->add_bounty(live, query_guarding(), amount, this_object());
 }
 
 int is_jailer(object live)
@@ -470,7 +479,8 @@ void do_battle(object live)
             if (is_jailer(targets[j])) {
                 continue;
             }
-            add_to_wanted(targets[j]);
+            //add_to_wanted(targets[j]);
+            add_bounty(targets[j], 100000);
             if (targets[j]->query_unconscious() || targets[j]->query_bound()) {
                 continue;
             }                                                                              // hopefully to prevent overkill

@@ -8,7 +8,7 @@
 #define allowed_armor  ({ "stun","trip","heal","attack","repair","disarm","reflect","bleed","blind" })
 #define allowed_weapon ({ "stun","trip","heal","attack","repair","poison","bleed","blind" })
 
-#define restricted_skills ({ "craft, armorsmith", "craft, jeweller", "craft, leatherworker", "craft, weaponsmith", "craft, woodworker", "craft, tailor", "craft, leatherwork", "light", "fast healing", "spellTurning", "missChance" })
+#define restricted_skills ({ "craft, armorsmith", "craft, jeweller", "craft, leatherworker", "craft, weaponsmith", "craft, woodworker", "craft, tailor", "craft, leatherwork", "light", "spellTurning", "missChance", "magic resistance", "shieldMiss" })
 
 #define EXTRA_BONUSES ({ "enchantment","special" })
 
@@ -95,7 +95,10 @@ varargs int calculate_cost(object tp, object item, string bonus, int amt, string
     if(flat_level < 0) flat_level = flat_level * -1;
 
     bonuses = item->query_item_bonuses();
-    if(sizeof(keys(bonuses))) { bonus_names = keys(bonuses); }
+    if(sizeof(keys(bonuses))) {
+        bonus_names = keys(bonuses);
+        bonus_names = filter(bonus_names, (: $1 != "shieldMiss" :));
+    }
 
     for(i=0;sizeof(bonus_names),i<sizeof(bonus_names);i++)
     {
@@ -319,6 +322,7 @@ int bonus_allowed(object tp, object item, string bonus, int amt)
 
     bonuses += ([ "enchantment" : flat_level ]);
     bonus_names = keys(bonuses);
+    bonus_names = filter(bonus_names, (: $1 != "shieldMiss" :));
 
     // if they're already at the max amount of bonuses, they could still add another 'type' of special,
     // like if they have a damage special, they could add a stun special too
@@ -1084,8 +1088,8 @@ void play_crafting_reel(mapping info)
 
         case 3:
 
-            tell_room(etp, "%^BOLD%^%^BLACK%^Closing "+tp->QCN+" eyes in concentration, "+tp->QP+" voice %^RESET%^rises "
-                "%^BOLD%^%^BLACK%^and %^RESET%^falls %^BOLD%^%^BLACK%^in a r%^RESET%^h%^BOLD%^%^BLACK%^yth%^RESET%^m"
+            tell_room(etp, "%^BOLD%^%^BLACK%^"+tp->QCN+" closes their eyes in concentration, "+tp->QP+" voice %^RESET%^rising "
+                "%^BOLD%^%^BLACK%^and %^RESET%^falling %^BOLD%^%^BLACK%^in a r%^RESET%^h%^BOLD%^%^BLACK%^yth%^RESET%^m"
                 "i%^BOLD%^%^BLACK%^c, m%^RESET%^%^MAGENTA%^es%^WHITE%^m%^BOLD%^%^BLACK%^eri%^RESET%^%^MAGENTA%^zi"
                 "n%^BOLD%^%^BLACK%^g mantra.%^RESET%^\n",tp);
             tell_object(tp, "%^BOLD%^%^BLACK%^You close your eyes and chant, feeling the %^MAGENTA%^p%^RESET%^%^MAGENTA%^o%^BOLD%^w"

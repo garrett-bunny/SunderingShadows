@@ -26,7 +26,7 @@ void create()
         "to tell where you are, or where you are going.  You eventually "
         "stumble upon an opening you think may be large enough to fit through.  "
         "Not wanting to stay in the stairwell any longer then you have to "
-        "you are very gratefull for this doorway.");
+        "you are very grateful for this doorway.");
  
     set_exits(([
         "south"     :HALL+"chamber5",

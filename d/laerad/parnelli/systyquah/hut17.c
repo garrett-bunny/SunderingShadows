@@ -9,9 +9,9 @@ void create(){
     set_short("Systyquah's magic shop");
     set_long(
         "%^BOLD%^Systyquah's magic shop%^RESET%^
-You are standing in Systyquah's shop of magic.  There is a  "+
+You are standing in Systyquah's shop of magic.  There is a "+
 	"massive bookcase covering each of the walls in this "+
-	"room all filled with books and scrolls.  A few candles "+
+	"room, all filled with books and scrolls.  A few candles "+
 	"are lit around a small round table near the center of "+
 	"the room.  A very old troll sits here studying."
     );

@@ -12,7 +12,7 @@ void create()
     feat_category("Psionics");
     feat_name("psionicweapon");
     feat_prereq("Psywarriors L5 or Psion L11");
-    feat_desc("With this feat a psionic character can build a charge of raw psychic energy and deliver an mental damage to every attacker. This feat consumes 1d6 power points when used.");
+    feat_desc("With this feat a psionic character can build a charge of raw psychic energy and deliver an mental damage to every attacker. This feat consumes 1d6 power points when used. This feat uses your psionic focus.");
     feat_syntax("psionicweapon");
     set_required_for(({ "greaterpsionicweapon" }));
     psionic(1);
@@ -52,6 +52,7 @@ void execute_feat()
     int delay;
     ::execute_feat();
 
+    /*
     if(caster->cooldown("psionicweapon"))
     {
     //if ((int)caster->query_property("using smite") > time()) { //keeping the same variable to avoid stacking
@@ -59,6 +60,7 @@ void execute_feat()
         dest_effect();
         return;
     }
+    */
     if ((int)caster->query_property("using instant feat")) {
         tell_object(caster, "You are already in the middle of using a feat!");
         dest_effect();
@@ -66,6 +68,12 @@ void execute_feat()
     }
     if (!sizeof(caster->query_attackers())) {
         tell_object(caster, "You're not under attack!");
+        dest_effect();
+        return;
+    }   
+    if(!USER_D->spend_pool(caster, 1, "focus"))
+    {
+        tell_object(caster, "You need to be focused before you can attempt Psionic Weapon.");
         dest_effect();
         return;
     }
@@ -96,13 +104,15 @@ void execute_attack()
         return;
     }
 
-    caster->add_cooldown("psionicweapon", FEATTIMER);
+    //caster->add_cooldown("psionicweapon", FEATTIMER);
 
-    die = 6;
-
-    if (FEATS_D->usable_feat(caster, "mind wave")) {
+    if(FEATS_D->has_feat(caster, "greaterpsionicweapon"))
         die = 8;
-    }
+    else
+        die = 6;
+    
+    if (FEATS_D->usable_feat(caster, "mind wave"))
+        die += 2;
 
     targets = caster->query_attackers();
 
@@ -128,8 +138,8 @@ void execute_attack()
             continue;
         }
         tell_object(targets[i], "%^BOLD%^%^MAGENTA%^" + caster->QCN + " releases a psionic tempest that slices through your mind like countless blades!%^RESET%^");
-        dmg = roll_dice(clevel, die);
-
+        //dmg = roll_dice(clevel, die);
+        dmg = roll_dice(clevel, die) + BONUS_D->query_stat_bonus(caster, "intelligence");
         //caster->cause_damage_to(targets[i], "head", dmg);
         targets[i]->cause_typed_damage(targets[i], targets[i]->return_target_limb(), dmg, "mental");
         caster->add_attacker(targets[i]);

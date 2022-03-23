@@ -28,15 +28,19 @@ void create(){
    set_long((:TO,"long_desc":));
    set_size(2);
    set_value(5000);
-   set_wear((:TO,"wear_me":));
+   //set_wear((:TO,"wear_me":));
 }
 
+/*
 int wear_me(){ 
   tell_object(ETO,"%^CYAN%^You throw the cloak over your shoulders and fasten it secure.");
          if(find_call_out("mess")==-1)  
            call_out("mess",120+random(1000)); 
   return 1;
 }
+
+*/
+
 string short_desc(){
   if (season(time()) == "winter") 
      return("%^RESET%^%^CYAN%^w%^BOLD%^in%^RESET%^%^CYAN%^ter's c%^BOLD%^lo%^RESET%^%^CYAN%^ak%^RESET%^");
@@ -48,6 +52,7 @@ string short_desc(){
     return("%^RESET%^%^GREEN%^sp%^BOLD%^ri%^RESET%^%^GREEN%^ng's c%^BOLD%^loa%^RESET%^%^GREEN%^k%^RESET%^");
 
 }
+
 string long_desc(){
   if (season(time()) == "winter") 
    return("%^CYAN%^ This is a cloak that is made"+

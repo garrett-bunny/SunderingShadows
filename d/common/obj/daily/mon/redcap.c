@@ -65,6 +65,7 @@ void set_powerlevel(int pwrlvl){
     set_hp(query_max_hp());
     set_new_exp((powerlevel * 10), "high");
     set_skill("athletics", (powerlevel * 10));
+    tell_room(environment(this_object()), "%^RESET%^%^CRST%^%^C124%^The %^C196%^redcap %^C124%^seems to %^C220%^g%^C226%^l%^C220%^o%^C214%^w %^RESET%^%^C124%^as power manifests around it.%^CRST%^");
     return;
 }
 

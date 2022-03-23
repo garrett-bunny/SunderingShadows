@@ -28,8 +28,8 @@ OLI
 
    set_items(([
       "books":"These books look used and old. Great knowledge is stored here.",
-      "shelves":"You notice the shelves here are full of dusty, must covered books.",
-      "staircase":"This is and old ornate staircase.  It twists tightly downward, so that only one can pass at a time",
+      "shelves":"You notice the shelves here are full of musty, dust covered books.",
+      "staircase":"This is an old ornate staircase.  It twists tightly downward, so that only one can pass at a time",
       ]));
    set_exits(([
 

@@ -15,7 +15,7 @@ void create() {
 "the sharpness of the mind to anticipate their opponents' moves. "
 "This feat adds your intelligence modifier to your passive armor class "
 "while wearing light or no armor and while not incapacitated. In addition "
-"The duelist gains +4 to their reflex saves.");
+"the duelist gains +4 to their reflex saves.");
     permanent(1);
     set_required_for(({}));
 }

@@ -13,8 +13,7 @@ object clothes, remote;
 void create() {
     ::create();
     set_spell_name("domination");
-    set_spell_level(([ "mage" : 5, "cleric" : 5 ]));
-    set_domains("charm");
+    set_spell_level(([ "mage" : 5 ]));
     set_spell_sphere("enchantment_charm");
     set_syntax("cast CLASS domination on TARGET");
     set_description("By casting domination successfully, you will gain control over a chosen sapient race target. Appropriate targets include only races from <help races> list. You then can use the next commands to force the dominated to serve:

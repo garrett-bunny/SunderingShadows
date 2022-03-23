@@ -64,8 +64,7 @@ int wield_knife(){
    if (!objectp(TO)||!objectp(ETO)||!objectp(EETO)){return 0;}
    tell_object(ETO,"%^RESET%^%^ORANGE%^As you wrap your hand around the mass of flesh, you feel %^RESET%^%^CYAN%^warm liquid %^RESET%^%^ORANGE%^flow through your fingers. The liquid slowly forms into the perfect shape of a dagger.%^RESET%^");
    tell_room(EETO,"%^RESET%^%^ORANGE%^As " + (string)ETO->QCN + " %^RESET%^%^ORANGE%^grasps the mass of flesh, you hear a soft squishing sound as a %^RESET%^%^CYAN%^liquid blade%^RESET%^%^ORANGE%^ flows out.%^RESET%^",ETO);
-   set_short("%^RESET%^%^ORANGE%^Te%^RESET%^%^RED%^a%^RESET%^%^ORANGE%^rs of t%^RESET%^%^RED%^h%^RESET%^%^ORANGE%^e Lo%^RESET%^%^RED%^s%^RESET%^
-%^ORANGE%^t%^RESET%^");
+   set_short("%^RESET%^%^ORANGE%^Te%^RESET%^%^RED%^a%^RESET%^%^ORANGE%^rs of t%^RESET%^%^RED%^h%^RESET%^%^ORANGE%^e Lo%^RESET%^%^RED%^s%^RESET%^%^ORANGE%^t%^RESET%^");
    set_obvious_short("%^RESET%^%^CYAN%^liq%^RESET%^%^WHITE%^u%^RESET%^%^CYAN%^id d%^RESET%^%^BOLD%^%^CYAN%^a%^RESET%^%^CYAN%^gger%^RESET%^");
    set_long("%^RESET%^%^ORANGE%^Formed from a lump of flesh, the grotesque hilt of this dagger writhes and pulsates. Several %^RESET%^%^BOLD%^%^WHITE%^eyeballs %^RESET%^%^ORANGE%^of different colors seem to be in a constant state of crying, the %^RESET%^%^CYAN%^tears %^RESET%^%^ORANGE%^forming into a %^RESET%^%^CYAN%^liq%^RESET%^%^BOLD%^%^CYAN%^u%^RESET%^%^CYAN%^id b%^RESET%^%^BOLD%^%^CYAN%^l%^RESET%^%^CYAN%^ade %^RESET%^%^ORANGE%^that flows out into a point. A sense of supreme %^RESET%^%^BOLD%^%^BLACK%^loss %^RESET%^%^ORANGE%^flows over you as you watch this blade.%^RESET%^");
    return 1;

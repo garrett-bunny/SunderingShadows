@@ -14,8 +14,8 @@ void create()
    "The flind is a very large beast, well over six feet in height. He is"+
    " muscled and wears some leather armor with a cloak. He rather"+
    " resembles a gnoll, but is broader and seems a bit more intelligent."+
-   " He is quite dirty, and %^BOLD%^%^RED%^red fur%^RESET%^%^CYAN%^ covers"+
-   " his body. His ears are round like an animals, and his forehead slopes"+
+   " He is quite dirty, and %^BOLD%^%^RED%^red fur%^RESET%^ covers"+
+   " his body. His ears are round like an animal's, and his forehead slopes"+
    " backwards. He has large claws on his hands and feet, but is holding a"+
    " club. He definitely looks mean."
    );

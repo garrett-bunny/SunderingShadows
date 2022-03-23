@@ -48,6 +48,7 @@ int preSpell()
 
 spell_effect()
 {   
+    int bonus, power;
     if(!target)
         target = caster;
 
@@ -60,10 +61,12 @@ spell_effect()
 
     spell_successful();
 
-    tell_room(place,"%^MAGENTA%^"+caster->QCN+"  raises an impenetrable veil of magic around "+target->QCN+".%^RESET%^");
-
+    tell_room(place,"%^MAGENTA%^"+caster->QCN+" raises an impenetrable veil of magic around "+target->QCN+".%^RESET%^");
+    
+    bonus = calculate_bonus(caster->query_stats(get_casting_stat()));
+    power = clevel + bonus + random(6);
     blocker = SCRY_D->add_block_scrying(target);
-    blocker->set_block_power(query_spell_DC(target, 0));
+    blocker->set_block_power(power);
     
     target->set_property("spelled", ({TO}) );
     target->set_property("block scrying", 1);

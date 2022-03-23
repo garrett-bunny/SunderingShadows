@@ -23,7 +23,7 @@ void create(){
       "er %^WHITE%^stream down cracks in the limestone, creating a "+
       "tiny stream in the middle of the passage. Due to the drainage, "+
       "the walls of the tunnel have been worn to a smooth patina. In "+
-      "someplaces however, small ripples are found in the limestone. "+
+      "some places however, small ripples are found in the limestone. "+
       "Scrawled on the dry patches of limestone are a series of crude "+
       "paintings. This tunnel slopes gradually, causing the path ahead "+
       "to descend deeper into the depths of the earth.%^RESET%^\n");
@@ -42,7 +42,7 @@ void create(){
       ({"tunnel","passageway","passage"}):"%^BOLD%^This passageway snakes "+
          "through the solid limestone, probably the result of eons of "+
          "seeping or flowing water. It slopes downward at a slight, "+
-         "but discernable grade.",
+         "but discernible grade.",
       "paintings" : "%^BOLD%^These cave paintings appear to be the "+
          "result of either a member of an uncivilized race, someone "+
          "of little skill, or both. The logic of the series of paintings "+

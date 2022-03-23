@@ -8,5 +8,6 @@
 "fey":"The capricious nature of the fey runs in your family.",\
 "ghoul":"One of your ancestors wasn't quite alive.",\
 "infernal":"A devil lurks in your ancestry.",\
+"orc":"You are descended from a powerful orcish warlord, and his fiery blood courses through your veins.",\
 "stormborn":"Your lineage got struck by lightning.",\
 ])

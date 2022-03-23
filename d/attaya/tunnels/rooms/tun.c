@@ -24,8 +24,8 @@ void create() {
                          +" others, making it hard to know whether they"
                          +" have been worked or not..",
 
-  ({ "cracks", "fissures"}):"the larger cracks look big enough for"
-                           +" something to go into of come out of, but"
+  ({ "cracks", "fissures"}):"The larger cracks look big enough for"
+                           +" something to go into or come out of, but"
                            +" they are way up out of"
                            +" reach.", 
 
@@ -33,10 +33,10 @@ void create() {
 
   "floor" : "The floor is smooth, and relatively free of dirt. There are"
            +" scuff marks on it suggesting this place is frequently"
-           +" travelled." 
+           +" traveled." 
   ]) );
 
-  set_search("walls","you find many small cracks and fissures in the"
+  set_search("walls","You find many small cracks and fissures in the"
                     +" slate. There appear to be larger cracks higher up"
                     +" on the walls, out of reach." );
 

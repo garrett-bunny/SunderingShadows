@@ -19,7 +19,7 @@ void create(){
            +" eyepatch covers the wearer's 'third eye', it grants some concealment"
            +" from the prying eyes of those using magical or psychic scrying");
    set_property("lore difficulty",19);
-    set_item_bonus("enchantment",7);
+   set_property("enchantment",7);
    set_type("ring"); 
    set_limbs(({"head"}));
    set_ac(0);
@@ -56,13 +56,6 @@ int reposition(string str){
   if (ETO->query_property("raged")) {
     return notify_fail("You are too overcome with rage to adjust the"
                       +" eyepatch carefully\n");
-  }
-  if (objectp(ETO)){
-    quests = ETO->query_mini_quests();
-    if(member_array("Great Defender of the Tabaxi", quests)==-1 && !ETO->query_true_invis()){
-      tell_object(ETO, "The Tabaxi have not granted you permission to use the magic of the eyepatch. Perhaps if you did something to help them out?");
-      return 1; 
-    }
   }
 
   if (position == 0){
@@ -181,6 +174,3 @@ int unwearme(){
    return 1;
 }
 
-void slip(){
-  
-}

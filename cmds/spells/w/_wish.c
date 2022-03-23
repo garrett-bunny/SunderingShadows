@@ -20,10 +20,10 @@ void create()
 {
     ::create();
     set_spell_name("wish");
-    set_spell_level(([ "mage" : 10 ]));
+    set_spell_level(([ "deep" : 9 ]));
     set_spell_sphere("universal");
     set_syntax("cast CLASS wish on SPELL_NAME [on SPELL_ARGS]");
-    set_description("With this spell, the arcanist pulls on the very nature of the weave, changing the universe around them to perform a spell effect. The caster can perform any spell in the game, up to level 9 for most spells, limited to level 8 for spells of the mage's opposing school. This spell can only be used once per day. This spell is considered deep magic and represents the pinnacle of the universalist school of magic.");
+    set_description("With this spell, the arcanist pulls on the very nature of the weave, changing the universe around them to perform a spell effect. The caster can perform any spell in the game, up to level 9 for most spells, limited to level 8 for spells of the mage's opposing school. This spell can only be used once per day. This spell is considered deep magic and represents the pinnacle of the universalist school of magic. This spell has a very long cooldown.");
     set_arg_needed(1);
     set_silent_casting(1);
 }
@@ -75,7 +75,8 @@ int preSpell()
         sargs = "";
     spell_to_cast = new(splfn);
 
-    mage_level = min(values(MAGIC_D->query_index_row(spl)["levels"]));
+    mage_level = min(values(spell_to_cast->query_spell_level_map()));
+    //mage_level = min(values(MAGIC_D->query_index_row(spl)["levels"]));
 
     max_level = MAX_MAG;
     
@@ -94,8 +95,8 @@ int preSpell()
     tell_room(place, "%^BOLD%^CYAN%^" + caster->query_cap_name() + " concentrates deeply and slowly brings " + caster->query_possessive() + " deepest desires into being.", caster);
 
     spell_successful();
-
-    spell_to_cast->use_spell(this_player(),sargs,clevel);
+    spell_type = spell_to_cast->query_spell_type();
+    spell_to_cast->use_spell(this_player(),sargs,clevel,ctype);
     caster->add_cooldown("wish", 86400);
     
     return 1;

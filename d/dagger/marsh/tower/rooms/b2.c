@@ -35,7 +35,7 @@ void create() {
 	"walls":"Shadows dance upon the walls.",
 	"shadows":"The shadows sway in and about...almost as though they were alive.",
 	"mirror":"The mirror has been smashed and the broken shards lay below it.",
- 	"frame":"The empty brass frame hangs empty on the wall.",
+ 	"frame":"The empty brass frame hangs on the wall.",
 	"shards":"The many shards lay in splinters as though whatever smashed the mirror also "
 	"stomped upon the shards to crush them as small as possible.",
 	"cobwebs":"The ancient cobwebs cover the opening to the south...whatever spider made "

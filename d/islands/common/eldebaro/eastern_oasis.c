@@ -80,7 +80,7 @@ void create()
     set_items(([
         ({"trees", "palm trees"}) : "%^BOLD%^%^GREEN%^"+
         "These vibrant palm trees dot the sandscape here. They offer some measure of shade to weary "+
-        "travelers as well as to the new growth which spreads slowly across the sandscape.%^RESET%^",
+        "travelers as well as to the new growth that spreads slowly across the sandscape.%^RESET%^",
         
         ({"vegetation", "new growth", "new vegetation"}) : "%^BOLD%^%^GREEN%^"+
         "Most of this is rather course grass, but there are a few small shrubs mixed in as well. "+
@@ -121,7 +121,7 @@ string base_long()
     "The only dunes are much smaller and much easier to traverse. Amazingly you also notice that there is some "+
     "%^BOLD%^%^GREEN%^new vegetation%^RESET%^%^ORANGE%^ growing here, it is small and sporadic, but it appears to be "+
     "spreading across the s%^BOLD%^a%^RESET%^%^ORANGE%^ndsc%^BOLD%^a%^RESET%^%^ORANGE%^p%^BOLD%^e%^RESET%^%^ORANGE%^ slowly. "+
-    "There are several %^BOLD%^%^GREEN%^palm trees%^RESET%^%^ORANGE%^ which also offer shade to travelers and "+
+    "There are several %^BOLD%^%^GREEN%^palm trees%^RESET%^%^ORANGE%^ that also offer shade to travelers and "+
     "to the %^BOLD%^%^GREEN%^new growth%^RESET%^%^ORANGE%^. The sky is still ominous. Despite the fact that something is managing "+
     "to keep the winds at bay here you can still see what looks to be a st%^BOLD%^%^YELLOW%^o%^RESET%^%^ORANGE%^rm "+
     "of %^BOLD%^%^BLACK%^a%^BOLD%^%^WHITE%^p%^BOLD%^%^BLACK%^o%^BOLD%^%^WHITE%^c%^BOLD%^%^BLACK%^a%^BOLD%^%^WHITE%^"+

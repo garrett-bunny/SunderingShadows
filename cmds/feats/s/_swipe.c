@@ -219,7 +219,7 @@ void execute_attack()
     tell_object(target, caster->QCN + "%^BOLD%^%^CYAN%^ manages to find weakness in your defenses and slams into you!%^RESET%^");
 
     if (objectp(environment(caster))) {
-        tell_room(environment(caster), caster->QCN + "%^BOLD%^%^WHITE%^ manages to find a weakness in " + target->QCN + "%^BOLD%^%^WHITE%^ defenses and strikes with precision!%^RESET%^", ({ caster, target }));
+        tell_room(environment(caster), caster->QCN + "%^BOLD%^%^WHITE%^ manages to find a weakness in " + target->QCN + "%^BOLD%^%^WHITE%^'s defenses and strikes with precision!%^RESET%^", ({ caster, target }));
     }
     damage = roll_dice(clevel, 10);
     damage += (int)caster->query_damage_bonus();

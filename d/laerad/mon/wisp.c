@@ -7,9 +7,9 @@ void create(){
     set_name("Will o' wisp");
     set_short("A Will o' wisp");
     set_long(
-	"The Will o' wisp is merely a little ball of glowing light that "+
+	"The will o' wisp is merely a little ball of glowing light that "+
 	"darts back and forth in the air.  It is only a few inches long "+
-	"yet they are rumored to be fearsome opponents with powerful "+
+	"yet it is rumored to be a fearsome opponent with powerful "+
 	"abilities."
     );
     set_race("will o' wisp");

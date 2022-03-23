@@ -37,7 +37,7 @@ void spell_effect(int prof)
 
     attackers = target_selector();
 
-    tell_room(place, "%^BOLD%^%^WHITE%^" + caster->QCN + " detonates ball of %^RED%^e%^BOLD%^l%^RESET%^%^GREEN%^e%^BOLD%^m%^RESET%^%^ORANGE%^e%^BOLD%^n%^RESET%^%^CYAN%^t%^BOLD%^a%^RESET%^%^MAGENTA%^l%^WHITE%^%^BOLD%^ power, directing currents of raw energy at " + caster->QP + " enemies!%^RESET%^");
+    tell_room(place, "%^BOLD%^%^WHITE%^" + caster->QCN + " detonates a ball of %^RED%^e%^BOLD%^l%^RESET%^%^GREEN%^e%^BOLD%^m%^RESET%^%^ORANGE%^e%^BOLD%^n%^RESET%^%^CYAN%^t%^BOLD%^a%^RESET%^%^MAGENTA%^l%^WHITE%^%^BOLD%^ power, directing currents of raw energy at " + caster->QP + " enemies!%^RESET%^");
     if (!sizeof(attackers)) {
         tell_object(caster, "%^BOLD%^The area is washed with bright colors but nothing else happens.%^RESET%^");
         dest_effect();

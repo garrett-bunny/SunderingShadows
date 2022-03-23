@@ -58,7 +58,7 @@ void create() {
 	"Shadow.  A blacksmith, scribe, merchant, inn keeper, and apothecary "+
 	"are just some of the trades represented in the windows.",
 		({"statues"}) : "%^RESET%^Carved from gray slate, white marble"+
-	" and black basalt, a total of 27 seven statues help to create the "+
+	" and black basalt, a total of twenty seven statues help to create the "+
 	"support structure for the large panes on stained glass in the apse"+
 	" of the cathedral.  The top row of statues are all carved from "+
 	"marble.",

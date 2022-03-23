@@ -353,6 +353,9 @@ int query_skill(string skill)
         x += 5;
     }
     
+    if(skill == "survival" && FEATS_D->has_feat(this_object(), "nature sense"))
+        x += 10;
+    
     if(skill == "perception" && FEATS_D->usable_feat(this_object(), "danger sense")){
         x += ((this_object()->query_class_level("barbarian") / 10)  + (this_object()->query_class_level("thief") / 10) + 1);
     }
@@ -422,6 +425,12 @@ int query_skill(string skill)
                 x += 3;
             break;
         }
+    }
+    
+    if(this_object()->is_class("warlock") && PLAYER_D->check_familiar(this_object()))
+    {
+        if(skill == "perception")
+            x += 2;
     }
     
     //Represents the Jack of All Trades feature in tabletop which gives +1 to all skill checks

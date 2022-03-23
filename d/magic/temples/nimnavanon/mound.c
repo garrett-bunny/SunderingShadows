@@ -21,8 +21,8 @@ void create()
     set_items(([
                    "mound" : "%^GREEN%^The mound is steep and covered in grass. A path leads from the side of the mound back to the sacred grove to the west.",
                    "forest" : "%^GREEN%^The forest around the mound is lush and shady with tall oaks, firs and wild undergrowth. It shelters a few scattered %^ORANGE%^tents %^GREEN%^and %^ORANGE%^lodges.",
-                   "path" : "%^GREEN%^The dirt path leads west to Nimnavanon's %^BOLD%^%^GREEN%^sa%^RESET%^%^GREEN%^c%^BOLD%^re%^RESET%^%^GREEN%^d%^BOLD% oa%^RESET%^%^GREEN%^k.",
-                   "tents" : "%^GREEN%^A few tents made of animal hides are consealed behind bushes and tree trunks.",
+                   "path" : "%^GREEN%^The dirt path leads west to Nimnavanon's %^BOLD%^%^GREEN%^sa%^RESET%^%^GREEN%^c%^BOLD%^re%^RESET%^%^GREEN%^d%^BOLD%^ oa%^RESET%^%^GREEN%^k.",
+                   "tents" : "%^GREEN%^A few tents made of animal hides are concealed behind bushes and tree trunks.",
                    "lodges" : "%^GREEN%^The lodges are built from branches and barely visible in the thick forest.",
                    "hammocks" : "%^GREEN%^Hammocks are neatly tied to the branches in the canopy above, for resting or sleeping in.",
                    "nests" : "%^GREEN%^Nests of different sizes provide shelter to small and large birds, and whoever else lives in those trees.",

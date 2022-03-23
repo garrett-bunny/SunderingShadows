@@ -33,3 +33,12 @@ void init(){
       new("/d/dagger/tonovi/obj/tonovi_sign")->move(TO);
    }
 }
+
+void gruesome_display(object ob)
+{
+    if(!ob || !objectp(ob))
+        return;
+    
+    tell_object(ob, "%^BLACK%^BOLD%^Dozens...no hundreds of bodies hang by nooses from the walls, swinging slightly in the breeze. The bodies have had their eyes, noses and ears removed, and are all but unrecognizeable. But one thing is quite apparent: %^BLACK%^BOLD%^every one of them wears the finery of nobility on their bodies. Each body has a note attached to their chest with a spike, with one large, scrawling word upon it : TRAITOR.%^RESET%^");
+}
+

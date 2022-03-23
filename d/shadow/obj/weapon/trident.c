@@ -6,7 +6,7 @@ create() {
    set_name("trident");
    set_short("A trident");
    set_long(
-  "  This three pronged spear looks very vicious.  The center tine is longer than the side two which are horribly barbed."
+  "  This three pronged spear looks very vicious.  The center tine is longer than the side two, which are horribly barbed."
    );
    set_weight(6);
    set_size(2);

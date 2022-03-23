@@ -762,7 +762,7 @@ int query_verbose_combat()
     return user_vars["verbose_combat"];
 }
 
-varargs void move_player(mixed dest, string msg)
+varargs void move_player(mixed dest, string msg, int follow_flag)
 {
     object prev;
     object *inv;
@@ -818,6 +818,9 @@ varargs void move_player(mixed dest, string msg)
     }
 
     reset_hidden_seen();
+    
+    if(this_object()->query("reader"))
+        describe_current_room(static_user["verbose_moves"]);
 
     if (!hiddenp(TO) && !(avatarp(TO) && query_true_invis()))
     {
@@ -859,6 +862,10 @@ varargs void move_player(mixed dest, string msg)
             }
             if (query_hidden())
                 continue;
+            
+            //For screenreader support. Follow message messes up their ability to *see* room exits
+            //if(inv[i]->query("reader") && follow_flag)
+            //    continue;
 
             if (!msg || msg == "") message("mmin",query_mmin(inv[i]),inv[i]);
             else
@@ -875,7 +882,8 @@ varargs void move_player(mixed dest, string msg)
             move_followers(prev);
     }
 
-    describe_current_room(static_user["verbose_moves"]);
+    if(!this_object()->query("reader"))
+        describe_current_room(static_user["verbose_moves"]);
 }
 
 int id(string str)
@@ -986,6 +994,8 @@ int quit()
                 "Sweet dreams!",
                 "You be well now!",
         });
+    
+    string errors;
 
     if(catch(break_all_spells()))
         message("environment", "Error breaking spells.", this_object());
@@ -1024,12 +1034,26 @@ int quit()
     }
     YUCK_D->save_inventory(TO);
     inv=all_inventory(TO);
+    
+    foreach(object ob in inv)
+    {
+        if(!objectp(ob))
+            continue;
+        
+        if(!ob->remove() || (objectp(ob) && strlen(errors = catch(ob->remove()))))
+        {
+            log_file("quit", "quit error", query_name() + ": " + errors + "\n");
+            continue;
+        }
+    }
 
+    /*
     for (x=0;x<sizeof(inv);x++)
     {
         //if(objectp(inv[x])) { inv[x]->unequip(); }
         if(objectp(inv[x])) { inv[x]->remove(); }
     }
+    */
 
     if(static_user["pets"])
     {
@@ -1188,6 +1212,10 @@ void new_body()
             mylvl = CHARACTER_LEVEL_CAP - 1;
         }
         newmax = PWPOINTS[mylvl];
+        
+        if(FEATS_D->has_feat(this_object(), "eternal warrior"))
+            newmax += 50;
+        
         TP->set_max_mp(newmax);
     }
     if (TO->is_class("psion")) {
@@ -1985,7 +2013,7 @@ nomask void die()
         tell_object(TO, "%^BOLD%^No...no...this cannot be happening...there are so many more enemies left to kill and blood to be spilt...GET UP AND FIGHT!");
         tell_room(ETO, "%^RESET%^%^RED%^With a blood-curdling scream, " + TO->query_cap_name() + " springs from the ground and looks ready to beat back Kelemvor himself.", TO);
         TO->force_me("say I will not die until I murder you lot!");
-        TO->set_hp(query_max_hp());
+        TO->set_hp(query_max_hp() / 2);
         TO->set("rage death avoided", time() + 7200);
         return;
     }
@@ -1997,7 +2025,7 @@ nomask void die()
         tell_object(this_object(), "%^BOLD%^A beam of starlight illuminates your fallen form, expanding as it engulfs your entire being.%^RESET%^");
         tell_object(this_object(), "%^BOLD%^The energy fills your soul, and you feel yourself reborn.....a star child. You stand and continue to fight!%^RESET%^");
         tell_room(environment(this_object()), "%^BOLD%^A beam of starlight illuminates " + this_object()->query_cap_name() + ". " + this_object()->query_pronoun() + " stands once more, reborn and ready to fight!", this_object());
-        this_object()->set_hp(query_max_hp());
+        this_object()->set_hp(query_max_hp() / 2);
         this_object()->add_cooldown("star child", 7200);
         return;
     }
@@ -2009,7 +2037,7 @@ nomask void die()
             tell_object(TO, "%^BOLD%^%^RED%^As you are struck down, you find the will in your blood to continue the fight.");
             tell_object(TO, "%^BOLD%^You stand u and brush yourself up, ready to stick it out to the very end!!");
             tell_room(ETO, "%^RESET%^%^RED%^" + TO->query_cap_name() + " stands and continues to fight!", TO);
-            TO->set_hp(query_max_hp());
+            TO->set_hp(query_max_hp() / 2);
             this_object()->add_cooldown("orc ferocity", 7200);
             return;
         }
@@ -4361,6 +4389,8 @@ string realNameVsProfile(string who)
     foreach(string name in names)
     {
         tmp = relationships[name];
+        if(!mapp(tmp))
+            continue;
 
         if (!sizeof(tmp)) {
             continue;
@@ -4802,6 +4832,7 @@ void clear_feats()
     set_divinebond_feats_gained(0);
     set_rage_feats_gained(0);
     set_talent_feats_gained(0);
+    set_pact_feats_gained(0);
     set_other_feats_gained(0);
     set_epic_feats_gained(0);
     return;
@@ -4901,6 +4932,18 @@ int query_rage_feats_gained()
 {
     if(!intp(__FEAT_DATA["rage_feats_gained"])) { __FEAT_DATA["rage_feats_gained"] = 0; }
     return __FEAT_DATA["rage_feats_gained"];
+}
+
+void set_pact_feats_gained(int num)
+{
+    __FEAT_DATA["pact_feats_gained"] = num;
+    return;
+}
+
+int query_pact_feats_gained()
+{
+    if(!intp(__FEAT_DATA["pact_feats_gained"])) { __FEAT_DATA["pact_feats_gained"] = 0; }
+    return __FEAT_DATA["pact_feats_gained"];
 }
 
 void set_talent_feats_gained(int num)
@@ -5065,6 +5108,22 @@ mapping query_rage_feats()
 {
     if(!mapp(__FEAT_DATA["rage"])) { __FEAT_DATA["rage"] = ([]); }
     return __FEAT_DATA["rage"];
+}
+
+void set_pact_feats(mapping feats)
+{
+    if(!mapp(__FEAT_DATA["pact"])) { __FEAT_DATA["pact"] = ([]); }
+    if(mapp(feats))
+    {
+        __FEAT_DATA["pact"] = feats;
+    }
+    return;
+}
+
+mapping query_pact_feats()
+{
+    if(!mapp(__FEAT_DATA["pact"])) { __FEAT_DATA["pact"] = ([]); }
+    return __FEAT_DATA["pact"];
 }
 
 mapping query_talent_feats()
@@ -5483,7 +5542,7 @@ int test_passive_perception()
         ismagic = targ->query_magic_hidden();
         stealth = (int)targ->query_skill("stealth");
         spellcraft = (int)targ->query_skill("spellcraft");
-        if (FEATS_D->usable_feat(player, "spot") && !player->true_seeing()) {
+        if (FEATS_D->usable_feat(player, "spot")) {
             if (ishidden == 1 && ismagic == 0) {
                 if (perception > stealth) {
                     numnotvisible++;

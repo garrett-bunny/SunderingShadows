@@ -18,7 +18,8 @@ object blocker;
 void create() {
     ::create();
     set_spell_name("protection from stealing");
-    set_spell_level(([ "cleric" : 4, "paladin" : 3 ]));
+    //set_spell_level(([ "cleric" : 4, "paladin" : 3 ]));
+    set_spell_level(([ "classless" : 4 ]));
     set_spell_sphere("abjuration");
     set_syntax("cast CLASS prevent stealing [on TARGET]");
     set_description("This spell prevents stealing in the room where the caster has cast the spell for an amount of time "

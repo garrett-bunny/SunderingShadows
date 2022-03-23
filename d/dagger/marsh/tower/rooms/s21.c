@@ -23,7 +23,7 @@ set_short("%^BLUE%^The Shadowland");
 	"roam and wander, swaying wildly in the "
 	"howling %^ORANGE%^wind%^CYAN%^ in all directions. The %^ORANGE%^wind%^CYAN%^ "
 	"never remains constant, it rises in tempo and shifts in "
-	"direction with every heartbeat. The %^WHITE%^sky%^CYAN%^ is grey and filled with a "
+	"direction with every heartbeat. The %^WHITE%^sky%^CYAN%^ is gray and filled with a "
 	"%^MAGENTA%^smoky mist%^CYAN%^. %^BLUE%^Shadowy shapes%^CYAN%^ "
 	"fly overhead in random "
 	"erratic patterns. The two %^BOLD%^%^MAGENTA%^purple moons "

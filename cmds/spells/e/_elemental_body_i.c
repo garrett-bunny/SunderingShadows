@@ -58,8 +58,7 @@ void create()
 {
     ::create();
     set_spell_name("elemental body i");
-    set_spell_level(([ "mage" : 4, "oracle" : 4 ]));
-    set_mystery("elemental");
+    set_spell_level(([ "mage" : 4 ]));
     set_spell_sphere("alteration");
     set_bonus_type(({ "size", "natural armor" }));
     set_syntax("cast CLASS "+query_spell_name()+" on fire|air|earth|water");

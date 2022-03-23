@@ -189,10 +189,10 @@ int spend_pool(object ob, int amount, string pool_type)
         return 0;
     }
     avail -= amount;
-    
+
     if(pool_type == "focus" && avail < 1)
         tell_object(ob, "%^BOLD%^You lose your psionic focus.%^RESET%^");
-    
+
     ob->set("available " + pool_type, avail);
     return 1;
 }
@@ -286,7 +286,11 @@ varargs void regenerate_pool(object ob, int amount, int pass, string pool_type)
         case "focus":
             if(ob->is_class("psion") || ob->is_class("psywarrior"))
             {
+                
                 delay = 90;
+                if(FEATS_D->has_feat(ob, "battle focus") && ob->query_current_attacker())
+                    delay = 46;
+                
                 delay -= BONUS_D->query_stat_bonus(ob, "intelligence");
             }
             break;
@@ -358,7 +362,7 @@ void init_pool(object ob, string pool_type)
         }
         else
         {
-            newmax = 1 + FEATS_D->usable_feat(ob, "mental mastery");
+            newmax = 1 + FEATS_D->usable_feat(ob, "mental mastery") + FEATS_D->usable_feat(ob, "deep focus");
         }
     }
     if (!intp(avail = (int)ob->query("available " + pool_type))) avail = newmax;
@@ -839,10 +843,10 @@ int is_valid_enemy(string id, string cat)
 {
     if(!strlen(id))
         return 0;
-    
+
     if(!pointerp(VALID_ENEMY[cat]))
         return 0;
-    
+
     if (member_array(id, VALID_ENEMY[cat]) != -1) {
         return 1;
     }
@@ -881,7 +885,8 @@ int is_pk_race_player(object ob)
     if (file_exists(racefile)) {
         if (ob->query("no pk")) {
             if (racefile->is_pk_race(ob->query("subrace")) ||
-                ob->is_undead()) {
+                ob->is_undead() ||
+                ob->is_were()) {
                 return 1;
             }
         }

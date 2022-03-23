@@ -59,7 +59,7 @@ void driving(object targ, int num){
       break;
       case 4:
       tell_object(targ,"\n%^BOLD%^%^WHITE%^Once settled, new travellers often try their hand at fighting some beasts in "
-"areas along this road, including the Ebiki Caverns, the Meadowlands, the caves of the Echoes Mountains, the Koenig river "
+"areas along this road, including the Ekibi Caverns, the Meadowlands, the caves of the Echoes Mountains, the Koenig river "
 "and the Goblin Stronghold. The beastly denizens of Muul'daan are warned, however, not to travel too far east or the "
 "guards of Shadow City may swiftly put an end to their adventuring.%^RESET%^\n");
       break;

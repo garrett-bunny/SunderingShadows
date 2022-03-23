@@ -12,7 +12,7 @@ void create() {
     set_spell_level(([ "cleric" : 8 ]));
     set_spell_sphere("alteration");
     set_syntax("cast CLASS gods favor");
-    set_description("Gods favor allows those that are in high favor of their diety to call upon the protection of their "
+    set_description("Gods favor allows those that are in high favor of their deity to call upon the protection of their "
 "god/goddess in times of trouble.  Once this spell has been cast, it can be triggered with the command <now> to drag the "
 "caster in safety back to their home temple.");
     set_verbal_comp();

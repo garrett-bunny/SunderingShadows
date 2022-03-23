@@ -42,8 +42,8 @@ void create()
     set_shape_bonus("sight bonus",4);
     set_shape_bonus("damage bonus",5);
     set_shape_bonus("attack bonus",5);
-    set_shape_bonus("damage resistance",20);
-    set_shape_bonus("magic resistance",20);
+    set_shape_bonus("damage resistance",10);
+    set_shape_bonus("magic resistance",2);
     set_shape_height(200+random(100));
     set_shape_weight(11000+random(5000));
     set_shape_mastery_feat("impale");

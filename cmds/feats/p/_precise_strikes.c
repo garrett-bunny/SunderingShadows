@@ -8,7 +8,7 @@ void create() {
     feat_category("UnarmedCombat");
     feat_name("precise strikes");
     feat_prereq("Improved Rapid Strikes and Not Monk");
-    feat_desc("This feat grants a character who is unarmed an effective enchantment of +1/per 8 levels. This feat DOES NOT stack with the monk unarmed enchantment bonus, or the enchanted fists feat available to way of the fists monks. Thus, it is not available to monks.");
+    feat_desc("This feat grants a character who is unarmed an effective enchantment of +1/per 8 levels. This feat DOES NOT stack with the monk unarmed enchantment bonus, or the enchanted fists feat available to Way of the Fist monks. Thus, it is not available to monks.");
     permanent(1);
     set_required_for(({}));
 }

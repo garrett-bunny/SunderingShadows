@@ -29,14 +29,14 @@ void create()
              "scaled white dragon hide lays under the split of the " +
              "skirt, serving as a protective shield for vital areas." +
              "  A layer of %^CYAN%^frost%^WHITE%^ cakes the armor, " +
-             "giving it a chilling apperance.%^RESET%^\n");
+             "giving it a chilling appearance.%^RESET%^\n");
     set_value(13500);
     set_property("enchantment", 4);
     set_item_bonus("cold resistance", 50);
     set_property("no curse", 1);
     set_lore("%^BOLD%^%^WHITE%^The White Dragon Plate was fashioned from Wynter," +
              " the eldest son of Muln.  Wynter was slain by a " +
-             "traveling dragonslayer, who some claim has ties to"
+             "traveling dragonslayer, who some claim had ties to"
              " Azha.  The dragonslayer took his prize from Wynter" +
              " and had this armor fashioned out the dragon's scales" +
              ". %^BOLD%^%^BLUE%^- A Cold Wynter's Tale - Freesia Greenmore");

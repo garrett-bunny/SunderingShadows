@@ -14,7 +14,7 @@ void create()
     feat_desc("The Expertise feat will allow the character to shift some of their focus from hitting a target to defending from it, making them more difficult to hit with melee attacks."
         + "\n"
         + "\nThis feat shift values between attack and AC bonuses. This feat is the defensive version of positioning.\n"
-        + "\nYou can use this feat once and one aditional time for every 4 character levels to a max bonus of 5.");
+        + "\nYou can use this feat once and one additional time for every 4 character levels to a max bonus of 5.");
     set_target_required(0);
     set_required_for(({"disarm","knockdown","daze"}));
 }
@@ -117,7 +117,7 @@ void execute_feat()
     case "check":
 
         tell_object(caster, "%^RESET%^%^GREEN%^You have shifted %^MAGENTA%^" + bonus + " %^RESET%^%^GREEN%^points into " +
-            "powerattack.%^RESET%^");
+            "expertise.%^RESET%^");
         dest_effect();
         return;
     }

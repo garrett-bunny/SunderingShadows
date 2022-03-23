@@ -12,9 +12,9 @@ void create(){
     set_name("City of Systyquah");
     set_short("Systyquah's Gate");
     set_long(
-	"You stand before Systyquahs massive city gates.  The walls surrounding "+
+	"You stand before Systyquah's massive city gates.  The walls surrounding "+
 	"the city look to be at least 20 feet tall and made from what looks like "+
-	"huge wooden stakes.  You can hear the shouting of Troll war generals "+
+	"huge wooden stakes.  You can hear the shouting of troll war generals "+
 	"from deep inside the city.  The gates to the city are cracked open, perhaps "+
 	"bidding you welcome, or perhaps trouble."
     );

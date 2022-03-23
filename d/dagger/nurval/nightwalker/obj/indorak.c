@@ -10,7 +10,7 @@
 #include <daemons.h>
 
 //Hit interval instead of proc chance. Procs every 5 hits.
-#define HIT_INTERVAL 5
+#define HIT_INTERVAL 3
 
 inherit "/d/common/obj/weapon/scythe.c";
 
@@ -91,7 +91,7 @@ int wield_func()
     }
     
     tell_object(owner, color("You feel the chill of the grave seep into your bones as you wield aloft the might scythe!"));
-    tell_room(environment(owner), color(owner->QCN + "'s scythe suddenly glows with the chill of the grave!"), owner);
+    tell_room(environment(owner), color(owner->query_cap_name() + "'s scythe suddenly glows with the chill of the grave!"), owner);
     return 1;
 }
 
@@ -143,6 +143,7 @@ void heart_beat()
 int hit_func(object target)
 {
     int damage;
+    string pname, ename;
 
     if(!target || !owner)
         return 0;
@@ -155,12 +156,15 @@ int hit_func(object target)
     if(hit_count < HIT_INTERVAL)
         return 0;
     
+    pname = owner->query_cap_name();
+    ename = target->query_cap_name();
+    
     hit_count = 0;   
     damage = roll_dice(10, 10) + 20;
     
-    tell_object(owner, color("Your scythe shears deep into " + target->QCN + " and blasts " + target->query_objective() + " with an icy chill!"));
-    tell_object(target, color(owner->QCN + "'s scythe shears deep into you and blasts you with an icy chill!"));
-    tell_room(environment(owner), color(owner->QCN + "'s scythe shears deep into " + target->QCN + " and blasts " + target->query_objective() + " with an icy blase!"), ({ owner, target }));
+    tell_object(owner, color("Your scythe shears deep into " + ename + " and blasts " + target->query_objective() + " with an icy chill!"));
+    tell_object(target, color(pname + "'s scythe shears deep into you and blasts you with an icy chill!"));
+    tell_room(environment(owner), color(pname + "'s scythe shears deep into " + ename + " and blasts " + target->query_objective() + " with an icy blase!"), ({ owner, target }));
     target->cause_typed_damage(target, target->query_target_limb(), damage, "cold");
     
     return 0;

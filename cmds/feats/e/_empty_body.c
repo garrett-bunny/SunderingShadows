@@ -13,7 +13,7 @@ void create()
    feat_name("empty body");
    feat_prereq("Monk L18");
    feat_syntax("empty_body");
-   feat_desc("This feat allows a Monk who is unarmored, unarmed, or wielding small weapons to empty her body of all vulnerabilities, excluding force damage, and to fade from view, if not already hidden, for one minute. Because of the energy that it requires from the monk it has a short delay before it can be used again.");
+   feat_desc("This feat allows a Monk who is unarmored, unarmed, or wielding small weapons to empty her body of all vulnerabilities, excluding force damage, and to fade from view, if not already hidden, for one minute. While active, this feat causes you to be unable to attack. Because of the energy that it requires from the monk it has a short delay before it can be used again.");
    set_target_required(0);
 }
 
@@ -169,12 +169,12 @@ void dest_effect()
             if(BaseFlag && (int)caster->query_invis())
             {
                 if(caster->query_invis()) tell_room(environment(caster), caster->QCN+"%^BOLD%^%^WHITE%^ fades back into view!%^RESET%^", caster);
-                tell_object(caster, "%^BOLD%^%^CYAN%^You feel body shudder violently as you suddenly regain your vulnerabilities and fade fade back into view!%^RESET%^");
+                tell_object(caster, "%^BOLD%^%^CYAN%^You feel your body shudder violently as you suddenly regain your vulnerabilities and fade back into view!%^RESET%^");
                 caster->set_magic_hidden(0);
             }
             else
             {
-                tell_object(caster, "%^BOLD%^%^CYAN%^You feel body shudder violenty as you suddenly regain your vulnerabilities!%^RESET%^");
+                tell_object(caster, "%^BOLD%^%^CYAN%^You feel your body shudder violently as you suddenly regain your vulnerabilities!%^RESET%^");
             }
             caster->remove_property("empty body");
         }

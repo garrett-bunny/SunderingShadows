@@ -23,10 +23,12 @@ set_value(500);
 set_size(2);
 set_property("enchantment",3);
 set_item_bonus("influence",1);
-set_wear((:TO,"wear_fun":));
-set_remove((:TO,"remove_fun":));
+set_wear("%^BOLD%^%You throw the robe "+
+"around you and feel warm and noble.%^RESET%^");
+set_remove("%^BOLD%^You remove the regal robe.%^RESET%^");
 }
 
+/*
 int wear_fun(){
 tell_object(ETO,"%^BOLD%^%You throw the robe "+
 "around you and feel warm and noble.%^RESET%^");
@@ -38,3 +40,5 @@ tell_room(EETO,"%^BOLD%^"+ETO->QCN+" removes the "+
 "regal robe.%^RESET%^",ETO);
 tell_object(ETO,"%^BOLD%^You remove the regal robe.%^RESET%^");
 }
+
+*/

@@ -34,11 +34,12 @@ void create() {
 
 int wield_func(){
 
-      tell_room(EETO,"%^BOLD^The pearl on "
+      tell_room(EETO,"%^BOLD%^The pearl on "
            +ETOQCN+"'s weapon glows brightly.",ETO);
       tell_object(ETO,"%^BOLD%^The pearl on the rapier flashes brightly.");
       return 1;
 }
+
 int unwield_func(){
 
    tell_room(EETO,"The rapier of "+ETOQCN+
@@ -46,11 +47,12 @@ int unwield_func(){
    tell_object(ETO,"The rapier dims when unwielded.");
    return 1;
 }
+
 int hit_func(object target) {
    if(!objectp(target)) return 0;
    if(!objectp(ETO)) return 0;
    if(!objectp(EETO)) return 0;
-   if(random(1000) < 400){
+   if(random(1000) < 330){
      switch(random(7)){
       case 0..3:
         tell_room(EETO,"%^BOLD%^"+ETOQCN+"'s blade shines with a bright light as it pierces "

@@ -1,4 +1,4 @@
-#define LEVEL_1 ({"identify", "armor", "burning hands", "chill touch", "color spray", "light", "magic missile", "sleep", "detect magic", "summon companion"})
+#define LEVEL_1 ({"identify", "armor", "burning hands", "chill touch", "color spray", "light", "magic missile", "sleep", "detect magic"})
 
 #define LEVEL_2 ({"acid arrow", "detect invisibility", "hideous laughter", "invisibility", "ray of enfeeblement", "rope trick", "scorcher", "web", "spider climb", "augmentation", "darkness", "levitate", "resist energy", "fog cloud"})
 

@@ -20,7 +20,7 @@ bracers = 1;
    set_travel(DIRT_ROAD); 
    set("long",
       "%^RESET%^%^ORANGE%^This large tent is made from the hides of several large"+
-      " wolves. The hides are held up by torn tree branches torn of the surrounding forest."+
+      " wolves. The hides are held up by torn tree branches torn from the surrounding forest."+
       " There are many chests scattered around the tent and a couple"+
       " piles of bones stacked up sporadically around the edges. This appears to be"+
       " where the horde brings its loot after successful raids. The reasons for this"+

@@ -26,7 +26,7 @@ void create(){
 	"deconstruct the gem and add another gem, to give it "+
 	"a more powerful magic.  Rumors of this mage are not "+
 	"verified but stories have be told of an old man seen "+
-	"doing strange experements on the dinosaur island.");
+	"doing strange experiments on the dinosaur island.");
         set_property("lore",19);
         set_value(1700);
         set_hit((:TO,"hitme":));

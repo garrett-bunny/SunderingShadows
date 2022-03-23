@@ -221,11 +221,11 @@ drain nullify
 
 Draining is an activity vampires engage in when they are hungry.
 
-Your %^ORANGE%^%^ULINE%^TARGET%^RESET%^ must be either asleep, paralyzed, grappled, bound or unconscious to be drained.
+Your %^ORANGE%^%^ULINE%^TARGET%^RESET%^ must either be asleep, paralyzed, grappled, bound, or unconscious to be drained.
 
-A vampire must drain proper kith race, such as human, or any race on %^ORANGE%^<help races>%^RESET%^ to saturate her hunger. Draining lesser creature, other vampires or undead creatures will not work.
+A vampire must drain a proper kith race (such as human) or any race on %^ORANGE%^<help races>%^RESET%^ to satiate her hunger. Draining other creatures, other vampires, or undead creatures will not work.
 
-Feeding just once saturates vampires bloodlust for a while. Draining can be done for two effects. By default and without an argument, draining for life will heal the vampire, while draining for health will increase max health bonus, but no over than half of vampire's base maximum hp.
+Feeding just once satiates the vampiric bloodlust for a while. Draining can be done for two effects. By default and without an argument, draining for life will heal the vampire, while draining for health will increase their max health bonus, but not more than half of the vampire's base maximum hp.
 
 With 'nullify' argument you can get rid of positive max hp bonus.
 

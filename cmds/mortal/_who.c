@@ -91,7 +91,7 @@ string list_users(string *races, object tp)
                     }
                 }
 
-                if (!wizardp(who[i]) && time() - who[i]->query_login_time() < 120) {
+                if (!wizardp(who[i]) && time() - who[i]->query_login_time() < 600) {
                     rabbit = "someone";
                 }
 
@@ -128,7 +128,7 @@ string list_users(string *races, object tp)
 
             if (!who[i]->query_alignment()) {
                 display_string = capitalize((string)who[i]->query_name()) + " the unmade";
-            } else if (time() - who[i]->query_login_time() < 120 && !wizardp(who[i])) {
+            } else if (time() - who[i]->query_login_time() < 600 && !wizardp(who[i])) {
                 display_string = "Someone is emerging";
             } else if ((string)who[i]->query_title()) {
                 display_string = (string)who[i]->query_title();
@@ -315,7 +315,7 @@ If argument is provided, filters players by races.
 
 %^CYAN%^SEE ALSO%^RESET%^
 
-chfn, finger, mail, passwd, flag, pkilling, threaten, levelcheck, rules, notify
+chfn, finger, mail, passwd, flag, pkilling, threaten, rules, notify
 
 %^CYAN%^IMMORTALS%^RESET%^
 

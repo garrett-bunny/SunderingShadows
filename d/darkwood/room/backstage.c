@@ -4,7 +4,7 @@
 
 inherit ROOM;
 
-string *owners = ({"margath", "bryanna", "obsidian"});
+string *owners = ({"margath", "bryanna", "obsidian", "loki"});
 
 void create()
 {

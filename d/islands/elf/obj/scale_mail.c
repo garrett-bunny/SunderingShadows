@@ -43,10 +43,14 @@ int extra_wear(){
   ETO->set_property("water breather",1);
   return 1;
 }
+
+
 int remove_fun() {
    ETO->set_property("water breather",-1);
    return 1;
 }
+
+
 int strikeme(int damage, object what, object who){
     if(random(5)) return damage;
     tell_object(ETO,"%^BLUE%^"+who->QCN +"strikes your scales and gets cut on the barnicles.");

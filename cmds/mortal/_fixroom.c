@@ -27,3 +27,19 @@ int cmd_fixroom()
     tell_object(TP, "%^BOLD%^Sorry, the room isn't broken.  If you still think it is, contact a wiz.");
     return 1;
 }
+
+void help() {
+    write("
+%^CYAN%^NAME%^RESET%^
+
+fixroom - attempt to fix the current room
+
+%^CYAN%^DESCRIPTION%^RESET%^
+
+This command will attemp to reset the current room, in the case of broken exits.
+
+%^CYAN%^SEE ALSO%^RESET%^
+
+fixmore
+");
+}

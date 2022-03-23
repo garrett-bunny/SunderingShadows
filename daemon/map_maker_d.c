@@ -1,5 +1,6 @@
 #include <std.h>
 #include <security.h>
+#include <dirs.h>
 #define SAVE_FILE "/daemon/save/saved_maps"
 #define ERROR_LOG "Misc_Errors"
 #define SUCC_LOG "maps_log"
@@ -25,6 +26,17 @@ int low_x();
 int high_y();
 int low_y();
 
+int check_user(string name)
+{
+    string file;
+    
+    file = sprintf("%s/%s/%s", DIR_USERS, name[0..0], name);
+    if(file_size(file + ".o") < 0)
+        return 0;
+    
+    return 1;
+}
+    
 mapping query_users(){
   return users;
 }
@@ -212,6 +224,7 @@ string * query_dupes(string user){
 }
 
 void create(){
+    string *user_keys;
     ::create();
     users = ([]);
     maps_locations_timings = ({ ([]), ([]),([]), ([]), ([]), ([]) });
@@ -233,7 +246,15 @@ void create(){
     restore_object(SAVE_FILE,1);
     seteuid(getuid());
     last_save = 0;
-
+    
+    user_keys = keys(users);
+    foreach(string str in user_keys)
+    {
+        if(!check_user(str))
+            map_delete(users, str);
+    }
+    
+    SAVE();
 }
 
 void SAVE(){

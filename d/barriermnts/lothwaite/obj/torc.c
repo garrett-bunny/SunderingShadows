@@ -26,7 +26,7 @@ void create(){
         set_value(3000);
                 set_property("lore difficulty",25);
         set_lore("It is said that this torc was "+
-		"once made by a firbolg chieftan to show"+
+		"once made by a firbolg chieftain to show"+
 		" his leadership over the warriors of his"+
 		" tribe.  Priests enchanted it to give "+
 		"additional protections making him "+
@@ -54,7 +54,7 @@ int wear_func(){
 }
 int remove_func(){
         tell_room(environment(ETO),"%^ORANGE%^As "+ETOQCN+
-        "removes "+ETO->QP+" they look less noble.",ETO);
+        " removes "+ETO->QP+" torc, they look less noble.",ETO);
         tell_object(ETO,"%^ORANGE%^You remove your"+
 		" torc and feel a little less epic.");
                 return 1;
@@ -62,10 +62,9 @@ int remove_func(){
 
 }
 int strike_func(int damage, object what, object who){
-if(!objectp(ETO)) return 1;
+    if(!objectp(ETO)) return damage;
      
-
-        if(random(500) < 100){
+    if(random(500) < 100){
         tell_room(environment(query_worn()),"%^ORANGE%^For"+
         " a moment "+who->QCN+" looks surprised"+
         " by "+ETOQCN+"'s torc, the lions head bites "+
@@ -75,7 +74,7 @@ if(!objectp(ETO)) return 1;
         " "+who->QCN+" when they get too close.");
         tell_object(who,"%^ORANGE%^"+ETOQCN+"'s"+
         " torc's lion head bites you!");
-		 who->do_damage(random(6)+2);
-         return 0;
-		}
+        who->do_damage(random(6)+2);
+    }
+    return damage;
 }

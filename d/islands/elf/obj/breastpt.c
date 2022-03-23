@@ -38,6 +38,7 @@ int extra_wear(){
      "coral, and gets wet.",ETO);
   return 1;
 }
+
 int strikeme(int damage, object what, object who){
        if(!random(5))return damage;
         tell_object(ETO,"%^CYAN%^"+who->QCN +"strikes your breastplate and gets cut on the coral.");

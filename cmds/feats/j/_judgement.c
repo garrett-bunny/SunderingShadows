@@ -14,7 +14,7 @@ void create()
     feat_syntax("judgement FIRST [SECOND [THIRD]]");
     feat_prereq("Inquisitor L1");
     feat_classes("inquisitor");
-    feat_desc("Inquisitors have an unusual affinity to pronounce a judgement on their foes, to strengthen themselves with channeled power. At the beginning they can choose just one power to pronounce, but as inquisitor grows in power he learns to control up to three such powers. Changing the power is a free action, but any powers an inquisitor has will retreat after the combat and can not be summoned unless already in the combat.
+    feat_desc("Inquisitors have an unusual ability to pronounce judgement on their foes or to strengthen themselves with channeled power. At the beginning they can choose just one power to pronounce, but as the inquisitor grows in power he learns to control up to three such powers. Changing the power is a free action, but any powers an inquisitor has will retreat after the combat and can not be summoned unless already in the combat.
 
 The list of judgements to choose from:
 
@@ -24,7 +24,7 @@ The list of judgements to choose from:
 
 %^BOLD%^Justice:%^RESET%^ This judgment spurs the inquisitor to seek justice, gaining a sacred bonus point to attack plus an additional bonus point to attack per every five levels.
 
-%^BOLD%^Piercing:%^RESET%^ This judgment gives the inquisitor great focus and makes his spells more potent. This grants a point of spell penetration and a caster level, plus an additonal point of spell penetrationn and caster level for every twelve levels.
+%^BOLD%^Piercing:%^RESET%^ This judgment gives the inquisitor great focus and makes his spells more potent. This grants a point of spell penetration, plus an additonal point of spell penetration for every twelve levels.
 
 %^BOLD%^Protection:%^RESET%^ The inquisitor is surrounded by a protective aura, granting a sacred armor class point plus an additional sacred armor class point per every five levels.
 

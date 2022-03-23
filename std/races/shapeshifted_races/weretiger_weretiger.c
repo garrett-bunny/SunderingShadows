@@ -23,8 +23,7 @@ void create()
     set_shape_bonus("damage bonus",3);
     set_shape_bonus("attack bonus",3);
 
-    set_shape_bonus("fire resistance percent", 14);
-    set_shape_bonus("silver resistance percent", -33);
+    set_shape_bonus("silver resistance percent", -23);
     set_shape_race("weretiger");
     set_shape_profile("weretiger_hybrid_999");
 }

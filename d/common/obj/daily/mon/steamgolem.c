@@ -76,7 +76,8 @@ void set_powerlevel(int pwrlvl){
 }
 
 void steam_fun(object targ){
-    tell_room(environment(this_object()), "%^RESET%^%^CRST%^\n%^C202%^The %^C250%^g%^C248%^o%^C246%^l%^C244%^em %^C202%^shudders, vents opening along its sides to expel huge clouds of %^C255%^steam %^C202%^towards %^C230%^"+targ->QCN+"%^RESET%^%^CRST%^%^C255%^!%^CRST%^");
+    tell_room(environment(this_object()), "%^RESET%^%^CRST%^\n%^C202%^The %^C250%^g%^C248%^o%^C246%^l%^C244%^em %^C202%^shudders, vents opening along its sides to expel huge clouds of %^C255%^steam %^C202%^towards %^C230%^"+targ->QCN+"%^RESET%^%^CRST%^%^C255%^!%^CRST%^", targ);
+    tell_object(targ, "%^RESET%^%^CRST%^\n%^C202%^The %^C250%^g%^C248%^o%^C246%^l%^C244%^em %^C202%^shudders, vents opening along its sides to expel huge clouds of %^C255%^steam %^C202%^towards %^C230%^you%^C255%^!%^CRST%^");
 
     if(userp(targ)){
         if(powerlevel > 4){

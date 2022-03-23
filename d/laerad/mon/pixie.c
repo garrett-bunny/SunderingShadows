@@ -8,7 +8,7 @@ void create(){
     set_short("A tricky Pixie");
     set_long(
 	"A beautiful little pixie.  She is only about 6 inches tall and she "+
-	"moves around with such speed its hard to tell what she looks like.  "+
+	"moves around with such speed it's hard to tell what she looks like.  "+
 	"Her little wings flutter back and forth making a faint buzzing "+
 	"noise.  Her hair is pink and she is dressed in tattered green rags."
     );

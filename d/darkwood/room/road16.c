@@ -14,7 +14,7 @@ void create() {
     set_short("%^BOLD%^%^BLACK%^Ynt%^RESET%^%^GREEN%^a%^GREEN%^l%^GREEN%^a %^BLACK%^Pass");
     set_name("The Royal Southern Road");
     set_long(
-"%^GREEN%^You find yourself on a wide %^GREEN%^r%^GREEN%^o%^BOLD%^%^BLACK%^ad%^RESET%^%^GREEN%^ running to the west and curving tothe south. Looking at the road, you notice that it has been well rutted, and is most certainly a major trade route between the City of Shadow and the domains to the south. To the west, you notice that the road startsto get a bit wider as it moves towards the great city."
+"%^GREEN%^You find yourself on a wide %^GREEN%^r%^GREEN%^o%^BOLD%^%^BLACK%^ad%^RESET%^%^GREEN%^ running to the west and curving to the south. Looking at the road, you notice that it has been well rutted, and is most certainly a major trade route between the City of Shadow and the domains to the south. To the west, you notice that the road starts to get a bit wider as it moves towards the great city."
 
     );
      set_smell("default","You smell the scent of a forest in the distance.");

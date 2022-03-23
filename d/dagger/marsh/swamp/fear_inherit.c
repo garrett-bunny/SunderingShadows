@@ -27,7 +27,7 @@ void create()
       "extremely careful not to fall prey to the patches of %^RED%^quicksand%^BLUE%^ that are surely to "
       "be found here.  All around you %^YELLOW%^insects%^RESET%^%^BLUE%^ buzz madly. The vegetation seems "
       "to own this marsh, growing possessed and with an insane frenzy. It is almost as though the land "
-      "here seeps evil and is sentient and aware of those which walk upon its surface.\n%^RED%^You feel "
+      "here seeps evil and is sentient and aware of those who walk upon its surface.\n%^RED%^You feel "
       "as though a great evil lives deeper within the marsh and wants you to wander deeper and closer "
       "to it.%^RESET%^");
 

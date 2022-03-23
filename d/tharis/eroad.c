@@ -22,6 +22,6 @@ string long_desc(string str) {
 	" the great forest to the north"+
 	" and the mountains which loom large to the south. To the west is the rich"+
 	" city of Tharis. You know that rich cities bring wealth but with"+
-	" that wealth bring thieves in great quantity.\n"
+	" that wealth brings thieves in great quantity.\n"
    );
 }

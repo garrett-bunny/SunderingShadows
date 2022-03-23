@@ -65,8 +65,8 @@ void spell_effect(int prof){
      }else{
           target = present(thetarg,environment(caster));
           if(!objectp(target)){
-               if(userp(caster)) realname = caster->realName(thetarg);
-               else realname = thetarg;
+               /*if(userp(caster)) realname = caster->realName(thetarg);
+               //else realname = thetarg;
                if(avatarp(caster) && !objectp(target)) realname = thetarg; // it was screwing out on imms.
                target = present(realname,place);
                if(!objectp(target)){
@@ -74,6 +74,8 @@ void spell_effect(int prof){
                     dest_effect();
                     return;
                }
+               */
+               tell_object(caster, "That target is not here!");
                dest_effect();
                return;
           }

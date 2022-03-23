@@ -126,7 +126,7 @@ int read(string str) {
         "bring guards           - Brings all of your guards to you.\n"
         "command_guards ric guards.\n"
         "guard save             - Saves a key in your inventory with guard info.\n"
-        "inventory save <targ>  - Saves the inventory of the <targ> for next guard.\n"
+        "invent save <targ>     - Saves the inventory of the <targ> for next guard.\n"
         "display                - Shows the current settings for your guards.\n"
         "turn key               - Restores guard info from a key.\n"
 		"moncast <spell> [(on|at) <target>]\n"

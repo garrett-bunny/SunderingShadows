@@ -75,8 +75,8 @@ void spell_effect(int prof) {
       else {
 	    tell_object(caster,"%^BOLD%^You call on "+capitalize((string)caster->query_diety())+"'s aid and bless "
             ""+target->QCN+".");
-    	tell_object(target,"%^BOLD%^"+caster->QCN+" calls to "+caster->QP+" diety for aid, blessing you.");
-    	tell_room(place,"%^BOLD%^"+caster->QCN+" calls to "+caster->QP+" diety for aid, blessing "
+    	tell_object(target,"%^BOLD%^"+caster->QCN+" calls to "+caster->QP+" deity for aid, blessing you.");
+    	tell_room(place,"%^BOLD%^"+caster->QCN+" calls to "+caster->QP+" deity for aid, blessing "
             ""+target->QCN+".",({caster,target}));
       }
     }

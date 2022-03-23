@@ -63,9 +63,9 @@
               ])
 
 // to add: hallucinogenic powder (dc 46)
+// removed from list until implemented "choking powder" : (["value" : 50, "dc" : 30, "materials" : ([ "red pepper" : 2, "patch of demonskin" : 2, "pinch of soot" : 1 ]), ]),
 #define POWDERS ([ \
                      "blinding powder" : (["value" : 25, "dc" : 22, "materials" : ([ "allspice" : 2, "bone dust" : 1, "nutshells" : 1 ]), ]), \
-                     "choking powder" : (["value" : 50, "dc" : 30, "materials" : ([ "red pepper" : 2, "patch of demonskin" : 2, "pinch of soot" : 1 ]), ]), \
                      "powder of life" : (["value" : 75, "dc" : 35, "materials" : ([ "mint" : 1, "lavender" : 2, "corrupted fey lifeblood" : 1 ]), ]), \
                  ])
 

@@ -17,12 +17,12 @@ void create() {
 	"%^WHITE%^middle crosses%^RED%^ made of %^ORANGE%^wood%^RED%^ "
 	"hang upon the walls and strange %^GREEN%^herbs%^RED%^ "
 	"and %^MAGENTA%^flower petals%^RED%^ "
-	"litter the floor as though a wierd ritual was preformed here."
+	"litter the floor as though a weird ritual was preformed here."
 	"%^RESET%^" 
     );
     set_short("%^RED%^Tower Hallway%^RESET%^");
     set_listen("default",
-        "The silence here rests on a cliffside waiting to be shattered by the rocks below."
+        "The silence here rests on a cliff side waiting to be shattered by the rocks below."
     );
     set_smell("default",
         "You smell the decaying blood splattered about the room."

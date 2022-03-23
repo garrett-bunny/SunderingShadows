@@ -44,7 +44,7 @@ void create() {
 
     ]));
 
-    set_door("white door",RUINS"4","southwest",0);
+    set_door("white door",CAER"4","southwest",0);
     set_door_description("white door","Formed from solid wood painted white.");
 
 }

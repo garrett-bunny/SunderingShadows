@@ -54,4 +54,5 @@ int strike_fun(int damage, object what, object who){
      tell_object(who,"%^BLUE%^"+ETOQCN+" twirls around wildly, partially deflecting your blow!%^RESET%^");
      return (damage*65)/100;
    }
+   return damage;
 }

@@ -4,7 +4,7 @@ inherit "/d/common/obj/weapon/hammer_lg";
 
 void create() {
     ::create();
-   set_id(({"anchor","barnacled anchorr","depth's anchor"}));
+   set_id(({"anchor","barnacled anchor","depth's anchor"}));
    set_name("Anchor");
    set_obvious_short("%^RESET%^%^BLUE%^barnacled Anchor%^RESET%^");
    set_short("%^RESET%^%^BLUE%^Depth's Anchor%^RESET%^");
@@ -28,7 +28,7 @@ void create() {
 }
 
 int wield_func(){
-      tell_room(EETO,"%^BLUE^The barnacles on "
+      tell_room(EETO,"%^BLUE%^The barnacles on "
            +ETOQCN+"'s weapon glows drip a black fluid.",ETO);
       tell_object(ETO,"%^BLUE%^The barnacles on the anchor drip a black fluid.");
       return 1;
@@ -66,7 +66,7 @@ int hit_func(object target) {
             ETO->execute_attack();
             return roll_dice(1,8)+1;
 	  case 5:
-            tell_room(EETO,"%^BLUE%^"+ETO->QCN+" strikes"+target->QCN+
+            tell_room(EETO,"%^BLUE%^"+ETO->QCN+" strikes "+target->QCN+
 			" in the head with the anchor and it lets out a sickening thud."
                          ,({target,ETO}));
             tell_object(ETO,"%^BLUE%^You strike "+target->QCN+" in the head with"+

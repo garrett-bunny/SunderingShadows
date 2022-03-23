@@ -5,7 +5,7 @@ inherit "/d/common/obj/armour/greaves";
 void create(){
     ::create();
     set_name("silver greaves");
-    set_id(({"greaves","silver greaves","Greaves","armor"}));
+    set_id(({"greaves","silver greaves","Greaves","armor","justice's stride","Justice's Stride"}));
     set_obvious_short("%^RESET%^%^BOLD%^silver greaves%^RESET%^");
     set_short("%^RESET%^%^BOLD%^%^WHITE%^J%^RESET%^%^WHITE%^u%^RESET%^"+
 "%^BOLD%^%^WHITE%^stice's Stri%^RESET%^%^WHITE%^d%^RESET%^%^BOLD%^"+

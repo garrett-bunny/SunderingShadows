@@ -19,7 +19,7 @@ void create() {
 	"from the walls. Cobwebs fill the chamber, as though nothing has entered "
 	"this area of the tower for years. A %^BLUE%^pedestal%^RED%^ sits "
 	"in the center of the room. No dust or cobwebs gather upon the %^BLUE%^pedestal%^RED%^. "
-	"A small %^GREEN%^depression%^RED%^ is located on the top side of the %^BLUE%^pedastal%^RED%^."
+	"A small %^GREEN%^depression%^RED%^ is located on the top side of the %^BLUE%^pedestal%^RED%^."
 	"%^RESET%^" 
     );
     set_short("%^RED%^Cramped Chamber%^RESET%^");

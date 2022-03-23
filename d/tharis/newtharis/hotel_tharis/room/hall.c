@@ -7,7 +7,7 @@ inherit ROOM;
 
 void create(){
     ::create();
-    set_terrain(WOOD_BUILDING);
+    set_terrain(CITY);
     set_travel(PAVED_ROAD);
     set_property("light", 2);
     set_property("indoors", 1);
@@ -31,5 +31,10 @@ void create(){
         "lounge" : ROOMS "lounge",
         "staircase" : ROOMS "stairs1",
         ]));
+}
+
+void reset(){
+    ::reset();
+    if(!present("waitress")) new(MON "natalie")->move(TO);
 }
 

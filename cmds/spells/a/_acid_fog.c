@@ -22,7 +22,7 @@ void create()
     set_immunities( ({"acid"}) );
     set_components((["mage":(["citric acid":1,"nitric acid":1])]));
     aoe_spell(1);
-    set_aoe_message("%^BOLD%^%^BLACK%^(%^GREEN%^engulfed in acid fog%^BLACK%^)%^RESET%^");
+    set_aoe_message("%^BOLD%^%^BLACK%^(%^GREEN%^engulfed in acidic fog%^BLACK%^)%^RESET%^");
 }
 
 string query_cast_string()
@@ -34,7 +34,7 @@ string query_cast_string()
 void spell_effect(int prof)
 {
     tell_object(caster,"%^RESET%^%^BOLD%^%^GREEN%^You take quick retreat from %^BLACK%^t%^GREEN%^he %^BLACK%^s%^GREEN%^i%^BLACK%^g%^GREEN%^il%^GREEN%^ as it opens a portal and fumes rush through it!%^RESET%^%^RESET%^");
-    tell_room(place,"%^BOLD%^%^GREEN%^"+caster->QCN+"%^BOLD%^%^GREEN%^ takes cover as %^GREEN%^aci%^BLACK%^d%^BLACK%^i%^GREEN%^g %^GREEN%^si%^BLACK%^g%^GREEN%^il%^GREEN%^ explodes and fumes rush through the open portal!%^RESET%^%^RESET%^",caster);
+    tell_room(place,"%^BOLD%^%^GREEN%^"+caster->QCN+"%^BOLD%^%^GREEN%^ takes cover as the %^GREEN%^aci%^BLACK%^d%^BLACK%^i%^GREEN%^c %^GREEN%^si%^BLACK%^g%^GREEN%^il%^GREEN%^ explodes and fumes rush through the open portal!%^RESET%^%^RESET%^",caster);
     counter = clevel * 3;
     addSpellToCaster();
     spell_successful();

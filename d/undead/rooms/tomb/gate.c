@@ -37,7 +37,7 @@ void create()
              ]));
 
     set_smell("default","You catch the rotten stench of death.");
-    set_listen("default","You hear the faint sound of whailing in the distance.");
+    set_listen("default","You hear the faint sound of wailing in the distance.");
       
     set_door("gate",HALL"hall","gate","no_key","lock");
     set_open("gate",0);
@@ -47,7 +47,7 @@ void create()
         "reverberations sending trickles of sand off the walls.");
     set_door_description("gate","Each gate is made of the strongest iron "
         "and stands approximately twenty feet tall.  At the center of "
-        "these plain yet powerfull barriers lies an equally large "
+        "these plain yet powerful barriers lies an equally large "
         "golden knocker, with a very realistic face carved into it.");
     set_locked("gate",1,"lock");
     lock_difficulty("gate",-1000,"lock");

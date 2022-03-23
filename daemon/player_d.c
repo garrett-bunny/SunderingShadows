@@ -773,6 +773,15 @@ int immunity_check(object obj, string type)
             return 1;
     }
     break;
+    
+    case "disease":
+    {
+        if(member_array("plague", obj->query_divine_domain()) >= 0)
+            return 1;
+        
+        if(FEATS_D->has_feat(obj, "undead graft"))
+            return 1;
+    }
 
     case "fear":
     {
@@ -896,7 +905,17 @@ int immunity_check(object obj, string type)
                 obj->add_cooldown("ghoulish aspect", 120);
                 return 1;
             }
-        }        
+        }
+
+        if(member_array("freedom", obj->query_divine_domain()) >= 0)
+        {
+            if(!obj->cooldown("freedom boon"))
+            {
+                tell_object(obj, "%^YELLOW%^Your dedication to freedom at all costs protects you from the paralysis!");
+                obj->add_cooldown("freedom boon", 120);
+                return 1;
+            }
+        }         
     
         return 0;
     }
@@ -928,6 +947,9 @@ int immunity_check(object obj, string type)
         }
 
         if (obj->is_undead())
+            return 1;
+        
+        if(obj->query_race() == "yuan-ti")
             return 1;
         
         if(obj->query_mystery() == "life")

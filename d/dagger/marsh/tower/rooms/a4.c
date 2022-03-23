@@ -27,7 +27,7 @@ void create() {
 	"material and seems to glow in it's blood-red colour. As you gaze upon it, "
 	"you hear the distant laughter of Grazzt.%^RESET%^",
 	"blood":"%^RED%^The blood seems to have been here for many years "
-	"and it's origin is a mystery.",
+	"and its origin is a mystery.",
     ]));
     set_exits(([
         "northeast": RPATH "a9",

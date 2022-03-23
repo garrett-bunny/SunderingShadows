@@ -17,8 +17,8 @@ void create()
       "natural themes, though they are hard to discern.%^RESET%^");
    set_lore("The Ebony Club is another relic left over from a great "
 "battle that took place in these parts.  When the orcish hordes "
-"threatened the land and the people an order of druids swept down "
-"onto the area to protect the forest and meadow lands.  The Druids "
+"threatened the land and the people, an order of druids swept down "
+"onto the area to protect the forest and meadow lands.  The druids "
 "were known as the Ebony Owls, and were dedicated to Silvanus.  Given "
 "that druids shun most attention and fame, there have been conflicting "
 "reports of what happened to the Ebony Owls.  Some claim that like the "

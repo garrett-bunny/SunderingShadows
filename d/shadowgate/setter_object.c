@@ -373,7 +373,7 @@ string *generate_gender()
 hint_gender()
 {
     write("
-%^BOLD%^Gender defines how game will reference you in messages and which races are available to you. For example, %^CYAN%^Dryads%^WHITE%^ can be only %^CYAN%^females%^WHITE%^, while %^CYAN%^Satyrs%^WHITE%^ only %^CYAN%^males%^WHITE%^.
+%^BOLD%^Gender defines how the game will reference your pronouns in various messages, such as echoes and emotes.
 
 %^BOLD%^%^CYAN%^ Male%^WHITE%^ will be referenced to as %^CYAN%^he%^WHITE%^.
 %^BOLD%^%^CYAN%^ Female%^WHITE%^ will be referenced to as %^CYAN%^she%^WHITE%^.
@@ -977,7 +977,7 @@ hint_alignment()
     write("
 %^BOLD%^Many ages of arguing have been dedicated to this selection. In the end, your alignment determines your disposition to the law and actions you tend to take. It also restricts %^CYAN%^deities%^WHITE%^ you will be able to select later, and for some classes it restricts %^CYAN%^class special%^WHITE%^ choices.%^WHITE%^.
 
-%^BOLD%^Refer to %^ORANGE%^<help alignments>%^WHITE%^ if you want to know more about alignments on ShadowGate.");
+%^BOLD%^Refer to %^ORANGE%^<help alignments>%^WHITE%^ if you want to know more about alignments on Sundering Shadows.");
 }
 
 string *generate_deity()
@@ -1063,7 +1063,8 @@ select_language(string str)
     int maxbonus = (char_sheet["stats"]["intelligence"] - 10) / 4 + 1;
     int i;
 
-    prospective = (("/std/races/" + char_sheet["race"])->query_languages(char_sheet["subrace"]))["optional"];
+    //prospective = (("/std/races/" + char_sheet["race"])->query_languages(char_sheet["subrace"]))["optional"];
+    prospective = generate_language();
 
     if (str == "random") {
         i = maxbonus;

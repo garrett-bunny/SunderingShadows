@@ -81,6 +81,8 @@ int spell_effect(int prof)
         {
             tell_room(place, "%^CYAN%^Reality rips and astral prism manifests itself to protect " + caster->QCN + "!%^RESET%^", caster);
             tell_object(caster, "%^CYAN%^Reality rips and astral prism manifests itself to protect you!%^RESET%^");
+            if(caster->is_class("cleric") && member_array("creation", caster->query_divine_domain()) >= 0)
+                monster->set_property("spell damage resistance", 10);
         }
         
         caster->add_follower(monster);

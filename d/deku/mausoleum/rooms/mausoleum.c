@@ -17,7 +17,7 @@ void create()
     "way up it indiscriminately. Visible %^BOLD%^%^WHITE%^cracks%^BOLD%^%^BLACK%^ "+
     "on the outside of the structure allow you to catch glimpses through the stone "+
     "into the darker interior. It is quite apparent that in recent years whatever "+
-    "once took care of the building has ceased. Double doors with a forboding "+
+    "once took care of the building has ceased. Double doors with a foreboding "+
     "%^BOLD%^%^RED%^skull%^BOLD%^%^BLACK%^ chiseled into the center of them "+
     "provide the one opening into the ancient mausoleum.%^RESET%^");
     
@@ -32,14 +32,14 @@ void create()
     set_door("double doors", MROOMS"enter" ,"enter", "","lock");
     set_door_description("double doors","%^BOLD%^%^BLACK%^These thick double "+
     "doors are made from the same %^BOLD%^%^WHITE%^white%^BOLD%^%^BLACK%^ stone "+
-    "that composes the rest of the mausoluem. A forboding %^BOLD%^%^RED%^skull"+
+    "that composes the rest of the mausoleum. A foreboding %^BOLD%^%^RED%^skull"+
     "%^BOLD%^%^BLACK%^ with %^BOLD%^%^RED%^blazing red%^BOLD%^%^BLACK%^ eyes "+
     "sockets has been chiseled into the center of them.%^RESET%^");
     
     set_items(([
-       ({"structure", "mausoluem", "cracks"}) : "%^BOLD%^%^WHITE%^This ancient "+
-       "structure is currently in a state of decay. There are visible cracks litering "+
-       "the outter walls of it, allowing glimpses into the darker interior. Apparently "+
+       ({"structure", "mausoleum", "cracks"}) : "%^BOLD%^%^WHITE%^This ancient "+
+       "structure is currently in a state of decay. There are visible cracks littering "+
+       "the outer walls of it, allowing glimpses into the darker interior. Apparently "+
        "whatever may have once cared for this place has ceased. This is understandable "+
        "as recent reports confirm that it has been cursed by something.... and lately "+
        "the locals have taken to referring to it as the mausoleum of the damned.%^RESET%^",

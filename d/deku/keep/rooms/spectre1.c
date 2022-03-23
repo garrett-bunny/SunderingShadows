@@ -16,7 +16,7 @@ void do_original()
 	"great power.  The %^RED%^walls%^RESET%^ of this room "+
 	"are covered with %^RED%^blood"+
 	"%^RESET%^, as if some type of horrific slaughter took "+
-	"place here and they bare witness "+
+	"place here and they bear witness "+
 	"of it.  Inset directly into the center of the northern wall "+
 	"is a massive %^BOLD%^%^BLACK%^marble door%^RESET%^.%^RESET%^");
  	set_items(([

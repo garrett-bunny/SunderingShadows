@@ -73,7 +73,7 @@ string *bloodline_skills(string bloodline)
         skills += ({ "healing" });
         break;
         
-        case "stormborn": case "boreal": case "fey":
+        case "stormborn": case "boreal": case "fey": case "orc":
         skills += ({ "survival" });
         break;
         
@@ -154,7 +154,7 @@ string query_casting_stat(){
 mapping query_class_spells()
 {
     return (([
-    1 : ({"armor","burning hands","chill touch","color spray","darkness","daze","detect magic","identify","light","magic missile","shield","shocking grasp","sleep","summon companion","summon swarm" }),
+    1 : ({"armor","burning hands","chill touch","color spray","darkness","daze","detect magic","identify","light","magic missile","shield","shocking grasp","sleep","summon swarm" }),
     2 : ({"acid arrow","augmentation","blindness","clairvoyance","darkvision","detect invisibility","hideous laughter","invisibility","misdirection","ray of enfeeblement","rope trick","scorcher","spider climb","web" }),
     3 : ({"acid orb","blink","dispel magic","fireball","fly","frost orb","garble","heroism","hold person","lightning bolt","lightning orb","monster summoning 1","protection from scrying","sonic orb","tongues","vampiric touch","water breathing" }),
     4 : ({"animate dead","bestow curse","black tentacles","detect scrying","fire shield","greater invisibility","gust of wind","ice storm","monster summoning 2","shout","sonic shield","static field","wall of fire" }),

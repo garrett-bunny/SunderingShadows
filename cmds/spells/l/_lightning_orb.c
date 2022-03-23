@@ -22,7 +22,7 @@ void create() {
     set_description("This spell allows a mage to tap into the Para-Elemental Plane of Lightning and borrow some of its "
 "energy to create an orb of pure lightning.  Once the orb is launched into the air, the first thing it strikes will cause "
 "it to burst open, releasing the shocking attack on the mage's foes.  Though care should be taken as it is possible to "
-"accidently catch the mages allies in the blast.");
+"accidentally catch the mage's allies in the blast.");
     set_verbal_comp();
     set_somatic_comp();
     set_target_required(1);

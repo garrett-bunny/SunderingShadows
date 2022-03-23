@@ -81,25 +81,29 @@ int hitme(object targ){
             tell_object(ETO,"%^BOLD%^You feel the dragon spirit within your sword rise and course through your veins!  For a moment, you are a %^MAGENTA%^half-dragon %^WHITE%^who lashes out at "+targ->QCN+"!%^RESET%^");
             tell_object(targ,"%^BOLD%^"+ETOQCN+"'s visage changes, and "+ETO->QS+" looks for a moment like a %^MAGENTA%^dragon%^WHITE%^!  The dragon lashes out at you, leaving you in pain!%^RESET%^");
             tell_room(EETO,"%^BOLD%^"+ETOQCN+"'s visage changes, and "+ETO->QS+" looks for a moment like a %^MAGENTA%^dragon%^WHITE%^!  The dragon lashes out at "+targ->QCN+", leaving "+targ->QO+" howling in pain!%^RESET%^",({targ,ETO}));
-            targ->do_damage(targ->return_target_limb(),random(3)+3);
+            //targ->do_damage(targ->return_target_limb(),random(3)+3);
+            targ->cause_typed_damage(targ, targ->return_target_limb(), roll_dice(1, 6), "slashing");
             break;
          case "kismet":
             tell_object(ETO,"%^CYAN%^Your sword %^BOLD%^s%^RESET%^%^CYAN%^h%^BOLD%^i%^RESET%^%^CYAN%^m%^BOLD%^m%^RESET%^%^CYAN%^e%^BOLD%^r%^RESET%^%^CYAN%^s with mystical energy.  Suddenly, seven %^BOLD%^%^WHITE%^shuriken %^RESET%^%^CYAN%^fly from its tip into "+targ->QCN+"!%^RESET%^");
             tell_object(targ,"%^CYAN%^The sword held by "+ETOQCN+" %^BOLD%^s%^RESET%^%^CYAN%^h%^BOLD%^i%^RESET%^%^CYAN%^m%^BOLD%^m%^RESET%^%^CYAN%^e%^BOLD%^r%^RESET%^%^CYAN%^s with mystical energy.  Suddenly, seven %^BOLD%^%^WHITE%^shuriken %^RESET%^%^CYAN%^fly from its tip into you!%^RESET%^");
             tell_room(EETO,"%^CYAN%^The sword held by "+ETOQCN+" %^BOLD%^s%^RESET%^%^CYAN%^h%^BOLD%^i%^RESET%^%^CYAN%^m%^BOLD%^m%^RESET%^%^CYAN%^e%^BOLD%^r%^RESET%^%^CYAN%^s with mystical energy.  Suddenly, seven %^BOLD%^%^WHITE%^shuriken %^RESET%^%^CYAN%^fly from its tip into "+targ->QCN+"!%^RESET%^",({targ,ETO}));
-            targ->do_damage(targ->return_target_limb(),random(3)+3);
+            //targ->do_damage(targ->return_target_limb(),random(3)+3);
+            targ->cause_typed_damage(targ, targ->return_target_limb(), roll_dice(1, 6), "slashing");
             break;
          case "the faceless one":
             tell_object(ETO,"%^BOLD%^%^BLACK%^As you swing the sword at "+targ->QCN+", the blade seems to grow liquid in your hands, changing into a massive two-handed sword that cleaves into "+targ->QO+"!%^RESET%^");
             tell_object(targ,"%^BOLD%^%^BLACK%^You watch in confusion as the rapier wielded by "+ETOQCN+" suddenly shifts in size to that of a two-handed sword that cleaves into you!%^RESET%^");
             tell_room(EETO,"%^BOLD%^%^BLACK%^You watch in confusion as the rapier wielded by "+ETOQCN+" suddenly shifts in size to that of a two-handed sword that cleaves into "+targ->QCN+"!%^RESET%^",({targ,ETO}));
-            targ->do_damage(targ->return_target_limb(),random(3)+3);
+            //targ->do_damage(targ->return_target_limb(),random(3)+3);
+            targ->cause_typed_damage(targ, targ->return_target_limb(), roll_dice(1, 6), "slashing");
             break;
          default:
             tell_object(ETO,"%^MAGENTA%^You roar with the rage of a dragon and slice into "+targ->QCN+"!%^RESET%^");
             tell_object(targ,"%^MAGENTA%^"+ETOQCN+" suddenly roars and slices into you!%^RESET%^");
             tell_room(EETO,"%^MAGENTA%^"+ETOQCN+" suddenly roars and slices into "+targ->QCN+"!%^RESET%^",({ETO,targ}));
-            targ->do_damage(targ->return_target_limb(),random(3)+3);
+            //targ->do_damage(targ->return_target_limb(),random(3)+3);
+            targ->cause_typed_damage(targ, targ->return_target_limb(), roll_dice(1, 6), "slashing");
            break;
       }
       return roll_dice(1,3);
@@ -142,7 +146,8 @@ int hitme(object targ){
          targ->set_temporary_blinded(10,"You see %^BOLD%^%^RED%^p%^RESET%^%^ORANGE%^r%^YELLOW%^i%^GREEN%^s%^CYAN%^m%^BLUE%^a%^RESET%^%^MAGENTA%^t%^BOLD%^%^RED%^i%^RESET%^%^ORANGE%^c %^RESET%^spots before your eyes!%^RESET%^");
       }else{
          tell_object(targ,"%^RED%^You fight off the worst of the light!%^RESET%^");
-         targ->do_damage("head",random(6)+4);
+         //targ->do_damage("head",random(6)+4);
+         targ->cause_typed_damage(targ, targ->return_target_limb(), roll_dice(1, 6), "radiant");
       }
       return 1;
    }

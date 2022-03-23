@@ -1117,7 +1117,7 @@ feats active
 
 %^CYAN%^DESCRIPTION%^RESET%^
 
-Feats represents specialized techniques or powers a character can learn throughout its career. Some feats are class-specific (usually gained for free with class-levels), while others are generic and must be paid for by adding to your exp tax (see <help exp tax>). A character gains 1 generic feat every 3. level which can be bought in such a way. Feats awarded by character class are added automatically. Some classes gain additional free feats known as bonus feats. When you level your character, you will get notified if you are allowed new feats.
+Feats represent specialized techniques or powers a character can learn throughout their career. Some feats are class-specific (usually gained for free with class levels), while others are generic and must be paid for by adding to your exp tax (see <help exp tax>). A character gains the ability to purchase one generic feat every third level. Feats awarded by character class are added automatically. Some classes gain additional free feats known as bonus feats. When you level your character, you will be notified if you are allowed new feats.
 
 Feats are divided into types (martial, spellcraft, hybrid, arcana, rage, generic, epic) and organized in feat trees.  Some feats have prerequisites as specified in their individual help files.
 
@@ -1156,7 +1156,7 @@ If your terminal supports color, you may benefit from color coding of the feats 
 The numbers listed before the feats indicate which level the feats were gained at:
   %^BOLD%^%^CYAN%^00%^RESET%^: The feat has been bought normally.
   %^BOLD%^%^MAGENTA%^00%^RESET%^: The feat has been granted for free (class feats).
-  %^YELLOW%^00%^RESET%^: The feat has been bought with bonus racial, combat, magic, hybrid, arcana, rage or dvinebond feats.
+  %^YELLOW%^00%^RESET%^: The feat has been bought with bonus racial, combat, magic, hybrid, arcana, rage or divinebond feats.
 
 Adding and removing normal feats will add to your character improvement tax (see %^ORANGE%^<help exp tax>%^RESET%^) and slow your level advancement. This is to simulate the extra training that it requires to learn the new abilities or to forget your previous training.
 

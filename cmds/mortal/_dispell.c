@@ -12,6 +12,9 @@ int cmd_dispell(string str)
 
     spells = TP->query_property("dispellable spells");
     buffs = this_player()->query_property("spell_bonus_type");
+    
+    if(!pointerp(buffs))
+        buffs = ({  });
 
     if (pointerp(spells)) {
         spells = filter_array(spells, (: objectp($1) :));

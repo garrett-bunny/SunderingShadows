@@ -21,8 +21,8 @@ int Textiles_Antioch = 78000;
 
 //FOOD
 int Food_Tabor = 10000;
-int Food_Shadow = 11000;
-int Food_Torm = 10000;
+int Food_Shadow = 22000;
+int Food_Torm = 20000;
 
 //ORE 
 int Ore_Kinaro = 50000;
@@ -42,7 +42,4 @@ int Oil_Seneca  = 90000;
 int Spice_Azha = 200000;
 int Spice_Seneca = 250000;
 
-//SLAVES
-int Slaves_Tonovi = 500000;
-int Slaves_Juran = 300000;
-int Slaves_Tharis = 500000;
+

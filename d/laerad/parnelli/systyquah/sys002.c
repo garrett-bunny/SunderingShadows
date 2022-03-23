@@ -12,9 +12,9 @@ void create(){
     set_short("Systyquah entrance");
     set_long(
 	"%^BOLD%^Main street%^RESET%^
-You have walked into the famous city of Trolls, Systyquah.  A long dirt "+
+You have walked into the famous city of trolls, Systyquah.  A long dirt "+
 	"road continues to the south.  To the east and west are the "+
-	"massive city walls, gates lead into either side.  To the north "+
+	"massive city walls, gates leading in both directions.  To the north "+
 	"are the Systyquah city gates."
     );
     set_property("indoors",0);

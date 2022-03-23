@@ -19,12 +19,12 @@ void create() {
            "%^RESET%^ %^GREEN%^and%^RESET%^ %^RED%^limbs%^RESET%^ "+
            "%^BLUE%^of the old tree decay on the ground whilst others "+
            "crunch under foot.  A few large logs have been moved in, "+
-           "turned into impromtu seats and now surround an %^BOLD%^"+
+           "turned into impromptu seats and now surround an %^BOLD%^"+
            "%^BLACK%^ash-filled fire pit.%^RESET%^  %^BLUE%^A few "+
            "small%^RESET%^ %^YELLOW%^rodents%^RESET%^ %^BLUE%^scurry "+
            "about the trunk of the willow, startled by the numerous "+
            "visitors seeking respite in this peaceful area.  Many "+
-           "weary travellers, mostly rangers, have gathered to this "+
+           "weary travelers, mostly rangers, have gathered to this "+
            "spot, absorbing the atmosphere and enjoying the natural "+
            "carpet of%^RESET%^ %^RED%^dried leaves%^RESET%^ %^BLUE%^as "+
            "they talk and laugh amongst themselves.%^RESET%^\n");
@@ -36,7 +36,7 @@ void create() {
               "upon them.%^RESET%^", 
            "logs" : "%^RED%^These large fallen logs provide "+
               "comfortable seating for the rangers and visitors that "+
-              "gather under the shade of the tree%^RESET%^", 
+              "gather under the shade of the tree.%^RESET%^", 
            ({"pit","fire pit","ash"}) : "%^BOLD%^%^BLACK%^This pit "+
               "is filled with ash from previous campfires and is now "+
               "quite cool.%^RESET%^"

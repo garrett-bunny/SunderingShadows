@@ -11,7 +11,7 @@ void create() {
     feat_category("ArcaneSpellcraft");
     feat_name("scribe");
     feat_syntax("scribe SPELL_NAME [as level SPELL_LEVEL] [for NUM times]");
-    feat_prereq("Bard, Cleric, Druid, Inquisitor, Mage, Magus, Paladin, Ranger, Sorcerer, Oracle");
+    feat_prereq("Bard, Cleric, Druid, Inquisitor, Mage, Magus, Paladin, Ranger, Sorcerer, Oracle, Thief");
     feat_desc("This feat allows a character to use their knowledge of the arcane to scribe simple scrolls of spells they already know. Such scrolls are only good for a single use. You must have an empty parchment sheet in your inventory for scribe to work. It has to be parchment, other writing materials won't do.
 
 SPELL_NAME
@@ -124,6 +124,12 @@ void execute_feat()
     }
 
     level = tmp->query_spell_level(TP->query_class());
+    
+    if(level >= 10)
+    {
+        tell_object(caster, "The magic is too powerful and resists your attempt to put it to parchment!");
+        return 1;
+    }
 
     if (!FEATS_D->usable_feat(caster, "clone scroll") || (FEATS_D->usable_feat(caster, "clone scroll")  && (!present(str, caster) || !present(str, caster)->is_scroll()))) {
         if (MAGIC_D->is_mastering_class(TP->query_class()) && member_array(str, TP->query_mastered_spells(TP->query_class())) == -1) {
@@ -235,6 +241,7 @@ void scribe(string spell, int spell_clevel, object tp, int scroll_amount, object
     scroll->move(environment(tp));
     paper->remove();
     caster->use_funds("gold", spell_clevel * 5);
+    scroll->set_value(spell_clevel * 5);
 
     if (scroll_amount) {
         call_out("scribe", ROUND_LENGTH, spell, spell_clevel, tp, scroll_amount, ENV(tp));

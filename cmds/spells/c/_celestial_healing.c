@@ -23,7 +23,7 @@ void create()
 
 string query_casting_string()
 {
-    return "%^BOLD%^%^CYAN%^"+caster->QCN+" %^BOLD%^%^YELLOW%^spells an %^CYAN%^c%^YELLOW%^e%^CYAN%^l%^YELLOW%^estial %^CYAN%^inc%^YELLOW%^a%^CYAN%^nt%^YELLOW%^a%^CYAN%^t%^YELLOW%^ion.%^RESET%^";
+    return "%^BOLD%^%^CYAN%^"+caster->QCN+" %^BOLD%^%^YELLOW%^spells a %^CYAN%^c%^YELLOW%^e%^CYAN%^l%^YELLOW%^estial %^CYAN%^inc%^YELLOW%^a%^CYAN%^nt%^YELLOW%^a%^CYAN%^t%^YELLOW%^ion.%^RESET%^";
 }
 
 int preSpell()
@@ -53,7 +53,7 @@ void spell_effect()
         return;
     }
 
-    tell_room(place, "%^BOLD%^%^CYAN%^" + target->QCN + "'s veins glow %^YELLOW%^with celestial energy through the skin.%^RESET%^", caster);
+    tell_room(place, "%^BOLD%^%^CYAN%^" + target->QCN + "'s veins glow %^YELLOW%^with celestial energy through the skin.%^RESET%^", target);
     {
         int duration = clevel * ROUND_LENGTH * 12;
         tell_object(target, "%^BOLD%^%^CYAN%^You feel your blood %^YELLOW%^glow%^CYAN%^ with celestial energy, healing your wounds.%^RESET%^");

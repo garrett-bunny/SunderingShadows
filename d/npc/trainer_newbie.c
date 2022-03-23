@@ -61,8 +61,8 @@ void make_me() {
 	set_id(({"stearel","Stearel","trainer", "wanderer" }));
 	set_short("Stearel, a wanderer");
 	set_long("Stearel appears to be in her mid-twenties, although it "
-	   "appears she has led a difficult life in that short time.  She "
-	   "has numerous scars on her lower arms and a few on her face.  "
+	   "appears she has led a difficult life in that short time. She "
+	   "has numerous scars on her lower arms and a few on her face. "
 	   "She seems to be traveling light, wearing a simple blue tunic "
 	   "over dark brown breeches that tuck into her boots.");
 	set_gender("female");
@@ -74,8 +74,8 @@ void make_me() {
 	set_id(({"mardan","Mardan","trainer", "wanderer"}));
 	set_short("Mardan, a wanderer");
 	set_long("Mardan is a small, lithe man with dark brown hair and "
-	   "deep blue eyes.  He wears a backpack that smells of herbs "
-	   "and carries a basket that is overflowing with fruits and nuts.  "
+	   "deep blue eyes. He wears a backpack that smells of herbs "
+	   "and carries a basket that is overflowing with fruits and nuts. "
 	   "His hands and arms are scratched, perhaps from struggling with "
 	   "brambles and digging through undergrowth to gather berries and "
 	   "such.");
@@ -88,12 +88,12 @@ void make_me() {
 	set_id(({"trundulm","Trundulm","trainer"}));
 	set_short("Trundulm, a wanderer");
 	set_long("Trundulm appears to have spent most of his life "
-	   "outdoors.  His weatherworn skin and graying auburn hair "
-	   "lead you to guess he's in his fifties.  His thick, unkempt "
+	   "outdoors. His weatherworn skin and graying auburn hair "
+	   "lead you to guess he's in his fifties. His thick, unkempt "
            "curly beard gives him a somewhat barbaric appearance.  "
 	   "He wears simple leather clothing that has stains that look "
            "like dried blood.  There is a pouch around his "
-	   "waist and some furs hanging from his belt.  You see the "
+	   "waist and some furs hanging from his belt. You see the "
 	   "hilt of what looks to be a very sturdy looking knife "
 	   "sticking out of a small sheath tied on his thigh.");
 	set_gender("male");
@@ -105,9 +105,9 @@ void make_me() {
 	set_id(({"jarduen","Jarduen","trainer"}));
 	set_short("Jarduen, a wanderer");
 	set_long("Jarduen has a bow slung over his shoulder and a sheath "
-	  "for a longsword at his side.  He is dressed in dark leather "
+	  "for a longsword at his side. He is dressed in dark leather "
 	  "breeches, a doeskin shirt, and wears knee high boots that "
-	  "have clearly seen a lot of wear.  He has what looks like the "
+	  "have clearly seen a lot of wear. He has what looks like "
 	  "teeth and pieces of bone, tusks, and antlers strung from a "
 	  "thin strip of leather dangling from his belt, perhaps trophies.");
 	set_gender("male");
@@ -120,17 +120,17 @@ void make_me() {
 	set_id(({"lillian","Lillian Fardell","bard"}));
 	set_long("%^CYAN%^Dressed in a motley array of "+
 		"colors and patterns, Lillian looks festive "+
-		"and merry.  Her %^RED%^p%^MAGENTA%^a%^BLUE%^t%^YELLOW%^"+
+		"and merry. Her %^RED%^p%^MAGENTA%^a%^BLUE%^t%^YELLOW%^"+
 		"c%^WHITE%^h%^CYAN%^w%^BLACK%^o%^BLUE%^r%^MAGENTA%^k"+
 		"%^RESET%^%^CYAN%^ robe features such rich fabrics "+
 		"as velvet and silk with beaded and metallic trims.  "+
 		"Her %^BOLD%^%^WHITE%^silver%^RESET%^%^CYAN%^ streaked"+
 		" %^BOLD%^%^BLACK%^black%^RESET%^%^CYAN%^ hair is "+
 		"pulled into a snood that rests at the base of her "+
-		"neck.  A regal looking instrument case is slung onto"+
-		" one of her shoulders.  This middle aged woman it is"+
+		"neck. A regal looking instrument case is slung onto"+
+		" one of her shoulders. This middle aged woman it is"+
 		" said got her start as an actress before following her"+
-		" heart and becoming a songstress.  Such a rare treat "+
+		" heart and becoming a songstress. Such a rare treat "+
 		"that such an accomplished bard to find her way here!.");
 	set_gender("female");
 	set_race("half-elf");

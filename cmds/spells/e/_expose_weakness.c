@@ -16,6 +16,7 @@ void refix();
 void create() {
     ::create();
     set_spell_name("expose weakness");
+    set_spell_sphere("psychometabolism");
     set_spell_level(([ "psywarrior" : 3 ]));
     set_syntax("cast CLASS expose weakness on TARGET");
     set_description("This power allows the psionic character to rend "

@@ -182,8 +182,8 @@ void execute_feat()
     companion->set_hd(comp_hd, 14);
     companion->set_attacks_num(2 + class_level / 8);
     companion->set_mlevel("fighter", comp_hd);
-    companion->set_max_hp(14 + (25 * comp_hd));
-    companion->set_hp(25 * comp_hd + 14);
+    companion->set_max_hp(50 + (25 * comp_hd));
+    companion->set_hp(25 * comp_hd + 50);
     companion->set_alignment(caster->query_alignment());
     companion->set_owner(caster);
 
@@ -204,6 +204,7 @@ void execute_feat()
     companion->set_stats("charisma", valid_types[arg][5]);
     companion->set_size(valid_types[arg][6]);
     companion->set_overall_ac(0 - comp_ac - valid_types[arg][7]);
+    companion->set_property("spell damage resistance", 10);
 
     //Based on SRD - companion gets "specials" at certain caster levels
     if(class_level >= 3)
@@ -240,8 +241,8 @@ void execute_feat()
                 pack_animal->set_hd(comp_hd, 14);
                 pack_animal->set_attacks_num(2 + class_level / 8);
                 pack_animal->set_mlevel("fighter", comp_hd);
-                pack_animal->set_max_hp(14 + (25 * comp_hd));
-                pack_animal->set_hp(14 * comp_hd + 14);
+                pack_animal->set_max_hp(50 + (25 * comp_hd));
+                pack_animal->set_hp(25 * comp_hd + 50);
                 pack_animal->set_alignment(caster->query_alignment());
                 pack_animal->set_owner(caster);
                 pack_animal->set_property("damage resistance", 10);

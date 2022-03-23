@@ -162,7 +162,7 @@ void pick_room()
 
             ({"bed", "canopy", "canopy bed"}) : "%^BOLD%^%^MAGENTA%^This giant canopy "+
             "bed was once the envy of all. Now, however, it is mostly useless, a "+
-            "collector of clutter and broken down to the point of being unuseable.%^RESET%^",
+            "collector of clutter and broken down to the point of being unusable.%^RESET%^",
 
             ]) );
             roomdescrip = "bedroom";
@@ -292,7 +292,7 @@ void pick_room()
                 ({"walls", "wall", "floor", "oak"}) : "%^RESET%^%^GREEN%^"+
                 "The walls, ceiling, and floor of this tiny room are composed of "+
                 "the now familiar oak that much of this has been constructed from. "+
-                "They have been warped by the vicious assult of time.%^RESET%^", 
+                "They have been warped by the vicious assault of time.%^RESET%^", 
 
                 ({"shelf", "shelves", "materials"}) : "%^BOLD%^%^MAGENTA%^Shelves line the "+
                 "walls of this tiny chamber. They are insanely cluttered but "+
@@ -414,7 +414,7 @@ void pick_room()
                 ({"circle", "floor", "runes"}) : "%^BOLD%^%^YELLOW%^"+
                 "The circle on the floor here has been drawn using some "+
                 "bright red substance. It is surrounded by strange blue "+
-                "runes with occassionally pulsate. You could %^BOLD%^%^WHITE%^"+
+                "runes with occasionally pulsate. You could %^BOLD%^%^WHITE%^"+
                 "<%^BOLD%^%^CYAN%^stand%^BOLD%^%^WHITE%^>%^BOLD%^%^YELLOW%^ in "+
                 "it, but perhaps that would not be the wisest course of action."+
                 "%^RESET%^", 
@@ -739,7 +739,7 @@ int circle_stand(string str)
         "in the circle but nothing seems to happen.%^RESET%^");
         return 1;   
     }   
-    tell_object(TP, "%^BOLD%^%^YELLOW%^Against better judgement you "+
+    tell_object(TP, "%^BOLD%^%^YELLOW%^Against better judgment you "+
     "walk over and stand in the circle.....%^RESET%^");
 
     tell_room(TO, TPQCN+"%^BOLD%^%^YELLOW%^ walks over and stands in "+

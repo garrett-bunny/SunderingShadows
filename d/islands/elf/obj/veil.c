@@ -31,7 +31,7 @@ void create(){
 " years into his absence  but was never seen from again. ");
    set_property("lore difficulty",34);
    set_wear((:TO,"wear_fun":));
-   set_remove((:TO,"remove_fun":));
+   set_remove("%^MAGENTA%^You remove the veil and uncover your face and hair");
    set_item_bonus("negative energy resistance",15);
    set_item_bonus("mental energy resistance",-1);
    set_item_bonus("charisma",1);
@@ -47,9 +47,13 @@ int wear_fun(){
    return 1;
 }
 
+/*
 int remove_fun(){
   tell_room(EETO,"%^MAGENTA%^"+ETOQCN+" unattaches the veil and reveals "+ETO->QP+
   "face and hair.",ETO);
   tell_object(ETO,"%^MAGENTA%^You remove the veil and uncover your face and hair.");
   return 1;
 }
+
+/*
+

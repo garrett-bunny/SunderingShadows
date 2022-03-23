@@ -26,6 +26,7 @@ void create(){
    set_item_bonus("constitution",2);
    set_struck((:TO,"struck_fun":));
 }
+
 int struck_fun(int damage,object what,object who){
    if(!random(3)){
      tell_room(EETO,"%^BOLD%^%^BLUE%^"+ETO->QCN+" raises "+ETO->QP+" shield to deflect

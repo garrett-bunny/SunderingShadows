@@ -65,7 +65,7 @@ int remove_func(){
 }
 
 int strike_func(int damage, object what, object who){
-        if(random(1000) < 200){
+    if(random(1000) < 200){
         tell_room(environment(query_worn()),"%^BOLD%^%^BLUE%^"+who->QCN+" staggers "+
 		"back as a spray of ice and frost from "+ETOQCN+"'s armor showers them in"+
         " cold!%^RESET%^",({ETO,who}));
@@ -76,7 +76,8 @@ int strike_func(int damage, object what, object who){
 		"crystals from their armor to explode outward and freeze to your exposed skin."+
 		"  The chill is mindnumbing!%^RESET%^");
        who->set_paralyzed(roll_dice(2,3));
-return damage;  }
+    }
+    return damage;
 }
 
 int is_metal() { return 0; } // for druids

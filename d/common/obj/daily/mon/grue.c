@@ -108,53 +108,65 @@ void round_cleanup(){
 }
 
 void warning(){
-    if(ETO->query_property("light") < -2)
-        tell_room(ETO, "\n%^RESET%^%^CRST%^%^C030%^Those orbs seem to be radiating %^C059%^darkness%^C030%^. You should probably %^C037%^snuff %^C030%^them.%^CRST%^\n");
+    object room;
+    
+    room = environment(this_object());
+    
+    if(room->query_property("light") < -2)
+        tell_room(room, "\n%^RESET%^%^CRST%^%^C030%^Those orbs seem to be radiating %^C059%^darkness%^C030%^. You should probably %^C037%^snuff %^C030%^them.%^CRST%^\n");
     return;
 }
 
 void darkness_spread(){
-    object ob;
+    object ob, room;
     
-    if(ETO->query_property("light") <= -10) return;
+    room = environment(this_object());
+    
+    if(room->query_property("light") <= -10) return;
     ob = new("/d/common/obj/daily/obj/grue_orb");
-    ob->move(ETO);
-    tell_room(ETO, "%^RESET%^%^CRST%^%^C244%^The grue shudders... and coughs out an %^C059%^orb of darkness %^C244%^that drifts away!\n\n%^RESET%^%^C037%^The %^C030%^dark%^C024%^ness inte%^C023%^nsif%^C019%^ies...\n%^CRST%^");
+    ob->move(room);
+    tell_room(room, "%^RESET%^%^CRST%^%^C244%^The grue shudders... and coughs out an %^C059%^orb of darkness %^C244%^that drifts away!\n\n%^RESET%^%^C037%^The %^C030%^dark%^C024%^ness inte%^C023%^nsif%^C019%^ies...\n%^CRST%^");
     return;
 }
 
 void darkness_heal(){
     int healing, darkness;
+    object room, grue;
     
-    darkness = (ETO->query_property("light") * -1);
+    grue = this_object();
+    room = environment(grue);
+    
+    darkness = (room->query_property("light") * -1);
     if(darkness < 0) return;
     healing = (powerlevel * powerlevel * 35 * darkness);
-    TO->cause_typed_damage(TO, "torso", healing, "positive energy");
-    tell_room(ETO, "%^RESET%^%^CRST%^\n%^C060%^The grue shivers, shaking its massive body as the %^C059%^darkness %^C060%^seeps into it and its %^C062%^wounds heal%^C060%^.%^CRST%^\n");
+    grue->cause_typed_damage(grue, "torso", healing, "positive energy");
+    tell_room(room, "%^RESET%^%^CRST%^\n%^C060%^The grue shivers, shaking its massive body as the %^C059%^darkness %^C060%^seeps into it and its %^C062%^wounds heal%^C060%^.%^CRST%^\n");
     return;
 }
 
 void slam_attack(){
     int i, darkness;
     object* attackers;
-    object targ;
+    object targ, room;
     
-    darkness = (ETO->querty_property("light") * -1);
+    room = environment(this_object());
+    
+    darkness = (room->query_property("light") * -1);
     if(darkness < 0) darkness = 0;
     
     for(i=0; i < powerlevel; i++){
         attackers = query_attackers();
         targ = attackers[random(sizeof(attackers))];
-        tell_room(ETO, "%^RESET%^%^CRST%^\n%^C093%^With a piercing screech, the grue charges forward!%^CRST%^");
+        tell_room(room, "%^RESET%^%^CRST%^\n%^C093%^With a piercing screech, the grue charges forward!%^CRST%^");
         if(userp(targ)){
             if(SAVING_THROW_D->reflex_save(targ, ((powerlevel * 15) + darkness + handicap))){
-                tell_room(ETO, "%^RESET%^%^CRST%^%^C118%^"+targ->QCN+"%^RESET%^%^CRST%^%^C118%^ barely jumps out of the way!%^CRST%^\n", targ);
+                tell_room(room, "%^RESET%^%^CRST%^%^C118%^"+targ->query_cap_name()+"%^RESET%^%^CRST%^%^C118%^ barely jumps out of the way!%^CRST%^\n", targ);
                 tell_object(targ, "%^RESET%^%^CRST%^%^C118%^You barely jump out of the way!%^CRST%^\n");
                 handicap++;
                 return;
             }
             else{
-                tell_room(ETO, "%^RESET%^%^CRST%^%^C196%^It rushes, slamming its body into "+targ->QCN+"%^RESET%^%^CRST%^%^C196%^!%^CRST%^\n", targ);
+                tell_room(room, "%^RESET%^%^CRST%^%^C196%^It rushes, slamming its body into "+targ->query_cap_name()+"%^RESET%^%^CRST%^%^C196%^!%^CRST%^\n", targ);
                 tell_object(targ, "%^RESET%^%^CRST%^%^C196%^It rushes, slamming its body into you!%^CRST%^\n");
                 targ->cause_typed_damage(targ, "torso", roll_dice((darkness * 5), (powerlevel * 2)), "bludgeoning");
                 targ->set_paralyzed(2, "%^RESET%^%^CRST%^%^C125%^That last hit left you winded!%^CRST%^");
@@ -162,7 +174,7 @@ void slam_attack(){
                 return;
             }
         }
-        tell_room(ETO, "%^RESET%^%^CRST%^%^C124%^With a quick snap of its mouth, it swallows "+targ->QCN+" %^RESET%^%^CRST%^%^C124%^whole!%^CRST%^");
+        tell_room(ETO, "%^RESET%^%^CRST%^%^C124%^With a quick snap of its mouth, it swallows "+targ->query_cap_name()+" %^RESET%^%^CRST%^%^C124%^whole!%^CRST%^");
         targ->die();
         continue;
     }

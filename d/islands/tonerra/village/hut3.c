@@ -12,7 +12,7 @@ void create(){
   set_short("Witch Doctor");
   set_long(
 @DESC
-%^BOLD%^\tVillage guard meeting room%^RESET%^
+%^BOLD%^Village guard meeting room%^RESET%^
 This room is littered with the scrappings of food and rubbish the
 seem typical of guard houses every where. Here the village guards
 however are quite alert and never lax about their duty. They know that

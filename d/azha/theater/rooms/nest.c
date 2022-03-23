@@ -36,7 +36,7 @@ int FLAG;
 	" is ridden with multiple holes, as if something was trying to escape"+
 	" through them.  The skeletal wooden frame of the ceiling is mostly "+
 	"intact, though a number of the beams have been shattered, and hang "+
-	"limp.  The holes in the ceiling alone for a stale dead breeze to blow"+
+	"limp.  The holes in the ceiling allow for a stale dead breeze to blow"+
 	" through the room.",
 		({"debris","wall","stone","timber"}) : "%^BOLD%^%^WHITE%^The impenetrable"+
 	" wall of stone, timber and debris has ripped through the wooden floor "+

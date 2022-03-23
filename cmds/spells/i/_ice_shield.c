@@ -46,7 +46,7 @@ string query_cast_string(){
 
 void spell_effect(int prof){
     int duration;
-    duration = (ROUND_LENGTH * 3) * clevel;
+    duration = (ROUND_LENGTH * 10) * clevel;
     tell_room(place,"%^BOLD%^%^CYAN%^"+caster->QCN+" completes "+caster->QP+" prayer and is "
         "encased in a haze of arctic air.",caster);
     tell_object(caster,"%^BOLD%^%^CYAN%^You complete your prayer and are encased in the ice "

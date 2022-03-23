@@ -24,7 +24,7 @@ void create()
     "shadows cloak most of him, though you assume that the rest of him is just "+
     "like his face.  His body is much longer than it is wide and he "+
     "stands almost seven feet tall.  An aura of darkness surrounds him, "+
-    "pulsing outward in constant rythme from his chest.  He carries, "+
+    "pulsing outward in constant rhythm from his chest.  He carries, "+
     "a black scythe with dreadful ease.%^RESET%^");
     set_body_type("humanoid");
     set_alignment(9);

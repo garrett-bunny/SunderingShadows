@@ -22,7 +22,7 @@ void create()
       "%^RESET%^that extends out over the waters of the "+
       "%^BOLD%^%^BLUE%^Sarcosta River%^RESET%^. The pier is "+
       "cluttered with barrels, crates, and coiled up rope, that "+
-      "makes makes travelling in a straight line for more than a "+
+     "makes travelling in a straight line for more than a "+
       "couple yards impossible. A multitude of boats and ships are "+
       "found moored to the pier on either side. Vessels as small as "+
       "the keelboats that ply the %^BOLD%^%^BLUE%^Sarcosta%^RESET%^, "+

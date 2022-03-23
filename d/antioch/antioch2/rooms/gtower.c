@@ -14,7 +14,7 @@ void create()
         "%^WHITE%^You are inside a large stone guard tower. %^ORANGE%^B%^ORANGE%^e%^ORANGE%^n%^ORANGE%^c%^ORANGE%^h%^ORANGE%^es%^WHITE%^ and %^ORANGE%^t%^ORANGE%^a%^ORANGE%^b%^ORANGE%^le%^ORANGE%^s%^WHITE%^ have been set up around the room and there is a locked rack of weapons and armor on the back wall. It is only filled with basic equipment, spare gear for any of the guards who lose theirs. There are large stone %^BOLD%^%^BLACK%^steps%^RESET%^%^WHITE%^ that wind up to the second floor of the guard tower, curving out of sight. %^BOLD%^%^ORANGE%^O%^RESET%^%^ORANGE%^i%^BOLD%^%^ORANGE%^l %^ORANGE%^lamps%^RESET%^%^WHITE%^ are kept lit around the room, keeping it bright at all times.
 "
         );
-    set_smell("default", "The sweat of soldiers permeats the room.");
+    set_smell("default", "The sweat of soldiers permeates the room.");
     set_listen("default", "The guards are idly chatting.");
     set_items(([
                    ({ "table", "tables" }) : "There are wooden tables scattered around" +

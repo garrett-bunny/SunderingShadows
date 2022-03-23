@@ -64,4 +64,5 @@ int strike_me(int damage, object what, object who){
   "robe worn by "+ETO->QCN+ "%^BLUE%^!%^RESET%^");
   return (damage*(1/2));
  }
+ return damage;
 }

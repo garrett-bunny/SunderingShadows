@@ -16,3 +16,13 @@ void create(){
    ]));
 
 }
+
+void reset(){
+   ::reset();
+   if(!present("font")){
+      new(OBJ"font.c")->move(TO);
+   }
+   if(!present("spirit_of_the_shrine")){
+      new(MOBS"shrine_spirit.c")->move(TO);
+   }
+}

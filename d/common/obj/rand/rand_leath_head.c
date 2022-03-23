@@ -104,7 +104,7 @@ case "hat":
       TO->set_long("%^CYAN%^This stylish hat is shaped from "+COLOR+" "+
 		"%^RESET%^%^CYAN%^felt.  The wide brim of the hat is "+
 		"softly formed and allowed to keep it's loose shape.  "+
-		"This allows for the wear to decided how they will wear "+
+		"This allows for the wear to decide how they will wear "+
 		"their hat.  The crown of the hat is rounded to fit flush"+
 		" with the wearer's head.  Inside the crown a boiled leather"+
 		" plate has been sandwiched between two layers of felt, giving"+

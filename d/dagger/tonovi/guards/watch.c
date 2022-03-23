@@ -79,7 +79,7 @@ void create()
     }));
     set_func_chance(35);
     set_property("full attacks", 1);
-    set_property("magic resistance", random(60) + 10);
+    set_mob_magic_resistance("average");
     rank = set_ranks(([
                           18 : "rookie",
                           20 : "sergeant",
@@ -142,7 +142,7 @@ void set_guard_stuff()
 {
     set_jail_location("/d/dagger/tonovi/town/jail_main");
     set_guarding("Tonovi");
-    set_bad_races(({ "elf", "half-elf", "hobgoblin", "goblin", "hobgoblin", "kobold", "ogre", "orc", "gnoll", "bugbear", "minotaur", "dragon", "ratkin", "wererat", "undead", "troll" }));
+    set_bad_races(({ "hobgoblin", "goblin", "hobgoblin", "kobold", "ogre", "orc", "gnoll", "bugbear", "minotaur", "dragon", "ratkin", "wererat", "undead", "troll" }));
     set_race_action("capture");
     set_race_messages(([
                            "elf"       : "Stop that elf and put it back in chains!",
@@ -188,12 +188,14 @@ int is_bad_race(object live)
     if (query_bad_race(live)) {
         return 1;
     }
+    /*
     if ((string)live->query_race() == "elf") {
         if ((string)live->query("subrace") == "fey'ri" &&
             !live->query_property("altered")) {
             return 1;
         }
     }
+    */
     if (objectp(myshape = live->query_property("shapeshifted"))) {
         if ((string)myshape->query_shape_race() == "dragon") {
             return 1;

@@ -20,7 +20,7 @@ void create()
         "like daggers through the clouds. Right now you are traveling between "
         "the peaks in no particular direction, trying your best to keep your "
         "footing.  To the north you see what looks to be some "
-        "large shape prodruding from the mountain's face, with what looks "
+        "large shape protruding from the mountain's face, with what looks "
         "like a cave in its center.  South is the path from which you came, "
         "which winds its way through the treacherous peaks of the Thoradin Range.");
 

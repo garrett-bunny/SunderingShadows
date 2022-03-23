@@ -8,7 +8,7 @@ void create() {
      set_short("On a small boat in the reflection pool");
      set_long("
    %^BLUE%^You are in a small boat floating in the reflection pool.  The waters lap against the hull almost melodically.
-    %^CYAN%^The great wall of the tower rises out of view just to the north and a low bridge prevents forther sailing to the west.%^RESET%^
+    %^CYAN%^The great wall of the tower rises out of view just to the north and a low bridge prevents further sailing to the west.%^RESET%^
     The waters of the reflection pool seem to strangely crackle, and a golden glimmer rides the small wave crests.
 ");
 set_listen("default", "%^BOLD%^%^MAGENTA%^A small boat is here.\n");

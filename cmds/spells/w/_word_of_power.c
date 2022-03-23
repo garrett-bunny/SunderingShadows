@@ -1,7 +1,7 @@
 #include <priest.h>
 inherit SPELL;
 
-#define ACTIVETEMPLES ({ "jarmila", "kreysneothosies", "cevahir", "lord shadow", "lysara", "the faceless one", "callamir", "kismet", "nilith", "nimnavanon", "seija","khyron"})
+#define ACTIVETEMPLES ({ "jarmila", "kreysneothosies", "cevahir", "lord shadow", "lysara", "the faceless one", "callamir", "kismet", "nilith", "nimnavanon", "seija", "khyron", "ashra"})
 
 void create()
 {

@@ -43,8 +43,8 @@ void lookFun(){
    tell_room(TO,"%^BOLD%^%^CYAN%^"+TPQCN+" looks over the column and becomes entranced.",TP);
    write(
 @OLI
-   Before you a great tree is knocked down, a block of stone cracks. Then
-it switches, you see a slap and a look of defiance. The monk stands while
+   Before you a great tree is knocked down, a block of stone cracks, then
+it switches. You see a slap and a look of defiance. The monk stands while
 mocked. The world turns but the will stands. Then the granite breaks again.
 
 OLI

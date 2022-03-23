@@ -10,7 +10,7 @@ void create(){
     set_short("Deinonychus");
     set_id( ({"dino", "dinosaur", "deino", "deinonychus"}) );
     set_long(
-      "The 6 foot tall dinosaur before you snarls at you.  A definate meat eater, its large teeth look ready to rip you apart as it grasps you in its long, but thin, forearms.  It also looks ready to rip you apart with the giant claws on its hind legs."
+      "The 6 foot tall dinosaur before you snarls at you. A definite meat eater, its large teeth look ready to rip you apart as it grasps you in its long, but thin, forearms. It also looks ready to rip you apart with the giant claws on its hind legs."
     );
     set_size(2);
     set_hd(10+random(5), 0);

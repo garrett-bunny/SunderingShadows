@@ -826,7 +826,7 @@ void make_random(object obj) {
             	obj->set_item_bonus("magic resistance",1);
             	break;
             case 95:
-            	obj->set_item_bonus("spell resistance",5);
+            	obj->set_item_bonus("spell damage resistance",5);
             	break;
             case 96:
             	obj->set_item_bonus("fortitude",1);
@@ -859,7 +859,7 @@ void make_random(object obj) {
             	obj->set_item_bonus("magic resistance",1);
             	break;
             case 90..91:
-            	obj->set_item_bonus("spell resistance",5);
+            	obj->set_item_bonus("spell damage resistance",5);
             	break;
             case 92..93:
             	obj->set_item_bonus("fortitude",1);
@@ -892,7 +892,7 @@ void make_random(object obj) {
             	obj->set_item_bonus("magic resistance",1);
             	break;
             case 75..79:
-            	obj->set_item_bonus("spell resistance",5);
+            	obj->set_item_bonus("spell damage resistance",5);
             	break;
             case 80..84:
             	obj->set_item_bonus("fortitude",1);
@@ -922,10 +922,10 @@ void make_random(object obj) {
             	obj->set_item_bonus("sight bonus",random(2)+1);
             	break;
             case 40..49:
-            	obj->set_item_bonus("magic resistance",random(6)+1);
+            	obj->set_item_bonus("magic resistance",random(2)+1);
             	break;
             case 50..59:
-            	obj->set_item_bonus("spell resistance",random(6)+5);
+            	obj->set_item_bonus("spell damage resistance",random(6)+5);
             	break;
             case 60..69:
             	obj->set_item_bonus("fortitude",random(2)+1);
@@ -958,10 +958,10 @@ void make_random(object obj) {
             	obj->set_item_bonus("sight bonus",random(2)+2);
             	break;
             case 40..49:
-            	obj->set_item_bonus("magic resistance",random(6)+1);
+            	obj->set_item_bonus("magic resistance",random(2)+1);
             	break;
             case 50..59:
-            	obj->set_item_bonus("spell resistance",random(6)+10);
+            	obj->set_item_bonus("spell damage resistance",random(6)+10);
             	break;
             case 60..69:
             	obj->set_item_bonus("fortitude",random(2)+2);
@@ -992,10 +992,10 @@ void make_random(object obj) {
             	obj->set_item_bonus("sight bonus",random(2)+2);
             	break;
             case 40..49:
-            	obj->set_item_bonus("magic resistance",random(6)+1);
+            	obj->set_item_bonus("magic resistance",random(2)+1);
             	break;
             case 50..59:
-            	obj->set_item_bonus("spell resistance",random(6)+10);
+            	obj->set_item_bonus("spell damage resistance",random(6)+10);
             	break;
             case 60..69:
             	obj->set_item_bonus("fortitude",random(2)+2);

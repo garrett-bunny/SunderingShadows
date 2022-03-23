@@ -12,7 +12,7 @@ jungle. You are quickly becoming surrounded by large trees and
 plants and could very easily lose your way. From deeper in the 
 jungle, you hear sounds that you cannot identify and the density
 of the plant life makes it difficult to see anything off the trail.
-You feel youself walking on a slight incline.
+You feel yourself walking on a slight incline.
 VETRI
   );
   set_indoors(0);

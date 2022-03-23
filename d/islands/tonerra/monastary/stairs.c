@@ -32,6 +32,6 @@ set_exits(([
 ]));
 
 set_smell("default", "You can smell the pureness of the air.");
-set_listen("default", "You can hear the rumbling of the near volcano.");
+set_listen("default", "You can hear the rumbling of the nearby volcano.");
 
 }

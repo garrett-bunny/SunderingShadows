@@ -13,15 +13,15 @@ void create(){
         set_long("%^ORANGE%^M%^BOLD%^y%^WHITE%^s%^RESET%^t%^BOLD%^%^BLACK%^e%^ORANGE%^r%^WHITE%^i%^ORANGE%^o%^WHITE%^u%^RESET%^s %^ORANGE%^P%^BOLD%^l%^WHITE%^a%^RESET%^t%^YELLOW%^e%^BLACK%^a%^RESET%^%^ORANGE%^u%^RESET%^
 %^ORANGE%^You stand upon a %^RED%^pl%^BOLD%^a%^RESET%^%^RED%^t%^BOLD%^ea%^RESET%^%^RED%^u %^ORANGE%^high in the mountains of Aramanth Island. This is most likely a volcanic island with this %^RED%^pl%^BOLD%^a%^RESET%^%^RED%^t%^BOLD%^ea%^RESET%^%^RED%^u %^ORANGE%^being the surviving part of the cone. The %^WHITE%^gr%^BOLD%^ou%^RESET%^nd %^ORANGE%^up here is a thick layer of fine %^WHITE%^ash %^ORANGE%^and twenty foot %^WHITE%^walls %^ORANGE%^surround this crater. You get the feeling that if you walk around enough up here, you could find something.
 ");
-   set_listen("default", "The waves crashing against the beach far below carriesover the plateau and echoes off the walls.");
+   set_listen("default", "The waves crashing against the beach far below carries over the plateau and echoes off the walls.");
        set_exits(([
       "north" : "/d/islands/common/aramanth/room5",
        "east" : "/d/islands/common/aramanth/room9",
 ]));
        set_items(([
     "walls" : "They are tall formations of natural rock that surround the crater.",
-    "ground" : "It is coated in a thick, black, crystalized ash.",
-    "ash" : "The ash is a finely granulated crystaline powder.  It glistens oddly in the light.  It is marked with footprints that aren't yours.",
+    "ground" : "It is coated in a thick, black, crystallized ash.",
+    "ash" : "The ash is a finely granulated crystalline powder.  It glistens oddly in the light.  It is marked with footprints that aren't yours.",
     "footprints" : "They come from the north and head east.",
     "plateau" : "It is a volcanic crater high above sea level.  Four tall obelisks are placed around the perimeter.",
 ]));

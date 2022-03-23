@@ -48,7 +48,7 @@ int default_descriptions(object obj)
 {
     if(!objectp(obj)) { return 0; }
 
-    obj->set_description(" towers at an impressive thirty feet tall. Its whole humanoid body is covered in a fine red fur. Giant black leathery wings extend from it's back and two horns rise above it's head. Its face is vaugely bull like, with horns extending at the side of each of its jaws. Massive teeth fill a large maw.");
+    obj->set_description("towers at an impressive thirty feet tall. Its whole humanoid body is covered in a fine red fur. Giant black leathery wings extend from it's back and two horns rise above it's head. Its face is vaugely bull like, with horns extending at the side of each of its jaws. Massive teeth fill a large maw.");
 
     obj->setDescriptivePhrase("towering $G $R");
 

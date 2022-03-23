@@ -9,7 +9,7 @@ void create()
     set_mystery("winter");
     set_spell_sphere("divination");
     set_syntax("cast CLASS ice mirror on TARGET");
-    set_description("This spells functions exactly like magic mirror, and requires a mirror to use.");
+    set_description("This spells functions exactly like magic mirror and requires a mirror to use.");
     set_verbal_comp();
     set_somatic_comp();
     set_helpful_spell(1);

@@ -8,7 +8,7 @@ void create() {
     feat_category("AdvancedTraining");
     feat_name("master weaponsmith");
     feat_prereq("Fighter L21, Advanced Training Feat");
-    feat_desc("Both in combat and out, your devotion to weapons is unriveled. You gain a +10 bonus to your weaponsmith skill.");
+    feat_desc("Both in combat and out, your devotion to weapons is unrivaled. You gain a +10 bonus to your weaponsmith skill.");
     permanent(1);
     set_required_for(({}));
 }

@@ -39,8 +39,6 @@ void create()
         droll =(10+random(21));
         set_gender("neuter");
         set_race("golem");
-        set_max_hp(roll_dice( query_hd(), 50));
-        set_hp(query_max_hp());
         set_alignment(2);
         set_overall_ac(-50);
         set_class("fighter");
@@ -48,6 +46,7 @@ void create()
         set_level(50);
         set_property("no dominate",1);
         set_property("no bows",1);
+        set_property("no fear", 1);
         set_stats("strength",24);
         set_stats("constitution",22);
         set_stats("dexterity",16);
@@ -65,6 +64,8 @@ void create()
         }),1);
         set_new_exp(50,"normal");
         set_max_level(50);
+        set_max_hp(roll_dice( query_hd(), 50));
+        set_hp(query_max_hp());
         set_property("swarm",1);
         set_property("full attacks",1);
         set("aggressive",0);
@@ -82,7 +83,7 @@ void create()
 
 void set_guard_stuff() {
     set_jail_location("/d/tharis/newtharis/rooms/jail_main");
-    set_guarding("tharis");
+    set_guarding("Tharis");
     //set_bad_races(RACIST);
     set_race_action("capture");  //might as well :D
     /*
@@ -121,7 +122,7 @@ void do_special_combat_actions()
 {
    blow_horn(this_object());
 }
-
+/*
 void do_laws(object live){
 do_laws();
 do_laws();
@@ -130,6 +131,7 @@ do_laws();
 if(sizeof(live->query_wielded()))
   force_me("say please unhand your weapon");
 }
+*/
 
 void blow_horn(object ob)
 {

@@ -72,7 +72,7 @@ int sic(string str) {
  object room, target;
 
   if(!str) {
-    write("What would you like your companion to attack!");
+    write("What would you like your companion to attack?");
     return 1;
   }
   

@@ -72,10 +72,10 @@ void spell_effect(int prof){
         tell_object(target, "%^BOLD%^%^CYAN%^A tingling sensation moves through"+
             " your mind, with it a feeling of foresight is gained.");
     }else{
-        tell_object(caster,"%^BOLD%^%^CYAN%^You touch "+target->QCN+" forehead and ask for "
+        tell_object(caster,"%^BOLD%^%^CYAN%^You touch "+target->QCN+"'s forehead and ask for "
             "the gift of foresight.");
         tell_object(target,"%^CYAN%^%^BOLD%^"+caster->QCN+" touches your forehead.\n A"+
-            " tingling sensation moves through you mind, with it a feeling "+
+            " tingling sensation moves through your mind, with it a feeling "+
             "of foresight is gained.");
         tell_room(place,"%^BOLD%^%^CYAN%^"+caster->QCN+" touches "+target->QCN+"'s forehead "
             "and as "+caster->QS+" finishes the last words of the prayer.",({target,caster}));

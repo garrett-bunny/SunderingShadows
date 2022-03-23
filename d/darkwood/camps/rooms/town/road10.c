@@ -8,7 +8,7 @@ void create() {
       "%^RESET%^%^GREEN%^This path starts off as a narrow passageway from the clearing to the northeast"+
       " but opens up into wide trail the further you head southwest. To the southwest the thick of the"+
       " forest spreads further and further from the path. As you look up, you can see several platforms"+
-      " extending from the trees that once created the broder for the path. The boundary is replaced"+
+      " extending from the trees that once created the border for the path. The boundary is replaced"+
       " by tall grass that edges"+
       " around the path."
    );

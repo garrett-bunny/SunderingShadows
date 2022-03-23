@@ -18,7 +18,7 @@ void create(){
                 " strip in the same shade of %^RED%^dark red%^RESET%^.  "+
                 "The inside of the strip and coil have been finished off"+
                 " with %^BOLD%^%^BLACK%^black%^RESET%^ suede, giving some"+
-                " cushion anyone who might wear it.  Studded into the leather"+
+                " cushion to anyone who might wear it.  Studded into the leather"+
                 " coil and strip are over a hundred and thirty %^BOLD%^metal "+
                 "spikes%^RESET%^.  Fashioned out of %^BOLD%^%^RED%^fever iron"+
                 "%^RESET%^, each spike has a %^BOLD%^%^RED%^bright red%^RESET%^"+
@@ -28,7 +28,7 @@ void create(){
                 "these Hellfire Coils as a sign of their mastery over magic. "+
                 " Using their natural elven knowledge of magic, coupled with "+
                 "secrets stolen from demonkind, the fey'ri have twisted the "+
-                "the mystical arts to something much more sinister than that of "+
+                "mystical arts to something much more sinister than that of "+
                 "their sun elven ancestors.  The coils allow the fey'ri to summon "+
                 "one of their favorite breed of canines, hellhounds, to serve "+
                 "as their protector.  The coils are so common with the fey'ri "+

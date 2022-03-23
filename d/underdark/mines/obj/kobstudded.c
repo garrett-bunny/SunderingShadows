@@ -25,7 +25,7 @@ void create(){
       "worship is centered around worship of The Earthlord, in the "+
       "guise of Kurtulmak, or the veneration of dragons. Frequently "+
       "this dragon veneration is centered upon one dragon in particular "+
-      "which the worship, and attempt to serve. Honored protectors of "+
+     "which they worship. and attempt to serve. Honored protectors of "+
       "the community are dubbed Claws of the Venerated Dragon, gifted "+
       "with the sacred kobold claws and armor befitting a kobold hero.\n "+
       "-An excerpt from 'On the Kobold Race,' by Thaddeus Kranzot");

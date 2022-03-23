@@ -8,7 +8,8 @@ void create()
 {
     ::create();
     set_spell_name("wieldskill");
-    set_spell_level(([ "inquisitor" : 2, "mage" : 2, "magus" : 2, "paladin" : 2, "psion" : 2 ]));
+    set_spell_level(([ "cleric" : 2 ]));
+    set_domains( ({ "knowledge" }));
     set_spell_sphere("enchantment_charm");
     set_syntax("cast CLASS wieldskill");
     set_description("This gives the caster proficiency with any kind of weapon, provided they are able to wield it.");
@@ -19,8 +20,8 @@ void create()
 
 string query_cast_string()
 {
-    tell_object(caster, "%^YELLOW%^They lyrics to an ancient prayer flood" +
-                " into your mind as you begin to hum");
+    tell_object(caster, "%^YELLOW%^The lyrics to an ancient prayer flood" +
+                " into your mind as you begin to hum.");
     tell_room(place, "%^YELLOW%^" + caster->QCN + " begins to hum.", caster);
     return "display";
 }

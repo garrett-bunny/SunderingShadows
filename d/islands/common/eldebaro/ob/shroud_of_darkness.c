@@ -158,8 +158,8 @@ int remove_me()
 int strike_func(int damage, object what, object who)
 {
     object mob;
-    if(!objectp(ETO)) return 0;
-    if(!objectp(who)) return 0;
+    if(!objectp(ETO)) return damage;
+    if(!objectp(who)) return damage;
     if(!random(2))
     {
         tell_room(EETO, "%^BOLD%^%^BLACK%^As "+who->QCN+"%^BOLD%^%^BLACK%^ strikes "+ETOQCN+

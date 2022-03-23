@@ -380,9 +380,10 @@ void set_property(string prop, mixed value)
     if (prop == "enchantment" && !random(20) && !query("no curse") && !query_property("no curse")) {
         value = -1 * value;
     }
-    if (prop == "magic resistance") {
+    if (prop == "magic resistance" || prop == "spell resistance") {
 	if(TO->is_living() && value > 9) {
-	    log_file("reports/magic_resistance", "Living Object magic resistance value of " + value + " in " + base_name(TO) + "\n");
+	    log_file("reports/magic_resistance", "Living Object magic resistance value of " + value + " in " + TO + "\n");
+	    log_file("reports/magic_resistance", "Previous object " + previous_object() + "\n");
 	}
 	else if (!(TO->is_living()) && value > 4) {
 	    log_file("reports/magic_resistance", "Non-living Object magic resistance value of " + value + " in " + base_name(TO) + "\n");
@@ -494,6 +495,15 @@ mixed query_property(string prop)
             num += 25;
         }
     }
+    
+    if(prop == "flying")
+    {
+        if(this_object()->query_bloodline() == "celestial" && this_object()->query_class_level("sorcerer") > 30)
+            num += 1;
+        
+        if(this_object()->is_deva() || this_object()->query("subrace") == "fey'ri")
+            num += 1;
+    }
 
     if (prop == "empowered") {
         if (FEATS_D->usable_feat(TO, "greater spell power")) {
@@ -507,6 +517,16 @@ mixed query_property(string prop)
                 }
             }
         }
+        
+        if(this_object()->is_class("druid"))
+        {
+            if(FEATS_D->has_feat(this_object(), "guardian of nature"))
+            {
+                if(!USER_D->is_valid_terrain(environment(this_object())->query_terrain(), "city"))
+                    num += 2;
+            }
+        }
+        
         if(this_object()->is_class("psion") && this_object()->query("available focus"))
             num += 1;
     
@@ -621,6 +641,9 @@ mixed query_property(string prop)
             }
         }
         
+        if(this_object()->query_bloodline() == "orc" && this_object()->query_class_level("sorcerer") > 30)
+            num += 5;
+        
         if(FEATS_D->usable_feat(this_object(), "armored juggernaut") && !this_object()->is_ok_armour("thief"))
             num += (BONUS_D->query_stat_bonus(this_object(), "strength") / 2);
         
@@ -653,6 +676,14 @@ mixed query_property(string prop)
             num += 5;
         if(this_object()->query_mystery() == "battle" && this_object()->query_class_level("oracle") >= 15)
             num += 5;
+        
+        if(this_object()->is_animal())
+        {
+            object rider = this_object()->query_current_rider();
+            
+            if(objectp(rider) && FEATS_D->has_feat(rider, "bred for war"))
+                num += 5;
+        }
         
         num += props[prop];
         return (num + EQ_D->gear_bonus(TO, "damage resistance"));
@@ -700,15 +731,17 @@ mixed query_property(string prop)
         if ((string)TO->query_race() == "deva") {
             num += 1;
         }
-        if ((string)TO->query_race() == "yuan-ti") {
-            num += 1;
-        }
+
         if ((string)TO->query_race() == "drow" ||
             (string)TO->query("subrace") == "szarkai") {
-            num += 1;
+            num += 2;
         }
+        
+        if(FEATS_D->has_feat(this_object(), "eternal warrior") && this_object()->query("available focus") == 2)
+            num += 2;
+        
         num += props[prop];
-        return (num + EQ_D->gear_bonus(TO, "magic resistance"));
+        return (num + EQ_D->gear_bonus(TO, "magic resistance") + EQ_D->gear_bonus(TO, "spell resistance"));
     }
     
     if(prop == "darkvision")
@@ -872,6 +905,15 @@ mixed query_property(string prop)
             num += 9;
         }
         */
+        
+        if(this_object()->is_animal())
+        {
+            object rider = this_object()->query_current_rider();
+            
+            if(objectp(rider) && FEATS_D->has_feat(rider, "bred for war"))
+                num += 5;
+        }
+        
         num += props[prop];
         return (num + EQ_D->gear_bonus(TO, "spell damage resistance"));
     }
@@ -1303,7 +1345,7 @@ string query_short()
         }
     }
     if (objectp(TP)) {
-        if (TP->get_static("detecting magic")) {
+        if (TP->get_static("detecting magic") || FEATS_D->has_feat(this_player(), "eldritch sight")) {
             theShort = addMagic(theShort);
         }
     }
@@ -2663,6 +2705,9 @@ int BonusCheck(string BonusName)
 //new functionality to replace old stat bonuses with all magical bonuses
 void set_item_bonus(string bonustype, int thebonus)
 {
+    if ((bonustype == "magic resistance" || bonustype == "spell resistance") && thebonus > 4) {
+	log_file("reports/magic_resistance", "Item bonus magic resistance value of " + thebonus + " in " + base_name(TO) + "\n");
+    }
     if (!item_bonuses) {
         item_bonuses = ([]);
     }

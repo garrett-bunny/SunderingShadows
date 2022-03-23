@@ -10,7 +10,7 @@ void create()
     set_listen("default","The waves of the Dagger Sea come through the mutterings of the patrons.");
   set_short("Black orc bar");
   set_long(
-  "  Black orc bar seems to collect all the riffraff and the more boistrous sailors to its tables and ale taps."
+  "  Black orc bar seems to collect all the riffraff and the more boisterous sailors to its tables and ale taps."
   "  The tables show signs of wear and not much love added back into them in the way of upkeep."
   "  Broken crockery lies in a corner where someone hasn't bothered to sweep it up yet, and over all the impression you get here is buy a drink or get the hell out."
    "  There are a few bar stools on the north side, some of which are empty if you wanted a drink. There's no place in here that is quiet, however." 

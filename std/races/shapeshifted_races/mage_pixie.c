@@ -47,7 +47,7 @@ int default_descriptions(object obj)
 {
     if(!objectp(obj)) { return 0; }
 
-    obj->set_description("%^BOLD%^%^GREEN%^ is about two and half feet tall with beautiful silver wings. It is dressed in brightly colored clothing. Its little wings flutter back and forth making a faint buzzing noise. Its hair is pink.%^RESET%^");
+    obj->set_description("%^BOLD%^%^GREEN%^is about two and half feet tall with beautiful silver wings. It is dressed in brightly colored clothing. Its little wings flutter back and forth making a faint buzzing noise. Its hair is pink.%^RESET%^");
 
     obj->setDescriptivePhrase("%^BOLD%^%^MAGENTA%^tiny $R%^RESET%^");
 

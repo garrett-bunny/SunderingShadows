@@ -11,6 +11,7 @@ void create(){
 set_long(::query_long()+"%^C059%^\nTo the south is a cozy little church.%^CRST%^\n");
    set_exits(([
 
+                  "north" : TOWN"market",
 		  "west" : TOWN"8",
 		  "south" : TOWN"church",
 

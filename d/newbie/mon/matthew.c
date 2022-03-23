@@ -7,12 +7,12 @@ void create(){
    ::create();
    set_name("Matthew Cinester");
    set_short("Matthew Cinester, caretaker of Offestry Church");
-   set_long("Matthew Cinester stands about six feet tall. Brown hair "+
-      "with a little bald scalp. His eyes are emerald green shine with "+
-      "wisdom. A suit of pure white but simple cloak hides his rather "+
+   set_long("Matthew Cinester stands about six feet tall, brown haired "+
+      "with a little bald scalp. His eyes are emerald green and shine with "+
+      "wisdom. A robe of pure white with a simple cloak hides his rather "+
       "slim body. His hands are held together almost always in prayer. "+
       "A thin rope with a simple band of metal hangs around his neck. "+
-        "Though he looks knowledgeable about the church and a faithful "+
+      "Though he looks knowledgeable about the church and a faithful "+
       "priest, there is a constant expression of grief hanging on his "+
       "face.");
    set_id(({"matthew","cinester","Matthew","Cinester","matthew cinester","caretaker"}));

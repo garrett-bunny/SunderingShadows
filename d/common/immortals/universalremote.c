@@ -14,8 +14,7 @@ void create(){
    set_long("%^BOLD%^%^WHITE%^Welcome to the shiney new %^CYAN%^Avatar %^GREEN%^Universal %^YELLOW%^Remote "
 "%^MAGENTA%^Control%^WHITE%^! Sick of filling your pockets with wands and sticks and devices? Can't remember "
 "which button to push? No problem! With the new remote control you can have all your commands in the one handy "
-"pocket-sized device. %^YELLOW%^Instructions %^WHITE%^are on a label on the back.%^RESET%^");
-  set_read("%^BOLD%^%^RED%^ How to use -\n"
+"pocket-sized device.%^RESET%^\n%^BOLD%^%^RED%^ How to use -\n"
 "%^YELLOW%^<here>%^WHITE%^ returns the filename of the room you are in.\n"
 "%^YELLOW%^<agemod playername number>%^WHITE%^ will give the player an age modifier, number can be positive or negative.\n"
 "%^YELLOW%^<setprop tpward/magicward/scryward>%^WHITE%^ to teleport, spell, or scry-proof a room.\n"
@@ -24,7 +23,8 @@ void create(){
 "%^YELLOW%^<clearprof playername profname>%^WHITE%^ to remove a redundant proficiency from the player. You may need to use fixprofs following this.\n"
 "%^YELLOW%^<trylang playername>%^WHITE%^ to give a player a reroll chance for undercommon. One use only, select races only.\n"
 "%^YELLOW%^<oldgrant playername amount>%^WHITE%^ grant players an amount of exp.\n"
-"%^YELLOW%^<nwpbonus playername amount to nwpname>%^WHITE%^ grant players an amount of exp to an nwp.\n"
+"%^YELLOW%^<fester playername on/off>%^WHITE%^ adds and removes the fester flag.\n"
+"%^YELLOW%^<rend playername amount>%^WHITE%^ rends a player for that many rounds.\n"
 "%^YELLOW%^<deed playername deed>%^WHITE%^ add a deed to the list of accomplishments on a player. Usually good to test on yourself first.\n"
 "%^YELLOW%^<pkflag playername on/off>%^WHITE%^ to add or remove a PKflag from a player.\n"
 "%^YELLOW%^<dtflag playername on/off>%^WHITE%^ to add or remove a (downtime) PKflag from a player.\n"
@@ -52,7 +52,6 @@ void init()
    	add_action("files","here");
    	add_action("exp","oldgrant");
    	add_action("do_mark_deed","deed");
-   	add_action("nwp_bonus","nwpbonus");
    	add_action("pk_flag", "pkflag");
    	add_action("dt_flag", "dtflag");
   	add_action("d_flag", "dflag");
@@ -66,7 +65,69 @@ void init()
     add_action("fix_em","fixfeats");
     add_action("add_em","addfeats");
     add_action("age_mod", "agemod");
+    add_action("fester_fun", "fester");
+    add_action("rend_fun", "rend");
 }
+
+int rend_fun(string str) {
+  string name, which;
+  object targplay;
+  int dt;
+  if (!avatarp(ETO)) {
+     tell_object(ETO,"The item mysteriously vanishes.");
+     TO->remove();
+     return 0;
+  } // Added security!!! A must have. :)
+  if (!str)
+    return notify_fail("syntax is <rend [name] #>\n");
+  if (sscanf(str,"%s %s",name, which) != 2)
+    return notify_fail("syntax is <rend [name] #>\n");
+  if(which != "on" && which != "off")
+  if (sscanf(str,"%s %s",name, which) != 2)
+    return notify_fail("syntax is <fester [name] #>\n");
+  name=lower_case(name);
+  if (objectp(targplay = find_player(name)) && interactive(targplay))  {
+     write("You set %^BOLD%^"+which+" rounds of rend on %^BOLD%^"+name+"%^RESET%^ "+
+        "there has been no echo, you will need to provide that.");
+     targplay->set_property("rend", which); 
+   } else {
+     return notify_fail("Player "+ name +" not found or not interactive.\n");
+   }
+   return 1;
+}
+
+
+int fester_fun(string str) {
+  string name, which;
+  object targplay;
+  int dt;
+  if (!avatarp(ETO)) {
+     tell_object(ETO,"The item mysteriously vanishes.");
+     TO->remove();
+     return 0;
+  } // Added security!!! A must have. :)
+  if (!str)
+    return notify_fail("syntax is <fester [name] on> or <fester [name] off>\n");
+  if (sscanf(str,"%s %s",name, which) != 2)
+    return notify_fail("syntax is <fester [name] on> or <fester [name] off>\n");
+  if(which != "on" && which != "off")
+  if (sscanf(str,"%s %s",name, which) != 2)
+    return notify_fail("syntax is <fester [name] on> or <fester [name] off>\n");
+  name=lower_case(name);
+  if (objectp(targplay = find_player(name)) && interactive(targplay))  {
+     write("You set the fester on %^BOLD%^"+name+"%^RESET%^ to %^BOLD%^"+which+" %^RESET%^ "+
+        "there has been no echo, you will need to provide that.");
+     switch(which) {
+     case "on":  targplay->set_property("fester", 100);  break;
+     case "off":  targplay->remove_property("fester");  break;
+    default:  write("Something didn't work right, please try again.");
+     }
+   } else {
+     return notify_fail("Player "+ name +" not found or not interactive.\n");
+   }
+   return 1;
+}
+
 
 int age_mod(string str)
 {

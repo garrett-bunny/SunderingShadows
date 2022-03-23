@@ -21,7 +21,7 @@ void create()
     set_short("%^BOLD%^%^BLUE%^Razunakmail's %^RESET%^%^BLUE%^S%^CYAN%^a"+
         "%^BOLD%^p%^BLUE%^p%^RESET%^%^BLUE%^h%^CYAN%^i%^BOLD%^r%^BLUE%^e%^RESET%^");
     
-    set_long("%^BOLD%^%^BLUE%^This armor is suprisingly light. The craftsmanship is obviously that of a master. "
+    set_long("%^BOLD%^%^BLUE%^This armor is surprisingly light. The craftsmanship is obviously that of a master. "
         "The plates are shaped to lock perfectly with each other, while still leaving room for mobility. It would "
         "seem each plate is molded from an individual blue dragon scale. When in the light, the armor shines from "
         "dull blue to sapphire.");
@@ -49,7 +49,7 @@ void create()
 int wear_func()
 {
     tell_room(ETP,"%^WHITE%^%^BOLD%^"+ETO->QCN+" buckles up the fullplate",TP);
-    tell_object(TP,"%^WHITE%^%^BOLD%^You buckle up the heavy plate, and feel reinsured by its protection");
+    tell_object(TP,"%^WHITE%^%^BOLD%^You buckle up the heavy plate, and feel reassured by its protection");
     return 1;
 }
 
