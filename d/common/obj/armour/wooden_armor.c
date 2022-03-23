@@ -25,6 +25,7 @@ void create(){
     set_limbs( ({ "torso" }) );
     //set_ac(5);
     set_ac(7);
+    set_property("repairtype",({ "woodworker" }));
 }
 
 int is_metal() { return 0; }
