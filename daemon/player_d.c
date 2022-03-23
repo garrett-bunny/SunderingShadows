@@ -949,6 +949,9 @@ int immunity_check(object obj, string type)
         if (obj->is_undead())
             return 1;
         
+        if(obj->query_race() == "yuan-ti")
+            return 1;
+        
         if(obj->query_mystery() == "life")
             
         return 0;

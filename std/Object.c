@@ -719,12 +719,10 @@ mixed query_property(string prop)
         if ((string)TO->query_race() == "deva") {
             num += 1;
         }
-        if ((string)TO->query_race() == "yuan-ti") {
-            num += 1;
-        }
+
         if ((string)TO->query_race() == "drow" ||
             (string)TO->query("subrace") == "szarkai") {
-            num += 1;
+            num += 2;
         }
         
         if(FEATS_D->has_feat(this_object(), "eternal warrior") && this_object()->query("available focus") == 2)
