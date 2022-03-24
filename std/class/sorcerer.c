@@ -47,9 +47,9 @@ mapping class_featmap(string myspec, object player)
     myspec = player->query_bloodline();
     
     if(myspec == "arcane")
-        return ([ 1 : ({ "simple weapon proficiency", "spell focus", "arcane bond" }) ]);
+        return ([ 1 : ({ "simple weapon proficiency", "spell focus", "arcane bond" }), 31 : ({ "blood is power" }) ]);
     
-    return ([ 1 : ({ "simple weapon proficiency", "spell focus", }) ]);
+    return ([ 1 : ({ "simple weapon proficiency", "spell focus", }), 31 : ({ "blood is power" }) ]);
 }
 
 string *class_skills(object ob)

@@ -60,6 +60,10 @@ int cmd_master(string args)
         if (myclass == "magus" && FEATS_D->usable_feat(TP, "greater spell access")) {
             spell_access = 2;
         }
+        else if(myclass == "sorcerer" && FEATS_D->usable_feat(this_player(), "blood is power"))
+        {
+            spell_access = 1;
+        }
 
         write("%^CYAN%^You have spells as follows:");
         for (i = 0; i < 9; i++) {
@@ -212,6 +216,10 @@ int cmd_master(string args)
 
         if (myclass == "magus" && FEATS_D->usable_feat(TP, "greater spell access")) {
             spell_access = 2;
+        }
+        else if(myclass == "sorcerer" && FEATS_D->usable_feat(this_player(), "blood is power"))
+        {
+            spell_access = 1;
         }
 
         {
