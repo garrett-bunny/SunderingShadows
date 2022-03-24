@@ -64,7 +64,7 @@ int wield_fun()
     tell_room(EETO, "%^RESET%^" + thecolor + "The smoky haze of the orb comes to life, roiling angr%^BOLD%^i%^RESET%^" + thecolor +
               "ly within its glassy prison.%^RESET%^");
     
-    if (TP->is_class("sorcerer") || TP->is_class("bard") || TP->is_class("oracle") || TP->is_class("warlock" || TP->is_class("paladin")) {
+    if (TP->is_class("sorcerer") || TP->is_class("bard") || TP->is_class("oracle") || TP->is_class("warlock") || TP->is_class("paladin")) {
         set_item_bonus("intelligence", 0);
         set_item_bonus("charisma", 4);
         set_item_bonus("wisdom", 0);
