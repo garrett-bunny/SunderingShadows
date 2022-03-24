@@ -21,7 +21,9 @@ set_exits(([
 void reset(){
    ::reset();
    if(!present("corpses")){
-      new(OBJ"pile_of_corpses.c")->move(TO);
+      if(!random(5)) {
+         new(OBJ"pile_of_corpses.c")->move(TO);
+      }
    }
 }
 
