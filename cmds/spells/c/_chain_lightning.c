@@ -81,6 +81,11 @@ void spell_effect(int prof)
     }
 
     number = clevel;
+    
+    if(!stringp(element))
+        element = caster->query("elementalist");
+    if(!stringp(element))
+        element = "electricity";
 
     hits = ({});
     inven = ({});

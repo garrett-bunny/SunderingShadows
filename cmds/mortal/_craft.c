@@ -136,7 +136,7 @@ void remake_item(object player, string item)
     }
     tmp_map = ([]);
     item = replace_string(item, ".c", "");
-    tmp_map += (["filename" : item, "~SHORT~" : obj->query("short"), "~LORE~" : obj->query_lore(),
+    tmp_map += (["filename" : item, "~SHORT~" : obj->query_short(), "~LORE~" : obj->query_lore(),
                  "~ID~" : obj->query_id(), "~NAME~" : obj->query_name(), ]);
     size = obj->query_size();
     switch (size) {
