@@ -17,8 +17,7 @@ void create()
    " a wooden table on the east side of the room with a single chair. In"+
    " the northeastern corner is a bed with a %^ORANGE%^cheetah hide%^RESET%^"+
    " covering it. Many other furs and skins are hung around the room, some"+
-   " have been made into hats and things, while others are still drying."+
-   " %^RED%^The room is a blood-splattered mess!%^RESET%^"
+   " have been made into hats and things, while others are still drying.%^RESET%^"
    );
    set_smell("default","The scent of cured hides is strong here.");
    if(query_night() == 1) {
@@ -64,9 +63,9 @@ void create()
 void reset()
 {
    ::reset();
-   //if(!present("vendor")) {
-      //new(MONS+"periodo")->move(TO);
-   //}
+   if(!present("vendor")) {
+      new(MONS+"periodo")->move(TO);
+   }
 }
 
 int GoThroughDoor()
