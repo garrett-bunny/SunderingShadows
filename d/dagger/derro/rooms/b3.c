@@ -14,7 +14,7 @@ void create(){
   set_long(
   "%^RED%^Guard room.%^RESET%^\n"
   "  The exit to the south is narrower than the rest of the passage with stone enbankments to offer those in this room cover from fire to the south."
-  "  Small boulders lay strewn about and other than that the room is featurless."
+  "  Small boulders lay strewn about and other than that the room is featureless."
   "\n"
   );
   set_smell("default",

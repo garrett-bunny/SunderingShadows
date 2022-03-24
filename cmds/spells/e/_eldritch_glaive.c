@@ -94,7 +94,7 @@ void spell_effect(int prof){
     glaive->weapon_setup(caster,clevel);
     glaive->set_short("%^RESET%^"+descriptor+"%^RESET%^ %^CYAN%^g%^BOLD%^%^CYAN%^l%^RESET%^%^CYAN%^a%^BOLD%^%^WHITE%^i%^BOLD%^%^CYAN%^v%^RESET%^%^CYAN%^e%^RESET%^");
     glaive->set_long("%^BOLD%^%^WHITE%^This magical construct looks as though it would serve as a weapon of considerable %^RESET%^%^RED%^potency%^BOLD%^%^WHITE%^. Instead of wood or metal, however, it is made purely of "+descriptor+"%^BOLD%^%^WHITE%^. Shaped like a glaive, it rises from a long and narrow haft that must be at least six or seven feet long. From there, it broadens and gains a %^YELLOW%^razor-sharp %^BOLD%^%^WHITE%^edge, forming a curved blade of %^RESET%^%^MAGENTA%^lethal %^BOLD%^%^WHITE%^purpose.%^RESET%^\n");
-    tell_object(caster,"%^MAGENTA%^In your hands materializes crude blade, formed of "+descriptor+"!%^RESET%^");
+    tell_object(caster,"%^MAGENTA%^In your hands materializes a crude blade, formed of "+descriptor+"!%^RESET%^");
     tell_room(place,"%^MAGENTA%^In hands of "+caster->QCN+" materializes a crude blade, formed of "+descriptor+"!%^RESET%^",caster);
     caster->force_me("wield eldritch glaive");
 
