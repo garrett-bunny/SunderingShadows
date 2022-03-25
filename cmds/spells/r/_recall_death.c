@@ -14,7 +14,8 @@ void create()
     mental_spell();
     set_spell_sphere("clairsentience");
     set_syntax("cast CLASS recall death on TARGET");
-    set_description("This spell parts the fabric of time, revealing wounds your foe has received in the past (or is yet to receive) that are potentially fatal. That target takes considerable damage as the past (or future) impinges briefly on the present. A failed will save will result in death. A successful save will result in the target still taking damage");
+    set_damage_desc("death or mental damage");
+    set_description("This spell parts the fabric of time, revealing wounds your foe has received in the past (or is yet to receive) that are potentially fatal. That target takes considerable damage as the past (or future) impinges briefly on the present. A failed will save will result in death. A successful save will result in the target still taking mental damage");
     set_verbal_comp();
     set_somatic_comp();
     set_target_required(1);
