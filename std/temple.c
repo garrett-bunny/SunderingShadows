@@ -42,6 +42,9 @@ void init()
 
 void warning(object who)
 {
+    if(!objectp(who))
+        return;
+    
     if(environment(who) != this_object())
         return;
     

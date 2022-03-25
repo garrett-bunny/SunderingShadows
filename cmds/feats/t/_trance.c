@@ -163,7 +163,7 @@ void dest_effect()
             case "ascetic":
             caster->add_skill_bonus("spellcraft", -mod);
             caster->add_saving_bonus("all", -2);
-            caster->add_ac_bonus(mod);
+            caster->add_ac_bonus(-mod);
             break;
             case "assassin":
             caster->add_skill_bonus("stealth", -mod);
