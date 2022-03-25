@@ -304,10 +304,14 @@ varargs int damage_adjustment(object attacker, object victim, int damage)
     if (FEATS_D->usable_feat(victim, "defensive roll")) {
         num = (int)victim->query_max_hp() / 4;
         if (damage > num) { // kicks in for any blow greater than 25% of hp.
-            num = ((int)victim->query_level() / 2) + 18; // DC to be roughly 50% success for SC without feats/etc
-            logdata = "/daemon/saving_throw_d.c"->debug_reflex_save(victim, ((-1) * num)); // logging success rate
+            //num = ((int)victim->query_level() / 2) + 18; // DC to be roughly 50% success for SC without feats/etc
+            //Tlaloc made this a percentile that scales with level. A save just didn't make sense to me, compounded with the inherent problems with saves.
+            num = (victim->query_prestige_level("thief") / 2) + (victim->query_prestige_level("monk") / 2) + 25;
+            //logdata = "/daemon/saving_throw_d.c"->debug_reflex_save(victim, ((-1) * num)); // logging success rate
 
-            if (logdata["save_result"]) {
+            //if (logdata["save_result"]) {
+            if(random(100) < num)
+            {
                 damage = damage / 2;
                 if (damage < 0) {
                     damage = 0;
