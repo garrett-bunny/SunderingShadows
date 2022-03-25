@@ -15,4 +15,5 @@ void create()
     set_syntax("cast CLASS seeing on TARGET");
     set_description("This power is the psionic version of clairvoyance.");
     set_silent_casting(1);
+    set_feats_required(([]));
 }
