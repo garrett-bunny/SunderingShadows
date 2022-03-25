@@ -25,6 +25,7 @@ int cmd_channel(string str) {
           return notify_fail("Syntax: <channel [add|remove] [player] [channel] [reason]>\n");
 
 
+   /*
    if(posxxx == "builder" || posxxx == "apprentice")
    {
 	   object *imms=({});
@@ -61,6 +62,7 @@ int cmd_channel(string str) {
 		   }
 	   }
    }
+   */
 
 	//if((string)TP->query_position() == "builder" || (string)TP->query_position() == "apprentice")
 	//   return notify_fail("Sorry, you don't have access to add or restrict channels.\n");
