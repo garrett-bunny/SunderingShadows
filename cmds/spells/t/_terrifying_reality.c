@@ -11,24 +11,24 @@ int timer,flag,stage,toggle,counter;
 void create()
 {
     ::create();
-    set_spell_name("visions from within");
-    set_spell_level(([ "mage":7,"cleric":7,"bard":5, "inquisitor" : 6 ]));
-    set_spell_sphere("illusion");
-    set_syntax("cast CLASS visions from within");
+    set_spell_name("terrifying reality");
+    set_spell_level(([ "psion" : 7 ]));
+    set_spell_sphere("telepathy");
+    set_discipline("telepath");
+    set_syntax("cast CLASS terrifying reality");
     set_damage_desc("mental damage and cowering on failed save");
-    set_description("With this spell the caster shares own nightmares with everyone in the area. All affected targets take mental damage and are left cowering if they fail a saving throw. Those that succeed on their save will take half damage and are left shaken.");
+    set_description("The telepath reaches into the depths of the minds of those around him, bringing their deepest fears into stark reality. The victims take mental damage and are left cowering if they don't make a will saving throw; otherwise they are shaken.");
     set_verbal_comp();
     set_somatic_comp();
     mental_spell();
     set_save("will");
-    //set_components((["mage":(["rose petals":3,"slug":1])]));
     aoe_spell(1);
     set_aoe_message("%^BOLD%^%^BLUE%^(%^BLACK%^populated with %^BLACK%^n%^BLUE%^i%^BLACK%^ght%^BLUE%^m%^BLACK%^ar%^BLUE%^i%^BLACK%^s%^BLUE%^h%^BLACK%^ horrors%^BLUE%^)%^RESET%^");
 }
 
 string query_cast_string()
 {
-    tell_room(place,"%^BOLD%^%^BLUE%^"+caster->QCN+" voices few syllables.");
+    tell_room(place,"%^BOLD%^%^CYAN%^"+caster->QCN+" concentrates deeply.");
     return "display";
 }
 
