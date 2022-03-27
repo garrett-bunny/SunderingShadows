@@ -776,7 +776,7 @@ int cmd_feats(string str)
                     my_required += ({ required[i] });
                 }
             }
-            if (!FEATS_D->has_feat(ob, feat)) {
+            if (!FEATS_D->has_feat(this_player(), feat)) {
                 tell_object(TP, "%^BOLD%^You don't have the feat " + tmp + ".");
             }else if (!sizeof(my_required)) {
                 tell_object(TP, "%^BOLD%^The feat " + tmp + " is a feat that you were granted "
