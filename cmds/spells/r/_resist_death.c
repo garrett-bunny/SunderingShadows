@@ -55,7 +55,9 @@ void spell_effect()
     target->set_property("no death", 1);
     target->set_resistance_percent("negative energy", 25);
     
-    addSpellToTarget();
+    if(target != caster)
+        addSpellToTarget();
+    
     addSpellToCaster();
     spell_duration = (clevel + roll_dice(1, 20)) * ROUND_LENGTH * 12;
     set_end_time();
