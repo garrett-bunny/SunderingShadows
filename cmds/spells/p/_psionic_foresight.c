@@ -13,6 +13,7 @@ void create() {
     set_spell_name("psionic foresight");
     set_spell_level(([ "psion" : 9 ]));
     set_spell_sphere("clairsentience");
+    set_discipline("seer");
     set_bonus_type("insight");
     set_syntax("cast CLASS psionic foresight [on TARGET]");
     set_damage_desc("+2 to armor bonus, +2 to reflex save, death ward feat");
