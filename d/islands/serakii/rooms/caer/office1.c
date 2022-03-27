@@ -28,11 +28,16 @@ void create() {
 
     set_items(([
       ({"floor","rug"}) : "The floor is covered in a %^C242%^fine gray carpet%^CRST%^.\n",
-      ({"paintings"}) : "The ceiling is so far above you it is hard to "+
-      "fathom exactly how high. There is a glass dome far above "+
-      "you letting in light.\n",
-      ({"desk"}) : "Made from %^C094%^fine mahogany%^CRST%^, this desk is overly large for its purpose, made to %^C088%^intimidate %^CRST%^or show off %^C055%^wealth %^CRST%^more than just be a %^C058%^desk%^CRST%^ for working at. It is %^C060%^carved %^CRST%^with a relief of %^C064%^stags %^CRST%^and %^C136%^hounds %^CRST%^bounding over hills. The surface has been polished to a %^C220%^shine%^CRST%^.\n",
-      ({"chair"}) : "This fine %^C124%^high back leather chair%^CRST%^ is expensive and comfortable. It is meant to not only look %^C055%^authoritative%^CRST%^ but also fit nicely into a %^C056%^rich %^CRST%^room.\n",
+      ({"paintings"}) : "The painting on the wall is of a massive stone statue of a man "+
+      "in a dark forest. The styling of the painting is almost impressionist in its "+
+      "depiction of the depths of how large the forest and how grand the statue of the man is.\n",
+      ({"desk"}) : "Made from %^C094%^fine mahogany%^CRST%^, this desk is overly large for its "+
+      "purpose, made to %^C088%^intimidate %^CRST%^or show off %^C055%^wealth %^CRST%^more than "+
+      "just be a %^C058%^desk%^CRST%^ for working at. It is %^C060%^carved %^CRST%^with a relief "+
+      "of %^C064%^stags %^CRST%^and %^C136%^hounds %^CRST%^bounding over hills. The surface has "+
+      "been polished to a %^C220%^shine%^CRST%^.\n",
+      ({"chair"}) : "This fine %^C124%^high back leather chair%^CRST%^ is expensive and comfortable. "+
+      "It is meant to not only look %^C055%^authoritative%^CRST%^ but also fit nicely into a %^C056%^rich %^CRST%^room.\n",
     ]));
 
 
