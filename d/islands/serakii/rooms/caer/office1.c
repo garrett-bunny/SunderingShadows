@@ -28,9 +28,11 @@ void create() {
 
     set_items(([
       ({"floor","rug"}) : "The floor is covered in a %^C242%^fine gray carpet%^CRST%^.\n",
-      ({"paintings"}) : "The painting on the wall is of a massive stone statue of a man "+
-      "in a dark forest. The styling of the painting is almost impressionist in its "+
-      "depiction of the depths of how large the forest and how grand the statue of the man is.\n",
+      ({"painting"}) : "The painting on the wall is of a %^C243%^massive stone statue%^CRST%^ "+
+      "of a man in a %^C022%^dark forest%^CRST%^. The styling of the painting is almost "+
+      "impressionist in its depiction of the depths of how large the %^C022%^forest%^CRST%^ "+
+      "and how grand the %^C243%^statue%^CRST%^ of the man is.\n",
+
       ({"desk"}) : "Made from %^C094%^fine mahogany%^CRST%^, this desk is overly large for its "+
       "purpose, made to %^C088%^intimidate %^CRST%^or show off %^C055%^wealth %^CRST%^more than "+
       "just be a %^C058%^desk%^CRST%^ for working at. It is %^C060%^carved %^CRST%^with a relief "+
