@@ -1232,6 +1232,10 @@ int not_librarian(object player,int num)
     return num;
 }
 
+int is_library() {
+    return 1;
+}
+
 int get_help(string str)
 {
     if(!objectp(TP))    { return 0; }
