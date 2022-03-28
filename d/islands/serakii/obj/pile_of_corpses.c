@@ -1,9 +1,11 @@
 
 #include <std.h>
+#include "../serakii.h"
+
 inherit OBJECT;
 
 int how_many_corpses;
-object corpse;
+object corpse,gem;
 
 void create() {
     ::create();
@@ -18,7 +20,7 @@ void create() {
         "deal with all together you could %^C196%^>collect<%^C160%^ them one at a time.%^CRST%^\n");
     set_value(0);
     set_property("no animate",1);
-    how_many_corpses = 25;
+    how_many_corpses = 15;
 }
 
 void init(){
@@ -110,6 +112,11 @@ void change_pile(){
         corpse->set_obvious_short("%^CYAN%^A child's corpse%^RESET%^");
         corpse->set_weight(20);
         corpse->move(TO);
+
+    tell_object(TP,"%^C160%^You hear the soft sigh of a child, and energy pool up around you... "+
+        "Undeneath the last corpse you find a small gem has appeared.\n%^CRST%^");
+    gem = new(OBJ"child_gem");
+    gem->move(TO);
 
     this_object()->move("/d/shadowgate/void");
     this_object()->remove();

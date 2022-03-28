@@ -1,8 +1,7 @@
-
 #include <std.h>
 #include "../../serakii.h"
 
-inherit STORAGE"mist_forest.c";
+inherit STORAGE"corrupted_forest.c";
 
 
 
@@ -11,9 +10,8 @@ void create(){
 
 
 set_exits(([
+"northeast" : FOR"b2",
 
-    "east" : FOR"47",
-    "south" : FOR"45",
 
 ]));
 
@@ -25,7 +23,6 @@ void reset(){
       new(OBJ"archway.c")->move(TO);
    }
 }
-
 
 void init() {
     ::init();
@@ -48,7 +45,7 @@ object ob;
          "You will need an item that holds an immense amount of power.\n");
         //ob->remove();
        tell_object(TP,"The archway powers up and a portal appears\n");
-           add_exit( FOR"b1", "portal" );
+           add_exit( FOR"46", "portal" );
         return 1;
     }
         
