@@ -15,4 +15,5 @@
 #define FALLOW "/d/islands/serakii/rooms/fallow/"+
 #define RUINS "/d/islands/serakii/rooms/ruin/"+
 #define CAER "/d/islands/serakii/rooms/caer/"+
+#define BONE "/d/islands/serakii/rooms/bone/"+
 #define WHITE "/d/islands/serakii/rooms/white/"+
