@@ -10,7 +10,7 @@ void create(){
     set_exits(([
         "east" : "/d/dagger/road/road28",
         "west" : "/d/dagger/tonovi/2path2",
-        "southwest" : "/d/dagger/yniam/room/road3",
+        "southwest" : "/d/dagger/yniam/room/road4",
         ]));
 }
 

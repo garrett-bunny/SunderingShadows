@@ -9,7 +9,7 @@ void create(){
     ::create();
     set_long(::query_long()+"%^RESET%^%^CRST%^%^C136%^The northern and western %^C144%^Yniam %^C136%^roads converge here before leading through the hills to the northwest towards %^C059%^Tonovi%^C136%^.\n");
     set_exits(([
-        "south" : RPATH "1path7",
+        "south" : RPATH "1path8",
         "east" : RPATH "2path5",
         "northwest" : RPATH "road1",
         ]));

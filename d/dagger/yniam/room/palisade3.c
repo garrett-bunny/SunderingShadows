@@ -1,15 +1,15 @@
 // Chernobog (3/15/22)
-// Interior Yniam Road
+// Palisade Wall
 
 #include <std.h>
 #include "../defs.h"
-inherit INH"road2";
+inherit INH"palisade";
 
 void create(){
     ::create();
     set_exits(([
-        "southwest" : ROOMS"palisade2",
-        "northeast" : ROOMS"road4",
+        "northwest" : ROOMS"outpost_hub",
+        "southeast" : ROOMS"road5",
         ]));
 }
 

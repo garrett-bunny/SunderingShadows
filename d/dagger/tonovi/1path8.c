@@ -8,8 +8,8 @@ inherit "/d/dagger/yniam/inherit/road";
 void create(){
     ::create();
     set_exits(([
-        "southwest" : RPATH "1path6",
-        "north" : RPATH "1path8",
+        "south" : RPATH "1path7",
+        "north" : RPATH "crossrd",
         ]));
 }
 

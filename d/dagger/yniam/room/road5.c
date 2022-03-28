@@ -8,8 +8,8 @@ inherit INH"road2";
 void create(){
     ::create();
     set_exits(([
-        "southwest" : ROOMS"palisade2",
-        "northeast" : ROOMS"road4",
+        "northwest" : ROOMS"palisade3",
+        "southeast" : ROOMS"road6",
         ]));
 }
 
