@@ -68,14 +68,15 @@ void execute_feat()
         dest_effect();
         return;
     }
+    
+    ::execute_feat();
+    
     if(!USER_D->spend_pool(caster, 1, "focus"))
     {
         tell_object(caster, "You must have psionic focus to use combatprescience!");
         dest_effect();
         return;
     }
-    
-    ::execute_feat();
     
     tell_object(caster,"%^RESET%^%^ORANGE%^You pluck the very essence of planning from the air around you, giving you insight into battle.%^RESET%^");
     tell_room(place,"%^RESET%^%^ORANGE%^Strange symbols flash in " + caster->query_cap_name() + "'s eyes as " + caster->query_subjective() + " gives a warcry.%^RESET%^",caster);

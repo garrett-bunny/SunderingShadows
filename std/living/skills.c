@@ -391,7 +391,7 @@ int query_skill(string skill)
             x += 10;
     }
     
-    if(this_object()->is_class("mage"))
+    if(FEATS_D->has_feat(this_object(), "arcane bond"))
     {
         switch(PLAYER_D->check_familiar(this_object()))
         {

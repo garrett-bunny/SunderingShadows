@@ -31,6 +31,8 @@ void init()
 
 int freeme()
 {
+    object *effects;
+    
     if (!objectp(ETO)) {
         return;
     }
@@ -44,6 +46,14 @@ int freeme()
               "the forces that try to contain " + ETO->QO + "!%^RESET%^", ETO);
     ETO->remove_paralyzed();
     ETO->set_tripped(0);
+    
+    effects = this_player()->query_property("status_effects");
+    
+    foreach(object eff in effects)
+    {
+        if(eff->query_name() == "effect_staggered")
+            eff->dest_effect(this_player());
+    }
 
     charges--;
     if (charges < 0) {

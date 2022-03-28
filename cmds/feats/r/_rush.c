@@ -387,9 +387,9 @@ void miss_mess(object play,object targ) {
 
     if(play->query_property("shapeshifted"))
     {
-        tell_object(play,"%^BOLD%^%^GREEN%^"+targ->QCN+" dodges to the side at the last instant and you tumble end over end, loosing your footing!");
-        tell_object(targ,"%^BOLD%^%^GREEN%^You dodge to the side at the last instant and "+play->QCN+" tumbles end over end, loosing "+play->QP+" footing!");
-        tell_room(etp,"%^BOLD%^%^GREEN%^Suddenly "+targ->QCN+" dodges to the side at the last instant and "+play->QCN+" tumbles end over end, loosing "+play->QP+" footing!",({play,targ}));
+        tell_object(play,"%^BOLD%^%^GREEN%^"+targ->QCN+" dodges to the side at the last instant and you miss, rushing past them!");
+        tell_object(targ,"%^BOLD%^%^GREEN%^You dodge to the side at the last instant and "+play->QCN+" misses, rushing past you!");
+        tell_room(etp,"%^BOLD%^%^GREEN%^Suddenly "+targ->QCN+" dodges to the side at the last instant and "+play->QCN+" misses, rushing past them!",({play,targ}));
         return;
     }
 

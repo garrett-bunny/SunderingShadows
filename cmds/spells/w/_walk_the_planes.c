@@ -181,7 +181,7 @@ void move_caster(object endplace, int prof) {
         break;
       }
       TELEPORT->teleport_object(caster,caster,endplace,clevel);
-      presentparty->move(endplace);
+      presentparty->move_player(endplace);
     }
     else { // group teleport!
       tell_object(caster,"%^CYAN%^Linking hands with your allies, you step into the %^RESET%^hazy rift%^CYAN%^, and in the blink of an eye you step out again at "+endplace->query_short()+".%^RESET%^");
