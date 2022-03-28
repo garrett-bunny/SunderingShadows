@@ -1273,7 +1273,7 @@ void trace_rumour(object ob, string trace_subject, int trace_num){
   hearers = keys(heard_rumours);
   if (member_array(lower_case(ob->query_true_name()), hearers)==-1)
   {
-    tell_object("Sorry, you don't seem to have heard any rumours, so I don't know how you came to be trying to trace one. Please use the game command to make a bug report.");
+    tell_object(ob, "Sorry, you don't seem to have heard any rumours, so I don't know how you came to be trying to trace one. Please use the game command to make a bug report.");
     ob->remove_property("tracing");
     ob->remove_property("gossipping");
     return;
@@ -1281,7 +1281,7 @@ void trace_rumour(object ob, string trace_subject, int trace_num){
   my_heard_rumours = heard_rumours[lower_case(ob->query_true_name())];
   if (!mapp(my_heard_rumours) || sizeof(my_heard_rumours)<1)
   {
-    tell_object("Sorry, you don't seem to have heard any rumours, so I don't know how you came to be trying to trace one. Please use the game command to make a bug report.");
+    tell_object(ob, "Sorry, you don't seem to have heard any rumours, so I don't know how you came to be trying to trace one. Please use the game command to make a bug report.");
     ob->remove_property("tracing");
     ob->remove_property("gossipping");
     return;
@@ -1289,7 +1289,7 @@ void trace_rumour(object ob, string trace_subject, int trace_num){
   subjects = keys(my_heard_rumours);
   if (sizeof(subjects)<1 || member_array(trace_subject, subjects)==-1)
   {
-    tell_object("Sorry, you don't seem to have heard any rumours about " + trace_subject + ", so I don't know how you came to be trying to trace one. Please use the game command to make a bug report.");
+    tell_object(ob, "Sorry, you don't seem to have heard any rumours about " + trace_subject + ", so I don't know how you came to be trying to trace one. Please use the game command to make a bug report.");
     ob->remove_property("tracing");
     ob->remove_property("gossipping");
     return;
@@ -1297,7 +1297,7 @@ void trace_rumour(object ob, string trace_subject, int trace_num){
   rumours_about_subject = my_heard_rumours[trace_subject];
   if (!mapp(rumours_about_subject) || sizeof(rumours_about_subject)<1)
   {
-    tell_object("Sorry, you don't seem to have heard any rumours about " + trace_subject + ", so I don't know how you came to be trying to trace one. Please use the game command to make a bug report.");
+    tell_object(ob, "Sorry, you don't seem to have heard any rumours about " + trace_subject + ", so I don't know how you came to be trying to trace one. Please use the game command to make a bug report.");
     ob->remove_property("tracing");
     ob->remove_property("gossipping");
     return;
@@ -1305,7 +1305,7 @@ void trace_rumour(object ob, string trace_subject, int trace_num){
   nums = keys(rumours_about_subject);
   if (member_array(trace_num, nums)==-1)
   {
-    tell_object("Sorry, you don't seem to have heard a rumour numbered " + trace_num + " about " + trace_subject + ", so I don't know how you came to be trying to trace it. Please use the game command to make a bug report.");
+    tell_object(ob, "Sorry, you don't seem to have heard a rumour numbered " + trace_num + " about " + trace_subject + ", so I don't know how you came to be trying to trace it. Please use the game command to make a bug report.");
     ob->remove_property("tracing");
     ob->remove_property("gossipping");
     return;
@@ -1313,7 +1313,7 @@ void trace_rumour(object ob, string trace_subject, int trace_num){
   heard_rumour = rumours_about_subject[trace_num];
   if (sizeof(heard_rumour)<1)
   {
-    tell_object("Sorry, there was an early problem loading rumour number " + trace_num + " about " + trace_subject + ", so you are not able to trace its origins at this time. Please use the game command to make a bug report.");
+    tell_object(ob, "Sorry, there was an early problem loading rumour number " + trace_num + " about " + trace_subject + ", so you are not able to trace its origins at this time. Please use the game command to make a bug report.");
     ob->remove_property("tracing");
     ob->remove_property("gossipping");
     return;
@@ -1322,7 +1322,7 @@ void trace_rumour(object ob, string trace_subject, int trace_num){
   real_rumour = query_rumour(trace_subject, real_rumour_no);
   if (!arrayp(real_rumour) || sizeof(real_rumour)< INSTIGATOR +1)
   {
-    tell_object("Sorry, there was a late problem loading rumour number " + trace_num + " about " + trace_subject + ", so you are not able to trace its origins at this time. Please use the game command to make a bug report.");
+    tell_object(ob, "Sorry, there was a late problem loading rumour number " + trace_num + " about " + trace_subject + ", so you are not able to trace its origins at this time. Please use the game command to make a bug report.");
     ob->remove_property("tracing");
     ob->remove_property("gossipping");
     return;
@@ -1330,7 +1330,7 @@ void trace_rumour(object ob, string trace_subject, int trace_num){
   instigators = real_rumour[INSTIGATOR];
   if (!arrayp(instigators) || sizeof(instigators)< 1)
   {
-    tell_object("Sorry, there was a problem identifying who started rumour number " + trace_num + " about " + trace_subject + ", so you are not able to trace its origins at this time. Please use the game command to make a bug report.");
+    tell_object(ob, "Sorry, there was a problem identifying who started rumour number " + trace_num + " about " + trace_subject + ", so you are not able to trace its origins at this time. Please use the game command to make a bug report.");
     ob->remove_property("tracing");
     ob->remove_property("gossipping");
     return;

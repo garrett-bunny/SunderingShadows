@@ -16,7 +16,6 @@ void create()
         "them what you were manifesting and that you got this "+
         "message.  Something is wrong with the power.");
     set_id(({"weapon","psion weapon","energy weapon"}));
-    set_type("piercing");
     set_weight(0);
     set_value(0);
     set("no curse",1);
@@ -110,6 +109,7 @@ void make_me(string str)
             "and %^CYAN%^blue%^WHITE%^.  The staff moves with "+
             "an amazing quickness, as though it can sense the "+
             "wielder's every thought.%^RESET%^");
+        set_damage_type("bludgeoning");
         break;
         
     case "battleaxe": 
@@ -130,6 +130,7 @@ void make_me(string str)
             "glimmering arc of %^CYAN%^steel blue%^WHITE%^.  "+
             "The axe moves with an amazing quickness, as "+
             "though it can sense the wielder's every thought.%^RESET%^");
+        set_damage_type("slashing");
         break;
         
     default:
@@ -149,6 +150,7 @@ void make_me(string str)
             "an amazing quickness, as though it can sense the "+
             "wielder's every thought.%^RESET%^");
         set_size(1);
+        set_damage_type("slashing");
         break;
     }
 }

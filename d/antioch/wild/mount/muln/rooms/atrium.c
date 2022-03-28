@@ -23,7 +23,7 @@ void create()
                   "outside":"/d/antioch/wild/mount/trail3"
    ]));
    set_items( ([
-                   "ship" : "The ship is ancient, but still holds its shape. Some straw had been placed on the deck to form some kind of nest.",
+                   "ship" : "The ship is ancient, but still holds its shape. Some straw has been placed on the deck to form some kind of nest.",
                    "nest" : "The nest had been made by a large creature.",
                    "straw" : "The straw is fresh, whoever made this nest prefers to nap in a clean bed.",
                    "symbol": "This is an ancient symbol of the Zin'Charu empire, three letters that abbreviate \"Senate and the people\"",
