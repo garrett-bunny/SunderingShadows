@@ -82,8 +82,8 @@ void execute_feat()
     if (!arg) {
         return help();
     }
-	    if (!environment(caster)->is_lab() && !present("portable lab", environment(caster))) {
-        write("You can only enchant items in a laboratory.");
+    if (!environment(caster)->is_lab() && !present("portable lab", environment(caster)) && !environment(caster)->is_library()) {
+        write("You can only scribe in a laboratory or library.");
         return 1;
     }
 
