@@ -529,7 +529,8 @@ int validate(object ob)
             }
         }
     }
-
+    
+    bonus_names = filter(bonus_names, (: $1 != "shieldMiss" :));
     if (sizeof(bonus_names) >= 3) {
         if (!ob->query_property("invalidate time")) {
             ob->set_property("invalidate time", time());
