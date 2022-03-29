@@ -11,7 +11,7 @@ void create(){
 	set_value(2000);
 	set_lore("The handles and chains of the platinum flails where crafted by dwarves and sold to an order of human mages in Farwest. The mages had been paid well to create these weapons for the guard of the high king, and they did a good job. The empire eventually fell but most of the flails where found and sold off in various directions.");
     set_property("enchantment",3);
-    set_item_bonus("ac bonus", 1);
+    set_ac(1);
     set_wield((:TO,"wield_me":));
     set_unwield((:TO,"unwield_me":));
     set_hit((:TO,"hit_func":));
