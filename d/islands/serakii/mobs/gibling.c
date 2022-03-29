@@ -94,11 +94,11 @@ void create()
     }));
     add_money("gold",random(5000));
     ob = new(OBJ"bloodwood_axe");
-    if(random(2)) ob->set_property("monsterweapon", 1);
+    if(random(5)) ob->set_property("monsterweapon", 1);
     ob->move(TO);
     command("wield axe");
     ob = new(OBJ"bloodwood_axe");
-    if(random(2)) ob->set_property("monsterweapon", 1);
+    if(random(5)) ob->set_property("monsterweapon", 1);
     ob->move(TO);
     command("wield axe");
 
