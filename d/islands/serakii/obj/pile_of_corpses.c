@@ -111,12 +111,12 @@ void change_pile(){
          "decayed pieces. Who it was in life is impossible to tell at this point.");
         corpse->set_obvious_short("%^CYAN%^A child's corpse%^RESET%^");
         corpse->set_weight(20);
-        corpse->move(TO);
+        corpse->move(ETP);
 
     tell_object(TP,"%^C160%^You hear the soft sigh of a child, and energy pool up around you... "+
         "Undeneath the last corpse you find a small gem has appeared.\n%^CRST%^");
     gem = new(OBJ"child_gem");
-    gem->move(TO);
+    gem->move(ETP);
 
     this_object()->move("/d/shadowgate/void");
     this_object()->remove();
