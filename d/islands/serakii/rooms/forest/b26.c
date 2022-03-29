@@ -12,3 +12,11 @@ set_exits(([
 ]));
 
 }
+
+void reset(){
+   ::reset();
+   if(!present("archway")){
+      new(OBJ"archway.c")->move(TO);
+   }
+}
+
